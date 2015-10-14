@@ -1,0 +1,7 @@
+#include "hreadonlydelegate.h"
+
+HreadonlyDelegate::HreadonlyDelegate(QObject *parent) :
+    QObject(parent)
+{
+    
+}
