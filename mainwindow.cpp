@@ -308,7 +308,7 @@ void MainWindow::on_tbRicette_clicked()
    // connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
    // f->SetDB();
 
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_tbAnag_clicked()
@@ -337,7 +337,7 @@ void MainWindow::on_tnProduzione_clicked()
     f->init(sConn,QString::number(user->getID()));
 
   //  f->setUserId(currentUsr->getID());
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_tbSettings_clicked()
@@ -352,7 +352,7 @@ void MainWindow::on_tbProdotti_clicked()
     HProdottiNew* f = new HProdottiNew();
 
     f->init(sConn);
-    f->show();
+    f->showMaximized();
  //  f->setConnection(sConn);
 
  //   f->setWindowModality(Qt::ApplicationModal);
@@ -390,7 +390,7 @@ void MainWindow::on_pBNewOperation_clicked()
    HnuovaOperazione *f = new HnuovaOperazione();
 
   f->setConnectionName(sConn,QString::number(user->getID()));
-  f->show();
+  f->showMaximized();
 }
 
 void MainWindow::login()
@@ -421,7 +421,7 @@ void MainWindow::on_tbAssociazioni_clicked()
     HAssociazioni* f = new HAssociazioni();
  //   connect(this,SIGNAL(onConnectionName()),f,SLOT(setConnectionName(QString)));
     f->init(sConn);
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_pbSchede_clicked()
@@ -429,7 +429,7 @@ void MainWindow::on_pbSchede_clicked()
 
     HSchedeClienti *f = new HSchedeClienti();
     f->init(sConn,user);
-    f->show();
+    f->showMaximized();
 
 }
 
@@ -450,14 +450,14 @@ void MainWindow::on_tbModificaLotti_clicked()
 {
     HModifyProd *h = new HModifyProd();
     h->init(sConn,user);
-    h->show();
+    h->showMaximized();
 }
 
 void MainWindow::on_pbPackages_clicked()
 {
     HPackages *f =new HPackages();
     f->init(sConn,QString::number(user->getID()));
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_pushButton_clicked()
