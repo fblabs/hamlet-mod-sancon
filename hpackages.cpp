@@ -10,7 +10,7 @@
 #include <QCompleter>
 #include <QSqlError>
 #include <QMessageBox>
-//#include <QDebug>
+#include <QDebug>
 
 HPackages::HPackages(QWidget *parent) :
     QWidget(parent),
@@ -56,6 +56,7 @@ void HPackages::init(QString conn,QString user)
     tmProdotti->setFilter("tipo=2");
     tmProdotti->setSort(1,Qt::AscendingOrder);
     tmProdotti->select();
+
     tmUnitaMisura->setTable("unita_di_misura");
     tmUnitaMisura->setSort(1,Qt::AscendingOrder);
     tmUnitaMisura->select();
@@ -79,39 +80,54 @@ void HPackages::init(QString conn,QString user)
     ui->cbClienti->setCompleter(compClienti);
     ui->cbProdotti->setCompleter(compProdotti);
     ui->dateEdit->setDate(QDate::currentDate().addYears(2));
+    showSubclients=ui->checkBox->isChecked();
+    filterBySubclients=ui->checkBox_2->isChecked();
 
-    ui->lvSubclienti->setVisible(false);
+   // ui->lvSubclienti->setVisible(false);
+    connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(filterProducts()));
+  //  filterProducts();
     connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(createNewLot()));
 
     ui->pbAnnulla->setEnabled(false);
-    ui->pbCrea->setEnabled(true);
+    ui->pbCrea->setEnabled(true);//
     ui->leComponente->setEnabled(false);
     ui->leQuantita->setEnabled(false);
     ui->pbAddRow->setEnabled(false);
     ui->pbRemoveRow->setEnabled(false);
     ui->cbProdotti->setCurrentIndex(0);
-    ui->checkBox_2->setVisible(false);
+ //   ui->checkBox_2->setVisible(false);
 
 }
 
 void HPackages::filterProducts()
 {
-  QString idcliente;
-  if(ui->checkBox_2->isChecked() && ui->lvSubclienti->model()->rowCount()>0)
+  int idcliente;
+
+  if(filterBySubclients)
   {
-      idcliente=ui->lvSubclienti->model()->index(ui->lvSubclienti->selectionModel()->currentIndex().row(),0).data(0).toString();
+      ui->lvSubclienti->setVisible(true);
+
+      idcliente=ui->lvSubclienti->model()->index(ui->lvSubclienti->currentIndex().row(),0).data(0).toInt();
 
   }
   else
   {
-      idcliente=tmClienti->index(ui->cbClienti->currentIndex(),0).data(0).toString();
+      ui->lvSubclienti->setVisible(false);
+      idcliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
   }
+qDebug()<<"filterProducts:"+idcliente;
+
+  QString filtro="ID in (SELECT ricette.ID_prodotto FROM ricette, associazioni where ricette.ID=associazioni.ID_ricetta and associazioni.ID_cliente=";
+  filtro.append(QString::number(idcliente)+")");
+
+  qDebug()<<filtro;
+  tmProdotti->setFilter(filtro);
+  ui->cbProdotti->setCurrentIndex(0);
 
 
-    tmProdotti->setFilter("ID in (SELECT ricette.ID_prodotto FROM ricette, associazioni where ricette.ID=associazioni.ID_ricetta and associazioni.ID_cliente="+idcliente +")");
-    ui->cbProdotti->setCurrentIndex(0);
 
+qDebug()<<tmProdotti->query().lastQuery();
 }
 
 void HPackages::getSubclients()
@@ -119,70 +135,43 @@ void HPackages::getSubclients()
 
    int cliente;
 
-   bool mostrasubclienti=ui->checkBox->isChecked();
-   bool filtrapersub=ui->checkBox_2->isChecked();
 
    cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
 
+
    QSqlQueryModel *subclients=new QSqlQueryModel();
+
    QSqlQuery q(db);
    QString sql="SELECT ID, ragione_sociale FROM anagrafica WHERE IDCliente=:id and subcliente=1";
    q.prepare(sql);
    q.bindValue(":id",QVariant(cliente));
-   if (q.exec())
-   {
-   subclients->setQuery(q);
+   q.exec();
+
+
+   //se cliente ha subclienti
+   subclients->setQuery(q); //assegno il resultset al modello
    ui->lvSubclienti->setModel(subclients);
    ui->lvSubclienti->setModelColumn(1);
-   }
-   else
-   {
-       ui->lvSubclienti->setVisible(false);
-       ui->checkBox_2->setVisible(false);
-       ui->checkBox_2->setChecked(false);
-   }
 
-   if (subclients->rowCount()>0 && mostrasubclienti)
-   {
-       ui->checkBox_2->setVisible(true);
-       ui->lvSubclienti->setVisible(true);
-   }
-   else
-   {
-       ui->lvSubclienti->setVisible(false);
+   connect(ui->lvSubclienti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(filterProducts()));
 
-   }
 
-   if(filtrapersub)
-   {
-        connect(ui->lvSubclienti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(filterProducts()));
         filterProducts();
-   }
-   else
-   {
-       disconnect(ui->lvSubclienti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(filterProducts()));
-       filterProducts();
 
-   }
+       //disconnect(ui->lvSubclienti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(filterProducts()));
+
+
+
 
 
 }
 
 void HPackages::on_checkBox_toggled(bool checked)
 {
-    if (checked) //se il cliente ha suclienti li mostro e li connetto allo slot
-    {
-        connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
-
-    }
-    else
-    {
-        disconnect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
-        ui->lvSubclienti->setVisible(false);
-        ui->checkBox_2->setVisible(false);
-        ui->checkBox_2->setChecked(false);
-
-    }
+        showSubclients=checked;
+        ui->checkBox_2->setVisible(checked);
+        ui->checkBox_2->setChecked(checked);
+        ui->lvSubclienti->setVisible(checked);
 
 }
 
@@ -396,17 +385,13 @@ void HPackages::on_pbRemoveRow_clicked()
 
 void HPackages::on_checkBox_2_toggled(bool checked)
 {
-    if(checked)
-    {
-        connect(ui->lvSubclienti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(filterProducts()));
-        filterProducts();
-    }
-    else
-    {
-        disconnect(ui->lvSubclienti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(filterProducts()));
+    filterBySubclients=checked;
+    ui->lvSubclienti->setVisible(checked);
 
-    }
-    ui->cbProdotti->setCurrentIndex(0);
+    filterProducts();
+
+
+
 }
 
 int HPackages::getLastId()

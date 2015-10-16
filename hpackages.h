@@ -38,6 +38,10 @@ private:
     int newlotid;
 
 
+    bool showSubclients;
+    bool filterBySubclients;
+
+
 
 private slots:
     void filterProducts();

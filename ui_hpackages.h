@@ -24,6 +24,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
@@ -58,6 +59,7 @@ public:
     QDateEdit *dateEdit;
     QLabel *label_5;
     QTextEdit *teNote;
+    QSpacerItem *horizontalSpacer;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pbCrea;
     QPushButton *pbAnnulla;
@@ -126,6 +128,7 @@ public:
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/Resources/Book.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         checkBox->setIcon(icon2);
+        checkBox->setChecked(true);
 
         formLayout_3->setWidget(1, QFormLayout::LabelRole, checkBox);
 
@@ -160,17 +163,17 @@ public:
         label_7 = new QLabel(HPackages);
         label_7->setObjectName(QStringLiteral("label_7"));
 
-        formLayout_4->setWidget(1, QFormLayout::LabelRole, label_7);
+        formLayout_4->setWidget(2, QFormLayout::LabelRole, label_7);
 
         leLest = new QLineEdit(HPackages);
         leLest->setObjectName(QStringLiteral("leLest"));
 
-        formLayout_4->setWidget(1, QFormLayout::FieldRole, leLest);
+        formLayout_4->setWidget(2, QFormLayout::FieldRole, leLest);
 
         label_6 = new QLabel(HPackages);
         label_6->setObjectName(QStringLiteral("label_6"));
 
-        formLayout_4->setWidget(2, QFormLayout::LabelRole, label_6);
+        formLayout_4->setWidget(3, QFormLayout::LabelRole, label_6);
 
         formLayout_2 = new QFormLayout();
         formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
@@ -185,28 +188,32 @@ public:
         formLayout_2->setWidget(0, QFormLayout::FieldRole, cbQua);
 
 
-        formLayout_4->setLayout(2, QFormLayout::FieldRole, formLayout_2);
+        formLayout_4->setLayout(3, QFormLayout::FieldRole, formLayout_2);
 
         label_9 = new QLabel(HPackages);
         label_9->setObjectName(QStringLiteral("label_9"));
 
-        formLayout_4->setWidget(3, QFormLayout::LabelRole, label_9);
+        formLayout_4->setWidget(4, QFormLayout::LabelRole, label_9);
 
         dateEdit = new QDateEdit(HPackages);
         dateEdit->setObjectName(QStringLiteral("dateEdit"));
 
-        formLayout_4->setWidget(3, QFormLayout::FieldRole, dateEdit);
+        formLayout_4->setWidget(4, QFormLayout::FieldRole, dateEdit);
 
         label_5 = new QLabel(HPackages);
         label_5->setObjectName(QStringLiteral("label_5"));
 
-        formLayout_4->setWidget(4, QFormLayout::LabelRole, label_5);
+        formLayout_4->setWidget(5, QFormLayout::LabelRole, label_5);
 
         teNote = new QTextEdit(HPackages);
         teNote->setObjectName(QStringLiteral("teNote"));
         teNote->setMaximumSize(QSize(16777215, 120));
 
-        formLayout_4->setWidget(4, QFormLayout::FieldRole, teNote);
+        formLayout_4->setWidget(5, QFormLayout::FieldRole, teNote);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        formLayout_4->setItem(1, QFormLayout::LabelRole, horizontalSpacer);
 
 
         verticalLayout_3->addLayout(formLayout_4);
