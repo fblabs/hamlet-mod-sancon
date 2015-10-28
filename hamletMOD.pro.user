@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 3.4.0, 2015-10-16T01:17:26. -->
+<!-- Written by QtCreator 3.4.0, 2015-10-28T17:06:32. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -60,7 +60,7 @@
   <valuemap type="QVariantMap">
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Qt 5.3.1 (mingw482_32)</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Qt 5.3.1 (mingw482_32)</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{41386820-e3df-4f78-a615-bf79600b6181}</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{8f7e7a6f-9dd8-4fb1-afa9-c17477d7a417}</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
@@ -120,7 +120,7 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/hamletmod/21022015</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/hamletmod/build-hamletMOD-Qt_5_3_1_mingw482_32-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
