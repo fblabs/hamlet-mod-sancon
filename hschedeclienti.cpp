@@ -196,6 +196,7 @@ void HSchedeClienti::loadScheda()
 {
 
     int prodotto=ui->listView->model()->index(ui->listView->selectionModel()->currentIndex().row(),0).data(0).toInt();
+    qDebug()<<QString::number(prodotto);
     int cliente;
 
     if (ui->cbSelectCriteria->isChecked())

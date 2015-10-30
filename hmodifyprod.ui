@@ -108,14 +108,42 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_5">
        <item>
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Cerca</string>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string/>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QRadioButton" name="rbprod">
+            <property name="text">
+             <string>Cerca Prodotto</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="rblots">
+            <property name="text">
+             <string>Cerca lotto</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
         <widget class="QLineEdit" name="leSearch">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="frame">
           <bool>true</bool>
          </property>

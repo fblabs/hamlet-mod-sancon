@@ -47,6 +47,7 @@ private slots:
     void onConnectionNameSet();
     void selectMasterClient();
     void updateSubclient();
+    void save();
 
 
 

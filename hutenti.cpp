@@ -170,14 +170,28 @@ void HUtenti::selectMasterClient()
 void HUtenti::updateSubclient()
 {
     QSqlQuery q(db);
-    QString sql="update anagrafica set IDCliente=:idc where ID=:id";
+    QString sql;
     int idc=ui->cbxMasterCli->model()->index(ui->cbxMasterCli->currentIndex(),0).data(0).toInt();
     int id=ui->lvUtenti->model()->index(ui->lvUtenti->currentIndex().row(),0).data(0).toInt();
-    q.prepare(sql);
-    q.bindValue(":idc",idc);
-    q.bindValue(":id",id);
-     q.exec();
-    //qDebug()<<QString::number(id)<<QString::number(idc)<<q.lastQuery()<<q.lastError().text();
+
+
+    if(ui->cbsub->isChecked())
+    {
+        sql="update anagrafica set IDCliente=:idc where ID=:id";
+        q.prepare(sql);
+        q.bindValue(":idc",idc);
+        q.bindValue(":id",id);
+        q.exec();
+    }
+    else
+    {
+        sql="update anagrafica set IDCliente=NULL whereID=:id";
+        q.prepare(sql);
+        q.bindValue(":id",id);
+        q.exec();
+
+    }
+
 }
 
 void HUtenti::productSearch()
@@ -198,19 +212,22 @@ void HUtenti::hidesubclienti()
 
 void HUtenti::on_pushButton_3_clicked()
 {
-  //  db.transaction();
+   save();
+}
+
+void HUtenti::save()
+{
+    db.transaction();
 
 
-      // tm->submitAll();
+     //  tm->submitAll();
     //qDebug()<<"updatesubclient";
+
        updateSubclient();
 
-  //  db.commit();
+        tm->submitAll();
 
-
-
-
-
+    db.commit();
 }
 
 void HUtenti::addreset()

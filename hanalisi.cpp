@@ -79,11 +79,10 @@ void HAnalisi::getYearlyProduction()
 {
         QSqlQuery q(db);
         QSqlQueryModel *yprod=new QSqlQueryModel();
-       // QString sql="SELECT distinct prodotti.ID,prodotti.descrizione from lotdef,prodotti,associazioni,ricette where associazioni.ID_ricetta=ricette.ID and ricette.ID_prodotto=prodotti.ID and prodotti.ID=ricette.ID_prodotto and associazioni.ID_cliente=:cliente and associazioni.ID_ricetta=ricette.ID and associazioni.visualizza=1 and lotdef.data between :datedal AND :dateal";
-       QString sql="SELECT DISTINCT prodotti.ID,prodotti.descrizione from prodotti,lotdef where prodotti.ID=lotdef.prodotto and prodotti.tipo=2 and lotdef.anagrafica=:cliente and lotdef.data between :datedal and :dateal";
-        QString cliente;
+        QString sql="SELECT DISTINCT prodotti.ID,prodotti.descrizione from prodotti,lotdef where prodotti.ID=lotdef.prodotto and prodotti.tipo=2 and lotdef.anagrafica=:cliente and lotdef.data between :datedal and :dateal";
+        int cliente;
         QDate datedal,dateal;
-        cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toString();
+        cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
         datedal=ui->deFrom->date();
         dateal=ui->deTo->date();
 
@@ -357,14 +356,7 @@ void HAnalisi::getLotComponents()
 
     int lotid=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();//componenti
 
-    //sql="SELECT operazioni.ID,lotdef.ID,lotdef.lot as 'Lotto',prodotti.descrizione,operazioni.quantita from operazioni,prodotti,lotdef WHERE prodotti.ID=operazioni.IDprodotto and operazioni.azione=2 and lotdef.ID=operazioni.IDlotto and operazioni.ID in (SELECT operazione FROM composizione_lot WHERE composizione_lot.ID_lotto=:lotid)";
-    //sql="SELECT operazioni.ID,lotdef.ID,lotdef.lot as 'Lotto',prodotti.descrizione,operazioni.quantita from operazioni,prodotti,lotdef WHERE prodotti.ID=operazioni.IDprodotto and operazioni.azione=2 and lotdef.ID=operazioni.IDlotto and operazioni.ID in (SELECT operazione FROM composizione_lot WHERE composizione_lot.ID_lotto=:lotid)";
-    //sql="select operazioni.ID,prodotti.descrizione, anagrafica.ragione_sociale,operazioni.quantita from operazioni,prodotti,lotdef,anagrafica  where  prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID in (select operazione from composizione_lot where ID_lotto=5164);
-
-   // sql="select lotdef.ID,lotdef.data,lotdef.lot,prodotti.descrizione, anagrafica.ragione_sociale,operazioni.quantita from operazioni,prodotti,lotdef,anagrafica  where  prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID in (select operazione from composizione_lot where ID_lotto=:lotid)";  //+QString::number(lotid)
-    //sql="select lotdef.ID,lotdef.data,lotdef.lot,anagrafica.ragione_sociale,operazioni.quantita  from operazioni,lotdef,anagrafica,composizione_lot  where lotdef.ID=composizione_lot.ID_lotto and anagrafica.ID=lotdef.anagrafica and composizione_lot.ID_lotto=operazioni.IDlotto  and composizione_lot.ID_lotto=:lotid";
-   // sql="select operazioni.ID, operazioni.IDlotto,prodotti.descrizione from operazioni,prodotti where prodotti.ID=operazioni.IDprodotto and operazioni.ID in(select operazione from composizione_lot where ID_lotto=:idlot)";
-    sql="select  operazioni.IDlotto,operazioni.data,lotdef.lot,prodotti.descrizione,operazioni.quantita from operazioni,lotdef,prodotti where lotdef.ID=operazioni.IDlotto and prodotti.ID=operazioni.IDprodotto and operazioni.ID in(select operazione from composizione_lot where ID_lotto=:lotid)";
+    sql="select  operazioni.IDlotto,operazioni.data,lotdef.lot,prodotti.descrizione,operazioni.quantita from prodotti,operazioni,lotdef where lotdef.ID=operazioni.IDlotto and prodotti.ID=operazioni.IDprodotto and operazioni.ID in(select operazione from composizione_lot where ID_lotto=:lotid)";
     q.prepare(sql);
     q.bindValue(":lotid",QVariant(lotid));
     q.exec();

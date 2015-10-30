@@ -458,56 +458,49 @@ void HModifyProd::on_pushButton_6_clicked()
 
 
 
+void HModifyProd::findIt(QString arg)
+{  QString filter;
 
-
-
-/*void HModifyProd::on_leSearch_returnPressed()
-{
-   int key;
-
-   QModelIndex index = ui->leSearch->completer()->currentIndex();
-
-
-    if(ui->leSearch->text().length()==0)
+    if (ui->rblots->isChecked())
     {
-       filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"'";
-    }
-    else
-    {
-        if (index.isValid()) {
-            int row = index.row();
-            key= prodcomp->model()->index(row, 0).data().toInt();
-            qDebug() << key<<prodcomp->currentCompletion();
+        if(ui->leSearch->text().length()==0)
+        {
+           filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"'";
+
+        }
+        else
+        {
+           filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"' and lotdef.lot like '%" +arg+"%'";
+
         }
 
-        filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"' and lotdef.prodotto="+ QString::number(key);
-    }
-
-    tmLots->setFilter(filter);
-    qDebug()<<filter<<prodcomp->currentIndex().data(0).toString();
-
-}*/
-
-void HModifyProd::on_leSearch_textChanged(const QString &arg1)
-{
-    QString filter;
-
-    if(ui->leSearch->text().length()==0)
-    {
-       filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"'";
-
     }
     else
     {
-       filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"' and relTblAl_2.descrizione like '%" +arg1+"%'";
+        if(ui->leSearch->text().length()==0)
+        {
+           filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"'";
 
+        }
+        else
+        {
+           filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"' and relTblAl_2.descrizione like '%" +arg+"%'";
+
+        }
     }
 
 
     tmLots->setFilter(filter);
     ui->tvDetails->setModel(0);
 
+   // qDebug()<<tmLots->query().lastError().text();
+     qDebug()<<tmLots->query().lastQuery()<<tmLots->lastError();
+}
 
+void HModifyProd::on_leSearch_textChanged(const QString &arg1)
+{
+
+    findIt(arg1);
 
 
 }
@@ -518,3 +511,9 @@ void HModifyProd::on_pushButton_7_clicked()
 }
 
 
+
+void HModifyProd::on_rbprod_toggled(bool checked)
+{
+    ui->leSearch->setText("");
+    ;
+}

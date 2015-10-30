@@ -22,7 +22,6 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
-#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -38,7 +37,6 @@ public:
     QVBoxLayout *verticalLayout_2;
     QComboBox *cbClienti;
     QTableView *tvYearlyProduction;
-    QSpacerItem *verticalSpacer;
     QCheckBox *checkBox;
     QHBoxLayout *horizontalLayout;
     QLabel *label_2;
@@ -96,10 +94,6 @@ public:
         tvYearlyProduction->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         verticalLayout_2->addWidget(tvYearlyProduction);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_2->addItem(verticalSpacer);
 
         checkBox = new QCheckBox(HAnalisi);
         checkBox->setObjectName(QStringLiteral("checkBox"));

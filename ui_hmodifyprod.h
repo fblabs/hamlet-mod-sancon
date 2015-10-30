@@ -17,6 +17,7 @@
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -47,7 +48,10 @@ public:
     QLabel *label_8;
     QTableView *tvLots;
     QHBoxLayout *horizontalLayout_5;
-    QLabel *label_3;
+    QGroupBox *groupBox;
+    QHBoxLayout *horizontalLayout_6;
+    QRadioButton *rbprod;
+    QRadioButton *rblots;
     QLineEdit *leSearch;
     QPushButton *pushButton_7;
     QHBoxLayout *horizontalLayout_4;
@@ -151,13 +155,28 @@ public:
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        label_3 = new QLabel(HModifyProd);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        groupBox = new QGroupBox(HModifyProd);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        horizontalLayout_6 = new QHBoxLayout(groupBox);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        rbprod = new QRadioButton(groupBox);
+        rbprod->setObjectName(QStringLiteral("rbprod"));
+        rbprod->setChecked(true);
 
-        horizontalLayout_5->addWidget(label_3);
+        horizontalLayout_6->addWidget(rbprod);
+
+        rblots = new QRadioButton(groupBox);
+        rblots->setObjectName(QStringLiteral("rblots"));
+
+        horizontalLayout_6->addWidget(rblots);
+
+
+        horizontalLayout_5->addWidget(groupBox);
 
         leSearch = new QLineEdit(HModifyProd);
         leSearch->setObjectName(QStringLiteral("leSearch"));
+        leSearch->setMaximumSize(QSize(16777215, 16777215));
         leSearch->setFrame(true);
         leSearch->setClearButtonEnabled(true);
 
@@ -310,7 +329,9 @@ public:
         label_9->setText(QApplication::translate("HModifyProd", "Al:", 0));
         label_5->setText(QApplication::translate("HModifyProd", "Periodo:", 0));
         label_8->setText(QApplication::translate("HModifyProd", "Dal:", 0));
-        label_3->setText(QApplication::translate("HModifyProd", "Cerca", 0));
+        groupBox->setTitle(QString());
+        rbprod->setText(QApplication::translate("HModifyProd", "Cerca Prodotto", 0));
+        rblots->setText(QApplication::translate("HModifyProd", "Cerca lotto", 0));
         pushButton_7->setText(QApplication::translate("HModifyProd", "Reset", 0));
         label_2->setText(QApplication::translate("HModifyProd", "Composizione lotto:", 0));
         lbProd->setText(QString());
