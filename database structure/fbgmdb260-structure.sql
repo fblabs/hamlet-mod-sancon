@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `fbgmdb260workcopy` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `fbgmdb260workcopy`;
+CREATE DATABASE  IF NOT EXISTS `fbgmdb260` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `fbgmdb260`;
 -- MySQL dump 10.13  Distrib 5.5.46, for debian-linux-gnu (x86_64)
 --
--- Host: 127.0.0.1    Database: fbgmdb260workcopy
+-- Host: 127.0.0.1    Database: fbgmdb260
 -- ------------------------------------------------------
 -- Server version	5.5.46-0ubuntu0.14.04.2
 
@@ -57,7 +57,9 @@ CREATE TABLE `associazioni` (
   `ID_cliente` int(10) unsigned NOT NULL DEFAULT '0',
   `visualizza` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID_ricetta`,`ID_cliente`),
-  KEY `FK_associazioni_1` (`ID_cliente`)
+  KEY `FK_associazioni_1` (`ID_cliente`),
+  CONSTRAINT `fk_associazioni_1` FOREIGN KEY (`ID_ricetta`) REFERENCES `ricette` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_associazioni_2` FOREIGN KEY (`ID_cliente`) REFERENCES `anagrafica` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -88,7 +90,11 @@ CREATE TABLE `composizione_lot` (
   `ID_lotto` int(10) unsigned DEFAULT NULL,
   `operazione` int(10) unsigned NOT NULL DEFAULT '0',
   `lot` char(25) NOT NULL DEFAULT '',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `fk_composizione_lot_1_idx` (`ID_lotto`),
+  KEY `fk_composizione_lot_2_idx` (`operazione`),
+  CONSTRAINT `fk_composizione_lot_2` FOREIGN KEY (`operazione`) REFERENCES `operazioni` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_composizione_lot_1` FOREIGN KEY (`ID_lotto`) REFERENCES `lotdef` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=304773 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -222,7 +228,10 @@ CREATE TABLE `righe_ricette` (
   `quantita` double NOT NULL DEFAULT '0',
   `show_prod` tinyint(3) unsigned DEFAULT '1',
   PRIMARY KEY (`ID`),
-  KEY `FK_righe_ricette_2` (`ID_prodotto`)
+  KEY `FK_righe_ricette_2` (`ID_prodotto`),
+  KEY `fk_righe_ricette_1_idx` (`ID_ricetta`),
+  CONSTRAINT `fk_righe_ricette_2` FOREIGN KEY (`ID_prodotto`) REFERENCES `prodotti` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_righe_ricette_1` FOREIGN KEY (`ID_ricetta`) REFERENCES `ricette` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5927 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -243,7 +252,10 @@ CREATE TABLE `schede` (
   `scatole` text,
   `note` text,
   `immagine` mediumblob,
-  PRIMARY KEY (`prodotto`,`cliente`)
+  PRIMARY KEY (`prodotto`,`cliente`),
+  KEY `fk_schede_2_idx` (`cliente`),
+  CONSTRAINT `fk_schede_2` FOREIGN KEY (`cliente`) REFERENCES `anagrafica` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_schede_1` FOREIGN KEY (`prodotto`) REFERENCES `prodotti` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='InnoDB free: 5120 kB; (`cliente`) REFER `fbgmdb2/anagrafica`';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -331,11 +343,11 @@ CREATE TABLE `utenti` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping events for database 'fbgmdb260workcopy'
+-- Dumping events for database 'fbgmdb260'
 --
 
 --
--- Dumping routines for database 'fbgmdb260workcopy'
+-- Dumping routines for database 'fbgmdb260'
 --
 /*!50003 DROP FUNCTION IF EXISTS `createID` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -401,4 +413,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-28 17:40:20
+-- Dump completed on 2015-10-30 17:46:41
