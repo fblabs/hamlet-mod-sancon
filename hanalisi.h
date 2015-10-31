@@ -54,10 +54,12 @@ private slots:
     void on_checkBox_toggled(bool checked);
     void on_deFrom_dateChanged(const QDate &date);
     void on_deTo_dateChanged(const QDate &date);
-
+    void printLot();
 
     void printThis();
 
+
+    void on_pbPrint_clicked();
 
 public slots:
     void doMenu(QPoint pos);

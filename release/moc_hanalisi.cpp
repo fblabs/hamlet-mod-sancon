@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HAnalisi_t {
-    QByteArrayData data[33];
-    char stringdata[473];
+    QByteArrayData data[35];
+    char stringdata[501];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -59,9 +59,11 @@ QT_MOC_LITERAL(26, 385, 19),
 QT_MOC_LITERAL(27, 405, 21),
 QT_MOC_LITERAL(28, 427, 4),
 QT_MOC_LITERAL(29, 432, 19),
-QT_MOC_LITERAL(30, 452, 9),
-QT_MOC_LITERAL(31, 462, 6),
-QT_MOC_LITERAL(32, 469, 3)
+QT_MOC_LITERAL(30, 452, 8),
+QT_MOC_LITERAL(31, 461, 9),
+QT_MOC_LITERAL(32, 471, 18),
+QT_MOC_LITERAL(33, 490, 6),
+QT_MOC_LITERAL(34, 497, 3)
     },
     "HAnalisi\0init\0\0conn\0getProductsForClient\0"
     "getLotComponents\0idlotto\0getLotID\0lot\0"
@@ -74,8 +76,9 @@ QT_MOC_LITERAL(32, 469, 3)
     "on_pushButton_3_clicked\0on_pushButton_4_clicked\0"
     "on_pushButton_5_clicked\0getYearlyProduction\0"
     "on_checkBox_toggled\0on_deFrom_dateChanged\0"
-    "date\0on_deTo_dateChanged\0printThis\0"
-    "doMenu\0pos"
+    "date\0on_deTo_dateChanged\0printLot\0"
+    "printThis\0on_pbPrint_clicked\0doMenu\0"
+    "pos"
 };
 #undef QT_MOC_LITERAL
 
@@ -85,7 +88,7 @@ static const uint qt_meta_data_HAnalisi[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      25,   14, // methods
+      27,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -93,31 +96,33 @@ static const uint qt_meta_data_HAnalisi[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,  139,    2, 0x0a /* Public */,
-       4,    0,  142,    2, 0x08 /* Private */,
-       5,    0,  143,    2, 0x08 /* Private */,
-       5,    1,  144,    2, 0x08 /* Private */,
-       7,    1,  147,    2, 0x08 /* Private */,
-       9,    0,  150,    2, 0x08 /* Private */,
-      10,    1,  151,    2, 0x08 /* Private */,
-      12,    0,  154,    2, 0x08 /* Private */,
-      13,    0,  155,    2, 0x08 /* Private */,
-      14,    0,  156,    2, 0x08 /* Private */,
-      15,    1,  157,    2, 0x08 /* Private */,
-      17,    1,  160,    2, 0x08 /* Private */,
-      18,    1,  163,    2, 0x08 /* Private */,
-      19,    1,  166,    2, 0x08 /* Private */,
-      20,    1,  169,    2, 0x08 /* Private */,
-      21,    0,  172,    2, 0x08 /* Private */,
-      22,    0,  173,    2, 0x08 /* Private */,
-      23,    0,  174,    2, 0x08 /* Private */,
-      24,    0,  175,    2, 0x08 /* Private */,
-      25,    0,  176,    2, 0x08 /* Private */,
-      26,    1,  177,    2, 0x08 /* Private */,
-      27,    1,  180,    2, 0x08 /* Private */,
-      29,    1,  183,    2, 0x08 /* Private */,
-      30,    0,  186,    2, 0x08 /* Private */,
-      31,    1,  187,    2, 0x0a /* Public */,
+       1,    1,  149,    2, 0x0a /* Public */,
+       4,    0,  152,    2, 0x08 /* Private */,
+       5,    0,  153,    2, 0x08 /* Private */,
+       5,    1,  154,    2, 0x08 /* Private */,
+       7,    1,  157,    2, 0x08 /* Private */,
+       9,    0,  160,    2, 0x08 /* Private */,
+      10,    1,  161,    2, 0x08 /* Private */,
+      12,    0,  164,    2, 0x08 /* Private */,
+      13,    0,  165,    2, 0x08 /* Private */,
+      14,    0,  166,    2, 0x08 /* Private */,
+      15,    1,  167,    2, 0x08 /* Private */,
+      17,    1,  170,    2, 0x08 /* Private */,
+      18,    1,  173,    2, 0x08 /* Private */,
+      19,    1,  176,    2, 0x08 /* Private */,
+      20,    1,  179,    2, 0x08 /* Private */,
+      21,    0,  182,    2, 0x08 /* Private */,
+      22,    0,  183,    2, 0x08 /* Private */,
+      23,    0,  184,    2, 0x08 /* Private */,
+      24,    0,  185,    2, 0x08 /* Private */,
+      25,    0,  186,    2, 0x08 /* Private */,
+      26,    1,  187,    2, 0x08 /* Private */,
+      27,    1,  190,    2, 0x08 /* Private */,
+      29,    1,  193,    2, 0x08 /* Private */,
+      30,    0,  196,    2, 0x08 /* Private */,
+      31,    0,  197,    2, 0x08 /* Private */,
+      32,    0,  198,    2, 0x08 /* Private */,
+      33,    1,  199,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
@@ -144,7 +149,9 @@ static const uint qt_meta_data_HAnalisi[] = {
     QMetaType::Void, QMetaType::QDate,   28,
     QMetaType::Void, QMetaType::QDate,   28,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QPoint,   32,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QPoint,   34,
 
        0        // eod
 };
@@ -178,8 +185,10 @@ void HAnalisi::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 20: _t->on_checkBox_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 21: _t->on_deFrom_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
         case 22: _t->on_deTo_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
-        case 23: _t->printThis(); break;
-        case 24: _t->doMenu((*reinterpret_cast< QPoint(*)>(_a[1]))); break;
+        case 23: _t->printLot(); break;
+        case 24: _t->printThis(); break;
+        case 25: _t->on_pbPrint_clicked(); break;
+        case 26: _t->doMenu((*reinterpret_cast< QPoint(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -210,13 +219,13 @@ int HAnalisi::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 25)
+        if (_id < 27)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 25;
+        _id -= 27;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 25)
+        if (_id < 27)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 25;
+        _id -= 27;
     }
     return _id;
 }

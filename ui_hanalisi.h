@@ -54,11 +54,11 @@ public:
     QTableView *tvComp;
     QTableView *tvNarrow;
     QHBoxLayout *horizontalLayout_4;
-    QLabel *label_6;
     QLabel *label_5;
     QLineEdit *leLot;
     QPushButton *pushButton_4;
     QPushButton *pushButton_5;
+    QPushButton *pbPrint;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pushButton_3;
 
@@ -201,13 +201,6 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        label_6 = new QLabel(HAnalisi);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setPixmap(QPixmap(QString::fromUtf8(":/Resources/Search.PNG")));
-        label_6->setScaledContents(true);
-
-        horizontalLayout_4->addWidget(label_6);
-
         label_5 = new QLabel(HAnalisi);
         label_5->setObjectName(QStringLiteral("label_5"));
 
@@ -221,13 +214,25 @@ public:
 
         pushButton_4 = new QPushButton(HAnalisi);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon2);
 
         horizontalLayout_4->addWidget(pushButton_4);
 
         pushButton_5 = new QPushButton(HAnalisi);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setIcon(icon1);
 
         horizontalLayout_4->addWidget(pushButton_5);
+
+        pbPrint = new QPushButton(HAnalisi);
+        pbPrint->setObjectName(QStringLiteral("pbPrint"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon3);
+
+        horizontalLayout_4->addWidget(pbPrint);
 
 
         verticalLayout->addLayout(horizontalLayout_4);
@@ -242,9 +247,9 @@ public:
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         pushButton_3 = new QPushButton(HAnalisi);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon2);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon4);
 
         horizontalLayout_3->addWidget(pushButton_3);
 
@@ -275,10 +280,10 @@ public:
         rbAll->setText(QApplication::translate("HAnalisi", "Tutti", 0));
         rbProdottifiniti->setText(QApplication::translate("HAnalisi", "Prodotti finiti", 0));
         rbPackages->setText(QApplication::translate("HAnalisi", "Packages", 0));
-        label_6->setText(QString());
         label_5->setText(QApplication::translate("HAnalisi", "Cerca lotto:", 0));
         pushButton_4->setText(QApplication::translate("HAnalisi", "Cerca ingredienti", 0));
         pushButton_5->setText(QApplication::translate("HAnalisi", "Cerca uso", 0));
+        pbPrint->setText(QApplication::translate("HAnalisi", "Stampa", 0));
         pushButton_3->setText(QApplication::translate("HAnalisi", "Chiudi", 0));
     } // retranslateUi
 

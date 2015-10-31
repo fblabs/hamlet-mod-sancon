@@ -263,7 +263,7 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pushButton_4 = new QPushButton(HModifyProd);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setEnabled(true);
+        pushButton_4->setEnabled(false);
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_4->setIcon(icon2);
@@ -272,6 +272,7 @@ public:
 
         pushButton_5 = new QPushButton(HModifyProd);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setEnabled(false);
         QIcon icon3;
         icon3.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_5->setIcon(icon3);

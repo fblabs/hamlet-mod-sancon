@@ -518,3 +518,51 @@ void HAnalisi::printThis()
 }
 
 
+
+void HAnalisi::on_pbPrint_clicked()
+{
+        printLot();
+}
+
+void HAnalisi::printLot()
+{
+
+    HPrint *f=new HPrint();
+
+    f->show();
+
+  //  f->setText("=============================================");
+
+    //f->append(ui->cbRicette->currentText(),false);
+
+  //  f->append("=============================================\n",false);
+
+
+    QString toappend;
+    int righe = ui->tvComp->model()->rowCount();
+    int colonne=ui->tvComp->model()->columnCount();
+
+    colonne-=1;
+
+    toappend="COMPONENTI LOTTO:";
+    f->append(toappend,false);
+    f->cursorToEnd();
+    f->append("",false);
+
+    QTextTable* table=f->addTable(righe,colonne);
+    qDebug()<<QString::number(righe)<<QString::number(colonne);
+
+    for (int i=0;i<righe;i++)
+    {
+      // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
+      f->writeTableContent(table,i,0,ui->tvComp->model()->index(i,0).data(0).toString());
+      f->writeTableContent(table,i,1,ui->tvComp->model()->index(i,3).data(0).toString());
+      f->writeTableContent(table,i,2,ui->tvComp->model()->index(i,2).data(0).toString());
+      f->writeTableContent(table,i,3,ui->tvComp->model()->index(i,1).data(0).toString());
+     // f->writeTableContent(table,i,4,ui->tvComp->model()->index(i,3).data(0).toString());
+
+
+    }
+
+
+}

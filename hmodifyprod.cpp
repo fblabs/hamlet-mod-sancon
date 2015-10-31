@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <huser.h>
 
+
 #include <QMessageBox>
 
 
@@ -328,6 +329,7 @@ void HModifyProd::on_pushButton_2_clicked()
 void HModifyProd::getIDLot()
 {
     idlot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
+    ui->pushButton_4->setEnabled(true);
     getComponetsLot();
 }
 
@@ -363,6 +365,8 @@ void HModifyProd::on_pushButton_clicked()
             }
          action=0;
     }
+    ui->pushButton_4->setEnabled(true);
+    ui->pushButton_5->setEnabled(false);
 
 }
 
@@ -425,6 +429,8 @@ void HModifyProd::on_pushButton_4_clicked()
 
 
     ui->leLotto->setCompleter(lcmp);
+    ui->pushButton_4->setEnabled(false);
+    ui->pushButton_5->setEnabled(true);
 }
 
 
@@ -437,6 +443,8 @@ void HModifyProd::on_cbUm_currentIndexChanged(int index)
 void HModifyProd::on_pushButton_5_clicked()
 {
     action=0;
+    ui->pushButton_4->setEnabled(true);
+    ui->pushButton_5->setEnabled(false);
 }
 
 void HModifyProd::on_deDal_dateChanged(const QDate &date)

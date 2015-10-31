@@ -212,19 +212,6 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QLabel" name="label_6">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap resource="icons.qrc">:/Resources/Search.PNG</pixmap>
-             </property>
-             <property name="scaledContents">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
             <widget class="QLabel" name="label_5">
              <property name="text">
               <string>Cerca lotto:</string>
@@ -243,12 +230,31 @@
              <property name="text">
               <string>Cerca ingredienti</string>
              </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/Resources/App-ark-2-icon.png</normaloff>:/Resources/App-ark-2-icon.png</iconset>
+             </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_5">
              <property name="text">
               <string>Cerca uso</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/Resources/Search.PNG</normaloff>:/Resources/Search.PNG</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pbPrint">
+             <property name="text">
+              <string>Stampa</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/Resources/Printer-icon.png</normaloff>:/Resources/Printer-icon.png</iconset>
              </property>
             </widget>
            </item>
