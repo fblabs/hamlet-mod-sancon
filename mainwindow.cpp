@@ -426,7 +426,7 @@ void MainWindow::on_tbAssociazioni_clicked()
 
 void MainWindow::on_pbSchede_clicked()
 {
-
+    QApplication::setOverrideCursor(Qt::WaitCursor);
     HSchedeClienti *f = new HSchedeClienti();
     f->init(sConn,user);
     f->showMaximized();

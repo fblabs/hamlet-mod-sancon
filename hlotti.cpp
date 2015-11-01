@@ -11,8 +11,6 @@
 #include "hnewop.h"
 #include "hmodifylot.h"
 #include "hreadonlymodellots.h"
-//#include <QtPrintSupport/QPrinter>
-//#include <QtPrintSupport/QPrintDialog>
 #include "hnuovaoperazione.h"
 #include <QMenu>
 #include <QClipboard>
@@ -276,6 +274,7 @@ void HLotti::print()
     for (r=0;r<rows;r++)
     {
 
+
         for (c=0; c<cols; c++)
         {
             txt=ui->twLots->model()->index(r,c).data(0).toString();
@@ -283,6 +282,7 @@ void HLotti::print()
             QApplication::processEvents();
 
         }
+        QApplication::processEvents();
 
     }
 

@@ -20,6 +20,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -29,7 +30,6 @@ QT_BEGIN_NAMESPACE
 class Ui_HLotti
 {
 public:
-    QAction *actionCopia_il_testo;
     QVBoxLayout *verticalLayout_3;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
@@ -51,6 +51,7 @@ public:
     QPushButton *pushButton_4;
     QPushButton *pushButton_6;
     QPushButton *pushButton_3;
+    QRadioButton *radioButton;
 
     void setupUi(QWidget *HLotti)
     {
@@ -61,8 +62,6 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HLotti->setWindowIcon(icon);
-        actionCopia_il_testo = new QAction(HLotti);
-        actionCopia_il_testo->setObjectName(QStringLiteral("actionCopia_il_testo"));
         verticalLayout_3 = new QVBoxLayout(HLotti);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_2 = new QVBoxLayout();
@@ -191,6 +190,11 @@ public:
 
         horizontalLayout->addWidget(pushButton_3);
 
+        radioButton = new QRadioButton(HLotti);
+        radioButton->setObjectName(QStringLiteral("radioButton"));
+
+        horizontalLayout->addWidget(radioButton);
+
 
         verticalLayout_2->addLayout(horizontalLayout);
 
@@ -206,8 +210,6 @@ public:
     void retranslateUi(QWidget *HLotti)
     {
         HLotti->setWindowTitle(QApplication::translate("HLotti", "Lotti", 0));
-        actionCopia_il_testo->setText(QApplication::translate("HLotti", "Copia il testo", 0));
-        actionCopia_il_testo->setShortcut(QApplication::translate("HLotti", "Alt+C", 0));
         chbT->setText(QApplication::translate("HLotti", "Tipo:", 0));
         chbP->setText(QApplication::translate("HLotti", "Prodotto:", 0));
         label->setText(QApplication::translate("HLotti", "Dal:", 0));
@@ -217,6 +219,7 @@ public:
         pushButton_4->setText(QApplication::translate("HLotti", "Nuova operazione", 0));
         pushButton_6->setText(QApplication::translate("HLotti", "Stampa", 0));
         pushButton_3->setText(QApplication::translate("HLotti", "Chiudi", 0));
+        radioButton->setText(QApplication::translate("HLotti", "RadioButton", 0));
     } // retranslateUi
 
 };

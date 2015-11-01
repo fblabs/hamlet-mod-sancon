@@ -544,7 +544,14 @@ void HAnalisi::printLot()
 
     colonne-=1;
 
-    toappend="COMPONENTI LOTTO:";
+    toappend="COMPONENTI LOTTO ";
+    toappend.append(ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),2).data(0).toString());
+    toappend.append(" - ");
+    toappend.append(ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),3).data(0).toString());
+    toappend.append(" - ");
+    toappend.append(ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),4).data(0).toString());
+    toappend.append(" - ");
+    toappend.append(ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),5).data(0).toString());
     f->append(toappend,false);
     f->cursorToEnd();
     f->append("",false);

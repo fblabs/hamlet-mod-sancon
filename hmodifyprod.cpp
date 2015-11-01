@@ -91,6 +91,13 @@ void HModifyProd::init(QString conn,HUser *usr)
    ui->tvLots->setColumnHidden(7,true);
    ui->tvLots->setColumnHidden(8,true);
 
+   tmLots->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
+   tmLots->setHeaderData(2,Qt::Horizontal,QObject::tr("Prodotto"));
+   tmLots->setHeaderData(3,Qt::Horizontal,QObject::tr("Data"));
+   tmLots->setHeaderData(9,Qt::Horizontal,QObject::tr("Lot. Uscita"));
+   tmLots->setHeaderData(10,Qt::Horizontal,QObject::tr("Tipo"));
+
+
    //  ui->tvLots->setColumnHidden(9,true);
 //   ui->tvLots->setColumnHidden(10,true);
  //  ui->tvLots->setColumnHidden(11,true);
@@ -143,8 +150,8 @@ void HModifyProd::getComponetsLot()
     ui->tvDetails->setModel(qmod);
     connect(ui->tvDetails->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getLotRowData()));
     //qDebug()<<q.lastError().text();
-    qmod->setHeaderData(3,Qt::Horizontal,QObject::tr("Ingrediente"));
-    qmod->setHeaderData(4,Qt::Horizontal,QObject::tr("Quantità"));
+    qmod->setHeaderData(4,Qt::Horizontal,QObject::tr("Ingrediente"));
+    qmod->setHeaderData(5,Qt::Horizontal,QObject::tr("Quantità"));
     ui->tvDetails->setColumnHidden(0,true);
     ui->tvDetails->setColumnHidden(1,true);
     ui->tvDetails->setColumnHidden(3,true);

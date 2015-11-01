@@ -216,19 +216,18 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton">
+         <property name="text">
+          <string>RadioButton</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
     </layout>
    </item>
   </layout>
-  <action name="actionCopia_il_testo">
-   <property name="text">
-    <string>Copia il testo</string>
-   </property>
-   <property name="shortcut">
-    <string>Alt+C</string>
-   </property>
-  </action>
  </widget>
  <resources>
   <include location="icons.qrc"/>

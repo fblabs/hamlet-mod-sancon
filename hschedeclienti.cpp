@@ -28,7 +28,9 @@ HSchedeClienti::~HSchedeClienti()
 
 void HSchedeClienti::init(QString conn,HUser *usr)
 {
-    sConn=conn;
+
+
+  sConn=conn;
 
     this->showMaximized();
 
@@ -89,7 +91,7 @@ void HSchedeClienti::init(QString conn,HUser *usr)
     ui->lvSubclienti->setVisible(false);
 
 
-
+QApplication::restoreOverrideCursor();
 
 
 }
