@@ -240,7 +240,15 @@ void HSchedeClienti::loadScheda()
 
   //  idP=ui->lvRight->model()->index(ui->lvRight->currentIndex().row(),0).data(0).toString();
      ui->widget->append("SCHEDA CLIENTE" ,true);
+    if(ui->cbSelectCriteria->isChecked())
+    {
+        ui->widget->append(ui->listView->model()->index(ui->listView->currentIndex().row(),1).data(0).toString() + " - " + ui->lvSubclienti->model()->index(ui->lvSubclienti->currentIndex().row(),1).data(0).toString(),false);
+    }
+    else
+    {
     ui->widget->append(ui->listView->model()->index(ui->listView->currentIndex().row(),1).data(0).toString() + " - " + ui->comboBox->currentText() ,false);
+    }
+
     ui->widget->append("==========================================",false);
    // ui->widget->append("",false);
     ui->widget->cursorToEnd();
