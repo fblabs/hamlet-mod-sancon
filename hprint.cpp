@@ -90,7 +90,7 @@ void HPrint::setText(QString text)
 
 
 
-void HPrint::append(QString text, bool bold)
+void HPrint::append(QString text, bool bold=false)
 {
     QFont font(ui->textEdit->font());
     font.setBold(bold);
