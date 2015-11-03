@@ -1,6 +1,6 @@
 #include "hlotti.h"
 #include "hmagazzino.h"
-#include "ui_hlotdefs.h"
+#include "ui_hlotti.h"
 #include <QDebug>
 #include <QSqlError>
 #include <QSqlquery>
@@ -304,4 +304,11 @@ void HLotti::on_pushButton_7_clicked()
     f->show();
     f->init(ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt(),sConnection);
 
+}
+
+void HLotti::on_leLottoRaw_textChanged(const QString &arg1)
+{
+    QString filter="lotdef.lot like '" +arg1+"%'";
+    tbm->setFilter(filter);
+    qDebug()<<tbm->query().lastError().text();
 }

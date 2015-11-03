@@ -19,8 +19,8 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -35,6 +35,8 @@ public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_4;
     QHBoxLayout *horizontalLayout_2;
+    QLabel *label_3;
+    QLineEdit *leLottoRaw;
     QCheckBox *chbT;
     QComboBox *cbTipiLot;
     QCheckBox *chbP;
@@ -51,7 +53,6 @@ public:
     QPushButton *pushButton_4;
     QPushButton *pushButton_6;
     QPushButton *pushButton_3;
-    QRadioButton *radioButton;
 
     void setupUi(QWidget *HLotti)
     {
@@ -72,6 +73,17 @@ public:
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        label_3 = new QLabel(HLotti);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        horizontalLayout_2->addWidget(label_3);
+
+        leLottoRaw = new QLineEdit(HLotti);
+        leLottoRaw->setObjectName(QStringLiteral("leLottoRaw"));
+        leLottoRaw->setClearButtonEnabled(true);
+
+        horizontalLayout_2->addWidget(leLottoRaw);
+
         chbT = new QCheckBox(HLotti);
         chbT->setObjectName(QStringLiteral("chbT"));
         chbT->setMaximumSize(QSize(50, 16777215));
@@ -190,11 +202,6 @@ public:
 
         horizontalLayout->addWidget(pushButton_3);
 
-        radioButton = new QRadioButton(HLotti);
-        radioButton->setObjectName(QStringLiteral("radioButton"));
-
-        horizontalLayout->addWidget(radioButton);
-
 
         verticalLayout_2->addLayout(horizontalLayout);
 
@@ -210,6 +217,7 @@ public:
     void retranslateUi(QWidget *HLotti)
     {
         HLotti->setWindowTitle(QApplication::translate("HLotti", "Lotti", 0));
+        label_3->setText(QApplication::translate("HLotti", "Lotto:", 0));
         chbT->setText(QApplication::translate("HLotti", "Tipo:", 0));
         chbP->setText(QApplication::translate("HLotti", "Prodotto:", 0));
         label->setText(QApplication::translate("HLotti", "Dal:", 0));
@@ -219,7 +227,6 @@ public:
         pushButton_4->setText(QApplication::translate("HLotti", "Nuova operazione", 0));
         pushButton_6->setText(QApplication::translate("HLotti", "Stampa", 0));
         pushButton_3->setText(QApplication::translate("HLotti", "Chiudi", 0));
-        radioButton->setText(QApplication::translate("HLotti", "RadioButton", 0));
     } // retranslateUi
 
 };

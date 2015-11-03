@@ -48,6 +48,8 @@ private slots:
     void on_pushButton_6_clicked();
     void on_pushButton_7_clicked();
 
+    void on_leLottoRaw_textChanged(const QString &arg1);
+
 private:
 
     Ui::HLotti *ui;

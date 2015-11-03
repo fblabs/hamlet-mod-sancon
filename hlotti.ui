@@ -30,6 +30,20 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Lotto:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="leLottoRaw">
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QCheckBox" name="chbT">
              <property name="maximumSize">
               <size>
@@ -213,13 +227,6 @@
            <width>32</width>
            <height>32</height>
           </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radioButton">
-         <property name="text">
-          <string>RadioButton</string>
          </property>
         </widget>
        </item>
