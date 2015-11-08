@@ -35,7 +35,7 @@ void HPackages::init(QString conn,QString user)
     tmUnitaMisura = new QSqlTableModel(0,db);
 
     tmClienti->setTable("anagrafica");
-    tmClienti->setFilter("cliente=1");
+    tmClienti->setFilter("cliente=1 or subcliente=1");
     tmClienti->setSort(1,Qt::AscendingOrder);
     tmClienti->select();
 
@@ -208,11 +208,19 @@ void HPackages::createNewLot()
 
     QSqlQuery q(db);
     int idprodotto= ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
-    int anagrafica=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
+    int anagrafica;
     QString sql;
     QString ean;
-
     QString n;
+
+    if(ui->checkBox_2->isChecked())
+    {
+       anagrafica=ui->lvSubclienti->model()->index(ui->lvSubclienti->selectionModel()->currentIndex().row(),0).data(0).toInt();
+    }
+    else
+    {
+         anagrafica=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
+    }
 
    sql="select count(*)+1 from lotdef where prodotto=:p and anagrafica=:a and year(data)=year(now()) and tipo=4";//tipo=package
    q.prepare(sql);

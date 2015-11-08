@@ -76,6 +76,7 @@ void HLogin2::login()
 
         ui->leUser->setText("");
         ui->lePwd->setText("");
+        ui->leUser->setFocus();
   }
 
 
