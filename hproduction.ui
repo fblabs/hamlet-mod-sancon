@@ -3,14 +3,14 @@
  <class>HProduction</class>
  <widget class="QWidget" name="HProduction">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1287</width>
-    <height>795</height>
+    <width>1025</width>
+    <height>1060</height>
    </rect>
   </property>
   <property name="windowTitle">

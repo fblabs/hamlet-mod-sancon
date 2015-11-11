@@ -93,8 +93,8 @@ public:
     {
         if (HProduction->objectName().isEmpty())
             HProduction->setObjectName(QStringLiteral("HProduction"));
-        HProduction->setWindowModality(Qt::ApplicationModal);
-        HProduction->resize(1287, 795);
+        HProduction->setWindowModality(Qt::NonModal);
+        HProduction->resize(1025, 1060);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Gears.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HProduction->setWindowIcon(icon);

@@ -32,7 +32,7 @@ void HSchedeClienti::init(QString conn,HUser *usr)
 
   sConn=conn;
 
-    this->showMaximized();
+  //  this->showMaximized();
 
   QTextDocument *doc  =new QTextDocument();
 

@@ -55,7 +55,7 @@ public:
     {
         if (HModRicette->objectName().isEmpty())
             HModRicette->setObjectName(QStringLiteral("HModRicette"));
-        HModRicette->setWindowModality(Qt::ApplicationModal);
+        HModRicette->setWindowModality(Qt::NonModal);
         HModRicette->resize(1248, 700);
         HModRicette->setContextMenuPolicy(Qt::CustomContextMenu);
         QIcon icon;

@@ -74,7 +74,7 @@ public:
     {
         if (HUtenti->objectName().isEmpty())
             HUtenti->setObjectName(QStringLiteral("HUtenti"));
-        HUtenti->setWindowModality(Qt::ApplicationModal);
+        HUtenti->setWindowModality(Qt::NonModal);
         HUtenti->resize(862, 544);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/User-Black.PNG"), QSize(), QIcon::Normal, QIcon::Off);

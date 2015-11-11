@@ -3,7 +3,7 @@
  <class>HAnalisi</class>
  <widget class="QWidget" name="HAnalisi">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>

@@ -26,7 +26,7 @@ void HProdottiNew::init(QString conn)
 {
     sConn=conn;
 
-    setWindowModality(Qt::ApplicationModal);
+   // setWindowModality(Qt::ApplicationModal);
 
     db=QSqlDatabase::database(sConn);
 

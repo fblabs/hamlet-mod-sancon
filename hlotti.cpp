@@ -23,7 +23,7 @@ HLotti::HLotti(QWidget *parent) :
     ui(new Ui::HLotti)
 {
     ui->setupUi(this);
-    this->setWindowModality(Qt::ApplicationModal);
+    //setWindowModality(Qt::ApplicationModal);
     this->setContextMenuPolicy(Qt::CustomContextMenu);
 }
 

@@ -83,7 +83,7 @@ public:
     {
         if (HnuovaOperazione->objectName().isEmpty())
             HnuovaOperazione->setObjectName(QStringLiteral("HnuovaOperazione"));
-        HnuovaOperazione->setWindowModality(Qt::ApplicationModal);
+        HnuovaOperazione->setWindowModality(Qt::NonModal);
         HnuovaOperazione->resize(1285, 652);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);

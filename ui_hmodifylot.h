@@ -63,7 +63,7 @@ public:
     {
         if (HModifyLot->objectName().isEmpty())
             HModifyLot->setObjectName(QStringLiteral("HModifyLot"));
-        HModifyLot->setWindowModality(Qt::WindowModal);
+        HModifyLot->setWindowModality(Qt::NonModal);
         HModifyLot->resize(914, 429);
         verticalLayout = new QVBoxLayout(HModifyLot);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

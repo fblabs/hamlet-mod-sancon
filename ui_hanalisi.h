@@ -66,7 +66,7 @@ public:
     {
         if (HAnalisi->objectName().isEmpty())
             HAnalisi->setObjectName(QStringLiteral("HAnalisi"));
-        HAnalisi->setWindowModality(Qt::ApplicationModal);
+        HAnalisi->setWindowModality(Qt::NonModal);
         HAnalisi->resize(1279, 704);
         HAnalisi->setContextMenuPolicy(Qt::CustomContextMenu);
         QIcon icon;

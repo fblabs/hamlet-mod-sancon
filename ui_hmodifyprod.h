@@ -79,7 +79,7 @@ public:
     {
         if (HModifyProd->objectName().isEmpty())
             HModifyProd->setObjectName(QStringLiteral("HModifyProd"));
-        HModifyProd->setWindowModality(Qt::ApplicationModal);
+        HModifyProd->setWindowModality(Qt::NonModal);
         HModifyProd->resize(1143, 711);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);

@@ -56,7 +56,7 @@ public:
     {
         if (HMagazzino->objectName().isEmpty())
             HMagazzino->setObjectName(QStringLiteral("HMagazzino"));
-        HMagazzino->setWindowModality(Qt::ApplicationModal);
+        HMagazzino->setWindowModality(Qt::NonModal);
         HMagazzino->resize(1216, 762);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Links.png"), QSize(), QIcon::Normal, QIcon::Off);

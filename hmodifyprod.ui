@@ -3,7 +3,7 @@
  <class>HModifyProd</class>
  <widget class="QWidget" name="HModifyProd">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>

@@ -51,7 +51,7 @@ public:
     {
         if (HAssociazioni->objectName().isEmpty())
             HAssociazioni->setObjectName(QStringLiteral("HAssociazioni"));
-        HAssociazioni->setWindowModality(Qt::ApplicationModal);
+        HAssociazioni->setWindowModality(Qt::NonModal);
         HAssociazioni->resize(726, 469);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Map.PNG"), QSize(), QIcon::Normal, QIcon::Off);

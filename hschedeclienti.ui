@@ -3,13 +3,13 @@
  <class>HSchedeClienti</class>
  <widget class="QWidget" name="HSchedeClienti">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1354</width>
+    <width>696</width>
     <height>578</height>
    </rect>
   </property>

@@ -86,7 +86,7 @@ public:
     {
         if (HPackages->objectName().isEmpty())
             HPackages->setObjectName(QStringLiteral("HPackages"));
-        HPackages->setWindowModality(Qt::ApplicationModal);
+        HPackages->setWindowModality(Qt::NonModal);
         HPackages->resize(1257, 725);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);

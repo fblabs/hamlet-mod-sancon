@@ -3,14 +3,14 @@
  <class>HWarehouse</class>
  <widget class="QWidget" name="HWarehouse">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>1311</width>
-    <height>363</height>
+    <height>618</height>
    </rect>
   </property>
   <property name="windowTitle">

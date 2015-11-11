@@ -273,17 +273,12 @@ void MainWindow::enableButtonsForRole()
 
 void MainWindow::on_tbMagaz_clicked()
 {
- /*   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-    HMagazzino *f = new HMagazzino();
-    connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
-    f->setUser(currentUsr->getID());
-    f->setConn(sConn);
-    emit onConnectionName();
-    f->showMaximized();*/
+
     QApplication::setOverrideCursor(QCursor(Qt::BusyCursor));
     HWarehouse *f=new HWarehouse();
     f->init(sConn,QString::number(user->getID()));
-    f->showMaximized();
+   // f->showMaximized();
+    f->show();
     
 }
 
@@ -295,7 +290,7 @@ void MainWindow::on_tbLotti_clicked()
     f->setConnectionName(sConn);
     f->setUser(user->getID());
     emit onConnectionName();
-    f->showMaximized();
+    f->show();
 }
 
 void MainWindow::on_tbRicette_clicked()
@@ -308,7 +303,7 @@ void MainWindow::on_tbRicette_clicked()
    // connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
    // f->SetDB();
 
-    f->showMaximized();
+    f->show();
 }
 
 void MainWindow::on_tbAnag_clicked()
@@ -320,8 +315,8 @@ void MainWindow::on_tbAnag_clicked()
     connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
     emit onConnectionName();
 
-    f->setWindowModality(Qt::ApplicationModal);
-    f->showMaximized();
+   // f->setWindowModality(Qt::ApplicationModal);
+    f->show();
 }
 
 void MainWindow::on_tnProduzione_clicked()
@@ -337,13 +332,13 @@ void MainWindow::on_tnProduzione_clicked()
     f->init(sConn,QString::number(user->getID()));
 
   //  f->setUserId(currentUsr->getID());
-    f->showMaximized();
+    f->show();
 }
 
 void MainWindow::on_tbSettings_clicked()
 {
     HSettings *f = new HSettings();
-    f->setWindowModality(Qt::ApplicationModal);
+  //  f->setWindowModality(Qt::ApplicationModal);
     f->show();
 }
 
@@ -352,7 +347,7 @@ void MainWindow::on_tbProdotti_clicked()
     HProdottiNew* f = new HProdottiNew();
 
     f->init(sConn);
-    f->showMaximized();
+    f->show();
  //  f->setConnection(sConn);
 
  //   f->setWindowModality(Qt::ApplicationModal);
@@ -367,6 +362,7 @@ void MainWindow::on_tbClose_clicked()
     if(QMessageBox::question(this,QApplication::applicationName(),"Uscire dall'applicazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         this->close();
+        QApplication::quit();
     }
 }
 
@@ -375,7 +371,7 @@ void MainWindow::on_tbAnalisi_clicked()
     HAnalisi *f=new HAnalisi();
     f->init(sConn);
 
-    f->showMaximized();
+    f->show();
 }
 
 void MainWindow::on_toolButton_clicked()
@@ -390,7 +386,7 @@ void MainWindow::on_pBNewOperation_clicked()
    HnuovaOperazione *f = new HnuovaOperazione();
 
   f->setConnectionName(sConn,QString::number(user->getID()));
-  f->showMaximized();
+  f->show();
 }
 
 void MainWindow::login()
@@ -421,7 +417,7 @@ void MainWindow::on_tbAssociazioni_clicked()
     HAssociazioni* f = new HAssociazioni();
  //   connect(this,SIGNAL(onConnectionName()),f,SLOT(setConnectionName(QString)));
     f->init(sConn);
-    f->showMaximized();
+    f->show();
 }
 
 void MainWindow::on_pbSchede_clicked()
@@ -429,7 +425,7 @@ void MainWindow::on_pbSchede_clicked()
     QApplication::setOverrideCursor(Qt::WaitCursor);
     HSchedeClienti *f = new HSchedeClienti();
     f->init(sConn,user);
-    f->showMaximized();
+    f->show();
 
 }
 
@@ -450,14 +446,14 @@ void MainWindow::on_tbModificaLotti_clicked()
 {
     HModifyProd *h = new HModifyProd();
     h->init(sConn,user);
-    h->showMaximized();
+    h->show();
 }
 
 void MainWindow::on_pbPackages_clicked()
 {
     HPackages *f =new HPackages();
     f->init(sConn,QString::number(user->getID()));
-    f->showMaximized();
+    f->show();
 }
 
 void MainWindow::on_pushButton_clicked()

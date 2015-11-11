@@ -47,7 +47,7 @@ public:
     {
         if (HRecipeAddRow->objectName().isEmpty())
             HRecipeAddRow->setObjectName(QStringLiteral("HRecipeAddRow"));
-        HRecipeAddRow->setWindowModality(Qt::ApplicationModal);
+        HRecipeAddRow->setWindowModality(Qt::WindowModal);
         HRecipeAddRow->resize(332, 166);
         verticalLayout_5 = new QVBoxLayout(HRecipeAddRow);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
