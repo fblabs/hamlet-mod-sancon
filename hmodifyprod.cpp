@@ -39,7 +39,7 @@ void HModifyProd::init(QString conn,HUser *usr)
     ui->deDal->setDate(QDate::currentDate().addYears(-2));
     ui->deAl->setDate(QDate::currentDate());
     dfrom=ui->deDal->date();
-    dto=ui->deAl->date();
+    dto=ui->deAl->date().addDays(1);
     tipo="lotdef.tipo=4";
 
 
@@ -58,7 +58,10 @@ void HModifyProd::init(QString conn,HUser *usr)
     QSqlRelationalDelegate *del=new QSqlRelationalDelegate(0);
 
     tmLots->select();
-    tmLots->setFilter(tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"'");
+
+    //temp
+    QDate to = dto.addDays(1);
+    tmLots->setFilter(tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + to.toString("yyyy-MM-dd")+"'");
 
 
 
@@ -475,17 +478,19 @@ void HModifyProd::on_pushButton_6_clicked()
 
 void HModifyProd::findIt(QString arg)
 {  QString filter;
+   QDate to=ui->deAl->date().addDays(1);
+
 
     if (ui->rblots->isChecked())
     {
         if(ui->leSearch->text().length()==0)
         {
-           filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"'";
+           filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + to.toString("yyyy-MM-dd")+"'";
 
         }
         else
         {
-           filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"' and lotdef.lot like '%" +arg+"%'";
+           filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + to.toString("yyyy-MM-dd")+"' and lotdef.lot like '%" +arg+"%'";
 
         }
 

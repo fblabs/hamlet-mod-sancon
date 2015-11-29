@@ -64,6 +64,7 @@ private slots:
 
 signals:
     void trigger();
+    void updateData();
 };
 
 #endif // HNUOVAOPERAZIONE_H

@@ -11,6 +11,7 @@
 #include <QSqlQuery>
 #include <QCompleter>
 #include <QMessageBox>
+#include <hlotti.h>
 
 #include "hreadonlymodel.h"
 #include "hnuovaoperazione.h"
@@ -69,6 +70,7 @@ void HWarehouse::init(QString conn, QString utente)
     tmOperazioni->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
 
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->setColumnHidden(0,1);
 
     tmProdotti=new QSqlTableModel(0,db);
     tmProdotti->setTable("prodotti");
@@ -104,6 +106,84 @@ void HWarehouse::init(QString conn, QString utente)
     QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
 
 
+}
+
+void HWarehouse::updateDataSlt()
+{
+   // db=QSqlDatabase::database(conn);
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
+    ui->rbLotfilter->setVisible(false);
+
+  //  user=utente;
+  //  sConn=conn;
+  //  delegate = new QSqlRelationalDelegate();
+
+
+    lotFilter="";
+    prodfilter="";
+
+
+
+  //  tmOperazioni=new hReadonlyModel(0,db);
+    tmOperazioni->setTable("operazioni");
+    tmOperazioni->setRelation(1,QSqlRelation("lotdef","ID","lot"));
+    tmOperazioni->setRelation(3,QSqlRelation("utenti","ID","nome"));
+    tmOperazioni->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
+    tmOperazioni->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
+    tmOperazioni->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
+    tmOperazioni->setSort(2,Qt::DescendingOrder);
+    tmOperazioni->setEditStrategy(QSqlTableModel::OnManualSubmit);
+
+
+
+  //  ui->tableView->setModel(tmOperazioni);
+  //  ui->tableView->setItemDelegate(delegate);
+
+  //  tmOperazioni->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+  //  tmOperazioni->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
+  //  tmOperazioni->setHeaderData(2,Qt::Horizontal,QObject::tr("Data"));
+  //  tmOperazioni->setHeaderData(3,Qt::Horizontal,QObject::tr("Operatore"));
+  //  tmOperazioni->setHeaderData(4,Qt::Horizontal,QObject::tr("Prodotto"));
+  //  tmOperazioni->setHeaderData(5,Qt::Horizontal,QObject::tr("Azione"));
+  //  tmOperazioni->setHeaderData(6,Qt::Horizontal,QObject::tr("Quantità"));
+  //  tmOperazioni->setHeaderData(7,Qt::Horizontal,QObject::tr("Unità di misura"));
+  //  tmOperazioni->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
+
+ //   ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+ //   tmProdotti=new QSqlTableModel(0,db);
+ //   tmProdotti->setTable("prodotti");
+  //  tmProdotti->setSort(1,Qt::AscendingOrder);
+
+  //  tmLotti=new QSqlTableModel(0,db);
+  // tmLotti->setTable("lotdef");
+   // tmLotti->setSort(0,Qt::AscendingOrder);
+
+   // ui->cbFilter->setModel(tmOperazioni);
+
+
+
+ //   ui->deDateTo->setDateTime(QDateTime::currentDateTime());
+ //   ui->deDateFrom->setDateTime(QDateTime::currentDateTime().addMonths(-1));
+
+
+ //   datefilter="operazioni.data between '"+ui->deDateFrom->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' and '"+ui->deDateTo->dateTime().toString("yyyy-MM-dd HH:mm:ss")+"'";
+ //   filter = datefilter;
+
+    tmProdotti->select();
+ //   tmOperazioni->setFilter(datefilter);
+ //   tmOperazioni->setSort(2,Qt::DescendingOrder);
+
+    tmOperazioni->select();
+   // comp=new QCompleter();
+   // comp->setModel(tmProdotti);
+   // comp->setCompletionMode(QCompleter::PopupCompletion);
+   // comp->setCompletionColumn(1);
+   // comp->setCaseSensitivity(Qt::CaseInsensitive);
+  //  ui->cbFilter->setCompleter(comp);
+
+    QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
 }
 
 
@@ -254,3 +334,5 @@ void HWarehouse::on_pushButton_3_clicked()
     else
       return;
 }
+
+

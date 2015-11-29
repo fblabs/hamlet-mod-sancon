@@ -209,6 +209,7 @@ void HMagazzino::on_pushButton_2_clicked()
    {
         tbm->submitAll();
         tbm->select();
+        emit dataUpdated();
     }
     else
       return;

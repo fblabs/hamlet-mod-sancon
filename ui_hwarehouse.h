@@ -55,7 +55,7 @@ public:
         if (HWarehouse->objectName().isEmpty())
             HWarehouse->setObjectName(QStringLiteral("HWarehouse"));
         HWarehouse->setWindowModality(Qt::NonModal);
-        HWarehouse->resize(1311, 618);
+        HWarehouse->resize(964, 741);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/modlots.png"), QSize(), QIcon::Normal, QIcon::Off);
         HWarehouse->setWindowIcon(icon);

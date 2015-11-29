@@ -46,8 +46,10 @@ private slots:
 
     void on_pushButton_6_clicked();
 
+
 signals:
   //  void connectionSet();
+    void dataUpdated();
 
 private:
     Ui::HMagazzino *ui;

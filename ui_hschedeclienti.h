@@ -47,7 +47,7 @@ public:
         if (HSchedeClienti->objectName().isEmpty())
             HSchedeClienti->setObjectName(QStringLiteral("HSchedeClienti"));
         HSchedeClienti->setWindowModality(Qt::NonModal);
-        HSchedeClienti->resize(696, 578);
+        HSchedeClienti->resize(806, 649);
         QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(1);
         sizePolicy.setVerticalStretch(1);

@@ -17,7 +17,7 @@
    <string>Packages</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="icons.qrc">
+   <iconset resource="resources.qrc">
     <normaloff>:/Resources/Box.PNG</normaloff>:/Resources/Box.PNG</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -55,7 +55,7 @@
               <string>Filtra i prodotti per subcliente</string>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
+              <iconset resource="resources.qrc">
                <normaloff>:/Resources/Search.PNG</normaloff>:/Resources/Search.PNG</iconset>
              </property>
              <property name="checked">
@@ -69,7 +69,7 @@
               <string>mostra i subclienti se presenti</string>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
+              <iconset resource="resources.qrc">
                <normaloff>:/Resources/Book.PNG</normaloff>:/Resources/Book.PNG</iconset>
              </property>
              <property name="checked">
@@ -166,18 +166,19 @@
              </property>
             </widget>
            </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
            <item row="1" column="0">
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Ultimo lotto creato</string>
              </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
+            </widget>
            </item>
           </layout>
          </item>
@@ -191,7 +192,7 @@
             <string>Inizia</string>
            </property>
            <property name="icon">
-            <iconset resource="icons.qrc">
+            <iconset resource="resources.qrc">
              <normaloff>:/Resources/Box.PNG</normaloff>:/Resources/Box.PNG</iconset>
            </property>
           </widget>
@@ -205,7 +206,7 @@
             <string>Annulla</string>
            </property>
            <property name="icon">
-            <iconset resource="icons.qrc">
+            <iconset resource="resources.qrc">
              <normaloff>:/Resources/Banned-Sign.PNG</normaloff>:/Resources/Banned-Sign.PNG</iconset>
            </property>
           </widget>
@@ -271,7 +272,7 @@
               <string>Aggiungi</string>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
+              <iconset resource="resources.qrc">
                <normaloff>:/Resources/Plus.PNG</normaloff>:/Resources/Plus.PNG</iconset>
              </property>
             </widget>
@@ -285,7 +286,7 @@
               <string>Rimuovi</string>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
+              <iconset resource="resources.qrc">
                <normaloff>:/Resources/Minus.PNG</normaloff>:/Resources/Minus.PNG</iconset>
              </property>
             </widget>
@@ -374,7 +375,7 @@
         <string>Salva</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset resource="resources.qrc">
          <normaloff>:/Resources/save-icon.png</normaloff>:/Resources/save-icon.png</iconset>
        </property>
        <property name="iconSize">
@@ -391,7 +392,7 @@
         <string>Chiudi</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset resource="resources.qrc">
          <normaloff>:/Resources/Actions-window-close-icon.png</normaloff>:/Resources/Actions-window-close-icon.png</iconset>
        </property>
        <property name="iconSize">
@@ -408,7 +409,7 @@
   <zorder></zorder>
  </widget>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HWarehouse_t {
-    QByteArrayData data[16];
-    char stringdata[232];
+    QByteArrayData data[17];
+    char stringdata[246];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -44,14 +44,15 @@ QT_MOC_LITERAL(11, 133, 4),
 QT_MOC_LITERAL(12, 138, 21),
 QT_MOC_LITERAL(13, 160, 23),
 QT_MOC_LITERAL(14, 184, 23),
-QT_MOC_LITERAL(15, 208, 23)
+QT_MOC_LITERAL(15, 208, 23),
+QT_MOC_LITERAL(16, 232, 13)
     },
     "HWarehouse\0init\0\0conn\0utente\0update\0"
     "on_rbNoFilter_toggled\0checked\0"
     "on_rbLotfilter_toggled\0on_rbProdFilter_toggled\0"
     "setOperazioniFilter\0tipo\0on_pushButton_clicked\0"
     "on_pushButton_4_clicked\0on_pushButton_2_clicked\0"
-    "on_pushButton_3_clicked"
+    "on_pushButton_3_clicked\0updateDataSlt"
 };
 #undef QT_MOC_LITERAL
 
@@ -61,7 +62,7 @@ static const uint qt_meta_data_HWarehouse[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -69,16 +70,17 @@ static const uint qt_meta_data_HWarehouse[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,   64,    2, 0x0a /* Public */,
-       5,    0,   69,    2, 0x0a /* Public */,
-       6,    1,   70,    2, 0x08 /* Private */,
-       8,    1,   73,    2, 0x08 /* Private */,
-       9,    1,   76,    2, 0x08 /* Private */,
-      10,    1,   79,    2, 0x08 /* Private */,
-      12,    0,   82,    2, 0x08 /* Private */,
-      13,    0,   83,    2, 0x08 /* Private */,
-      14,    0,   84,    2, 0x08 /* Private */,
-      15,    0,   85,    2, 0x08 /* Private */,
+       1,    2,   69,    2, 0x0a /* Public */,
+       5,    0,   74,    2, 0x0a /* Public */,
+       6,    1,   75,    2, 0x08 /* Private */,
+       8,    1,   78,    2, 0x08 /* Private */,
+       9,    1,   81,    2, 0x08 /* Private */,
+      10,    1,   84,    2, 0x08 /* Private */,
+      12,    0,   87,    2, 0x08 /* Private */,
+      13,    0,   88,    2, 0x08 /* Private */,
+      14,    0,   89,    2, 0x08 /* Private */,
+      15,    0,   90,    2, 0x08 /* Private */,
+      16,    0,   91,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    4,
@@ -87,6 +89,7 @@ static const uint qt_meta_data_HWarehouse[] = {
     QMetaType::Void, QMetaType::Bool,    7,
     QMetaType::Void, QMetaType::Bool,    7,
     QMetaType::Void, QMetaType::Int,   11,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -110,6 +113,7 @@ void HWarehouse::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 7: _t->on_pushButton_4_clicked(); break;
         case 8: _t->on_pushButton_2_clicked(); break;
         case 9: _t->on_pushButton_3_clicked(); break;
+        case 10: _t->updateDataSlt(); break;
         default: ;
         }
     }
@@ -140,13 +144,13 @@ int HWarehouse::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 10;
+        _id -= 11;
     }
     return _id;
 }
