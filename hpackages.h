@@ -65,6 +65,7 @@ private slots:
     void on_pbAnnulla_clicked();
     int getLastId();
      int getIdLotto(QString lotto);
+    void getEanList();
 
 
 

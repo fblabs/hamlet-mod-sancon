@@ -58,8 +58,8 @@ public:
     QDateEdit *dateEdit;
     QLabel *label_5;
     QTextEdit *teNote;
-    QLabel *label_10;
     QLabel *label_11;
+    QListView *lvEan;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pbCrea;
     QPushButton *pbAnnulla;
@@ -211,15 +211,15 @@ public:
 
         formLayout_4->setWidget(5, QFormLayout::FieldRole, teNote);
 
-        label_10 = new QLabel(HPackages);
-        label_10->setObjectName(QStringLiteral("label_10"));
-
-        formLayout_4->setWidget(1, QFormLayout::FieldRole, label_10);
-
         label_11 = new QLabel(HPackages);
         label_11->setObjectName(QStringLiteral("label_11"));
 
         formLayout_4->setWidget(1, QFormLayout::LabelRole, label_11);
+
+        lvEan = new QListView(HPackages);
+        lvEan->setObjectName(QStringLiteral("lvEan"));
+
+        formLayout_4->setWidget(1, QFormLayout::FieldRole, lvEan);
 
 
         verticalLayout_3->addLayout(formLayout_4);
@@ -393,8 +393,7 @@ public:
         label_6->setText(QApplication::translate("HPackages", "Quantit\303\240:", 0));
         label_9->setText(QApplication::translate("HPackages", "Scadenza:", 0));
         label_5->setText(QApplication::translate("HPackages", "Note:", 0));
-        label_10->setText(QApplication::translate("HPackages", "TextLabel", 0));
-        label_11->setText(QApplication::translate("HPackages", "Ultimo lotto creato", 0));
+        label_11->setText(QApplication::translate("HPackages", "Lotti nell'anno", 0));
         pbCrea->setText(QApplication::translate("HPackages", "Inizia", 0));
         pbAnnulla->setText(QApplication::translate("HPackages", "Annulla", 0));
         label_3->setText(QApplication::translate("HPackages", "Componenti:", 0));

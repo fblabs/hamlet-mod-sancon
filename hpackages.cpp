@@ -88,6 +88,7 @@ void HPackages::init(QString conn,QString user)
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(filterProducts()));
   //  filterProducts();
     connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(createNewLot()));
+    connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(getEanList()));
 
     ui->pbAnnulla->setEnabled(false);
     ui->pbCrea->setEnabled(true);//
@@ -97,6 +98,42 @@ void HPackages::init(QString conn,QString user)
     ui->pbRemoveRow->setEnabled(false);
     ui->cbProdotti->setCurrentIndex(0);
  //   ui->checkBox_2->setVisible(false);
+
+}
+
+void HPackages::getEanList()
+{
+    int idcliente;
+    int idprodotto;
+
+    if(filterBySubclients)
+    {
+        ui->lvSubclienti->setVisible(true);
+
+        idcliente=ui->lvSubclienti->model()->index(ui->lvSubclienti->currentIndex().row(),0).data(0).toInt();
+
+    }
+    else
+    {
+        ui->lvSubclienti->setVisible(false);
+        idcliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
+    }
+
+     idprodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
+
+     QSqlQuery q(db);
+     QString sql;
+     QSqlQueryModel *mod = new QSqlQueryModel();
+     sql="SELECT EAN FROM fbgmdb260.lotdef where prodotto=:idp and anagrafica=:idc and year(data)=year(now()) order by data desc";
+     q.prepare(sql);
+     q.bindValue(":idc",QVariant(idcliente));
+     q.bindValue(":idp",QVariant(idprodotto));
+     if (q.exec())
+     {
+         mod->setQuery(q);
+         ui->lvEan->setModel(mod);
+         ui->lvEan->setModelColumn(0);
+     }
 
 }
 
