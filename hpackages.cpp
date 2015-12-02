@@ -647,6 +647,14 @@ bool b;
 
         }
 
+        ui->tvPack->setModel(0);
+        ui->pbAnnulla->setEnabled(false);
+        ui->pbCrea->setEnabled(true);
+        ui->leComponente->setEnabled(false);
+        ui->leQuantita->setEnabled(false);
+        ui->pbAddRow->setEnabled(false);
+        ui->pbRemoveRow->setEnabled(false);
+
     }
 
 
