@@ -82,7 +82,7 @@ void HAssociazioni::getRecipesForTable()
     QSqlQuery q(db);
     QString sql;
 
-    sql="select ricette.ID,prodotti.ID,prodotti.descrizione,associazioni.visualizza from prodotti, ricette, associazioni where ricette.ID=associazioni.ID_ricetta and prodotti.ID=ricette.ID_prodotto and associazioni.ID_cliente=:idcliente";
+    sql="select ricette.ID,prodotti.ID,prodotti.descrizione,associazioni.visualizza from prodotti, ricette, associazioni where ricette.ID=associazioni.ID_ricetta and prodotti.ID=ricette.ID_prodotto and associazioni.ID_cliente=:idcliente order by prodotti.descrizione asc";
     q.prepare(sql);
     q.bindValue(":idcliente",QVariant(c));
     q.exec();

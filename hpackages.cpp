@@ -30,6 +30,7 @@ void HPackages::init(QString conn,QString user)
     sConn=conn;
     userid=user;
 
+    ui->checkBox->setVisible(false);
     tmClienti=new QSqlTableModel(0,db);
     tmProdotti = new QSqlTableModel(0,db);
     tmUnitaMisura = new QSqlTableModel(0,db);
@@ -155,7 +156,7 @@ void HPackages::filterProducts()
   }
 qDebug()<<"filterProducts:"+idcliente;
 
-  QString filtro="ID in (SELECT ricette.ID_prodotto FROM ricette, associazioni where ricette.ID=associazioni.ID_ricetta and associazioni.ID_cliente=";
+  QString filtro="ID in (SELECT ricette.ID_prodotto FROM ricette, associazioni where ricette.ID=associazioni.ID_ricetta and associazioni.visualizza=1 and associazioni.ID_cliente=";
   filtro.append(QString::number(idcliente)+")");
 
   qDebug()<<filtro;

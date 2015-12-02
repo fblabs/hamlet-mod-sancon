@@ -432,10 +432,10 @@
    <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>Hamlet Mod 1.5.3</string>
+   <string>Hamlet Mod 1.5.3.2</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="icons.qrc">
     <normaloff>:/Resources/My Network Places.png</normaloff>:/Resources/My Network Places.png</iconset>
   </property>
   <property name="windowOpacity">
@@ -513,7 +513,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="resources.qrc">:/Resources/My Network Places.png</pixmap>
+         <pixmap resource="icons.qrc">:/Resources/My Network Places.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -938,7 +938,7 @@
          </palette>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;Hamlet Mod&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Versione: 1.5.3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza:LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.5.0 - MinGW 4.9.2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;FBLABS 2015&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;Hamlet Mod&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Versione: 1.5.3.2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza:LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.5.0 - MinGW 4.9.2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;FBLABS 2015&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -994,7 +994,7 @@
            <string>Ricette</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Notepad.PNG</normaloff>:/Resources/Notepad.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -1029,7 +1029,7 @@
            <string>Produzione</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/App-ark-2-icon.png</normaloff>:/Resources/App-ark-2-icon.png</iconset>
           </property>
           <property name="iconSize">
@@ -1070,7 +1070,7 @@
            <string>magazzino</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/fork-1-icon.png</normaloff>:/Resources/fork-1-icon.png</iconset>
           </property>
           <property name="iconSize">
@@ -1102,7 +1102,7 @@
            <string>Login</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/User-Male.PNG</normaloff>:/Resources/User-Male.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -1143,7 +1143,7 @@
            <string>Anagrafica      </string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/User-Black.PNG</normaloff>:/Resources/User-Black.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -1181,7 +1181,7 @@
            <string>Lotti</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Cube.PNG</normaloff>:/Resources/Cube.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -1228,7 +1228,7 @@
            <string>Analisi</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Chart.PNG</normaloff>:/Resources/Chart.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -1843,7 +1843,7 @@
            <string>Utenti</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Warning-Sign.PNG</normaloff>:/Resources/Warning-Sign.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -1881,7 +1881,7 @@
            <string>Associa Ricette</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Map.PNG</normaloff>:/Resources/Map.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -1916,7 +1916,7 @@
            <string>Nuova Operazione</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Actions-configure-icon.png</normaloff>:/Resources/Actions-configure-icon.png</iconset>
           </property>
           <property name="iconSize">
@@ -1954,7 +1954,7 @@
            <string>Prodotti</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Wood-4-icon.png</normaloff>:/Resources/Wood-4-icon.png</iconset>
           </property>
           <property name="iconSize">
@@ -1989,7 +1989,7 @@
            <string>Schede Clienti</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Folder.PNG</normaloff>:/Resources/Folder.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -2024,7 +2024,7 @@
            <string>Impostazioni   </string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Computer.PNG</normaloff>:/Resources/Computer.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -2059,7 +2059,7 @@
            <string>Chiudi</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Actions-window-close-icon.png</normaloff>:/Resources/Actions-window-close-icon.png</iconset>
           </property>
           <property name="iconSize">
@@ -2100,7 +2100,7 @@
            <string>Packages</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Box.PNG</normaloff>:/Resources/Box.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -2547,7 +2547,7 @@
            <string>Modifica lotti</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -2582,7 +2582,7 @@
            <string>Logout</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Clock.PNG</normaloff>:/Resources/Clock.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -2602,7 +2602,7 @@
            <string>Aggiorna</string>
           </property>
           <property name="icon">
-           <iconset resource="resources.qrc">
+           <iconset resource="icons.qrc">
             <normaloff>:/Resources/Planet.PNG</normaloff>:/Resources/Planet.PNG</iconset>
           </property>
           <property name="iconSize">
@@ -2629,7 +2629,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="icons.qrc"/>
  </resources>
  <connections/>
 </ui>
