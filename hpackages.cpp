@@ -102,6 +102,18 @@ void HPackages::init(QString conn,QString user)
 
 }
 
+void HPackages::resetForm()
+{
+    ui->tvPack->setModel(0);
+    ui->pbAnnulla->setEnabled(false);
+    ui->pbCrea->setEnabled(true);
+    ui->leComponente->setEnabled(false);
+    ui->leQuantita->setEnabled(false);
+    ui->pbAddRow->setEnabled(false);
+    ui->pbRemoveRow->setEnabled(false);
+    ui->leNewLot->setText("");
+}
+
 void HPackages::getEanList()
 {
     int idcliente;
@@ -647,13 +659,7 @@ bool b;
 
         }
 
-        ui->tvPack->setModel(0);
-        ui->pbAnnulla->setEnabled(false);
-        ui->pbCrea->setEnabled(true);
-        ui->leComponente->setEnabled(false);
-        ui->leQuantita->setEnabled(false);
-        ui->pbAddRow->setEnabled(false);
-        ui->pbRemoveRow->setEnabled(false);
+       resetForm();
 
     }
 
@@ -663,12 +669,6 @@ bool b;
 
 void HPackages::on_pbAnnulla_clicked()
 {
-    ui->tvPack->setModel(0);
-    ui->pbAnnulla->setEnabled(false);
-    ui->pbCrea->setEnabled(true);
-    ui->leComponente->setEnabled(false);
-    ui->leQuantita->setEnabled(false);
-    ui->pbAddRow->setEnabled(false);
-    ui->pbRemoveRow->setEnabled(false);
+    resetForm();
 }
 
