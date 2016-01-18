@@ -66,6 +66,7 @@ private slots:
     int getLastId();
      int getIdLotto(QString lotto);
     void getEanList();
+    void resetForm();
 
 
 

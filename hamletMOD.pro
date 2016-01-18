@@ -123,6 +123,9 @@ RESOURCES += \
     icons.qrc
     win32:RC_ICONS += hamlet.ico
 
+DISTFILES += \
+    Resources/hamlet.PNG
+
 
 
 

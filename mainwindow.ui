@@ -28,8 +28,8 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>208</red>
-        <green>192</green>
+        <red>170</red>
+        <green>170</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -46,8 +46,8 @@
      <colorrole role="Midlight">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>231</red>
-        <green>223</green>
+        <red>212</red>
+        <green>212</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -55,8 +55,8 @@
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>104</red>
-        <green>96</green>
+        <red>85</red>
+        <green>85</green>
         <blue>127</blue>
        </color>
       </brush>
@@ -64,8 +64,8 @@
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>139</red>
-        <green>128</green>
+        <red>113</red>
+        <green>113</green>
         <blue>170</blue>
        </color>
       </brush>
@@ -109,8 +109,8 @@
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>208</red>
-        <green>192</green>
+        <red>170</red>
+        <green>170</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -127,8 +127,8 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>231</red>
-        <green>223</green>
+        <red>212</red>
+        <green>212</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -165,8 +165,8 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>208</red>
-        <green>192</green>
+        <red>170</red>
+        <green>170</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -183,8 +183,8 @@
      <colorrole role="Midlight">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>231</red>
-        <green>223</green>
+        <red>212</red>
+        <green>212</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -192,8 +192,8 @@
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>104</red>
-        <green>96</green>
+        <red>85</red>
+        <green>85</green>
         <blue>127</blue>
        </color>
       </brush>
@@ -201,8 +201,8 @@
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>139</red>
-        <green>128</green>
+        <red>113</red>
+        <green>113</green>
         <blue>170</blue>
        </color>
       </brush>
@@ -246,8 +246,8 @@
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>208</red>
-        <green>192</green>
+        <red>170</red>
+        <green>170</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -264,8 +264,8 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>231</red>
-        <green>223</green>
+        <red>212</red>
+        <green>212</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -293,8 +293,8 @@
      <colorrole role="WindowText">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>104</red>
-        <green>96</green>
+        <red>85</red>
+        <green>85</green>
         <blue>127</blue>
        </color>
       </brush>
@@ -302,8 +302,8 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>208</red>
-        <green>192</green>
+        <red>170</red>
+        <green>170</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -320,8 +320,8 @@
      <colorrole role="Midlight">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>231</red>
-        <green>223</green>
+        <red>212</red>
+        <green>212</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -329,8 +329,8 @@
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>104</red>
-        <green>96</green>
+        <red>85</red>
+        <green>85</green>
         <blue>127</blue>
        </color>
       </brush>
@@ -338,8 +338,8 @@
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>139</red>
-        <green>128</green>
+        <red>113</red>
+        <green>113</green>
         <blue>170</blue>
        </color>
       </brush>
@@ -347,8 +347,8 @@
      <colorrole role="Text">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>104</red>
-        <green>96</green>
+        <red>85</red>
+        <green>85</green>
         <blue>127</blue>
        </color>
       </brush>
@@ -365,8 +365,8 @@
      <colorrole role="ButtonText">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>104</red>
-        <green>96</green>
+        <red>85</red>
+        <green>85</green>
         <blue>127</blue>
        </color>
       </brush>
@@ -374,8 +374,8 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>208</red>
-        <green>192</green>
+        <red>170</red>
+        <green>170</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -383,8 +383,8 @@
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>208</red>
-        <green>192</green>
+        <red>170</red>
+        <green>170</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -401,8 +401,8 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>208</red>
-        <green>192</green>
+        <red>170</red>
+        <green>170</green>
         <blue>255</blue>
        </color>
       </brush>
@@ -432,11 +432,11 @@
    <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>Hamlet Mod 1.5.3.3</string>
+   <string>Hamlet Mod 1.5.3.4</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
-    <normaloff>:/Resources/My Network Places.png</normaloff>:/Resources/My Network Places.png</iconset>
+    <normaloff>:/Resources/hamlet.PNG</normaloff>:/Resources/hamlet.PNG</iconset>
   </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
@@ -513,7 +513,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="icons.qrc">:/Resources/My Network Places.png</pixmap>
+         <pixmap resource="icons.qrc">:/Resources/hamlet.PNG</pixmap>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -938,7 +938,7 @@
          </palette>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;Hamlet Mod&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Versione: 1.5.3.3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza:LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.5.0 - MinGW 4.9.2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;FBLABS 2015&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;Hamlet Mod&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Versione: 1.5.3.4&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza:LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.5.0 - MinGW 4.9.2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;FBLABS 2015&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
