@@ -67,7 +67,7 @@ public:
         if (HAnalisi->objectName().isEmpty())
             HAnalisi->setObjectName(QStringLiteral("HAnalisi"));
         HAnalisi->setWindowModality(Qt::NonModal);
-        HAnalisi->resize(1279, 704);
+        HAnalisi->resize(901, 704);
         HAnalisi->setContextMenuPolicy(Qt::CustomContextMenu);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Chart.PNG"), QSize(), QIcon::Normal, QIcon::Off);
