@@ -60,6 +60,7 @@ private:
     HReadOnlyModelNew *tbm;
     QSqlTableModel *mTipi;
     QSqlTableModel *mProdotti;
+    QSqlTableModel *mTipiProdotto;
 
 
     void setupForm();

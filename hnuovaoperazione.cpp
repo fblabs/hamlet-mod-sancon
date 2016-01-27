@@ -55,6 +55,7 @@ void HnuovaOperazione::setupForm()
     QSqlTableModel *lots=new QSqlTableModel(0,db);
     lots->setTable("lotdef");
     lots->select();
+    lots->setFilter("attivo=1 and year(data)>2013");
     QCompleter *com = new QCompleter(lots);
     com->setCompletionColumn(1);
     com->setCaseSensitivity(Qt::CaseInsensitive);
@@ -252,7 +253,6 @@ bool HnuovaOperazione::saveNewLot(QString nl)
 {
     bool b;
     QSqlQuery q(db);
-    QString sql="INSERT INTO lotdef(lot,prodotto,data,giacenza,um,scadenza,anagrafica,lot_fornitore,tipo,attivo,note) values (:lot,:prodotto,:data,:giacenza,:um,:scadenza,:anagrafica,:lot_fornitore,:tipo,:attivo,:note)";
     QString data,scadenza,lotforn;
     int idprod;
     int tipo;
@@ -269,6 +269,7 @@ bool HnuovaOperazione::saveNewLot(QString nl)
     tipo=ui->cbTipoLot->model()->index(ui->cbTipoLot->currentIndex(),0).data(0).toInt();
     giacenza=ui->leQuantita->text().toDouble();
 
+
     if(ui->cbScadenza->isChecked())
     {
        scadenza="";
@@ -281,6 +282,7 @@ bool HnuovaOperazione::saveNewLot(QString nl)
     anagrafica=ui->cbAnagrafica->model()->index(ui->cbAnagrafica->currentIndex(),0).data(0).toInt();
     lotforn=ui->leLotfornitore->text();
 
+    QString sql="INSERT INTO lotdef(lot,prodotto,data,giacenza,um,scadenza,anagrafica,lot_fornitore,tipo,attivo,note) values (:lot,:prodotto,:data,:giacenza,:um,:scadenza,:anagrafica,:lot_fornitore,:tipo,:attivo,:note)";
     q.prepare(sql);
     q.bindValue(":lot",QVariant(nl));
     q.bindValue(":prodotto",QVariant(idprod));
@@ -294,12 +296,16 @@ bool HnuovaOperazione::saveNewLot(QString nl)
     q.bindValue(":attivo",QVariant(attivo));
     q.bindValue(":note",QVariant(note));
 
+    qDebug()<<q.boundValue(3).toString();
+
     b=q.exec();
 
     if (b)
     {
 
         ui->leNewLot->setText(nl);
+ qDebug()<<q.lastQuery();
+        q.clear();
     }
     else
     {
@@ -441,22 +447,9 @@ bool HnuovaOperazione::saveOperationCarico()
     int UM=ui->cbUM->model()->index(ui->cbUM->currentIndex(),0).data(0).toInt();
     QString note=ui->tNote->toPlainText();
 
-   /* query="SELECT descrizione FROM prodotti WHERE ID=:id";
-    q.prepare(query);
-    q.bindValue(":id",QVariant(idprodotto));
-    q.exec();
-    q.first();
-    */
-
-
-
-
-
 
     QString query2="INSERT INTO operazioni(IDlotto,data,utente,IDprodotto,azione,quantita,um,note) VALUES (:idlotto,:data,:utente,:prodotto,:azione,:quantita,:um,:note)";
     QSqlQuery op(db);
-
-
 
     op.prepare(query2);
     op.bindValue(":idlotto",QVariant(idlotto));
@@ -478,6 +471,21 @@ qDebug()<<QString::number(quantita);
         ui->leQuantita->setText("");
         ui->leLotfornitore->setText("");
         ui->tNote->clear();
+        op.clear();
+
+    }
+
+    double quantitaope;
+    query2="SELECT getgiacenza(:id)";
+    op.prepare(query2);
+    op.bindValue(":id",QVariant(idlotto));
+    b=op.exec();
+    if(b)
+    {
+      op.first();
+      quantitaope=op.value(0).toDouble();
+      qDebug()<<"quantitaope:"<<QString::number(quantitaope)<<QString::number(idlotto);
+
 
     }
 

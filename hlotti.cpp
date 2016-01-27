@@ -97,6 +97,13 @@ void HLotti::setupForm()
     ui->cbTipiLot->setModelColumn(1);
     mTipi->select();
 
+    mTipiProdotto=new QSqlTableModel(0,db);
+    mTipiProdotto->setTable("tipi_prodotto");
+    mTipiProdotto->setSort(1,Qt::AscendingOrder);
+    ui->cbTipoProd->setModel(mTipiProdotto);
+    ui->cbTipoProd->setModelColumn(1);
+    mTipiProdotto->select();
+
 
     mProdotti=new QSqlTableModel(0,db);
     mProdotti->setTable("prodotti");
@@ -233,6 +240,7 @@ void HLotti::setFilter()
         filter="lotdef.tipo="+ tipo + " and lotdef.prodotto=" + prodotto + " and ";
     }
 
+
     filter=filter += datafilter;
 
     tbm->setFilter(filter);
@@ -312,3 +320,5 @@ void HLotti::on_leLottoRaw_textChanged(const QString &arg1)
     tbm->setFilter(filter);
     qDebug()<<tbm->query().lastError().text();
 }
+
+

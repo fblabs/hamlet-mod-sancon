@@ -68,6 +68,7 @@ void HModifyLot::init(int idlotto, QString conn)
     QVariant ixtipo=q.value(10);
     QVariant ixum=q.value(5);
     QVariant scadz= q.value(6);
+    QVariant attv=q.value(11);
 
     if (scadz.isNull())
     {
@@ -110,6 +111,9 @@ void HModifyLot::init(int idlotto, QString conn)
     q.bindValue(":id",ixtipo);
     q.exec();
     q.first();
+
+    bool at=attv.toBool();
+    ui->cbAttivo->setChecked(at);
 
     int ixt=ui->cbtipo->findText(q.value(0).toString());
     ui->cbtipo->setCurrentIndex(ixt);
@@ -155,7 +159,7 @@ bool HModifyLot::updateLot()
     QString sql;
     bool b=false;
 
-    sql="UPDATE lotdef set  giacenza=:giac, um=:um, scadenza=:scad, anagrafica=:anag, lot_fornitore=:lotf, ean=:ean,tipo=:tipo,note=:note WHERE id=:lotid";
+    sql="UPDATE lotdef set  giacenza=:giac, um=:um, scadenza=:scad, anagrafica=:anag, lot_fornitore=:lotf, ean=:ean,tipo=:tipo,attivo=:att,note=:note WHERE id=:lotid";
     q.prepare(sql);
     q.bindValue(":giac",QVariant(ui->leGiac->text().toDouble()));
     q.bindValue(":um",ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0));
@@ -168,6 +172,15 @@ bool HModifyLot::updateLot()
     {
 
        q.bindValue(":scad",QVariant(ui->deScad->date()));
+    }
+    if(ui->cbAttivo->isChecked())
+    {
+        q.bindValue(":att",QVariant(1));
+    }
+    else
+    {
+
+       q.bindValue(":att",QVariant(0));
     }
 
 

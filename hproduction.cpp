@@ -640,9 +640,18 @@ void HProduction::productSelected()
 void HProduction::lotSelected()
 {
     QString lottoadd=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
-    QString quantita=ui->tableView->model()->index(ui->tableView->currentIndex().row(),2).data(0).toString();
 
+    double quag;
+    double quric;
+    double qty;
 
+    quric=ui->tableView->model()->index(ui->tableView->currentIndex().row(),2).data(0).toDouble();
+    quag=ui->tableView->model()->index(ui->tableView->currentIndex().row(),5).data(0).toDouble();
+    qty=quric - quag;
+
+ //   QString quantita=ui->tableView->model()->index(ui->tableView->currentIndex().row(),2).data(0).toString();
+
+    QString quantita=QString::number(qty);
     ui->leLotToadd->setText(lottoadd);
     ui->leqtytoAdd->setText(quantita);
 
@@ -708,6 +717,8 @@ void HProduction::addLotFuoriRicetta()
     QString peso;
     QString lotToadd;
     double qty;
+    QStandardItemModel *mod=static_cast<QStandardItemModel*>(ui->tableView->model());
+
 
     QList<QString> list;
     QList<QStandardItem*> row;
@@ -751,15 +762,18 @@ void HProduction::addLotFuoriRicetta()
         QMessageBox::warning(this,QApplication::applicationName(),"ERRORE\Il lotto inserito non esiste",QMessageBox::Ok);
         return;
     }
-
+   // qty=QString::number(ui->leqtytoAdd->text(),'g',2);
+    qty=ui->leqtytoAdd->text().toDouble();
 
     QStandardItem *idprodotto=new QStandardItem(QString::number(prod));
     QStandardItem *prodotto=new QStandardItem(descprod);
     QStandardItem *quantita=new QStandardItem("0.0");
     QStandardItem *idlotto=new QStandardItem(QString::number(id_lotto));
     QStandardItem *lotto =new QStandardItem(lotToadd);
-    QStandardItem *qua=new QStandardItem(ui->tableView->model()->index(ui->tableView->currentIndex().row(),5).data(0).toString());
+    //QStandardItem *qua=new QStandardItem(ui->tableView->model()->index(ui->tableView->currentIndex().row(),5).data(0).toString());
 
+    double quag=ui->leqtytoAdd->text().toDouble();
+    QStandardItem *qua=new QStandardItem(QString::number(quag,'f',4));
 
     row.append(idprodotto);
     row.append(prodotto);
@@ -768,7 +782,6 @@ void HProduction::addLotFuoriRicetta()
     row.append(lotto);
     row.append(qua);
 
-    QStandardItemModel *mod=static_cast<QStandardItemModel*>(ui->tableView->model());
     mod->insertRow(ui->tableView->currentIndex().row(),row);
    // connect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
     ui->tableView->setCurrentIndex(ui->tableView->model()->index(ui->tableView->currentIndex().row()+1,0));
@@ -1198,7 +1211,12 @@ void HProduction::on_pushButton_2_clicked()
     if(QMessageBox::question(this,QApplication::applicationName(),"Eliminare la riga?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         QModelIndex ix=ui->tableView->currentIndex();
-        ui->tableView->model()->removeRow(ix.row());
+      //  QModelIndex xx=ui->tableView->model()->index(ix.row(),2);
+      // QModelIndex xy=ui->tableView->model()->index(ix.row(),5);
+
+       ui->tableView->model()->removeRow(ix.row());
+      //  ui->tableView->model()->setData(xx,QVariant(0),Qt::EditRole);
+      //  ui->tableView->model()->setData(xy,QVariant(0),Qt::EditRole);
 
     }
 }

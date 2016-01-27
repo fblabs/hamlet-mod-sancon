@@ -39,6 +39,8 @@ public:
     QLineEdit *leLottoRaw;
     QCheckBox *chbT;
     QComboBox *cbTipiLot;
+    QCheckBox *chTipoProdotti;
+    QComboBox *cbTipoProd;
     QCheckBox *chbP;
     QComboBox *cbProdotti;
     QHBoxLayout *horizontalLayout_3;
@@ -86,7 +88,8 @@ public:
 
         chbT = new QCheckBox(HLotti);
         chbT->setObjectName(QStringLiteral("chbT"));
-        chbT->setMaximumSize(QSize(50, 16777215));
+        chbT->setMinimumSize(QSize(66, 0));
+        chbT->setMaximumSize(QSize(60, 16777215));
 
         horizontalLayout_2->addWidget(chbT);
 
@@ -94,6 +97,18 @@ public:
         cbTipiLot->setObjectName(QStringLiteral("cbTipiLot"));
 
         horizontalLayout_2->addWidget(cbTipiLot);
+
+        chTipoProdotti = new QCheckBox(HLotti);
+        chTipoProdotti->setObjectName(QStringLiteral("chTipoProdotti"));
+        chTipoProdotti->setMinimumSize(QSize(80, 0));
+        chTipoProdotti->setMaximumSize(QSize(16777215, 16777215));
+
+        horizontalLayout_2->addWidget(chTipoProdotti);
+
+        cbTipoProd = new QComboBox(HLotti);
+        cbTipoProd->setObjectName(QStringLiteral("cbTipoProd"));
+
+        horizontalLayout_2->addWidget(cbTipoProd);
 
         chbP = new QCheckBox(HLotti);
         chbP->setObjectName(QStringLiteral("chbP"));
@@ -218,7 +233,8 @@ public:
     {
         HLotti->setWindowTitle(QApplication::translate("HLotti", "Lotti", 0));
         label_3->setText(QApplication::translate("HLotti", "Lotto:", 0));
-        chbT->setText(QApplication::translate("HLotti", "Tipo:", 0));
+        chbT->setText(QApplication::translate("HLotti", "Tipo lotto:", 0));
+        chTipoProdotti->setText(QApplication::translate("HLotti", "Tipo prodotto:", 0));
         chbP->setText(QApplication::translate("HLotti", "Prodotto:", 0));
         label->setText(QApplication::translate("HLotti", "Dal:", 0));
         label_2->setText(QApplication::translate("HLotti", "Al:", 0));
