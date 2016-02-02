@@ -77,7 +77,7 @@
             <item>
              <widget class="QLabel" name="label_12">
               <property name="text">
-               <string>Cerca:</string>
+               <string>Cerca prodotto:</string>
               </property>
              </widget>
             </item>
@@ -87,7 +87,7 @@
             <item>
              <widget class="QLabel" name="label_2">
               <property name="text">
-               <string>Ricerca per tipologia prodotti</string>
+               <string>Ricerca per tipologia prodotti:</string>
               </property>
              </widget>
             </item>
@@ -173,27 +173,20 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="7">
-               <widget class="QLineEdit" name="leEAN">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="2">
                <widget class="QLineEdit" name="leLotto"/>
               </item>
               <item row="5" column="5">
                <widget class="QLabel" name="label_8">
                 <property name="text">
-                 <string>Lotto di uscita</string>
+                 <string>Scadenza:</string>
                 </property>
                </widget>
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_7">
                 <property name="text">
-                 <string>Scadenza</string>
+                 <string>Scadenza:</string>
                 </property>
                </widget>
               </item>
@@ -228,6 +221,16 @@
                <widget class="QLabel" name="label_6">
                 <property name="text">
                  <string>Lotto fornitore</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="7">
+               <widget class="QLineEdit" name="leScadenza">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 127);</string>
+                </property>
+                <property name="readOnly">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -272,6 +275,23 @@
        <property name="icon">
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/save-icon.png</normaloff>:/Resources/save-icon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Annulla</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Banned-Sign.PNG</normaloff>:/Resources/Banned-Sign.PNG</iconset>
        </property>
        <property name="iconSize">
         <size>

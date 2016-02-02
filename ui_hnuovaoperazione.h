@@ -66,7 +66,6 @@ public:
     QDateEdit *deScadenza;
     QLabel *label_5;
     QLabel *label_10;
-    QLineEdit *leEAN;
     QLineEdit *leLotto;
     QLabel *label_8;
     QLabel *label_7;
@@ -75,11 +74,13 @@ public:
     QLabel *label_14;
     QLineEdit *leLotfornitore;
     QLabel *label_6;
+    QLineEdit *leScadenza;
     QLabel *label_4;
     QPlainTextEdit *tNote;
     QTableView *tableView;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pushButton;
+    QPushButton *pushButton_2;
     QPushButton *pushButton_4;
 
     void setupUi(QWidget *HnuovaOperazione)
@@ -235,12 +236,6 @@ public:
 
         gridLayout->addWidget(label_10, 0, 0, 1, 1);
 
-        leEAN = new QLineEdit(widget);
-        leEAN->setObjectName(QStringLiteral("leEAN"));
-        leEAN->setEnabled(false);
-
-        gridLayout->addWidget(leEAN, 5, 7, 1, 1);
-
         leLotto = new QLineEdit(widget);
         leLotto->setObjectName(QStringLiteral("leLotto"));
 
@@ -282,6 +277,13 @@ public:
         label_6->setObjectName(QStringLiteral("label_6"));
 
         gridLayout->addWidget(label_6, 3, 0, 1, 1);
+
+        leScadenza = new QLineEdit(widget);
+        leScadenza->setObjectName(QStringLiteral("leScadenza"));
+        leScadenza->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leScadenza->setReadOnly(true);
+
+        gridLayout->addWidget(leScadenza, 5, 7, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout);
@@ -326,11 +328,20 @@ public:
 
         horizontalLayout_3->addWidget(pushButton);
 
+        pushButton_2 = new QPushButton(HnuovaOperazione);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon2);
+        pushButton_2->setIconSize(QSize(32, 32));
+
+        horizontalLayout_3->addWidget(pushButton_2);
+
         pushButton_4 = new QPushButton(HnuovaOperazione);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon3);
         pushButton_4->setIconSize(QSize(32, 32));
 
         horizontalLayout_3->addWidget(pushButton_4);
@@ -350,21 +361,22 @@ public:
         radioButton->setText(QApplication::translate("HnuovaOperazione", "Carico", 0));
         radioButton_2->setText(QApplication::translate("HnuovaOperazione", "Scarico", 0));
         label->setText(QApplication::translate("HnuovaOperazione", "Fornitore", 0));
-        label_12->setText(QApplication::translate("HnuovaOperazione", "Cerca:", 0));
-        label_2->setText(QApplication::translate("HnuovaOperazione", "Ricerca per tipologia prodotti", 0));
+        label_12->setText(QApplication::translate("HnuovaOperazione", "Cerca prodotto:", 0));
+        label_2->setText(QApplication::translate("HnuovaOperazione", "Ricerca per tipologia prodotti:", 0));
         label_3->setText(QApplication::translate("HnuovaOperazione", "Quantit\303\240:", 0));
         label_11->setText(QApplication::translate("HnuovaOperazione", "Tipo", 0));
         label_9->setText(QApplication::translate("HnuovaOperazione", "Nuovo Lotto", 0));
         cbScadenza->setText(QApplication::translate("HnuovaOperazione", "Nessuna scadenza", 0));
         label_5->setText(QApplication::translate("HnuovaOperazione", " U.M.", 0));
         label_10->setText(QApplication::translate("HnuovaOperazione", "Lotto", 0));
-        label_8->setText(QApplication::translate("HnuovaOperazione", "Lotto di uscita", 0));
-        label_7->setText(QApplication::translate("HnuovaOperazione", "Scadenza", 0));
+        label_8->setText(QApplication::translate("HnuovaOperazione", "Scadenza:", 0));
+        label_7->setText(QApplication::translate("HnuovaOperazione", "Scadenza:", 0));
         label_13->setText(QApplication::translate("HnuovaOperazione", "Lotto Fornitore:", 0));
         label_14->setText(QApplication::translate("HnuovaOperazione", "Prodotto:", 0));
         label_6->setText(QApplication::translate("HnuovaOperazione", "Lotto fornitore", 0));
         label_4->setText(QApplication::translate("HnuovaOperazione", "Note:", 0));
         pushButton->setText(QApplication::translate("HnuovaOperazione", "Salva operazione", 0));
+        pushButton_2->setText(QApplication::translate("HnuovaOperazione", "Annulla", 0));
         pushButton_4->setText(QApplication::translate("HnuovaOperazione", "Chiudi", 0));
     } // retranslateUi
 

@@ -183,14 +183,14 @@ void HnuovaOperazione::setUiforCarico()
     ui->cbScadenza->setVisible(true);
     ui->deScadenza->setVisible(true);
     ui->cbScadenza->setChecked(false);
-    ui->label_8->setVisible(false);
-    ui->leEAN->setVisible(false);
+
+
     ui->label_9->setVisible(true);
     ui->leNewLot->setVisible(true);
     ui->label_6->setVisible(true);
     ui->leLotfornitore->setVisible(true);
-    ui->label_8->setVisible(false);
-    ui->leEAN->setVisible(false);
+
+
     ui->cbTipoLot->setVisible(true);
     ui->label_12->setVisible(true);
     ui->label_11->setVisible(true);
@@ -215,14 +215,10 @@ void HnuovaOperazione::setUiForScarico()
     ui->cbUM->setVisible(false);
     ui->label_7->setVisible(false);
     ui->deScadenza->setVisible(false);
-    ui->label_8->setVisible(false);
-    ui->leEAN->setVisible(false);
     ui->label_9->setVisible(false);
     ui->leNewLot->setVisible(false);
     ui->label_6->setVisible(false);
     ui->leLotfornitore->setVisible(false);
-    ui->label_8->setVisible(false);
-    ui->leEAN->setVisible(false);
     ui->label_4->setVisible(true);
     ui->tNote->setVisible(true);
     ui->cbTipoLot->setVisible(false);
@@ -305,6 +301,7 @@ bool HnuovaOperazione::saveNewLot(QString nl)
 
         ui->leNewLot->setText(nl);
         ui->ledispLottoforn->setText(lotforn);
+        ui->leScadenza->setText(ui->deScadenza->date().toString("dd-MM-yyyy"));
  qDebug()<<q.lastQuery();
         q.clear();
     }
@@ -589,4 +586,12 @@ void HnuovaOperazione::on_leLotto_textChanged(const QString &arg1)
     filter.append("%'");
     listaProdotti->setFilter(filter);
   //  qDebug()<<listaProdotti->lastError().text()<<filter;
+}
+
+void HnuovaOperazione::on_pushButton_2_clicked()
+{
+    ui->leQuantita->setText("");
+    ui->leLotfornitore->setText("");
+    ui->tNote->clear();
+    ui->cbScadenza->setChecked(false);
 }

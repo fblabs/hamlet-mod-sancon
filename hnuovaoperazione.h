@@ -62,6 +62,8 @@ private slots:
 
     void on_leLotto_textChanged(const QString &arg1);
 
+    void on_pushButton_2_clicked();
+
 signals:
     void trigger();
     void updateData();
