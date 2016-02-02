@@ -17,6 +17,7 @@ HAnalisi::HAnalisi(QWidget *parent) :
     ui(new Ui::HAnalisi)
 {
     ui->setupUi(this);
+    //
 }
 
 HAnalisi::~HAnalisi()

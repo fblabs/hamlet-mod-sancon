@@ -24,6 +24,9 @@ HProduction::HProduction(QWidget *parent) :
     ui(new Ui::HProduction)
 {
     ui->setupUi(this);
+
+    ui->dateEdit->setVisible(false);
+    ui->label_9->setVisible(false);
 }
 
 HProduction::~HProduction()

@@ -27,8 +27,11 @@ void HModRicette::showContextMenu(const QPoint &pos)
     QPoint globalPos =mapToGlobal(pos);
     QMenu *menu=new QMenu(0);
     QAction *addIngredient=menu->addAction("Aggiungi Ingrediente");
+    QAction *removeIngredient=menu->addAction("Rimuovi Ingrediente");
+
 
     connect(addIngredient,SIGNAL(triggered(bool)),this,SLOT(showaddRow()));
+    connect(removeIngredient,SIGNAL(triggered(bool)),this,SLOT(removeItem()));
 
 
     menu->popup(globalPos);

@@ -103,6 +103,7 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pushButton = new QPushButton(HRecipeAddRow);
         pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setDefault(true);
 
         horizontalLayout->addWidget(pushButton);
 
