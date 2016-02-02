@@ -139,6 +139,8 @@ void HProduction::init(QString conn, QString userid)
      ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,1));
 
 
+
+
 }
 
 void HProduction::getLotModel()
@@ -161,17 +163,35 @@ void HProduction::recalculateTotal()
 
     for (int x=0;x<model->rowCount();x++)
     {
-        quantita += model->index(x,2).data(0).toDouble();
-        //qDebug()<<QString::number(quantita,'f',4);
+        quantita += model->index(x,5).data(0).toDouble();
+
     }
 
-    ui->leQtyTotal->text()=QString::number(quantita,'f',2);
+    ui->leQuaRic->setText(QString::number(quantita,'f',3));
+
+}
+
+void HProduction::calculateActualTotal()
+{
+    QStandardItemModel *model=static_cast<QStandardItemModel*>(ui->tableView->model());
+    double quantita=0.0;
+
+    for (int x=0;x<model->rowCount();x++)
+    {
+        quantita += model->index(x,5).data(0).toDouble();
+
+    }
+
+    ui->leQtyTotal->setText(QString::number(quantita,'f',3));
+ //   ui->leQuaRic->setText(QString::number(quantita,'f',2));
+
 
 }
 
 void HProduction::updateTotals()
 {
     double dafare = ui->leQtyTotal->text().toDouble();
+    ui->leQuaRic->setText(QString::number(dafare,'f',3));
     double sommarighe=0;
     double factor=0;
     double result=0;
@@ -189,11 +209,16 @@ void HProduction::updateTotals()
     for (int j=0;j<model->rowCount();j++)
     {
        QModelIndex i = model->index(j,2);
+       QModelIndex m = model->index(j,5);
        result =i.data().toDouble()* factor;
-       QString resulttoadd=QString::number(result,'f',4);
+       QString resulttoadd=QString::number(result,'f',3);
        model->setData(i,QVariant(resulttoadd));
+       model->setData(m,QVariant(resulttoadd));
 
     }
+
+
+
 
 
 }
@@ -484,7 +509,7 @@ void HProduction::getRecipe()
         QStandardItem* quantita=new QStandardItem(QString::number(q.value(2).toDouble(),'f',3));
         QStandardItem* IDLotto=new QStandardItem("");
         QStandardItem* lotto=new QStandardItem("");
-        QStandardItem* quadd=new QStandardItem("");
+        QStandardItem* quadd=new QStandardItem("0.0");
       //  QStandardItem* lot=new QStandardItem();
 
         //columns.append(IDLotto);
@@ -500,7 +525,8 @@ void HProduction::getRecipe()
 
     }
 
-    ui->leQtyTotal->setText(QString::number(quantitatotale,'f',4));
+    ui->leQtyTotal->setText(QString::number(0,'f',3));
+    ui->leQuaRic->setText(QString::number(quantitatotale,'f',3));
 
    // qmrighe->setQuery(q);
     ui->tableView->setModel(model);
@@ -508,9 +534,12 @@ void HProduction::getRecipe()
    // ui->tableView->resizeColumnsToContents();
      ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
+    ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setColumnHidden(3,true);
+
     connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(recalculateTotal()));
     connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(productSelected()));
-
+    connect(model,SIGNAL(dataChanged(QModelIndex,QModelIndex)),this,SLOT(calculateActualTotal()));
    // ui->tableView->setColumnHidden(0,true);
   //  ui->tableView->setColumnHidden(1,true);
   //  ui->tableView->setColumnHidden(3,true);
@@ -610,7 +639,7 @@ void HProduction::printRecipe()
 
     f->cursorToEnd();
 
-    f->append("QUANTITA': " +ui->leQtyTotal->text(),false);
+    f->append("QUANTITA': " +ui->leQuaRic->text(),false);
 
     f->cursorToEnd();
 
@@ -706,6 +735,8 @@ void HProduction::addLotProd()
     ui->leLotToadd->setText("");
     ui->leqtytoAdd->setText("");
   //   qmLots->appendRow(createRecipeRow(prod));
+
+
 
 
 }
@@ -827,6 +858,7 @@ void HProduction::on_pushButton_5_clicked()
     ui->leQtyTotal->setEnabled(true);
     ui->cbTipoLotto->setEnabled(false);
     ui->checkBox->setEnabled(false);
+    getRecipe();
 
 
 
@@ -851,6 +883,8 @@ void HProduction::on_pushButton_6_clicked()
     ui->checkBox->setEnabled(true);
     getRecipe();
     updateTotals();
+    ui->leQuaRic->setText(QString::number(0.0));
+
     modifyLot=false;
     ui->tableView->setModel(0);
 
@@ -1186,6 +1220,7 @@ void HProduction::on_leQtyTotal_returnPressed()
   // calcola pesi
     //qDebug()<<"going into updateTotals();";
     updateTotals();
+
 }
 
 void HProduction::on_pushButton_7_clicked()
@@ -1394,3 +1429,12 @@ void HProduction::on_pbAnnulla_clicked()
 {
 
 }
+
+void HProduction::on_pushButton_11_clicked()
+{
+  if(QMessageBox::question(0,QApplication::applicationDisplayName(),"Resettare la ricetta?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+  {
+      getRecipe();
+  }
+}
+

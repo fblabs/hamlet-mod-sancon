@@ -304,6 +304,7 @@ bool HnuovaOperazione::saveNewLot(QString nl)
     {
 
         ui->leNewLot->setText(nl);
+        ui->ledispLottoforn->setText(lotforn);
  qDebug()<<q.lastQuery();
         q.clear();
     }
@@ -471,6 +472,7 @@ qDebug()<<QString::number(quantita);
         ui->leQuantita->setText("");
         ui->leLotfornitore->setText("");
         ui->tNote->clear();
+
         op.clear();
 
     }

@@ -83,6 +83,9 @@ public:
     QComboBox *cbUm;
     QLabel *label_3;
     QLineEdit *leQtyTotal;
+    QLineEdit *leQuaRic;
+    QLabel *label_11;
+    QPushButton *pushButton_11;
     QPushButton *pushButton_8;
     QPushButton *pushButton_10;
     QHBoxLayout *horizontalLayout_2;
@@ -344,6 +347,7 @@ public:
 
         formLayout = new QFormLayout();
         formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
         label_5 = new QLabel(HProduction);
         label_5->setObjectName(QStringLiteral("label_5"));
 
@@ -379,22 +383,42 @@ public:
         label_3 = new QLabel(HProduction);
         label_3->setObjectName(QStringLiteral("label_3"));
 
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_3);
+        formLayout->setWidget(4, QFormLayout::LabelRole, label_3);
 
         leQtyTotal = new QLineEdit(HProduction);
         leQtyTotal->setObjectName(QStringLiteral("leQtyTotal"));
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, leQtyTotal);
+        formLayout->setWidget(4, QFormLayout::FieldRole, leQtyTotal);
+
+        leQuaRic = new QLineEdit(HProduction);
+        leQuaRic->setObjectName(QStringLiteral("leQuaRic"));
+        leQuaRic->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leQuaRic->setReadOnly(true);
+
+        formLayout->setWidget(3, QFormLayout::FieldRole, leQuaRic);
+
+        label_11 = new QLabel(HProduction);
+        label_11->setObjectName(QStringLiteral("label_11"));
+
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_11);
 
 
         verticalLayout_3->addLayout(formLayout);
 
+        pushButton_11 = new QPushButton(HProduction);
+        pushButton_11->setObjectName(QStringLiteral("pushButton_11"));
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Arrow-Left.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_11->setIcon(icon6);
+
+        verticalLayout_3->addWidget(pushButton_11);
+
         pushButton_8 = new QPushButton(HProduction);
         pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
         pushButton_8->setEnabled(false);
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_8->setIcon(icon6);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_8->setIcon(icon7);
 
         verticalLayout_3->addWidget(pushButton_8);
 
@@ -414,18 +438,18 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pushButton_3 = new QPushButton(HProduction);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        QIcon icon7;
-        icon7.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon7);
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon8);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_3);
 
         pushButton_4 = new QPushButton(HProduction);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        QIcon icon8;
-        icon8.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon8);
+        QIcon icon9;
+        icon9.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon9);
         pushButton_4->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_4);
@@ -462,6 +486,8 @@ public:
         label_9->setText(QApplication::translate("HProduction", "Scadenza:", 0));
         label_7->setText(QApplication::translate("HProduction", "Unit\303\240 di misura:", 0));
         label_3->setText(QApplication::translate("HProduction", "Quantit\303\240 totale", 0));
+        label_11->setText(QApplication::translate("HProduction", "Quantit\303\240 ricetta:", 0));
+        pushButton_11->setText(QApplication::translate("HProduction", "Reset", 0));
         pushButton_8->setText(QApplication::translate("HProduction", "Stampa Ricetta", 0));
         pushButton_10->setText(QApplication::translate("HProduction", "Stampa Produzione", 0));
         pushButton_3->setText(QApplication::translate("HProduction", "Salva", 0));

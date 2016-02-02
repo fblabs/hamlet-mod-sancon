@@ -20,7 +20,7 @@
    <string>Analisi</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="icons.qrc">
     <normaloff>:/Resources/Chart.PNG</normaloff>:/Resources/Chart.PNG</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -61,6 +61,9 @@
            <property name="text">
             <string>filtra per prodotto selezionato</string>
            </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
           </widget>
          </item>
          <item>
@@ -91,7 +94,7 @@
               <string>Filtra</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="icons.qrc">
                <normaloff>:/Resources/Search.PNG</normaloff>:/Resources/Search.PNG</iconset>
              </property>
             </widget>
@@ -231,7 +234,7 @@
               <string>Cerca ingredienti</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="icons.qrc">
                <normaloff>:/Resources/App-ark-2-icon.png</normaloff>:/Resources/App-ark-2-icon.png</iconset>
              </property>
             </widget>
@@ -242,7 +245,7 @@
               <string>Cerca uso</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="icons.qrc">
                <normaloff>:/Resources/Search.PNG</normaloff>:/Resources/Search.PNG</iconset>
              </property>
             </widget>
@@ -253,7 +256,7 @@
               <string>Stampa</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="icons.qrc">
                <normaloff>:/Resources/Printer-icon.png</normaloff>:/Resources/Printer-icon.png</iconset>
              </property>
             </widget>
@@ -272,7 +275,7 @@
           <string>Chiudi</string>
          </property>
          <property name="icon">
-          <iconset resource="resources.qrc">
+          <iconset resource="icons.qrc">
            <normaloff>:/Resources/Actions-window-close-icon.png</normaloff>:/Resources/Actions-window-close-icon.png</iconset>
          </property>
         </widget>
@@ -284,7 +287,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="icons.qrc"/>
  </resources>
  <connections>
   <connection>

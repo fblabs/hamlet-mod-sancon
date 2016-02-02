@@ -99,10 +99,19 @@
             </item>
             <item>
              <layout class="QGridLayout" name="gridLayout">
-              <item row="1" column="5">
-               <widget class="QLabel" name="label_5">
-                <property name="text">
-                 <string> U.M.</string>
+              <item row="0" column="7">
+               <widget class="QComboBox" name="cbTipoLot"/>
+              </item>
+              <item row="1" column="7">
+               <widget class="QComboBox" name="cbUM"/>
+              </item>
+              <item row="2" column="7">
+               <widget class="QLineEdit" name="leNewLot">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 127);</string>
+                </property>
+                <property name="readOnly">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -113,24 +122,68 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="7">
-               <widget class="QLineEdit" name="leEAN">
-                <property name="enabled">
-                 <bool>false</bool>
+              <item row="1" column="2">
+               <widget class="QLineEdit" name="leQuantita"/>
+              </item>
+              <item row="0" column="5">
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>Tipo</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_6">
+              <item row="2" column="5">
+               <widget class="QLabel" name="label_9">
                 <property name="text">
-                 <string>Lotto fornitore</string>
+                 <string>Nuovo Lotto</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QCheckBox" name="cbScadenza">
+                <property name="text">
+                 <string>Nessuna scadenza</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="7">
+               <widget class="QLineEdit" name="leProdottoCreato">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 127);</string>
+                </property>
+                <property name="readOnly">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
               <item row="2" column="2">
                <widget class="QDateEdit" name="deScadenza"/>
               </item>
-              <item row="4" column="5">
+              <item row="1" column="5">
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string> U.M.</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_10">
+                <property name="text">
+                 <string>Lotto</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="7">
+               <widget class="QLineEdit" name="leEAN">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLineEdit" name="leLotto"/>
+              </item>
+              <item row="5" column="5">
                <widget class="QLabel" name="label_8">
                 <property name="text">
                  <string>Lotto di uscita</string>
@@ -144,60 +197,37 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="7">
-               <widget class="QLineEdit" name="leNewLot">
+              <item row="4" column="5">
+               <widget class="QLabel" name="label_13">
+                <property name="text">
+                 <string>Lotto Fornitore:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="7">
+               <widget class="QLineEdit" name="ledispLottoforn">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 127);</string>
+                </property>
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="1" column="2">
-               <widget class="QLineEdit" name="leQuantita"/>
+              <item row="3" column="5">
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>Prodotto:</string>
+                </property>
+               </widget>
               </item>
-              <item row="4" column="2">
+              <item row="3" column="2">
                <widget class="QLineEdit" name="leLotfornitore"/>
               </item>
-              <item row="1" column="7">
-               <widget class="QComboBox" name="cbUM"/>
-              </item>
-              <item row="2" column="5">
-               <widget class="QLabel" name="label_9">
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_6">
                 <property name="text">
-                 <string>Nuovo Lotto</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QLineEdit" name="leLotto"/>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_10">
-                <property name="text">
-                 <string>Lotto</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="5">
-               <widget class="QLabel" name="label_11">
-                <property name="text">
-                 <string>Tipo</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="7">
-               <widget class="QComboBox" name="cbTipoLot"/>
-              </item>
-              <item row="2" column="1">
-               <widget class="QCheckBox" name="cbScadenza">
-                <property name="text">
-                 <string>Nessuna scadenza</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="7">
-               <widget class="QLineEdit" name="leProdottoCreato">
-                <property name="readOnly">
-                 <bool>true</bool>
+                 <string>Lotto fornitore</string>
                 </property>
                </widget>
               </item>

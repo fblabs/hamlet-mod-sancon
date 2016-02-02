@@ -97,6 +97,7 @@ public:
 
         checkBox = new QCheckBox(HAnalisi);
         checkBox->setObjectName(QStringLiteral("checkBox"));
+        checkBox->setChecked(false);
 
         verticalLayout_2->addWidget(checkBox);
 

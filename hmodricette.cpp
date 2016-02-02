@@ -111,7 +111,7 @@ void HModRicette::getRicette()
     QCompleter *comp=new QCompleter();
     qmric=new  QSqlQueryModel();
     QSqlQuery q(db);
-    q.exec("SELECT ricette.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto AND prodotti.tipo=2 ORDER BY prodotti.descrizione ASC");
+    q.exec("SELECT ricette.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto and prodotti.tipo=2 ORDER BY prodotti.descrizione ASC");
     qmric->setQuery(q);
 
     ui->cbRicette->setModel(qmric);

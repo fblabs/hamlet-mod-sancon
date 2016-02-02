@@ -59,6 +59,8 @@ void HProdottiNew::init(QString conn)
     comp->setModel(tmProdotti);
     ui->lineEdit->setCompleter(comp);
 
+    qDebug()<<tmProdotti->query().lastError();
+
     connect(tmProdotti,SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)),this,SLOT(save()));
 
 

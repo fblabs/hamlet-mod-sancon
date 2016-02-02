@@ -54,24 +54,27 @@ public:
     QComboBox *cbtipo;
     QHBoxLayout *horizontalLayout_2;
     QGridLayout *gridLayout;
-    QLabel *label_5;
-    QLabel *label_3;
-    QLineEdit *leEAN;
-    QLabel *label_6;
-    QDateEdit *deScadenza;
-    QLabel *label_8;
-    QLabel *label_7;
-    QLineEdit *leNewLot;
-    QLineEdit *leQuantita;
-    QLineEdit *leLotfornitore;
-    QComboBox *cbUM;
-    QLabel *label_9;
-    QLineEdit *leLotto;
-    QLabel *label_10;
-    QLabel *label_11;
     QComboBox *cbTipoLot;
+    QComboBox *cbUM;
+    QLineEdit *leNewLot;
+    QLabel *label_3;
+    QLineEdit *leQuantita;
+    QLabel *label_11;
+    QLabel *label_9;
     QCheckBox *cbScadenza;
     QLineEdit *leProdottoCreato;
+    QDateEdit *deScadenza;
+    QLabel *label_5;
+    QLabel *label_10;
+    QLineEdit *leEAN;
+    QLineEdit *leLotto;
+    QLabel *label_8;
+    QLabel *label_7;
+    QLabel *label_13;
+    QLineEdit *ledispLottoforn;
+    QLabel *label_14;
+    QLineEdit *leLotfornitore;
+    QLabel *label_6;
     QLabel *label_4;
     QPlainTextEdit *tNote;
     QTableView *tableView;
@@ -168,87 +171,42 @@ public:
 
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        label_5 = new QLabel(widget);
-        label_5->setObjectName(QStringLiteral("label_5"));
+        cbTipoLot = new QComboBox(widget);
+        cbTipoLot->setObjectName(QStringLiteral("cbTipoLot"));
 
-        gridLayout->addWidget(label_5, 1, 5, 1, 1);
-
-        label_3 = new QLabel(widget);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        gridLayout->addWidget(label_3, 1, 0, 1, 1);
-
-        leEAN = new QLineEdit(widget);
-        leEAN->setObjectName(QStringLiteral("leEAN"));
-        leEAN->setEnabled(false);
-
-        gridLayout->addWidget(leEAN, 4, 7, 1, 1);
-
-        label_6 = new QLabel(widget);
-        label_6->setObjectName(QStringLiteral("label_6"));
-
-        gridLayout->addWidget(label_6, 4, 0, 1, 1);
-
-        deScadenza = new QDateEdit(widget);
-        deScadenza->setObjectName(QStringLiteral("deScadenza"));
-
-        gridLayout->addWidget(deScadenza, 2, 2, 1, 1);
-
-        label_8 = new QLabel(widget);
-        label_8->setObjectName(QStringLiteral("label_8"));
-
-        gridLayout->addWidget(label_8, 4, 5, 1, 1);
-
-        label_7 = new QLabel(widget);
-        label_7->setObjectName(QStringLiteral("label_7"));
-
-        gridLayout->addWidget(label_7, 2, 0, 1, 1);
-
-        leNewLot = new QLineEdit(widget);
-        leNewLot->setObjectName(QStringLiteral("leNewLot"));
-        leNewLot->setReadOnly(true);
-
-        gridLayout->addWidget(leNewLot, 2, 7, 1, 1);
-
-        leQuantita = new QLineEdit(widget);
-        leQuantita->setObjectName(QStringLiteral("leQuantita"));
-
-        gridLayout->addWidget(leQuantita, 1, 2, 1, 1);
-
-        leLotfornitore = new QLineEdit(widget);
-        leLotfornitore->setObjectName(QStringLiteral("leLotfornitore"));
-
-        gridLayout->addWidget(leLotfornitore, 4, 2, 1, 1);
+        gridLayout->addWidget(cbTipoLot, 0, 7, 1, 1);
 
         cbUM = new QComboBox(widget);
         cbUM->setObjectName(QStringLiteral("cbUM"));
 
         gridLayout->addWidget(cbUM, 1, 7, 1, 1);
 
-        label_9 = new QLabel(widget);
-        label_9->setObjectName(QStringLiteral("label_9"));
+        leNewLot = new QLineEdit(widget);
+        leNewLot->setObjectName(QStringLiteral("leNewLot"));
+        leNewLot->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leNewLot->setReadOnly(true);
 
-        gridLayout->addWidget(label_9, 2, 5, 1, 1);
+        gridLayout->addWidget(leNewLot, 2, 7, 1, 1);
 
-        leLotto = new QLineEdit(widget);
-        leLotto->setObjectName(QStringLiteral("leLotto"));
+        label_3 = new QLabel(widget);
+        label_3->setObjectName(QStringLiteral("label_3"));
 
-        gridLayout->addWidget(leLotto, 0, 2, 1, 1);
+        gridLayout->addWidget(label_3, 1, 0, 1, 1);
 
-        label_10 = new QLabel(widget);
-        label_10->setObjectName(QStringLiteral("label_10"));
+        leQuantita = new QLineEdit(widget);
+        leQuantita->setObjectName(QStringLiteral("leQuantita"));
 
-        gridLayout->addWidget(label_10, 0, 0, 1, 1);
+        gridLayout->addWidget(leQuantita, 1, 2, 1, 1);
 
         label_11 = new QLabel(widget);
         label_11->setObjectName(QStringLiteral("label_11"));
 
         gridLayout->addWidget(label_11, 0, 5, 1, 1);
 
-        cbTipoLot = new QComboBox(widget);
-        cbTipoLot->setObjectName(QStringLiteral("cbTipoLot"));
+        label_9 = new QLabel(widget);
+        label_9->setObjectName(QStringLiteral("label_9"));
 
-        gridLayout->addWidget(cbTipoLot, 0, 7, 1, 1);
+        gridLayout->addWidget(label_9, 2, 5, 1, 1);
 
         cbScadenza = new QCheckBox(widget);
         cbScadenza->setObjectName(QStringLiteral("cbScadenza"));
@@ -257,9 +215,73 @@ public:
 
         leProdottoCreato = new QLineEdit(widget);
         leProdottoCreato->setObjectName(QStringLiteral("leProdottoCreato"));
+        leProdottoCreato->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
         leProdottoCreato->setReadOnly(true);
 
         gridLayout->addWidget(leProdottoCreato, 3, 7, 1, 1);
+
+        deScadenza = new QDateEdit(widget);
+        deScadenza->setObjectName(QStringLiteral("deScadenza"));
+
+        gridLayout->addWidget(deScadenza, 2, 2, 1, 1);
+
+        label_5 = new QLabel(widget);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        gridLayout->addWidget(label_5, 1, 5, 1, 1);
+
+        label_10 = new QLabel(widget);
+        label_10->setObjectName(QStringLiteral("label_10"));
+
+        gridLayout->addWidget(label_10, 0, 0, 1, 1);
+
+        leEAN = new QLineEdit(widget);
+        leEAN->setObjectName(QStringLiteral("leEAN"));
+        leEAN->setEnabled(false);
+
+        gridLayout->addWidget(leEAN, 5, 7, 1, 1);
+
+        leLotto = new QLineEdit(widget);
+        leLotto->setObjectName(QStringLiteral("leLotto"));
+
+        gridLayout->addWidget(leLotto, 0, 2, 1, 1);
+
+        label_8 = new QLabel(widget);
+        label_8->setObjectName(QStringLiteral("label_8"));
+
+        gridLayout->addWidget(label_8, 5, 5, 1, 1);
+
+        label_7 = new QLabel(widget);
+        label_7->setObjectName(QStringLiteral("label_7"));
+
+        gridLayout->addWidget(label_7, 2, 0, 1, 1);
+
+        label_13 = new QLabel(widget);
+        label_13->setObjectName(QStringLiteral("label_13"));
+
+        gridLayout->addWidget(label_13, 4, 5, 1, 1);
+
+        ledispLottoforn = new QLineEdit(widget);
+        ledispLottoforn->setObjectName(QStringLiteral("ledispLottoforn"));
+        ledispLottoforn->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        ledispLottoforn->setReadOnly(true);
+
+        gridLayout->addWidget(ledispLottoforn, 4, 7, 1, 1);
+
+        label_14 = new QLabel(widget);
+        label_14->setObjectName(QStringLiteral("label_14"));
+
+        gridLayout->addWidget(label_14, 3, 5, 1, 1);
+
+        leLotfornitore = new QLineEdit(widget);
+        leLotfornitore->setObjectName(QStringLiteral("leLotfornitore"));
+
+        gridLayout->addWidget(leLotfornitore, 3, 2, 1, 1);
+
+        label_6 = new QLabel(widget);
+        label_6->setObjectName(QStringLiteral("label_6"));
+
+        gridLayout->addWidget(label_6, 3, 0, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout);
@@ -330,15 +352,17 @@ public:
         label->setText(QApplication::translate("HnuovaOperazione", "Fornitore", 0));
         label_12->setText(QApplication::translate("HnuovaOperazione", "Cerca:", 0));
         label_2->setText(QApplication::translate("HnuovaOperazione", "Ricerca per tipologia prodotti", 0));
-        label_5->setText(QApplication::translate("HnuovaOperazione", " U.M.", 0));
         label_3->setText(QApplication::translate("HnuovaOperazione", "Quantit\303\240:", 0));
-        label_6->setText(QApplication::translate("HnuovaOperazione", "Lotto fornitore", 0));
+        label_11->setText(QApplication::translate("HnuovaOperazione", "Tipo", 0));
+        label_9->setText(QApplication::translate("HnuovaOperazione", "Nuovo Lotto", 0));
+        cbScadenza->setText(QApplication::translate("HnuovaOperazione", "Nessuna scadenza", 0));
+        label_5->setText(QApplication::translate("HnuovaOperazione", " U.M.", 0));
+        label_10->setText(QApplication::translate("HnuovaOperazione", "Lotto", 0));
         label_8->setText(QApplication::translate("HnuovaOperazione", "Lotto di uscita", 0));
         label_7->setText(QApplication::translate("HnuovaOperazione", "Scadenza", 0));
-        label_9->setText(QApplication::translate("HnuovaOperazione", "Nuovo Lotto", 0));
-        label_10->setText(QApplication::translate("HnuovaOperazione", "Lotto", 0));
-        label_11->setText(QApplication::translate("HnuovaOperazione", "Tipo", 0));
-        cbScadenza->setText(QApplication::translate("HnuovaOperazione", "Nessuna scadenza", 0));
+        label_13->setText(QApplication::translate("HnuovaOperazione", "Lotto Fornitore:", 0));
+        label_14->setText(QApplication::translate("HnuovaOperazione", "Prodotto:", 0));
+        label_6->setText(QApplication::translate("HnuovaOperazione", "Lotto fornitore", 0));
         label_4->setText(QApplication::translate("HnuovaOperazione", "Note:", 0));
         pushButton->setText(QApplication::translate("HnuovaOperazione", "Salva operazione", 0));
         pushButton_4->setText(QApplication::translate("HnuovaOperazione", "Chiudi", 0));

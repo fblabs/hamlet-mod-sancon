@@ -48,8 +48,8 @@ void HLogin2::login()
     if(!b)
     {
       // QMessageBox::critical(this,QApplication::applicationName(),"Errore di connessione: "+ qrLogin.lastError().text(),QMessageBox::Ok);
-       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente" + db.lastError().text(),QMessageBox::Ok);
-
+       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! Errore: " + qrLogin.lastError().text(),QMessageBox::Ok);
+       return;
 
     }
 
@@ -67,12 +67,12 @@ void HLogin2::login()
         usr->setCanUpdateAnag(qrLogin.value(4).toBool());
         emit userLogged(usr->getID(),usr->getRole(),usr->getCanUpdate(),usr->getCanUpdateAnag());
 
-// qDebug()<<"HLogin2"<<usr->getUsername()<<QString::number(usr->getRole())<<usr->getCanUpdate()<<usr->getCanUpdateAnag();
+     qDebug()<<"HLogin2"<<usr->getUsername()<<QString::number(usr->getRole())<<usr->getCanUpdate()<<usr->getCanUpdateAnag();
         close();
      }
   else
   {
-        QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente",QMessageBox::Ok);
+        QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utenteZZZZZ"+db .lastError().text(),QMessageBox::Ok);
 
         ui->leUser->setText("");
         ui->lePwd->setText("");

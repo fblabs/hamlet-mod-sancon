@@ -52,6 +52,7 @@ private slots:
     void addLotFuoriRicetta();
     bool saveProduction();
     void recalculateTotal();
+    void calculateActualTotal();
     void updateTotals();
     void setAddProductFuoriRicettaUI(bool);
     bool saveNewLot(QString lot, int prodotto);
@@ -88,6 +89,8 @@ private slots:
     void on_pushButton_10_clicked();
     void on_checkBox_toggled(bool checked);
     void on_pbAnnulla_clicked();
+    void on_pushButton_11_clicked();
+
 };
 
 #endif // HPRODUCTION_H

@@ -37,7 +37,7 @@ public:
     {
         if (HPrint->objectName().isEmpty())
             HPrint->setObjectName(QStringLiteral("HPrint"));
-        HPrint->setWindowModality(Qt::ApplicationModal);
+        HPrint->setWindowModality(Qt::WindowModal);
         HPrint->resize(922, 435);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);

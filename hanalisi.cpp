@@ -474,15 +474,16 @@ void HAnalisi::on_pushButton_5_clicked()
 
 void HAnalisi::on_checkBox_toggled(bool checked)
 {
-      if (checked)
+      if (checked && ui->tvYearlyProduction->model())
       {
           connect(ui->tvYearlyProduction->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
+           getProductsForClient();
       }
       else
       {
           disconnect(ui->tvYearlyProduction->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
       }
-      getProductsForClient();
+
 }
 
 void HAnalisi::on_deFrom_dateChanged(const QDate &date)
