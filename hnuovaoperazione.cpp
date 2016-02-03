@@ -468,7 +468,7 @@ qDebug()<<QString::number(quantita);
 
         ui->leQuantita->setText("");
         ui->leLotfornitore->setText("");
-        ui->tNote->clear();
+     //   ui->tNote->clear();
 
         op.clear();
 
@@ -592,6 +592,6 @@ void HnuovaOperazione::on_pushButton_2_clicked()
 {
     ui->leQuantita->setText("");
     ui->leLotfornitore->setText("");
-    ui->tNote->clear();
+ //   ui->tNote->clear();
     ui->cbScadenza->setChecked(false);
 }

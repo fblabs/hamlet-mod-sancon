@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HProduction_t {
-    QByteArrayData data[55];
-    char stringdata[894];
+    QByteArrayData data[56];
+    char stringdata[919];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -83,7 +83,8 @@ QT_MOC_LITERAL(50, 780, 23),
 QT_MOC_LITERAL(51, 804, 23),
 QT_MOC_LITERAL(52, 828, 24),
 QT_MOC_LITERAL(53, 853, 19),
-QT_MOC_LITERAL(54, 873, 20)
+QT_MOC_LITERAL(54, 873, 20),
+QT_MOC_LITERAL(55, 894, 24)
     },
     "HProduction\0getClients\0\0getSubclients\0"
     "getRecipesForClient\0getRecipe\0"
@@ -107,7 +108,7 @@ QT_MOC_LITERAL(54, 873, 20)
     "checked\0on_pbAddLottoFuoriRicetta_clicked\0"
     "on_pushButton_8_clicked\0on_pushButton_9_clicked\0"
     "on_pushButton_10_clicked\0on_checkBox_toggled\0"
-    "on_pbAnnulla_clicked"
+    "on_pbAnnulla_clicked\0on_pushButton_11_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -117,7 +118,7 @@ static const uint qt_meta_data_HProduction[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      43,   14, // methods
+      44,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -125,49 +126,50 @@ static const uint qt_meta_data_HProduction[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  229,    2, 0x08 /* Private */,
-       3,    0,  230,    2, 0x08 /* Private */,
-       4,    0,  231,    2, 0x08 /* Private */,
-       5,    0,  232,    2, 0x08 /* Private */,
-       6,    0,  233,    2, 0x08 /* Private */,
-       7,    0,  234,    2, 0x08 /* Private */,
-       8,    0,  235,    2, 0x08 /* Private */,
-       9,    0,  236,    2, 0x08 /* Private */,
-      10,    0,  237,    2, 0x08 /* Private */,
-      11,    0,  238,    2, 0x08 /* Private */,
-      12,    0,  239,    2, 0x08 /* Private */,
-      13,    0,  240,    2, 0x08 /* Private */,
-      14,    0,  241,    2, 0x08 /* Private */,
-      15,    0,  242,    2, 0x08 /* Private */,
-      16,    1,  243,    2, 0x08 /* Private */,
-      17,    2,  246,    2, 0x08 /* Private */,
-      20,    2,  251,    2, 0x08 /* Private */,
-      22,    2,  256,    2, 0x08 /* Private */,
-      25,    2,  261,    2, 0x08 /* Private */,
-      28,    0,  266,    2, 0x08 /* Private */,
-      29,    0,  267,    2, 0x08 /* Private */,
-      30,    0,  268,    2, 0x08 /* Private */,
-      31,    0,  269,    2, 0x08 /* Private */,
-      32,    1,  270,    2, 0x08 /* Private */,
-      33,    1,  273,    2, 0x08 /* Private */,
-      35,    0,  276,    2, 0x08 /* Private */,
-      36,    1,  277,    2, 0x08 /* Private */,
-      37,    0,  280,    2, 0x08 /* Private */,
-      38,    0,  281,    2, 0x08 /* Private */,
-      39,    0,  282,    2, 0x08 /* Private */,
-      40,    0,  283,    2, 0x08 /* Private */,
-      41,    1,  284,    2, 0x08 /* Private */,
-      43,    0,  287,    2, 0x08 /* Private */,
-      44,    0,  288,    2, 0x08 /* Private */,
-      45,    0,  289,    2, 0x08 /* Private */,
-      46,    0,  290,    2, 0x08 /* Private */,
-      47,    1,  291,    2, 0x08 /* Private */,
-      49,    0,  294,    2, 0x08 /* Private */,
-      50,    0,  295,    2, 0x08 /* Private */,
-      51,    0,  296,    2, 0x08 /* Private */,
-      52,    0,  297,    2, 0x08 /* Private */,
-      53,    1,  298,    2, 0x08 /* Private */,
-      54,    0,  301,    2, 0x08 /* Private */,
+       1,    0,  234,    2, 0x08 /* Private */,
+       3,    0,  235,    2, 0x08 /* Private */,
+       4,    0,  236,    2, 0x08 /* Private */,
+       5,    0,  237,    2, 0x08 /* Private */,
+       6,    0,  238,    2, 0x08 /* Private */,
+       7,    0,  239,    2, 0x08 /* Private */,
+       8,    0,  240,    2, 0x08 /* Private */,
+       9,    0,  241,    2, 0x08 /* Private */,
+      10,    0,  242,    2, 0x08 /* Private */,
+      11,    0,  243,    2, 0x08 /* Private */,
+      12,    0,  244,    2, 0x08 /* Private */,
+      13,    0,  245,    2, 0x08 /* Private */,
+      14,    0,  246,    2, 0x08 /* Private */,
+      15,    0,  247,    2, 0x08 /* Private */,
+      16,    1,  248,    2, 0x08 /* Private */,
+      17,    2,  251,    2, 0x08 /* Private */,
+      20,    2,  256,    2, 0x08 /* Private */,
+      22,    2,  261,    2, 0x08 /* Private */,
+      25,    2,  266,    2, 0x08 /* Private */,
+      28,    0,  271,    2, 0x08 /* Private */,
+      29,    0,  272,    2, 0x08 /* Private */,
+      30,    0,  273,    2, 0x08 /* Private */,
+      31,    0,  274,    2, 0x08 /* Private */,
+      32,    1,  275,    2, 0x08 /* Private */,
+      33,    1,  278,    2, 0x08 /* Private */,
+      35,    0,  281,    2, 0x08 /* Private */,
+      36,    1,  282,    2, 0x08 /* Private */,
+      37,    0,  285,    2, 0x08 /* Private */,
+      38,    0,  286,    2, 0x08 /* Private */,
+      39,    0,  287,    2, 0x08 /* Private */,
+      40,    0,  288,    2, 0x08 /* Private */,
+      41,    1,  289,    2, 0x08 /* Private */,
+      43,    0,  292,    2, 0x08 /* Private */,
+      44,    0,  293,    2, 0x08 /* Private */,
+      45,    0,  294,    2, 0x08 /* Private */,
+      46,    0,  295,    2, 0x08 /* Private */,
+      47,    1,  296,    2, 0x08 /* Private */,
+      49,    0,  299,    2, 0x08 /* Private */,
+      50,    0,  300,    2, 0x08 /* Private */,
+      51,    0,  301,    2, 0x08 /* Private */,
+      52,    0,  302,    2, 0x08 /* Private */,
+      53,    1,  303,    2, 0x08 /* Private */,
+      54,    0,  306,    2, 0x08 /* Private */,
+      55,    0,  307,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -212,6 +214,7 @@ static const uint qt_meta_data_HProduction[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Bool,   48,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -274,6 +277,7 @@ void HProduction::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 40: _t->on_pushButton_10_clicked(); break;
         case 41: _t->on_checkBox_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 42: _t->on_pbAnnulla_clicked(); break;
+        case 43: _t->on_pushButton_11_clicked(); break;
         default: ;
         }
     }
@@ -304,13 +308,13 @@ int HProduction::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 43)
+        if (_id < 44)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 43;
+        _id -= 44;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 43)
+        if (_id < 44)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 43;
+        _id -= 44;
     }
     return _id;
 }

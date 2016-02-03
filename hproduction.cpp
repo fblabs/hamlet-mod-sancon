@@ -27,6 +27,8 @@ HProduction::HProduction(QWidget *parent) :
 
     ui->dateEdit->setVisible(false);
     ui->label_9->setVisible(false);
+ /*   ui->label_11->setVisible(false);
+    ui->leQuaRic->setVisible(false);*/
 }
 
 HProduction::~HProduction()
@@ -139,7 +141,7 @@ void HProduction::init(QString conn, QString userid)
      connect(ui->cbQuanti,SIGNAL(currentIndexChanged(int)),this,SLOT(lastFiveLots()));
      connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
 
-     ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,1));
+
 
 
 
@@ -170,7 +172,9 @@ void HProduction::recalculateTotal()
 
     }
 
-    ui->leQuaRic->setText(QString::number(quantita,'f',3));
+    QString qua=QString::number(quantita,'f',3);
+
+    ui->leQuaRic->setText(qua);
 
 }
 
@@ -181,20 +185,30 @@ void HProduction::calculateActualTotal()
 
     for (int x=0;x<model->rowCount();x++)
     {
-        quantita += model->index(x,5).data(0).toDouble();
+        bool ok;
+        quantita += model->index(x,5).data(0).toDouble(&ok);
+        if(!ok)return;
+        qDebug()<<"calculateactualtotalrow"<<x<<QString::number(quantita);
 
     }
+    QString qta =QString::number(quantita,'f',3);
 
-    ui->leQtyTotal->setText(QString::number(quantita,'f',3));
- //   ui->leQuaRic->setText(QString::number(quantita,'f',2));
+    ui->leQtyTotal->setText(qta);
+  //  ui->leQuaRic->setText(QString::number(quantita,'f',2));
 
 
 }
 
 void HProduction::updateTotals()
 {
-    double dafare = ui->leQtyTotal->text().toDouble();
-    ui->leQuaRic->setText(QString::number(dafare,'f',3));
+    bool ok;
+
+    double dafare = ui->leQtyTotal->text().toDouble(&ok);
+    if(!ok)
+    {
+        qDebug()<<"updatetotals"<<QString::number(dafare,'f',6);
+    }
+   // ui->leQuaRic->setText(QString::number(dafare,'f',3));
     double sommarighe=0;
     double factor=0;
     double result=0;
@@ -208,6 +222,8 @@ void HProduction::updateTotals()
 
 
     factor = dafare / sommarighe;
+
+  //  qDebug()<<"updatetotals"<<QString::number(sommarighe,'f',6);
 
     for (int j=0;j<model->rowCount();j++)
     {
@@ -377,8 +393,9 @@ void HProduction::getLotToModify(QString lot)
         model->appendRow(columns);
 
     }
+    QString qta=QString::number(quantitatotale,'f',3);
 
-    ui->leQtyTotal->setText(QString::number(quantitatotale,'f',2));
+    ui->leQtyTotal->setText(qta);
 
    // qmrighe->setQuery(q);
     ui->tableView->setModel(model);
@@ -423,8 +440,11 @@ void HProduction::getRecipesForClient()
 
     ui->lvRicette->setModel(qmRicette);
     ui->lvRicette->setModelColumn(2);
+
     
     connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getRecipe()));
+
+
 }
 
 void HProduction::getRecipe()
@@ -497,15 +517,16 @@ void HProduction::getRecipe()
     while(q.next())
     {
 
-       quantitatotale +=q.value(2).toDouble();
+       bool ok;
+       quantitatotale +=q.value(2).toDouble(&ok);
+       if(!ok)
+       {
+           QMessageBox::warning(this,QApplication::applicationName(),"ERRORE",QMessageBox::Ok);
+           return;
+       }
      //  model->appendRow(createRecipeRow(q.value(1).toString(),q.value(2).toString(),QString::number(q.value(3).toDouble(),'f',2),"","pippo"));
         QList<QStandardItem*> columns;
-        /*model->setHeaderData(0,Qt::Horizontal,"ID Prodotto",0);
-    model->setHeaderData(1,Qt::Horizontal,"Prodotto",0);
-    model->setHeaderData(2,Qt::Horizontal,"Quantità ricetta",0);
-    model->setHeaderData(3,Qt::Horizontal,"ID Lotto",0);
-    model->setHeaderData(4,Qt::Horizontal,"Lotto",0);
-    model->setHeaderData(5,Qt::Horizontal,"Quantità aggiunta",0);*/
+
 
         QStandardItem* ID_prodotto=new QStandardItem(q.value(0).toString());
         QStandardItem* prodotto=new QStandardItem(q.value(1).toString());
@@ -513,7 +534,9 @@ void HProduction::getRecipe()
         QStandardItem* IDLotto=new QStandardItem("");
         QStandardItem* lotto=new QStandardItem("");
         QStandardItem* quadd=new QStandardItem("0.0");
-      //  QStandardItem* lot=new QStandardItem();
+
+
+
 
         //columns.append(IDLotto);
         columns.append(ID_prodotto);
@@ -528,8 +551,11 @@ void HProduction::getRecipe()
 
     }
 
-    ui->leQtyTotal->setText(QString::number(0,'f',3));
-    ui->leQuaRic->setText(QString::number(quantitatotale,'f',3));
+    QString qta=QString::number(quantitatotale,'f',3);
+
+    ui->leQtyTotal->setText(qta);
+    ui->leQuaRic->setText(qta);
+    qDebug()<<qta;
 
    // qmrighe->setQuery(q);
     ui->tableView->setModel(model);
@@ -886,7 +912,7 @@ void HProduction::on_pushButton_6_clicked()
     ui->checkBox->setEnabled(true);
     getRecipe();
     updateTotals();
-    ui->leQuaRic->setText(QString::number(0.0));
+
 
     modifyLot=false;
     ui->tableView->setModel(0);
@@ -1280,6 +1306,7 @@ void HProduction::setAddProductFuoriRicettaUI(bool visible)
 void HProduction::on_pbAddLottoFuoriRicetta_clicked()
 {
 
+
     addLotFuoriRicetta();
     setAddProductFuoriRicettaUI(false);
     ui->pushButton_7->setChecked(false);
@@ -1441,3 +1468,8 @@ void HProduction::on_pushButton_11_clicked()
   }
 }
 
+
+void HProduction::on_leQuaRic_textChanged(const QString &arg1)
+{
+    qDebug()<<arg1;
+}

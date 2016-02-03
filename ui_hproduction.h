@@ -83,8 +83,8 @@ public:
     QComboBox *cbUm;
     QLabel *label_3;
     QLineEdit *leQtyTotal;
-    QLineEdit *leQuaRic;
     QLabel *label_11;
+    QLineEdit *leQuaRic;
     QPushButton *pushButton_11;
     QPushButton *pushButton_8;
     QPushButton *pushButton_10;
@@ -390,17 +390,15 @@ public:
 
         formLayout->setWidget(4, QFormLayout::FieldRole, leQtyTotal);
 
-        leQuaRic = new QLineEdit(HProduction);
-        leQuaRic->setObjectName(QStringLiteral("leQuaRic"));
-        leQuaRic->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
-        leQuaRic->setReadOnly(true);
-
-        formLayout->setWidget(3, QFormLayout::FieldRole, leQuaRic);
-
         label_11 = new QLabel(HProduction);
         label_11->setObjectName(QStringLiteral("label_11"));
 
         formLayout->setWidget(3, QFormLayout::LabelRole, label_11);
+
+        leQuaRic = new QLineEdit(HProduction);
+        leQuaRic->setObjectName(QStringLiteral("leQuaRic"));
+
+        formLayout->setWidget(3, QFormLayout::FieldRole, leQuaRic);
 
 
         verticalLayout_3->addLayout(formLayout);

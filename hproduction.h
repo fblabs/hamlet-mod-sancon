@@ -91,6 +91,7 @@ private slots:
     void on_pbAnnulla_clicked();
     void on_pushButton_11_clicked();
 
+    void on_leQuaRic_textChanged(const QString &arg1);
 };
 
 #endif // HPRODUCTION_H
