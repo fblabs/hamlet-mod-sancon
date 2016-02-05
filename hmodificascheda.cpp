@@ -230,16 +230,19 @@ void HModificaScheda::on_pushButton_4_clicked()
 
 
   imagepath = QFileDialog::getOpenFileName(this,"Apri Immagine", QDir::currentPath(),"Immagini (*.png *.jpg);;Tutti i file (*.*)",0,QFileDialog::DontUseNativeDialog);
-
+  if (imagepath.length()>0)
+  {
   imgobj = new QImage();
   imgobj->load(imagepath);
   img = QPixmap::fromImage(*imgobj);
   scene = new QGraphicsScene(this);
   scene->addPixmap(img);
+  img=img.scaledToWidth(scene->width());
   scene->setSceneRect(img.rect());
   ui->gv->setScene(scene);
   ui->gv->setAlignment(Qt::AlignCenter);
   ui->gv->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);
+  }
 
 
 }
@@ -258,4 +261,18 @@ void HModificaScheda::update()
     loadScheda();
     emit(schedaAggiornata());
 
+}
+
+void HModificaScheda::on_pushButton_6_clicked()
+{
+    QGraphicsScene *scene;
+    imgobj = new QImage();
+    imgobj->load("");
+    img = QPixmap::fromImage(*imgobj);
+    scene = new QGraphicsScene(this);
+    scene->addPixmap(img);
+    scene->setSceneRect(img.rect());
+    ui->gv->setScene(scene);
+    ui->gv->setAlignment(Qt::AlignCenter);
+    ui->gv->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);
 }

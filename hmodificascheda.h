@@ -35,6 +35,8 @@ private slots:
     void on_pushButton_5_clicked();
     void update();
 
+    void on_pushButton_6_clicked();
+
 private:
     Ui::HModificaScheda *ui;
     QSqlDatabase db;

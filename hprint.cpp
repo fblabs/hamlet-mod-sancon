@@ -32,10 +32,11 @@ void HPrint::addImage(QByteArray bytes)
 {
   //  QGraphicsScene *scene;
     QTextCursor cursor(ui->textEdit->document());
+    ui->textEdit->setTextCursor(cursor);
 
     QImage *imgobj = new QImage();
     imgobj->loadFromData(bytes);
-    QPixmap img = QPixmap::fromImage(*imgobj);
+    QPixmap img = QPixmap::fromImage(*imgobj).scaled(600,200);
    // QGraphicsScene *scene = new QGraphicsScene(this);
    // scene->addPixmap(img);
 
@@ -173,7 +174,7 @@ void HPrint::cursorToEnd()
 
 }
 
-QTextCursor* getCursor();
+
 
 void HPrint::hideClose()
 {

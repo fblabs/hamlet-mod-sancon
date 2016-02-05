@@ -499,6 +499,10 @@
          <property name="text">
           <string>Stampa Produzione</string>
          </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Printer-icon.png</normaloff>:/Resources/Printer-icon.png</iconset>
+         </property>
         </widget>
        </item>
       </layout>

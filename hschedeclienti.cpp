@@ -272,7 +272,9 @@ void HSchedeClienti::loadScheda()
    QImage scale;
    imgobj->loadFromData(bytes);
 
-   scale=imgobj->scaled(600,300,Qt::KeepAspectRatio,Qt::FastTransformation);
+ // scale=imgobj->scaled(600,300,Qt::KeepAspectRatio,Qt::FastTransformation);
+   scale=imgobj->scaledToWidth(imgobj->width()*0.6);
+
  //  img = QPixmap::fromImage(*imgobj);
 
   // cursor.atEnd();

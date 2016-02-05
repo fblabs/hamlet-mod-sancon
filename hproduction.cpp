@@ -27,8 +27,9 @@ HProduction::HProduction(QWidget *parent) :
 
     ui->dateEdit->setVisible(false);
     ui->label_9->setVisible(false);
- /*   ui->label_11->setVisible(false);
-    ui->leQuaRic->setVisible(false);*/
+    ui->pushButton_8->setVisible(false);
+    ui->label_11->setVisible(false);
+    ui->leQuaRic->setVisible(false);
 }
 
 HProduction::~HProduction()
@@ -588,20 +589,29 @@ void HProduction::printProduction()
     title=ui->lbRicetta->text();
     title.append(" - ");
     title.append(ui->cbClienti->currentText());
-    title.append(QDate::currentDate().toString(" - dd\MM\yyyy"));
+    title.append(" - Lotto: " + ui->leNuovoLot->text());
+    title.append(QDate::currentDate().toString(" - dd\\MM\\yyyy"));
 
 
     int rows=ui->tableView->model()->rowCount();
     int cols=3;
 
-    QTextTable *table= f->addTable(rows,cols);
-    QTextCursor t=f->getCursor();
-    t.movePosition(QTextCursor::Start);
+    //QTextTable *table= f->addTable(rows,cols);
+
+
     f->cursorToStart();
     f->append(title,false);
+    f->cursorToEnd();
+
     f->append("",false);
     f->cursorToEnd();
+
     f->append("",false);
+    f->cursorToEnd();
+
+
+    QTextTable *table= f->addTable(rows,cols);
+
     QString col1,col2,col3;
 
       for (int i=0;i<rows;i++)
@@ -611,12 +621,26 @@ void HProduction::printProduction()
           col2=ui->tableView->model()->index(i,4).data(0).toString();
           col3=ui->tableView->model()->index(i,5).data(0).toString();
 
+          f->cursorToEnd();
+
           f->writeTableContent(table,i,0,col1);
 
           f->writeTableContent(table,i,1,col2);
           f->writeTableContent(table,i,2,col3);
+          f->cursorToEnd();
+
 
         }
+
+      f->append("",false);
+      f->append("Note:",false);
+      f->append("",false);
+      f->append("..............................................................................",false);
+      f->cursorToEnd();
+      f->append("..............................................................................",false);
+      f->cursorToEnd();
+      f->append("..............................................................................",false);
+      f->cursorToEnd();
 
 
 

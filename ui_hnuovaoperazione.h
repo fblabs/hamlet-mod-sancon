@@ -79,6 +79,7 @@ public:
     QPlainTextEdit *tNote;
     QTableView *tableView;
     QHBoxLayout *horizontalLayout_3;
+    QPushButton *pushButton_3;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QPushButton *pushButton_4;
@@ -88,7 +89,7 @@ public:
         if (HnuovaOperazione->objectName().isEmpty())
             HnuovaOperazione->setObjectName(QStringLiteral("HnuovaOperazione"));
         HnuovaOperazione->setWindowModality(Qt::NonModal);
-        HnuovaOperazione->resize(1285, 652);
+        HnuovaOperazione->resize(858, 652);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -134,6 +135,8 @@ public:
 
         cbAnagrafica = new QComboBox(widget);
         cbAnagrafica->setObjectName(QStringLiteral("cbAnagrafica"));
+        cbAnagrafica->setEditable(true);
+        cbAnagrafica->setInsertPolicy(QComboBox::NoInsert);
 
         formLayout_2->setWidget(0, QFormLayout::FieldRole, cbAnagrafica);
 
@@ -319,6 +322,13 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        pushButton_3 = new QPushButton(HnuovaOperazione);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setIcon(icon);
+        pushButton_3->setIconSize(QSize(32, 32));
+
+        horizontalLayout_3->addWidget(pushButton_3);
+
         pushButton = new QPushButton(HnuovaOperazione);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         QIcon icon1;
@@ -375,7 +385,8 @@ public:
         label_14->setText(QApplication::translate("HnuovaOperazione", "Prodotto:", 0));
         label_6->setText(QApplication::translate("HnuovaOperazione", "Lotto fornitore", 0));
         label_4->setText(QApplication::translate("HnuovaOperazione", "Note:", 0));
-        pushButton->setText(QApplication::translate("HnuovaOperazione", "Salva operazione", 0));
+        pushButton_3->setText(QApplication::translate("HnuovaOperazione", "Nuova", 0));
+        pushButton->setText(QApplication::translate("HnuovaOperazione", "Salva", 0));
         pushButton_2->setText(QApplication::translate("HnuovaOperazione", "Annulla", 0));
         pushButton_4->setText(QApplication::translate("HnuovaOperazione", "Chiudi", 0));
     } // retranslateUi

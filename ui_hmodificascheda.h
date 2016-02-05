@@ -47,6 +47,7 @@ public:
     QGraphicsView *gv;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_4;
+    QPushButton *pushButton_6;
     QPushButton *pushButton_5;
     QPushButton *pushButton;
     QPushButton *pushButton_3;
@@ -168,38 +169,47 @@ public:
 
         horizontalLayout->addWidget(pushButton_4);
 
+        pushButton_6 = new QPushButton(HModificaScheda);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_6->setIcon(icon2);
+        pushButton_6->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pushButton_6);
+
         pushButton_5 = new QPushButton(HModificaScheda);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon3);
         pushButton_5->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_5);
 
         pushButton = new QPushButton(HModificaScheda);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon4);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton);
 
         pushButton_3 = new QPushButton(HModificaScheda);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon5);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_3);
 
         pushButton_2 = new QPushButton(HModificaScheda);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon6);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_2);
@@ -225,6 +235,7 @@ public:
         label_6->setText(QApplication::translate("HModificaScheda", "Note:", 0));
         label_7->setText(QApplication::translate("HModificaScheda", "Immagine:", 0));
         pushButton_4->setText(QApplication::translate("HModificaScheda", "Aggiungi immagine", 0));
+        pushButton_6->setText(QApplication::translate("HModificaScheda", "Rimuovi immagine", 0));
         pushButton_5->setText(QApplication::translate("HModificaScheda", "Copia da Scheda", 0));
         pushButton->setText(QApplication::translate("HModificaScheda", "Salva", 0));
         pushButton_3->setText(QApplication::translate("HModificaScheda", "Annulla modifiche", 0));

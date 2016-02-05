@@ -46,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
    // enableDB();
 
+
   sConn=settings.value("conn").toString();
   user= new HUser();
   user->init(sConn);
@@ -277,8 +278,8 @@ void MainWindow::on_tbMagaz_clicked()
     QApplication::setOverrideCursor(QCursor(Qt::BusyCursor));
     HWarehouse *f=new HWarehouse();
     f->init(sConn,QString::number(user->getID()));
-   // f->showMaximized();
-    f->show();
+    f->showMaximized();
+
     
 }
 
@@ -290,7 +291,7 @@ void MainWindow::on_tbLotti_clicked()
     f->setConnectionName(sConn);
     f->setUser(user->getID());
     emit onConnectionName();
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_tbRicette_clicked()
@@ -303,7 +304,7 @@ void MainWindow::on_tbRicette_clicked()
    // connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
    // f->SetDB();
 
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_tbAnag_clicked()
@@ -316,7 +317,7 @@ void MainWindow::on_tbAnag_clicked()
     emit onConnectionName();
 
    // f->setWindowModality(Qt::ApplicationModal);
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_tnProduzione_clicked()
@@ -332,7 +333,7 @@ void MainWindow::on_tnProduzione_clicked()
     f->init(sConn,QString::number(user->getID()));
 
   //  f->setUserId(currentUsr->getID());
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_tbSettings_clicked()
@@ -371,7 +372,7 @@ void MainWindow::on_tbAnalisi_clicked()
     HAnalisi *f=new HAnalisi();
     f->init(sConn);
 
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_toolButton_clicked()
@@ -386,7 +387,7 @@ void MainWindow::on_pBNewOperation_clicked()
    HnuovaOperazione *f = new HnuovaOperazione();
 
   f->setConnectionName(sConn,QString::number(user->getID()));
-  f->show();
+  f->showMaximized();
 }
 
 void MainWindow::login()
@@ -425,7 +426,7 @@ void MainWindow::on_pbSchede_clicked()
     QApplication::setOverrideCursor(Qt::WaitCursor);
     HSchedeClienti *f = new HSchedeClienti();
     f->init(sConn,user);
-    f->show();
+    f->showMaximized();
 
 }
 
@@ -446,7 +447,7 @@ void MainWindow::on_tbModificaLotti_clicked()
 {
     HModifyProd *h = new HModifyProd();
     h->init(sConn,user);
-    h->show();
+    h->showMaximized();
 }
 
 void MainWindow::on_pbPackages_clicked()
