@@ -21,6 +21,7 @@ public:
     ~HSchedeClienti();
     void init(QString, HUser *usr);
 
+
 private:
     QCompleter *completerClienti;
     Ui::HSchedeClienti *ui;
@@ -29,6 +30,8 @@ private:
     QSqlTableModel *tmProdotti;
     QSqlTableModel *tmClienti;
     bool canUpdate;
+    int width;
+    int height;
 
 //    int m_idcliente;
 
@@ -40,13 +43,19 @@ private slots:
     void getSubclients();
     void on_pushButton_clicked();
     void on_pushButton_4_clicked();
-    void on_pushButton_3_clicked();
+
     void on_cbSelectCriteria_toggled(bool checked);
     void showSubclients(bool toggled);
+    void saveScheda();
+
 
 
 
     void on_btnDup_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_2_clicked();
 
 signals:
 public slots:

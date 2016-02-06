@@ -13,9 +13,12 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -28,6 +31,14 @@ public:
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QTextEdit *textEdit;
+    QHBoxLayout *horizontalLayout_2;
+    QFormLayout *formLayout;
+    QLabel *label;
+    QSpinBox *sbW;
+    QFormLayout *formLayout_2;
+    QLabel *label_2;
+    QSpinBox *sbH;
+    QPushButton *pushButton_ridim;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbant;
     QPushButton *pushButton_2;
@@ -66,6 +77,54 @@ public:
         textEdit->setReadOnly(true);
 
         verticalLayout->addWidget(textEdit);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        formLayout = new QFormLayout();
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        label = new QLabel(HPrint);
+        label->setObjectName(QStringLiteral("label"));
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, label);
+
+        sbW = new QSpinBox(HPrint);
+        sbW->setObjectName(QStringLiteral("sbW"));
+        sbW->setMinimum(30);
+        sbW->setMaximum(800);
+        sbW->setSingleStep(10);
+        sbW->setValue(100);
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, sbW);
+
+
+        horizontalLayout_2->addLayout(formLayout);
+
+        formLayout_2 = new QFormLayout();
+        formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
+        label_2 = new QLabel(HPrint);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        formLayout_2->setWidget(0, QFormLayout::LabelRole, label_2);
+
+        sbH = new QSpinBox(HPrint);
+        sbH->setObjectName(QStringLiteral("sbH"));
+        sbH->setMinimum(30);
+        sbH->setMaximum(800);
+        sbH->setSingleStep(10);
+        sbH->setValue(100);
+
+        formLayout_2->setWidget(0, QFormLayout::FieldRole, sbH);
+
+
+        horizontalLayout_2->addLayout(formLayout_2);
+
+        pushButton_ridim = new QPushButton(HPrint);
+        pushButton_ridim->setObjectName(QStringLiteral("pushButton_ridim"));
+
+        horizontalLayout_2->addWidget(pushButton_ridim);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -116,6 +175,9 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Verdana'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8.25pt;\"><br /></p></body></html>", 0));
+        label->setText(QApplication::translate("HPrint", "X:", 0));
+        label_2->setText(QApplication::translate("HPrint", "Y:", 0));
+        pushButton_ridim->setText(QApplication::translate("HPrint", "Ridimensiona", 0));
         pbant->setText(QApplication::translate("HPrint", "Anteprima di stampa", 0));
         pushButton_2->setText(QApplication::translate("HPrint", "Stampa", 0));
         pushButton->setText(QApplication::translate("HPrint", "Chiudi", 0));

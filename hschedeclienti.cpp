@@ -200,6 +200,8 @@ void HSchedeClienti::loadScheda()
     int prodotto=ui->listView->model()->index(ui->listView->selectionModel()->currentIndex().row(),0).data(0).toInt();
     qDebug()<<QString::number(prodotto);
     int cliente;
+    int imgw;
+    int imgh;
 
     if (ui->cbSelectCriteria->isChecked())
     {
@@ -213,7 +215,7 @@ void HSchedeClienti::loadScheda()
 
 
 
-    QString query="SELECT olio,vaso,tappo,etichette,scatole,note,immagine from schede where cliente=:idcliente and prodotto=:idprodotto";
+    QString query="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy from schede where cliente=:idcliente and prodotto=:idprodotto";
     QSqlQuery q(db);
 
 
@@ -224,12 +226,16 @@ void HSchedeClienti::loadScheda()
     q.bindValue(":idprodotto",QVariant(prodotto));
     q.exec();
 
+
   //  p=new HPrint(ui->widget);
 
 
    qDebug()<<"loadscheda"<<QString::number(prodotto)<<QString::number(cliente);
 
    q.first();
+
+   width=q.value(7).toInt();
+   height=q.value(8).toInt();
 
    ui->widget->resetText();
 
@@ -259,7 +265,7 @@ void HSchedeClienti::loadScheda()
     ui->widget->append("TAPPO: "+q.value(2).toString(),false);
    ui->widget->append("ETICHETTE: "+q.value(3).toString(),false);
    ui->widget->append("SCATOLE: "+q.value(4).toString(),false);
-   ui->widget->append("NOTE: "+q.value(5).toString(),false);
+   ui->widget->append("NOTE\n: "+q.value(5).toString(),false);
    ui->widget->cursorToEnd();
 
    QByteArray bytes;
@@ -273,13 +279,14 @@ void HSchedeClienti::loadScheda()
    imgobj->loadFromData(bytes);
 
  // scale=imgobj->scaled(600,300,Qt::KeepAspectRatio,Qt::FastTransformation);
-   scale=imgobj->scaledToWidth(imgobj->width()*0.6);
+   scale=imgobj->scaled(height,width);
 
  //  img = QPixmap::fromImage(*imgobj);
 
   // cursor.atEnd();
 
     ui->widget->cursorToEnd();
+    ui->widget->append("\n",false);
 
    ui->widget->getCursor().insertImage(scale);
 
@@ -349,14 +356,15 @@ void HSchedeClienti::deleteScheda()
 
 }
 
-void HSchedeClienti::on_pushButton_3_clicked()
+/*void HSchedeClienti::on_pushButton_3_clicked()
 {
     if(QMessageBox::question(this,QApplication::applicationName(),"Cancellare la scheda?\nATTENZIONE: la cancellazione è irreversibile",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         deleteScheda();
     }
-    loadScheda();
-}
+   // loadScheda();
+}*/
+
 
 void HSchedeClienti::on_cbSelectCriteria_toggled(bool checked)
 {
@@ -404,3 +412,23 @@ void HSchedeClienti::on_btnDup_clicked()
 
 }
 
+
+void HSchedeClienti::on_pushButton_3_clicked()
+{
+    if(QMessageBox::question(this,QApplication::applicationName(),"Cancellare la scheda?\nATTENZIONE: la cancellazione è irreversibile",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        deleteScheda();
+    }
+}
+
+void HSchedeClienti::on_pushButton_2_clicked()
+{
+    saveScheda();
+}
+
+void HSchedeClienti::saveScheda()
+{
+
+
+
+}

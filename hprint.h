@@ -34,6 +34,9 @@ public:
    void loadImage();
    QTextEdit *getViewport();
    QTextCursor getCursor();
+   void resizeImage(int wr,int hr);
+   void setWidth(int);
+   void setHeight(int);
 private slots:
    void on_pushButton_2_clicked();
    void on_pushButton_clicked();
@@ -44,6 +47,15 @@ private slots:
 
    void on_pbant_clicked();
 
+   void on_pushButton_ridim_clicked();
+
+   void on_sbW_valueChanged(int arg1);
+
+   void on_sbH_valueChanged(int arg1);
+
+   int getWidth();
+   int getHeight();
+
 private:
     Ui::HPrint *ui;
     QSqlDatabase db;
@@ -51,6 +63,8 @@ private:
     QTextDocument *doc;
     QTextCursor cur;
     QPrinter *printer;
+    QImage *imgobj;
+    QPixmap img;
 };
 
 #endif // HPRINT_H

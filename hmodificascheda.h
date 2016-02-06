@@ -18,6 +18,8 @@ public:
     explicit HModificaScheda(QWidget *parent = 0);
     ~HModificaScheda();
     void init(QString conn, int cliente, int prodotto, QString scheda);
+    void setWidth(int);
+    void setHeight(int);
 
 
 private slots:
@@ -25,7 +27,7 @@ private slots:
     void updateFile();
     void reloadFile();
 
-    void on_pushButton_3_clicked();
+    void on_pushButton_reload_clicked();
 
     void on_pushButton_2_clicked();
 
@@ -46,6 +48,8 @@ private:
     QString schedaName;
     QPixmap img;
     QImage *imgobj;
+    int width;
+    int height;
 signals:
     void schedaAggiornata();
 };

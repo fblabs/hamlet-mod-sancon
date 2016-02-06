@@ -34,21 +34,56 @@ void HPrint::addImage(QByteArray bytes)
     QTextCursor cursor(ui->textEdit->document());
     ui->textEdit->setTextCursor(cursor);
 
-    QImage *imgobj = new QImage();
+    imgobj = new QImage();
     imgobj->loadFromData(bytes);
-    QPixmap img = QPixmap::fromImage(*imgobj).scaled(600,200);
-   // QGraphicsScene *scene = new QGraphicsScene(this);
-   // scene->addPixmap(img);
-
-   // scene->setSceneRect(img.rect());
-
-  //  ui->gv->setScene(scene);
-
-  //  ui->gv->setAlignment(Qt::AlignCenter);
-  //  ui->gv->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);
+    img = QPixmap::fromImage(*imgobj);
 
     cursor.insertImage(*imgobj);
     cursorToEnd();
+}
+
+void HPrint::resizeImage(int wr, int hr)
+{
+    QTextBlock currentBlock = ui->textEdit->textCursor().block();
+        QTextBlock::iterator it;
+
+        for (it = currentBlock.begin(); !(it.atEnd()); ++it)
+        {
+
+                 QTextFragment fragment = it.fragment();
+
+
+
+                 if (fragment.isValid())
+                 {
+
+                     if(fragment.charFormat().isImageFormat ())
+                     {
+                          QTextImageFormat newImageFormat = fragment.charFormat().toImageFormat();
+
+                         // QPair<double, double> size = ResizeImageDialog::getNewSize(this, newImageFormat.width(), newImageFormat.height());
+
+
+
+
+                          newImageFormat.setWidth(ui->sbW->value());
+                          newImageFormat.setHeight(ui->sbH->value());
+
+                          if (newImageFormat.isValid())
+                          {
+                              //QMessageBox::about(this, "Fragment", fragment.text());
+                              //newImageFormat.setName(":/icons/text_bold.png");
+                              QTextCursor helper = ui->textEdit->textCursor();
+
+                              helper.setPosition(fragment.position());
+                              helper.setPosition(fragment.position() + fragment.length(),
+                                                  QTextCursor::KeepAnchor);
+                              helper.setCharFormat(newImageFormat);
+                          }
+                      }
+                  }
+           }
+
 }
 
 QTextEdit* HPrint::getViewport()
@@ -201,3 +236,43 @@ void HPrint::on_pbant_clicked()
     connect(dlg,SIGNAL(paintRequested(QPrinter*)),this,SLOT(printPreview(QPrinter*)));
     dlg->exec();
 }
+
+void HPrint::on_pushButton_ridim_clicked()
+{
+    resizeImage(ui->sbW->value(),ui->sbH->value());
+}
+
+void HPrint::on_sbW_valueChanged(int arg1)
+{
+    resizeImage(arg1,ui->sbH->value());
+}
+
+void HPrint::on_sbH_valueChanged(int arg1)
+{
+    resizeImage(ui->sbW->value(),arg1);
+}
+
+int HPrint::getWidth()
+{
+
+    return ui->sbW->value();
+
+}
+
+int HPrint::getHeight()
+{
+
+    return ui->sbH->value();
+
+}
+
+void HPrint::setWidth(int value)
+{
+    ui->sbW->setValue(value);
+}
+
+void HPrint::setHeight(int value)
+{
+    ui->sbH->setValue(value);
+}
+

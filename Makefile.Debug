@@ -4602,50 +4602,6 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDialog \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
 		ui_mainwindow.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGridLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QToolButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtoolbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
@@ -4654,6 +4610,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRecord \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrecord.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDataWidgetMapper \
@@ -4661,6 +4618,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QItemSelectionModel \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QStringListModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstringlistmodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QPixmap \
@@ -4677,7 +4635,20 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QList \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDate \
@@ -4991,24 +4962,9 @@ debug/hprodotti.o: hprodotti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QImage \
 		ui_hprodotti.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QItemDelegate \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
@@ -5020,38 +4976,6 @@ debug/hprodotti.o: hprodotti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGraphicsView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgraphicsview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpainter.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGridLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QListView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QItemDelegate \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QStringList \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QSortFilterProxyModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsortfilterproxymodel.h \
@@ -5059,6 +4983,10 @@ debug/hprodotti.o: hprodotti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelation \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFileDialog \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qfiledialog.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdir.h \
@@ -5207,65 +5135,6 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDataWidgetMapper \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatawidgetmapper.h \
 		ui_hutenti.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QListView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTextBrowser \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextbrowser.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextdocument.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTextEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QtGui \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QtGuiDepends \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QtCore \
@@ -5308,8 +5177,10 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qjsondocument.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qjsonobject.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstracteventdispatcher.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractnativeeventfilter.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qbasictimer.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmath.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmetaobject.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmimedata.h \
@@ -5363,6 +5234,7 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qlinkedlist.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmessageauthenticationcode.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qqueue.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qscopedvaluerollback.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstack.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qtextboundaryfinder.h \
@@ -5389,6 +5261,8 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qdrag.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qgenericplugin.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qgenericpluginfactory.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qoffscreensurface.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qsurface.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qsurfaceformat.h \
@@ -5432,12 +5306,17 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpagesize.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpaintengine.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpainter.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpdfwriter.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qabstracttextdocumentlayout.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextlayout.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qglyphrun.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrawfont.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontdatabase.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextdocument.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qstatictext.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qsyntaxhighlighter.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextobject.h \
@@ -5446,10 +5325,20 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextlist.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtexttable.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qdesktopservices.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtguiversion.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QItemDelegate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
@@ -5460,6 +5349,10 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelation \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hutenti.o hutenti.cpp
@@ -5610,45 +5503,6 @@ debug/hmagazzino.o: hmagazzino.cpp hmagazzino.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDialog \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
 		ui_hmagazzino.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDateEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatetimeedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGridLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QRadioButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qradiobutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
@@ -5656,6 +5510,7 @@ debug/hmagazzino.o: hmagazzino.cpp hmagazzino.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableWidgetItem \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtablewidget.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		hnewop.h \
@@ -5785,62 +5640,6 @@ debug/hnewop.o: hnewop.cpp hnewop.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDialog \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
 		ui_hnewop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGridLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QListView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QRadioButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qradiobutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
@@ -5956,57 +5755,6 @@ debug/hsettings.o: hsettings.cpp hsettings.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QSettings \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsettings.h \
 		ui_hsettings.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h
@@ -6224,45 +5972,6 @@ debug/hprint.o: hprint.cpp hprint.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDialog \
 		ui_hprint.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextTableCell \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QImage \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QPixmap \
@@ -6384,80 +6093,44 @@ debug/hanalisi.o: hanalisi.cpp hanalisi.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatetime.h \
 		ui_hanalisi.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDateEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatetimeedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QRadioButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qradiobutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
 		hprint.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextDocument \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextdocument.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextTable \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtexttable.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextobject.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextlayout.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qglyphrun.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrawfont.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontdatabase.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextCursor \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTextEdit \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
@@ -6470,7 +6143,10 @@ debug/hanalisi.o: hanalisi.cpp hanalisi.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCompleter \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcompleter.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMenu \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmenu.h
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmenu.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hanalisi.o hanalisi.cpp
 
 debug/hnewproduct.o: hnewproduct.cpp hnewproduct.h \
@@ -6582,61 +6258,6 @@ debug/hnewproduct.o: hnewproduct.cpp hnewproduct.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
 		ui_hnewproduct.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		hnuovaricetta.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
@@ -6646,6 +6267,7 @@ debug/hnewproduct.o: hnewproduct.cpp hnewproduct.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QList \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QStandardItem \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qstandarditemmodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QStandardItemModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
@@ -6763,60 +6385,6 @@ debug/hlogin2.o: hlogin2.cpp hlogin2.h \
 		huser.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QObject \
 		ui_hlogin2.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
@@ -7224,30 +6792,17 @@ debug/hnuovaoperazione.o: hnuovaoperazione.cpp hnuovaoperazione.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QObject \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QModelIndex \
 		ui_hnuovaoperazione.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqltableModel \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
@@ -7255,57 +6810,15 @@ debug/hnuovaoperazione.o: hnuovaoperazione.cpp hnuovaoperazione.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDateEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatetimeedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatetime.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGridLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QListView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPlainTextEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qplaintextedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextdocument.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qabstracttextdocumentlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qglyphrun.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrawfont.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontdatabase.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QRadioButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qradiobutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqltableModel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDate \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatetime.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
@@ -7416,49 +6929,7 @@ debug/hoverview.o: hoverview.cpp hoverview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfiledevice.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvector2d.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtouchdevice.h \
-		ui_hoverview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDateEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatetimeedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatetime.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h
+		ui_hoverview.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hoverview.o hoverview.cpp
 
 debug/hgestioneutenti.o: hgestioneutenti.cpp hgestioneutenti.h \
@@ -7577,30 +7048,15 @@ debug/hgestioneutenti.o: hgestioneutenti.cpp hgestioneutenti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel \
 		ui_hgestioneutenti.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
@@ -7608,35 +7064,11 @@ debug/hgestioneutenti.o: hgestioneutenti.cpp hgestioneutenti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QListView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlquery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
@@ -7756,61 +7188,6 @@ debug/hnewuser.o: hnewuser.cpp hnewuser.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
 		ui_hnewuser.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
@@ -7923,60 +7300,6 @@ debug/hnewanagrafica.o: hnewanagrafica.cpp hnewanagrafica.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqldatabase.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsql.h \
 		ui_hnewanagrafica.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
@@ -8125,50 +7448,6 @@ debug/hschedeclienti.o: hschedeclienti.cpp hschedeclienti.h \
 		huser.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QObject \
 		ui_hschedeclienti.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QListView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
@@ -8312,47 +7591,6 @@ debug/hassociazioni.o: hassociazioni.cpp hassociazioni.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
 		ui_hassociazioni.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QListView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		hmodificascheda.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDialog \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
@@ -8475,68 +7713,6 @@ debug/hmodificascheda.o: hmodificascheda.cpp hmodificascheda.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QImage \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QPixmap \
 		ui_hmodificascheda.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGraphicsView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgraphicsview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpainter.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgraphicsscene.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGridLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPlainTextEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qplaintextedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextdocument.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qabstracttextdocumentlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qglyphrun.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrawfont.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontdatabase.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
@@ -8549,6 +7725,8 @@ debug/hmodificascheda.o: hmodificascheda.cpp hmodificascheda.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdir.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfileinfo.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGraphicsScene \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgraphicsscene.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QBuffer \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qbuffer.h \
 		hduplicate.h \
@@ -8672,84 +7850,13 @@ debug/hproduction.o: hproduction.cpp hproduction.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrecord.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QList \
 		ui_hproduction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDateEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatetimeedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatetime.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QListView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPlainTextEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qplaintextedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextdocument.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qabstracttextdocumentlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qglyphrun.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrawfont.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontdatabase.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTextBrowser \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextbrowser.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlquery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDateTime \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatetime.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
@@ -8758,11 +7865,23 @@ debug/hproduction.o: hproduction.cpp hproduction.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcompleter.h \
 		hprint.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextDocument \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextdocument.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextTable \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtexttable.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextobject.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextlayout.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qglyphrun.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrawfont.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontdatabase.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextCursor \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTextEdit \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtPrintSupport/QPrinter \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtPrintSupport/qprinter.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpagedpaintdevice.h \
@@ -8880,59 +7999,7 @@ debug/hfindlotuse.o: hfindlotuse.cpp hfindlotuse.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
-		ui_hfindlotuse.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QRadioButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qradiobutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout
+		ui_hfindlotuse.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hfindlotuse.o hfindlotuse.cpp
 
 debug/hprodottinew.o: hprodottinew.cpp hprodottinew.h \
@@ -9049,71 +8116,29 @@ debug/hprodottinew.o: hprodottinew.cpp hprodottinew.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalTableModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaltablemodel.h \
 		ui_hprodottinew.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGridLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QRadioButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qradiobutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCompleter \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcompleter.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelation \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
 		hnewproduct.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
@@ -9258,42 +8283,6 @@ debug/hwarehouse.o: hwarehouse.cpp hwarehouse.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QObject \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QModelIndex \
 		ui_hwarehouse.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDateTimeEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatetimeedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatetime.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFrame \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGridLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QRadioButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qradiobutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
@@ -9425,27 +8414,15 @@ debug/hmodifyprod.o: hmodifyprod.cpp hmodifyprod.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatetime.h \
 		ui_hmodifyprod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
@@ -9453,44 +8430,11 @@ debug/hmodifyprod.o: hmodifyprod.cpp hmodifyprod.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDateEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatetimeedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGridLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGroupBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgroupbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QRadioButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qradiobutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelation \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
@@ -9618,71 +8562,6 @@ debug/hpackages.o: hpackages.cpp hpackages.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QStandardItemModel \
 		ui_hpackages.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDateEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatetimeedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatetime.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFormLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFrame \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QListView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTextEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextdocument.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
@@ -9808,63 +8687,6 @@ debug/hmodricette.o: hmodricette.cpp hmodricette.h \
 		huser.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QObject \
 		ui_hmodricette.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTextBrowser \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextbrowser.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextdocument.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
@@ -9876,8 +8698,15 @@ debug/hmodricette.o: hmodricette.cpp hmodricette.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QInputDialog \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qinputdialog.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
 		hprint.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextDocument \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextdocument.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextTable \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtexttable.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextobject.h \
@@ -9887,6 +8716,8 @@ debug/hmodricette.o: hmodricette.cpp hmodricette.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontdatabase.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextCursor \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTextEdit \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtPrintSupport/QPrinter \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtPrintSupport/qprinter.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpagedpaintdevice.h \
@@ -9898,8 +8729,21 @@ debug/hmodricette.o: hmodricette.cpp hmodricette.h \
 		hassociazioni.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QItemDelegate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMenu \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmenu.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
 		hrecipeaddrow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QList
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hmodricette.o hmodricette.cpp
@@ -10014,57 +8858,6 @@ debug/hrecipeaddrow.o: hrecipeaddrow.cpp hrecipeaddrow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
 		ui_hrecipeaddrow.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
@@ -10225,45 +9018,6 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDialog \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
 		ui_hlotti.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDateEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatetimeedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
@@ -10273,6 +9027,8 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QPainter \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpainter.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QsqlTableModel \
 		hnewop.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
@@ -10281,6 +9037,8 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		hnuovaoperazione.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMenu \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmenu.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QClipboard \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qclipboard.h \
 		hprint.h \
@@ -10289,10 +9047,12 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextTable \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtexttable.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextobject.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextlayout.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qglyphrun.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrawfont.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontdatabase.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextCursor \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTextEdit \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
@@ -10619,56 +9379,12 @@ debug/hduplicate.o: hduplicate.cpp hduplicate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqldatabase.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsql.h \
 		ui_hduplicate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
@@ -10780,72 +9496,6 @@ debug/hmodifylot.o: hmodifylot.cpp hmodifylot.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqldatabase.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsql.h \
 		ui_hmodifylot.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QComboBox \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDateEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatetimeedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatetime.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGridLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLabel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlabel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPlainTextEdit \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qplaintextedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextdocument.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qabstracttextdocumentlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextlayout.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qglyphrun.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrawfont.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontdatabase.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRecord \
@@ -10856,6 +9506,7 @@ debug/hmodifylot.o: hmodifylot.cpp hmodifylot.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h

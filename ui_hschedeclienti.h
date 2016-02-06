@@ -38,6 +38,7 @@ public:
     HPrint *widget;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pushButton_4;
+    QPushButton *pushButton_2;
     QPushButton *btnDup;
     QPushButton *pushButton_3;
     QPushButton *pushButton;
@@ -122,29 +123,38 @@ public:
 
         horizontalLayout_3->addWidget(pushButton_4);
 
+        pushButton_2 = new QPushButton(HSchedeClienti);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon2);
+        pushButton_2->setIconSize(QSize(32, 32));
+
+        horizontalLayout_3->addWidget(pushButton_2);
+
         btnDup = new QPushButton(HSchedeClienti);
         btnDup->setObjectName(QStringLiteral("btnDup"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Sheet-Of-Paper.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        btnDup->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Sheet-Of-Paper.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        btnDup->setIcon(icon3);
         btnDup->setIconSize(QSize(32, 32));
 
         horizontalLayout_3->addWidget(btnDup);
 
         pushButton_3 = new QPushButton(HSchedeClienti);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon4);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout_3->addWidget(pushButton_3);
 
         pushButton = new QPushButton(HSchedeClienti);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon5);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout_3->addWidget(pushButton);
@@ -164,6 +174,7 @@ public:
         HSchedeClienti->setWindowTitle(QApplication::translate("HSchedeClienti", "Schede clienti", 0));
         cbSelectCriteria->setText(QApplication::translate("HSchedeClienti", "Seleziona le schede per subcliente", 0));
         pushButton_4->setText(QApplication::translate("HSchedeClienti", "Modifica", 0));
+        pushButton_2->setText(QApplication::translate("HSchedeClienti", "Salva", 0));
         btnDup->setText(QApplication::translate("HSchedeClienti", "Copia da scheda...", 0));
         pushButton_3->setText(QApplication::translate("HSchedeClienti", "Elimina", 0));
         pushButton->setText(QApplication::translate("HSchedeClienti", "Chiudi", 0));

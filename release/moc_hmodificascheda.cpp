@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HModificaScheda_t {
     QByteArrayData data[13];
-    char stringdata[216];
+    char stringdata[221];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,17 +35,17 @@ QT_MOC_LITERAL(2, 33, 0),
 QT_MOC_LITERAL(3, 34, 21),
 QT_MOC_LITERAL(4, 56, 10),
 QT_MOC_LITERAL(5, 67, 10),
-QT_MOC_LITERAL(6, 78, 23),
-QT_MOC_LITERAL(7, 102, 23),
-QT_MOC_LITERAL(8, 126, 23),
-QT_MOC_LITERAL(9, 150, 10),
-QT_MOC_LITERAL(10, 161, 23),
-QT_MOC_LITERAL(11, 185, 6),
-QT_MOC_LITERAL(12, 192, 23)
+QT_MOC_LITERAL(6, 78, 28),
+QT_MOC_LITERAL(7, 107, 23),
+QT_MOC_LITERAL(8, 131, 23),
+QT_MOC_LITERAL(9, 155, 10),
+QT_MOC_LITERAL(10, 166, 23),
+QT_MOC_LITERAL(11, 190, 6),
+QT_MOC_LITERAL(12, 197, 23)
     },
     "HModificaScheda\0schedaAggiornata\0\0"
     "on_pushButton_clicked\0updateFile\0"
-    "reloadFile\0on_pushButton_3_clicked\0"
+    "reloadFile\0on_pushButton_reload_clicked\0"
     "on_pushButton_2_clicked\0on_pushButton_4_clicked\0"
     "loadScheda\0on_pushButton_5_clicked\0"
     "update\0on_pushButton_6_clicked"
@@ -107,7 +107,7 @@ void HModificaScheda::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 1: _t->on_pushButton_clicked(); break;
         case 2: _t->updateFile(); break;
         case 3: _t->reloadFile(); break;
-        case 4: _t->on_pushButton_3_clicked(); break;
+        case 4: _t->on_pushButton_reload_clicked(); break;
         case 5: _t->on_pushButton_2_clicked(); break;
         case 6: _t->on_pushButton_4_clicked(); break;
         case 7: _t->loadScheda(); break;

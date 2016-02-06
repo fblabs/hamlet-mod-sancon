@@ -164,7 +164,7 @@ void HModificaScheda::on_pushButton_clicked()
     emit(schedaAggiornata());
 }
 
-void HModificaScheda::on_pushButton_3_clicked()
+void HModificaScheda::on_pushButton_reload_clicked()
 {
     if (QMessageBox::question(this,QApplication::applicationName(),"Annullare le modifiche?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
@@ -180,7 +180,9 @@ void HModificaScheda::on_pushButton_2_clicked()
 
 void  HModificaScheda::loadScheda()
 {
-    QString sql="SELECT olio,vaso,tappo,etichette,scatole,note,immagine from schede where cliente=:idcliente and prodotto=:idprodotto";
+    int imgw=200;
+    int imgh=300;
+    QString sql="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy from schede where cliente=:idcliente and prodotto=:idprodotto";
     QSqlQuery q(db);
     q.prepare(sql);
     q.bindValue(":idcliente",idCliente);
@@ -197,6 +199,9 @@ void  HModificaScheda::loadScheda()
     ui->peEtichette->setPlainText(q.value(3).toString());
     ui->peScatole->setPlainText(q.value(4).toString());
     ui->ptNote->setPlainText(q.value(5).toString());
+    width=q.value(7).toInt();
+    height=q.value(8).toInt();
+
 
     QByteArray bytes;
     bytes=q.value(6).toByteArray();
@@ -206,16 +211,29 @@ void  HModificaScheda::loadScheda()
 
     imgobj = new QImage();
     imgobj->loadFromData(bytes);
-    img = QPixmap::fromImage(*imgobj);
-    scene = new QGraphicsScene(this);
-    scene->addPixmap(img);
 
-    scene->setSceneRect(img.rect());
+
+    img = QPixmap::fromImage(*imgobj).scaled(width,height);
+
+
+
+    scene = new QGraphicsScene(this);
+    scene->addPixmap(img.scaled(width,height));
+
+
+
+    QRect r=img.rect();
+    r.setHeight(height);
+    r.setWidth(width);
+
+    scene->setSceneRect(r);
+
+
+
 
     ui->gv->setScene(scene);
-
     ui->gv->setAlignment(Qt::AlignCenter);
-    ui->gv->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);
+  //  ui->gv->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);
 
 
 }

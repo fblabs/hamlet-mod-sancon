@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HPrint_t {
-    QByteArrayData data[11];
-    char stringdata[133];
+    QByteArrayData data[17];
+    char stringdata[225];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,12 +39,21 @@ QT_MOC_LITERAL(6, 79, 5),
 QT_MOC_LITERAL(7, 85, 12),
 QT_MOC_LITERAL(8, 98, 9),
 QT_MOC_LITERAL(9, 108, 7),
-QT_MOC_LITERAL(10, 116, 16)
+QT_MOC_LITERAL(10, 116, 16),
+QT_MOC_LITERAL(11, 133, 27),
+QT_MOC_LITERAL(12, 161, 19),
+QT_MOC_LITERAL(13, 181, 4),
+QT_MOC_LITERAL(14, 186, 19),
+QT_MOC_LITERAL(15, 206, 8),
+QT_MOC_LITERAL(16, 215, 9)
     },
     "HPrint\0on_pushButton_2_clicked\0\0"
     "on_pushButton_clicked\0onConnectionSet\0"
     "addImage\0bytes\0printPreview\0QPrinter*\0"
-    "printer\0on_pbant_clicked"
+    "printer\0on_pbant_clicked\0"
+    "on_pushButton_ridim_clicked\0"
+    "on_sbW_valueChanged\0arg1\0on_sbH_valueChanged\0"
+    "getWidth\0getHeight"
 };
 #undef QT_MOC_LITERAL
 
@@ -54,7 +63,7 @@ static const uint qt_meta_data_HPrint[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,12 +71,17 @@ static const uint qt_meta_data_HPrint[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   44,    2, 0x08 /* Private */,
-       3,    0,   45,    2, 0x08 /* Private */,
-       4,    0,   46,    2, 0x08 /* Private */,
-       5,    1,   47,    2, 0x08 /* Private */,
-       7,    1,   50,    2, 0x08 /* Private */,
-      10,    0,   53,    2, 0x08 /* Private */,
+       1,    0,   69,    2, 0x08 /* Private */,
+       3,    0,   70,    2, 0x08 /* Private */,
+       4,    0,   71,    2, 0x08 /* Private */,
+       5,    1,   72,    2, 0x08 /* Private */,
+       7,    1,   75,    2, 0x08 /* Private */,
+      10,    0,   78,    2, 0x08 /* Private */,
+      11,    0,   79,    2, 0x08 /* Private */,
+      12,    1,   80,    2, 0x08 /* Private */,
+      14,    1,   83,    2, 0x08 /* Private */,
+      15,    0,   86,    2, 0x08 /* Private */,
+      16,    0,   87,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -76,6 +90,11 @@ static const uint qt_meta_data_HPrint[] = {
     QMetaType::Void, QMetaType::QByteArray,    6,
     QMetaType::Void, 0x80000000 | 8,    9,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   13,
+    QMetaType::Void, QMetaType::Int,   13,
+    QMetaType::Int,
+    QMetaType::Int,
 
        0        // eod
 };
@@ -91,6 +110,13 @@ void HPrint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 3: _t->addImage((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
         case 4: _t->printPreview((*reinterpret_cast< QPrinter*(*)>(_a[1]))); break;
         case 5: _t->on_pbant_clicked(); break;
+        case 6: _t->on_pushButton_ridim_clicked(); break;
+        case 7: _t->on_sbW_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 8: _t->on_sbH_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 9: { int _r = _t->getWidth();
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 10: { int _r = _t->getHeight();
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         default: ;
         }
     }
@@ -121,13 +147,13 @@ int HPrint::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 11;
     }
     return _id;
 }
