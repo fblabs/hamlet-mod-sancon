@@ -37,6 +37,9 @@ public:
    void resizeImage(int wr,int hr);
    void setWidth(int);
    void setHeight(int);
+   void toggleImageUI(bool visible);
+   int getWidth();
+   int getHeight();
 private slots:
    void on_pushButton_2_clicked();
    void on_pushButton_clicked();
@@ -50,10 +53,6 @@ private slots:
    void on_sbW_valueChanged(int arg1);
 
    void on_sbH_valueChanged(int arg1);
-
-   int getWidth();
-   int getHeight();
-
 private:
     Ui::HPrint *ui;
     QSqlDatabase db;

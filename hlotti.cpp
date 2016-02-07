@@ -270,6 +270,7 @@ void HLotti::print()
 
 
     f->append("PRODUZIONE DAL "+ ui->datadal->text().toUpper() + " AL " + ui->dataal->text().toUpper(),false);
+    f->toggleImageUI(false);
     f->showMaximized();
     QTextTable *tb=f->addTable(rows,cols);
     QString txt;

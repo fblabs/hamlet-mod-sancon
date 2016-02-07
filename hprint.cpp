@@ -21,11 +21,22 @@ HPrint::HPrint(QWidget *parent) :
     doc=ui->textEdit->document();
     ui->textEdit->setDocument(doc);
 
+
 }
 
 HPrint::~HPrint()
 {
     delete ui;
+}
+
+void HPrint::toggleImageUI(bool visible=true)
+{
+
+        ui->label->setVisible(visible);
+        ui->label_2->setVisible(visible);
+        ui->sbH->setVisible(visible);
+        ui->sbW->setVisible(visible);
+
 }
 
 void HPrint::addImage(QByteArray bytes)

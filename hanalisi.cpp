@@ -532,6 +532,8 @@ void HAnalisi::printLot()
 
     HPrint *f=new HPrint();
 
+    f->toggleImageUI(false);
+
     f->show();
 
   //  f->setText("=============================================");

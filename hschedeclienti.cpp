@@ -421,8 +421,6 @@ void HSchedeClienti::on_pushButton_3_clicked()
 void HSchedeClienti::on_pushButton_2_clicked()
 {
     saveScheda();
-    QMessageBox::information(this,QApplication::applicationName(),"clicked",QMessageBox::Ok);
-
 }
 
 void HSchedeClienti::saveScheda()
@@ -451,21 +449,7 @@ qDebug()<<"w"<<width<<"h"<<height;
     q.bindValue(":cliente",QVariant(cliente));
     q.bindValue(":prodotto",QVariant(prodotto));
 
-    for (int bv=0;bv<3;bv++)
-    {
-       qDebug()<<"boudvalues"<<q.boundValue(bv).toString();
-    }
-
-
-    if(q.exec())
-    {
-        QMessageBox::information(this,QApplication::applicationName(),"Immagine aggiornata: width:"+QString::number(width)+", height: " +QString::number(height),QMessageBox::Ok);
-    }
-    else
-    {
-        QMessageBox::warning(this,QApplication::applicationName(),q.lastError().text(),QMessageBox::Ok);
-
-    }
+    q.exec();
 
 
 
@@ -480,7 +464,7 @@ void HSchedeClienti::on_btnSave_clicked()
 void HSchedeClienti::setImgWidth(int newWidth)
 {
     width=newWidth;
-    qDebug()<<"slot setImgWidth"<<newWidth;
+
 }
 
 void HSchedeClienti::setImgHeight(int newHeight)

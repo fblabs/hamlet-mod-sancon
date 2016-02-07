@@ -525,6 +525,8 @@ void HModRicette::printRecipe()
 
     HPrint *f=new HPrint();
 
+    f->toggleImageUI(false);
+
     f->show();
 
    f->setText("=============================================");

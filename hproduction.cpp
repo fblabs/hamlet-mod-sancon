@@ -583,6 +583,7 @@ void HProduction::getRecipe()
 void HProduction::printProduction()
 {
     HPrint *f=new HPrint();
+    f->toggleImageUI(false);
 
     QString title;
 
@@ -704,7 +705,7 @@ void HProduction::printRecipe()
 
     f->append(ui->textBrowser->toPlainText(),false);
 
-
+    f->toggleImageUI(false);
     f->show();
 
 
