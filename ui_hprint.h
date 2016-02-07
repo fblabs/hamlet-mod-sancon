@@ -38,7 +38,6 @@ public:
     QFormLayout *formLayout_2;
     QLabel *label_2;
     QSpinBox *sbH;
-    QPushButton *pushButton_ridim;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbant;
     QPushButton *pushButton_2;
@@ -118,11 +117,6 @@ public:
 
         horizontalLayout_2->addLayout(formLayout_2);
 
-        pushButton_ridim = new QPushButton(HPrint);
-        pushButton_ridim->setObjectName(QStringLiteral("pushButton_ridim"));
-
-        horizontalLayout_2->addWidget(pushButton_ridim);
-
 
         verticalLayout->addLayout(horizontalLayout_2);
 
@@ -177,7 +171,6 @@ public:
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8.25pt;\"><br /></p></body></html>", 0));
         label->setText(QApplication::translate("HPrint", "X:", 0));
         label_2->setText(QApplication::translate("HPrint", "Y:", 0));
-        pushButton_ridim->setText(QApplication::translate("HPrint", "Ridimensiona", 0));
         pbant->setText(QApplication::translate("HPrint", "Anteprima di stampa", 0));
         pushButton_2->setText(QApplication::translate("HPrint", "Stampa", 0));
         pushButton->setText(QApplication::translate("HPrint", "Chiudi", 0));

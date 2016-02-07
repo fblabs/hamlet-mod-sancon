@@ -22,8 +22,15 @@ HProdottiNew::~HProdottiNew()
     delete ui;
 }
 
-void HProdottiNew::init(QString conn)
+void HProdottiNew::init(QString conn, HUser *curuser)
 {
+    user=curuser;
+
+    if(!curuser->getCanUpdate())
+    {
+       ui->tvProdotti->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    }
+
     sConn=conn;
 
    // setWindowModality(Qt::ApplicationModal);
@@ -63,6 +70,12 @@ void HProdottiNew::init(QString conn)
 
     connect(tmProdotti,SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)),this,SLOT(save()));
 
+  //  ui->tvProdotti->horizontalHeader()->setSe
+    tmProdotti->setHeaderData(0,Qt::Horizontal,"ID");
+    tmProdotti->setHeaderData(1,Qt::Horizontal,"Descrizione");
+    tmProdotti->setHeaderData(2,Qt::Horizontal,"Tipo");
+    tmProdotti->setHeaderData(3,Qt::Horizontal,"Allergene");
+    tmProdotti->setHeaderData(4,Qt::Horizontal,"Attivo");
 
 }
 
@@ -124,7 +137,12 @@ void HProdottiNew::on_radioButton_6_toggled(bool checked)
 
 void HProdottiNew::save()
 {
+    if(user->getCanUpdate())
+    {
     tmProdotti->submitAll();
+
+    }
+
     tmProdotti->select();
 }
 

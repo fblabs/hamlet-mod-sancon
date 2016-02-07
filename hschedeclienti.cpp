@@ -80,7 +80,8 @@ void HSchedeClienti::init(QString conn,HUser *usr)
     connect(ui->comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(selectRecipesforClient()));
     connect(ui->cbSelectCriteria,SIGNAL(toggled(bool)),this,SLOT(showSubclients(bool)));
     connect(ui->listView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(loadScheda()));
-
+    connect(ui->widget,SIGNAL(imghChanged(int)),this,SLOT(setImgHeight(int)));
+    connect(ui->widget,SIGNAL(imgwChanged(int)),this,SLOT(setImgWidth(int)));
 
     ui->comboBox->setCurrentIndex(0);
     //set_midcliente();
@@ -200,8 +201,7 @@ void HSchedeClienti::loadScheda()
     int prodotto=ui->listView->model()->index(ui->listView->selectionModel()->currentIndex().row(),0).data(0).toInt();
     qDebug()<<QString::number(prodotto);
     int cliente;
-    int imgw;
-    int imgh;
+
 
     if (ui->cbSelectCriteria->isChecked())
     {
@@ -220,22 +220,19 @@ void HSchedeClienti::loadScheda()
 
 
 
-   // if(p) p->close();
+
     q.prepare(query);
     q.bindValue(":idcliente",QVariant(cliente));
     q.bindValue(":idprodotto",QVariant(prodotto));
     q.exec();
 
-
-  //  p=new HPrint(ui->widget);
-
-
-   qDebug()<<"loadscheda"<<QString::number(prodotto)<<QString::number(cliente);
-
-   q.first();
+    q.first();
 
    width=q.value(7).toInt();
    height=q.value(8).toInt();
+   ui->widget->setWidth(width);
+   ui->widget->setHeight(height);
+
 
    ui->widget->resetText();
 
@@ -424,11 +421,69 @@ void HSchedeClienti::on_pushButton_3_clicked()
 void HSchedeClienti::on_pushButton_2_clicked()
 {
     saveScheda();
+    QMessageBox::information(this,QApplication::applicationName(),"clicked",QMessageBox::Ok);
+
 }
 
 void HSchedeClienti::saveScheda()
 {
+    int cliente;
+    int prodotto;
+
+    if (ui->cbSelectCriteria->isChecked())
+    {
+       cliente=ui->lvSubclienti->model()->index(ui->lvSubclienti->currentIndex().row(),0).data(0).toInt();
+    }
+    else
+    {
+       cliente=ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toInt();
+    }
+
+qDebug()<<"w"<<width<<"h"<<height;
+    prodotto=ui->listView->model()->index(ui->listView->currentIndex().row(),0).data(0).toInt();
+    //connect(f,SIGNAL(update()),this,SLOT(loadScheda()));
+
+    QSqlQuery q(db);
+    QString sql="update schede set imgx=:w,imgy=:h where cliente=:cliente and prodotto=:prodotto";
+    q.prepare(sql);
+    q.bindValue(":w",QVariant(width));
+    q.bindValue(":h",QVariant(height));
+    q.bindValue(":cliente",QVariant(cliente));
+    q.bindValue(":prodotto",QVariant(prodotto));
+
+    for (int bv=0;bv<3;bv++)
+    {
+       qDebug()<<"boudvalues"<<q.boundValue(bv).toString();
+    }
+
+
+    if(q.exec())
+    {
+        QMessageBox::information(this,QApplication::applicationName(),"Immagine aggiornata: width:"+QString::number(width)+", height: " +QString::number(height),QMessageBox::Ok);
+    }
+    else
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),q.lastError().text(),QMessageBox::Ok);
+
+    }
 
 
 
+
+}
+
+void HSchedeClienti::on_btnSave_clicked()
+{
+    saveScheda();
+}
+
+void HSchedeClienti::setImgWidth(int newWidth)
+{
+    width=newWidth;
+    qDebug()<<"slot setImgWidth"<<newWidth;
+}
+
+void HSchedeClienti::setImgHeight(int newHeight)
+{
+    height=newHeight;
 }

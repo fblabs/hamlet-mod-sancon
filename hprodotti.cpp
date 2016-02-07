@@ -51,11 +51,19 @@ void HProdotti::setForm()
 }
 
 
-void HProdotti::setConnection(QString conn)
+/*void HProdotti::setConnection(QString conn)
 {
 
     sConn=conn;
     setForm();
+}*/
+
+void HProdotti::setConnection(QString conn,HUser *puser)
+{
+
+    sConn=conn;
+    setForm();
+    user=puser;
 }
 
 
@@ -122,6 +130,9 @@ void HProdotti::setupForm()
 
  //   dwMapperTipi->toFirst();
     pModel->select();
+
+    pModel->setHeaderData(0,Qt::Horizontal,"ID");
+    pModel->setHeaderData(1,Qt::Horizontal,"ID");
 
 
 

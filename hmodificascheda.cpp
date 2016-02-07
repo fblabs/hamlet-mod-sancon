@@ -49,7 +49,7 @@ void HModificaScheda::init(QString conn, int cliente, int prodotto, QString sche
 void HModificaScheda::updateFile()
 {
     QString sql,presql;
-    QVariant olio,vaso,tappo,etichette,scatole,note;
+    QVariant olio,vaso,tappo,etichette,scatole,note,vimgx,vimgy;
 
     QSqlQuery q(db);
     QSqlQuery temp(db);
@@ -81,7 +81,7 @@ void HModificaScheda::updateFile()
 
     if(temp.value(0).toInt()<1)
     {
-       sql="INSERT INTO schede(cliente,prodotto,olio,vaso,tappo,etichette,scatole,note,immagine) values (:cliente,:prodotto,:olio,:vaso,:tappo,:etichette,:scatole,:note,:immagine)" ;
+       sql="INSERT INTO schede(cliente,prodotto,olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy) values (:cliente,:prodotto,:olio,:vaso,:tappo,:etichette,:scatole,:note,:immagine,:imgx,:imgy)" ;
     }
     else
     {
@@ -108,6 +108,9 @@ void HModificaScheda::updateFile()
     q.bindValue(":cliente",QVariant(idCliente));
     q.bindValue(":prodotto",QVariant(idProdotto));
     q.bindValue(":immagine",QVariant(ba));
+ //   q.bindValue(":imgx",QVariant());
+ //    q.bindValue(":imgy",QVariant());
+
 qDebug()<<"Errore "<<q.lastError().text()<<q.lastQuery();
 
     if(q.exec())
@@ -180,8 +183,7 @@ void HModificaScheda::on_pushButton_2_clicked()
 
 void  HModificaScheda::loadScheda()
 {
-    int imgw=200;
-    int imgh=300;
+
     QString sql="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy from schede where cliente=:idcliente and prodotto=:idprodotto";
     QSqlQuery q(db);
     q.prepare(sql);
@@ -199,8 +201,10 @@ void  HModificaScheda::loadScheda()
     ui->peEtichette->setPlainText(q.value(3).toString());
     ui->peScatole->setPlainText(q.value(4).toString());
     ui->ptNote->setPlainText(q.value(5).toString());
-    width=q.value(7).toInt();
-    height=q.value(8).toInt();
+    imgw=q.value(7).toInt();
+    imgh=q.value(8).toInt();
+
+    qDebug()<<"loadscheda"<<imgw<<imgh;
 
 
     QByteArray bytes;
@@ -213,18 +217,18 @@ void  HModificaScheda::loadScheda()
     imgobj->loadFromData(bytes);
 
 
-    img = QPixmap::fromImage(*imgobj).scaled(width,height);
+    img = QPixmap::fromImage(*imgobj).scaled(200,100);
 
 
 
     scene = new QGraphicsScene(this);
-    scene->addPixmap(img.scaled(width,height));
+    scene->addPixmap(img.scaled(200,100));
 
 
 
     QRect r=img.rect();
-    r.setHeight(height);
-    r.setWidth(width);
+    r.setHeight(200);
+    r.setWidth(100);
 
     scene->setSceneRect(r);
 

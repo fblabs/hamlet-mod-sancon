@@ -7,6 +7,7 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QSqlRelationalTableModel>
+#include "huser.h"
 
 namespace Ui {
 class HProdottiNew;
@@ -19,7 +20,7 @@ class HProdottiNew : public QWidget
 public:
     explicit HProdottiNew(QWidget *parent = 0);
     ~HProdottiNew();
-    void init(QString conn);
+    void init(QString conn,HUser * curuser);
 
 private slots:
     void on_radioButton_toggled(bool checked);
@@ -52,6 +53,7 @@ private:
     QSqlDatabase db;
     QSqlRelationalTableModel *tmProdotti;
     QSqlRelationalTableModel *tmTipi;
+    HUser *user;
 
 };
 

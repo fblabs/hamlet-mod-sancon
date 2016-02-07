@@ -38,7 +38,7 @@ public:
     HPrint *widget;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pushButton_4;
-    QPushButton *pushButton_2;
+    QPushButton *btnSave;
     QPushButton *btnDup;
     QPushButton *pushButton_3;
     QPushButton *pushButton;
@@ -123,14 +123,14 @@ public:
 
         horizontalLayout_3->addWidget(pushButton_4);
 
-        pushButton_2 = new QPushButton(HSchedeClienti);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        btnSave = new QPushButton(HSchedeClienti);
+        btnSave->setObjectName(QStringLiteral("btnSave"));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon2);
-        pushButton_2->setIconSize(QSize(32, 32));
+        btnSave->setIcon(icon2);
+        btnSave->setIconSize(QSize(32, 32));
 
-        horizontalLayout_3->addWidget(pushButton_2);
+        horizontalLayout_3->addWidget(btnSave);
 
         btnDup = new QPushButton(HSchedeClienti);
         btnDup->setObjectName(QStringLiteral("btnDup"));
@@ -174,7 +174,7 @@ public:
         HSchedeClienti->setWindowTitle(QApplication::translate("HSchedeClienti", "Schede clienti", 0));
         cbSelectCriteria->setText(QApplication::translate("HSchedeClienti", "Seleziona le schede per subcliente", 0));
         pushButton_4->setText(QApplication::translate("HSchedeClienti", "Modifica", 0));
-        pushButton_2->setText(QApplication::translate("HSchedeClienti", "Salva", 0));
+        btnSave->setText(QApplication::translate("HSchedeClienti", "Salva", 0));
         btnDup->setText(QApplication::translate("HSchedeClienti", "Copia da scheda...", 0));
         pushButton_3->setText(QApplication::translate("HSchedeClienti", "Elimina", 0));
         pushButton->setText(QApplication::translate("HSchedeClienti", "Chiudi", 0));

@@ -219,7 +219,7 @@ void HPrint::hideClose()
 
 void HPrint::loadImage()
 {
-   // QPixmap pixmap=
+
 }
 
 
@@ -237,19 +237,18 @@ void HPrint::on_pbant_clicked()
     dlg->exec();
 }
 
-void HPrint::on_pushButton_ridim_clicked()
-{
-    resizeImage(ui->sbW->value(),ui->sbH->value());
-}
+
 
 void HPrint::on_sbW_valueChanged(int arg1)
 {
     resizeImage(arg1,ui->sbH->value());
+    emit imgwChanged(arg1);
 }
 
 void HPrint::on_sbH_valueChanged(int arg1)
 {
     resizeImage(ui->sbW->value(),arg1);
+    emit imghChanged(arg1);
 }
 
 int HPrint::getWidth()
@@ -275,4 +274,6 @@ void HPrint::setHeight(int value)
 {
     ui->sbH->setValue(value);
 }
+
+
 

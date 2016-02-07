@@ -47,8 +47,6 @@ private slots:
 
    void on_pbant_clicked();
 
-   void on_pushButton_ridim_clicked();
-
    void on_sbW_valueChanged(int arg1);
 
    void on_sbH_valueChanged(int arg1);
@@ -65,6 +63,9 @@ private:
     QPrinter *printer;
     QImage *imgobj;
     QPixmap img;
+signals:
+    int imgwChanged(int);
+    int imghChanged(int);
 };
 
 #endif // HPRINT_H

@@ -48,8 +48,8 @@ private:
     QString schedaName;
     QPixmap img;
     QImage *imgobj;
-    int width;
-    int height;
+    int imgw;
+    int imgh;
 signals:
     void schedaAggiornata();
 };

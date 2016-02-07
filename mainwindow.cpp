@@ -193,6 +193,25 @@ void MainWindow::enableButtonsForRole()
 
 
      //   ui->pbRicercaLotto->setEnabled(true);
+        ui->tnProduzione->setEnabled(true);
+        ui->tbLogout->setEnabled(true);
+        ui->toolButton->setEnabled(true);
+        ui->tbMagaz->setEnabled(true);
+        ui->tbLotti->setEnabled(true);
+        ui->tbAnag->setEnabled(true);
+        ui->tbClose->setEnabled(true);
+        ui->tbProdotti->setEnabled(true);
+        ui->tbRicette->setEnabled(true);
+        ui->tbModificaLotti->setEnabled(true);
+        ui->tbSettings->setEnabled(true);
+        ui->tnProduzione->setEnabled(true);
+        ui->tbAnalisi->setEnabled(true);
+        ui->pBNewOperation->setEnabled(true);
+        ui->pbSchede->setEnabled(true);
+        ui->tbAssociazioni->setEnabled(true);
+        ui->tbUtenti->setEnabled(true);
+        ui->tbLogout->setEnabled(true);
+        ui->pbPackages->setEnabled(true);
 
         break;
 
@@ -347,7 +366,7 @@ void MainWindow::on_tbProdotti_clicked()
 {
     HProdottiNew* f = new HProdottiNew();
 
-    f->init(sConn);
+    f->init(sConn,user);
     f->show();
  //  f->setConnection(sConn);
 

@@ -33,6 +33,8 @@ private slots:
     void on_pbNuovaPassword_clicked();
     void getGruppo();
 
+    void on_comboBox_currentIndexChanged(int index);
+
 private:
     Ui::HGestioneUtenti *ui;
     QString sConn;

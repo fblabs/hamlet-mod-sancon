@@ -112,13 +112,6 @@ p, li { white-space: pre-wrap; }
          </item>
         </layout>
        </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_ridim">
-         <property name="text">
-          <string>Ridimensiona</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </item>
      <item>

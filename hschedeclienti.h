@@ -47,6 +47,8 @@ private slots:
     void on_cbSelectCriteria_toggled(bool checked);
     void showSubclients(bool toggled);
     void saveScheda();
+    void setImgWidth(int newWidth);
+    void setImgHeight(int newHeight);
 
 
 
@@ -57,9 +59,13 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_btnSave_clicked();
+
+
 signals:
 public slots:
     void loadScheda();
+
 };
 
 #endif // HSCHEDECLIENTI_H

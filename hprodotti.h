@@ -12,6 +12,7 @@
 #include <QPixmap>
 #include <QGraphicsScene>
 #include <QImage>
+#include <huser.h>
 
 
 namespace Ui {
@@ -32,7 +33,7 @@ public slots:
 
   //  void caricaRicetta();
     void setMain(MainWindow *w);
-    void setConnection(QString conn);
+    void setConnection(QString conn, HUser *puser);
 
 private:
     Ui::HProdotti *ui;
@@ -59,6 +60,7 @@ private:
     QGraphicsScene *scene;
     QString imagepath;
     QString sConn;
+    HUser *user;
 
 
 private slots:
