@@ -137,7 +137,7 @@ void HPackages::getEanList()
      QSqlQuery q(db);
      QString sql;
      QSqlQueryModel *mod = new QSqlQueryModel();
-     sql="SELECT EAN FROM fbgmdb260.lotdef where prodotto=:idp and anagrafica=:idc and year(data)=year(now()) order by data desc";
+     sql="SELECT EAN FROM lotdef where prodotto=:idp and anagrafica=:idc and year(data)=year(now()) order by data desc";
      q.prepare(sql);
      q.bindValue(":idc",QVariant(idcliente));
      q.bindValue(":idp",QVariant(idprodotto));

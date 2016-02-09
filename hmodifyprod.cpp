@@ -86,6 +86,8 @@ void HModifyProd::init(QString conn,HUser *usr)
     comp->setCompletionMode(QCompleter::PopupCompletion);
     comp->setModel(tmLots);
 
+    ui->leLotto->setCompleter(comp);
+
 
    ui->tvLots->setColumnHidden(0,true);
    ui->tvLots->setColumnHidden(4,true);
@@ -235,21 +237,34 @@ bool HModifyProd::deleteRow()
 {
     QSqlQuery q(db);
     QString sql="delete from operazioni where ID=:id";
+    QString comp="delete from composizione_lot where operazione=:id";
     QString id=ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),0).data(0).toString();
     bool b=q.exec();
+
+    q.prepare(comp);
+    q.bindValue(":id",QVariant(id));
+    b=q.exec();
+    if(!b)
+    {
+        QMessageBox::question(this,QApplication::applicationName(),"ERRORE\n"+q.lastError().text()+"\n"+q.lastQuery(),QMessageBox::Ok | QMessageBox::Cancel);
+        return false;
+    }
+
+    q.clear();
 
 
 
     q.prepare(sql);
     id=ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),0).data(0).toString();
-    //qDebug()<<id;
     q.bindValue(":id",id);
-
     b=q.exec();
     if(!b)
     {
         QMessageBox::question(this,QApplication::applicationName(),"ERRORE\n"+q.lastError().text()+"\n"+q.lastQuery(),QMessageBox::Ok | QMessageBox::Cancel);
     }
+
+
+
     getComponetsLot();
     return b;
 }
@@ -281,7 +296,7 @@ bool HModifyProd::addRow(){
 
 
 
-    sql="INSERT INTO `fbgmdb260`.`operazioni`(`IDlotto`,`data`,`utente`,`IDprodotto`,`azione`,`quantita`,`um`)VALUES(:idlotto,:data,:utente,:idprodotto,:azione,:quantita,:um)";
+    sql="INSERT INTO `operazioni`(`IDlotto`,`data`,`utente`,`IDprodotto`,`azione`,`quantita`,`um`)VALUES(:idlotto,:data,:utente,:idprodotto,:azione,:quantita,:um)";
 db.transaction();
     q.prepare(sql);
     q.bindValue(":idlotto",QVariant(idl));
@@ -292,11 +307,11 @@ db.transaction();
     q.bindValue(":quantita",QVariant(quantita));
     q.bindValue(":um",QVariant(um));
    bool   b =q.exec();
-   qDebug()<<"insert"<<q.lastError().text();
+   qDebug()<<"insert:"<<q.lastError().text();
    if(!b) return false;
    int idop=q.lastInsertId().toInt();
 
-   qDebug()<<QString::number(idlot)<<QString::number(idop);
+   qDebug()<<QString::number(idl)<<QString::number(idop);
 
    sql="INSERT into composizione_lot(`ID_lotto`,`operazione`) VALUES(:lot,:operazione)";
    q.prepare(sql);
@@ -360,7 +375,7 @@ void HModifyProd::on_pushButton_clicked()
             QMessageBox::warning(this,QApplication::applicationName(),"MODERRORACCIO!!!\n" + db.lastError().text()  ,QMessageBox::Ok);
         }
     }
-    else
+    else if (action==1)
     {
         if(addRow())
             {

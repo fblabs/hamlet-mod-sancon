@@ -19,6 +19,7 @@ HSchedeClienti::HSchedeClienti(QWidget *parent) :
     ui(new Ui::HSchedeClienti)
 {
     ui->setupUi(this);
+    ui->btnSave->setVisible(false);
 }
 
 HSchedeClienti::~HSchedeClienti()
@@ -277,8 +278,8 @@ void HSchedeClienti::loadScheda()
    imgobj->loadFromData(bytes);
 
  // scale=imgobj->scaled(600,300,Qt::KeepAspectRatio,Qt::FastTransformation);
-   scale=imgobj->scaled(imgobj->width(),imgobj->height());
-
+ //  scale=imgobj->scaled(imgobj->width(),imgobj->height());
+   scale=imgobj->scaledToWidth(800,Qt::SmoothTransformation);
  //  img = QPixmap::fromImage(*imgobj);
 
   // cursor.atEnd();
