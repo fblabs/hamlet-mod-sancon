@@ -47,7 +47,9 @@ void HPrint::addImage(QByteArray bytes)
 
     imgobj = new QImage();
     imgobj->loadFromData(bytes);
-    img = QPixmap::fromImage(*imgobj);
+    int width=img.width();
+    int height=img.height();
+    img = QPixmap::fromImage(*imgobj).scaled(width,height);
 
     cursor.insertImage(*imgobj);
     cursorToEnd();

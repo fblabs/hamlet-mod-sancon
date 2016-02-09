@@ -454,7 +454,7 @@ void HProduction::getRecipe()
 
 
     int idricetta=ui->lvRicette->model()->index(ui->lvRicette->currentIndex().row(),0).data(0).toInt();
-
+    int alle;
     //note
 
   //  connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(findProduct()));
@@ -487,7 +487,7 @@ void HProduction::getRecipe()
 
     //QString sql="SELECT righe_ricette.ID,righe_ricette.ID_prodotto,righe_ricette.ID_ricetta,prodotti.descrizione,righe_ricette.quantita FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto AND righe_ricette.ID_ricetta=:idricetta AND righe_ricette.show_prod=1 ORDER BY righe_ricette.quantita DESC";
   //  QString sql="SELECT distinct righe_ricette.ID,righe_ricette.ID_prodotto,prodotti.descrizione,righe_ricette.quantita FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto AND righe_ricette.ID_ricetta=:idricetta AND righe_ricette.show_prod=1 ORDER BY righe_ricette.quantita DESC";
-    QString sql="select distinct prodotti.ID ,prodotti.descrizione,righe_ricette.quantita from prodotti,righe_ricette where righe_ricette.ID_prodotto=prodotti.ID and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
+    QString sql="select distinct prodotti.ID ,prodotti.descrizione,prodotti.allergenico,righe_ricette.quantita from prodotti,righe_ricette where righe_ricette.ID_prodotto=prodotti.ID and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
 
     QSqlQuery q(db);
   //  QStandardItemModel *qmrighe=new QStandardItemModel();
@@ -512,6 +512,7 @@ void HProduction::getRecipe()
     model->setHeaderData(5,Qt::Horizontal,"Quantità aggiunta",0);
 
 
+
    double quantitatotale=0.0;
 
   //  q.first();
@@ -519,6 +520,7 @@ void HProduction::getRecipe()
     {
 
        bool ok;
+       alle=q.value(2).toInt();
        quantitatotale +=q.value(2).toDouble(&ok);
        if(!ok)
        {
@@ -531,10 +533,15 @@ void HProduction::getRecipe()
 
         QStandardItem* ID_prodotto=new QStandardItem(q.value(0).toString());
         QStandardItem* prodotto=new QStandardItem(q.value(1).toString());
-        QStandardItem* quantita=new QStandardItem(QString::number(q.value(2).toDouble(),'f',3));
+        QStandardItem* quantita=new QStandardItem(QString::number(q.value(3).toDouble(),'f',3));
         QStandardItem* IDLotto=new QStandardItem("");
         QStandardItem* lotto=new QStandardItem("");
         QStandardItem* quadd=new QStandardItem("0.0");
+
+        if (alle==1)
+        {
+            prodotto->setForeground(Qt::red);
+        }
 
 
 
@@ -619,8 +626,8 @@ void HProduction::printProduction()
         {
 
           col1=ui->tableView->model()->index(i,1).data(0).toString();
-          col2=ui->tableView->model()->index(i,4).data(0).toString();
-          col3=ui->tableView->model()->index(i,5).data(0).toString();
+          col2=ui->tableView->model()->index(i,3).data(0).toString();
+          col3=ui->tableView->model()->index(i,6).data(0).toString();
 
           f->cursorToEnd();
 
@@ -634,8 +641,9 @@ void HProduction::printProduction()
         }
 
       f->append("",false);
-      f->append("Note:",false);
+      f->append("Note: " + ui->tNote->toPlainText(),false);
       f->append("",false);
+
       f->append("..............................................................................",false);
       f->cursorToEnd();
       f->append("..............................................................................",false);

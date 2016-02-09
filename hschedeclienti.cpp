@@ -90,6 +90,7 @@ void HSchedeClienti::init(QString conn,HUser *usr)
 
     ui->listView->setCurrentIndex(ui->listView->model()->index(0,0));
     ui->lvSubclienti->setVisible(false);
+    ui->widget->toggleImageUI(false);
 
 
 QApplication::restoreOverrideCursor();
@@ -262,7 +263,7 @@ void HSchedeClienti::loadScheda()
     ui->widget->append("TAPPO: "+q.value(2).toString(),false);
    ui->widget->append("ETICHETTE: "+q.value(3).toString(),false);
    ui->widget->append("SCATOLE: "+q.value(4).toString(),false);
-   ui->widget->append("NOTE\n: "+q.value(5).toString(),false);
+   ui->widget->append("NOTE: "+q.value(5).toString(),false);
    ui->widget->cursorToEnd();
 
    QByteArray bytes;
@@ -276,7 +277,7 @@ void HSchedeClienti::loadScheda()
    imgobj->loadFromData(bytes);
 
  // scale=imgobj->scaled(600,300,Qt::KeepAspectRatio,Qt::FastTransformation);
-   scale=imgobj->scaled(height,width);
+   scale=imgobj->scaled(imgobj->width(),imgobj->height());
 
  //  img = QPixmap::fromImage(*imgobj);
 
