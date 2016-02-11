@@ -598,8 +598,8 @@ void HProduction::getRecipe()
    // ui->tableView->resizeColumnsToContents();
      ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    ui->tableView->setColumnHidden(0,true);
-    ui->tableView->setColumnHidden(3,true);
+   // ui->tableView->setColumnHidden(0,true);
+   // ui->tableView->setColumnHidden(3,true);
 
 
     connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(recalculateTotal()));
@@ -615,7 +615,7 @@ void HProduction::getRecipe()
 
 
 
-void HProduction::printProduction()
+void HProduction::printProduction(bool actual=false)
 {
     HPrint *f=new HPrint();
     f->toggleImageUI(false);
@@ -652,10 +652,18 @@ void HProduction::printProduction()
 
       for (int i=0;i<rows;i++)
         {
-
+          if (!ui->checkBox_2->isChecked())
+          {
           col1=ui->tableView->model()->index(i,1).data(0).toString();
           col2=ui->tableView->model()->index(i,3).data(0).toString();
           col3=ui->tableView->model()->index(i,5).data(0).toString();
+          }
+          else
+          {
+              col1=ui->tableView->model()->index(i,1).data(0).toString();
+              col2=ui->tableView->model()->index(i,3).data(0).toString();
+              col3=ui->tableView->model()->index(i,2).data(0).toString();
+          }
 
           f->cursorToEnd();
 
@@ -1384,7 +1392,7 @@ void HProduction::on_pbAddLottoFuoriRicetta_clicked()
 
 void HProduction::on_pushButton_8_clicked()
 {
-    printRecipe();
+    printProduction(false);
 }
 
 void HProduction::on_pushButton_9_clicked()
@@ -1506,7 +1514,7 @@ bool HProduction::saveUpdatedOperazione(int row)
 
 void HProduction::on_pushButton_10_clicked()
 {
-    printProduction();
+    printProduction(true);
 }
 
 void HProduction::on_checkBox_toggled(bool checked)
@@ -1541,4 +1549,10 @@ void HProduction::on_pushButton_11_clicked()
 void HProduction::on_leQuaRic_textChanged(const QString &arg1)
 {
     qDebug()<<arg1;
+}
+
+void HProduction::on_checkBox_2_toggled(bool checked)
+{
+
+
 }

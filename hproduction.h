@@ -61,7 +61,7 @@ private slots:
     bool saveComposizione(int lottotarget, int operazione);
     void updateComposition();
     void printRecipe();
-    void printProduction();
+    void printProduction(bool actual);
     int lastInsertId();
     void getLotToModify(QString lot);
     QString getNewLot(int prod);
@@ -92,6 +92,7 @@ private slots:
     void on_pushButton_11_clicked();
 
     void on_leQuaRic_textChanged(const QString &arg1);
+    void on_checkBox_2_toggled(bool checked);
 };
 
 #endif // HPRODUCTION_H

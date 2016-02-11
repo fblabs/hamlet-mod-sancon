@@ -492,6 +492,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="checkBox_2">
+         <property name="text">
+          <string>Stampa ricetta originale</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="pushButton_10">
          <property name="enabled">
           <bool>false</bool>

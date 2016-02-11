@@ -87,6 +87,7 @@ public:
     QLineEdit *leQuaRic;
     QPushButton *pushButton_11;
     QPushButton *pushButton_8;
+    QCheckBox *checkBox_2;
     QPushButton *pushButton_10;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton_3;
@@ -420,6 +421,11 @@ public:
 
         verticalLayout_3->addWidget(pushButton_8);
 
+        checkBox_2 = new QCheckBox(HProduction);
+        checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
+
+        verticalLayout_3->addWidget(checkBox_2);
+
         pushButton_10 = new QPushButton(HProduction);
         pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
         pushButton_10->setEnabled(false);
@@ -488,6 +494,7 @@ public:
         label_11->setText(QApplication::translate("HProduction", "Quantit\303\240 ricetta:", 0));
         pushButton_11->setText(QApplication::translate("HProduction", "Reset", 0));
         pushButton_8->setText(QApplication::translate("HProduction", "Stampa Ricetta", 0));
+        checkBox_2->setText(QApplication::translate("HProduction", "Stampa ricetta originale", 0));
         pushButton_10->setText(QApplication::translate("HProduction", "Stampa", 0));
         pushButton_3->setText(QApplication::translate("HProduction", "Salva", 0));
         pushButton_4->setText(QApplication::translate("HProduction", "Chiudi", 0));

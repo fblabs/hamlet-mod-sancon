@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HProduction_t {
-    QByteArrayData data[57];
-    char stringdata[943];
+    QByteArrayData data[59];
+    char stringdata[972];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -60,32 +60,34 @@ QT_MOC_LITERAL(27, 343, 10),
 QT_MOC_LITERAL(28, 354, 17),
 QT_MOC_LITERAL(29, 372, 11),
 QT_MOC_LITERAL(30, 384, 15),
-QT_MOC_LITERAL(31, 400, 12),
-QT_MOC_LITERAL(32, 413, 14),
-QT_MOC_LITERAL(33, 428, 9),
-QT_MOC_LITERAL(34, 438, 4),
-QT_MOC_LITERAL(35, 443, 23),
-QT_MOC_LITERAL(36, 467, 21),
-QT_MOC_LITERAL(37, 489, 21),
-QT_MOC_LITERAL(38, 511, 23),
-QT_MOC_LITERAL(39, 535, 23),
-QT_MOC_LITERAL(40, 559, 23),
-QT_MOC_LITERAL(41, 583, 25),
-QT_MOC_LITERAL(42, 609, 4),
-QT_MOC_LITERAL(43, 614, 27),
-QT_MOC_LITERAL(44, 642, 23),
-QT_MOC_LITERAL(45, 666, 23),
-QT_MOC_LITERAL(46, 690, 23),
-QT_MOC_LITERAL(47, 714, 23),
-QT_MOC_LITERAL(48, 738, 7),
-QT_MOC_LITERAL(49, 746, 33),
-QT_MOC_LITERAL(50, 780, 23),
-QT_MOC_LITERAL(51, 804, 23),
-QT_MOC_LITERAL(52, 828, 24),
-QT_MOC_LITERAL(53, 853, 19),
-QT_MOC_LITERAL(54, 873, 20),
-QT_MOC_LITERAL(55, 894, 24),
-QT_MOC_LITERAL(56, 919, 23)
+QT_MOC_LITERAL(31, 400, 6),
+QT_MOC_LITERAL(32, 407, 12),
+QT_MOC_LITERAL(33, 420, 14),
+QT_MOC_LITERAL(34, 435, 9),
+QT_MOC_LITERAL(35, 445, 4),
+QT_MOC_LITERAL(36, 450, 23),
+QT_MOC_LITERAL(37, 474, 21),
+QT_MOC_LITERAL(38, 496, 21),
+QT_MOC_LITERAL(39, 518, 23),
+QT_MOC_LITERAL(40, 542, 23),
+QT_MOC_LITERAL(41, 566, 23),
+QT_MOC_LITERAL(42, 590, 25),
+QT_MOC_LITERAL(43, 616, 4),
+QT_MOC_LITERAL(44, 621, 27),
+QT_MOC_LITERAL(45, 649, 23),
+QT_MOC_LITERAL(46, 673, 23),
+QT_MOC_LITERAL(47, 697, 23),
+QT_MOC_LITERAL(48, 721, 23),
+QT_MOC_LITERAL(49, 745, 7),
+QT_MOC_LITERAL(50, 753, 33),
+QT_MOC_LITERAL(51, 787, 23),
+QT_MOC_LITERAL(52, 811, 23),
+QT_MOC_LITERAL(53, 835, 24),
+QT_MOC_LITERAL(54, 860, 19),
+QT_MOC_LITERAL(55, 880, 20),
+QT_MOC_LITERAL(56, 901, 24),
+QT_MOC_LITERAL(57, 926, 23),
+QT_MOC_LITERAL(58, 950, 21)
     },
     "HProduction\0getClients\0\0getSubclients\0"
     "getRecipesForClient\0getRecipe\0"
@@ -97,11 +99,12 @@ QT_MOC_LITERAL(56, 919, 23)
     "lot\0prodotto\0saveLotLoad\0idlotto\0"
     "saveOperation\0row\0action\0saveComposizione\0"
     "lottotarget\0operazione\0updateComposition\0"
-    "printRecipe\0printProduction\0lastInsertId\0"
-    "getLotToModify\0getNewLot\0prod\0"
-    "saveUpdatedComposizione\0saveUpdatedOperazione\0"
-    "on_pushButton_clicked\0on_pushButton_5_clicked\0"
-    "on_pushButton_6_clicked\0on_pushButton_3_clicked\0"
+    "printRecipe\0printProduction\0actual\0"
+    "lastInsertId\0getLotToModify\0getNewLot\0"
+    "prod\0saveUpdatedComposizione\0"
+    "saveUpdatedOperazione\0on_pushButton_clicked\0"
+    "on_pushButton_5_clicked\0on_pushButton_6_clicked\0"
+    "on_pushButton_3_clicked\0"
     "on_leQtyTotal_textChanged\0arg1\0"
     "on_leQtyTotal_returnPressed\0"
     "on_pushButton_7_clicked\0on_pushButton_4_clicked\0"
@@ -110,7 +113,7 @@ QT_MOC_LITERAL(56, 919, 23)
     "on_pushButton_8_clicked\0on_pushButton_9_clicked\0"
     "on_pushButton_10_clicked\0on_checkBox_toggled\0"
     "on_pbAnnulla_clicked\0on_pushButton_11_clicked\0"
-    "on_leQuaRic_textChanged"
+    "on_leQuaRic_textChanged\0on_checkBox_2_toggled"
 };
 #undef QT_MOC_LITERAL
 
@@ -120,7 +123,7 @@ static const uint qt_meta_data_HProduction[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      45,   14, // methods
+      46,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -128,51 +131,52 @@ static const uint qt_meta_data_HProduction[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  239,    2, 0x08 /* Private */,
-       3,    0,  240,    2, 0x08 /* Private */,
-       4,    0,  241,    2, 0x08 /* Private */,
-       5,    0,  242,    2, 0x08 /* Private */,
-       6,    0,  243,    2, 0x08 /* Private */,
-       7,    0,  244,    2, 0x08 /* Private */,
-       8,    0,  245,    2, 0x08 /* Private */,
-       9,    0,  246,    2, 0x08 /* Private */,
-      10,    0,  247,    2, 0x08 /* Private */,
-      11,    0,  248,    2, 0x08 /* Private */,
-      12,    0,  249,    2, 0x08 /* Private */,
-      13,    0,  250,    2, 0x08 /* Private */,
-      14,    0,  251,    2, 0x08 /* Private */,
-      15,    0,  252,    2, 0x08 /* Private */,
-      16,    1,  253,    2, 0x08 /* Private */,
-      17,    2,  256,    2, 0x08 /* Private */,
-      20,    2,  261,    2, 0x08 /* Private */,
-      22,    2,  266,    2, 0x08 /* Private */,
-      25,    2,  271,    2, 0x08 /* Private */,
-      28,    0,  276,    2, 0x08 /* Private */,
-      29,    0,  277,    2, 0x08 /* Private */,
-      30,    0,  278,    2, 0x08 /* Private */,
-      31,    0,  279,    2, 0x08 /* Private */,
-      32,    1,  280,    2, 0x08 /* Private */,
-      33,    1,  283,    2, 0x08 /* Private */,
-      35,    0,  286,    2, 0x08 /* Private */,
-      36,    1,  287,    2, 0x08 /* Private */,
-      37,    0,  290,    2, 0x08 /* Private */,
-      38,    0,  291,    2, 0x08 /* Private */,
-      39,    0,  292,    2, 0x08 /* Private */,
-      40,    0,  293,    2, 0x08 /* Private */,
-      41,    1,  294,    2, 0x08 /* Private */,
-      43,    0,  297,    2, 0x08 /* Private */,
-      44,    0,  298,    2, 0x08 /* Private */,
-      45,    0,  299,    2, 0x08 /* Private */,
-      46,    0,  300,    2, 0x08 /* Private */,
-      47,    1,  301,    2, 0x08 /* Private */,
-      49,    0,  304,    2, 0x08 /* Private */,
-      50,    0,  305,    2, 0x08 /* Private */,
-      51,    0,  306,    2, 0x08 /* Private */,
-      52,    0,  307,    2, 0x08 /* Private */,
-      53,    1,  308,    2, 0x08 /* Private */,
-      54,    0,  311,    2, 0x08 /* Private */,
-      55,    0,  312,    2, 0x08 /* Private */,
-      56,    1,  313,    2, 0x08 /* Private */,
+       1,    0,  244,    2, 0x08 /* Private */,
+       3,    0,  245,    2, 0x08 /* Private */,
+       4,    0,  246,    2, 0x08 /* Private */,
+       5,    0,  247,    2, 0x08 /* Private */,
+       6,    0,  248,    2, 0x08 /* Private */,
+       7,    0,  249,    2, 0x08 /* Private */,
+       8,    0,  250,    2, 0x08 /* Private */,
+       9,    0,  251,    2, 0x08 /* Private */,
+      10,    0,  252,    2, 0x08 /* Private */,
+      11,    0,  253,    2, 0x08 /* Private */,
+      12,    0,  254,    2, 0x08 /* Private */,
+      13,    0,  255,    2, 0x08 /* Private */,
+      14,    0,  256,    2, 0x08 /* Private */,
+      15,    0,  257,    2, 0x08 /* Private */,
+      16,    1,  258,    2, 0x08 /* Private */,
+      17,    2,  261,    2, 0x08 /* Private */,
+      20,    2,  266,    2, 0x08 /* Private */,
+      22,    2,  271,    2, 0x08 /* Private */,
+      25,    2,  276,    2, 0x08 /* Private */,
+      28,    0,  281,    2, 0x08 /* Private */,
+      29,    0,  282,    2, 0x08 /* Private */,
+      30,    1,  283,    2, 0x08 /* Private */,
+      32,    0,  286,    2, 0x08 /* Private */,
+      33,    1,  287,    2, 0x08 /* Private */,
+      34,    1,  290,    2, 0x08 /* Private */,
+      36,    0,  293,    2, 0x08 /* Private */,
+      37,    1,  294,    2, 0x08 /* Private */,
+      38,    0,  297,    2, 0x08 /* Private */,
+      39,    0,  298,    2, 0x08 /* Private */,
+      40,    0,  299,    2, 0x08 /* Private */,
+      41,    0,  300,    2, 0x08 /* Private */,
+      42,    1,  301,    2, 0x08 /* Private */,
+      44,    0,  304,    2, 0x08 /* Private */,
+      45,    0,  305,    2, 0x08 /* Private */,
+      46,    0,  306,    2, 0x08 /* Private */,
+      47,    0,  307,    2, 0x08 /* Private */,
+      48,    1,  308,    2, 0x08 /* Private */,
+      50,    0,  311,    2, 0x08 /* Private */,
+      51,    0,  312,    2, 0x08 /* Private */,
+      52,    0,  313,    2, 0x08 /* Private */,
+      53,    0,  314,    2, 0x08 /* Private */,
+      54,    1,  315,    2, 0x08 /* Private */,
+      55,    0,  318,    2, 0x08 /* Private */,
+      56,    0,  319,    2, 0x08 /* Private */,
+      57,    1,  320,    2, 0x08 /* Private */,
+      58,    1,  323,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -196,30 +200,31 @@ static const uint qt_meta_data_HProduction[] = {
     QMetaType::Bool, QMetaType::Int, QMetaType::Int,   26,   27,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   31,
     QMetaType::Int,
     QMetaType::Void, QMetaType::QString,   18,
-    QMetaType::QString, QMetaType::Int,   34,
+    QMetaType::QString, QMetaType::Int,   35,
     QMetaType::Bool,
     QMetaType::Bool, QMetaType::Int,   23,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   42,
+    QMetaType::Void, QMetaType::QString,   43,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   48,
+    QMetaType::Void, QMetaType::Bool,   49,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   48,
+    QMetaType::Void, QMetaType::Bool,   49,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   42,
+    QMetaType::Void, QMetaType::QString,   43,
+    QMetaType::Void, QMetaType::Bool,   49,
 
        0        // eod
 };
@@ -255,7 +260,7 @@ void HProduction::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         case 19: _t->updateComposition(); break;
         case 20: _t->printRecipe(); break;
-        case 21: _t->printProduction(); break;
+        case 21: _t->printProduction((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 22: { int _r = _t->lastInsertId();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         case 23: _t->getLotToModify((*reinterpret_cast< QString(*)>(_a[1]))); break;
@@ -283,6 +288,7 @@ void HProduction::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 42: _t->on_pbAnnulla_clicked(); break;
         case 43: _t->on_pushButton_11_clicked(); break;
         case 44: _t->on_leQuaRic_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 45: _t->on_checkBox_2_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -313,13 +319,13 @@ int HProduction::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 45)
+        if (_id < 46)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 45;
+        _id -= 46;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 45)
+        if (_id < 46)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 45;
+        _id -= 46;
     }
     return _id;
 }
