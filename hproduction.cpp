@@ -141,6 +141,7 @@ void HProduction::init(QString conn, QString userid)
 
      connect(ui->cbQuanti,SIGNAL(currentIndexChanged(int)),this,SLOT(lastFiveLots()));
      connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
+     ui->tableView->setModel(0);
 
 
 
@@ -423,6 +424,7 @@ void HProduction::getRecipesForClient()
         idcliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
     }
 
+    ui->tableView->setModel(0);
 
 
  //   QString qs="SELECT select prodotti.ID,ricette.ID,prodotti.descrizione from ricette,associazioni,prodotti,anagrafica where prodotti.ID=ricette.ID_prodotto and ricette.ID=associazioni.ID_ricetta and associazioni.ID_cliente=anagrafica.ID and associazioni.ID_cliente="+idcliente;
@@ -627,7 +629,7 @@ void HProduction::printProduction()
 
           col1=ui->tableView->model()->index(i,1).data(0).toString();
           col2=ui->tableView->model()->index(i,3).data(0).toString();
-          col3=ui->tableView->model()->index(i,6).data(0).toString();
+          col3=ui->tableView->model()->index(i,5).data(0).toString();
 
           f->cursorToEnd();
 
@@ -920,6 +922,7 @@ void HProduction::on_pushButton_5_clicked()
     ui->leQtyTotal->setEnabled(true);
     ui->cbTipoLotto->setEnabled(false);
     ui->checkBox->setEnabled(false);
+    ui->cbClienti->setEnabled(false);
     getRecipe();
 
 
@@ -943,6 +946,7 @@ void HProduction::on_pushButton_6_clicked()
     ui->leQtyTotal->setReadOnly(false);
     ui->cbTipoLotto->setEnabled(true);
     ui->checkBox->setEnabled(true);
+    ui->cbClienti->setEnabled(true);
     getRecipe();
     updateTotals();
 
@@ -1265,6 +1269,7 @@ void HProduction::on_pushButton_3_clicked()
    ui->leQtyTotal->setReadOnly(false);
    ui->cbTipoLotto->setEnabled(true);
    ui->checkBox->setEnabled(true);
+       ui->cbClienti->setEnabled(true);
    getRecipe();
    updateTotals();
    modifyLot=false;
