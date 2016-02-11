@@ -130,6 +130,7 @@ void HProduction::init(QString conn, QString userid)
      ui->leLotToadd->setVisible(false);
     // ui->cbTipoLotto->setVisible(true);
      ui->pbAddLottoFuoriRicetta->setVisible(false);
+     ui->pushButton_10->setEnabled(false);
 
     // ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(ui->lvRicette->model()->rowCount()-1,0));
     // ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,0));
@@ -194,6 +195,14 @@ void HProduction::calculateActualTotal()
 
     }
     QString qta =QString::number(quantita,'f',3);
+    if(model->rowCount()>0)
+    {
+        ui->pushButton_10->setEnabled(true);
+    }
+    else
+    {
+        ui->pushButton_10->setEnabled(false);
+    }
 
     ui->leQtyTotal->setText(qta);
   //  ui->leQuaRic->setText(QString::number(quantita,'f',2));
@@ -553,6 +562,8 @@ void HProduction::getRecipe()
 
 
 
+
+
         //columns.append(IDLotto);
         columns.append(ID_prodotto);
         columns.append(prodotto);
@@ -564,6 +575,15 @@ void HProduction::getRecipe()
 
     model->appendRow(columns);
 
+    }
+
+    if (model->rowCount()>0)
+    {
+        ui->pushButton_10->setEnabled(true);
+    }
+    else
+    {
+        ui->pushButton_10->setEnabled(false);
     }
 
     QString qta=QString::number(quantitatotale,'f',3);
@@ -581,6 +601,7 @@ void HProduction::getRecipe()
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
 
+
     connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(recalculateTotal()));
     connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(productSelected()));
     connect(model,SIGNAL(dataChanged(QModelIndex,QModelIndex)),this,SLOT(calculateActualTotal()));
@@ -589,7 +610,7 @@ void HProduction::getRecipe()
   //  ui->tableView->setColumnHidden(3,true);
 
     ui->pushButton_8->setEnabled(true);
-    ui->pushButton_10->setEnabled(true);
+
 }
 
 
@@ -944,6 +965,7 @@ void HProduction::on_pushButton_6_clicked()
     ui->pushButton->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
     ui->pushButton_7->setEnabled(false);
+
     ui->label->setVisible(false);
     ui->cbQuanti->setVisible(false);
     ui->lvLastLots->setVisible(false);
@@ -953,12 +975,15 @@ void HProduction::on_pushButton_6_clicked()
     ui->checkBox->setEnabled(true);
     ui->cbClienti->setEnabled(true);
     ui->leQtyTotal->setText("");
-    getRecipe();
-    updateTotals();
+ //   getRecipe();
+ //   updateTotals();
+
+
 
 
     modifyLot=false;
     ui->tableView->setModel(0);
+    ui->pushButton_10->setEnabled(false);
 
 }
 

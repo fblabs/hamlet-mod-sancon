@@ -497,7 +497,7 @@
           <bool>false</bool>
          </property>
          <property name="text">
-          <string>Stampa Produzione</string>
+          <string>Stampa</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">

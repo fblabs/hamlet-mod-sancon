@@ -488,7 +488,7 @@ public:
         label_11->setText(QApplication::translate("HProduction", "Quantit\303\240 ricetta:", 0));
         pushButton_11->setText(QApplication::translate("HProduction", "Reset", 0));
         pushButton_8->setText(QApplication::translate("HProduction", "Stampa Ricetta", 0));
-        pushButton_10->setText(QApplication::translate("HProduction", "Stampa Produzione", 0));
+        pushButton_10->setText(QApplication::translate("HProduction", "Stampa", 0));
         pushButton_3->setText(QApplication::translate("HProduction", "Salva", 0));
         pushButton_4->setText(QApplication::translate("HProduction", "Chiudi", 0));
     } // retranslateUi
