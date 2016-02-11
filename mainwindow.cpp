@@ -66,6 +66,7 @@ void MainWindow::init()
 {
     user=new HUser();
     user->init(sConn);
+    ui->toolButton->setFocus();
 }
 
 

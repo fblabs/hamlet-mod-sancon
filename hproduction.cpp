@@ -448,6 +448,11 @@ void HProduction::getRecipesForClient()
     connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getRecipe()));
 
 
+    ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,0));
+    ui->lvRicette->setFocus();
+
+
+
 }
 
 void HProduction::getRecipe()
@@ -523,7 +528,7 @@ void HProduction::getRecipe()
 
        bool ok;
        alle=q.value(2).toInt();
-       quantitatotale +=q.value(2).toDouble(&ok);
+       quantitatotale +=q.value(3).toDouble(&ok);
        if(!ok)
        {
            QMessageBox::warning(this,QApplication::applicationName(),"ERRORE",QMessageBox::Ok);
@@ -641,7 +646,7 @@ void HProduction::printProduction()
 
 
         }
-
+      f->append("Quantità: " + ui->leQtyTotal->text(),false);
       f->append("",false);
       f->append("Note: " + ui->tNote->toPlainText(),false);
       f->append("",false);
@@ -657,7 +662,7 @@ void HProduction::printProduction()
 
     f->append(ui->textBrowser->toPlainText(),false);
 
-    f->show();
+    f->showMaximized();
 }
 
 void HProduction::printRecipe()
@@ -947,6 +952,7 @@ void HProduction::on_pushButton_6_clicked()
     ui->cbTipoLotto->setEnabled(true);
     ui->checkBox->setEnabled(true);
     ui->cbClienti->setEnabled(true);
+    ui->leQtyTotal->setText("");
     getRecipe();
     updateTotals();
 
