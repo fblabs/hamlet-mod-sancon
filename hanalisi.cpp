@@ -159,7 +159,7 @@ void HAnalisi::getProductsForClient()
         int prodotto=ui->tvYearlyProduction->model()->index(ui->tvYearlyProduction->currentIndex().row(),0).data(0).toInt();
       //  sql="SELECT distinct lotdef.data,lotdef.ID,lotdef.prodotto,lotdef.EAN as 'Lotto esterno', lotdef.lot, prodotti.descrizione FROM lotdef,prodotti,anagrafica,tipi_lot where tipi_lot.ID=lotdef.tipo and anagrafica.ID = lotdef.anagrafica and prodotti.ID = lotdef.prodotto and lotdef.anagrafica in (:cliente) and lotdef.prodotto=:prodotto and lotdef.tipo in ("+tipo+") and lotdef.data between :from and :to order by lotdef.data desc";
         sql="SELECT  lotdef.ID as 'ID lotto',lotdef.data,lotdef.lot,lotdef.prodotto,lotdef.EAN as 'Lotto esterno', prodotti.descrizione FROM lotdef,prodotti,anagrafica,tipi_lot where tipi_lot.ID=lotdef.tipo and anagrafica.ID = lotdef.anagrafica and prodotti.ID = lotdef.prodotto and lotdef.anagrafica in ("+cl+")and lotdef.tipo in ("+tipo+") and lotdef.prodotto=:prodotto and lotdef.data between :from and :to order by lotdef.data desc";
-         q.prepare(sql);
+        q.prepare(sql);
 
 
        q.bindValue(":cliente",QVariant(cl));
@@ -173,13 +173,13 @@ void HAnalisi::getProductsForClient()
     else//non filtro per prodotto selezionato
     {
 
-    sql="SELECT distinct lotdef.ID as 'ID lotto',lotdef.data, lotdef.lot,lotdef.prodotto,lotdef.EAN as 'Lotto esterno', prodotti.descrizione FROM lotdef,prodotti,anagrafica,tipi_lot where tipi_lot.ID=lotdef.tipo and anagrafica.ID = lotdef.anagrafica and prodotti.ID = lotdef.prodotto and lotdef.anagrafica in ("+cl+") and lotdef.tipo in ("+tipo+") and lotdef.data between :from and :to order by lotdef.data desc";
-    q.prepare(sql);
-    q.bindValue(":cliente",QVariant(cl));
-    q.bindValue(":from",QVariant(datedal));
-    q.bindValue(":to",QVariant(dateal));
-    q.bindValue(":tipo",QVariant(tipo));
-    q.exec();
+        sql="SELECT distinct lotdef.ID as 'ID lotto',lotdef.data, lotdef.lot,lotdef.prodotto,lotdef.EAN as 'Lotto esterno', prodotti.descrizione FROM lotdef,prodotti,anagrafica,tipi_lot where tipi_lot.ID=lotdef.tipo and anagrafica.ID = lotdef.anagrafica and prodotti.ID = lotdef.prodotto and lotdef.anagrafica in ("+cl+") and lotdef.tipo in ("+tipo+") and lotdef.data between :from and :to order by lotdef.data desc";
+        q.prepare(sql);
+        q.bindValue(":cliente",QVariant(cl));
+        q.bindValue(":from",QVariant(datedal));
+        q.bindValue(":to",QVariant(dateal));
+        q.bindValue(":tipo",QVariant(tipo));
+        q.exec();
 
 
     }

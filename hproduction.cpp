@@ -1006,7 +1006,15 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
     QString giacenza=ui->leQtyTotal->text();
     QDate scadenza=ui->dateEdit->date();
 qDebug()<<scadenza.toString("yyyy-MM-dd");
-    QString anagrafica=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toString();
+    QString anagrafica;
+    if(ui->checkBox->isChecked())
+    {
+     anagrafica=ui->lvSubclienti->model()->index(ui->lvSubclienti->currentIndex().row(),0).data(0).toString();
+    }
+    else
+    {
+    anagrafica=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toString();
+    }
     QString lotf="PRODUZIONE";
     QString ean="";
     QString tipo="3"/*ui->cbTipoLotto->model()->index(ui->cbTipoLotto->currentIndex(),0).data(0).toString();*/;
