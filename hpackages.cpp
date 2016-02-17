@@ -515,10 +515,18 @@ bool HPackages::saveNewLotInLotdef(QString lotto)
     QSqlQuery q(db);
     QString sql;
     bool b;
+    int anagrafica;
 
 
 
     QString idp=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
+
+    if(ui->checkBox_2->isChecked())
+    {
+       anagrafica=ui->lvSubclienti->model()->index(ui->lvSubclienti->currentIndex().row(),0).data(0).toInt();
+    }else{
+       anagrafica=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
+    }
 
     sql="INSERT INTO `lotdef`(`lot`,`prodotto`,`data`,`giacenza`,`um`,`scadenza`,`anagrafica`,`EAN`,`tipo`,`attivo`) values (:lot,:prodotto,:data,:giacenza,:um,:scadenza,:anagrafica,:ean,4,1)";
     q.prepare(sql);
@@ -526,9 +534,9 @@ bool HPackages::saveNewLotInLotdef(QString lotto)
     q.bindValue(":prodotto",QVariant(idp));
     q.bindValue(":data",QVariant(QDateTime::currentDateTime()));
     q.bindValue(":giacenza",QVariant(ui->leQuantLot->text()));
-    q.bindValue(":um",QVariant(1));
+    q.bindValue(":um",QVariant(ui->cbQua->model()->index(ui->cbQua->currentIndex(),0).data(0).toInt()));
     q.bindValue(":scadenza",QVariant(ui->dateEdit->date()));
-    q.bindValue(":anagrafica",QVariant(ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0)));
+    q.bindValue(":anagrafica",QVariant(anagrafica));
     q.bindValue(":ean",QVariant(ui->leLest->text()));
 
     b = q.exec();
