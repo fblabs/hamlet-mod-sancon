@@ -398,6 +398,9 @@ public:
 
         leQuaRic = new QLineEdit(HProduction);
         leQuaRic->setObjectName(QStringLiteral("leQuaRic"));
+        leQuaRic->setEnabled(true);
+        leQuaRic->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leQuaRic->setReadOnly(true);
 
         formLayout->setWidget(3, QFormLayout::FieldRole, leQuaRic);
 

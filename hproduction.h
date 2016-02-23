@@ -76,7 +76,7 @@ private slots:
     void on_pushButton_5_clicked();
     void on_pushButton_6_clicked();
     void on_pushButton_3_clicked();
-    void on_leQtyTotal_textChanged(const QString &arg1);
+ //   void on_leQtyTotal_textChanged(const QString &arg1);
     void on_leQtyTotal_returnPressed();
     void on_pushButton_7_clicked();
     void on_pushButton_4_clicked();

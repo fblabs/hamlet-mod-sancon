@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HProduction_t {
-    QByteArrayData data[57];
-    char stringdata[943];
+    QByteArrayData data[58];
+    char stringdata[946];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -60,32 +60,33 @@ QT_MOC_LITERAL(27, 343, 10),
 QT_MOC_LITERAL(28, 354, 17),
 QT_MOC_LITERAL(29, 372, 11),
 QT_MOC_LITERAL(30, 384, 15),
-QT_MOC_LITERAL(31, 400, 12),
-QT_MOC_LITERAL(32, 413, 14),
-QT_MOC_LITERAL(33, 428, 9),
-QT_MOC_LITERAL(34, 438, 4),
-QT_MOC_LITERAL(35, 443, 23),
-QT_MOC_LITERAL(36, 467, 21),
-QT_MOC_LITERAL(37, 489, 21),
-QT_MOC_LITERAL(38, 511, 23),
-QT_MOC_LITERAL(39, 535, 23),
-QT_MOC_LITERAL(40, 559, 23),
-QT_MOC_LITERAL(41, 583, 25),
-QT_MOC_LITERAL(42, 609, 4),
-QT_MOC_LITERAL(43, 614, 27),
+QT_MOC_LITERAL(31, 400, 6),
+QT_MOC_LITERAL(32, 407, 12),
+QT_MOC_LITERAL(33, 420, 14),
+QT_MOC_LITERAL(34, 435, 9),
+QT_MOC_LITERAL(35, 445, 4),
+QT_MOC_LITERAL(36, 450, 23),
+QT_MOC_LITERAL(37, 474, 21),
+QT_MOC_LITERAL(38, 496, 21),
+QT_MOC_LITERAL(39, 518, 23),
+QT_MOC_LITERAL(40, 542, 23),
+QT_MOC_LITERAL(41, 566, 23),
+QT_MOC_LITERAL(42, 590, 27),
+QT_MOC_LITERAL(43, 618, 23),
 QT_MOC_LITERAL(44, 642, 23),
 QT_MOC_LITERAL(45, 666, 23),
 QT_MOC_LITERAL(46, 690, 23),
-QT_MOC_LITERAL(47, 714, 23),
-QT_MOC_LITERAL(48, 738, 7),
-QT_MOC_LITERAL(49, 746, 33),
+QT_MOC_LITERAL(47, 714, 7),
+QT_MOC_LITERAL(48, 722, 33),
+QT_MOC_LITERAL(49, 756, 23),
 QT_MOC_LITERAL(50, 780, 23),
-QT_MOC_LITERAL(51, 804, 23),
-QT_MOC_LITERAL(52, 828, 24),
-QT_MOC_LITERAL(53, 853, 19),
-QT_MOC_LITERAL(54, 873, 20),
-QT_MOC_LITERAL(55, 894, 24),
-QT_MOC_LITERAL(56, 919, 23)
+QT_MOC_LITERAL(51, 804, 24),
+QT_MOC_LITERAL(52, 829, 19),
+QT_MOC_LITERAL(53, 849, 20),
+QT_MOC_LITERAL(54, 870, 24),
+QT_MOC_LITERAL(55, 895, 23),
+QT_MOC_LITERAL(56, 919, 4),
+QT_MOC_LITERAL(57, 924, 21)
     },
     "HProduction\0getClients\0\0getSubclients\0"
     "getRecipesForClient\0getRecipe\0"
@@ -97,12 +98,12 @@ QT_MOC_LITERAL(56, 919, 23)
     "lot\0prodotto\0saveLotLoad\0idlotto\0"
     "saveOperation\0row\0action\0saveComposizione\0"
     "lottotarget\0operazione\0updateComposition\0"
-    "printRecipe\0printProduction\0lastInsertId\0"
-    "getLotToModify\0getNewLot\0prod\0"
-    "saveUpdatedComposizione\0saveUpdatedOperazione\0"
-    "on_pushButton_clicked\0on_pushButton_5_clicked\0"
-    "on_pushButton_6_clicked\0on_pushButton_3_clicked\0"
-    "on_leQtyTotal_textChanged\0arg1\0"
+    "printRecipe\0printProduction\0actual\0"
+    "lastInsertId\0getLotToModify\0getNewLot\0"
+    "prod\0saveUpdatedComposizione\0"
+    "saveUpdatedOperazione\0on_pushButton_clicked\0"
+    "on_pushButton_5_clicked\0on_pushButton_6_clicked\0"
+    "on_pushButton_3_clicked\0"
     "on_leQtyTotal_returnPressed\0"
     "on_pushButton_7_clicked\0on_pushButton_4_clicked\0"
     "on_pushButton_2_clicked\0on_pushButton_7_toggled\0"
@@ -110,7 +111,8 @@ QT_MOC_LITERAL(56, 919, 23)
     "on_pushButton_8_clicked\0on_pushButton_9_clicked\0"
     "on_pushButton_10_clicked\0on_checkBox_toggled\0"
     "on_pbAnnulla_clicked\0on_pushButton_11_clicked\0"
-    "on_leQuaRic_textChanged"
+    "on_leQuaRic_textChanged\0arg1\0"
+    "on_checkBox_2_toggled"
 };
 #undef QT_MOC_LITERAL
 
@@ -149,30 +151,30 @@ static const uint qt_meta_data_HProduction[] = {
       25,    2,  271,    2, 0x08 /* Private */,
       28,    0,  276,    2, 0x08 /* Private */,
       29,    0,  277,    2, 0x08 /* Private */,
-      30,    0,  278,    2, 0x08 /* Private */,
-      31,    0,  279,    2, 0x08 /* Private */,
-      32,    1,  280,    2, 0x08 /* Private */,
-      33,    1,  283,    2, 0x08 /* Private */,
-      35,    0,  286,    2, 0x08 /* Private */,
-      36,    1,  287,    2, 0x08 /* Private */,
-      37,    0,  290,    2, 0x08 /* Private */,
-      38,    0,  291,    2, 0x08 /* Private */,
-      39,    0,  292,    2, 0x08 /* Private */,
-      40,    0,  293,    2, 0x08 /* Private */,
-      41,    1,  294,    2, 0x08 /* Private */,
+      30,    1,  278,    2, 0x08 /* Private */,
+      32,    0,  281,    2, 0x08 /* Private */,
+      33,    1,  282,    2, 0x08 /* Private */,
+      34,    1,  285,    2, 0x08 /* Private */,
+      36,    0,  288,    2, 0x08 /* Private */,
+      37,    1,  289,    2, 0x08 /* Private */,
+      38,    0,  292,    2, 0x08 /* Private */,
+      39,    0,  293,    2, 0x08 /* Private */,
+      40,    0,  294,    2, 0x08 /* Private */,
+      41,    0,  295,    2, 0x08 /* Private */,
+      42,    0,  296,    2, 0x08 /* Private */,
       43,    0,  297,    2, 0x08 /* Private */,
       44,    0,  298,    2, 0x08 /* Private */,
       45,    0,  299,    2, 0x08 /* Private */,
-      46,    0,  300,    2, 0x08 /* Private */,
-      47,    1,  301,    2, 0x08 /* Private */,
+      46,    1,  300,    2, 0x08 /* Private */,
+      48,    0,  303,    2, 0x08 /* Private */,
       49,    0,  304,    2, 0x08 /* Private */,
       50,    0,  305,    2, 0x08 /* Private */,
       51,    0,  306,    2, 0x08 /* Private */,
-      52,    0,  307,    2, 0x08 /* Private */,
-      53,    1,  308,    2, 0x08 /* Private */,
+      52,    1,  307,    2, 0x08 /* Private */,
+      53,    0,  310,    2, 0x08 /* Private */,
       54,    0,  311,    2, 0x08 /* Private */,
-      55,    0,  312,    2, 0x08 /* Private */,
-      56,    1,  313,    2, 0x08 /* Private */,
+      55,    1,  312,    2, 0x08 /* Private */,
+      57,    1,  315,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -196,30 +198,30 @@ static const uint qt_meta_data_HProduction[] = {
     QMetaType::Bool, QMetaType::Int, QMetaType::Int,   26,   27,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   31,
     QMetaType::Int,
     QMetaType::Void, QMetaType::QString,   18,
-    QMetaType::QString, QMetaType::Int,   34,
+    QMetaType::QString, QMetaType::Int,   35,
     QMetaType::Bool,
     QMetaType::Bool, QMetaType::Int,   23,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   42,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   48,
+    QMetaType::Void, QMetaType::Bool,   47,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   48,
+    QMetaType::Void, QMetaType::Bool,   47,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   42,
+    QMetaType::Void, QMetaType::QString,   56,
+    QMetaType::Void, QMetaType::Bool,   47,
 
        0        // eod
 };
@@ -255,7 +257,7 @@ void HProduction::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         case 19: _t->updateComposition(); break;
         case 20: _t->printRecipe(); break;
-        case 21: _t->printProduction(); break;
+        case 21: _t->printProduction((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 22: { int _r = _t->lastInsertId();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         case 23: _t->getLotToModify((*reinterpret_cast< QString(*)>(_a[1]))); break;
@@ -269,20 +271,20 @@ void HProduction::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 28: _t->on_pushButton_5_clicked(); break;
         case 29: _t->on_pushButton_6_clicked(); break;
         case 30: _t->on_pushButton_3_clicked(); break;
-        case 31: _t->on_leQtyTotal_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 32: _t->on_leQtyTotal_returnPressed(); break;
-        case 33: _t->on_pushButton_7_clicked(); break;
-        case 34: _t->on_pushButton_4_clicked(); break;
-        case 35: _t->on_pushButton_2_clicked(); break;
-        case 36: _t->on_pushButton_7_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 37: _t->on_pbAddLottoFuoriRicetta_clicked(); break;
-        case 38: _t->on_pushButton_8_clicked(); break;
-        case 39: _t->on_pushButton_9_clicked(); break;
-        case 40: _t->on_pushButton_10_clicked(); break;
-        case 41: _t->on_checkBox_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 42: _t->on_pbAnnulla_clicked(); break;
-        case 43: _t->on_pushButton_11_clicked(); break;
-        case 44: _t->on_leQuaRic_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 31: _t->on_leQtyTotal_returnPressed(); break;
+        case 32: _t->on_pushButton_7_clicked(); break;
+        case 33: _t->on_pushButton_4_clicked(); break;
+        case 34: _t->on_pushButton_2_clicked(); break;
+        case 35: _t->on_pushButton_7_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 36: _t->on_pbAddLottoFuoriRicetta_clicked(); break;
+        case 37: _t->on_pushButton_8_clicked(); break;
+        case 38: _t->on_pushButton_9_clicked(); break;
+        case 39: _t->on_pushButton_10_clicked(); break;
+        case 40: _t->on_checkBox_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 41: _t->on_pbAnnulla_clicked(); break;
+        case 42: _t->on_pushButton_11_clicked(); break;
+        case 43: _t->on_leQuaRic_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 44: _t->on_checkBox_2_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     }
