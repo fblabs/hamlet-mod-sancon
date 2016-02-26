@@ -608,9 +608,9 @@ void HProduction::getRecipe()
     connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(calculateActualTotal()));
     connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(productSelected()));
     connect(model,SIGNAL(dataChanged(QModelIndex,QModelIndex)),this,SLOT(calculateActualTotal()));
-  //  ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setColumnHidden(0,true);
   //  ui->tableView->setColumnHidden(1,true);
-  //  ui->tableView->setColumnHidden(3,true);
+    ui->tableView->setColumnHidden(3,true);
 
     ui->pushButton_8->setEnabled(true);
     ui->pushButton_10->setEnabled(true);

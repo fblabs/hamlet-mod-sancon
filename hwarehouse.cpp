@@ -51,6 +51,7 @@ void HWarehouse::init(QString conn, QString utente)
     tmOperazioni->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
     tmOperazioni->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
     tmOperazioni->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
+//    tmOperazioni->setRelation(9,QSqlRelation("lotdef","ID","giacenza"));
     tmOperazioni->setSort(2,Qt::DescendingOrder);
     tmOperazioni->setEditStrategy(QSqlTableModel::OnManualSubmit);
 

@@ -504,7 +504,7 @@ qDebug()<<QString::number(quantita);
 
         ui->leQuantita->setText("");
         ui->leLotfornitore->setText("");
-     //   ui->tNote->clear();
+        ui->tNote->clear();
 
         op.clear();
 
