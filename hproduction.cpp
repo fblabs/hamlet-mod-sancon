@@ -204,7 +204,7 @@ void HProduction::calculateActualTotal()
 
 
     ui->leQtyTotal->setText(qta);
-  //  ui->leQuaRic->setText(QString::number(quantita,'f',2));
+   // ui->leQuaRic->setText(QString::number(quantita,'f',3));
 
 
 
@@ -242,7 +242,7 @@ void HProduction::updateTotals()
        QModelIndex m = model->index(j,5);
        result =i.data().toDouble()* factor;
        QString resulttoadd=QString::number(result,'f',3);
-       model->setData(i,QVariant(resulttoadd));
+     //  model->setData(i,QVariant(resulttoadd));
        model->setData(m,QVariant(resulttoadd));
 
     }
@@ -551,7 +551,7 @@ void HProduction::getRecipe()
         QStandardItem* quantita=new QStandardItem(QString::number(q.value(3).toDouble(),'f',3));
         QStandardItem* IDLotto=new QStandardItem("");
         QStandardItem* lotto=new QStandardItem("");
-        QStandardItem* quadd=new QStandardItem("0.0");
+        QStandardItem* quadd=new QStandardItem(QString::number(0.0));
 
         if (alle==1)
         {
@@ -591,7 +591,6 @@ void HProduction::getRecipe()
 
    // ui->leQtyTotal->setText(qta);
     ui->leQuaRic->setText(qta);
-
     ui->leQtyTotal->setText(qta);
 
 
@@ -838,7 +837,7 @@ void HProduction::addLotProd()
 
     qm->setData(idlotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),0).data(0).toString());
     qm->setData(lotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString());
-    qm->setData(quanteff,qm->index(row,2).data(0).toString());
+    qm->setData(quanteff,qm->index(row,5).data(0).toString());
 
 
 
@@ -970,6 +969,7 @@ void HProduction::on_pushButton_5_clicked()
     ui->cbTipoLotto->setEnabled(false);
     ui->checkBox->setEnabled(false);
     ui->cbClienti->setEnabled(false);
+    ui->leQtyTotal->setReadOnly(false);
     getRecipe();
 
 
@@ -996,6 +996,7 @@ void HProduction::on_pushButton_6_clicked()
     ui->checkBox->setEnabled(true);
     ui->cbClienti->setEnabled(true);
     ui->leQtyTotal->setText("0.0");
+    ui->leQtyTotal->setReadOnly(true);
  //   getRecipe();
  //   updateTotals();
 
