@@ -66,6 +66,7 @@ void HAnalisi::init(QString conn )
 
 
 
+
   // connect(ui->cbClienti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(QString)),this,SLOT(getProductsForClient()));
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(QString)),this,SLOT(getYearlyProduction()));
@@ -73,7 +74,8 @@ void HAnalisi::init(QString conn )
 
     connect(ui->tvLots,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(doMenu(QPoint)));
 
-
+    ui->cbClienti->setCurrentIndex(1);
+    ui->cbClienti->setCurrentIndex(0);
 }
 
 void HAnalisi::getYearlyProduction()
@@ -549,7 +551,7 @@ void HAnalisi::printLot()
     int righe = ui->tvComp->model()->rowCount();
     int colonne=ui->tvComp->model()->columnCount();
 
-    colonne-=1;
+    colonne-=2;
 
     toappend="COMPONENTI LOTTO ";
     toappend.append(ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),2).data(0).toString());
@@ -572,10 +574,15 @@ void HAnalisi::printLot()
     for (int i=0;i<righe;i++)
     {
       // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
-      f->writeTableContent(table,i,0,ui->tvComp->model()->index(i,0).data(0).toString());
+     // f->writeTableContent(table,i,0,ui->tvComp->model()->index(i,0).data(0).toString());
+      f->writeTableContent(table,i,0,ui->tvComp->model()->index(i,2).data(0).toString());
       f->writeTableContent(table,i,1,ui->tvComp->model()->index(i,3).data(0).toString());
-      f->writeTableContent(table,i,2,ui->tvComp->model()->index(i,2).data(0).toString());
-      f->writeTableContent(table,i,3,ui->tvComp->model()->index(i,1).data(0).toString());
+      f->writeTableContent(table,i,2,ui->tvComp->model()->index(i,4).data(0).toString());
+      f->writeTableContent(table,i,3,ui->tvComp->model()->index(i,5).data(0).toString());
+      f->writeTableContent(table,i,4,ui->tvComp->model()->index(i,6).data(0).toString());
+
+
+
 
      // f->writeTableContent(table,i,4,ui->tvComp->model()->index(i,3).data(0).toString());
 
@@ -599,19 +606,20 @@ void HAnalisi::printLot()
         righeb=ui->tvNarrow->model()->rowCount();
         colonneb=ui->tvNarrow->model()->columnCount();
 
+
         QTextTable* tableb=f->addTable(righeb,colonneb);
 
 
         for (int i=0;i<righeb;i++)
         {
           // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
-          f->writeTableContent(tableb,i,0,ui->tvNarrow->model()->index(i,0).data(0).toString());
-          f->writeTableContent(tableb,i,1,ui->tvNarrow->model()->index(i,3).data(0).toString());
-          f->writeTableContent(tableb,i,2,ui->tvNarrow->model()->index(i,2).data(0).toString());
-          f->writeTableContent(tableb,i,3,ui->tvNarrow->model()->index(i,1).data(0).toString());
-          f->writeTableContent(tableb,i,4,ui->tvNarrow->model()->index(i,4).data(0).toString());
-          f->writeTableContent(tableb,i,5,ui->tvNarrow->model()->index(i,5).data(0).toString());
-
+         // f->writeTableContent(tableb,i,0,ui->tvNarrow->model()->index(i,0).data(0).toString());
+          f->writeTableContent(tableb,i,0,ui->tvNarrow->model()->index(i,3).data(0).toString());
+          f->writeTableContent(tableb,i,1,ui->tvNarrow->model()->index(i,2).data(0).toString());
+          f->writeTableContent(tableb,i,2,ui->tvNarrow->model()->index(i,1).data(0).toString());
+          f->writeTableContent(tableb,i,3,ui->tvNarrow->model()->index(i,4).data(0).toString());
+          f->writeTableContent(tableb,i,4,ui->tvNarrow->model()->index(i,5).data(0).toString());
+          f->writeTableContent(tableb,i,5,ui->tvNarrow->model()->index(i,6).data(0).toString());
          // f->writeTableContent(table,i,4,ui->tvComp->model()->index(i,3).data(0).toString());
 
 

@@ -143,7 +143,7 @@ public:
 
         rbAll = new QRadioButton(HAnalisi);
         rbAll->setObjectName(QStringLiteral("rbAll"));
-        rbAll->setChecked(false);
+        rbAll->setChecked(true);
 
         horizontalLayout_2->addWidget(rbAll);
 
@@ -155,7 +155,7 @@ public:
 
         rbPackages = new QRadioButton(HAnalisi);
         rbPackages->setObjectName(QStringLiteral("rbPackages"));
-        rbPackages->setChecked(true);
+        rbPackages->setChecked(false);
 
         horizontalLayout_2->addWidget(rbPackages);
 
