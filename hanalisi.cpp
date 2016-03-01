@@ -76,6 +76,8 @@ void HAnalisi::init(QString conn )
 
     ui->cbClienti->setCurrentIndex(1);
     ui->cbClienti->setCurrentIndex(0);
+    ui->checkBox->setChecked(true);
+
 }
 
 void HAnalisi::getYearlyProduction()

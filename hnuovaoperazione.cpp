@@ -55,7 +55,8 @@ void HnuovaOperazione::setupForm()
     QSqlTableModel *lots=new QSqlTableModel(0,db);
     lots->setTable("lotdef");
     lots->select();
-    lots->setFilter("attivo=1 and year(data)>year(data)-3");
+    basefilter="attivo=1 and year(data)>year(data)-3";
+    lots->setFilter(basefilter);
     lots->setSort(3,Qt::DescendingOrder);
     QCompleter *com = new QCompleter(lots);
     com->setCompletionColumn(1);
@@ -163,11 +164,13 @@ void HnuovaOperazione::setupForm()
     ui->pushButton->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
 
-    ui->radioButton->setEnabled(false);
-    ui->radioButton_2->setEnabled(false);
+   // ui->radioButton->setEnabled(false);
+   // ui->radioButton_2->setEnabled(false);
     ui->lvProdotti->setEnabled(false);
     ui->leProdotti->setEnabled(false);
     ui->cbtipo->setEnabled(false);
+    ui->cbtipo->setEnabled(false);
+    ui->cbAnagrafica->setEnabled(false);
 
 
 
@@ -184,9 +187,12 @@ void HnuovaOperazione::setupForm()
 
 void HnuovaOperazione::setUiforCarico()
 {
-    ui->label->setVisible(true);
-    ui->cbAnagrafica->setVisible(true);
-    ui->lvProdotti->setVisible(true);
+   // ui->label->setVisible(true);
+    ui->label->setText("Fornitore:");
+   // ui->cbAnagrafica->setVisible(true);
+  //  ui->lvProdotti->setVisible(true);
+    listaProdotti->select();
+   // ui->lvProdotti->setEnabled(true);
     ui->cbtipo->setVisible(true);
     ui->cbUM->setVisible(true);
     ui->label_2->setVisible(true);
@@ -221,16 +227,22 @@ void HnuovaOperazione::setUiforCarico()
     ui->leLotfornitore->setVisible(true);
     ui->leScadenza->setVisible(true);
 
+    listaProdotti->setFilter("");
+
     ui->cbtipo->setCurrentIndex(2);
+  //  disconnect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setLotsFilter()));
 
 
 }
 
 void HnuovaOperazione::setUiForScarico()
 {
-    ui->label->setVisible(false);
-    ui->cbAnagrafica->setVisible(false);
-    ui->lvProdotti->setVisible(false);
+   // ui->label->setVisible(false);
+    ui->label->setText("Destinazione:");
+   // ui->cbAnagrafica->setVisible(false);
+   // ui->lvProdotti->setVisible(false);
+   // ui->lvProdotti->setEnabled(true);
+    listaProdotti->select();
     ui->cbtipo->setVisible(false);
     ui->cbUM->setVisible(true);
     ui->label_2->setVisible(false);
@@ -265,6 +277,13 @@ void HnuovaOperazione::setUiForScarico()
 
     ui->leQuantita->clear();
     ui->leLotto->clear();
+
+
+    listaFornitori->setFilter("");
+    listaProdotti->setFilter("");
+    connect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setProdottoText()));
+    connect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setLotsFilter()));
+
 }
 
 void HnuovaOperazione::setProdottoText()
@@ -273,6 +292,30 @@ void HnuovaOperazione::setProdottoText()
     prodotto=ui->lvProdotti->model()->index(ui->lvProdotti->currentIndex().row(),1).data(0).toString();
 
     ui->leProdottoCreato->setText(prodotto);
+}
+
+void HnuovaOperazione::setLotsFilter()
+{
+   qDebug()<<"setLotsFilter";
+   QString prodotto;
+
+   QString prfilt;
+   QSqlTableModel *lots=static_cast<QSqlTableModel*>(ui->leLotto->completer()->model());
+   if(ui->radioButton_2->isChecked())
+   {
+
+    prodotto=ui->lvProdotti->model()->index(ui->lvProdotti->currentIndex().row(),0).data(0).toString();
+    prfilt=" and prodotto="+prodotto;
+
+    lots->setFilter(basefilter + prfilt);
+   }
+   else
+   {
+       prodotto=ui->lvProdotti->model()->index(ui->lvProdotti->currentIndex().row(),0).data(0).toString();
+       QSqlTableModel *lots=static_cast<QSqlTableModel*>(ui->leLotto->completer()->model());
+       lots->setFilter(basefilter);
+   }
+    qDebug()<<lots->filter();
 }
 
 void HnuovaOperazione::on_pushButton_4_clicked()
@@ -391,13 +434,15 @@ bool HnuovaOperazione::saveOperationScarico()
     QString lot=ui->leLotto->text();
 
     int idlot;
+    int lum;
     QSqlQuery l(db);
-    QString sql="SELECT ID from lotdef where lot=:lot";
+    QString sql="SELECT ID,um from lotdef where lot=:lot";
     l.prepare(sql);
     l.bindValue(":lot",QVariant(lot));
     l.exec();
     l.first();
     idlot=l.value(0).toInt();
+    lum=l.value(1).toInt();
 
     QString data=QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
 
@@ -406,7 +451,7 @@ bool HnuovaOperazione::saveOperationScarico()
     int prodotto=prodottolist.at(1).toInt();
     int azione=2;
     double quantita=ui->leQuantita->text().toDouble();
-    int UM=ui->cbUM->model()->index(ui->cbUM->currentIndex(),0).data(0).toInt();
+    //int UM=ui->cbUM->model()->index(ui->cbUM->currentIndex(),0).data(0).toInt();
     QString note="";
 
     QString query="INSERT INTO operazioni(IDlotto,data,utente,IDprodotto,azione,quantita,um,note) VALUES (:lot,:data,:utente,:prodotto,:azione,:quantita,:um,:note)";
@@ -418,7 +463,7 @@ bool HnuovaOperazione::saveOperationScarico()
     q.bindValue(":prodotto",QVariant(prodotto));
     q.bindValue(":azione",QVariant(azione));
     q.bindValue(":quantita",QVariant(quantita));
-    q.bindValue(":um",QVariant(UM));
+    q.bindValue(":um",QVariant(lum));
     q.bindValue(":note",QVariant(note));
 
 
@@ -565,7 +610,7 @@ void HnuovaOperazione::on_pushButton_clicked()
    {
         tbm->select();
         emit trigger();
-        QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
+
 
         ui->pushButton->setEnabled(false);
         ui->cbScadenza->setChecked(false);
@@ -577,12 +622,13 @@ void HnuovaOperazione::on_pushButton_clicked()
         ui->leQuantita->clear();
 
 
-        ui->radioButton->setEnabled(false);
-        ui->radioButton_2->setEnabled(false);
+      //  ui->radioButton->setEnabled(false);
+      //  ui->radioButton_2->setEnabled(false);
         ui->lvProdotti->setEnabled(false);
         ui->leProdotti->setEnabled(false);
         ui->cbtipo->setEnabled(false);
         ui->cbAnagrafica->setEnabled(false);
+        QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
 
    }
    else
@@ -635,11 +681,11 @@ void HnuovaOperazione::on_leProdotti_textChanged(const QString &arg1)
 
 void HnuovaOperazione::on_leLotto_textChanged(const QString &arg1)
 {
-    QString filter;
+  /*  QString filter;
     filter="lot LIKE '%";
-    filter.append(ui->leLotto->text());
+    filter.append(arg1);
     filter.append("%'");
-    listaProdotti->setFilter(filter);
+    listaProdotti->setFilter(filter);*/
   //  qDebug()<<listaProdotti->lastError().text()<<filter;
 }
 
@@ -654,8 +700,8 @@ void HnuovaOperazione::on_pushButton_2_clicked()
     ui->pushButton_3->setEnabled(true);
 
 
-    ui->radioButton->setEnabled(false);
-    ui->radioButton_2->setEnabled(false);
+  //  ui->radioButton->setEnabled(false);
+  //  ui->radioButton_2->setEnabled(false);
     ui->lvProdotti->setEnabled(false);
     ui->leProdotti->setEnabled(false);
     ui->cbtipo->setEnabled(false);
@@ -677,13 +723,22 @@ void HnuovaOperazione::on_pushButton_3_clicked()
     ui->pushButton->setEnabled(true);
     ui->pushButton_2->setEnabled(true);
 
-    ui->radioButton->setEnabled(true);
-    ui->radioButton_2->setEnabled(true);
+  //  ui->radioButton->setEnabled(true);
+  //  ui->radioButton_2->setEnabled(true);
     ui->lvProdotti->setEnabled(true);
     ui->leProdotti->setEnabled(true);
     ui->cbtipo->setEnabled(true);
     ui->cbAnagrafica->setEnabled(true);
 
+    if(ui->radioButton->isChecked())
+    {
+        setUiforCarico();
+    }else{
+        setUiForScarico();
+    }
+
     QSqlTableModel* mod=static_cast<QSqlTableModel*>(ui->leLotto->completer()->model());
     mod->select();
 }
+
+

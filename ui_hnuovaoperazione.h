@@ -42,11 +42,6 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QRadioButton *radioButton;
     QRadioButton *radioButton_2;
-    QGridLayout *gridLayout_2;
-    QLabel *label;
-    QComboBox *cbAnagrafica;
-    QLabel *label_10;
-    QLineEdit *leLotto;
     QListView *lvProdotti;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
@@ -54,6 +49,11 @@ public:
     QLineEdit *leProdotti;
     QLabel *label_2;
     QComboBox *cbtipo;
+    QGridLayout *gridLayout_2;
+    QLabel *label;
+    QComboBox *cbAnagrafica;
+    QLabel *label_10;
+    QLineEdit *leLotto;
     QFrame *line_2;
     QFormLayout *formLayout_2;
     QGridLayout *gridLayout;
@@ -123,33 +123,6 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_2);
 
-        gridLayout_2 = new QGridLayout();
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        label = new QLabel(HnuovaOperazione);
-        label->setObjectName(QStringLiteral("label"));
-
-        gridLayout_2->addWidget(label, 0, 0, 1, 1);
-
-        cbAnagrafica = new QComboBox(HnuovaOperazione);
-        cbAnagrafica->setObjectName(QStringLiteral("cbAnagrafica"));
-        cbAnagrafica->setEditable(true);
-        cbAnagrafica->setInsertPolicy(QComboBox::NoInsert);
-
-        gridLayout_2->addWidget(cbAnagrafica, 0, 1, 1, 1);
-
-        label_10 = new QLabel(HnuovaOperazione);
-        label_10->setObjectName(QStringLiteral("label_10"));
-
-        gridLayout_2->addWidget(label_10, 0, 2, 1, 1);
-
-        leLotto = new QLineEdit(HnuovaOperazione);
-        leLotto->setObjectName(QStringLiteral("leLotto"));
-
-        gridLayout_2->addWidget(leLotto, 0, 3, 1, 1);
-
-
-        verticalLayout_2->addLayout(gridLayout_2);
-
         lvProdotti = new QListView(HnuovaOperazione);
         lvProdotti->setObjectName(QStringLiteral("lvProdotti"));
 
@@ -184,6 +157,33 @@ public:
 
 
         verticalLayout_2->addLayout(verticalLayout);
+
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        label = new QLabel(HnuovaOperazione);
+        label->setObjectName(QStringLiteral("label"));
+
+        gridLayout_2->addWidget(label, 0, 0, 1, 1);
+
+        cbAnagrafica = new QComboBox(HnuovaOperazione);
+        cbAnagrafica->setObjectName(QStringLiteral("cbAnagrafica"));
+        cbAnagrafica->setEditable(true);
+        cbAnagrafica->setInsertPolicy(QComboBox::NoInsert);
+
+        gridLayout_2->addWidget(cbAnagrafica, 0, 1, 1, 1);
+
+        label_10 = new QLabel(HnuovaOperazione);
+        label_10->setObjectName(QStringLiteral("label_10"));
+
+        gridLayout_2->addWidget(label_10, 0, 2, 1, 1);
+
+        leLotto = new QLineEdit(HnuovaOperazione);
+        leLotto->setObjectName(QStringLiteral("leLotto"));
+
+        gridLayout_2->addWidget(leLotto, 0, 3, 1, 1);
+
+
+        verticalLayout_2->addLayout(gridLayout_2);
 
         line_2 = new QFrame(HnuovaOperazione);
         line_2->setObjectName(QStringLiteral("line_2"));
@@ -394,10 +394,10 @@ public:
         HnuovaOperazione->setWindowTitle(QApplication::translate("HnuovaOperazione", "Nuova operazione", 0));
         radioButton->setText(QApplication::translate("HnuovaOperazione", "Carico", 0));
         radioButton_2->setText(QApplication::translate("HnuovaOperazione", "Scarico", 0));
-        label->setText(QApplication::translate("HnuovaOperazione", "Fornitore", 0));
-        label_10->setText(QApplication::translate("HnuovaOperazione", "Lotto", 0));
         label_12->setText(QApplication::translate("HnuovaOperazione", "Cerca prodotto:", 0));
         label_2->setText(QApplication::translate("HnuovaOperazione", "Ricerca per tipologia prodotti:", 0));
+        label->setText(QApplication::translate("HnuovaOperazione", "Fornitore", 0));
+        label_10->setText(QApplication::translate("HnuovaOperazione", "Lotto", 0));
         label_6->setText(QApplication::translate("HnuovaOperazione", "Lotto fornitore", 0));
         label_7->setText(QApplication::translate("HnuovaOperazione", "Scadenza:", 0));
         cbScadenza->setText(QApplication::translate("HnuovaOperazione", "Nessuna scadenza", 0));

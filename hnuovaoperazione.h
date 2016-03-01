@@ -35,6 +35,7 @@ private:
     QSqlTableModel *listaTipologie;
     QSqlTableModel *listaTipilot;
     HReadOnlyModelNew *tbm;
+    QString basefilter;
 
 private slots:
     void setFilterProdotti();
@@ -49,6 +50,7 @@ private slots:
     void on_pushButton_clicked();
     int lastInsertID();
     void setProdottoText();
+    void setLotsFilter();
 
 
 
@@ -65,6 +67,8 @@ private slots:
     void on_pushButton_2_clicked();
 
     void on_pushButton_3_clicked();
+
+
 
 signals:
     void trigger();
