@@ -53,6 +53,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_7;
     QPushButton *pushButton_4;
+    QPushButton *pushButton;
     QPushButton *pushButton_6;
     QPushButton *pushButton_3;
 
@@ -61,7 +62,7 @@ public:
         if (HLotti->objectName().isEmpty())
             HLotti->setObjectName(QStringLiteral("HLotti"));
         HLotti->setWindowModality(Qt::NonModal);
-        HLotti->resize(797, 539);
+        HLotti->resize(948, 539);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HLotti->setWindowIcon(icon);
@@ -199,20 +200,29 @@ public:
 
         horizontalLayout->addWidget(pushButton_4);
 
+        pushButton = new QPushButton(HLotti);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon4);
+        pushButton->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pushButton);
+
         pushButton_6 = new QPushButton(HLotti);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_6->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_6->setIcon(icon5);
         pushButton_6->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_6);
 
         pushButton_3 = new QPushButton(HLotti);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon6);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_3);
@@ -241,6 +251,7 @@ public:
         pushButton_5->setText(QApplication::translate("HLotti", "Cerca", 0));
         pushButton_7->setText(QApplication::translate("HLotti", "Modifica", 0));
         pushButton_4->setText(QApplication::translate("HLotti", "Nuova operazione", 0));
+        pushButton->setText(QApplication::translate("HLotti", "Scarico Packages", 0));
         pushButton_6->setText(QApplication::translate("HLotti", "Stampa", 0));
         pushButton_3->setText(QApplication::translate("HLotti", "Chiudi", 0));
     } // retranslateUi

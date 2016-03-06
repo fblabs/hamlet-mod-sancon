@@ -17,7 +17,6 @@ SOURCES += main.cpp\
     huser.cpp \
     hprodotti.cpp \
     hutenti.cpp \
-    hmagazzino.cpp \
     hnewop.cpp \
     hsettings.cpp \
     hreadonlymodel.cpp \
@@ -47,13 +46,13 @@ SOURCES += main.cpp\
     htextedit.cpp \
     hreadonlymodelnew.cpp \
     hduplicate.cpp \
-    hmodifylot.cpp
+    hmodifylot.cpp \
+    hpackagesunload.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
     hprodotti.h \
     hutenti.h \
-    hmagazzino.h \
     hnewop.h \
     hsettings.h \
     hreadonlymodel.h \
@@ -83,13 +82,13 @@ HEADERS  += mainwindow.h \
     htextedit.h \
     hreadonlymodelnew.h \
     hduplicate.h \
-    hmodifylot.h
+    hmodifylot.h \
+    hpackagesunload.h
 
 
 FORMS    += mainwindow.ui \
     hprodotti.ui \
     hutenti.ui \
-    hmagazzino.ui \
     hnewop.ui \
     hsettings.ui \
     hprint.ui \
@@ -117,7 +116,8 @@ FORMS    += mainwindow.ui \
     hrecipeaddrow.ui \
     hduplicate.ui \
     hmodifylot.ui \
-    hlotti.ui
+    hlotti.ui \
+    hpackagesunload.ui
 
 RESOURCES += \
     icons.qrc

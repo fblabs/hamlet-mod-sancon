@@ -53,6 +53,23 @@
         </layout>
        </item>
        <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Fornitore</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="cbAnagrafica">
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <property name="insertPolicy">
+          <enum>QComboBox::NoInsert</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QListView" name="lvProdotti"/>
        </item>
        <item>
@@ -85,32 +102,25 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Fornitore</string>
-           </property>
-          </widget>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="leLotto"/>
          </item>
-         <item row="0" column="1">
-          <widget class="QComboBox" name="cbAnagrafica">
-           <property name="editable">
-            <bool>true</bool>
-           </property>
-           <property name="insertPolicy">
-            <enum>QComboBox::NoInsert</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
+         <item row="1" column="2">
           <widget class="QLabel" name="label_10">
            <property name="text">
             <string>Lotto</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="3">
-          <widget class="QLineEdit" name="leLotto"/>
+         <item row="0" column="2">
+          <widget class="QCheckBox" name="cbShowPackages">
+           <property name="text">
+            <string>Mostra solo Packages</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>

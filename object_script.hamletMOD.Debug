@@ -4,7 +4,6 @@ INPUT(
 ./debug/huser.o
 ./debug/hprodotti.o
 ./debug/hutenti.o
-./debug/hmagazzino.o
 ./debug/hnewop.o
 ./debug/hsettings.o
 ./debug/hreadonlymodel.o
@@ -35,12 +34,12 @@ INPUT(
 ./debug/hreadonlymodelnew.o
 ./debug/hduplicate.o
 ./debug/hmodifylot.o
+./debug/hpackagesunload.o
 ./debug/qrc_icons.o
 ./debug/moc_mainwindow.o
 ./debug/moc_huser.o
 ./debug/moc_hprodotti.o
 ./debug/moc_hutenti.o
-./debug/moc_hmagazzino.o
 ./debug/moc_hnewop.o
 ./debug/moc_hsettings.o
 ./debug/moc_hreadonlymodel.o
@@ -70,4 +69,5 @@ INPUT(
 ./debug/moc_hreadonlymodelnew.o
 ./debug/moc_hduplicate.o
 ./debug/moc_hmodifylot.o
+./debug/moc_hpackagesunload.o
 );

@@ -8,6 +8,8 @@
 #include <QSqlRelationalDelegate>
 #include <QCompleter>
 #include "hreadonlymodel.h"
+#include "huser.h"
+
 namespace Ui {
 class HWarehouse;
 }
@@ -24,7 +26,7 @@ private:
     Ui::HWarehouse *ui;
     QSqlDatabase db;
     QString sConn;
-    QString user;
+    HUser *user;
 
     QSqlTableModel *tmLotti;
     QSqlTableModel *tmProdotti;
@@ -39,7 +41,7 @@ private:
     QString filter;
 
 public slots:
-   void init(QString conn,QString utente);
+   void init(QString conn,HUser *utente);
    void update();
 
 private slots:
@@ -55,6 +57,7 @@ private slots:
    void on_pushButton_3_clicked();
    void updateDataSlt();
 
+   void on_pushButton_5_clicked();
 };
 
 #endif // HWAREHOUSE_H

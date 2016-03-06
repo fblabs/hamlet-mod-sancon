@@ -6,7 +6,6 @@
 #include "hprodotti.h"
 #include "hutenti.h"
 #include "hmodricette.h"
-#include "hmagazzino.h"
 #include "hproduzione.h"
 #include "hlotti.h"
 #include "hsettings.h"
@@ -30,6 +29,7 @@
 #include "hwarehouse.h"
 #include "hmodifyprod.h"
 #include "hpackages.h"
+#include "hpackagesunload.h"
 #include <QDir>
 #include <QProcess>
 
@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
   QSettings settings("DB");
 
     ui->setupUi(this);
-  //  enableDB();
+    enableDB();
 //enableButtonsForRole(true);
    // this->showMaximized();
 
@@ -147,6 +147,7 @@ void MainWindow::disableUI()
     ui->tbAssociazioni->setEnabled(false);
     ui->pbSchede->setEnabled(false);
     ui->pbPackages->setEnabled(false);
+    ui->pbUnload->setEnabled(false);
 }
 
 void MainWindow::enableButtonsForRole()
@@ -213,6 +214,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbUtenti->setEnabled(true);
         ui->tbLogout->setEnabled(true);
         ui->pbPackages->setEnabled(true);
+        ui->pbUnload->setEnabled(true);
 
         break;
 
@@ -228,6 +230,7 @@ void MainWindow::enableButtonsForRole()
         ui->tnProduzione->setEnabled(true);
         ui->tbRicette->setEnabled(true);
         ui->tbAnalisi->setEnabled(true);
+        ui->pbUnload->setEnabled(true);
         break;
     case 4://simone
         ui->tbMagaz->setEnabled(true);
@@ -242,7 +245,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbRicette->setEnabled(true);
         ui->tbAnalisi->setEnabled(true);
         ui->tbModificaLotti->setEnabled(true);
-
+        ui->pbUnload->setEnabled(true);
         break;
      case 5://amministrativo
         ui->toolButton->setEnabled(false);
@@ -262,6 +265,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbUtenti->setEnabled(true);
         ui->tbLogout->setEnabled(true);
         ui->pbPackages->setEnabled(true);
+        ui->pbUnload->setEnabled(true);
         break;
      case 6:
         ui->tnProduzione->setEnabled(true);
@@ -283,6 +287,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbUtenti->setEnabled(true);
         ui->tbLogout->setEnabled(true);
         ui->pbPackages->setEnabled(true);
+        ui->pbUnload->setEnabled(true);
 
 
 
@@ -297,7 +302,7 @@ void MainWindow::on_tbMagaz_clicked()
 
     QApplication::setOverrideCursor(QCursor(Qt::BusyCursor));
     HWarehouse *f=new HWarehouse();
-    f->init(sConn,QString::number(user->getID()));
+    f->init(sConn,user);
     f->showMaximized();
 
     
@@ -306,11 +311,7 @@ void MainWindow::on_tbMagaz_clicked()
 void MainWindow::on_tbLotti_clicked()
 {
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-    HLotti *f = new HLotti();
-    connect (this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
-    f->setConnectionName(sConn);
-    f->setUser(user->getID());
-    emit onConnectionName();
+    HLotti *f = new HLotti(0,user,sConn);
     f->showMaximized();
 }
 
@@ -404,10 +405,8 @@ void MainWindow::on_toolButton_clicked()
 
 void MainWindow::on_pBNewOperation_clicked()
 {
-   HnuovaOperazione *f = new HnuovaOperazione();
-
-  f->setConnectionName(sConn,QString::number(user->getID()));
-  f->showMaximized();
+   HnuovaOperazione *f = new HnuovaOperazione(0,user,sConn);
+   f->showMaximized();
 }
 
 void MainWindow::login()
@@ -491,3 +490,9 @@ void MainWindow::on_pushButton_clicked()
 
 }
 
+
+void MainWindow::on_pbUnload_clicked()
+{
+  HPackagesUnload *f=new HPackagesUnload(0,user,sConn);
+  f->show();
+}

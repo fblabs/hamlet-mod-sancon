@@ -42,6 +42,8 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QRadioButton *radioButton;
     QRadioButton *radioButton_2;
+    QLabel *label;
+    QComboBox *cbAnagrafica;
     QListView *lvProdotti;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
@@ -50,10 +52,9 @@ public:
     QLabel *label_2;
     QComboBox *cbtipo;
     QGridLayout *gridLayout_2;
-    QLabel *label;
-    QComboBox *cbAnagrafica;
-    QLabel *label_10;
     QLineEdit *leLotto;
+    QLabel *label_10;
+    QCheckBox *cbShowPackages;
     QFrame *line_2;
     QFormLayout *formLayout_2;
     QGridLayout *gridLayout;
@@ -123,6 +124,18 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_2);
 
+        label = new QLabel(HnuovaOperazione);
+        label->setObjectName(QStringLiteral("label"));
+
+        verticalLayout_2->addWidget(label);
+
+        cbAnagrafica = new QComboBox(HnuovaOperazione);
+        cbAnagrafica->setObjectName(QStringLiteral("cbAnagrafica"));
+        cbAnagrafica->setEditable(true);
+        cbAnagrafica->setInsertPolicy(QComboBox::NoInsert);
+
+        verticalLayout_2->addWidget(cbAnagrafica);
+
         lvProdotti = new QListView(HnuovaOperazione);
         lvProdotti->setObjectName(QStringLiteral("lvProdotti"));
 
@@ -160,27 +173,21 @@ public:
 
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        label = new QLabel(HnuovaOperazione);
-        label->setObjectName(QStringLiteral("label"));
+        leLotto = new QLineEdit(HnuovaOperazione);
+        leLotto->setObjectName(QStringLiteral("leLotto"));
 
-        gridLayout_2->addWidget(label, 0, 0, 1, 1);
-
-        cbAnagrafica = new QComboBox(HnuovaOperazione);
-        cbAnagrafica->setObjectName(QStringLiteral("cbAnagrafica"));
-        cbAnagrafica->setEditable(true);
-        cbAnagrafica->setInsertPolicy(QComboBox::NoInsert);
-
-        gridLayout_2->addWidget(cbAnagrafica, 0, 1, 1, 1);
+        gridLayout_2->addWidget(leLotto, 1, 3, 1, 1);
 
         label_10 = new QLabel(HnuovaOperazione);
         label_10->setObjectName(QStringLiteral("label_10"));
 
-        gridLayout_2->addWidget(label_10, 0, 2, 1, 1);
+        gridLayout_2->addWidget(label_10, 1, 2, 1, 1);
 
-        leLotto = new QLineEdit(HnuovaOperazione);
-        leLotto->setObjectName(QStringLiteral("leLotto"));
+        cbShowPackages = new QCheckBox(HnuovaOperazione);
+        cbShowPackages->setObjectName(QStringLiteral("cbShowPackages"));
+        cbShowPackages->setChecked(false);
 
-        gridLayout_2->addWidget(leLotto, 0, 3, 1, 1);
+        gridLayout_2->addWidget(cbShowPackages, 0, 2, 1, 1);
 
 
         verticalLayout_2->addLayout(gridLayout_2);
@@ -394,10 +401,11 @@ public:
         HnuovaOperazione->setWindowTitle(QApplication::translate("HnuovaOperazione", "Nuova operazione", 0));
         radioButton->setText(QApplication::translate("HnuovaOperazione", "Carico", 0));
         radioButton_2->setText(QApplication::translate("HnuovaOperazione", "Scarico", 0));
+        label->setText(QApplication::translate("HnuovaOperazione", "Fornitore", 0));
         label_12->setText(QApplication::translate("HnuovaOperazione", "Cerca prodotto:", 0));
         label_2->setText(QApplication::translate("HnuovaOperazione", "Ricerca per tipologia prodotti:", 0));
-        label->setText(QApplication::translate("HnuovaOperazione", "Fornitore", 0));
         label_10->setText(QApplication::translate("HnuovaOperazione", "Lotto", 0));
+        cbShowPackages->setText(QApplication::translate("HnuovaOperazione", "Mostra solo Packages", 0));
         label_6->setText(QApplication::translate("HnuovaOperazione", "Lotto fornitore", 0));
         label_7->setText(QApplication::translate("HnuovaOperazione", "Scadenza:", 0));
         cbScadenza->setText(QApplication::translate("HnuovaOperazione", "Nessuna scadenza", 0));

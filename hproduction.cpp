@@ -969,7 +969,7 @@ void HProduction::on_pushButton_5_clicked()
     ui->cbTipoLotto->setEnabled(false);
     ui->checkBox->setEnabled(false);
     ui->cbClienti->setEnabled(false);
-    ui->leQtyTotal->setReadOnly(false);
+
     getRecipe();
 
 
@@ -995,7 +995,7 @@ void HProduction::on_pushButton_6_clicked()
     ui->cbTipoLotto->setEnabled(true);
     ui->checkBox->setEnabled(true);
     ui->cbClienti->setEnabled(true);
-    ui->leQtyTotal->setText("0.0");
+   // ui->leQtyTotal->setText("0.0");
     ui->leQtyTotal->setReadOnly(true);
  //   getRecipe();
  //   updateTotals();

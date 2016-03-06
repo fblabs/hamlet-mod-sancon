@@ -8,6 +8,7 @@
 #include <QSqlTableModel>
 #include <QSqlDatabase>
 #include "hreadonlymodelnew.h"
+#include "huser.h"
 
 namespace Ui {
 class HLotti;
@@ -18,11 +19,11 @@ class HLotti : public QWidget
     Q_OBJECT
 
 public:
-    explicit HLotti(QWidget *parent = 0);
+    explicit HLotti(QWidget *parent = 0, HUser *puser = 0, QString pcon="");
     ~HLotti();
 
-    void setConnectionName(QString conn);
-    void setUser(int user);
+ //   void setConnectionName(QString conn);
+
 
 private slots:
     void on_pushButton_clicked();
@@ -31,7 +32,7 @@ private slots:
 
     void searchProduct();
 
-    void onConnectionNameSet();
+  //  void onConnectionNameSet();
 
     void resetData();
 
@@ -56,7 +57,7 @@ private:
     QSqlDatabase db;
     QSqlRelationalTableModel *model;
     QString sConnection;
-    int userid;
+    HUser *user;
     HReadOnlyModelNew *tbm;
     QSqlTableModel *mTipi;
     QSqlTableModel *mProdotti;

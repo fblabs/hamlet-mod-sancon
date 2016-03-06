@@ -63,6 +63,8 @@ private slots:
 
 
 
+    void on_pbUnload_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString sConn;

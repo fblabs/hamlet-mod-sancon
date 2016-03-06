@@ -6,6 +6,7 @@
 #include <QSqlTableModel>
 #include <QSqlRelationalTableModel>
 #include "hreadonlymodelnew.h"
+#include "huser.h"
 
 namespace Ui {
 class HnuovaOperazione;
@@ -16,24 +17,23 @@ class HnuovaOperazione : public QWidget
     Q_OBJECT
 
 public:
-    explicit HnuovaOperazione(QWidget *parent = 0);
+    explicit HnuovaOperazione(QWidget *parent = 0, HUser *puser=0,QString conn="");
     ~HnuovaOperazione();
-
-    void setConnectionName(QString conn, QString userID);
-   // void setUser(QString userid);
-
+public slots:
+//    void setConnectionName(QString conn, HUser *pusr);
 private:
     Ui::HnuovaOperazione *ui;
     QString sConn;
     QSqlDatabase db;
     QString sNuovoLot;
     void setupForm();
-    QString utente;
+    HUser *user;
     QSqlTableModel *listaFornitori;
     QSqlTableModel *listaProdotti;
     QSqlTableModel *listaUnitaDiMisura;
     QSqlTableModel *listaTipologie;
     QSqlTableModel *listaTipilot;
+    QSqlTableModel *lots;
     HReadOnlyModelNew *tbm;
     QString basefilter;
 
@@ -51,6 +51,8 @@ private slots:
     int lastInsertID();
     void setProdottoText();
     void setLotsFilter();
+    void setAnagFilter();
+ //   void setListaLots(bool onlyPackages);
 
 
 
@@ -68,7 +70,7 @@ private slots:
 
     void on_pushButton_3_clicked();
 
-
+    void on_cbShowPackages_toggled(bool checked);
 
 signals:
     void trigger();

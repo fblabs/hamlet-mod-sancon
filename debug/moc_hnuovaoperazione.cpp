@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HnuovaOperazione_t {
-    QByteArrayData data[27];
-    char stringdata[429];
+    QByteArrayData data[36];
+    char stringdata[544];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,41 +34,54 @@ QT_MOC_LITERAL(1, 17, 7),
 QT_MOC_LITERAL(2, 25, 0),
 QT_MOC_LITERAL(3, 26, 10),
 QT_MOC_LITERAL(4, 37, 17),
-QT_MOC_LITERAL(5, 55, 13),
-QT_MOC_LITERAL(6, 69, 8),
-QT_MOC_LITERAL(7, 78, 19),
-QT_MOC_LITERAL(8, 98, 20),
-QT_MOC_LITERAL(9, 119, 14),
-QT_MOC_LITERAL(10, 134, 15),
-QT_MOC_LITERAL(11, 150, 9),
-QT_MOC_LITERAL(12, 160, 10),
-QT_MOC_LITERAL(13, 171, 2),
-QT_MOC_LITERAL(14, 174, 23),
-QT_MOC_LITERAL(15, 198, 21),
-QT_MOC_LITERAL(16, 220, 12),
-QT_MOC_LITERAL(17, 233, 15),
-QT_MOC_LITERAL(18, 249, 24),
-QT_MOC_LITERAL(19, 274, 7),
-QT_MOC_LITERAL(20, 282, 22),
-QT_MOC_LITERAL(21, 305, 21),
-QT_MOC_LITERAL(22, 327, 25),
-QT_MOC_LITERAL(23, 353, 4),
-QT_MOC_LITERAL(24, 358, 22),
-QT_MOC_LITERAL(25, 381, 23),
-QT_MOC_LITERAL(26, 405, 23)
+QT_MOC_LITERAL(5, 55, 4),
+QT_MOC_LITERAL(6, 60, 6),
+QT_MOC_LITERAL(7, 67, 4),
+QT_MOC_LITERAL(8, 72, 17),
+QT_MOC_LITERAL(9, 90, 13),
+QT_MOC_LITERAL(10, 104, 8),
+QT_MOC_LITERAL(11, 113, 19),
+QT_MOC_LITERAL(12, 133, 20),
+QT_MOC_LITERAL(13, 154, 14),
+QT_MOC_LITERAL(14, 169, 15),
+QT_MOC_LITERAL(15, 185, 9),
+QT_MOC_LITERAL(16, 195, 10),
+QT_MOC_LITERAL(17, 206, 2),
+QT_MOC_LITERAL(18, 209, 23),
+QT_MOC_LITERAL(19, 233, 21),
+QT_MOC_LITERAL(20, 255, 12),
+QT_MOC_LITERAL(21, 268, 15),
+QT_MOC_LITERAL(22, 284, 13),
+QT_MOC_LITERAL(23, 298, 13),
+QT_MOC_LITERAL(24, 312, 12),
+QT_MOC_LITERAL(25, 325, 12),
+QT_MOC_LITERAL(26, 338, 24),
+QT_MOC_LITERAL(27, 363, 7),
+QT_MOC_LITERAL(28, 371, 22),
+QT_MOC_LITERAL(29, 394, 21),
+QT_MOC_LITERAL(30, 416, 25),
+QT_MOC_LITERAL(31, 442, 4),
+QT_MOC_LITERAL(32, 447, 22),
+QT_MOC_LITERAL(33, 470, 23),
+QT_MOC_LITERAL(34, 494, 23),
+QT_MOC_LITERAL(35, 518, 25)
     },
     "HnuovaOperazione\0trigger\0\0updateData\0"
+    "setConnectionName\0conn\0HUser*\0pusr\0"
     "setFilterProdotti\0saveOperation\0"
     "isCarico\0saveOperationCarico\0"
     "saveOperationScarico\0setUiforCarico\0"
     "setUiForScarico\0getNewLot\0saveNewLot\0"
     "nl\0on_pushButton_4_clicked\0"
     "on_pushButton_clicked\0lastInsertID\0"
-    "setProdottoText\0on_radioButton_2_toggled\0"
-    "checked\0on_radioButton_toggled\0"
-    "on_cbScadenza_toggled\0on_leProdotti_textChanged\0"
-    "arg1\0on_leLotto_textChanged\0"
-    "on_pushButton_2_clicked\0on_pushButton_3_clicked"
+    "setProdottoText\0setLotsFilter\0"
+    "setAnagFilter\0setListaLots\0onlyPackages\0"
+    "on_radioButton_2_toggled\0checked\0"
+    "on_radioButton_toggled\0on_cbScadenza_toggled\0"
+    "on_leProdotti_textChanged\0arg1\0"
+    "on_leLotto_textChanged\0on_pushButton_2_clicked\0"
+    "on_pushButton_3_clicked\0"
+    "on_cbShowPackages_toggled"
 };
 #undef QT_MOC_LITERAL
 
@@ -78,7 +91,7 @@ static const uint qt_meta_data_HnuovaOperazione[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      21,   14, // methods
+      26,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -86,54 +99,64 @@ static const uint qt_meta_data_HnuovaOperazione[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,  119,    2, 0x06 /* Public */,
-       3,    0,  120,    2, 0x06 /* Public */,
+       1,    0,  144,    2, 0x06 /* Public */,
+       3,    0,  145,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,  121,    2, 0x08 /* Private */,
-       5,    1,  122,    2, 0x08 /* Private */,
-       7,    0,  125,    2, 0x08 /* Private */,
-       8,    0,  126,    2, 0x08 /* Private */,
-       9,    0,  127,    2, 0x08 /* Private */,
-      10,    0,  128,    2, 0x08 /* Private */,
-      11,    1,  129,    2, 0x08 /* Private */,
-      12,    1,  132,    2, 0x08 /* Private */,
-      14,    0,  135,    2, 0x08 /* Private */,
-      15,    0,  136,    2, 0x08 /* Private */,
-      16,    0,  137,    2, 0x08 /* Private */,
-      17,    0,  138,    2, 0x08 /* Private */,
-      18,    1,  139,    2, 0x08 /* Private */,
-      20,    1,  142,    2, 0x08 /* Private */,
-      21,    1,  145,    2, 0x08 /* Private */,
-      22,    1,  148,    2, 0x08 /* Private */,
-      24,    1,  151,    2, 0x08 /* Private */,
-      25,    0,  154,    2, 0x08 /* Private */,
-      26,    0,  155,    2, 0x08 /* Private */,
+       4,    2,  146,    2, 0x0a /* Public */,
+       8,    0,  151,    2, 0x08 /* Private */,
+       9,    1,  152,    2, 0x08 /* Private */,
+      11,    0,  155,    2, 0x08 /* Private */,
+      12,    0,  156,    2, 0x08 /* Private */,
+      13,    0,  157,    2, 0x08 /* Private */,
+      14,    0,  158,    2, 0x08 /* Private */,
+      15,    1,  159,    2, 0x08 /* Private */,
+      16,    1,  162,    2, 0x08 /* Private */,
+      18,    0,  165,    2, 0x08 /* Private */,
+      19,    0,  166,    2, 0x08 /* Private */,
+      20,    0,  167,    2, 0x08 /* Private */,
+      21,    0,  168,    2, 0x08 /* Private */,
+      22,    0,  169,    2, 0x08 /* Private */,
+      23,    0,  170,    2, 0x08 /* Private */,
+      24,    1,  171,    2, 0x08 /* Private */,
+      26,    1,  174,    2, 0x08 /* Private */,
+      28,    1,  177,    2, 0x08 /* Private */,
+      29,    1,  180,    2, 0x08 /* Private */,
+      30,    1,  183,    2, 0x08 /* Private */,
+      32,    1,  186,    2, 0x08 /* Private */,
+      33,    0,  189,    2, 0x08 /* Private */,
+      34,    0,  190,    2, 0x08 /* Private */,
+      35,    1,  191,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
     QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void, QMetaType::QString, 0x80000000 | 6,    5,    7,
     QMetaType::Void,
-    QMetaType::Bool, QMetaType::Bool,    6,
+    QMetaType::Bool, QMetaType::Bool,   10,
     QMetaType::Bool,
     QMetaType::Bool,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::QString, QMetaType::QString,    2,
-    QMetaType::Bool, QMetaType::QString,   13,
+    QMetaType::Bool, QMetaType::QString,   17,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Int,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   19,
-    QMetaType::Void, QMetaType::Bool,   19,
-    QMetaType::Void, QMetaType::Bool,   19,
-    QMetaType::Void, QMetaType::QString,   23,
-    QMetaType::Void, QMetaType::QString,   23,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   25,
+    QMetaType::Void, QMetaType::Bool,   27,
+    QMetaType::Void, QMetaType::Bool,   27,
+    QMetaType::Void, QMetaType::Bool,   27,
+    QMetaType::Void, QMetaType::QString,   31,
+    QMetaType::Void, QMetaType::QString,   31,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   27,
 
        0        // eod
 };
@@ -145,32 +168,48 @@ void HnuovaOperazione::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         switch (_id) {
         case 0: _t->trigger(); break;
         case 1: _t->updateData(); break;
-        case 2: _t->setFilterProdotti(); break;
-        case 3: { bool _r = _t->saveOperation((*reinterpret_cast< bool(*)>(_a[1])));
+        case 2: _t->setConnectionName((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< HUser*(*)>(_a[2]))); break;
+        case 3: _t->setFilterProdotti(); break;
+        case 4: { bool _r = _t->saveOperation((*reinterpret_cast< bool(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 4: { bool _r = _t->saveOperationCarico();
+        case 5: { bool _r = _t->saveOperationCarico();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 5: { bool _r = _t->saveOperationScarico();
+        case 6: { bool _r = _t->saveOperationScarico();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 6: _t->setUiforCarico(); break;
-        case 7: _t->setUiForScarico(); break;
-        case 8: { QString _r = _t->getNewLot((*reinterpret_cast< QString(*)>(_a[1])));
+        case 7: _t->setUiforCarico(); break;
+        case 8: _t->setUiForScarico(); break;
+        case 9: { QString _r = _t->getNewLot((*reinterpret_cast< QString(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 9: { bool _r = _t->saveNewLot((*reinterpret_cast< QString(*)>(_a[1])));
+        case 10: { bool _r = _t->saveNewLot((*reinterpret_cast< QString(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 10: _t->on_pushButton_4_clicked(); break;
-        case 11: _t->on_pushButton_clicked(); break;
-        case 12: { int _r = _t->lastInsertID();
+        case 11: _t->on_pushButton_4_clicked(); break;
+        case 12: _t->on_pushButton_clicked(); break;
+        case 13: { int _r = _t->lastInsertID();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 13: _t->setProdottoText(); break;
-        case 14: _t->on_radioButton_2_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 15: _t->on_radioButton_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 16: _t->on_cbScadenza_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 17: _t->on_leProdotti_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 18: _t->on_leLotto_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 19: _t->on_pushButton_2_clicked(); break;
-        case 20: _t->on_pushButton_3_clicked(); break;
+        case 14: _t->setProdottoText(); break;
+        case 15: _t->setLotsFilter(); break;
+        case 16: _t->setAnagFilter(); break;
+        case 17: _t->setListaLots((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 18: _t->on_radioButton_2_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 19: _t->on_radioButton_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 20: _t->on_cbScadenza_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 21: _t->on_leProdotti_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 22: _t->on_leLotto_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 23: _t->on_pushButton_2_clicked(); break;
+        case 24: _t->on_pushButton_3_clicked(); break;
+        case 25: _t->on_cbShowPackages_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+        case 2:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 1:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< HUser* >(); break;
+            }
+            break;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
@@ -215,13 +254,13 @@ int HnuovaOperazione::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 21)
+        if (_id < 26)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 21;
+        _id -= 26;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 21)
-            *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 21;
+        if (_id < 26)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 26;
     }
     return _id;
 }

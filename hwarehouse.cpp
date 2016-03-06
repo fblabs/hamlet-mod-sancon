@@ -15,6 +15,7 @@
 
 #include "hreadonlymodel.h"
 #include "hnuovaoperazione.h"
+#include "hpackagesunload.h"
 
 HWarehouse::HWarehouse(QWidget *parent) :
     QWidget(parent),
@@ -28,7 +29,7 @@ HWarehouse::~HWarehouse()
     delete ui;
 }
 
-void HWarehouse::init(QString conn, QString utente)
+void HWarehouse::init(QString conn, HUser *utente)
 {
     db=QSqlDatabase::database(conn);
 
@@ -309,8 +310,7 @@ void HWarehouse::on_pushButton_4_clicked()
 
 void HWarehouse::on_pushButton_2_clicked()
 {
-    HnuovaOperazione *f = new HnuovaOperazione();
-    f->setConnectionName(sConn,user);
+    HnuovaOperazione *f = new HnuovaOperazione(0,user,sConn);
     f->show();
 
     connect(f,SIGNAL(trigger()),this,SLOT(update()));
@@ -337,3 +337,11 @@ void HWarehouse::on_pushButton_3_clicked()
 }
 
 
+
+void HWarehouse::on_pushButton_5_clicked()
+{
+    HPackagesUnload *f=new HPackagesUnload(0,user,sConn);
+    f->show();
+    connect(f,SIGNAL(update()),this,SLOT(update()));
+
+}

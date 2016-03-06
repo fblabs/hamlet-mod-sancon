@@ -103,7 +103,7 @@ void HLogin2::enableDB()
 
 
         sConnec=settings.value("conn").toString();
-        db = QSqlDatabase::addDatabase("QMYSQL",sConnec);
+        db = QSqlDatabase::database(sConnec);
         db.setHostName(settings.value("address").toString());
         db.setDatabaseName(settings.value("database").toString());
         db.setPort(settings.value("port").toInt());

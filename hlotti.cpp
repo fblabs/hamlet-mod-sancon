@@ -1,5 +1,4 @@
 #include "hlotti.h"
-#include "hmagazzino.h"
 #include "ui_hlotti.h"
 #include <QDebug>
 #include <QSqlError>
@@ -16,31 +15,36 @@
 #include <QClipboard>
 #include <hprint.h>
 #include <QThread>
+#include "huser.h"
+#include "hpackagesunload.h"
 
 
-HLotti::HLotti(QWidget *parent) :
+HLotti::HLotti(QWidget *parent,HUser *puser,QString pcon) :
     QWidget(parent),
     ui(new Ui::HLotti)
 {
+    user=puser;
+    sConnection=pcon;
     ui->setupUi(this);
     //setWindowModality(Qt::ApplicationModal);
     this->setContextMenuPolicy(Qt::CustomContextMenu);
+    setupForm();
 }
 
-void HLotti::setConnectionName(QString conn)
+/*void HLotti::setConnectionName(QString conn)
 {
-    sConnection = conn;
-}
+   // sConnection = conn;
+}*/
 
 HLotti::~HLotti()
 {
     delete ui;
 }
 
-void HLotti::onConnectionNameSet()
+/*void HLotti::onConnectionNameSet()
 {
    setupForm();
-}
+}*/
 
 void HLotti::setupForm()
 {
@@ -65,7 +69,7 @@ void HLotti::setupForm()
 
     tbm->setEditStrategy(QSqlRelationalTableModel::OnManualSubmit);
 
-    ui->twLots->setModel(tbm);
+
 ////qDebug()<<tbm->lastError().text()<<tbm->relation(7).indexColumn();
 
     tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
@@ -87,6 +91,7 @@ void HLotti::setupForm()
 
 
     tbm->select();
+    ui->twLots->setModel(tbm);
 
     //qDebug()<<tbm->query().lastError().text();
 
@@ -159,12 +164,18 @@ void HLotti::copyField()
 
 void HLotti::on_pushButton_clicked()
 {
-   if(QMessageBox::question(this,QApplication::applicationName(),"salvare le modifiche?",QMessageBox::Ok | QMessageBox::Cancel )==QMessageBox::Ok)
+ /*  if(QMessageBox::question(this,QApplication::applicationName(),"salvare le modifiche?",QMessageBox::Ok | QMessageBox::Cancel )==QMessageBox::Ok)
    {
        tbm->submitAll();
        tbm->select();
 
-   }
+   }*/
+
+   HPackagesUnload *f=new HPackagesUnload(0,user,sConnection);
+   f->show();
+   connect(f,SIGNAL(update()),this,SLOT(updateData()));
+
+
 }
 
 void HLotti::on_pushButton_3_clicked()
@@ -180,11 +191,7 @@ void HLotti::searchProduct()
 
 }
 
-void HLotti::setUser(int user)
-{
-    userid = user;
 
-}
 
 void HLotti::resetData()
 {
@@ -197,8 +204,8 @@ void HLotti::resetData()
 void HLotti::on_pushButton_4_clicked()
 {
 
-    HnuovaOperazione *f = new HnuovaOperazione();
-    f->setConnectionName(sConnection,QString::number(userid));
+    HnuovaOperazione *f = new HnuovaOperazione(0,user,sConnection);
+  //  f->setConnectionName(sConnection,user);
     f->show();
 
 
