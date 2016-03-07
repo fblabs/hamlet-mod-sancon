@@ -18,8 +18,8 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -38,7 +38,7 @@ public:
     QComboBox *cbProdotti;
     QVBoxLayout *verticalLayout;
     QLabel *label_3;
-    QListView *listView;
+    QTableView *tvLots;
     QFormLayout *formLayout_3;
     QLabel *label_4;
     QLineEdit *leQuantita;
@@ -51,7 +51,7 @@ public:
     {
         if (HPackagesUnload->objectName().isEmpty())
             HPackagesUnload->setObjectName(QStringLiteral("HPackagesUnload"));
-        HPackagesUnload->resize(394, 430);
+        HPackagesUnload->resize(536, 430);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HPackagesUnload->setWindowIcon(icon);
@@ -104,10 +104,12 @@ public:
 
         verticalLayout->addWidget(label_3);
 
-        listView = new QListView(HPackagesUnload);
-        listView->setObjectName(QStringLiteral("listView"));
+        tvLots = new QTableView(HPackagesUnload);
+        tvLots->setObjectName(QStringLiteral("tvLots"));
+        tvLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tvLots->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-        verticalLayout->addWidget(listView);
+        verticalLayout->addWidget(tvLots);
 
 
         verticalLayout_2->addLayout(verticalLayout);

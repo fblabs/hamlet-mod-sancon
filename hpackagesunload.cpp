@@ -21,7 +21,7 @@ HPackagesUnload::HPackagesUnload(QWidget *parent, HUser* puser, QString cnn) :
     user=puser;
     conn=cnn;
     db=QSqlDatabase::database(conn);
-    baseFilter="attivo=1 and year(data)>year(data)-3";
+    baseFilter="attivo=1 and year(data)>year(data)-3 and tipo=4";
     getClients();
 
 }
@@ -99,8 +99,20 @@ void HPackagesUnload::loadPackages()
     mlots->setFilter(flt);
     mlots->select();
     mlots->setSort(3,Qt::DescendingOrder);
-    ui->listView->setModelColumn(1);
-    ui->listView->setModel(mlots);
+  //  ui->tvLots->setModelColumn(1);
+    ui->tvLots->setModel(mlots);
+
+    ui->tvLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tvLots->setColumnHidden(0,true);
+    ui->tvLots->setColumnHidden(2,true);
+    ui->tvLots->setColumnHidden(5,true);
+    ui->tvLots->setColumnHidden(6,true);
+    ui->tvLots->setColumnHidden(7,true);
+    ui->tvLots->setColumnHidden(8,true);
+    ui->tvLots->setColumnHidden(9,true);
+    ui->tvLots->setColumnHidden(10,true);
+    ui->tvLots->setColumnHidden(11,true);
+    ui->tvLots->setColumnHidden(12,true);
 
 
 
@@ -113,9 +125,9 @@ bool HPackagesUnload::scarica()
     QSqlQuery q(db);
     bool b;
 
-    QString lot=ui->listView->model()->index(ui->listView->selectionModel()->currentIndex().row(),1).data(0).toString();
-    int idlot=ui->listView->model()->index(ui->listView->selectionModel()->currentIndex().row(),0).data(0).toInt();
-    int prodotto=ui->listView->model()->index(ui->listView->selectionModel()->currentIndex().row(),2).data(0).toInt();
+    QString lot=ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),1).data(0).toString();
+    int idlot=ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),0).data(0).toInt();
+    int prodotto=ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),2).data(0).toInt();
     int lum;
 
     QSqlQuery l(db);
@@ -154,13 +166,13 @@ bool HPackagesUnload::scarica()
     {
 
       //loadPackages();
-        QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
+     //   QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
 
 
     }
     else
     {
-        QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando l'operazione",QMessageBox::Ok);
+     //   QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando l'operazione",QMessageBox::Ok);
         qDebug()<<"scarica: " +q.lastError().text()+q.lastQuery();
     }
 
@@ -187,6 +199,7 @@ void HPackagesUnload::on_pushButton_clicked()
       ui->leQuantita->setText("");
       ui->leNote->setText("");
       emit update();
+      loadPackages();
   }
   else
   {

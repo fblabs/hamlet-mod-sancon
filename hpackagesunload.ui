@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>394</width>
+    <width>536</width>
     <height>430</height>
    </rect>
   </property>
@@ -84,7 +84,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QListView" name="listView"/>
+        <widget class="QTableView" name="tvLots">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
