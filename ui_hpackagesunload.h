@@ -68,6 +68,8 @@ public:
 
         cbClienti = new QComboBox(HPackagesUnload);
         cbClienti->setObjectName(QStringLiteral("cbClienti"));
+        cbClienti->setEnabled(true);
+        cbClienti->setMouseTracking(false);
         cbClienti->setEditable(true);
         cbClienti->setInsertPolicy(QComboBox::NoInsert);
 
@@ -85,6 +87,7 @@ public:
 
         cbProdotti = new QComboBox(HPackagesUnload);
         cbProdotti->setObjectName(QStringLiteral("cbProdotti"));
+        cbProdotti->setMouseTracking(false);
         cbProdotti->setEditable(true);
         cbProdotti->setInsertPolicy(QComboBox::NoInsert);
         cbProdotti->setMinimumContentsLength(10);

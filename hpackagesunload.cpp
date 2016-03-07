@@ -33,6 +33,7 @@ HPackagesUnload::~HPackagesUnload()
 
 void HPackagesUnload::getClients()
 {
+    connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getProducts()));
     QSqlTableModel *modClienti=new QSqlTableModel(0,db);
     modClienti->setTable("anagrafica");
     modClienti->setFilter("cliente=1");
@@ -45,12 +46,15 @@ void HPackagesUnload::getClients()
     cmpCl->setCaseSensitivity(Qt::CaseInsensitive);
 
 
-
-    ui->cbClienti->setModelColumn(1);
     ui->cbClienti->setModel(modClienti);
-    ui->cbClienti->setCompleter(cmpCl);
+    ui->cbClienti->setModelColumn(1);
 
-    connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getProducts()));
+    ui->cbClienti->setCompleter(cmpCl);
+  //  ui->cbClienti->setCurrentIndex(1);
+
+
+ //   connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getProducts()));
+
 }
 
 void HPackagesUnload::getProducts()
