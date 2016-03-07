@@ -36,6 +36,7 @@ private slots:
     void on_cbClienti_currentIndexChanged(int index);
     bool scarica();
     void on_pushButton_clicked();
+    void setQuantitaText();
 signals:
     void update();
 };

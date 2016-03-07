@@ -52,6 +52,7 @@ private slots:
     void setProdottoText();
     void setLotsFilter();
     void setAnagFilter();
+
  //   void setListaLots(bool onlyPackages);
 
 

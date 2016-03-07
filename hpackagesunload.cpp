@@ -114,10 +114,18 @@ void HPackagesUnload::loadPackages()
     ui->tvLots->setColumnHidden(11,true);
     ui->tvLots->setColumnHidden(12,true);
 
+    connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setQuantitaText()));
 
 
 
 
+
+}
+
+void HPackagesUnload::setQuantitaText()
+{
+    QString q=ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),4).data(0).toString();
+    ui->leQuantita->setText(q);
 }
 
 bool HPackagesUnload::scarica()
