@@ -97,6 +97,7 @@ void HProduction::init(QString conn, QString userid)
      ui->cbUm->setModelColumn(1);
 
 
+
      getClients();
      ui->cbClienti->setCurrentIndex(ui->cbClienti->model()->rowCount());
      ui->cbClienti->setCurrentIndex(0);

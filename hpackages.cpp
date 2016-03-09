@@ -65,6 +65,7 @@ void HPackages::init(QString conn,QString user)
     ui->cbProdotti->setModelColumn(1);
     ui->cbQua->setModel(tmUnitaMisura);
     ui->cbQua->setModelColumn(1);
+    ui->cbQua->setCurrentIndex(1);
 
     compClienti=new QCompleter();
     compProdotti=new QCompleter();

@@ -188,6 +188,8 @@ void MainWindow::enableButtonsForRole()
         ui->tbUtenti->setEnabled(false);
         ui->tbLogout->setEnabled(true);
         ui->pbPackages->setEnabled(true);
+        ui->pbUnload->setEnabled(true);
+
         break;
 
     case 2:

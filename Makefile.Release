@@ -10082,7 +10082,9 @@ release/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpagesize.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtPrintSupport/qtprintsupportglobal.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QThread \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qthread.h
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qthread.h \
+		hpackagesunload.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hlotti.o hlotti.cpp
 
 release/htextedit.o: htextedit.cpp htextedit.h \
@@ -10800,11 +10802,11 @@ release/hpackagesunload.o: hpackagesunload.cpp hpackagesunload.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QListView \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \

@@ -17,6 +17,7 @@
 #include <QThread>
 #include "huser.h"
 #include "hpackagesunload.h"
+#include <QCompleter>
 
 
 HLotti::HLotti(QWidget *parent,HUser *puser,QString pcon) :
@@ -115,6 +116,7 @@ void HLotti::setupForm()
     mProdotti->setSort(1,Qt::DescendingOrder);
     ui->cbProdotti->setModel(mProdotti);
     ui->cbProdotti->setModelColumn(1);
+    ui->cbProdotti->completer()->setCompletionMode(QCompleter::PopupCompletion);
     mProdotti->select();
 
     ui->cbTipiLot->setCurrentIndex(0);
@@ -246,12 +248,19 @@ void HLotti::setFilter()
         prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
         filter="lotdef.tipo="+ tipo + " and lotdef.prodotto=" + prodotto + " and ";
     }
+    else if(ui->chTipoProdotti->isChecked() /*&& ui->chbT->isChecked()*/)
+    {
+        //filtra  per entrambi
+        tipo=ui->cbTipoProd->model()->index(ui->cbTipoProd->currentIndex(),0).data(0).toString();
+       // prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
+        filter="prodotto in (SELECT ID from prodotti where tipo=" + tipo + ") and ";
+    }
 
 
     filter=filter += datafilter;
 
     tbm->setFilter(filter);
-    //qDebug()<<prodotto<<tipo<<filter<<tbm->lastError().text()<<tbm->query().lastQuery();
+    qDebug()<<prodotto<<tipo<<filter<<tbm->lastError().text()<<tbm->query().lastQuery();
 
 
 }
