@@ -111,7 +111,7 @@ void MainWindow::enableDB()
 void MainWindow::enableUI()
 {
 
-    ui->toolButton->setEnabled(false);
+ /*   ui->toolButton->setEnabled(false);
     ui->tbMagaz->setEnabled(true);
     ui->tbLotti->setEnabled(true);
     ui->tbAnag->setEnabled(true);
@@ -122,7 +122,7 @@ void MainWindow::enableUI()
     ui->tbSettings->setEnabled(true);
     ui->tnProduzione->setEnabled(true);
     ui->tbAnalisi->setEnabled(true);
-    ui->pBNewOperation->setEnabled(true);
+    ui->pBNewOperation->setEnabled(true);*/
 }
 
 
@@ -170,6 +170,7 @@ void MainWindow::enableButtonsForRole()
     case 1:
 
         ui->tnProduzione->setEnabled(true);
+        ui->pbUnload->setEnabled(true);
         ui->tbLogout->setEnabled(true);
         ui->toolButton->setEnabled(false);
         ui->tbMagaz->setEnabled(true);
@@ -188,7 +189,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbUtenti->setEnabled(false);
         ui->tbLogout->setEnabled(true);
         ui->pbPackages->setEnabled(true);
-        ui->pbUnload->setEnabled(true);
+
 
         break;
 
@@ -294,6 +295,7 @@ void MainWindow::enableButtonsForRole()
 
 
     }
+
 
 
 }

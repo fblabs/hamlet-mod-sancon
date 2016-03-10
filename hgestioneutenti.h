@@ -31,7 +31,8 @@ private slots:
     void on_checkBox_toggled(bool checked);
     void on_pushButton_2_clicked();
     void on_pbNuovaPassword_clicked();
-    void getGruppo();
+    int getGruppo();
+    void getIdUtente();
 
     void on_comboBox_currentIndexChanged(int index);
 
@@ -43,6 +44,8 @@ private:
     QSqlRelationalTableModel *utm;
  //   QSqlRelationalTableModel *gtm;
     QSqlTableModel *gtm;
+    int idgruppo;
+    int idutente;
 
 
 };

@@ -219,15 +219,15 @@ void HUtenti::save()
 {
     db.transaction();
 
-
-     //  tm->submitAll();
-    //qDebug()<<"updatesubclient";
-
        updateSubclient();
 
-        tm->submitAll();
+       tm->submitAll();
 
     db.commit();
+
+    qDebug()<<tm->query().lastQuery()<<tm->lastError().text();
+
+    tm->select();
 }
 
 void HUtenti::addreset()

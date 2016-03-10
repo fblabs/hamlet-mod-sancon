@@ -43,7 +43,7 @@ void HGestioneUtenti::init(QString conn)
     gtm->select();
     utm->setTable("utenti");
 
-    utm->setFilter("attivo=1");
+  //  utm->setFilter("attivo=1");
  //   utm->setRelation(3,QSqlRelation("gruppi","ID","descrizione"));
 
 
@@ -55,12 +55,12 @@ void HGestioneUtenti::init(QString conn)
 
     utm->setSort(1,Qt::AscendingOrder);
     utm->setEditStrategy(QSqlRelationalTableModel::OnManualSubmit);
-    gtm->select();
+   // gtm->select();
     utm->select();
 
 
 
-    qDebug()<<utm->lastError().text();
+
 
     ui->lvUtenti->setModel(utm);
     ui->lvUtenti->setModelColumn(1);
@@ -70,7 +70,7 @@ void HGestioneUtenti::init(QString conn)
     mapper->addMapping(ui->leUsername,1);
     mapper->addMapping(ui->lenome,4);
     mapper->addMapping(ui->cbAttivo,5);
-    mapper->addMapping(ui->comboBox,3, "currentIndex");
+   // mapper->addMapping(ui->comboBox,3, "currentIndex");
 
   //  qDebug()<<QString::number(mapper->mappedSection(ui->comboBox));
     mapper->setItemDelegate(new QSqlRelationalDelegate(this));
@@ -79,7 +79,10 @@ void HGestioneUtenti::init(QString conn)
 
 
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), mapper, SLOT(setCurrentModelIndex(QModelIndex)));
+
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(getGruppo()));
+    connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(getIdUtente()));
+
     ui->lvUtenti->setCurrentIndex(utm->index(0,0));
 
 
@@ -124,18 +127,23 @@ bool HGestioneUtenti::updatePassword()
         return q.exec();
 }
 
-void HGestioneUtenti::getGruppo()
+int HGestioneUtenti::getGruppo()
 {
- //  QString rsc=ui->comboBox->currentText();
-   /*
 
-   int i= ui->comboBox->currentData().toInt();
-   qDebug()<<rsc<<i<<ui->comboBox->currentData().toString()<<ui->comboBox->currentText();
-    ui->comboBox->setCurrentIndex(i);*/
 
    int i=ui->comboBox->findText(ui->lvUtenti->model()->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString());
-
    ui->comboBox->setCurrentIndex(i);
+
+   //  idgruppo=i;
+  //  int ui->comboBox->findText()
+    qDebug()<<"getGruppo():"<<i<<utm->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString();
+   return i;
+}
+
+void HGestioneUtenti::getIdUtente()
+{
+    idutente=ui->lvUtenti->model()->index(ui->lvUtenti->currentIndex().row(),0).data(0).toInt();
+    qDebug()<<"getIdUtente():"<<idutente;
 }
 
 
@@ -143,6 +151,7 @@ void HGestioneUtenti::on_pushButton_2_clicked()
 {
    // int i=ui->comboBox->findText(ui->comboBox->findText());
     int i=ui->comboBox->currentIndex();
+
     //------------------
 
     QSqlQuery q(db);
@@ -150,15 +159,38 @@ void HGestioneUtenti::on_pushButton_2_clicked()
     q.exec(sql);
     q.first();
     int idgruppo=q.value(0).toInt();
+    qDebug()<<"salva "<<idgruppo<<sql;
+    // qDebug()<<utm->lastError().text();
 
     //-----------------
 
   //  ui->comboBox->setCurrentIndex(i);
 
+
     utm->setData(utm->index(ui->lvUtenti->currentIndex().row(),3),QVariant(idgruppo));
-    if(utm->submitAll())
+
+
+  //  getGruppo();
+
+    q.prepare("update utenti SET gruppo=:idgruppo where ID=:idutente");
+    q.bindValue(":idgruppo",QVariant(idgruppo));
+    q.bindValue(":idutente",QVariant(idutente));
+    q.exec();
+    qDebug()<<"salva2:"<<"idutente:"<<idutente<<"idgruppo " + q.boundValue(0).toString()<<"idutente: "+q.boundValue(1).toString()<<utm->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString();
+
+    //gtm->select();
+    //utm->select();
+  //  getGruppo();
+    if(utm->submit()){
+
+    QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
+
+    }
+    else
     {
-       utm->select();
+        QMessageBox::information(this,QApplication::applicationName(),"errore salvando le modifiche",QMessageBox::Ok);
+
+
     }
 
 
