@@ -28,4 +28,6 @@ Qt::ItemFlags HReadOnlyModelLots::flags(const QModelIndex &index) const
    }
 
 
+
+
 }

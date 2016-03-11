@@ -51,6 +51,18 @@ private slots:
 
     void on_leLottoRaw_textChanged(const QString &arg1);
 
+    void on_chTipoProdotti_toggled(bool checked);
+
+    void on_cbTipoProd_currentIndexChanged(int index);
+
+    void on_chbT_toggled(bool checked);
+
+    void on_cbTipiLot_currentIndexChanged(int index);
+
+    void on_chbP_toggled(bool checked);
+
+    void on_cbProdotti_currentIndexChanged(int index);
+
 private:
 
     Ui::HLotti *ui;

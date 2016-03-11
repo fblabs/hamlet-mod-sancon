@@ -24,6 +24,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
@@ -35,8 +36,8 @@ class Ui_HPackages
 {
 public:
     QVBoxLayout *verticalLayout_5;
-    QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout_4;
+    QHBoxLayout *horizontalLayout_6;
     QVBoxLayout *verticalLayout_3;
     QFormLayout *formLayout_3;
     QLabel *lbClienti;
@@ -63,9 +64,14 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pbCrea;
     QPushButton *pbAnnulla;
-    QVBoxLayout *verticalLayout;
     QFrame *line;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_3;
     QLabel *label_3;
+    QRadioButton *rbTutti;
+    QRadioButton *rbProdotiiFiniti;
+    QRadioButton *rbVasi;
+    QRadioButton *rbTappi;
     QFormLayout *formLayout;
     QLabel *label_8;
     QLineEdit *leComponente;
@@ -93,10 +99,10 @@ public:
         HPackages->setWindowIcon(icon);
         verticalLayout_5 = new QVBoxLayout(HPackages);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         formLayout_3 = new QFormLayout();
@@ -224,9 +230,6 @@ public:
 
         verticalLayout_3->addLayout(formLayout_4);
 
-
-        verticalLayout_4->addLayout(verticalLayout_3);
-
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         pbCrea = new QPushButton(HPackages);
@@ -245,21 +248,47 @@ public:
         horizontalLayout_4->addWidget(pbAnnulla);
 
 
-        verticalLayout_4->addLayout(horizontalLayout_4);
+        verticalLayout_3->addLayout(horizontalLayout_4);
 
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         line = new QFrame(HPackages);
         line->setObjectName(QStringLiteral("line"));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
 
-        verticalLayout->addWidget(line);
+        verticalLayout_3->addWidget(line);
 
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         label_3 = new QLabel(HPackages);
         label_3->setObjectName(QStringLiteral("label_3"));
 
-        verticalLayout->addWidget(label_3);
+        horizontalLayout_3->addWidget(label_3);
+
+        rbTutti = new QRadioButton(HPackages);
+        rbTutti->setObjectName(QStringLiteral("rbTutti"));
+        rbTutti->setChecked(true);
+
+        horizontalLayout_3->addWidget(rbTutti);
+
+        rbProdotiiFiniti = new QRadioButton(HPackages);
+        rbProdotiiFiniti->setObjectName(QStringLiteral("rbProdotiiFiniti"));
+
+        horizontalLayout_3->addWidget(rbProdotiiFiniti);
+
+        rbVasi = new QRadioButton(HPackages);
+        rbVasi->setObjectName(QStringLiteral("rbVasi"));
+
+        horizontalLayout_3->addWidget(rbVasi);
+
+        rbTappi = new QRadioButton(HPackages);
+        rbTappi->setObjectName(QStringLiteral("rbTappi"));
+
+        horizontalLayout_3->addWidget(rbTappi);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
 
         formLayout = new QFormLayout();
         formLayout->setObjectName(QStringLiteral("formLayout"));
@@ -337,10 +366,10 @@ public:
         verticalLayout->addLayout(horizontalLayout_5);
 
 
-        verticalLayout_4->addLayout(verticalLayout);
+        verticalLayout_3->addLayout(verticalLayout);
 
 
-        horizontalLayout_3->addLayout(verticalLayout_4);
+        horizontalLayout_6->addLayout(verticalLayout_3);
 
         tvPack = new QTableView(HPackages);
         tvPack->setObjectName(QStringLiteral("tvPack"));
@@ -348,10 +377,10 @@ public:
         tvPack->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvPack->horizontalHeader()->setVisible(false);
 
-        horizontalLayout_3->addWidget(tvPack);
+        horizontalLayout_6->addWidget(tvPack);
 
 
-        verticalLayout_5->addLayout(horizontalLayout_3);
+        verticalLayout_4->addLayout(horizontalLayout_6);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -374,8 +403,15 @@ public:
         horizontalLayout->addWidget(pushButton_4);
 
 
-        verticalLayout_5->addLayout(horizontalLayout);
+        verticalLayout_4->addLayout(horizontalLayout);
 
+
+        verticalLayout_5->addLayout(verticalLayout_4);
+
+        rbTutti->raise();
+        rbProdotiiFiniti->raise();
+        rbVasi->raise();
+        rbTappi->raise();
 
         retranslateUi(HPackages);
 
@@ -397,6 +433,10 @@ public:
         pbCrea->setText(QApplication::translate("HPackages", "Inizia", 0));
         pbAnnulla->setText(QApplication::translate("HPackages", "Annulla", 0));
         label_3->setText(QApplication::translate("HPackages", "Componenti:", 0));
+        rbTutti->setText(QApplication::translate("HPackages", "Tutti", 0));
+        rbProdotiiFiniti->setText(QApplication::translate("HPackages", "Prodotti finiti", 0));
+        rbVasi->setText(QApplication::translate("HPackages", "Vasi", 0));
+        rbTappi->setText(QApplication::translate("HPackages", "Tappi", 0));
         label_8->setText(QApplication::translate("HPackages", "Lotto:", 0));
         label_4->setText(QApplication::translate("HPackages", "Quantit\303\240:", 0));
         pbAddRow->setText(QApplication::translate("HPackages", "Aggiungi", 0));

@@ -86,9 +86,11 @@ void HLotti::setupForm()
     tbm->setHeaderData(10,Qt::Horizontal,QObject::tr("Tipologia Lotto"));
  /*   tbm->setHeaderData(9,Qt::Horizontal,QObject::tr("Attivo"));*/
     tbm->setSort(3,Qt::AscendingOrder);
+
     QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
 
     ui->twLots->setColumnHidden(0,true);
+
 
 
     tbm->select();
@@ -102,6 +104,7 @@ void HLotti::setupForm()
     ui->cbTipiLot->setModel(mTipi);
     ui->cbTipiLot->setModelColumn(1);
     mTipi->select();
+    ui->cbTipiLot->setCurrentIndex(0);
 
     mTipiProdotto=new QSqlTableModel(0,db);
     mTipiProdotto->setTable("tipi_prodotto");
@@ -109,17 +112,18 @@ void HLotti::setupForm()
     ui->cbTipoProd->setModel(mTipiProdotto);
     ui->cbTipoProd->setModelColumn(1);
     mTipiProdotto->select();
+    ui->cbTipoProd->setCurrentIndex(0);
 
 
     mProdotti=new QSqlTableModel(0,db);
     mProdotti->setTable("prodotti");
-    mProdotti->setSort(1,Qt::DescendingOrder);
+    mProdotti->setSort(1,Qt::AscendingOrder);
     ui->cbProdotti->setModel(mProdotti);
     ui->cbProdotti->setModelColumn(1);
     ui->cbProdotti->completer()->setCompletionMode(QCompleter::PopupCompletion);
     mProdotti->select();
 
-    ui->cbTipiLot->setCurrentIndex(0);
+
     ui->cbProdotti->setCurrentIndex(0);
 
 
@@ -260,7 +264,7 @@ void HLotti::setFilter()
     filter=filter += datafilter;
 
     tbm->setFilter(filter);
-    qDebug()<<prodotto<<tipo<<filter<<tbm->lastError().text()<<tbm->query().lastQuery();
+  //  qDebug()<<prodotto<<tipo<<filter<<tbm->lastError().text()<<tbm->query().lastQuery();
 
 
 }
@@ -339,3 +343,145 @@ void HLotti::on_leLottoRaw_textChanged(const QString &arg1)
 }
 
 
+
+void HLotti::on_chTipoProdotti_toggled(bool checked)
+{
+    if(checked)
+    {
+
+      //  ui->chTipoProdotti->setEnabled(true); //check tipo prodotti
+      //  ui->chTipoProdotti->setChecked(true);
+
+        ui->chbT->setEnabled(false);//check tipo lotti
+        ui->chbT->setChecked(false);
+        ui->cbTipiLot->setEnabled(false);
+
+        ui->chbP->setEnabled(false);
+        ui->chbP->setChecked(false);
+        ui->cbProdotti->setEnabled(false);
+
+
+    }
+    else
+    {
+        //  ui->chTipoProdotti->setEnabled(true); //check tipo prodotti
+         // ui->chTipoProdotti->setChecked(true);
+          ui->cbTipoProd->setEnabled(checked); //combo tipo prodotti
+
+          ui->chbT->setEnabled(true);//check tipo lotti
+        //  ui->chbT->setChecked(false);
+          ui->cbTipiLot->setEnabled(false);
+
+          ui->chbP->setEnabled(true);
+          ui->chbP->setChecked(false);
+          ui->cbProdotti->setEnabled(false);
+    }
+    ui->cbTipoProd->setEnabled(checked); //combo tipo prodotti
+
+
+
+    setFilter();
+
+}
+
+void HLotti::on_cbTipoProd_currentIndexChanged(int index)
+{
+    if(ui->cbTipoProd->isEnabled())
+    {
+    setFilter();
+    }
+}
+
+
+
+void HLotti::on_chbT_toggled(bool checked)
+{
+
+
+    if(checked)
+    {
+
+        ui->chTipoProdotti->setEnabled(false); //check tipo prodotti
+        ui->chTipoProdotti->setChecked(false);
+        ui->cbTipoProd->setEnabled(false); //combo tipo prodotti
+
+      //  ui->chbT->setEnabled(false);//check tipo lotti
+      //  ui->chbT->setChecked(false);
+        ui->cbTipiLot->setEnabled(true);
+
+        ui->chbP->setEnabled(true);
+        ui->chbP->setChecked(false);
+     //   ui->cbProdotti->setEnabled(false);
+
+
+    }
+    else
+    {
+          ui->chTipoProdotti->setEnabled(true); //check tipo prodotti
+          ui->chTipoProdotti->setChecked(false);
+        //  ui->cbTipoProd->setEnabled(false); //combo tipo prodotti
+
+       //   ui->chbT->setEnabled(true);//check tipo lotti
+       //   ui->chbT->setChecked(false);
+       //   ui->cbTipiLot->setEnabled(false);
+
+          ui->chbP->setEnabled(true);
+       //   ui->chbP->setChecked(false);
+       //   ui->cbProdotti->setEnabled(false);
+    }
+
+    setFilter();
+}
+
+void HLotti::on_cbTipiLot_currentIndexChanged(int index)
+{
+    if(ui->cbTipiLot->isEnabled())
+    {
+        setFilter();
+    }
+}
+
+
+
+void HLotti::on_chbP_toggled(bool checked)
+{
+    if(checked)
+    {
+
+        ui->chTipoProdotti->setEnabled(false); //check tipo prodotti
+        ui->chTipoProdotti->setChecked(false);
+       // ui->cbTipoProd->setEnabled(false); //combo tipo prodotti
+
+      //  ui->chbT->setEnabled(true);//check tipo lotti
+      //  ui->chbT->setChecked(false);
+      //  ui->cbTipiLot->setEnabled(false);
+
+     //   ui->chbP->setEnabled(true);
+      //  ui->chbP->setChecked(false);
+        ui->cbProdotti->setEnabled(true);
+
+
+    }
+    else
+    {
+          ui->chTipoProdotti->setEnabled(true); //check tipo prodotti
+       //   ui->chTipoProdotti->setChecked(false);
+       //   ui->cbTipoProd->setEnabled(false); //combo tipo prodotti
+
+       //  ui->chbT->setEnabled(true);//check tipo lotti
+       //   ui->chbT->setChecked(false);
+       //   ui->cbTipiLot->setEnabled(false);
+
+          ui->chbP->setEnabled(true);
+          ui->chbP->setChecked(false);
+          ui->cbProdotti->setEnabled(false);
+    }
+    setFilter();
+}
+
+
+
+void HLotti::on_cbProdotti_currentIndexChanged(int index)
+{
+    setFilter();
+}

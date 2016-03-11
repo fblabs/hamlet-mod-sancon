@@ -37,10 +37,10 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_3;
     QLineEdit *leLottoRaw;
-    QCheckBox *chbT;
-    QComboBox *cbTipiLot;
     QCheckBox *chTipoProdotti;
     QComboBox *cbTipoProd;
+    QCheckBox *chbT;
+    QComboBox *cbTipiLot;
     QCheckBox *chbP;
     QComboBox *cbProdotti;
     QHBoxLayout *horizontalLayout_3;
@@ -87,18 +87,6 @@ public:
 
         horizontalLayout_2->addWidget(leLottoRaw);
 
-        chbT = new QCheckBox(HLotti);
-        chbT->setObjectName(QStringLiteral("chbT"));
-        chbT->setMinimumSize(QSize(66, 0));
-        chbT->setMaximumSize(QSize(60, 16777215));
-
-        horizontalLayout_2->addWidget(chbT);
-
-        cbTipiLot = new QComboBox(HLotti);
-        cbTipiLot->setObjectName(QStringLiteral("cbTipiLot"));
-
-        horizontalLayout_2->addWidget(cbTipiLot);
-
         chTipoProdotti = new QCheckBox(HLotti);
         chTipoProdotti->setObjectName(QStringLiteral("chTipoProdotti"));
         chTipoProdotti->setMinimumSize(QSize(80, 0));
@@ -111,6 +99,19 @@ public:
 
         horizontalLayout_2->addWidget(cbTipoProd);
 
+        chbT = new QCheckBox(HLotti);
+        chbT->setObjectName(QStringLiteral("chbT"));
+        chbT->setMinimumSize(QSize(66, 0));
+        chbT->setMaximumSize(QSize(60, 16777215));
+
+        horizontalLayout_2->addWidget(chbT);
+
+        cbTipiLot = new QComboBox(HLotti);
+        cbTipiLot->setObjectName(QStringLiteral("cbTipiLot"));
+        cbTipiLot->setEnabled(false);
+
+        horizontalLayout_2->addWidget(cbTipiLot);
+
         chbP = new QCheckBox(HLotti);
         chbP->setObjectName(QStringLiteral("chbP"));
         chbP->setMaximumSize(QSize(66, 16777215));
@@ -119,6 +120,7 @@ public:
 
         cbProdotti = new QComboBox(HLotti);
         cbProdotti->setObjectName(QStringLiteral("cbProdotti"));
+        cbProdotti->setEnabled(false);
         cbProdotti->setEditable(true);
         cbProdotti->setInsertPolicy(QComboBox::NoInsert);
 
@@ -243,8 +245,8 @@ public:
     {
         HLotti->setWindowTitle(QApplication::translate("HLotti", "Lotti", 0));
         label_3->setText(QApplication::translate("HLotti", "Lotto:", 0));
-        chbT->setText(QApplication::translate("HLotti", "Tipo lotto:", 0));
         chTipoProdotti->setText(QApplication::translate("HLotti", "Tipo prodotto:", 0));
+        chbT->setText(QApplication::translate("HLotti", "Tipo lotto:", 0));
         chbP->setText(QApplication::translate("HLotti", "Prodotto:", 0));
         label->setText(QApplication::translate("HLotti", "Dal:", 0));
         label_2->setText(QApplication::translate("HLotti", "Al:", 0));

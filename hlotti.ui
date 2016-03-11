@@ -44,28 +44,6 @@
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="chbT">
-             <property name="minimumSize">
-              <size>
-               <width>66</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>60</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Tipo lotto:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="cbTipiLot"/>
-           </item>
-           <item>
             <widget class="QCheckBox" name="chTipoProdotti">
              <property name="minimumSize">
               <size>
@@ -88,6 +66,32 @@
             <widget class="QComboBox" name="cbTipoProd"/>
            </item>
            <item>
+            <widget class="QCheckBox" name="chbT">
+             <property name="minimumSize">
+              <size>
+               <width>66</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>60</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Tipo lotto:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cbTipiLot">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QCheckBox" name="chbP">
              <property name="maximumSize">
               <size>
@@ -102,6 +106,9 @@
            </item>
            <item>
             <widget class="QComboBox" name="cbProdotti">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="editable">
               <bool>true</bool>
              </property>
