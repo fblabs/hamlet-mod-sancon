@@ -69,9 +69,12 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_3;
     QRadioButton *rbTutti;
-    QRadioButton *rbProdotiiFiniti;
+    QRadioButton *rbProdottiFiniti;
     QRadioButton *rbVasi;
     QRadioButton *rbTappi;
+    QTableView *tvLots;
+    QLabel *label_10;
+    QLineEdit *leSearch;
     QFormLayout *formLayout;
     QLabel *label_8;
     QLineEdit *leComponente;
@@ -93,7 +96,7 @@ public:
         if (HPackages->objectName().isEmpty())
             HPackages->setObjectName(QStringLiteral("HPackages"));
         HPackages->setWindowModality(Qt::NonModal);
-        HPackages->resize(1257, 725);
+        HPackages->resize(1257, 832);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HPackages->setWindowIcon(icon);
@@ -272,10 +275,10 @@ public:
 
         horizontalLayout_3->addWidget(rbTutti);
 
-        rbProdotiiFiniti = new QRadioButton(HPackages);
-        rbProdotiiFiniti->setObjectName(QStringLiteral("rbProdotiiFiniti"));
+        rbProdottiFiniti = new QRadioButton(HPackages);
+        rbProdottiFiniti->setObjectName(QStringLiteral("rbProdottiFiniti"));
 
-        horizontalLayout_3->addWidget(rbProdotiiFiniti);
+        horizontalLayout_3->addWidget(rbProdottiFiniti);
 
         rbVasi = new QRadioButton(HPackages);
         rbVasi->setObjectName(QStringLiteral("rbVasi"));
@@ -289,6 +292,25 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout_3);
+
+        tvLots = new QTableView(HPackages);
+        tvLots->setObjectName(QStringLiteral("tvLots"));
+        tvLots->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvLots->setSortingEnabled(true);
+        tvLots->horizontalHeader()->setStretchLastSection(true);
+        tvLots->verticalHeader()->setVisible(false);
+
+        verticalLayout->addWidget(tvLots);
+
+        label_10 = new QLabel(HPackages);
+        label_10->setObjectName(QStringLiteral("label_10"));
+
+        verticalLayout->addWidget(label_10);
+
+        leSearch = new QLineEdit(HPackages);
+        leSearch->setObjectName(QStringLiteral("leSearch"));
+
+        verticalLayout->addWidget(leSearch);
 
         formLayout = new QFormLayout();
         formLayout->setObjectName(QStringLiteral("formLayout"));
@@ -408,10 +430,6 @@ public:
 
         verticalLayout_5->addLayout(verticalLayout_4);
 
-        rbTutti->raise();
-        rbProdotiiFiniti->raise();
-        rbVasi->raise();
-        rbTappi->raise();
 
         retranslateUi(HPackages);
 
@@ -434,9 +452,10 @@ public:
         pbAnnulla->setText(QApplication::translate("HPackages", "Annulla", 0));
         label_3->setText(QApplication::translate("HPackages", "Componenti:", 0));
         rbTutti->setText(QApplication::translate("HPackages", "Tutti", 0));
-        rbProdotiiFiniti->setText(QApplication::translate("HPackages", "Prodotti finiti", 0));
+        rbProdottiFiniti->setText(QApplication::translate("HPackages", "Prodotti finiti", 0));
         rbVasi->setText(QApplication::translate("HPackages", "Vasi", 0));
         rbTappi->setText(QApplication::translate("HPackages", "Tappi", 0));
+        label_10->setText(QApplication::translate("HPackages", "Cerca:", 0));
         label_8->setText(QApplication::translate("HPackages", "Lotto:", 0));
         label_4->setText(QApplication::translate("HPackages", "Quantit\303\240:", 0));
         pbAddRow->setText(QApplication::translate("HPackages", "Aggiungi", 0));

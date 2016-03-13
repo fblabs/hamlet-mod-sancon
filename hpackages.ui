@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1257</width>
-    <height>725</height>
+    <height>832</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -236,7 +236,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QRadioButton" name="rbProdotiiFiniti">
+              <widget class="QRadioButton" name="rbProdottiFiniti">
                <property name="text">
                 <string>Prodotti finiti</string>
                </property>
@@ -257,6 +257,32 @@
               </widget>
              </item>
             </layout>
+           </item>
+           <item>
+            <widget class="QTableView" name="tvLots">
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Cerca:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="leSearch"/>
            </item>
            <item>
             <layout class="QFormLayout" name="formLayout">
@@ -438,10 +464,6 @@
    </item>
   </layout>
   <zorder></zorder>
-  <zorder>rbTutti</zorder>
-  <zorder>rbProdotiiFiniti</zorder>
-  <zorder>rbVasi</zorder>
-  <zorder>rbTappi</zorder>
  </widget>
  <resources>
   <include location="icons.qrc"/>

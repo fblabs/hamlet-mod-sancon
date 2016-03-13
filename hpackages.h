@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QSqlDatabase>
 #include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
 #include <QCompleter>
 #include <QStandardItem>
 #include <QStandardItemModel>
@@ -27,15 +28,18 @@ private:
     Ui::HPackages *ui;
     QSqlDatabase db;
     QString sConn;
+    QSqlRelationalTableModel *tmLots;
     QSqlTableModel *tmClienti;
     QSqlTableModel *tmProdotti;
     QSqlTableModel *tmUnitaMisura;
     QCompleter *compClienti;
     QCompleter *compProdotti;
-    QList<QStandardItem*>addRow(QString idprod, QString sDescProdotto, QString idlotto, QString sLotto, QString sQuantita);
+    QCompleter *clots;
+    QList<QStandardItem*>addRow(QString idprod, QString sDescProdotto, QString idlotto, QString sLotto, QString sQuantita, QString sum);
     QStandardItemModel *mod;
     QString userid;
     int newlotid;
+    QString basefilter;
 
 
     bool showSubclients;
@@ -63,13 +67,24 @@ private slots:
     void on_checkBox_2_toggled(bool checked);
     void on_pushButton_3_clicked();
     void on_pbAnnulla_clicked();
-    int getLastId();
+    int  getLastId();
      int getIdLotto(QString lotto);
     void getEanList();
     void resetForm();
+    void setLotText();
+    int getumid(int idlotto);
+    QString getumdesc(int umid);
+    int getumidfromdesc(QString pdesc);
 
 
 
+
+    void on_rbTutti_toggled(bool checked);
+
+    void on_rbProdottiFiniti_toggled(bool checked);
+    void on_rbVasi_toggled(bool checked);
+    void on_rbTappi_toggled(bool checked);
+    void on_leSearch_textChanged(const QString &arg1);
 };
 
 #endif // HPACKAGES_H

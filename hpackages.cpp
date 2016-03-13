@@ -11,6 +11,8 @@
 #include <QSqlError>
 #include <QMessageBox>
 #include <QDebug>
+#include <QDate>
+#include <QSqlRelation>
 
 HPackages::HPackages(QWidget *parent) :
     QWidget(parent),
@@ -30,6 +32,11 @@ void HPackages::init(QString conn,QString user)
     sConn=conn;
     userid=user;
 
+
+
+    basefilter="lotdef.attivo=1 and year(lotdef.data) > " +QString::number(QDate::currentDate().addYears(-3).year());
+    qDebug()<<basefilter;
+
     ui->checkBox->setVisible(false);
     tmClienti=new QSqlTableModel(0,db);
     tmProdotti = new QSqlTableModel(0,db);
@@ -40,15 +47,19 @@ void HPackages::init(QString conn,QString user)
     tmClienti->setSort(1,Qt::AscendingOrder);
     tmClienti->select();
 
-    QSqlTableModel *tmLots=new QSqlTableModel(0,db);
+    tmLots=new QSqlRelationalTableModel(0,db);
     tmLots->setTable("lotdef");
-    tmLots->setFilter("attivo=1");
+    tmLots->setFilter(basefilter);
     tmLots->setSort(3,Qt::DescendingOrder);
+    tmLots->setRelation(2,QSqlRelation("prodotti","ID","descrizione"));
+    tmLots->setRelation(5,QSqlRelation("unita_di_misura","ID","descrizione"));
     tmLots->select();
-    QCompleter *clots=new QCompleter(tmLots);
+
+  /*  clots=new QCompleter(tmLots);
     clots->setCompletionColumn(1);
     clots->setCaseSensitivity(Qt::CaseInsensitive);
-    ui->leComponente->setCompleter(clots);
+    clots->setCompletionMode(QCompleter::PopupCompletion);
+    ui->leComponente->setCompleter(clots);*/
 
     ui->cbClienti->setModel(tmClienti);
     ui->cbClienti->setModelColumn(1);
@@ -85,12 +96,30 @@ void HPackages::init(QString conn,QString user)
     showSubclients=ui->checkBox->isChecked();
     filterBySubclients=ui->checkBox_2->isChecked();
 
+
+    ui->tvLots->setModel(tmLots);
+    qDebug()<<tmLots->lastError().text();
+
+//    ui->tvLots->setModelColumn(1);
+
+
+    ui->tvLots->setColumnHidden(0,true);
+    ui->tvLots->setColumnHidden(6,true);
+    ui->tvLots->setColumnHidden(7,true);
+    ui->tvLots->setColumnHidden(8,true);
+    ui->tvLots->setColumnHidden(9,true);
+    ui->tvLots->setColumnHidden(10,true);
+    ui->tvLots->setColumnHidden(11,true);
+    ui->tvLots->setColumnHidden(12,true);
+    ui->tvLots->setEditTriggers(QTableView::NoEditTriggers);
+
    // ui->lvSubclienti->setVisible(false);
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(filterProducts()));
   //  filterProducts();
     connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(createNewLot()));
     connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(getEanList()));
+    connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setLotText()));
 
     ui->pbAnnulla->setEnabled(false);
     ui->pbCrea->setEnabled(true);//
@@ -100,7 +129,14 @@ void HPackages::init(QString conn,QString user)
     ui->pbRemoveRow->setEnabled(false);
     ui->cbProdotti->setCurrentIndex(0);
  //   ui->checkBox_2->setVisible(false);
+    ui->tvLots->setEnabled(false);
 
+}
+
+void HPackages::setLotText()
+{
+    QString lot=ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),1).data(0).toString();
+    ui->leComponente->setText(lot);
 }
 
 void HPackages::resetForm()
@@ -113,6 +149,7 @@ void HPackages::resetForm()
     ui->pbAddRow->setEnabled(false);
     ui->pbRemoveRow->setEnabled(false);
     ui->leNewLot->setText("");
+    ui->tvLots->setEnabled(false);
 }
 
 void HPackages::getEanList()
@@ -172,13 +209,13 @@ qDebug()<<"filterProducts:"+idcliente;
   QString filtro="ID in (SELECT ricette.ID_prodotto FROM ricette, associazioni where ricette.ID=associazioni.ID_ricetta and associazioni.visualizza=1 and associazioni.ID_cliente=";
   filtro.append(QString::number(idcliente)+")");
 
-  qDebug()<<filtro;
+//  qDebug()<<filtro;
   tmProdotti->setFilter(filtro);
   ui->cbProdotti->setCurrentIndex(0);
 
 
 
-qDebug()<<tmProdotti->query().lastQuery();
+//qDebug()<<tmProdotti->query().lastQuery();
 }
 
 void HPackages::getSubclients()
@@ -303,6 +340,15 @@ void HPackages::createNewLot()
 
 void HPackages::on_pbCrea_clicked()
 {
+    bool ok;
+
+    ok=ui->leQuantLot->text().toDouble(&ok);
+    if(!ok)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Quantità non valida",QMessageBox::Ok);
+        return;
+    }
+
     createNewLot();
     createNewLotInterno();
     mod=new QStandardItemModel();
@@ -315,6 +361,7 @@ void HPackages::on_pbCrea_clicked()
     ui->leQuantita->setEnabled(true);
     ui->pbAddRow->setEnabled(true);
     ui->pbRemoveRow->setEnabled(true);
+    ui->tvLots->setEnabled(true);
 }
 
 int HPackages::getIdProdotto(QString lotto)
@@ -366,7 +413,7 @@ int HPackages::getIdLotto(QString lotto)
 
 }
 
-QList<QStandardItem*> HPackages::addRow( QString idprod,QString sDescProdotto,QString idlotto,QString sLotto,QString sQuantita)
+QList<QStandardItem*> HPackages::addRow( QString idprod,QString sDescProdotto,QString idlotto,QString sLotto,QString sQuantita,QString sum)
 {
 
 
@@ -380,9 +427,10 @@ QList<QStandardItem*> HPackages::addRow( QString idprod,QString sDescProdotto,QS
         QStandardItem *idltt=new QStandardItem(idlotto);
         QStandardItem *lotto=new QStandardItem(sLotto);
         QStandardItem *quantita= new QStandardItem(sQuantita);
+        QStandardItem *um = new QStandardItem(sum);
 
 
-        fields <<idprodotto<<descr<<idltt<<lotto<<quantita;
+        fields <<idprodotto<<descr<<idltt<<lotto<<quantita<<um;
 
 
         return fields;
@@ -397,11 +445,20 @@ void HPackages::on_pbAddRow_clicked()
     int idlotto=getIdLotto(lotto);
     QString desc=getDescProdotto(lotto);
     int idprod=getIdProdotto(lotto);
+    bool ok;
+
+    ok=ui->leQuantita->text().toDouble(&ok);
+    if(!ok)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Quantità non valida",QMessageBox::Ok);
+        return;
+    }
+ //   int um=getumid(idlotto);
    if(checkLot(lotto))
    {
         if(ui->leComponente->text().size()>4 && ui->leQuantita->text().toDouble() >0)
        {
-         mod->appendRow(addRow(QString::number(idprod),getDescProdotto(lotto),QString::number(getIdLotto(lotto)),lotto,ui->leQuantita->text().trimmed()));
+         mod->appendRow(addRow(QString::number(idprod),getDescProdotto(lotto),QString::number(getIdLotto(lotto)),lotto,ui->leQuantita->text().trimmed(),getumdesc(getumid(idlotto))));
          ui->leComponente->setText("");
          ui->leQuantita->setText(getDescProdotto(ui->leQuantita->text().trimmed()));
        }
@@ -411,7 +468,6 @@ void HPackages::on_pbAddRow_clicked()
        QMessageBox::warning(this,QApplication::applicationName(),"Il lotto non esiste. Può essere un errore di inserimento",QMessageBox::Ok);
 
    }
-
 
 }
 
@@ -490,6 +546,7 @@ db.transaction();
    if(!b)
    {
        db.rollback();
+       qDebug()<<"errore in chargeNewLot";
        return false;
    }
 
@@ -500,13 +557,15 @@ db.transaction();
     if(!b)
     {
         db.rollback();
+        qDebug()<<"errore in unloadNewLotComponents";
         return false;
     }
 
-//4.salvo lo scarico in composizione_lot
+
 
 
         db.commit();
+         qDebug()<<"saveLot ok";
      return true;
 
 }
@@ -535,7 +594,7 @@ bool HPackages::saveNewLotInLotdef(QString lotto)
     q.bindValue(":prodotto",QVariant(idp));
     q.bindValue(":data",QVariant(QDateTime::currentDateTime()));
     q.bindValue(":giacenza",QVariant(ui->leQuantLot->text()));
-    q.bindValue(":um",QVariant(ui->cbQua->model()->index(ui->cbQua->currentIndex(),0).data(0).toInt()));
+    q.bindValue(":um",2);
     q.bindValue(":scadenza",QVariant(ui->dateEdit->date()));
     q.bindValue(":anagrafica",QVariant(anagrafica));
     q.bindValue(":ean",QVariant(ui->leLest->text()));
@@ -572,12 +631,12 @@ bool HPackages::chargeNewLot(int id)
          q.bindValue(":idprodotto",QVariant(idp));
          q.bindValue(":azione",QVariant(1));
          q.bindValue(":quantita",QVariant(quant));
-         q.bindValue(":um",QVariant(1));
+         q.bindValue(":um",QVariant(2));
          q.bindValue(":note",QVariant(note));
 
          b=q.exec();
 
-         //qDebug()<<q.lastError().text()<<q.lastInsertId().toString()<<QString::number(idp);
+         qDebug()<<"CARICO NUOVO LOTTO:"<<q.lastInsertId().toString()<<QString::number(idp)<<q.lastError().text();
 
 
 
@@ -591,17 +650,20 @@ bool HPackages::unloadNewLotComponents(int nlot)
     bool b;
     QSqlQuery q(db);
     QString sql;
-    QString lot;
+  //  QString lot;
 
     int lotdascaricare;
     int prodottodascaricare;
     int azione=2;
     int operazione;
+    int um;
 
     for (int row=0;row<ui->tvPack->model()->rowCount();row++)
     {
          lotdascaricare=ui->tvPack->model()->index(row,2).data(0).toInt();
          prodottodascaricare=ui->tvPack->model()->index(row,0).data(0).toInt();
+         um=getumidfromdesc(ui->tvPack->model()->index(row,5).data(0).toString());
+         qDebug()<<"unload newlot components gtumidfromdesc"<<um;
 
 
         sql="INSERT INTO `operazioni` (`IDlotto`,`data`,`utente`, `IDprodotto`,`azione`,`quantita`,`um`) VALUES (:idlot,:data,:utente,:idprodotto,:azione,:quantita,:um)";
@@ -616,19 +678,20 @@ bool HPackages::unloadNewLotComponents(int nlot)
         q.bindValue(":idprodotto",QVariant(prodottodascaricare));
         q.bindValue(":azione",QVariant(azione));
         q.bindValue(":quantita",ui->tvPack->model()->index(row,4).data(0));
-        q.bindValue(":um",QVariant(1));
+        q.bindValue(":um",QVariant(um));
 
         b=q.exec();
-//  qDebug()<<"unload"<<q.lastError().text()<<q.boundValue(3).toString()<<QString::number(prodottodascaricare);
+        operazione=q.lastInsertId().toInt();
+  qDebug()<<"unloadLOT b:"+b<<q.lastError().text()<<q.boundValue(3).toString()<<QString::number(prodottodascaricare);
 
-   operazione=q.lastInsertId().toInt();
+
    sql="insert into composizione_lot (id_lotto,operazione) values (:nlot,:operazione)";
    q.prepare(sql);
    q.bindValue(":nlot",QVariant(nlot));
    q.bindValue(":operazione",QVariant(operazione));
    b=q.exec();
 
-//   qDebug()<<q.lastError().text()<<q.lastInsertId().toString();
+   qDebug()<<"COMPOSIZIONE SCARICO COMPONENHTE:"<<"nlot"<<nlot<<"operazione"<<operazione;
         if (!b)return false;
 
     }
@@ -640,13 +703,75 @@ bool HPackages::unloadNewLotComponents(int nlot)
 
 }
 
+QString HPackages::getumdesc(int umid)
+{
+    QSqlQuery *q=new QSqlQuery(db);
+
+    QString sql;
+
+
+    sql="SELECT descrizione FROM unita_di_misura WHERE ID=:id";
+
+    q->prepare(sql);
+    q->bindValue(":id",QVariant(umid));
+
+    q->exec();
+    q->first();
+    return q->value(0).toString();
+}
+
+
+int HPackages::getumid(int idlotto)
+{
+    QSqlQuery *q=new QSqlQuery(db);
+
+    QString sql;
+
+
+    sql="SELECT um FROM lotdef WHERE ID=:id";
+
+    q->prepare(sql);
+    q->bindValue(":id",QVariant(idlotto));
+
+    q->exec();
+    q->first();
+    return q->value(0).toInt();
+
+
+}
+
+int HPackages::getumidfromdesc(QString pdesc)
+{
+    QSqlQuery *q=new QSqlQuery(db);
+
+    QString sql;
+
+
+    sql="SELECT ID FROM unita_di_misura WHERE descrizione=:desc";
+
+    q->prepare(sql);
+    q->bindValue(":desc",QVariant(pdesc));
+
+    q->exec();
+    q->first();
+
+    int res=q->value(0).toInt();
+
+    qDebug()<<res<<pdesc;
+
+    return res;
+
+}
+
 
 
 
 void HPackages::on_pushButton_3_clicked()
 {
 
+
 bool b;
+
 
     if(QMessageBox::question(this,QApplication::applicationName(),"Salvare il nuovo lotto?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
@@ -681,3 +806,80 @@ void HPackages::on_pbAnnulla_clicked()
     resetForm();
 }
 
+
+
+
+void HPackages::on_rbTutti_toggled(bool checked)
+{
+  qDebug()<<basefilter +"- FILTER "<<tmLots->filter();
+  if (checked)
+  {
+      tmLots->setFilter(basefilter);
+      qDebug()<<tmLots->lastError().text()<<basefilter;
+
+  }
+
+}
+
+
+
+
+void HPackages::on_rbProdottiFiniti_toggled(bool checked)
+{
+    QString flt=basefilter + " and lotdef.tipo=3 and prodotto in (SELECT ID from prodotti where tipo=2)";
+    if (checked)
+    {
+        tmLots->setFilter(flt);
+        ui->leSearch->setText("");
+
+    }
+
+    qDebug()<<tmLots->filter()<<tmLots->lastError();
+
+}
+
+void HPackages::on_rbVasi_toggled(bool checked)
+{
+    QString flt=basefilter + " and prodotto in (SELECT ID from prodotti where tipo=5)";
+    if (checked)
+    {
+        tmLots->setFilter(flt);
+        ui->leSearch->setText("");
+
+    }
+
+}
+
+void HPackages::on_rbTappi_toggled(bool checked)
+{
+    QString flt=basefilter + " and prodotto in (SELECT ID from prodotti where tipo=4)";
+    if (checked)
+    {
+        tmLots->setFilter(flt);
+        ui->leSearch->setText("");
+    }
+}
+
+void HPackages::on_leSearch_textChanged(const QString &arg1)
+{
+    QString tipo;
+    QString filterinit;
+    QString filter;
+
+    filterinit="lotdef.prodotto in (select ID from prodotti where descrizione like '%"+ arg1 +"%')";
+
+
+    if (ui->rbProdottiFiniti->isChecked())
+    {
+        tipo=" and lotdef.tipo=3 ";
+        filter=filterinit + tipo;
+    }
+    else
+    {
+        filter=filterinit;
+    }
+
+
+    tmLots->setFilter(filterinit);
+    qDebug()<<tmLots->filter();
+}
