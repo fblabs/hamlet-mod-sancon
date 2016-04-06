@@ -47,7 +47,8 @@ SOURCES += main.cpp\
     hreadonlymodelnew.cpp \
     hduplicate.cpp \
     hmodifylot.cpp \
-    hpackagesunload.cpp
+    hpackagesunload.cpp \
+    hgroups.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -83,7 +84,8 @@ HEADERS  += mainwindow.h \
     hreadonlymodelnew.h \
     hduplicate.h \
     hmodifylot.h \
-    hpackagesunload.h
+    hpackagesunload.h \
+    hgroups.h
 
 
 FORMS    += mainwindow.ui \
@@ -117,10 +119,12 @@ FORMS    += mainwindow.ui \
     hduplicate.ui \
     hmodifylot.ui \
     hlotti.ui \
-    hpackagesunload.ui
+    hpackagesunload.ui \
+    hgroups.ui
 
 RESOURCES += \
-    icons.qrc
+    icons.qrc \
+    Resources/graphical.qrc
     win32:RC_ICONS += hamlet.ico
 
 DISTFILES += \

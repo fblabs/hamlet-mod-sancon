@@ -18,8 +18,15 @@ HPrint::HPrint(QWidget *parent) :
 {
     ui->setupUi(this);
     printer=new QPrinter();
+    ui->spCharSize->setValue(10);
+
+    QTextCursor cursor=ui->textEdit->textCursor();
+    ui->textEdit->selectAll();
+    ui->textEdit->setFontPointSize(ui->spCharSize->value());
+    ui->textEdit->setTextCursor( cursor);
     doc=ui->textEdit->document();
     ui->textEdit->setDocument(doc);
+
 
 
 }
@@ -166,6 +173,8 @@ void HPrint::onConnectionSet()
 {
     db = QSqlDatabase::database(sConn);
     printer = new QPrinter(QPrinter::HighResolution);
+    printer->setPageSize(QPrinter::A4);
+
 }
 
 void HPrint::setConnection(QString conn)
@@ -290,3 +299,12 @@ void HPrint::setHeight(int value)
 
 
 
+
+void HPrint::on_spCharSize_valueChanged(int arg1)
+{
+    QTextCursor cursor=ui->textEdit->textCursor();
+    ui->textEdit->selectAll();
+    ui->textEdit->setFontPointSize(arg1);
+    ui->textEdit->setTextCursor( cursor);
+
+}

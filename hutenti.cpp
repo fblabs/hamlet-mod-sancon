@@ -17,6 +17,7 @@
 #include <QSqlRelationalDelegate>
 #include <QSqlError>
 #include "huser.h"
+#include "hgroups.h"
 
 HUtenti::HUtenti(QWidget *parent) :
     QWidget(parent),
@@ -261,6 +262,11 @@ void HUtenti::on_pushButton_clicked()
 
 
 void HUtenti::on_cbxMasterCli_currentIndexChanged(int index)
+{
+
+}
+
+void HUtenti::on_pushButton_5_clicked()
 {
 
 }

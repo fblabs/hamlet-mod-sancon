@@ -62,6 +62,8 @@ void HAnalisi::init(QString conn )
     ui->cbClienti->setCompleter(comp);
 
     ui->pushButton_4->setVisible(true);
+    ui->tvNarrow->setColumnHidden(0,true);
+
 
 
 

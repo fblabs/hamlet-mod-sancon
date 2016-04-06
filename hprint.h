@@ -53,6 +53,8 @@ private slots:
    void on_sbW_valueChanged(int arg1);
 
    void on_sbH_valueChanged(int arg1);
+   void on_spCharSize_valueChanged(int arg1);
+
 private:
     Ui::HPrint *ui;
     QSqlDatabase db;

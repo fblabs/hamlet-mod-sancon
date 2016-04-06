@@ -51,6 +51,7 @@ public:
     QPushButton *pbNuovaPassword;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
+    QPushButton *pushButton_4;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
 
@@ -160,24 +161,35 @@ public:
         pushButton = new QPushButton(HGestioneUtenti);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon2);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton);
 
+        pushButton_4 = new QPushButton(HGestioneUtenti);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/user-group-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon3);
+        pushButton_4->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pushButton_4);
+
         pushButton_2 = new QPushButton(HGestioneUtenti);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setIcon(icon1);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon4);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_2);
 
         pushButton_3 = new QPushButton(HGestioneUtenti);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon3);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon5);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_3);
@@ -205,6 +217,7 @@ public:
         label_5->setText(QApplication::translate("HGestioneUtenti", "Nuova password", 0));
         pbNuovaPassword->setText(QApplication::translate("HGestioneUtenti", "Salva nuova password", 0));
         pushButton->setText(QApplication::translate("HGestioneUtenti", "Nuovo", 0));
+        pushButton_4->setText(QApplication::translate("HGestioneUtenti", "Gestione Gruppi", 0));
         pushButton_2->setText(QApplication::translate("HGestioneUtenti", "Salva", 0));
         pushButton_3->setText(QApplication::translate("HGestioneUtenti", "Chiudi", 0));
     } // retranslateUi

@@ -2,6 +2,7 @@
 #define HGESTIONEUTENTI_H
 
 #include <QWidget>
+#include "hgroups.h"
 
 
 #include <QSqlDatabase>
@@ -35,6 +36,8 @@ private slots:
     void getIdUtente();
 
     void on_comboBox_currentIndexChanged(int index);
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::HGestioneUtenti *ui;

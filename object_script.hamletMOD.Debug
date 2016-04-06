@@ -35,7 +35,9 @@ INPUT(
 ./debug/hduplicate.o
 ./debug/hmodifylot.o
 ./debug/hpackagesunload.o
+./debug/hgroups.o
 ./debug/qrc_icons.o
+./debug/qrc_graphical.o
 ./debug/moc_mainwindow.o
 ./debug/moc_huser.o
 ./debug/moc_hprodotti.o
@@ -70,4 +72,5 @@ INPUT(
 ./debug/moc_hduplicate.o
 ./debug/moc_hmodifylot.o
 ./debug/moc_hpackagesunload.o
+./debug/moc_hgroups.o
 );

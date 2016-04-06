@@ -68,5 +68,6 @@
         <file>Resources/App-ark-2-icon.png</file>
         <file>Resources/Abstract-green-backgrounds.jpg</file>
         <file>Resources/hamlet.PNG</file>
+        <file>Resources/user-group-icon.png</file>
     </qresource>
 </RCC>

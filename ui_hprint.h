@@ -30,6 +30,9 @@ class Ui_HPrint
 public:
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
+    QFormLayout *formLayout_3;
+    QLabel *label_3;
+    QSpinBox *spCharSize;
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout_2;
     QFormLayout *formLayout;
@@ -61,6 +64,24 @@ public:
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        formLayout_3 = new QFormLayout();
+        formLayout_3->setObjectName(QStringLiteral("formLayout_3"));
+        label_3 = new QLabel(HPrint);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setMaximumSize(QSize(16777215, 16777215));
+
+        formLayout_3->setWidget(0, QFormLayout::LabelRole, label_3);
+
+        spCharSize = new QSpinBox(HPrint);
+        spCharSize->setObjectName(QStringLiteral("spCharSize"));
+        spCharSize->setMaximumSize(QSize(50, 16777215));
+        spCharSize->setValue(10);
+
+        formLayout_3->setWidget(0, QFormLayout::FieldRole, spCharSize);
+
+
+        verticalLayout->addLayout(formLayout_3);
+
         textEdit = new QTextEdit(HPrint);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -164,6 +185,7 @@ public:
     void retranslateUi(QWidget *HPrint)
     {
         HPrint->setWindowTitle(QApplication::translate("HPrint", "Stampa", 0));
+        label_3->setText(QApplication::translate("HPrint", "Dimensione Caratteri:", 0));
         textEdit->setHtml(QApplication::translate("HPrint", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

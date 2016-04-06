@@ -54,6 +54,7 @@ private slots:
     void on_pushButton_clicked();
 
     void on_cbxMasterCli_currentIndexChanged(int index);
+    void on_pushButton_5_clicked();
 };
 
 

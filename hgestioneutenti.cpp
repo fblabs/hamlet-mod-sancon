@@ -172,8 +172,9 @@ void HGestioneUtenti::on_pushButton_2_clicked()
 
   //  getGruppo();
 
-    q.prepare("update utenti SET gruppo=:idgruppo where ID=:idutente");
+    q.prepare("update utenti SET gruppo=:idgruppo,attivo=:attivo where ID=:idutente");
     q.bindValue(":idgruppo",QVariant(idgruppo));
+    q.bindValue(":attivo",ui->cbAttivo->isChecked());
     q.bindValue(":idutente",QVariant(idutente));
     q.exec();
     qDebug()<<"salva2:"<<"idutente:"<<idutente<<"idgruppo " + q.boundValue(0).toString()<<"idutente: "+q.boundValue(1).toString()<<utm->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString();
@@ -192,6 +193,8 @@ void HGestioneUtenti::on_pushButton_2_clicked()
 
 
     }
+
+    utm->select();
 
 
 
@@ -213,4 +216,10 @@ void HGestioneUtenti::on_pbNuovaPassword_clicked()
 void HGestioneUtenti::on_comboBox_currentIndexChanged(int index)
 {
     qDebug()<<ui->comboBox->currentText()<<ui->comboBox->itemData(ui->comboBox->currentIndex())<<ui->comboBox->model()->index(ui->comboBox->currentIndex(),3).data().toString();
+}
+
+void HGestioneUtenti::on_pushButton_4_clicked()
+{
+    HGroups *f=new HGroups(0,sConn);
+    f->show();
 }

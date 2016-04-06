@@ -45,7 +45,9 @@ public:
     QLineEdit *lragsoc;
     QLabel *label_3;
     QLineEdit *lind;
+    QLabel *label_4;
     QLineEdit *lcap;
+    QLabel *label_5;
     QLineEdit *lcit;
     QLabel *label_7;
     QLineEdit *lpro;
@@ -55,15 +57,13 @@ public:
     QLineEdit *ltel;
     QLabel *label_9;
     QTextEdit *tcon;
+    QLabel *label_10;
+    QTextBrowser *tnote;
     QCheckBox *cbcli;
     QCheckBox *cbtra;
     QCheckBox *cbfor;
     QCheckBox *cbsub;
     QComboBox *cbxMasterCli;
-    QLabel *label_5;
-    QLabel *label_4;
-    QTextBrowser *tnote;
-    QLabel *label_10;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
@@ -135,10 +135,20 @@ public:
 
         formLayout->setWidget(1, QFormLayout::FieldRole, lind);
 
+        label_4 = new QLabel(HUtenti);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_4);
+
         lcap = new QLineEdit(HUtenti);
         lcap->setObjectName(QStringLiteral("lcap"));
 
         formLayout->setWidget(3, QFormLayout::FieldRole, lcap);
+
+        label_5 = new QLabel(HUtenti);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        formLayout->setWidget(4, QFormLayout::LabelRole, label_5);
 
         lcit = new QLineEdit(HUtenti);
         lcit->setObjectName(QStringLiteral("lcit"));
@@ -185,6 +195,17 @@ public:
 
         formLayout->setWidget(8, QFormLayout::FieldRole, tcon);
 
+        label_10 = new QLabel(HUtenti);
+        label_10->setObjectName(QStringLiteral("label_10"));
+
+        formLayout->setWidget(9, QFormLayout::LabelRole, label_10);
+
+        tnote = new QTextBrowser(HUtenti);
+        tnote->setObjectName(QStringLiteral("tnote"));
+        tnote->setReadOnly(false);
+
+        formLayout->setWidget(9, QFormLayout::FieldRole, tnote);
+
         cbcli = new QCheckBox(HUtenti);
         cbcli->setObjectName(QStringLiteral("cbcli"));
 
@@ -212,27 +233,6 @@ public:
         cbxMasterCli->setInsertPolicy(QComboBox::NoInsert);
 
         formLayout->setWidget(14, QFormLayout::FieldRole, cbxMasterCli);
-
-        label_5 = new QLabel(HUtenti);
-        label_5->setObjectName(QStringLiteral("label_5"));
-
-        formLayout->setWidget(4, QFormLayout::LabelRole, label_5);
-
-        label_4 = new QLabel(HUtenti);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_4);
-
-        tnote = new QTextBrowser(HUtenti);
-        tnote->setObjectName(QStringLiteral("tnote"));
-        tnote->setReadOnly(false);
-
-        formLayout->setWidget(9, QFormLayout::FieldRole, tnote);
-
-        label_10 = new QLabel(HUtenti);
-        label_10->setObjectName(QStringLiteral("label_10"));
-
-        formLayout->setWidget(9, QFormLayout::LabelRole, label_10);
 
 
         horizontalLayout_3->addLayout(formLayout);
@@ -297,17 +297,17 @@ public:
         label->setText(QApplication::translate("HUtenti", "Cerca:", 0));
         label_2->setText(QApplication::translate("HUtenti", "Ragione Sociale", 0));
         label_3->setText(QApplication::translate("HUtenti", "Indirizzo", 0));
+        label_4->setText(QApplication::translate("HUtenti", "Citta", 0));
+        label_5->setText(QApplication::translate("HUtenti", "Cap", 0));
         label_7->setText(QApplication::translate("HUtenti", "Provincia/stato", 0));
         label_6->setText(QApplication::translate("HUtenti", "Nazione", 0));
         label_8->setText(QApplication::translate("HUtenti", "Telefono", 0));
         label_9->setText(QApplication::translate("HUtenti", "Contatto", 0));
+        label_10->setText(QApplication::translate("HUtenti", "Note:", 0));
         cbcli->setText(QApplication::translate("HUtenti", "Cliente", 0));
         cbtra->setText(QApplication::translate("HUtenti", "Trasportatore", 0));
         cbfor->setText(QApplication::translate("HUtenti", "Fornitore", 0));
         cbsub->setText(QApplication::translate("HUtenti", "Subcliente di:", 0));
-        label_5->setText(QApplication::translate("HUtenti", "Cap", 0));
-        label_4->setText(QApplication::translate("HUtenti", "Citta", 0));
-        label_10->setText(QApplication::translate("HUtenti", "Note:", 0));
         pushButton->setText(QApplication::translate("HUtenti", "Nuovo", 0));
         pushButton_2->setText(QApplication::translate("HUtenti", "Annulla", 0));
         pushButton_3->setText(QApplication::translate("HUtenti", "Salva", 0));

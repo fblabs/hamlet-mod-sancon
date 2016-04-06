@@ -78,8 +78,22 @@
          <item row="1" column="1">
           <widget class="QLineEdit" name="lind"/>
          </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Citta</string>
+           </property>
+          </widget>
+         </item>
          <item row="3" column="1">
           <widget class="QLineEdit" name="lcap"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Cap</string>
+           </property>
+          </widget>
          </item>
          <item row="4" column="1">
           <widget class="QLineEdit" name="lcit"/>
@@ -124,6 +138,20 @@
          <item row="8" column="1">
           <widget class="QTextEdit" name="tcon"/>
          </item>
+         <item row="9" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Note:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="QTextBrowser" name="tnote">
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
          <item row="10" column="1">
           <widget class="QCheckBox" name="cbcli">
            <property name="text">
@@ -162,34 +190,6 @@
            </property>
            <property name="insertPolicy">
             <enum>QComboBox::NoInsert</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Cap</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Citta</string>
-           </property>
-          </widget>
-         </item>
-         <item row="9" column="1">
-          <widget class="QTextBrowser" name="tnote">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="9" column="0">
-          <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string>Note:</string>
            </property>
           </widget>
          </item>

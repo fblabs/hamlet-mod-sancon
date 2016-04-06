@@ -35,7 +35,9 @@ INPUT(
 ./release/hduplicate.o
 ./release/hmodifylot.o
 ./release/hpackagesunload.o
+./release/hgroups.o
 ./release/qrc_icons.o
+./release/qrc_graphical.o
 ./release/moc_mainwindow.o
 ./release/moc_huser.o
 ./release/moc_hprodotti.o
@@ -70,4 +72,5 @@ INPUT(
 ./release/moc_hduplicate.o
 ./release/moc_hmodifylot.o
 ./release/moc_hpackagesunload.o
+./release/moc_hgroups.o
 );

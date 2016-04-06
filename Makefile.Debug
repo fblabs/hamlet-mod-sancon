@@ -78,7 +78,9 @@ SOURCES       = main.cpp \
 		hreadonlymodelnew.cpp \
 		hduplicate.cpp \
 		hmodifylot.cpp \
-		hpackagesunload.cpp debug/qrc_icons.cpp \
+		hpackagesunload.cpp \
+		hgroups.cpp debug/qrc_icons.cpp \
+		debug/qrc_graphical.cpp \
 		debug/moc_mainwindow.cpp \
 		debug/moc_huser.cpp \
 		debug/moc_hprodotti.cpp \
@@ -112,7 +114,8 @@ SOURCES       = main.cpp \
 		debug/moc_hreadonlymodelnew.cpp \
 		debug/moc_hduplicate.cpp \
 		debug/moc_hmodifylot.cpp \
-		debug/moc_hpackagesunload.cpp
+		debug/moc_hpackagesunload.cpp \
+		debug/moc_hgroups.cpp
 OBJECTS       = debug/main.o \
 		debug/mainwindow.o \
 		debug/huser.o \
@@ -149,7 +152,9 @@ OBJECTS       = debug/main.o \
 		debug/hduplicate.o \
 		debug/hmodifylot.o \
 		debug/hpackagesunload.o \
+		debug/hgroups.o \
 		debug/qrc_icons.o \
+		debug/qrc_graphical.o \
 		debug/moc_mainwindow.o \
 		debug/moc_huser.o \
 		debug/moc_hprodotti.o \
@@ -183,7 +188,8 @@ OBJECTS       = debug/main.o \
 		debug/moc_hreadonlymodelnew.o \
 		debug/moc_hduplicate.o \
 		debug/moc_hmodifylot.o \
-		debug/moc_hpackagesunload.o
+		debug/moc_hpackagesunload.o \
+		debug/moc_hgroups.o
 
 DIST          = Resources/hamlet.PNG
 QMAKE_TARGET  = hamletMOD
@@ -212,7 +218,7 @@ DESTDIR_TARGET = debug/hamletMOD.exe
 first: all
 all: Makefile.Debug  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h $(OBJECTS) debug/hamletMOD_resource_res.o
+$(DESTDIR_TARGET): ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h $(OBJECTS) debug/hamletMOD_resource_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.hamletMOD.Debug  $(LIBS)
 
 debug/hamletMOD_resource_res.o: hamletMOD_resource.rc
@@ -224,10 +230,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) hamletMOD.zip $(SOURCES) $(DIST) hamletMOD.pro ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/spec_pre.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/qdevice.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/device_config.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/common/shell-unix.conf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/qconfig.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axbase.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axbase_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axcontainer.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axcontainer_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axserver.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axserver_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_bluetooth.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_bluetooth_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_bootstrap_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_clucene_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_concurrent.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_concurrent_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_core.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_core_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_declarative.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_declarative_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_designer.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_designer_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_designercomponents_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_enginio.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_enginio_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_gui.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_gui_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_help.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_help_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_multimedia.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_multimedia_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_multimediawidgets.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_network.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_network_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_nfc.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_nfc_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_opengl.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_opengl_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_openglextensions.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_openglextensions_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_platformsupport_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_positioning.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_positioning_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_printsupport.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_printsupport_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qml.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qml_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qmldevtools_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qmltest.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qmltest_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_quick.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_quick_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_quickparticles_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_quickwidgets.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_quickwidgets_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_script.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_script_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_scripttools.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_scripttools_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_sensors.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_sensors_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_serialport.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_serialport_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_sql.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_sql_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_svg.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_svg_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_testlib.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_testlib_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_uitools.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_uitools_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_webkit.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_webkit_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_webkitwidgets.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_webkitwidgets_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_websockets.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_websockets_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_widgets.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_widgets_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_winextras.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_winextras_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_xml.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_xml_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_xmlpatterns.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_xmlpatterns_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/qt_functions.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/qt_config.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/win32/qt_config.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/win32-g++/qmake.conf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/spec_post.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/exclusive_builds.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/default_pre.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/win32/default_pre.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/resolve_config.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/exclusive_builds_post.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/default_post.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/build_pass.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/win32/rtti.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/precompile_header.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/warn_on.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/qt.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/resources.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/moc.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/win32/opengl.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/uic.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/win32/windows.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/testcase_targets.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/exceptions.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/yacc.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/lex.prf hamletMOD.pro icons.qrc C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/qtmaind.prl C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/Qt5Cored.prl C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/Qt5PrintSupportd.prl C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/Qt5Widgetsd.prl C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/Qt5Sqld.prl C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/Qt5Guid.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
+	$(ZIP) hamletMOD.zip $(SOURCES) $(DIST) hamletMOD.pro ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/spec_pre.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/qdevice.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/device_config.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/common/shell-unix.conf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/qconfig.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axbase.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axbase_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axcontainer.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axcontainer_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axserver.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_axserver_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_bluetooth.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_bluetooth_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_bootstrap_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_clucene_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_concurrent.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_concurrent_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_core.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_core_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_declarative.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_declarative_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_designer.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_designer_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_designercomponents_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_enginio.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_enginio_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_gui.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_gui_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_help.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_help_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_multimedia.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_multimedia_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_multimediawidgets.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_network.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_network_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_nfc.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_nfc_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_opengl.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_opengl_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_openglextensions.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_openglextensions_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_platformsupport_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_positioning.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_positioning_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_printsupport.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_printsupport_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qml.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qml_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qmldevtools_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qmltest.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qmltest_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_quick.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_quick_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_quickparticles_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_quickwidgets.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_quickwidgets_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_script.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_script_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_scripttools.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_scripttools_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_sensors.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_sensors_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_serialport.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_serialport_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_sql.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_sql_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_svg.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_svg_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_testlib.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_testlib_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_uitools.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_uitools_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_webkit.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_webkit_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_webkitwidgets.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_webkitwidgets_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_websockets.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_websockets_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_widgets.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_widgets_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_winextras.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_winextras_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_xml.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_xml_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_xmlpatterns.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/modules/qt_lib_xmlpatterns_private.pri ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/qt_functions.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/qt_config.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/win32/qt_config.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/win32-g++/qmake.conf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/spec_post.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/exclusive_builds.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/default_pre.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/win32/default_pre.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/resolve_config.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/exclusive_builds_post.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/default_post.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/build_pass.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/win32/rtti.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/precompile_header.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/warn_on.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/qt.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/resources.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/moc.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/win32/opengl.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/uic.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/win32/windows.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/testcase_targets.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/exceptions.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/yacc.prf ../../Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/features/lex.prf hamletMOD.pro icons.qrc Resources/graphical.qrc C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/qtmaind.prl C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/Qt5Cored.prl C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/Qt5PrintSupportd.prl C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/Qt5Widgetsd.prl C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/Qt5Sqld.prl C:/Qt/Qt5.3.1/5.3/mingw482_32/lib/Qt5Guid.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug/main.o debug/mainwindow.o debug/huser.o debug/hprodotti.o debug/hutenti.o debug/hnewop.o debug/hsettings.o debug/hreadonlymodel.o debug/hprint.o debug/hanalisi.o debug/hnewproduct.o debug/hlogin2.o debug/hreadonlymodellots.o debug/hanalyze_a.o debug/hnuovaoperazione.o debug/hoverview.o debug/hgestioneutenti.o debug/hnewuser.o debug/hnewanagrafica.o debug/hschedeclienti.o debug/hassociazioni.o debug/hmodificascheda.o debug/hproduction.o debug/hfindlotuse.o debug/hprodottinew.o debug/hwarehouse.o debug/hmodifyprod.o debug/hpackages.o debug/hmodricette.o debug/hrecipeaddrow.o debug/hlotti.o debug/htextedit.o debug/hreadonlymodelnew.o debug/hduplicate.o debug/hmodifylot.o debug/hpackagesunload.o debug/qrc_icons.o debug/moc_mainwindow.o debug/moc_huser.o debug/moc_hprodotti.o debug/moc_hutenti.o debug/moc_hnewop.o debug/moc_hsettings.o debug/moc_hreadonlymodel.o debug/moc_hprint.o debug/moc_hanalisi.o debug/moc_hnewproduct.o debug/moc_hlogin2.o debug/moc_hreadonlymodellots.o debug/moc_hanalyze_a.o debug/moc_hnuovaoperazione.o debug/moc_hoverview.o debug/moc_hgestioneutenti.o debug/moc_hnewuser.o debug/moc_hnewanagrafica.o debug/moc_hschedeclienti.o debug/moc_hassociazioni.o debug/moc_hmodificascheda.o debug/moc_hproduction.o debug/moc_hfindlotuse.o debug/moc_hprodottinew.o debug/moc_hwarehouse.o debug/moc_hmodifyprod.o debug/moc_hpackages.o debug/moc_hmodricette.o debug/moc_hrecipeaddrow.o debug/moc_hlotti.o debug/moc_hreadonlymodelnew.o debug/moc_hduplicate.o debug/moc_hmodifylot.o debug/moc_hpackagesunload.o
+	-$(DEL_FILE) debug/main.o debug/mainwindow.o debug/huser.o debug/hprodotti.o debug/hutenti.o debug/hnewop.o debug/hsettings.o debug/hreadonlymodel.o debug/hprint.o debug/hanalisi.o debug/hnewproduct.o debug/hlogin2.o debug/hreadonlymodellots.o debug/hanalyze_a.o debug/hnuovaoperazione.o debug/hoverview.o debug/hgestioneutenti.o debug/hnewuser.o debug/hnewanagrafica.o debug/hschedeclienti.o debug/hassociazioni.o debug/hmodificascheda.o debug/hproduction.o debug/hfindlotuse.o debug/hprodottinew.o debug/hwarehouse.o debug/hmodifyprod.o debug/hpackages.o debug/hmodricette.o debug/hrecipeaddrow.o debug/hlotti.o debug/htextedit.o debug/hreadonlymodelnew.o debug/hduplicate.o debug/hmodifylot.o debug/hpackagesunload.o debug/hgroups.o debug/qrc_icons.o debug/qrc_graphical.o debug/moc_mainwindow.o debug/moc_huser.o debug/moc_hprodotti.o debug/moc_hutenti.o debug/moc_hnewop.o debug/moc_hsettings.o debug/moc_hreadonlymodel.o debug/moc_hprint.o debug/moc_hanalisi.o debug/moc_hnewproduct.o debug/moc_hlogin2.o debug/moc_hreadonlymodellots.o debug/moc_hanalyze_a.o debug/moc_hnuovaoperazione.o debug/moc_hoverview.o debug/moc_hgestioneutenti.o debug/moc_hnewuser.o debug/moc_hnewanagrafica.o debug/moc_hschedeclienti.o debug/moc_hassociazioni.o debug/moc_hmodificascheda.o debug/moc_hproduction.o debug/moc_hfindlotuse.o debug/moc_hprodottinew.o debug/moc_hwarehouse.o debug/moc_hmodifyprod.o debug/moc_hpackages.o debug/moc_hmodricette.o debug/moc_hrecipeaddrow.o debug/moc_hlotti.o debug/moc_hreadonlymodelnew.o debug/moc_hduplicate.o debug/moc_hmodifylot.o debug/moc_hpackagesunload.o debug/moc_hgroups.o
 	-$(DEL_FILE) debug/hamletMOD_resource_res.o
 
 distclean: clean 
@@ -242,9 +248,9 @@ check: first
 
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
-compiler_rcc_make_all: debug/qrc_icons.cpp
+compiler_rcc_make_all: debug/qrc_icons.cpp debug/qrc_graphical.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) debug/qrc_icons.cpp
+	-$(DEL_FILE) debug/qrc_icons.cpp debug/qrc_graphical.cpp
 debug/qrc_icons.cpp: icons.qrc \
 		Resources/fork-1-icon.png \
 		Resources/Wood-4-icon.png \
@@ -267,6 +273,7 @@ debug/qrc_icons.cpp: icons.qrc \
 		Resources/Search.PNG \
 		Resources/Photocamera.PNG \
 		Resources/User-Male.PNG \
+		Resources/user-group-icon.png \
 		Resources/Rss.PNG \
 		Resources/Home.PNG \
 		Resources/Arrow-Down.PNG \
@@ -314,9 +321,61 @@ debug/qrc_icons.cpp: icons.qrc \
 		Resources/Mail.PNG
 	C:/Qt/Qt5.3.1/5.3/mingw482_32/bin/rcc.exe -name icons icons.qrc -o debug/qrc_icons.cpp
 
-compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_huser.cpp debug/moc_hprodotti.cpp debug/moc_hutenti.cpp debug/moc_hnewop.cpp debug/moc_hsettings.cpp debug/moc_hreadonlymodel.cpp debug/moc_hprint.cpp debug/moc_hanalisi.cpp debug/moc_hnewproduct.cpp debug/moc_hlogin2.cpp debug/moc_hreadonlymodellots.cpp debug/moc_hanalyze_a.cpp debug/moc_hnuovaoperazione.cpp debug/moc_hoverview.cpp debug/moc_hgestioneutenti.cpp debug/moc_hnewuser.cpp debug/moc_hnewanagrafica.cpp debug/moc_hschedeclienti.cpp debug/moc_hassociazioni.cpp debug/moc_hmodificascheda.cpp debug/moc_hproduction.cpp debug/moc_hfindlotuse.cpp debug/moc_hprodottinew.cpp debug/moc_hwarehouse.cpp debug/moc_hmodifyprod.cpp debug/moc_hpackages.cpp debug/moc_hmodricette.cpp debug/moc_hrecipeaddrow.cpp debug/moc_hlotti.cpp debug/moc_hreadonlymodelnew.cpp debug/moc_hduplicate.cpp debug/moc_hmodifylot.cpp debug/moc_hpackagesunload.cpp
+debug/qrc_graphical.cpp: Resources/graphical.qrc \
+		Resources/Clock.PNG \
+		Resources/Search.PNG \
+		Resources/Banned-Sign.PNG \
+		Resources/Cart.PNG \
+		Resources/Planet.PNG \
+		Resources/Truck.PNG \
+		Resources/Arrow-Left.PNG \
+		Resources/Notepad.PNG \
+		Resources/Music-Note.PNG \
+		Resources/Calendar.PNG \
+		Resources/Gears.PNG \
+		Resources/Arrow-Right.PNG \
+		Resources/Flag.PNG \
+		Resources/Rss.PNG \
+		Resources/Touch-Phone.PNG \
+		Resources/User-Black.PNG \
+		Resources/Key.PNG \
+		Resources/Warning-Sign.PNG \
+		Resources/Map.PNG \
+		Resources/Art-Supplies.PNG \
+		Resources/Chart.PNG \
+		Resources/Case.PNG \
+		Resources/Folder.PNG \
+		Resources/Gift.PNG \
+		Resources/Download.PNG \
+		Resources/User-Female.PNG \
+		Resources/Book.PNG \
+		Resources/Database.PNG \
+		Resources/Computer.PNG \
+		Resources/Pencil.PNG \
+		Resources/Mail.PNG \
+		Resources/Box.PNG \
+		Resources/Question-Mark.PNG \
+		Resources/Visa.PNG \
+		Resources/Arrow-Down.PNG \
+		Resources/User-Male.PNG \
+		Resources/Bullhorn.PNG \
+		Resources/Minus.PNG \
+		Resources/Plus.PNG \
+		Resources/Heart.PNG \
+		Resources/Chat.PNG \
+		Resources/Upload.PNG \
+		Resources/Sheet-Of-Paper.PNG \
+		Resources/Cellphone.PNG \
+		Resources/Pin.PNG \
+		Resources/Lock.PNG \
+		Resources/Arrow-Up.PNG \
+		Resources/Photocamera.PNG \
+		Resources/Home.PNG
+	C:/Qt/Qt5.3.1/5.3/mingw482_32/bin/rcc.exe -name graphical Resources/graphical.qrc -o debug/qrc_graphical.cpp
+
+compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_huser.cpp debug/moc_hprodotti.cpp debug/moc_hutenti.cpp debug/moc_hnewop.cpp debug/moc_hsettings.cpp debug/moc_hreadonlymodel.cpp debug/moc_hprint.cpp debug/moc_hanalisi.cpp debug/moc_hnewproduct.cpp debug/moc_hlogin2.cpp debug/moc_hreadonlymodellots.cpp debug/moc_hanalyze_a.cpp debug/moc_hnuovaoperazione.cpp debug/moc_hoverview.cpp debug/moc_hgestioneutenti.cpp debug/moc_hnewuser.cpp debug/moc_hnewanagrafica.cpp debug/moc_hschedeclienti.cpp debug/moc_hassociazioni.cpp debug/moc_hmodificascheda.cpp debug/moc_hproduction.cpp debug/moc_hfindlotuse.cpp debug/moc_hprodottinew.cpp debug/moc_hwarehouse.cpp debug/moc_hmodifyprod.cpp debug/moc_hpackages.cpp debug/moc_hmodricette.cpp debug/moc_hrecipeaddrow.cpp debug/moc_hlotti.cpp debug/moc_hreadonlymodelnew.cpp debug/moc_hduplicate.cpp debug/moc_hmodifylot.cpp debug/moc_hpackagesunload.cpp debug/moc_hgroups.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug/moc_mainwindow.cpp debug/moc_huser.cpp debug/moc_hprodotti.cpp debug/moc_hutenti.cpp debug/moc_hnewop.cpp debug/moc_hsettings.cpp debug/moc_hreadonlymodel.cpp debug/moc_hprint.cpp debug/moc_hanalisi.cpp debug/moc_hnewproduct.cpp debug/moc_hlogin2.cpp debug/moc_hreadonlymodellots.cpp debug/moc_hanalyze_a.cpp debug/moc_hnuovaoperazione.cpp debug/moc_hoverview.cpp debug/moc_hgestioneutenti.cpp debug/moc_hnewuser.cpp debug/moc_hnewanagrafica.cpp debug/moc_hschedeclienti.cpp debug/moc_hassociazioni.cpp debug/moc_hmodificascheda.cpp debug/moc_hproduction.cpp debug/moc_hfindlotuse.cpp debug/moc_hprodottinew.cpp debug/moc_hwarehouse.cpp debug/moc_hmodifyprod.cpp debug/moc_hpackages.cpp debug/moc_hmodricette.cpp debug/moc_hrecipeaddrow.cpp debug/moc_hlotti.cpp debug/moc_hreadonlymodelnew.cpp debug/moc_hduplicate.cpp debug/moc_hmodifylot.cpp debug/moc_hpackagesunload.cpp
+	-$(DEL_FILE) debug/moc_mainwindow.cpp debug/moc_huser.cpp debug/moc_hprodotti.cpp debug/moc_hutenti.cpp debug/moc_hnewop.cpp debug/moc_hsettings.cpp debug/moc_hreadonlymodel.cpp debug/moc_hprint.cpp debug/moc_hanalisi.cpp debug/moc_hnewproduct.cpp debug/moc_hlogin2.cpp debug/moc_hreadonlymodellots.cpp debug/moc_hanalyze_a.cpp debug/moc_hnuovaoperazione.cpp debug/moc_hoverview.cpp debug/moc_hgestioneutenti.cpp debug/moc_hnewuser.cpp debug/moc_hnewanagrafica.cpp debug/moc_hschedeclienti.cpp debug/moc_hassociazioni.cpp debug/moc_hmodificascheda.cpp debug/moc_hproduction.cpp debug/moc_hfindlotuse.cpp debug/moc_hprodottinew.cpp debug/moc_hwarehouse.cpp debug/moc_hmodifyprod.cpp debug/moc_hpackages.cpp debug/moc_hmodricette.cpp debug/moc_hrecipeaddrow.cpp debug/moc_hlotti.cpp debug/moc_hreadonlymodelnew.cpp debug/moc_hduplicate.cpp debug/moc_hmodifylot.cpp debug/moc_hpackagesunload.cpp debug/moc_hgroups.cpp
 debug/moc_mainwindow.cpp: ../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMainWindow \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qwidget.h \
@@ -2022,20 +2081,21 @@ debug/moc_hgestioneutenti.cpp: ../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidget
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfiledevice.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvector2d.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtouchdevice.h \
+		hgroups.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlDatabase \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqldatabase.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsql.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalTableModel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaltablemodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalTableModel \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDataWidgetMapper \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatawidgetmapper.h \
 		hnewuser.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDialog \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel \
 		hgestioneutenti.h
 	'C:\Qt\Qt5.3.1\5.3\mingw482_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtPrintSupport -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore hgestioneutenti.h -o debug/moc_hgestioneutenti.cpp
 
@@ -3341,6 +3401,8 @@ debug/moc_hpackages.cpp: ../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QWid
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalTableModel \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCompleter \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcompleter.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QStandardItem \
@@ -4096,11 +4158,121 @@ debug/moc_hpackagesunload.cpp: ../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidget
 		hpackagesunload.h
 	'C:\Qt\Qt5.3.1\5.3\mingw482_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtPrintSupport -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore hpackagesunload.h -o debug/moc_hpackagesunload.cpp
 
+debug/moc_hgroups.cpp: ../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QWidget \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qwidget.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qwindowdefs.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qglobal.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qconfig.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfeatures.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsystemdetection.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qprocessordetection.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcompilerdetection.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qtypeinfo.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qtypetraits.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsysinfo.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qlogging.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qflags.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qbasicatomic.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_bootstrap.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qgenericatomic.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_msvc.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_armv7.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_armv6.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_armv5.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_ia64.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_mips.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_x86.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_cxx11.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_gcc.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_unix.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qglobalstatic.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmutex.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qnumeric.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qobjectdefs.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qnamespace.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qwindowdefs_win.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qobject.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstring.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qchar.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qbytearray.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qrefcount.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qarraydata.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstringbuilder.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qlist.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qalgorithms.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qiterator.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreevent.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qscopedpointer.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmetatype.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qisenum.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qobject_impl.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmargins.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpaintdevice.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qrect.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsize.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qpoint.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpalette.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qcolor.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrgb.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstringlist.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatastream.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qiodevice.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qpair.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregexp.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstringmatcher.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qbrush.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qvector.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qmatrix.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpolygon.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qregion.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qline.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtransform.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpainterpath.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qimage.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpixmap.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsharedpointer.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qshareddata.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsharedpointer_impl.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qhash.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfont.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontmetrics.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontinfo.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qsizepolicy.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qcursor.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qkeysequence.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qevent.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qvariant.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmap.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdebug.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qtextstream.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qlocale.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qset.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcontiguouscache.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qurl.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qurlquery.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfile.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfiledevice.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvector2d.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtouchdevice.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlDatabase \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqldatabase.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsql.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
+		hgroups.h
+	'C:\Qt\Qt5.3.1\5.3\mingw482_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.3.1/5.3/mingw482_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtPrintSupport -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui -IC:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore hgroups.h -o debug/moc_hgroups.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h
+compiler_uic_make_all: ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h
+	-$(DEL_FILE) ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h
 ui_mainwindow.h: mainwindow.ui
 	C:/Qt/Qt5.3.1/5.3/mingw482_32/bin/uic.exe mainwindow.ui -o ui_mainwindow.h
 
@@ -4324,6 +4496,9 @@ ui_hlotti.h: hlotti.ui
 
 ui_hpackagesunload.h: hpackagesunload.ui
 	C:/Qt/Qt5.3.1/5.3/mingw482_32/bin/uic.exe hpackagesunload.ui -o ui_hpackagesunload.h
+
+ui_hgroups.h: hgroups.ui
+	C:/Qt/Qt5.3.1/5.3/mingw482_32/bin/uic.exe hgroups.ui -o ui_hgroups.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -4691,6 +4866,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTablemodel \
 		hnuovaoperazione.h \
 		hgestioneutenti.h \
+		hgroups.h \
 		hnewuser.h \
 		hschedeclienti.h \
 		hassociazioni.h \
@@ -5432,7 +5608,9 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
+		hgroups.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hutenti.o hutenti.cpp
 
 debug/hnewop.o: hnewop.cpp hnewop.h \
@@ -7342,20 +7520,21 @@ debug/hgestioneutenti.o: hgestioneutenti.cpp hgestioneutenti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfiledevice.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvector2d.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtouchdevice.h \
+		hgroups.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlDatabase \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqldatabase.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsql.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalTableModel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaltablemodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalTableModel \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDataWidgetMapper \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdatawidgetmapper.h \
 		hnewuser.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QDialog \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel \
 		ui_hgestioneutenti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
@@ -9396,6 +9575,8 @@ debug/hpackages.o: hpackages.cpp hpackages.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalTableModel \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCompleter \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcompleter.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QStandardItem \
@@ -9462,6 +9643,8 @@ debug/hpackages.o: hpackages.cpp hpackages.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QRadioButton \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qradiobutton.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTextEdit \
@@ -9476,7 +9659,9 @@ debug/hpackages.o: hpackages.cpp hpackages.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDate \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelation
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hpackages.o hpackages.cpp
 
 debug/hmodricette.o: hmodricette.cpp hmodricette.h \
@@ -10084,7 +10269,9 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QThread \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qthread.h \
 		hpackagesunload.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCompleter \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcompleter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hlotti.o hlotti.cpp
 
 debug/htextedit.o: htextedit.cpp htextedit.h \
@@ -10822,8 +11009,179 @@ debug/hpackagesunload.o: hpackagesunload.cpp hpackagesunload.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hpackagesunload.o hpackagesunload.cpp
 
+debug/hgroups.o: hgroups.cpp hgroups.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QWidget \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qwidget.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qwindowdefs.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qglobal.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qconfig.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfeatures.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsystemdetection.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qprocessordetection.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcompilerdetection.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qtypeinfo.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qtypetraits.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsysinfo.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qlogging.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qflags.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qbasicatomic.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_bootstrap.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qgenericatomic.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_msvc.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_armv7.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_armv6.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_armv5.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_ia64.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_mips.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_x86.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_cxx11.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_gcc.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qatomic_unix.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qglobalstatic.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmutex.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qnumeric.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qobjectdefs.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qnamespace.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qwindowdefs_win.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qobject.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstring.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qchar.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qbytearray.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qrefcount.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qarraydata.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstringbuilder.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qlist.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qalgorithms.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qiterator.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreevent.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qscopedpointer.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmetatype.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qisenum.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qobject_impl.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmargins.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpaintdevice.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qrect.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsize.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qpoint.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpalette.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qcolor.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrgb.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstringlist.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatastream.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qiodevice.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qpair.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregexp.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstringmatcher.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qbrush.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qvector.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qmatrix.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpolygon.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qregion.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qline.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtransform.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpainterpath.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qimage.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpixmap.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsharedpointer.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qshareddata.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsharedpointer_impl.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qhash.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfont.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontmetrics.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qfontinfo.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qsizepolicy.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qcursor.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qkeysequence.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qevent.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qvariant.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmap.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdebug.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qtextstream.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qlocale.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qset.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcontiguouscache.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qurl.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qurlquery.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfile.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfiledevice.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvector2d.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtouchdevice.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlDatabase \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqldatabase.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsql.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
+		ui_hgroups.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QVariant \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QAction \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qaction.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QApplication \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qapplication.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qeventloop.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qguiapplication.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qinputmethod.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QCheckBox \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayout.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QHeaderView \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qframe.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvalidator.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qstyle.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QLineEdit \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextcursor.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextformat.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextoption.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QListView \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hgroups.o hgroups.cpp
+
 debug/qrc_icons.o: debug/qrc_icons.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/qrc_icons.o debug/qrc_icons.cpp
+
+debug/qrc_graphical.o: debug/qrc_graphical.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/qrc_graphical.o debug/qrc_graphical.cpp
 
 debug/moc_mainwindow.o: debug/moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_mainwindow.o debug/moc_mainwindow.cpp
@@ -10926,6 +11284,9 @@ debug/moc_hmodifylot.o: debug/moc_hmodifylot.cpp
 
 debug/moc_hpackagesunload.o: debug/moc_hpackagesunload.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_hpackagesunload.o debug/moc_hpackagesunload.cpp
+
+debug/moc_hgroups.o: debug/moc_hgroups.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_hgroups.o debug/moc_hgroups.cpp
 
 ####### Install
 
