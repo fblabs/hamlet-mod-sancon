@@ -89,7 +89,7 @@ void HLotti::setupForm()
 
     QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
 
-    ui->twLots->setColumnHidden(0,true);
+
 
 
 
@@ -130,6 +130,7 @@ void HLotti::setupForm()
     tbm->setSort(3,Qt::DescendingOrder);
     setFilter();
     ui->twLots->setColumnWidth(11,10);
+     ui->twLots->setColumnHidden(0,true);
 
    // connect(ui->cbTipiLot,SIGNAL(currentIndexChanged(QString)),this,SLOT(setFilter()));
    // connect(ui->cbProdotti,SIGNAL(currentIndexChanged(QString)),this,SLOT(setFilter()));

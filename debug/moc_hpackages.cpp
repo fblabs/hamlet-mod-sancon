@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HPackages_t {
-    QByteArrayData data[30];
-    char stringdata[415];
+    QByteArrayData data[43];
+    char stringdata[592];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -58,7 +58,20 @@ QT_MOC_LITERAL(25, 352, 20),
 QT_MOC_LITERAL(26, 373, 9),
 QT_MOC_LITERAL(27, 383, 10),
 QT_MOC_LITERAL(28, 394, 10),
-QT_MOC_LITERAL(29, 405, 9)
+QT_MOC_LITERAL(29, 405, 9),
+QT_MOC_LITERAL(30, 415, 10),
+QT_MOC_LITERAL(31, 426, 7),
+QT_MOC_LITERAL(32, 434, 7),
+QT_MOC_LITERAL(33, 442, 9),
+QT_MOC_LITERAL(34, 452, 4),
+QT_MOC_LITERAL(35, 457, 15),
+QT_MOC_LITERAL(36, 473, 5),
+QT_MOC_LITERAL(37, 479, 18),
+QT_MOC_LITERAL(38, 498, 27),
+QT_MOC_LITERAL(39, 526, 17),
+QT_MOC_LITERAL(40, 544, 18),
+QT_MOC_LITERAL(41, 563, 23),
+QT_MOC_LITERAL(42, 587, 4)
     },
     "HPackages\0filterProducts\0\0getSubclients\0"
     "on_checkBox_toggled\0checked\0"
@@ -71,7 +84,11 @@ QT_MOC_LITERAL(29, 405, 9)
     "on_pbRemoveRow_clicked\0on_checkBox_2_toggled\0"
     "on_pushButton_3_clicked\0on_pbAnnulla_clicked\0"
     "getLastId\0getIdLotto\0getEanList\0"
-    "resetForm"
+    "resetForm\0setLotText\0getumid\0idlotto\0"
+    "getumdesc\0umid\0getumidfromdesc\0pdesc\0"
+    "on_rbTutti_toggled\0on_rbProdottiFiniti_toggled\0"
+    "on_rbVasi_toggled\0on_rbTappi_toggled\0"
+    "on_leSearch_textChanged\0arg1"
 };
 #undef QT_MOC_LITERAL
 
@@ -81,7 +98,7 @@ static const uint qt_meta_data_HPackages[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      23,   14, // methods
+      32,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -89,29 +106,38 @@ static const uint qt_meta_data_HPackages[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  129,    2, 0x08 /* Private */,
-       3,    0,  130,    2, 0x08 /* Private */,
-       4,    1,  131,    2, 0x08 /* Private */,
-       6,    0,  134,    2, 0x08 /* Private */,
-       7,    0,  135,    2, 0x08 /* Private */,
-       8,    0,  136,    2, 0x08 /* Private */,
-       9,    0,  137,    2, 0x08 /* Private */,
-      10,    1,  138,    2, 0x08 /* Private */,
-      12,    1,  141,    2, 0x08 /* Private */,
-      14,    1,  144,    2, 0x08 /* Private */,
-      15,    1,  147,    2, 0x08 /* Private */,
-      17,    1,  150,    2, 0x08 /* Private */,
-      19,    1,  153,    2, 0x08 /* Private */,
-      20,    1,  156,    2, 0x08 /* Private */,
-      21,    0,  159,    2, 0x08 /* Private */,
-      22,    0,  160,    2, 0x08 /* Private */,
-      23,    1,  161,    2, 0x08 /* Private */,
-      24,    0,  164,    2, 0x08 /* Private */,
-      25,    0,  165,    2, 0x08 /* Private */,
-      26,    0,  166,    2, 0x08 /* Private */,
-      27,    1,  167,    2, 0x08 /* Private */,
-      28,    0,  170,    2, 0x08 /* Private */,
-      29,    0,  171,    2, 0x08 /* Private */,
+       1,    0,  174,    2, 0x08 /* Private */,
+       3,    0,  175,    2, 0x08 /* Private */,
+       4,    1,  176,    2, 0x08 /* Private */,
+       6,    0,  179,    2, 0x08 /* Private */,
+       7,    0,  180,    2, 0x08 /* Private */,
+       8,    0,  181,    2, 0x08 /* Private */,
+       9,    0,  182,    2, 0x08 /* Private */,
+      10,    1,  183,    2, 0x08 /* Private */,
+      12,    1,  186,    2, 0x08 /* Private */,
+      14,    1,  189,    2, 0x08 /* Private */,
+      15,    1,  192,    2, 0x08 /* Private */,
+      17,    1,  195,    2, 0x08 /* Private */,
+      19,    1,  198,    2, 0x08 /* Private */,
+      20,    1,  201,    2, 0x08 /* Private */,
+      21,    0,  204,    2, 0x08 /* Private */,
+      22,    0,  205,    2, 0x08 /* Private */,
+      23,    1,  206,    2, 0x08 /* Private */,
+      24,    0,  209,    2, 0x08 /* Private */,
+      25,    0,  210,    2, 0x08 /* Private */,
+      26,    0,  211,    2, 0x08 /* Private */,
+      27,    1,  212,    2, 0x08 /* Private */,
+      28,    0,  215,    2, 0x08 /* Private */,
+      29,    0,  216,    2, 0x08 /* Private */,
+      30,    0,  217,    2, 0x08 /* Private */,
+      31,    1,  218,    2, 0x08 /* Private */,
+      33,    1,  221,    2, 0x08 /* Private */,
+      35,    1,  224,    2, 0x08 /* Private */,
+      37,    1,  227,    2, 0x08 /* Private */,
+      38,    1,  230,    2, 0x08 /* Private */,
+      39,    1,  233,    2, 0x08 /* Private */,
+      40,    1,  236,    2, 0x08 /* Private */,
+      41,    1,  239,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -137,6 +163,15 @@ static const uint qt_meta_data_HPackages[] = {
     QMetaType::Int, QMetaType::QString,   13,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Int, QMetaType::Int,   32,
+    QMetaType::QString, QMetaType::Int,   34,
+    QMetaType::Int, QMetaType::QString,   36,
+    QMetaType::Void, QMetaType::Bool,    5,
+    QMetaType::Void, QMetaType::Bool,    5,
+    QMetaType::Void, QMetaType::Bool,    5,
+    QMetaType::Void, QMetaType::Bool,    5,
+    QMetaType::Void, QMetaType::QString,   42,
 
        0        // eod
 };
@@ -178,6 +213,18 @@ void HPackages::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         case 21: _t->getEanList(); break;
         case 22: _t->resetForm(); break;
+        case 23: _t->setLotText(); break;
+        case 24: { int _r = _t->getumid((*reinterpret_cast< int(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 25: { QString _r = _t->getumdesc((*reinterpret_cast< int(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+        case 26: { int _r = _t->getumidfromdesc((*reinterpret_cast< QString(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 27: _t->on_rbTutti_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 28: _t->on_rbProdottiFiniti_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 29: _t->on_rbVasi_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 30: _t->on_rbTappi_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 31: _t->on_leSearch_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -208,13 +255,13 @@ int HPackages::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 23)
+        if (_id < 32)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 23;
+        _id -= 32;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 23)
+        if (_id < 32)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 23;
+        _id -= 32;
     }
     return _id;
 }

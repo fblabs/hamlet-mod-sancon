@@ -6036,7 +6036,28 @@ release/hreadonlymodel.o: hreadonlymodel.cpp hreadonlymodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qregexp.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstringmatcher.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlDatabase \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QModelIndex
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QModelIndex \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QBrush \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qbrush.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qcolor.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrgb.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qmatrix.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpolygon.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qrect.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmargins.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsize.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qregion.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qwindowdefs.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qwindowdefs_win.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qline.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtransform.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpainterpath.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qimage.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpaintdevice.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpixmap.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsharedpointer.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsharedpointer_impl.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hreadonlymodel.o hreadonlymodel.cpp
 
 release/hprint.o: hprint.cpp hprint.h \
@@ -6862,6 +6883,9 @@ release/hreadonlymodellots.o: hreadonlymodellots.cpp hreadonlymodellots.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qstringmatcher.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlDatabase \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QModelIndex \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QColor \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qcolor.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrgb.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hreadonlymodellots.o hreadonlymodellots.cpp
 

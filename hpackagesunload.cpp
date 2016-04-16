@@ -153,7 +153,16 @@ bool HPackagesUnload::scarica()
 
   //  int prodotto=prodottolist.at(1).toInt();
     int azione=2;
-    double quantita=ui->leQuantita->text().toDouble();
+    bool ok;
+    double quantita=ui->leQuantita->text().toDouble(&ok);
+    if(!ok)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Quantità errata",QMessageBox::Ok);
+        return false;
+    }
+    if (quantita<0)
+        quantita*= -1;
+
     QString note=ui->leNote->text();
 
     QString query="INSERT INTO operazioni(IDlotto,data,utente,IDprodotto,azione,quantita,um,note) VALUES (:lot,:data,:utente,:prodotto,:azione,:quantita,:um,:note)";

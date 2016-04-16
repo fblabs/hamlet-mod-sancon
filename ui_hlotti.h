@@ -170,7 +170,7 @@ public:
         twLots = new QTableView(HLotti);
         twLots->setObjectName(QStringLiteral("twLots"));
         twLots->setEnabled(true);
-        twLots->setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed);
+        twLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
         twLots->setAlternatingRowColors(true);
         twLots->setSelectionMode(QAbstractItemView::SingleSelection);
         twLots->setSelectionBehavior(QAbstractItemView::SelectRows);

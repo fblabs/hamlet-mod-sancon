@@ -13,6 +13,7 @@ class HReadOnlyModelNew : public QSqlRelationalTableModel
 public:
     explicit HReadOnlyModelNew(QObject *parent=0, QSqlDatabase db = QSqlDatabase());
     Qt::ItemFlags flags(const QModelIndex &index) const;
+    QVariant data( const QModelIndex & item, int role /*= Qt::DisplayRole */ ) const;
 
 signals:
 

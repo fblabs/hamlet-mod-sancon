@@ -10,9 +10,12 @@
 class hReadonlyModel : public QSqlRelationalTableModel
 {
     Q_OBJECT
+
 public:
     explicit hReadonlyModel(QObject *parent=0, QSqlDatabase db = QSqlDatabase());
     Qt::ItemFlags flags(const QModelIndex &index) const;
+    QVariant data( const QModelIndex & item, int role /*= Qt::DisplayRole */ ) const;
+
 
 signals:
 
