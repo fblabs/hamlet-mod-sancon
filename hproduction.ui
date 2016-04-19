@@ -454,7 +454,7 @@
          <item row="4" column="1">
           <widget class="QLineEdit" name="leQtyTotal">
            <property name="readOnly">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>

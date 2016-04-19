@@ -388,7 +388,7 @@ public:
 
         leQtyTotal = new QLineEdit(HProduction);
         leQtyTotal->setObjectName(QStringLiteral("leQtyTotal"));
-        leQtyTotal->setReadOnly(true);
+        leQtyTotal->setReadOnly(false);
 
         formLayout->setWidget(4, QFormLayout::FieldRole, leQtyTotal);
 

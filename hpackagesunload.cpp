@@ -182,16 +182,16 @@ bool HPackagesUnload::scarica()
     if (b)
     {
 
-      //loadPackages();
-     //   QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
+      loadPackages();
+     // QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
 
 
     }
-    else
+  /*  else
     {
-     //   QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando l'operazione",QMessageBox::Ok);
-        qDebug()<<"scarica: " +q.lastError().text()+q.lastQuery();
-    }
+       // QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando l'operazione",QMessageBox::Ok);
+       // qDebug()<<"scarica: " +q.lastError().text()+q.lastQuery();
+    }*/
 
     return b;
 
