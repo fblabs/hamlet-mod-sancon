@@ -553,6 +553,7 @@ void HModRicette::printRecipe()
 
 
     }
+    f->append("Quantità: " + ui->leTotal->text(),false);
 
     f->append(ui->tbnote->toPlainText(),false);
 }
