@@ -73,6 +73,8 @@ private slots:
 
     void on_cbShowPackages_toggled(bool checked);
 
+    void on_cbtipo_currentIndexChanged(int index);
+
 signals:
     void trigger();
     void updateData();

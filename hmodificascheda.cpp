@@ -26,7 +26,7 @@ HModificaScheda::~HModificaScheda()
     delete ui;
 }
 
-void HModificaScheda::init(QString conn, int cliente, int prodotto, QString scheda)
+void HModificaScheda::init(QString conn, int cliente, int prodotto, QString scheda,int w,int h,int s)
 {
     sConn=conn;
 

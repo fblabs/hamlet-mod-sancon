@@ -32,6 +32,7 @@ private:
     bool canUpdate;
     int width;
     int height;
+    int fontsize;
 
 //    int m_idcliente;
 

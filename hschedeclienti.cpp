@@ -91,7 +91,7 @@ void HSchedeClienti::init(QString conn,HUser *usr)
 
     ui->listView->setCurrentIndex(ui->listView->model()->index(0,0));
     ui->lvSubclienti->setVisible(false);
-    ui->widget->toggleImageUI(false);
+    ui->widget->toggleImageUI(true);
 
 
 QApplication::restoreOverrideCursor();
@@ -217,7 +217,7 @@ void HSchedeClienti::loadScheda()
 
 
 
-    QString query="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy from schede where cliente=:idcliente and prodotto=:idprodotto";
+    QString query="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy,fontsize from schede where cliente=:idcliente and prodotto=:idprodotto";
     QSqlQuery q(db);
 
 
@@ -232,8 +232,10 @@ void HSchedeClienti::loadScheda()
 
    width=q.value(7).toInt();
    height=q.value(8).toInt();
+   fontsize=q.value(9).toInt();
    ui->widget->setWidth(width);
    ui->widget->setHeight(height);
+   ui->widget->setFontsize(fontsize);
 
 
    ui->widget->resetText();
@@ -318,7 +320,7 @@ void HSchedeClienti::on_pushButton_4_clicked()
    int prodotto=ui->listView->model()->index(ui->listView->currentIndex().row(),0).data(0).toInt();
 
     HModificaScheda *f=new HModificaScheda();
-    f->init(sConn,cliente,prodotto,ui->listView->model()->index(ui->listView->currentIndex().row(),1).data(0).toString() + " - " + ui->comboBox->currentText());
+    f->init(sConn,cliente,prodotto,ui->listView->model()->index(ui->listView->currentIndex().row(),1).data(0).toString() + " - " + ui->comboBox->currentText(),width,height,fontsize);
     f->setWindowModality(Qt::ApplicationModal);
     f->showMaximized();
     connect(f,SIGNAL(schedaAggiornata()),this,SLOT(loadScheda()));
@@ -429,6 +431,7 @@ void HSchedeClienti::saveScheda()
 {
     int cliente;
     int prodotto;
+    int fontsize;
 
     if (ui->cbSelectCriteria->isChecked())
     {
@@ -444,7 +447,7 @@ qDebug()<<"w"<<width<<"h"<<height;
     //connect(f,SIGNAL(update()),this,SLOT(loadScheda()));
 
     QSqlQuery q(db);
-    QString sql="update schede set imgx=:w,imgy=:h where cliente=:cliente and prodotto=:prodotto";
+    QString sql="update schede set imgx=:w,imgy=:h,fontsize=:font where cliente=:cliente and prodotto=:prodotto";
     q.prepare(sql);
     q.bindValue(":w",QVariant(width));
     q.bindValue(":h",QVariant(height));

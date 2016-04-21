@@ -36,9 +36,9 @@ HnuovaOperazione::~HnuovaOperazione()
 
 void HnuovaOperazione::setFilterProdotti()
 {
-    QString f;
-    f="ID in (SELECT ID_prodotto from ricette,associazioni where ricette.ID = associazioni.ID_ricetta and associazioni.ID_cliente="+listaFornitori->index(ui->cbAnagrafica->currentIndex(),0).data(0).toString();
-    listaProdotti->setFilter(f);
+  //  QString f;
+  //  f="ID in (SELECT ID_prodotto from ricette,associazioni where ricette.ID = associazioni.ID_ricetta and associazioni.ID_cliente="+listaFornitori->index(ui->cbAnagrafica->currentIndex(),0).data(0).toString();
+  //  listaProdotti->setFilter(f);
 
 }
 
@@ -123,7 +123,7 @@ void HnuovaOperazione::setupForm()
 
      ui->lvProdotti->setModel(listaProdotti);
      ui->lvProdotti->setModelColumn(1);
-    listaProdotti->select();
+     listaProdotti->select();
 
     ui->cbTipoLot->setModel(listaTipilot);
     ui->cbTipoLot->setModelColumn(1);
@@ -133,7 +133,7 @@ void HnuovaOperazione::setupForm()
     ui->cbUM->setModel(listaUnitaDiMisura);
     ui->cbUM->setModelColumn(1);
 
-    connect(ui->cbtipo,SIGNAL(currentIndexChanged(int)),this,SLOT(setFilterProdotti()));
+ //   connect(ui->cbtipo,SIGNAL(currentIndexChanged(int)),this,SLOT(setFilterProdotti()));
     ui->cbtipo->setCurrentIndex(2);
 
     tbm = new HReadOnlyModelNew(this, db);
@@ -353,6 +353,8 @@ void HnuovaOperazione::setLotsFilter()
    QString prfilt;
    QString flt;
 
+    prodotto=ui->lvProdotti->model()->index(ui->lvProdotti->currentIndex().row(),0).data(0).toString();
+
 
 
 
@@ -385,7 +387,7 @@ void HnuovaOperazione::setLotsFilter()
    }
    else
    {
-       prodotto=ui->lvProdotti->model()->index(ui->lvProdotti->currentIndex().row(),0).data(0).toString();
+
        QSqlTableModel *lots=static_cast<QSqlTableModel*>(ui->leLotto->completer()->model());
        lots->setFilter(flt);
    }
@@ -761,13 +763,13 @@ void HnuovaOperazione::on_leProdotti_textChanged(const QString &arg1)
 
 void HnuovaOperazione::on_leLotto_textChanged(const QString &arg1)
 {
-  /*  QString filter;
+    QString filter;
     filter="lot LIKE '%";
     filter.append(arg1);
     filter.append("%'");
-    listaProdotti->setFilter(filter);*/
-  //  qDebug()<<listaProdotti->lastError().text()<<filter;
-  //  setLotsFilter();
+
+    qDebug()<<listaProdotti->lastError().text()<<filter;
+    setLotsFilter();
 }
 
 void HnuovaOperazione::on_pushButton_2_clicked()
@@ -838,4 +840,25 @@ void HnuovaOperazione::on_cbShowPackages_toggled(bool checked)
 
 
 
+}
+
+void HnuovaOperazione::on_cbtipo_currentIndexChanged(int index)
+{
+    QString tipo;
+    tipo=ui->cbtipo->currentText();
+    qDebug()<<"tipo:"+tipo;
+    QSqlQuery q(db);
+    QString sql="SELECT ID from tipi_prodotto where descrizione=:tipo";
+    q.prepare(sql);
+    q.bindValue(0,QVariant(tipo));
+    q.exec();
+    q.first();
+    tipo=q.value(0).toString();
+
+
+   QString filter = "tipo=" + tipo;
+
+
+    listaProdotti->setFilter(filter);
+    qDebug()<<"cbtipo->ixc"<<listaProdotti->filter()<<listaProdotti->query().lastQuery();
 }

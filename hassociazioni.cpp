@@ -225,7 +225,7 @@ void HAssociazioni::on_pushButton_4_clicked()
     int idRicetta=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data(0).toInt();
 
 
-    f->init(sConn,idCliente,idRicetta,ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toString());
+    f->init(sConn,idCliente,idRicetta,ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toString(),100,100,10);
     f->show();
 }
 

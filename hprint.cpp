@@ -308,3 +308,11 @@ void HPrint::on_spCharSize_valueChanged(int arg1)
     ui->textEdit->setTextCursor( cursor);
 
 }
+
+void HPrint::setFontsize(int sz)
+{
+    QTextCursor cursor=ui->textEdit->textCursor();
+    ui->textEdit->selectAll();
+    ui->textEdit->setFontPointSize(sz);
+    ui->textEdit->setTextCursor( cursor);
+}

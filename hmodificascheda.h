@@ -17,7 +17,7 @@ class HModificaScheda : public QDialog
 public:
     explicit HModificaScheda(QWidget *parent = 0);
     ~HModificaScheda();
-    void init(QString conn, int cliente, int prodotto, QString scheda);
+    void init(QString conn, int cliente, int prodotto, QString scheda, int w, int h, int s);
     void setWidth(int);
     void setHeight(int);
 

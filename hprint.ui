@@ -30,36 +30,6 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <layout class="QFormLayout" name="formLayout_3">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Dimensione Caratteri:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QSpinBox" name="spCharSize">
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="value">
-          <number>10</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
       <widget class="QTextEdit" name="textEdit">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -87,13 +57,43 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item>
+      <layout class="QFormLayout" name="formLayout_3">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Dimensione Caratteri:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="spCharSize">
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="value">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <layout class="QFormLayout" name="formLayout">
          <item row="0" column="0">
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>X:</string>
+            <string>Larghezza immagine:</string>
            </property>
           </widget>
          </item>
@@ -120,7 +120,7 @@ p, li { white-space: pre-wrap; }
          <item row="0" column="0">
           <widget class="QLabel" name="label_2">
            <property name="text">
-            <string>Y:</string>
+            <string>Altezza immagine:</string>
            </property>
           </widget>
          </item>
