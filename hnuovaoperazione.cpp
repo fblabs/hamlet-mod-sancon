@@ -134,7 +134,7 @@ void HnuovaOperazione::setupForm()
     ui->cbUM->setModelColumn(1);
 
  //   connect(ui->cbtipo,SIGNAL(currentIndexChanged(int)),this,SLOT(setFilterProdotti()));
-    ui->cbtipo->setCurrentIndex(2);
+ //   ui->cbtipo->setCurrentIndex(2);
 
     tbm = new HReadOnlyModelNew(this, db);
     tbm->setTable("operazioni");
@@ -202,7 +202,7 @@ void HnuovaOperazione::setupForm()
 
 
 
-
+    ui->cbtipo->setCurrentIndex(2);
 
 
 
@@ -266,7 +266,7 @@ void HnuovaOperazione::setUiforCarico()
     ui->lvProdotti->setModelColumn(1);
 
 
-    ui->cbtipo->setCurrentIndex(2);
+ //   ui->cbtipo->setCurrentIndex(2);
     disconnect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setLotsFilter()));
     disconnect(ui->cbAnagrafica,SIGNAL(currentIndexChanged(int)),this,SLOT(setAnagFilter()));
 
@@ -305,7 +305,7 @@ void HnuovaOperazione::setUiForScarico()
     ui->label_11->setVisible(false);
     ui->leProdottoCreato->setVisible(false);
 
-    ui->cbtipo->setCurrentIndex(2);
+   // ui->cbtipo->setCurrentIndex(2);
     ui->label_14->setVisible(false);
     ui->label_13->setVisible(false);
     ui->label_8->setVisible(false);
