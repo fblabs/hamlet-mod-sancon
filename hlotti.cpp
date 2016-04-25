@@ -55,7 +55,7 @@ void HLotti::setupForm()
     ui->dataal->setDate(QDate::currentDate());
 
 
-    tbm = new HReadOnlyModelNew(0,db);
+    tbm = new HReadOnlyModelLots(0,db);
 
     tbm->setTable("lotdef");
     tbm->setFilter("lotdef.attivo=1");

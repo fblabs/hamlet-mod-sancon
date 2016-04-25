@@ -2,6 +2,7 @@
 #include <QSqlRelationalTableModel>
 #include <QColor>
 #include <QDebug>
+#include <QIcon>
 
 
 
@@ -33,49 +34,37 @@ HReadOnlyModelLots::HReadOnlyModelLots(QObject *parent,QSqlDatabase db ): QSqlRe
 
 }*/
 
-//QVariant HReadOnlyModelLots::data( const QModelIndex & item, int role /*= Qt::DisplayRole */ ) const
-//{
-  /*  QVariant	retVal;
- //   qDebug()<<item.data(Qt::DisplayRole).toString();
- //   QVariant val=item.data();
-   int val;
-   int col=item.column();
-   int row=item.row();
+QVariant HReadOnlyModelLots::data( const QModelIndex & item, int role /*= Qt::DisplayRole*/ ) const
+{
+    int row=item.row();
+    QString sTipoLotto= QSqlRelationalTableModel::data(this->index(row,10)).toString();
+    int tipo;
 
+    if (sTipoLotto == "MATERIE PRIME")
+       tipo=1;
+    else if (sTipoLotto == "SEMILAVORATO")
+       tipo=2;
+    else if (sTipoLotto =="PRODOTTO FINITO")
+       tipo=3;
+    else if (sTipoLotto == "PACKAGE")
+       tipo=4;
 
-
-   if (col==5)
+   if (item.column()==1 && tipo==1 && role==Qt::DecorationRole)
    {
-     if (QSqlRelationalTableModel::data(item).toString()=="Carico")
-     {
-         val=1;
-     }
-     else
-     {
-         val=2;
-     }
-
+     return QIcon(":/Resources/Box.PNG");
+   }
+   if (item.column()==1 && tipo==2 && role==Qt::DecorationRole)
+   {
+     return QIcon(":/Resources/Actions-configure-icon.png");
+   }
+   if (item.column()==1 && tipo==3 && role==Qt::DecorationRole)
+   {
+      return QIcon(":/Resources/Gears.PNG");
+   }
+  if (item.column()==1 && tipo==4 && role==Qt::DecorationRole)
+   {
+    return QIcon(":/Resources/fork-1-icon.png");
    }
 
-   if(col==5 && role==Qt::ForegroundRole)
-    {
-        if(val==2)
-        {
-        retVal= QVariant::fromValue(QColor(Qt::red));
-        }
-        else
-        {
-            retVal= QVariant::fromValue(QColor(Qt::green));
-        }
-
-    }
-    else
-    {
-        retVal = QSqlRelationalTableModel::data(item,role);
-
-    }
-
-
-
-    return retVal;*/
-//}
+  return QSqlRelationalTableModel::data(item,role);
+}

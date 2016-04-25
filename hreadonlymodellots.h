@@ -13,7 +13,7 @@ class HReadOnlyModelLots : public QSqlRelationalTableModel
 public:
     explicit HReadOnlyModelLots(QObject *parent=0, QSqlDatabase db = QSqlDatabase());
 //    Qt::ItemFlags flags(const QModelIndex &index) const;
-  //  QVariant data( const QModelIndex & item, int role /*= Qt::DisplayRole */ ) const;
+    QVariant data( const QModelIndex & item, int role /*= Qt::DisplayRole */ ) const;
 
 signals:
 

@@ -2,6 +2,7 @@
 #include <QSqlRelationalTableModel>
 #include <QSqlDatabase>
 #include <QIcon>
+#include <QDebug>
 
 HReadOnlyModelNew::HReadOnlyModelNew(QObject *parent,QSqlDatabase db ): QSqlRelationalTableModel(parent,db)
 {
@@ -19,37 +20,29 @@ Qt::ItemFlags HReadOnlyModelNew::flags(const QModelIndex &index) const
 QVariant HReadOnlyModelNew::data( const QModelIndex & item, int role /*= Qt::DisplayRole */ ) const
 {
 
-  int row=item.row();
+/*  int row=item.row();
 
-  QString sTipoLotto= QSqlRelationalTableModel::data(this->index(row,10)).toString();
+  int iAzione= QSqlRelationalTableModel::data(this->index(row,10)).toInt();
   int tipo;
 
-  if (sTipoLotto == "MATERIE PRIME")
-      tipo=1;
-  else if (sTipoLotto == "SEMILAVORATO")
-      tipo=2;
-  else if (sTipoLotto =="PRODOTTO FINITO")
-      tipo=3;
-  else if (sTipoLotto == "PACKAGE")
-      tipo=4;
+  switch(iAzione)
+  { case 1: //carico
+      break;
 
-  if (item.column()==1 && tipo==1 && role==Qt::DecorationRole)
+    case 2:
+
+      break;
+  }
+  if (item.column()==0 && iAzione==1 && role==Qt::DecorationRole)
   {
       return QIcon(":/Resources/Box.PNG");
   }
-  if (item.column()==1 && tipo==2 && role==Qt::DecorationRole)
+  else if (item.column()==0 && iAzione==2  && role==Qt::DecorationRole)
   {
       return QIcon(":/Resources/Actions-configure-icon.png");
   }
-  if (item.column()==1 && tipo==3 && role==Qt::DecorationRole)
-  {
-      return QIcon(":/Resources/Gears.PNG");
-  }
-  if (item.column()==1 && tipo==4 && role==Qt::DecorationRole)
-  {
-      return QIcon(":/Resources/fork-1-icon.png");
-  }
 
+qDebug()<<iAzione*/
    return QSqlRelationalTableModel::data(item,role);
 
 }

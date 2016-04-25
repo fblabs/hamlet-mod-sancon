@@ -7,7 +7,7 @@
 #include <QSqlRelationalTableModel>
 #include <QSqlTableModel>
 #include <QSqlDatabase>
-#include "hreadonlymodelnew.h"
+#include "hreadonlymodellots.h"
 #include "huser.h"
 
 namespace Ui {
@@ -70,7 +70,7 @@ private:
     QSqlRelationalTableModel *model;
     QString sConnection;
     HUser *user;
-    HReadOnlyModelNew *tbm;
+    HReadOnlyModelLots*tbm;
     QSqlTableModel *mTipi;
     QSqlTableModel *mProdotti;
     QSqlTableModel *mTipiProdotto;
