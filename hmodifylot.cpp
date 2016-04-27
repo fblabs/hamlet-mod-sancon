@@ -175,7 +175,7 @@ bool HModifyLot::updateLot()
     }
     if(ui->cbAttivo->isChecked())
     {
-        q.bindValue(":att",QVariant(1));
+        q.bindValue(":att",QVariant(2));
     }
     else
     {

@@ -11,28 +11,45 @@ HReadOnlyModelLots::HReadOnlyModelLots(QObject *parent,QSqlDatabase db ): QSqlRe
 
 }
 
-/*Qt::ItemFlags HReadOnlyModelLots::flags(const QModelIndex &index) const
+Qt::ItemFlags HReadOnlyModelLots::flags(const QModelIndex & item ) const
 {
+//qDebug()<<item.column();
 
-   if (index.column()==0 || index.column()==1 || index.column()==2 || index.column()==3)
+Qt::ItemFlags flags=QSqlRelationalTableModel::flags(item);
+
+   if (item.column() != 11)
    {
 
-       return QSqlRelationalTableModel::flags(index) & ~Qt::ItemIsEditable;
+      return QSqlRelationalTableModel::flags(item) & ~Qt::ItemIsEditable;
 
    }
-   else if (index.column()==18)
+   else if (item.column()==11)
    {
-       return QSqlRelationalTableModel::flags(index) & Qt::ItemIsUserCheckable & Qt::ItemIsEditable & Qt::ItemIsEnabled;
+
+       flags |= Qt::ItemIsUserCheckable;
+       flags |= Qt::ItemIsEditable;
+       flags |= Qt::ItemIsEnabled;
+
+       return flags;
+   }
+   else if (item.column()==12)
+   {
+
+      // flags &= Qt::ItemIsUserCheckable;
+       flags |= Qt::ItemIsEditable;
+       flags &= Qt::ItemIsEnabled;
+
+       return flags;
    }
    else
    {
-      return QSqlRelationalTableModel::flags(index);
+      return QSqlRelationalTableModel::flags(item)  ;
    }
 
 
+ return QSqlRelationalTableModel::flags(item) ;
 
-
-}*/
+}
 
 QVariant HReadOnlyModelLots::data( const QModelIndex & item, int role /*= Qt::DisplayRole*/ ) const
 {
@@ -49,9 +66,10 @@ QVariant HReadOnlyModelLots::data( const QModelIndex & item, int role /*= Qt::Di
     else if (sTipoLotto == "PACKAGE")
        tipo=4;
 
+
    if (item.column()==1 && tipo==1 && role==Qt::DecorationRole)
    {
-     return QIcon(":/Resources/Box.PNG");
+     return QIcon(":/Resources/fork-1-icon.png");
    }
    if (item.column()==1 && tipo==2 && role==Qt::DecorationRole)
    {
@@ -63,8 +81,25 @@ QVariant HReadOnlyModelLots::data( const QModelIndex & item, int role /*= Qt::Di
    }
   if (item.column()==1 && tipo==4 && role==Qt::DecorationRole)
    {
-    return QIcon(":/Resources/fork-1-icon.png");
+    return QIcon(":/Resources/Box.PNG");
    }
+   if (item.column()==11)
+   {
+
+
+  //     QVariant value=QSqlRelationalTableModel::data(item);
+       if (role==Qt::CheckStateRole)
+           return (QSqlRelationalTableModel::data(item).toInt() != 0) ? Qt::Checked :Qt::Unchecked;
+       else
+           return QVariant();
+
+
+   }  
 
   return QSqlRelationalTableModel::data(item,role);
+}
+
+bool HReadOnlyModelLots::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+     QSqlRelationalTableModel::setData(index,value,role);
 }

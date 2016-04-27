@@ -58,7 +58,7 @@ void HLotti::setupForm()
     tbm = new HReadOnlyModelLots(0,db);
 
     tbm->setTable("lotdef");
-    tbm->setFilter("lotdef.attivo=1");
+    tbm->setFilter("lotdef.attivo=2");
 
     tbm->setRelation(2,QSqlRelation("prodotti","ID","descrizione"));
     tbm->setRelation(5,QSqlRelation("unita_di_misura","ID","descrizione"));
@@ -68,7 +68,7 @@ void HLotti::setupForm()
     ui->twLots->setItemDelegate(new QSqlRelationalDelegate(tbm));
     ui->twLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    tbm->setEditStrategy(QSqlRelationalTableModel::OnManualSubmit);
+    tbm->setEditStrategy(QSqlRelationalTableModel::OnFieldChange);
 
 
 ////qDebug()<<tbm->lastError().text()<<tbm->relation(7).indexColumn();

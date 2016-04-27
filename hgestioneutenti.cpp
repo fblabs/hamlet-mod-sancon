@@ -111,7 +111,7 @@ void HGestioneUtenti::on_checkBox_toggled(bool checked)
     }
     else
     {
-         utm->setFilter("attivo=1");
+         utm->setFilter("attivo=2");
     }
 }
 

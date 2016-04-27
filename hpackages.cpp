@@ -34,7 +34,7 @@ void HPackages::init(QString conn,QString user)
 
 
 
-    basefilter="lotdef.attivo=1 and year(lotdef.data) > " +QString::number(QDate::currentDate().addYears(-3).year());
+    basefilter="lotdef.attivo=2 and year(lotdef.data) > " +QString::number(QDate::currentDate().addYears(-3).year());
     qDebug()<<basefilter;
 
     ui->checkBox->setVisible(false);

@@ -112,7 +112,7 @@ void HnuovaOperazione::setupForm()
     lots->setTable("lotdef");
     lots->select();
 
-    basefilter="attivo=1 and year(data)>year(data)-3";
+    basefilter="attivo=2 and year(data)>year(data)-3";
     lots->setFilter(basefilter);
 
     ui->cbtipo->setModel(listaTipologie);
@@ -153,7 +153,7 @@ void HnuovaOperazione::setupForm()
 
 
 
-    //QString filt=QDate::currentDate().toString("yyyy-MM-dd");
+   // QString filt=QDate::currentDate().toString("yyyy-MM-dd");
 
     //tbm->setFilter("operazioni.data='"+filt+"'");
 
@@ -415,7 +415,7 @@ bool HnuovaOperazione::saveNewLot(QString nl)
     int tipo;
     double giacenza;
     int anagrafica;
-    int attivo=1;
+    int attivo=2;
     QString note=ui->tNote->toPlainText();
 
 

@@ -263,7 +263,7 @@ void HProduction::lastFiveLots()
     int prd =ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0)).toInt();
     int quanti=ui->cbQuanti->currentData().toInt();
 
-    QString sql="select ID,lot from lotdef where prodotto=:prd and attivo=1 ORDER by data DESC LIMIT :quanti";
+    QString sql="select ID,lot from lotdef where prodotto=:prd and attivo=2 ORDER by data DESC LIMIT :quanti";
     qlots.prepare(sql);
     qlots.bindValue(":prd",QVariant(prd));
     qlots.bindValue(":quanti",QVariant(quanti));
@@ -1033,7 +1033,7 @@ qDebug()<<scadenza.toString("yyyy-MM-dd");
     QString lotf="PRODUZIONE";
     QString ean="";
     QString tipo="3"/*ui->cbTipoLotto->model()->index(ui->cbTipoLotto->currentIndex(),0).data(0).toString();*/;
-    QString attivo="1";
+    QString attivo="2";
     QString um=ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0).toString();
     QString note=ui->tNote->toPlainText();
     QDateTime data=QDateTime::currentDateTime();

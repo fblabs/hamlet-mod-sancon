@@ -2,7 +2,8 @@
 #include "ui_hmodifyprod.h"
 
 #include <QSqlDatabase>
-#include <QSqlRelationalTableModel>
+//#include <QSqlRelationalTableModel>
+#include "hreadonlymodellots.h"
 #include <QSqlRelationalDelegate>
 #include <QSqlRelation>
 #include <QSqlQueryModel>
@@ -45,7 +46,7 @@ void HModifyProd::init(QString conn,HUser *usr)
 
 
     db=QSqlDatabase::database(sConn);
-    tmLots=new QSqlRelationalTableModel(0,db);
+    tmLots=new HReadOnlyModelLots(0,db);
     tmLots->setTable("lotdef");
     tmLots->setSort(3,Qt::DescendingOrder);
 
@@ -90,7 +91,7 @@ void HModifyProd::init(QString conn,HUser *usr)
 
 
    ui->tvLots->setColumnHidden(0,true);
-   ui->tvLots->setColumnHidden(4,true);
+ //  ui->tvLots->setColumnHidden(4,true);
    ui->tvLots->setColumnHidden(5,true);
    ui->tvLots->setColumnHidden(6,true);
    ui->tvLots->setColumnHidden(7,true);
@@ -99,6 +100,7 @@ void HModifyProd::init(QString conn,HUser *usr)
    tmLots->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
    tmLots->setHeaderData(2,Qt::Horizontal,QObject::tr("Prodotto"));
    tmLots->setHeaderData(3,Qt::Horizontal,QObject::tr("Data"));
+   tmLots->setHeaderData(4,Qt::Horizontal,QObject::tr("Giacenza"));
    tmLots->setHeaderData(9,Qt::Horizontal,QObject::tr("Lot. Uscita"));
    tmLots->setHeaderData(10,Qt::Horizontal,QObject::tr("Tipo"));
 
@@ -106,6 +108,8 @@ void HModifyProd::init(QString conn,HUser *usr)
    //  ui->tvLots->setColumnHidden(9,true);
 //   ui->tvLots->setColumnHidden(10,true);
  //  ui->tvLots->setColumnHidden(11,true);
+   ui->tvLots->setColumnHidden(11,true);
+   ui->tvLots->setColumnHidden(12,true);
 
    /* tmProdotti=new QSqlTableModel(0,db);
     tmProdotti->setTable("prodotti");

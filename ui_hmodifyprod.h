@@ -146,10 +146,13 @@ public:
 
         tvLots = new QTableView(HModifyProd);
         tvLots->setObjectName(QStringLiteral("tvLots"));
+        tvLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tvLots->setAlternatingRowColors(true);
         tvLots->setSelectionMode(QAbstractItemView::SingleSelection);
         tvLots->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvLots->setSortingEnabled(true);
         tvLots->horizontalHeader()->setStretchLastSection(true);
+        tvLots->verticalHeader()->setVisible(false);
 
         verticalLayout->addWidget(tvLots);
 

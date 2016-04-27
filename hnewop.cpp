@@ -226,7 +226,7 @@ QString HNewOp::saveNewLotString(bool isLoad=true)
     lot_fornitore=ui->leLotFornitore->text();
     ean="''";
     tipo=ui->cbTipoLotto->currentData().toString();
-    attivo="1";
+    attivo="2";
     quantita=QString::number(quant,'f',2);
     newLot=getNewLot();
 

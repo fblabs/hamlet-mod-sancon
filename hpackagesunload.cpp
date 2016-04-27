@@ -21,7 +21,7 @@ HPackagesUnload::HPackagesUnload(QWidget *parent, HUser* puser, QString cnn) :
     user=puser;
     conn=cnn;
     db=QSqlDatabase::database(conn);
-    baseFilter="attivo=1 and year(data)>year(data)-3 and tipo=4";
+    baseFilter="attivo=2 and year(data)>year(data)-3 and tipo=4";
     getClients();
 
 }
