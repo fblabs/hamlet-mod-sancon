@@ -86,8 +86,13 @@ void HPrint::resizeImage(int wr, int hr)
 
 
 
-                          newImageFormat.setWidth(ui->sbW->value());
-                          newImageFormat.setHeight(ui->sbH->value());
+                    //      newImageFormat.setWidth(ui->sbW->value());
+                    //      newImageFormat.setHeight(ui->sbH->value());
+
+                          newImageFormat.setWidth(wr);
+                          newImageFormat.setHeight(hr);
+
+
 
                           if (newImageFormat.isValid())
                           {
@@ -125,7 +130,9 @@ void HPrint::cursorToStart()
 
 void HPrint::resetText()
 {
-    ui->textEdit->setText("");
+    ui->textEdit->clear();
+  //  ui->textEdit->setText("");
+
 }
 void HPrint::setText(QString text)
 {
@@ -134,6 +141,7 @@ void HPrint::setText(QString text)
     ui->textEdit->setText(text);
 
     font.setBold(false);
+
 
 
 
@@ -283,7 +291,15 @@ int HPrint::getWidth()
 int HPrint::getHeight()
 {
 
+
     return ui->sbH->value();
+
+}
+
+int HPrint::getFontsize()
+{
+
+    return ui->spCharSize->value();
 
 }
 
@@ -302,17 +318,30 @@ void HPrint::setHeight(int value)
 
 void HPrint::on_spCharSize_valueChanged(int arg1)
 {
+    
     QTextCursor cursor=ui->textEdit->textCursor();
+    QFont font=ui->textEdit->font();
+    font.setPointSize(arg1);
+
     ui->textEdit->selectAll();
     ui->textEdit->setFontPointSize(arg1);
     ui->textEdit->setTextCursor( cursor);
+    ui->textEdit->setFont(font);
+
+
+    qDebug()<<"arg1"<<arg1;
 
 }
 
 void HPrint::setFontsize(int sz)
 {
+    ui->spCharSize->setValue(sz);
+    QFont font=ui->textEdit->font();
+    font.setPointSize(sz);
+    qDebug()<<"size="<<sz;
     QTextCursor cursor=ui->textEdit->textCursor();
     ui->textEdit->selectAll();
     ui->textEdit->setFontPointSize(sz);
     ui->textEdit->setTextCursor( cursor);
+    ui->textEdit->setFont(font);
 }

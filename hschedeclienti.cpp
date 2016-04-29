@@ -19,7 +19,7 @@ HSchedeClienti::HSchedeClienti(QWidget *parent) :
     ui(new Ui::HSchedeClienti)
 {
     ui->setupUi(this);
-    ui->btnSave->setVisible(false);
+   // ui->btnSave->setVisible(false);
 }
 
 HSchedeClienti::~HSchedeClienti()
@@ -221,7 +221,7 @@ void HSchedeClienti::loadScheda()
     QSqlQuery q(db);
 
 
-
+   ui->widget->resetText();
 
     q.prepare(query);
     q.bindValue(":idcliente",QVariant(cliente));
@@ -233,12 +233,12 @@ void HSchedeClienti::loadScheda()
    width=q.value(7).toInt();
    height=q.value(8).toInt();
    fontsize=q.value(9).toInt();
-   ui->widget->setWidth(width);
-   ui->widget->setHeight(height);
+
+   qDebug()<<"loadScheda"<<fontsize;
+
    ui->widget->setFontsize(fontsize);
 
 
-   ui->widget->resetText();
 
 
 
@@ -292,6 +292,13 @@ void HSchedeClienti::loadScheda()
    ui->widget->getCursor().insertImage(scale);
 
    ui->widget->cursorToEnd();
+
+   ui->widget->setWidth(width);
+   ui->widget->setHeight(height);
+
+
+//
+   ui->widget->resizeImage(width,height);
 
 }
 
@@ -442,6 +449,8 @@ void HSchedeClienti::saveScheda()
        cliente=ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toInt();
     }
 
+    fontsize=ui->widget->getFontsize();
+
 qDebug()<<"w"<<width<<"h"<<height;
     prodotto=ui->listView->model()->index(ui->listView->currentIndex().row(),0).data(0).toInt();
     //connect(f,SIGNAL(update()),this,SLOT(loadScheda()));
@@ -451,8 +460,10 @@ qDebug()<<"w"<<width<<"h"<<height;
     q.prepare(sql);
     q.bindValue(":w",QVariant(width));
     q.bindValue(":h",QVariant(height));
+    q.bindValue(":font",QVariant(fontsize));
     q.bindValue(":cliente",QVariant(cliente));
     q.bindValue(":prodotto",QVariant(prodotto));
+
 
     q.exec();
 
