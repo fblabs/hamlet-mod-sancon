@@ -588,7 +588,7 @@ bool HPackages::saveNewLotInLotdef(QString lotto)
        anagrafica=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
     }
 
-    sql="INSERT INTO `lotdef`(`lot`,`prodotto`,`data`,`giacenza`,`um`,`scadenza`,`anagrafica`,`EAN`,`tipo`,`attivo`) values (:lot,:prodotto,:data,:giacenza,:um,:scadenza,:anagrafica,:ean,4,1)";
+    sql="INSERT INTO `lotdef`(`lot`,`prodotto`,`data`,`giacenza`,`um`,`scadenza`,`anagrafica`,`EAN`,`tipo`,`attivo`) values (:lot,:prodotto,:data,:giacenza,:um,:scadenza,:anagrafica,:ean,4,2)";
     q.prepare(sql);
     q.bindValue(":lot",QVariant(lotto));
     q.bindValue(":prodotto",QVariant(idp));

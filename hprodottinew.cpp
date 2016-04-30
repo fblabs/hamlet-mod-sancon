@@ -167,7 +167,7 @@ void HProdottiNew::on_checkBox_toggled(bool checked)
 
     if(checked)
     {
-        attivo="attivo=1";
+        attivo="attivo > 0";
     }
     else
     {
