@@ -4,7 +4,7 @@
 #include <QSqlDatabase>
 #include <QSqlquery>
 
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 #include <QDateTime>
 #include <QStandardItem>
@@ -48,7 +48,7 @@ void HProduction::getSubclients()
     q.bindValue(":id",QVariant(cliente));
     q.exec();
     qm->setQuery(q);
-    //qDebug()<<q.lastError().text()<<QString::number(qm->rowCount());
+    // qDebug()<<q.lastError().text()<<QString::number(qm->rowCount());
     ui->lvSubclienti->setModel(qm);
     ui->lvSubclienti->setModelColumn(1);
     if (qm->rowCount()>0)
@@ -198,7 +198,7 @@ void HProduction::calculateActualTotal()
             QMessageBox::warning(this,QApplication::applicationName(),"Errore nella quantità",QMessageBox::Ok);
             return;
         }
-        qDebug()<<"calculateactualtotalrow"<<x<<QString::number(quantita);
+       // // qDebug()<<"calculateactualtotalrow"<<x<<QString::number(quantita);
 
     }
     QString qta =QString::number(quantita,'f',3);
@@ -218,7 +218,7 @@ void HProduction::updateTotals()
     double dafare = ui->leQtyTotal->text().toDouble(&ok);
     if(!ok)
     {
-        qDebug()<<"updatetotals"<<QString::number(dafare,'f',6);
+       // // qDebug()<<"updatetotals"<<QString::number(dafare,'f',6);
     }
    // ui->leQuaRic->setText(QString::number(dafare,'f',3));
     double sommarighe=0;
@@ -235,7 +235,7 @@ void HProduction::updateTotals()
 
     factor = dafare / sommarighe;
 
-  //  qDebug()<<"updatetotals"<<QString::number(sommarighe,'f',6);
+  // // // qDebug()<<"updatetotals"<<QString::number(sommarighe,'f',6);
 
     for (int j=0;j<model->rowCount();j++)
     {
@@ -263,7 +263,7 @@ void HProduction::lastFiveLots()
     int prd =ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0)).toInt();
     int quanti=ui->cbQuanti->currentData().toInt();
 
-    QString sql="select ID,lot from lotdef where prodotto=:prd and attivo=2 ORDER by data DESC LIMIT :quanti";
+    QString sql="select ID,lot from lotdef where prodotto=:prd and attivo>0 ORDER by data DESC LIMIT :quanti";
     qlots.prepare(sql);
     qlots.bindValue(":prd",QVariant(prd));
     qlots.bindValue(":quanti",QVariant(quanti));
@@ -271,7 +271,7 @@ void HProduction::lastFiveLots()
     qmLots->clear();
     qmLots->setQuery(qlots);
 
-    //qDebug()<<"lastfivelots"<<qlots.lastError().text();
+    // qDebug()<<"lastfivelots"<<qlots.lastError().text();
 
 
 
@@ -306,7 +306,7 @@ void HProduction::getClients()
 
     qmClienti->setQuery(q);
 
-    //qDebug()<<q.lastError().text();
+    // qDebug()<<q.lastError().text();
 
     ui->cbClienti->setModel(qmClienti);
     ui->cbClienti->setModelColumn(1);
@@ -352,7 +352,7 @@ void HProduction::getLotToModify(QString lot)
     k.exec();
     k.first();
     lottomodifica=k.value(0).toInt();
-    //qDebug()<<"idlotto="<<QString::number(idlotto);
+    // qDebug()<<"idlotto="<<QString::number(idlotto);
 
 
     //QString sql="SELECT operazioni.IDProdotto,prodotti.descrizione,operazioni.quantita,lotdef.ID,lotdef.lot from operazioni,prodotti,lotdef  where operazioni.IDprodotto=prodotti.ID and lotdef.ID=operazioni.IDlotto and operazioni.ID in (select operazione from composizione_lot where ID_lotto=:idlotto)";
@@ -360,7 +360,7 @@ void HProduction::getLotToModify(QString lot)
     k.prepare(sql);
     k.bindValue(":idlotto",QVariant(lottomodifica));
     k.exec();
-//qDebug()<< k.lastError().text()<<k.lastQuery();
+// qDebug()<< k.lastError().text()<<k.lastQuery();
 
     model = new QStandardItemModel(0,7);
 
@@ -447,7 +447,7 @@ void HProduction::getRecipesForClient()
 
     q.exec();
 
-    //qDebug()<<q.lastError().text();
+    // qDebug()<<q.lastError().text();
 
     qmRicette->setQuery(q);
 
@@ -512,11 +512,11 @@ void HProduction::getRecipe()
     q.bindValue(":idricetta",QVariant(idricetta));
 
     q.exec();
-    //qDebug()<<q.lastError().text();
+    // qDebug()<<q.lastError().text();
 
     // int righe=q.size();
 
-    // //qDebug()<<q.size()<<q.lastError().text();
+    // // qDebug()<<q.size()<<q.lastError().text();
 
     model = new QStandardItemModel(0,6);
 
@@ -944,7 +944,7 @@ QString HProduction::getNewLot(int prod)
     qLotQr.first();
     ret = qLotQr.value(0).toString();
 
-    //qDebug()<<ret;
+    // qDebug()<<ret;
     return ret;
 }
 
@@ -1015,12 +1015,12 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
     bool b;
     QSqlQuery q(db);
 
-    //qDebug()<<lot<<prodotto<<data<<"saveNewLot()";
+    // qDebug()<<lot<<prodotto<<data<<"saveNewLot()";
 
     QString sql="INSERT INTO `lotdef`(`lot`,`prodotto`,`data`,`giacenza`,`um`,`scadenza`,`anagrafica`,`lot_fornitore`, `EAN`, `tipo`, `attivo`,`note`) VALUES(:lot,:prodotto,:data,:giacenza,:um,:scadenza ,:anagrafica,:lotf,:ean,:tipo,:attivo,:note)";
     QString giacenza=ui->leQtyTotal->text();
     QDate scadenza=ui->dateEdit->date();
-qDebug()<<scadenza.toString("yyyy-MM-dd");
+// qDebug()<<scadenza.toString("yyyy-MM-dd");
     QString anagrafica;
     if(ui->checkBox->isChecked())
     {
@@ -1053,10 +1053,10 @@ qDebug()<<scadenza.toString("yyyy-MM-dd");
     q.bindValue(":attivo",QVariant(attivo));
     q.bindValue(":note",QVariant(note));
     b = q.exec();
-qDebug()<<q.boundValue(5).toString()<<q.boundValue(4).toString()<<q.boundValue(6).toString();
+// qDebug()<<q.boundValue(5).toString()<<q.boundValue(4).toString()<<q.boundValue(6).toString();
     if(!b)
     {
-        //qDebug()<<q.lastError().text()<<q.lastQuery();
+        // qDebug()<<q.lastError().text()<<q.lastQuery();
         QMessageBox::warning(this,"savenewlot",q.lastError().text()+"\n"+prodotto,QMessageBox::Ok);
 
     }
@@ -1069,7 +1069,7 @@ qDebug()<<q.boundValue(5).toString()<<q.boundValue(4).toString()<<q.boundValue(6
 
 bool HProduction::saveLotLoad(int idlotto, int prodotto)
 {
-qDebug()<<"SaveLotLoad()"<<QString::number(idlotto)<<QString::number(prodotto);
+// qDebug()<<"SaveLotLoad()"<<QString::number(idlotto)<<QString::number(prodotto);
 
     QSqlQuery q(db);
 
@@ -1088,9 +1088,9 @@ qDebug()<<"SaveLotLoad()"<<QString::number(idlotto)<<QString::number(prodotto);
     q.bindValue(":azione",QVariant(1));
     q.bindValue(":quantita",QVariant(giacenza));
     q.bindValue(":um",QVariant(um));
-    qDebug()<<"prima di eseguire la query di lotload";
+   // // qDebug()<<"prima di eseguire la query di lotload";
     bool b=q.exec();
-    qDebug()<<q.lastError().text()<<q.lastQuery();
+   // // qDebug()<<q.lastError().text()<<q.lastQuery();
     return b;
 }
 //--saveLotLoad()------------------------------
@@ -1145,7 +1145,7 @@ int HProduction::lastInsertId()
 
      if(!b)
      {
-        //qDebug() << q.lastError().text();
+        // qDebug() << q.lastError().text();
         QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveOperazione(" + QString::number(row) +")\nIDlotto:"+idlotto,QMessageBox::Ok);
 
      }
@@ -1168,15 +1168,15 @@ int HProduction::lastInsertId()
 
     // int operazione=lastInsertId();
 
-//qDebug()<<"lottotarget: "<<QString::number(lottotarget)<<" operazione: "<<QString::number(operazione);
+// #include <QDebug><<"lottotarget: "<<QString::number(lottotarget)<<" operazione: "<<QString::number(operazione);
           sql="INSERT INTO composizione_lot (ID_lotto,operazione) VALUES (:lottotarget,:operazione)";
           q.prepare(sql);
           q.bindValue(":lottotarget",QVariant(lottotarget));
           q.bindValue(":operazione",QVariant(operazione));
-          //qDebug()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
+          // qDebug()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
 
           b=q.exec();
-          //qDebug()<< "savecomposizione"<<q.lastError().text();
+          // qDebug()<< "savecomposizione"<<q.lastError().text();
 
      return b;
 
@@ -1201,16 +1201,16 @@ bool HProduction::saveProduction()
     scadenza=ui->dateEdit->date();
     idprodotto=ui->lvRicette->model()->index(ui->lvRicette->currentIndex().row(),1).data(0).toInt();
     lotto=getNewLot(idprodotto);
-    qDebug()<<"INIZIO A SALVARE"<<"lotto="<<lotto<<" Prodotto="<<QString::number(idprodotto);
+   // // qDebug()<<"INIZIO A SALVARE"<<"lotto="<<lotto<<" Prodotto="<<QString::number(idprodotto);
 
     db.transaction();
 //creo un nuovo lotto
 
  fb=saveNewLot(lotto,idprodotto);
- qDebug()<<"saveNewLot"<<fb;
+// // qDebug()<<"saveNewLot"<<fb;
 
   newlotid=lastInsertId();
-  qDebug()<<QString::number(newlotid);
+ // // qDebug()<<QString::number(newlotid);
  if(!fb)
    {
        QMessageBox::warning(this,QApplication::applicationName(),"Errore creando il nuovo lotto\n"+db.lastError().text(),QMessageBox::Ok);
@@ -1223,7 +1223,7 @@ bool HProduction::saveProduction()
 
   fb=saveLotLoad(newlotid,idprodotto);
  // int lastopid=lastInsertId();
-  qDebug()<<"savelotload";
+ // // qDebug()<<"savelotload";
 
   if(!fb)
   {
@@ -1232,17 +1232,17 @@ bool HProduction::saveProduction()
     return fb;
   }
   //ultimo ID di operazioni)
-  //qDebug()<<QString::number(k);
+  // qDebug()<<QString::number(k);
 
 //scarico i componenti e salvo la composizione del lotto
   int rows=ui->tableView->model()->rowCount();
-  qDebug()<<QString::number(rows);
+ // // qDebug()<<QString::number(rows);
 
    for (int x=0;x<rows;x++)
    {
 
        fb=saveOperation(x,2);
-       qDebug()<<"saveoperazione"<<QString::number(x);
+      // // qDebug()<<"saveoperazione"<<QString::number(x);
        op=lastInsertId();
       // recupero l'id dell'ultima operazione di scarico(cioè lo scarico della prima riga di  tableview se x=0
        if (fb)
@@ -1250,7 +1250,7 @@ bool HProduction::saveProduction()
            //se l'operazione è salvata senza errori
            // la salvo in composizone_lot,new lotid è il lotto di cui voglio salvare la composizione (lotid) e op è l'id dell'operazione
            bool j=saveComposizione(newlotid,op);
-           qDebug()<<"newlotid="<<QString::number(newlotid)<<"operazione:"<<QString::number(op);
+          // // qDebug()<<"newlotid="<<QString::number(newlotid)<<"operazione:"<<QString::number(op);
            op=lastInsertId();
            if (!j)
            {
@@ -1258,7 +1258,7 @@ bool HProduction::saveProduction()
                db.rollback();
                return false;
            }
-           qDebug()<<"saveComposizione()";
+          // // qDebug()<<"saveComposizione()";
        }
        else
        {
@@ -1300,7 +1300,7 @@ bool HProduction::saveUpdatedComposizione()
              q.bindValue(":operazione",QVariant(operazione));
 
              b=q.exec();
-             //qDebug()<< "savecomposizione"<<QString::number(b);
+             // qDebug()<< "savecomposizione"<<QString::number(b);
 
         return b;
 }
@@ -1345,7 +1345,7 @@ void HProduction::on_pushButton_3_clicked()
 void HProduction::on_leQtyTotal_returnPressed()
 {
   // calcola pesi
-    //qDebug()<<"going into updateTotals();";
+    // qDebug()<<"going into updateTotals();";
     updateTotals();
 
 }
@@ -1524,7 +1524,7 @@ bool HProduction::saveUpdatedOperazione(int row)
 
         if(!b)
         {
-           //qDebug() << q.lastError().text();
+           // qDebug() << q.lastError().text();
           // QMessageBox::warning(this,QApplication::applicationName(),"saveOperazione(" + QString::number(row) +")\noperazione:"+operazione,QMessageBox::Ok);
 
         }
@@ -1570,7 +1570,7 @@ void HProduction::on_pushButton_11_clicked()
 
 void HProduction::on_leQuaRic_textChanged(const QString &arg1)
 {
-    qDebug()<<arg1;
+   // // qDebug()<<arg1;
 }
 
 void HProduction::on_checkBox_2_toggled(bool checked)

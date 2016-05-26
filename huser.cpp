@@ -2,7 +2,7 @@
 //#include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QMessageBox>
-#include <QDebug>
+// #include <QDebug>
 
 HUser::HUser(QObject *parent) :
     QObject(parent)

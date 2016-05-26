@@ -1,7 +1,7 @@
 #include "hreadonlymodellots.h"
 #include <QSqlRelationalTableModel>
 #include <QColor>
-#include <QDebug>
+// #include <QDebug>
 #include <QIcon>
 
 
@@ -13,7 +13,7 @@ HReadOnlyModelLots::HReadOnlyModelLots(QObject *parent,QSqlDatabase db ): QSqlRe
 
 Qt::ItemFlags HReadOnlyModelLots::flags(const QModelIndex & item ) const
 {
-//qDebug()<<item.column();
+//// qDebug()<<item.column();
 
 Qt::ItemFlags flags=QSqlRelationalTableModel::flags(item);
 

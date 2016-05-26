@@ -7,7 +7,7 @@
 #include <QSqlquery>
 #include <QDataWidgetMapper>
 #include <QMessageBox>
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 
 HGestioneUtenti::HGestioneUtenti(QWidget *parent) :
@@ -72,7 +72,7 @@ void HGestioneUtenti::init(QString conn)
     mapper->addMapping(ui->cbAttivo,5);
    // mapper->addMapping(ui->comboBox,3, "currentIndex");
 
-  //  qDebug()<<QString::number(mapper->mappedSection(ui->comboBox));
+  // // // qDebug()<<QString::number(mapper->mappedSection(ui->comboBox));
     mapper->setItemDelegate(new QSqlRelationalDelegate(this));
 
     mapper->toFirst();
@@ -136,14 +136,14 @@ int HGestioneUtenti::getGruppo()
 
    //  idgruppo=i;
   //  int ui->comboBox->findText()
-    qDebug()<<"getGruppo():"<<i<<utm->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString();
+   // // qDebug()<<"getGruppo():"<<i<<utm->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString();
    return i;
 }
 
 void HGestioneUtenti::getIdUtente()
 {
     idutente=ui->lvUtenti->model()->index(ui->lvUtenti->currentIndex().row(),0).data(0).toInt();
-    qDebug()<<"getIdUtente():"<<idutente;
+   // // qDebug()<<"getIdUtente():"<<idutente;
 }
 
 
@@ -159,8 +159,8 @@ void HGestioneUtenti::on_pushButton_2_clicked()
     q.exec(sql);
     q.first();
     int idgruppo=q.value(0).toInt();
-    qDebug()<<"salva "<<idgruppo<<sql;
-    // qDebug()<<utm->lastError().text();
+   // // qDebug()<<"salva "<<idgruppo<<sql;
+    //// // qDebug()<<utm->lastError().text();
 
     //-----------------
 
@@ -177,7 +177,7 @@ void HGestioneUtenti::on_pushButton_2_clicked()
     q.bindValue(":attivo",ui->cbAttivo->isChecked());
     q.bindValue(":idutente",QVariant(idutente));
     q.exec();
-    qDebug()<<"salva2:"<<"idutente:"<<idutente<<"idgruppo " + q.boundValue(0).toString()<<"idutente: "+q.boundValue(1).toString()<<utm->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString();
+   // // qDebug()<<"salva2:"<<"idutente:"<<idutente<<"idgruppo " + q.boundValue(0).toString()<<"idutente: "+q.boundValue(1).toString()<<utm->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString();
 
     //gtm->select();
     //utm->select();
@@ -215,7 +215,7 @@ void HGestioneUtenti::on_pbNuovaPassword_clicked()
 
 void HGestioneUtenti::on_comboBox_currentIndexChanged(int index)
 {
-    qDebug()<<ui->comboBox->currentText()<<ui->comboBox->itemData(ui->comboBox->currentIndex())<<ui->comboBox->model()->index(ui->comboBox->currentIndex(),3).data().toString();
+   // // qDebug()<<ui->comboBox->currentText()<<ui->comboBox->itemData(ui->comboBox->currentIndex())<<ui->comboBox->model()->index(ui->comboBox->currentIndex(),3).data().toString();
 }
 
 void HGestioneUtenti::on_pushButton_4_clicked()

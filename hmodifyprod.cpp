@@ -11,7 +11,7 @@
 #include <QSqlError>
 #include <QCompleter>
 #include <QDate>
-#include <QDebug>
+// #include <QDebug>
 #include <huser.h>
 
 
@@ -154,11 +154,11 @@ void HModifyProd::getComponetsLot()
     q.bindValue(":lotid",QVariant(idlot));
     q.exec();
     qmod->setQuery(q);
-    qDebug()<<q.lastQuery();
+   // // qDebug()<<q.lastQuery();
 
     ui->tvDetails->setModel(qmod);
     connect(ui->tvDetails->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getLotRowData()));
-    //qDebug()<<q.lastError().text();
+    //// qDebug()<<q.lastError().text();
     qmod->setHeaderData(4,Qt::Horizontal,QObject::tr("Ingrediente"));
     qmod->setHeaderData(5,Qt::Horizontal,QObject::tr("Quantità"));
     ui->tvDetails->setColumnHidden(0,true);
@@ -175,7 +175,7 @@ void HModifyProd::getComponetsLot()
 
 
 
-qDebug()<<QString::number(idlot);
+// qDebug()<<QString::number(idlot);
 
 
 }
@@ -188,7 +188,7 @@ void HModifyProd::getLotRowData()
    QString toSearchUm=ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),7).data(0).toString();
 
    int k=ui->cbUm->findText(toSearchUm);
-qDebug()<<toSearchUm<<QString::number(k);
+// qDebug()<<toSearchUm<<QString::number(k);
    ui->cbUm->setCurrentIndex(k);
 
    ui->leQuantita->setText(ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),5).data(0).toString());
@@ -214,7 +214,7 @@ bool HModifyProd::updateRow()
    // int lot=ui->cbProdotto->model()->index(ui->cbProdotto->currentIndex(),1).data(0).toInt();
     int um = ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0).toInt();
    // um++;
- qDebug()<<"umupdate"<<QString::number(um)<<q.lastError()<<q.lastQuery();
+// // qDebug()<<"umupdate"<<QString::number(um)<<q.lastError()<<q.lastQuery();
     int idr=ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),0).data(0).toInt();
       double quantita=ui->leQuantita->text().toDouble(&ok);
     if (!ok)
@@ -231,7 +231,7 @@ bool HModifyProd::updateRow()
 
 
     bool b= q.exec();
-    qDebug()<<q.lastError().text();
+   // // qDebug()<<q.lastError().text();
     return b;
     return false;
     getComponetsLot();
@@ -311,11 +311,11 @@ db.transaction();
     q.bindValue(":quantita",QVariant(quantita));
     q.bindValue(":um",QVariant(um));
    bool   b =q.exec();
-   qDebug()<<"insert:"<<q.lastError().text();
+  // // qDebug()<<"insert:"<<q.lastError().text();
    if(!b) return false;
    int idop=q.lastInsertId().toInt();
 
-   qDebug()<<QString::number(idl)<<QString::number(idop);
+  // // qDebug()<<QString::number(idl)<<QString::number(idop);
 
    sql="INSERT into composizione_lot(`ID_lotto`,`operazione`) VALUES(:lot,:operazione)";
    q.prepare(sql);
@@ -323,7 +323,7 @@ db.transaction();
    q.bindValue(":operazione",QVariant(idop));
 
    b=q.exec();
-   qDebug()<<"compB"<<q.lastError().text()<<q.lastQuery()<<QString::number(idlot)<<QString::number(idop);
+  // // qDebug()<<"compB"<<q.lastError().text()<<q.lastQuery()<<QString::number(idlot)<<QString::number(idop);
 
 
 
@@ -331,7 +331,7 @@ db.transaction();
     {
         db.commit();
         tmLots->select();
-        qDebug()<<"compA"<<q.lastError().text()<<q.lastQuery()<<QString::number(idlot)<<QString::number(idop);
+       // // qDebug()<<"compA"<<q.lastError().text()<<q.lastQuery()<<QString::number(idlot)<<QString::number(idop);
     }
     else
     {
@@ -425,7 +425,7 @@ void HModifyProd::on_radioButton_clicked()
    // tmLots->select();
     tipo="lotdef.tipo=4";
     tmLots->setFilter(tipo + " and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"'");
-    //qDebug()<<tmLots->query().lastError().text();
+    //// qDebug()<<tmLots->query().lastError().text();
 }
 
 void HModifyProd::on_radioButton_2_clicked()
@@ -434,7 +434,7 @@ void HModifyProd::on_radioButton_2_clicked()
     tipo="lotdef.tipo=3";
     tmLots->setFilter(tipo + " and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"'");
 
-    //qDebug()<<tmLots->query().lastError().text();
+    //// qDebug()<<tmLots->query().lastError().text();
 }
 
 void HModifyProd::on_pushButton_4_clicked()
@@ -466,7 +466,7 @@ void HModifyProd::on_pushButton_4_clicked()
 
 void HModifyProd::on_cbUm_currentIndexChanged(int index)
 {
-    qDebug()<<QString::number(index);
+   // // qDebug()<<QString::number(index);
 }
 
 void HModifyProd::on_pushButton_5_clicked()
@@ -490,7 +490,7 @@ void HModifyProd::on_pushButton_6_clicked()
 {
     filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"'";
     tmLots->setFilter(filter);
-    qDebug()<<tmLots->filter()<<tmLots->query().lastError().text();
+   // // qDebug()<<tmLots->filter()<<tmLots->query().lastError().text();
 }
 
 
@@ -532,8 +532,8 @@ void HModifyProd::findIt(QString arg)
     tmLots->setFilter(filter);
     ui->tvDetails->setModel(0);
 
-   // qDebug()<<tmLots->query().lastError().text();
-     qDebug()<<tmLots->query().lastQuery()<<tmLots->lastError();
+   //// // qDebug()<<tmLots->query().lastError().text();
+    // // qDebug()<<tmLots->query().lastQuery()<<tmLots->lastError();
 }
 
 void HModifyProd::on_leSearch_textChanged(const QString &arg1)

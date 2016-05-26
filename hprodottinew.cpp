@@ -7,7 +7,7 @@
 #include <QSqlRelationalDelegate>
 #include <QCompleter>
 #include "hnewproduct.h"
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 
 HProdottiNew::HProdottiNew(QWidget *parent) :
@@ -66,7 +66,7 @@ void HProdottiNew::init(QString conn, HUser *curuser)
     comp->setModel(tmProdotti);
     ui->lineEdit->setCompleter(comp);
 
-    qDebug()<<tmProdotti->query().lastError();
+   // // qDebug()<<tmProdotti->query().lastError();
 
     connect(tmProdotti,SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)),this,SLOT(save()));
 
@@ -94,7 +94,7 @@ void HProdottiNew::on_radioButton_2_toggled(bool checked)
         tmProdotti->setFilter("tipo=1");
     }
 
-    //qDebug()<<"tipo"+tmProdotti->filter();
+    //// qDebug()<<"tipo"+tmProdotti->filter();
 
 }
 
@@ -188,7 +188,7 @@ void HProdottiNew::on_checkBox_toggled(bool checked)
 
 
         tmProdotti->setFilter(filter);
-    //qDebug()<<filter;
+    //// qDebug()<<filter;
 
 }
 

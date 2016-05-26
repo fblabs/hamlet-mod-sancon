@@ -4,7 +4,7 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 
 #include <QFileDialog>
@@ -37,7 +37,7 @@ void HModificaScheda::init(QString conn, int cliente, int prodotto, QString sche
     ui->leTitolo->setText(schedaName);
 
     db=QSqlDatabase::database(sConn);
-    //qDebug()<<"modifica scheda"<<db.isOpenError();
+    //// qDebug()<<"modifica scheda"<<db.isOpenError();
 
 
     loadScheda();
@@ -111,17 +111,17 @@ void HModificaScheda::updateFile()
  //   q.bindValue(":imgx",QVariant());
  //    q.bindValue(":imgy",QVariant());
 
-qDebug()<<"Errore "<<q.lastError().text()<<q.lastQuery();
+//// qDebug()<<"Errore "<<q.lastError().text()<<q.lastQuery();
 
     if(q.exec())
     {
-        //qDebug()<<q.lastQuery()<<db.lastError();
+        //// qDebug()<<q.lastQuery()<<db.lastError();
         QMessageBox::information(this,QApplication::applicationName(),"Scheda aggiornata",QMessageBox::Ok);
     }
     else
     {
         QMessageBox::warning(this,QApplication::applicationName(),"Errore aggiornando la scheda",QMessageBox::Ok);
-        qDebug()<<"Errore "<<q.lastError().text()<<q.lastQuery();
+       // // qDebug()<<"Errore "<<q.lastError().text()<<q.lastQuery();
     }
 
 }
@@ -193,7 +193,7 @@ void  HModificaScheda::loadScheda()
     q.exec();
     q.first();
 
-    //qDebug()<<sql;
+    //// qDebug()<<sql;
 
     ui->peOlio->setPlainText(q.value(0).toString());
     ui->peVaso->setPlainText(q.value(1).toString());
@@ -204,7 +204,7 @@ void  HModificaScheda::loadScheda()
     imgw=q.value(7).toInt();
     imgh=q.value(8).toInt();
 
-    qDebug()<<"loadscheda"<<imgw<<imgh;
+   // // qDebug()<<"loadscheda"<<imgw<<imgh;
 
 
     QByteArray bytes;

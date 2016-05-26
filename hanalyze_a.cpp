@@ -5,7 +5,7 @@
 #include <QSqlTablemodel>
 #include <QMessageBox>
 #include <QSqlError>
-#include <QDebug>
+// #include <QDebug>
 #include <QTextTable>
 
 #include "hprint.h"
@@ -188,7 +188,7 @@ void HAnalyze_a::requestData()
 
 
 
-    //qDebug()<<"QUERYYYY:"<<query<<q.lastError().text();
+    //// qDebug()<<"QUERYYYY:"<<query<<q.lastError().text();
   //  ui->tvMain->setModelColumn(0);
 
     ui->tvMain->resizeColumnsToContents();
@@ -298,7 +298,7 @@ void HAnalyze_a::getData()
 
 
 
-    //qDebug()<<"QUERYYYY:"<<query<<q.lastError().text();
+    //// qDebug()<<"QUERYYYY:"<<query<<q.lastError().text();
   //  ui->tvMain->setModelColumn(0);
 
     ui->tvMain->resizeColumnsToContents();
@@ -358,7 +358,7 @@ void HAnalyze_a::loadDetails(QString lot)
     ui->tableView->horizontalHeader()->stretchLastSection();
     ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
 
-    //qDebug()<<lot;
+    //// qDebug()<<lot;
 }
 
 void HAnalyze_a::on_pushButton_clicked()
@@ -459,16 +459,16 @@ void HAnalyze_a::on_tvMain_clicked(const QModelIndex &index)
        lot=ui->tvMain->model()->index(index.row(),0).data(0).toString();
        // QMessageBox::information(this,"PIPPO", "rbLin lot:" + lot,QMessageBox::Ok);
 
-       //qDebug()<<"lin"<<lot;
+       //// qDebug()<<"lin"<<lot;
     }
     else
     {
         lot=ui->tvMain->model()->index(index.row(),1).data(0).toString();
       //  ui->tvDetails->setVisible(false);
        // QMessageBox::information(this,"PIPPO", "rbLes lot:" + lot,QMessageBox::Ok+ "\n row=" + QString::number(index.row())+ " column: " + QString::number(index.column()));
-        //qDebug()<<"les"<<lot;
+        //// qDebug()<<"les"<<lot;
     }
-  //qDebug()<<lot;
+  //// qDebug()<<lot;
 
    // QString ana=
     QString select;
@@ -517,7 +517,7 @@ void HAnalyze_a::on_tvMain_clicked(const QModelIndex &index)
     q.exec(select);
     m->setQuery(q);
 
-     //qDebug()<<"SEEEELECT: " +lot+q.lastQuery();
+     //// qDebug()<<"SEEEELECT: " +lot+q.lastQuery();
 
     ui->tvDetails->setModel(m);
     ui->tvDetails->resizeColumnsToContents();
@@ -532,7 +532,7 @@ void HAnalyze_a::on_tvMain_clicked(const QModelIndex &index)
 //
  //   ui->tvDetailsLot->setVisible(false);
 
-    //qDebug()<<select;
+    //// qDebug()<<select;
 
 }
 
@@ -546,16 +546,16 @@ void HAnalyze_a::on_tvMain_current_changed()
        lot=ui->tvMain->model()->index(ui->tvMain->currentIndex().row(),0).data(0).toString();
        // QMessageBox::information(this,"PIPPO", "rbLin lot:" + lot,QMessageBox::Ok);
 
-       //qDebug()<<"lin"<<lot;
+       //// qDebug()<<"lin"<<lot;
     }
     else
     {
         lot=ui->tvMain->model()->index(ui->tvMain->currentIndex().row(),1).data(0).toString();
       //  ui->tvDetails->setVisible(false);
        // QMessageBox::information(this,"PIPPO", "rbLes lot:" + lot,QMessageBox::Ok+ "\n row=" + QString::number(index.row())+ " column: " + QString::number(index.column()));
-        //qDebug()<<"les"<<lot;
+        //// qDebug()<<"les"<<lot;
     }
-  //qDebug()<<lot;
+  //// qDebug()<<lot;
 
    // QString ana=
     QString select;
@@ -604,7 +604,7 @@ void HAnalyze_a::on_tvMain_current_changed()
     q.exec(select);
     m->setQuery(q);
 
-     //qDebug()<<"SEEEELECT: " +lot+q.lastQuery();
+     //// qDebug()<<"SEEEELECT: " +lot+q.lastQuery();
 
     ui->tvDetails->setModel(m);
     ui->tvDetails->resizeColumnsToContents();
@@ -625,7 +625,7 @@ void HAnalyze_a::on_tableView_clicked(const QModelIndex &index)
 
     lot=ui->tableView->model()->index(index.row(),0).data(0).toString();
 
-    //qDebug()<<lot;
+    //// qDebug()<<lot;
 
      if(ui->rbLin->isChecked())//lotto interno per prodotto
      {
@@ -638,7 +638,7 @@ void HAnalyze_a::on_tableView_clicked(const QModelIndex &index)
           rs="SELECT `operazioni`.`lot` AS `Componente`,`prodotti`.`descrizione` AS `Prodotto`,lotdef.lot_fornitore AS `Lotto Fornitore`,anagrafica.ragione_sociale AS Fornitore,`operazioni`.`quantita` AS `Quantità` FROM `composizione_lot`,`operazioni`, lotdef,prodotti,anagrafica WHERE lotdef.lot = operazioni.lot AND prodotti.ID = lotdef.prodotto AND anagrafica.ID = lotdef.anagrafica AND operazioni.ID = composizione_lot.operazione AND lotdef.EAN = '" + lot +"'";
      }
 
-            //qDebug()<<rs;
+            //// qDebug()<<rs;
     QSqlQueryModel *rm=new QSqlQueryModel();
     QSqlQuery  r(db);
 
@@ -649,13 +649,13 @@ void HAnalyze_a::on_tableView_clicked(const QModelIndex &index)
     }
     else
     {
-        //qDebug()<<r.lastError().text();
+        //// qDebug()<<r.lastError().text();
     }
     if (r.size()>0)
     {
         ui->tvDetailsLot->setVisible(true);
         ui->tvDetailsLot->setModel(rm);
-        //qDebug()<<"407 ontableview_clicked"<<r.lastQuery();
+        //// qDebug()<<"407 ontableview_clicked"<<r.lastQuery();
     }
     else
     {
@@ -726,7 +726,7 @@ void HAnalyze_a::getProductsForClientsInRange()
     ui->lvWhat->setModel(m);
     ui->lvWhat->setModelColumn(1);
     connect(ui->lvWhat->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(requestData()));
-    //qDebug()<<"getproductsforClients:"<<q.lastQuery()<<q.lastError().text();
+    //// qDebug()<<"getproductsforClients:"<<q.lastQuery()<<q.lastError().text();
 }
 
 void HAnalyze_a::on_pbFilter_toggled(bool checked)

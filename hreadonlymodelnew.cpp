@@ -2,7 +2,7 @@
 #include <QSqlRelationalTableModel>
 #include <QSqlDatabase>
 #include <QIcon>
-#include <QDebug>
+// #include <QDebug>
 
 HReadOnlyModelNew::HReadOnlyModelNew(QObject *parent,QSqlDatabase db ): QSqlRelationalTableModel(parent,db)
 {
@@ -42,7 +42,7 @@ QVariant HReadOnlyModelNew::data( const QModelIndex & item, int role /*= Qt::Dis
       return QIcon(":/Resources/Actions-configure-icon.png");
   }
 
-qDebug()<<iAzione*/
+// qDebug()<<iAzione*/
    return QSqlRelationalTableModel::data(item,role);
 
 }

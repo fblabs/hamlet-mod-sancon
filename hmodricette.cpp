@@ -5,7 +5,7 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QMessageBox>
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 #include <QInputDialog>
 #include "hprint.h"
@@ -124,7 +124,7 @@ void HModRicette::getRicette()
     comp->setCompletionMode(QCompleter::PopupCompletion);
     comp->setCaseSensitivity(Qt::CaseInsensitive);
     ui->cbRicette->setCompleter(comp);
-    qDebug()<<q.lastQuery()<<q.lastError().text();
+   // // qDebug()<<q.lastQuery()<<q.lastError().text();
 
 }
 
@@ -151,12 +151,12 @@ void HModRicette::creatNewRecipe()
         if(!b)
         {
             db.rollback();
-            //qDebug()<<q.lastError().text();
+            //// qDebug()<<q.lastError().text();
             QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO IL PRODOTTO!!!",QMessageBox::Ok);
 
             return;
         }
-//qDebug()<<q.lastError().text();
+//// qDebug()<<q.lastError().text();
 
         int idnuovoprodotto=q.lastInsertId().toInt();
 
@@ -176,7 +176,7 @@ void HModRicette::creatNewRecipe()
         else
         {
              QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO LA RICETTA!",QMessageBox::Ok);
-             //qDebug()<<q.lastError().text();
+             //// qDebug()<<q.lastError().text();
              db.rollback();
              return;
         }
@@ -242,7 +242,7 @@ bool HModRicette::duplicateRecipe()
         if(!b)
         {
             db.rollback();
-            //qDebug()<<q.lastError().text()<<q.lastQuery();
+            //// qDebug()<<q.lastError().text()<<q.lastQuery();
             QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO IL PRODOTTO!:",QMessageBox::Ok);
 
             return b;
@@ -286,7 +286,7 @@ bool HModRicette::duplicateRecipe()
         else
         {
             db.rollback();
-            //qDebug()<<q.lastError().text()<<QString::number(idnuovaricetta);
+            //// qDebug()<<q.lastError().text()<<QString::number(idnuovaricetta);
             QMessageBox::warning(this,QApplication::applicationName(),"ERRORE DUPLICANDO LA RICETTA!",QMessageBox::Ok);
         }
 
@@ -462,7 +462,7 @@ void HModRicette::removeItem()
   //  q.bindValue(":idprodotto",ui->tableView->model()->index(ui->tableView->currentIndex().row(),1).data(0));
     q.bindValue(":idriga",QVariant(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0).data(0)));
     q.exec();
-    //qDebug()<<q.lastError()<<q.lastQuery()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
+    //// qDebug()<<q.lastError()<<q.lastQuery()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
     loadRicetta();
 }
 
@@ -490,7 +490,7 @@ void HModRicette::save()
     int show;
     bool b;
     sql="insert into righe_ricette (ID_ricetta,ID_prodotto,quantita,show_prod) VALUES (:idricetta,:idprodotto,:quantita,:show)";
-    //qDebug()<<"save IDricetta:"<<QString::number(idricetta);
+    //// qDebug()<<"save IDricetta:"<<QString::number(idricetta);
 
     for (int i=0; i< rows;i++)
     {
@@ -508,7 +508,7 @@ void HModRicette::save()
         q.bindValue(":show",QVariant(show));
         b=q.exec();
 
-         //qDebug()<<"save(for)="<<q.lastError().text()<<QString::number(show);
+         //// qDebug()<<"save(for)="<<q.lastError().text()<<QString::number(show);
 
 
 
@@ -576,7 +576,7 @@ void HModRicette::saveNote()
     }
     else
     {
-        //qDebug()<<q.lastError().text()<<q.lastQuery()<<QString::number(idricetta)<<note;
+        //// qDebug()<<q.lastError().text()<<q.lastQuery()<<QString::number(idricetta)<<note;
     }
 
 

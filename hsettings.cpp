@@ -9,9 +9,9 @@ HSettings::HSettings(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QSettings settings("DB");
+    QSettings settings("CIMIAPP2");
     ui->leUser->setText (settings.value("user").toString());
-    ui->leAddress->setText(settings.value("address").toString());
+    ui->leAddress->setText(settings.value("server").toString());
     ui->lePort->setText(settings.value("port").toString());
     ui->leDatabase->setText(settings.value("database").toString());
     ui->lePassword->setText (settings.value("pwd").toString());
@@ -25,7 +25,7 @@ HSettings::~HSettings()
 
 void HSettings::on_pushButton_clicked()
 {
-   QSettings settings ("DB");
+   QSettings settings ("CIMIAPP2");
    QString sUser = ui->leUser->text();
    QString sAddress = ui->leAddress->text();
    QString sPort = ui->lePort->text();
@@ -35,7 +35,7 @@ void HSettings::on_pushButton_clicked()
 
    settings.setValue("database",sDatabase);
    settings.setValue("user", sUser);
-   settings.setValue("address",sAddress);
+   settings.setValue("server",sAddress);
    settings.setValue("port", sPort.toInt());
    settings.setValue("pwd", sPassword);
    settings.setValue("conn",sConnessione);

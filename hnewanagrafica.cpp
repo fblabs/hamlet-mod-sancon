@@ -3,7 +3,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QMessageBox>
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 
 HNewAnagrafica::HNewAnagrafica(QWidget *parent) :
@@ -74,7 +74,7 @@ void HNewAnagrafica::on_pushButton_clicked()
       if (!b)
       {
 
-          //qDebug()<<q.lastError().text()<<"\n" + q.lastQuery();
+          //// qDebug()<<q.lastError().text()<<"\n" + q.lastQuery();
           QMessageBox::information(this,QApplication::applicationName(),"Errore durante il salvataggio",QMessageBox::Ok);
 
       }

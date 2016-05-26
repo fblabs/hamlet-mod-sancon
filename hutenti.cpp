@@ -3,7 +3,7 @@
 #include "ui_hutenti.h"
 #include <QtGui>
 #include <QtCore>
-#include <QDebug>
+// // #include <QDebug>ug>
 #include <QItemSelectionModel>
 #include <QItemDelegate>
 #include <QSqlRelationalTableModel>
@@ -45,7 +45,7 @@ void HUtenti::setConnectionName(QString conn, HUser *usr)
 
 void HUtenti::onConnectionNameSet()
 {
-    //qDebug()<<"onconnectionnameset";
+    //// qDebug()<<"onconnectionnameset";
 
   db =QSqlDatabase::database(sConn);
   initForm();
@@ -122,7 +122,7 @@ void HUtenti::initForm()
     int x=ui->cbxMasterCli->findText(q.value(0).toString());
 
     ui->cbxMasterCli->setCurrentIndex(x);*/
-     //qDebug()<<QString::number(id);
+     //// qDebug()<<QString::number(id);
 
 
     dwMapper->toFirst();
@@ -142,7 +142,7 @@ void HUtenti::selectMasterClient()
 {
      int id=tm->index(ui->lvUtenti->selectionModel()->currentIndex().row(),0).data(0).toInt();
      int i;
-//qDebug()<<QString::number(id);
+//// qDebug()<<QString::number(id);
 
      QSqlQuery q(db);
      QString sql ="SELECT IDCliente from anagrafica where ID=:id";
@@ -164,7 +164,7 @@ void HUtenti::selectMasterClient()
      rsc=f.value(1).toString();
      i= ui->cbxMasterCli->findText(rsc);
      ui->cbxMasterCli->setCurrentIndex(i);
-     //qDebug()<<f.value(1).toString()<<q.lastError().text()<<q.lastQuery()<<q.boundValue(0).toString();
+     //// qDebug()<<f.value(1).toString()<<q.lastError().text()<<q.lastQuery()<<q.boundValue(0).toString();
 
 }
 
@@ -226,7 +226,7 @@ void HUtenti::save()
 
     db.commit();
 
-    qDebug()<<tm->query().lastQuery()<<tm->lastError().text();
+   // // qDebug()<<tm->query().lastQuery()<<tm->lastError().text();
 
     tm->select();
 }

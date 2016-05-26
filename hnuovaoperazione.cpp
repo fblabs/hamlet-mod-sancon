@@ -1,6 +1,6 @@
 #include "hnuovaoperazione.h"
 #include "ui_hnuovaoperazione.h"
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlDatabase>
 #include <QSqltableModel>
 #include <QSqlRelationalTableModel>
@@ -55,7 +55,7 @@ void HnuovaOperazione::setFilterProdotti()
         flt=basefilter;
     }
     lots->select();
-    qDebug()<<lots->query().lastQuery();
+   // // qDebug()<<lots->query().lastQuery();
     lots->setFilter(flt);
     lots->setSort(3,Qt::DescendingOrder);
     QCompleter *com = new QCompleter(lots);
@@ -157,7 +157,7 @@ void HnuovaOperazione::setupForm()
 
     //tbm->setFilter("operazioni.data='"+filt+"'");
 
-// //qDebug()<<filt;
+// //// qDebug()<<filt;
 
     tbm->setSort(0,Qt::DescendingOrder);
     tbm->setFilter("operazioni.data > date_add(curdate(),INTERVAl -1 day)");
@@ -181,7 +181,7 @@ void HnuovaOperazione::setupForm()
 
     tbm->select();
 
-    //qDebug()<<tbm->query().lastError();
+    //// qDebug()<<tbm->query().lastError();
 
 
 
@@ -215,7 +215,7 @@ void HnuovaOperazione::setupForm()
  //   listaProdotti->select();
 
 
-    //qDebug()<<"setupForm utente:"<<utente;
+    //// qDebug()<<"setupForm utente:"<<utente;
 
 }
 
@@ -335,7 +335,7 @@ void HnuovaOperazione::setUiForScarico()
 void HnuovaOperazione::setAnagFilter()
 { //  QString anag=ui->cbAnagrafica->model()->index(ui->cbAnagrafica->currentIndex(),0).data(0).toString();
   //  this->listaProdotti->setFilter("ID in (select ricette.ID_prodotto from ricette,associazioni where ricette.ID=associazioni.ID_ricetta and associazioni.ID_cliente="+anag+")");
-    //qDebug()<<listaProdotti->lastError().text()<<listaProdotti->query().lastQuery();
+    //// qDebug()<<listaProdotti->lastError().text()<<listaProdotti->query().lastQuery();
 }
 
 void HnuovaOperazione::setProdottoText()
@@ -394,7 +394,7 @@ void HnuovaOperazione::setLotsFilter()
 
 
 
-   qDebug()<<"setLotsFilter: "<<lots->filter();
+  // // qDebug()<<"setLotsFilter: "<<lots->filter();
 
 
 
@@ -453,7 +453,7 @@ bool HnuovaOperazione::saveNewLot(QString nl)
     q.bindValue(":attivo",QVariant(attivo));
     q.bindValue(":note",QVariant(note));
 
-    qDebug()<<q.boundValue(3).toString();
+   // // qDebug()<<q.boundValue(3).toString();
 
     b=q.exec();
 
@@ -463,7 +463,7 @@ bool HnuovaOperazione::saveNewLot(QString nl)
         ui->leNewLot->setText(nl);
         ui->ledispLottoforn->setText(lotforn);
         ui->leScadenza->setText(ui->deScadenza->date().toString("dd-MM-yyyy"));
- qDebug()<<q.lastQuery();
+// // qDebug()<<q.lastQuery();
         q.clear();
     }
     else
@@ -559,7 +559,7 @@ bool HnuovaOperazione::saveOperationScarico()
     else
     {
 
-        //qDebug()<<"saveOperationScarico: " +q.lastError().text()+q.lastQuery();
+        //// qDebug()<<"saveOperationScarico: " +q.lastError().text()+q.lastQuery();
     }
 
     return b;
@@ -596,7 +596,7 @@ bool HnuovaOperazione::saveOperationCarico()
 
     }
 
-    //qDebug()<<"lotto salvato";
+    //// qDebug()<<"lotto salvato";
 
 //salvo l'operazione
     int idlotto=lastInsertID();
@@ -623,7 +623,7 @@ bool HnuovaOperazione::saveOperationCarico()
 
     b=op.exec();
 
-qDebug()<<QString::number(quantita);
+//// qDebug()<<QString::number(quantita);
 
     if(b)
     {
@@ -645,7 +645,7 @@ qDebug()<<QString::number(quantita);
     {
       op.first();
       quantitaope=op.value(0).toDouble();
-      qDebug()<<"quantitaope:"<<QString::number(quantitaope)<<QString::number(idlotto);
+     // // qDebug()<<"quantitaope:"<<QString::number(quantitaope)<<QString::number(idlotto);
 
 
     }
@@ -676,7 +676,7 @@ QString HnuovaOperazione::getNewLot(QString prodotto)
     nl.exec("SELECT createID("+ prodotto +")");
     nl.next();
     newLot=nl.value(0).toString();
-//qDebug()<<nl.lastQuery();
+//// qDebug()<<nl.lastQuery();
     return newLot;
 }
 
@@ -758,7 +758,7 @@ void HnuovaOperazione::on_leProdotti_textChanged(const QString &arg1)
     filter.append("%'");
     listaProdotti->setFilter(filter);
 
-   // qDebug()<<listaProdotti->lastError().text()<<filter;
+   //// // qDebug()<<listaProdotti->lastError().text()<<filter;
 }
 
 void HnuovaOperazione::on_leLotto_textChanged(const QString &arg1)
@@ -768,7 +768,7 @@ void HnuovaOperazione::on_leLotto_textChanged(const QString &arg1)
     filter.append(arg1);
     filter.append("%'");
 
-    qDebug()<<listaProdotti->lastError().text()<<filter;
+   // // qDebug()<<listaProdotti->lastError().text()<<filter;
     setLotsFilter();
 }
 
@@ -846,7 +846,7 @@ void HnuovaOperazione::on_cbtipo_currentIndexChanged(int index)
 {
     QString tipo;
     tipo=ui->cbtipo->currentText();
-    qDebug()<<"tipo:"+tipo;
+   // // qDebug()<<"tipo:"+tipo;
     QSqlQuery q(db);
     QString sql="SELECT ID from tipi_prodotto where descrizione=:tipo";
     q.prepare(sql);
@@ -860,5 +860,5 @@ void HnuovaOperazione::on_cbtipo_currentIndexChanged(int index)
 
 
     listaProdotti->setFilter(filter);
-    qDebug()<<"cbtipo->ixc"<<listaProdotti->filter()<<listaProdotti->query().lastQuery();
+   // // qDebug()<<"cbtipo->ixc"<<listaProdotti->filter()<<listaProdotti->query().lastQuery();
 }

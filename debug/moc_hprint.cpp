@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hprint.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.2.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hprint.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.2.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,12 +20,12 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HPrint_t {
     QByteArrayData data[17];
-    char stringdata[229];
+    char stringdata[230];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HPrint_t, stringdata) + ofs \
-        - idx * sizeof(QByteArrayData)) \
+    offsetof(qt_meta_stringdata_HPrint_t, stringdata) + ofs \
+        - idx * sizeof(QByteArrayData) \
     )
 static const qt_meta_stringdata_HPrint_t qt_meta_stringdata_HPrint = {
     {
@@ -53,7 +53,7 @@ QT_MOC_LITERAL(16, 202, 26)
     "printPreview\0QPrinter*\0printer\0"
     "on_pbant_clicked\0on_sbW_valueChanged\0"
     "arg1\0on_sbH_valueChanged\0"
-    "on_spCharSize_valueChanged"
+    "on_spCharSize_valueChanged\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -71,19 +71,19 @@ static const uint qt_meta_data_HPrint[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   69,    2, 0x06 /* Public */,
-       3,    1,   72,    2, 0x06 /* Public */,
+       1,    1,   69,    2, 0x06,
+       3,    1,   72,    2, 0x06,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   75,    2, 0x08 /* Private */,
-       5,    0,   76,    2, 0x08 /* Private */,
-       6,    0,   77,    2, 0x08 /* Private */,
-       7,    1,   78,    2, 0x08 /* Private */,
-       9,    1,   81,    2, 0x08 /* Private */,
-      12,    0,   84,    2, 0x08 /* Private */,
-      13,    1,   85,    2, 0x08 /* Private */,
-      15,    1,   88,    2, 0x08 /* Private */,
-      16,    1,   91,    2, 0x08 /* Private */,
+       4,    0,   75,    2, 0x08,
+       5,    0,   76,    2, 0x08,
+       6,    0,   77,    2, 0x08,
+       7,    1,   78,    2, 0x08,
+       9,    1,   81,    2, 0x08,
+      12,    0,   84,    2, 0x08,
+      13,    1,   85,    2, 0x08,
+      15,    1,   88,    2, 0x08,
+      16,    1,   91,    2, 0x08,
 
  // signals: parameters
     QMetaType::Int, QMetaType::Int,    2,

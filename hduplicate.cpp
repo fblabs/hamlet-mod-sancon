@@ -5,7 +5,7 @@
 #include <QSqlQuery>
 #include <QSqlTableModel>
 #include <QSqlQueryModel>
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 
 HDuplicate::HDuplicate(QWidget *parent) :
@@ -29,7 +29,7 @@ void HDuplicate::init(QString conn, int ocliente, int oprodotto)
    cliente=ocliente;
    prodotto=oprodotto;
 
-   qDebug()<<QString::number(cliente)<<QString::number(prodotto);
+  // // qDebug()<<QString::number(cliente)<<QString::number(prodotto);
 
    modclients->setTable("anagrafica");
    modclients->setSort(1,Qt::AscendingOrder);
@@ -63,7 +63,7 @@ void HDuplicate::getRecipes()
     ui->cbRicette->setModel(modrecipes);
     ui->cbRicette->setModelColumn(2);
 
-    qDebug()<<q.lastQuery()<<q.lastError()<<QString::number(cliente)<<q.boundValue(0).toString();
+   // // qDebug()<<q.lastQuery()<<q.lastError()<<QString::number(cliente)<<q.boundValue(0).toString();
 
 }
 
@@ -94,7 +94,7 @@ void HDuplicate::duplicate()
     scatole=q.value(4);
     note=q.value(5);
 
-    qDebug()<<olio.toString()<<q.lastError().text();
+   // // qDebug()<<olio.toString()<<q.lastError().text();
 
     sql="delete from schede where cliente=:cliente and prodotto=:prodotto";
     q.prepare(sql);
@@ -117,7 +117,7 @@ void HDuplicate::duplicate()
 
     if (!b)
     {
-        qDebug()<<q.lastQuery()<<q.lastError().text();
+       // // qDebug()<<q.lastQuery()<<q.lastError().text();
     }
     else
     {

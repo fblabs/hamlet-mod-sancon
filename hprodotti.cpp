@@ -4,7 +4,7 @@
 #include <QSqlRelationalTableModel>
 #include <QDataWidgetMapper>
 #include <QSqlQuery>
-#include <QDebug>
+// #include <QDebug>
 #include <QItemSelectionModel>
 #include <QItemDelegate>
 #include <QStringList>
@@ -140,12 +140,12 @@ void HProdotti::setupForm()
 
     connect(ui->lnSearch,SIGNAL(textChanged(QString)) , this, SLOT(productSearch()));
     connect(ui->cbxType,SIGNAL(currentIndexChanged(int)),this,SLOT(showType()));
-    //qDebug() <<"search e combo connected ok";
+    //// qDebug() <<"search e combo connected ok";
     connect(ui->lvMaster->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), dwMapperTipi, SLOT(setCurrentModelIndex(QModelIndex)));
-    //qDebug() <<"dwmappertipi connected ok";
+    //// qDebug() <<"dwmappertipi connected ok";
   //  connect(ui->lvMaster->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(caricaRicetta()));
     connect (ui->lid, SIGNAL(textChanged(QString)), this,SLOT(setImage()));
-   //qDebug() <<"slot caricaRicetta ok";
+   //// qDebug() <<"slot caricaRicetta ok";
     // connect(ui->lvMaster->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), mpr,SLOT(setCurrentModelIndex(QModelIndex)));
    // connect(ui->lvMaster->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this,SLOT(caricaRicetta()));
 
@@ -201,7 +201,7 @@ void HProdotti::on_pushButton_2_clicked()
     qr.exec("select count(*) from immagini_prodotti where id_prodotto=" + ui->lid->text());
     qr.next();
     count = qr.value(0).toInt();
-    //qDebug() << "count" << count;
+    //// qDebug() << "count" << count;
     qr.clear();
     if (count == 0)
     {
@@ -219,7 +219,7 @@ void HProdotti::on_pushButton_2_clicked()
     QMessageBox::information(this,QApplication::applicationName(),"Immagine salvata",QMessageBox::Ok);
    }
 
-    //qDebug() << qr.lastQuery()<< qr.lastError().text();
+    //// qDebug() << qr.lastQuery()<< qr.lastError().text();
 }
 
 void HProdotti::setImage()
@@ -231,7 +231,7 @@ void HProdotti::setImage()
    qr.prepare("SELECT immagine from immagini_prodotti where id_prodotto= " + ui->lid->text() );
    qr.exec();
    qr.next();
-   //qDebug() << qr.executedQuery()<< qr.value(0);
+   //// qDebug() << qr.executedQuery()<< qr.value(0);
    ba2.resize(120000);
    ba2 = qr.value(0).toByteArray();
    pixmap.loadFromData(ba2);
@@ -241,7 +241,7 @@ void HProdotti::setImage()
    ui->graphicsView->setScene(scene);
    ui->graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
-   //qDebug()<< pixmap.size() << "qr.exec()" << "caricata";
+   //// qDebug()<< pixmap.size() << "qr.exec()" << "caricata";
 
 }
 
@@ -273,7 +273,7 @@ void HProdotti::on_pushButton_5_clicked()
    if( !q.exec("INSERT INTO prodotti (ID,descrizione,tipo,allergenico,unita_misura) VALUES ('-1','"+ ui->desc->text()+"'," + ui->cbxtipo->itemData(ui->cbxtipo->currentIndex()).toString() + ","+ QString::number(allergenico) + "," + ui->cbxUM->itemData(ui->cbxtipo->currentIndex()).toString()+ ")"))
    {
       QMessageBox::warning(this,QApplication::applicationName(),"Errore durante il salvataggio\n"+pModel->lastError().text(),QMessageBox::Ok);
-      //qDebug()<<q.lastQuery()<<q.lastError();
+      //// qDebug()<<q.lastQuery()<<q.lastError();
    }
 
     pModel->submitAll();

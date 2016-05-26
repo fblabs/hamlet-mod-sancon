@@ -10,7 +10,7 @@
 #include <QGraphicsScene>
 #include <QPrintPreviewDialog>
 #include <QPrinter>
-#include <QDebug>
+// #include <QDebug>
 
 HPrint::HPrint(QWidget *parent) :
     QWidget(parent),
@@ -329,7 +329,7 @@ void HPrint::on_spCharSize_valueChanged(int arg1)
     ui->textEdit->setFont(font);
 
 
-    qDebug()<<"arg1"<<arg1;
+   // // qDebug()<<"arg1"<<arg1;
 
 }
 
@@ -338,7 +338,7 @@ void HPrint::setFontsize(int sz)
     ui->spCharSize->setValue(sz);
     QFont font=ui->textEdit->font();
     font.setPointSize(sz);
-    qDebug()<<"size="<<sz;
+   // // qDebug()<<"size="<<sz;
     QTextCursor cursor=ui->textEdit->textCursor();
     ui->textEdit->selectAll();
     ui->textEdit->setFontPointSize(sz);

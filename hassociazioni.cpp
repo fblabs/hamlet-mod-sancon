@@ -6,7 +6,7 @@
 #include <QMessageBox>
 
 #include <QSqlError>
-#include <QDebug>
+// #include <QDebug>
 #include <QItemDelegate>
 
 HAssociazioni::HAssociazioni(QWidget *parent) :
@@ -63,7 +63,7 @@ void HAssociazioni::getRecipes()
     qm=new QSqlQueryModel();
 
     q.exec(qs);
-   //qDebug()<<q.lastError().text();
+   //// qDebug()<<q.lastError().text();
 
     qm->setQuery(q);
 
@@ -95,7 +95,7 @@ void HAssociazioni::getRecipesForTable()
 
     ui->tableView->resizeColumnsToContents();
 
-    ////qDebug()<<q.lastError().text();
+    ////// qDebug()<<q.lastError().text();
 
 
 
@@ -157,7 +157,7 @@ void HAssociazioni::deleteAssociation()
 
         }
 
-        qDebug()<<q.lastQuery()<<q.lastError()<<QString::number(idr)<<QString::number(idc);
+       // // qDebug()<<q.lastQuery()<<q.lastError()<<QString::number(idr)<<QString::number(idc);
 
 
 
@@ -193,7 +193,7 @@ void HAssociazioni::setVisibility(bool visible)
     }
     else
     {
-        //qDebug()<<q.lastError().text()<<q.lastQuery();
+        //// qDebug()<<q.lastError().text()<<q.lastQuery();
     }
 
 

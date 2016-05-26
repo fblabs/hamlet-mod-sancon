@@ -1,7 +1,7 @@
 #include "htextedit.h"
 #include <QMimeData>
 #include <QTextEdit>
-#include <QDebug>
+// #include <QDebug>
 #include <QImageReader>
 #include <QFileInfo>
 #include <QByteArray>
@@ -18,12 +18,12 @@ bool HTextEdit::canInsertFromMimeData( const QMimeData *source ) const
         return true;
     else
         return QTextEdit::canInsertFromMimeData(source);
-    //qDebug()<<"cifm"<<source->hasImage();
+    //// qDebug()<<"cifm"<<source->hasImage();
 }
 
 void HTextEdit::insertFromMimeData( const QMimeData *source )
 {
-  /*  //qDebug()<<source->hasImage()<<source->hasUrls();
+  /*  //// qDebug()<<source->hasImage()<<source->hasUrls();
     if(source->hasImage() || source->hasUrls() )
     {  QImage image = qvariant_cast<QImage>(source->imageData());
         QTextCursor cursor = this->textCursor();

@@ -5,7 +5,7 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QSqlError>
-#include <QDebug>
+// #include <QDebug>
 #include <QShortcut>
 #include "huser.h"
 
@@ -67,7 +67,7 @@ void HLogin2::login()
         usr->setCanUpdateAnag(qrLogin.value(4).toBool());
         emit userLogged(usr->getID(),usr->getRole(),usr->getCanUpdate(),usr->getCanUpdateAnag());
 
-     qDebug()<<"HLogin2"<<usr->getUsername()<<QString::number(usr->getRole())<<usr->getCanUpdate()<<usr->getCanUpdateAnag();
+    // // qDebug()<<"HLogin2"<<usr->getUsername()<<QString::number(usr->getRole())<<usr->getCanUpdate()<<usr->getCanUpdateAnag();
         close();
      }
   else

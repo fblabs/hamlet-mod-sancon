@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hschedeclienti.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.2.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hschedeclienti.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.2.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,12 +20,12 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HSchedeClienti_t {
     QByteArrayData data[20];
-    char stringdata[309];
+    char stringdata[310];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HSchedeClienti_t, stringdata) + ofs \
-        - idx * sizeof(QByteArrayData)) \
+    offsetof(qt_meta_stringdata_HSchedeClienti_t, stringdata) + ofs \
+        - idx * sizeof(QByteArrayData) \
     )
 static const qt_meta_stringdata_HSchedeClienti_t qt_meta_stringdata_HSchedeClienti = {
     {
@@ -58,7 +58,7 @@ QT_MOC_LITERAL(19, 298, 10)
     "setImgWidth\0newWidth\0setImgHeight\0"
     "newHeight\0on_btnDup_clicked\0"
     "on_pushButton_3_clicked\0on_pushButton_2_clicked\0"
-    "on_btnSave_clicked\0loadScheda"
+    "on_btnSave_clicked\0loadScheda\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -76,20 +76,20 @@ static const uint qt_meta_data_HSchedeClienti[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   84,    2, 0x08 /* Private */,
-       3,    0,   85,    2, 0x08 /* Private */,
-       4,    0,   86,    2, 0x08 /* Private */,
-       5,    0,   87,    2, 0x08 /* Private */,
-       6,    1,   88,    2, 0x08 /* Private */,
-       8,    1,   91,    2, 0x08 /* Private */,
-      10,    0,   94,    2, 0x08 /* Private */,
-      11,    1,   95,    2, 0x08 /* Private */,
-      13,    1,   98,    2, 0x08 /* Private */,
-      15,    0,  101,    2, 0x08 /* Private */,
-      16,    0,  102,    2, 0x08 /* Private */,
-      17,    0,  103,    2, 0x08 /* Private */,
-      18,    0,  104,    2, 0x08 /* Private */,
-      19,    0,  105,    2, 0x0a /* Public */,
+       1,    0,   84,    2, 0x08,
+       3,    0,   85,    2, 0x08,
+       4,    0,   86,    2, 0x08,
+       5,    0,   87,    2, 0x08,
+       6,    1,   88,    2, 0x08,
+       8,    1,   91,    2, 0x08,
+      10,    0,   94,    2, 0x08,
+      11,    1,   95,    2, 0x08,
+      13,    1,   98,    2, 0x08,
+      15,    0,  101,    2, 0x08,
+      16,    0,  102,    2, 0x08,
+      17,    0,  103,    2, 0x08,
+      18,    0,  104,    2, 0x08,
+      19,    0,  105,    2, 0x0a,
 
  // slots: parameters
     QMetaType::Void,

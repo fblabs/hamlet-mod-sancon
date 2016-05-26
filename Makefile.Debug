@@ -4792,7 +4792,6 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QToolButton \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtoolbutton.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		hprodotti.h \
@@ -5000,8 +4999,7 @@ debug/huser.o: huser.cpp huser.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfile.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qfiledevice.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qvector2d.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtouchdevice.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtouchdevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/huser.o huser.cpp
 
 debug/hprodotti.o: hprodotti.cpp mainwindow.h \
@@ -5197,7 +5195,6 @@ debug/hprodotti.o: hprodotti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QPushButton \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QItemDelegate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QStringList \
@@ -5595,7 +5592,6 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtexttable.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qdesktopservices.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtguiversion.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QItemDelegate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
@@ -5793,7 +5789,6 @@ debug/hnewop.o: hnewop.cpp hnewop.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRecord \
@@ -6057,8 +6052,7 @@ debug/hreadonlymodel.o: hreadonlymodel.cpp hreadonlymodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpaintdevice.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpixmap.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsharedpointer.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsharedpointer_impl.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hreadonlymodel.o hreadonlymodel.cpp
 
 debug/hprint.o: hprint.cpp hprint.h \
@@ -6247,8 +6241,7 @@ debug/hprint.o: hprint.cpp hprint.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QGraphicsScene \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qgraphicsscene.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtPrintSupport/QPrintPreviewDialog \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtPrintSupport/qprintpreviewdialog.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtPrintSupport/qprintpreviewdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hprint.o hprint.cpp
 
 debug/hanalisi.o: hanalisi.cpp hanalisi.h \
@@ -6420,7 +6413,6 @@ debug/hanalisi.o: hanalisi.cpp hanalisi.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
@@ -6803,7 +6795,6 @@ debug/hlogin2.o: hlogin2.cpp hlogin2.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsettings.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QShortcut \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qshortcut.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hlogin2.o hlogin2.cpp
@@ -6887,7 +6878,6 @@ debug/hreadonlymodellots.o: hreadonlymodellots.cpp hreadonlymodellots.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QColor \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qcolor.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qrgb.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QIcon \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qicon.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qsize.h \
@@ -7087,7 +7077,6 @@ debug/hanalyze_a.o: hanalyze_a.cpp hanalyze_a.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QTextTable \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtexttable.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qtextobject.h \
@@ -7299,7 +7288,6 @@ debug/hnuovaoperazione.o: hnuovaoperazione.cpp hnuovaoperazione.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqltableModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
@@ -7643,7 +7631,6 @@ debug/hgestioneutenti.o: hgestioneutenti.cpp hgestioneutenti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hgestioneutenti.o hgestioneutenti.cpp
@@ -7984,7 +7971,6 @@ debug/hnewanagrafica.o: hnewanagrafica.cpp hnewanagrafica.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hnewanagrafica.o hnewanagrafica.cpp
@@ -8173,7 +8159,6 @@ debug/hschedeclienti.o: hschedeclienti.cpp hschedeclienti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQuery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
@@ -8365,8 +8350,7 @@ debug/hassociazioni.o: hassociazioni.cpp hassociazioni.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hassociazioni.o hassociazioni.cpp
 
 debug/hmodificascheda.o: hmodificascheda.cpp hmodificascheda.h \
@@ -8543,7 +8527,6 @@ debug/hmodificascheda.o: hmodificascheda.cpp hmodificascheda.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QFileDialog \
@@ -8748,7 +8731,6 @@ debug/hproduction.o: hproduction.cpp hproduction.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlquery \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDateTime \
@@ -9120,7 +9102,6 @@ debug/hprodottinew.o: hprodottinew.cpp hprodottinew.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qlistview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
 		hnewproduct.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hprodottinew.o hprodottinew.cpp
@@ -9299,7 +9280,6 @@ debug/hwarehouse.o: hwarehouse.cpp hwarehouse.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelation \
@@ -9495,6 +9475,8 @@ debug/hmodifyprod.o: hmodifyprod.cpp hmodifyprod.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
+		hreadonlymodellots.h \
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QModelIndex \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelationalDelegate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlrelationaldelegate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qitemdelegate.h \
@@ -9505,7 +9487,6 @@ debug/hmodifyprod.o: hmodifyprod.cpp hmodifyprod.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquery.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h
@@ -9703,7 +9684,6 @@ debug/hpackages.o: hpackages.cpp hpackages.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDate \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlRelation
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hpackages.o hpackages.cpp
@@ -9885,7 +9865,6 @@ debug/hmodricette.o: hmodricette.cpp hmodricette.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qdialog.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QInputDialog \
@@ -10262,7 +10241,6 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QTableView \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qtableview.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlquery \
@@ -10430,7 +10408,6 @@ debug/htextedit.o: htextedit.cpp htextedit.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpen.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QMimeData \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qmimedata.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/QImageReader \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qimagereader.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qimageiohandler.h \
@@ -10543,8 +10520,7 @@ debug/hreadonlymodelnew.o: hreadonlymodelnew.cpp hreadonlymodelnew.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpolygon.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qregion.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qline.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpainterpath.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug
+		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtGui/qpainterpath.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hreadonlymodelnew.o hreadonlymodelnew.cpp
 
 debug/hduplicate.o: hduplicate.cpp hduplicate.h \
@@ -10703,7 +10679,6 @@ debug/hduplicate.o: hduplicate.cpp hduplicate.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlQueryModel \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hduplicate.o hduplicate.cpp
@@ -10889,7 +10864,6 @@ debug/hmodifylot.o: hmodifylot.cpp hmodifylot.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlTableModel \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlquerymodel.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hmodifylot.o hmodifylot.cpp
@@ -11066,7 +11040,6 @@ debug/hpackagesunload.o: hpackagesunload.cpp hpackagesunload.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/qcompleter.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/QSqlError \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtSql/qsqlerror.h \
-		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDebug \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QDateTime \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/qdatetime.h \
 		../../Qt/Qt5.3.1/5.3/mingw482_32/include/QtWidgets/QMessageBox \

@@ -1,6 +1,6 @@
 #include "hwarehouse.h"
 #include "ui_hwarehouse.h"
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 
 #include <QSqlDatabase>
@@ -248,7 +248,7 @@ void HWarehouse::setOperazioniFilter(int tipo)
 
     tmOperazioni->setFilter(filter);
 
-    //qDebug()<<tmOperazioni->lastError().text()<<tmOperazioni->query().lastQuery();
+    //// qDebug()<<tmOperazioni->lastError().text()<<tmOperazioni->query().lastQuery();
     //tmOperazioni->select();
 
 }
@@ -322,7 +322,7 @@ void HWarehouse::update()
 {
 
     tmOperazioni->select();
-    //qDebug()<<"apdeit";
+    //// qDebug()<<"apdeit";
 }
 
 void HWarehouse::on_pushButton_3_clicked()

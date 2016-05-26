@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QtSql/QSqlDatabase>
-#include <QDebug>
+//// #include <QDebug>
 #include <QSqlError>
 #include "hprodotti.h"
 #include "hutenti.h"
@@ -73,7 +73,7 @@ void MainWindow::init()
 
 void MainWindow::userLogged(int id, int gruppo, bool update,bool updateanag)
 {
-    qDebug()<< "main->userLogged: id"+QString::number(id) << "Role: " + QString::number(gruppo);
+    //// qDebug()<< "main->userLogged: id"+QString::number(id) << "Role: " + QString::number(gruppo);
 
 
     user->setID(id);
@@ -163,7 +163,7 @@ void MainWindow::enableButtonsForRole()
 
     int rol=user->getRole();
 
-    qDebug()<<QString::number(rol);
+    //// qDebug()<<QString::number(rol);
 
     switch(user->getRole())
     {

@@ -10,7 +10,7 @@
 #include <QCompleter>
 #include <QSqlError>
 #include <QMessageBox>
-#include <QDebug>
+// #include <QDebug>
 #include <QDate>
 #include <QSqlRelation>
 
@@ -35,7 +35,7 @@ void HPackages::init(QString conn,QString user)
 
 
     basefilter="lotdef.attivo=2 and year(lotdef.data) > " +QString::number(QDate::currentDate().addYears(-3).year());
-    qDebug()<<basefilter;
+   // // qDebug()<<basefilter;
 
     ui->checkBox->setVisible(false);
     tmClienti=new QSqlTableModel(0,db);
@@ -98,7 +98,7 @@ void HPackages::init(QString conn,QString user)
 
 
     ui->tvLots->setModel(tmLots);
-    qDebug()<<tmLots->lastError().text();
+   // // qDebug()<<tmLots->lastError().text();
 
 //    ui->tvLots->setModelColumn(1);
 
@@ -204,18 +204,18 @@ void HPackages::filterProducts()
       ui->lvSubclienti->setVisible(false);
       idcliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
   }
-qDebug()<<"filterProducts:"+idcliente;
+// qDebug()<<"filterProducts:"+idcliente;
 
   QString filtro="ID in (SELECT ricette.ID_prodotto FROM ricette, associazioni where ricette.ID=associazioni.ID_ricetta and associazioni.visualizza=1 and associazioni.ID_cliente=";
   filtro.append(QString::number(idcliente)+")");
 
-//  qDebug()<<filtro;
+// // // qDebug()<<filtro;
   tmProdotti->setFilter(filtro);
   ui->cbProdotti->setCurrentIndex(0);
 
 
 
-//qDebug()<<tmProdotti->query().lastQuery();
+//// qDebug()<<tmProdotti->query().lastQuery();
 }
 
 void HPackages::getSubclients()
@@ -546,7 +546,7 @@ db.transaction();
    if(!b)
    {
        db.rollback();
-       qDebug()<<"errore in chargeNewLot";
+      // // qDebug()<<"errore in chargeNewLot";
        return false;
    }
 
@@ -557,7 +557,7 @@ db.transaction();
     if(!b)
     {
         db.rollback();
-        qDebug()<<"errore in unloadNewLotComponents";
+       // // qDebug()<<"errore in unloadNewLotComponents";
         return false;
     }
 
@@ -565,7 +565,7 @@ db.transaction();
 
 
         db.commit();
-         qDebug()<<"saveLot ok";
+        // // qDebug()<<"saveLot ok";
      return true;
 
 }
@@ -601,7 +601,7 @@ bool HPackages::saveNewLotInLotdef(QString lotto)
 
     b = q.exec();
 
-//qDebug()<<"saveNewLot"<<q.lastError().text();
+//// qDebug()<<"saveNewLot"<<q.lastError().text();
 
 
     return b;
@@ -636,7 +636,7 @@ bool HPackages::chargeNewLot(int id)
 
          b=q.exec();
 
-         qDebug()<<"CARICO NUOVO LOTTO:"<<q.lastInsertId().toString()<<QString::number(idp)<<q.lastError().text();
+        // // qDebug()<<"CARICO NUOVO LOTTO:"<<q.lastInsertId().toString()<<QString::number(idp)<<q.lastError().text();
 
 
 
@@ -663,7 +663,7 @@ bool HPackages::unloadNewLotComponents(int nlot)
          lotdascaricare=ui->tvPack->model()->index(row,2).data(0).toInt();
          prodottodascaricare=ui->tvPack->model()->index(row,0).data(0).toInt();
          um=getumidfromdesc(ui->tvPack->model()->index(row,5).data(0).toString());
-         qDebug()<<"unload newlot components gtumidfromdesc"<<um;
+        // // qDebug()<<"unload newlot components gtumidfromdesc"<<um;
 
 
         sql="INSERT INTO `operazioni` (`IDlotto`,`data`,`utente`, `IDprodotto`,`azione`,`quantita`,`um`) VALUES (:idlot,:data,:utente,:idprodotto,:azione,:quantita,:um)";
@@ -682,7 +682,7 @@ bool HPackages::unloadNewLotComponents(int nlot)
 
         b=q.exec();
         operazione=q.lastInsertId().toInt();
-  qDebug()<<"unloadLOT b:"+b<<q.lastError().text()<<q.boundValue(3).toString()<<QString::number(prodottodascaricare);
+ // // qDebug()<<"unloadLOT b:"+b<<q.lastError().text()<<q.boundValue(3).toString()<<QString::number(prodottodascaricare);
 
 
    sql="insert into composizione_lot (id_lotto,operazione) values (:nlot,:operazione)";
@@ -691,7 +691,7 @@ bool HPackages::unloadNewLotComponents(int nlot)
    q.bindValue(":operazione",QVariant(operazione));
    b=q.exec();
 
-   qDebug()<<"COMPOSIZIONE SCARICO COMPONENHTE:"<<"nlot"<<nlot<<"operazione"<<operazione;
+  // // qDebug()<<"COMPOSIZIONE SCARICO COMPONENHTE:"<<"nlot"<<nlot<<"operazione"<<operazione;
         if (!b)return false;
 
     }
@@ -757,7 +757,7 @@ int HPackages::getumidfromdesc(QString pdesc)
 
     int res=q->value(0).toInt();
 
-    qDebug()<<res<<pdesc;
+   // // qDebug()<<res<<pdesc;
 
     return res;
 
@@ -811,11 +811,11 @@ void HPackages::on_pbAnnulla_clicked()
 
 void HPackages::on_rbTutti_toggled(bool checked)
 {
-  qDebug()<<basefilter +"- FILTER "<<tmLots->filter();
+ // // qDebug()<<basefilter +"- FILTER "<<tmLots->filter();
   if (checked)
   {
       tmLots->setFilter(basefilter);
-      qDebug()<<tmLots->lastError().text()<<basefilter;
+     // // qDebug()<<tmLots->lastError().text()<<basefilter;
 
   }
 
@@ -834,7 +834,7 @@ void HPackages::on_rbProdottiFiniti_toggled(bool checked)
 
     }
 
-    qDebug()<<tmLots->filter()<<tmLots->lastError();
+   // // qDebug()<<tmLots->filter()<<tmLots->lastError();
 
 }
 
@@ -881,5 +881,5 @@ void HPackages::on_leSearch_textChanged(const QString &arg1)
 
 
     tmLots->setFilter(filterinit);
-    qDebug()<<tmLots->filter();
+   // // qDebug()<<tmLots->filter();
 }

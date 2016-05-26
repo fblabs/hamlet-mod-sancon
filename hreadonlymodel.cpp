@@ -2,7 +2,7 @@
 #include <QSqlRelationalTableModel>
 #include <QSqlDatabase>
 #include <QBrush>
-#include <QDebug>
+// #include <QDebug>
 
 hReadonlyModel::hReadonlyModel(QObject *parent,QSqlDatabase db ): QSqlRelationalTableModel(parent,db)
 {

@@ -2,7 +2,7 @@
 #include "ui_hschedeclienti.h"
 #include <QSqlDatabase>
 #include <QSqlError>
-#include <QDebug>
+// #include <QDebug>
 #include <QCompleter>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
@@ -135,7 +135,7 @@ void HSchedeClienti::getSubclients()
     q.prepare(sql);
     q.bindValue(":id",QVariant(cliente));
     q.exec();
-    qDebug()<<q.lastQuery()<<q.lastError().text();
+   // // qDebug()<<q.lastQuery()<<q.lastError().text();
     subclients->setQuery(q);
     ui->lvSubclienti->setModel(subclients);
     ui->lvSubclienti->setModelColumn(1);
@@ -164,7 +164,7 @@ void HSchedeClienti::selectRecipesforClient()
     {
         cliente=ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toInt();
     }
- qDebug()<<"idcliente"<<QString::number(cliente);
+// // qDebug()<<"idcliente"<<QString::number(cliente);
 
 
    QString query="SELECT ricette.ID_prodotto, prodotti.descrizione FROM ricette, prodotti WHERE prodotti.ID=ricette.ID_prodotto AND ricette.ID IN (SELECT ID_ricetta FROM associazioni WHERE ID_cliente=:id and visualizza=1)";
@@ -178,7 +178,7 @@ void HSchedeClienti::selectRecipesforClient()
 
    qrm->setQuery(q);
 
-   qDebug()<<q.lastError()<< QString::number(q.size());
+  // // qDebug()<<q.lastError()<< QString::number(q.size());
 
 
    QModelIndex index=qrm->index(0,0);
@@ -194,14 +194,14 @@ void HSchedeClienti::selectRecipesforClient()
    connect(ui->listView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(loadScheda()));
    }
 
-   qDebug()<<"selectrecipesforclient: "<<q.lastError().text()<<QString::number(cliente);
+  // // qDebug()<<"selectrecipesforclient: "<<q.lastError().text()<<QString::number(cliente);
 }
 
 void HSchedeClienti::loadScheda()
 {
 
     int prodotto=ui->listView->model()->index(ui->listView->selectionModel()->currentIndex().row(),0).data(0).toInt();
-    qDebug()<<QString::number(prodotto);
+   // // qDebug()<<QString::number(prodotto);
     int cliente;
 
 
@@ -234,7 +234,7 @@ void HSchedeClienti::loadScheda()
    height=q.value(8).toInt();
    fontsize=q.value(9).toInt();
 
-   qDebug()<<"loadScheda"<<fontsize;
+  // // qDebug()<<"loadScheda"<<fontsize;
 
    ui->widget->setFontsize(fontsize);
 
@@ -451,7 +451,7 @@ void HSchedeClienti::saveScheda()
 
     fontsize=ui->widget->getFontsize();
 
-qDebug()<<"w"<<width<<"h"<<height;
+//// qDebug()<<"w"<<width<<"h"<<height;
     prodotto=ui->listView->model()->index(ui->listView->currentIndex().row(),0).data(0).toInt();
     //connect(f,SIGNAL(update()),this,SLOT(loadScheda()));
 

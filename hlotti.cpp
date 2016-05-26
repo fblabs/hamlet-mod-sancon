@@ -1,6 +1,6 @@
 #include "hlotti.h"
 #include "ui_hlotti.h"
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 #include <QSqlquery>
 #include <QSqlRelationalDelegate>
@@ -71,7 +71,7 @@ void HLotti::setupForm()
     tbm->setEditStrategy(QSqlRelationalTableModel::OnFieldChange);
 
 
-////qDebug()<<tbm->lastError().text()<<tbm->relation(7).indexColumn();
+////// qDebug()<<tbm->lastError().text()<<tbm->relation(7).indexColumn();
 
     tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
     tbm->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
@@ -96,7 +96,7 @@ void HLotti::setupForm()
     tbm->select();
     ui->twLots->setModel(tbm);
 
-    //qDebug()<<tbm->query().lastError().text();
+    //// qDebug()<<tbm->query().lastError().text();
 
     mTipi=new QSqlTableModel(0,db);
     mTipi->setTable("tipi_lot");
@@ -231,7 +231,7 @@ void HLotti::setFilter()
     QString tipo,prodotto,filter;
     filter="";
     QString datafilter="lotdef.data between '" + ui->datadal->dateTime().toString("yyyy-MM-dd MM:mm:ss") + "' and '" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"'";
-//qDebug()<<datafilter;
+//// qDebug()<<datafilter;
 
     if (ui->chbT->isChecked() && !ui->chbP->isChecked())
     {
@@ -265,7 +265,7 @@ void HLotti::setFilter()
     filter=filter += datafilter;
 
     tbm->setFilter(filter);
-  //  qDebug()<<prodotto<<tipo<<filter<<tbm->lastError().text()<<tbm->query().lastQuery();
+  // // // qDebug()<<prodotto<<tipo<<filter<<tbm->lastError().text()<<tbm->query().lastQuery();
 
 
 }
@@ -323,7 +323,7 @@ void HLotti::print()
 void HLotti::updateData()
 {
     tbm->select();
-    qDebug()<<"update";
+   // // qDebug()<<"update";
 }
 
 void HLotti::on_pushButton_7_clicked()
@@ -340,7 +340,7 @@ void HLotti::on_leLottoRaw_textChanged(const QString &arg1)
 {
     QString filter="lotdef.lot like '" +arg1+"%'";
     tbm->setFilter(filter);
-    qDebug()<<tbm->query().lastError().text();
+   // // qDebug()<<tbm->query().lastError().text();
 }
 
 

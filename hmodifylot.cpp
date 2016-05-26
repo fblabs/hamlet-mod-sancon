@@ -5,7 +5,7 @@
 #include <QSqlRecord>
 #include <QMessageBox>
 #include <QSqlTableModel>
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 
 
@@ -193,7 +193,7 @@ bool HModifyLot::updateLot()
 
     db.transaction();
     b=q.exec();
-    qDebug()<<q.lastQuery()<<q.lastError().text();
+   // // qDebug()<<q.lastQuery()<<q.lastError().text();
     if(b)
     {
         db.commit();
@@ -202,7 +202,7 @@ bool HModifyLot::updateLot()
     else
     {
         db.rollback();
-        qDebug()<<q.lastError().text();
+       // // qDebug()<<q.lastError().text();
     }
 
     return b;

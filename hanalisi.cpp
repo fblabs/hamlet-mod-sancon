@@ -1,6 +1,6 @@
 #include "hanalisi.h"
 #include "ui_hanalisi.h"
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 #include <QSqlDatabase>
 #include <QSqlTableModel>
@@ -190,7 +190,7 @@ void HAnalisi::getProductsForClient()
 
     }
 
-qDebug()<<sql;
+//// qDebug()<<sql;
 
    mod->setQuery(q);
 
@@ -200,7 +200,7 @@ qDebug()<<sql;
 //  ui->tvLots->setColumnHidden(2,true);
    ui->tvLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
 
-qDebug()<<"getproductsforclient"<<q.lastQuery()<<"ERROR:"<<q.lastError().text()<<q.boundValue(0)<<q.boundValue(1)<<q.boundValue(2)<<q.boundValue(3)<<q.lastError().text();
+//// qDebug()<<"getproductsforclient"<<q.lastQuery()<<"ERROR:"<<q.lastError().text()<<q.boundValue(0)<<q.boundValue(1)<<q.boundValue(2)<<q.boundValue(3)<<q.lastError().text();
 
 
    connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getLotComponents()));
@@ -257,7 +257,7 @@ void HAnalisi::findLotUse()
   //  ui->tvNarrow->setColumnHidden(1,true);
 
     connect(ui->tvNarrow->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setNarrowSearch()));
-    qDebug()<<"findlotuse :"<<q.lastError().text();
+   // // qDebug()<<"findlotuse :"<<q.lastError().text();
 
  }
 
@@ -283,7 +283,7 @@ void HAnalisi::findLotUse()
 
     mod->setQuery(q);
 
-    //qDebug()<<q.lastError().text();
+    //// qDebug()<<q.lastError().text();
 
 
 }*/
@@ -313,7 +313,7 @@ void HAnalisi::narrow()
 
     mod->setQuery(q);
 
-    qDebug()<<"narrow"<<q.lastQuery()<<QString::number(lotid)<<q.lastError().text();
+   // // qDebug()<<"narrow"<<q.lastQuery()<<QString::number(lotid)<<q.lastError().text();
 
     ui->tvNarrow->setColumnHidden(0,true);
   //  ui->tvNarrow->setColumnHidden(1,true);
@@ -373,7 +373,7 @@ void HAnalisi::getLotComponents()
 
     mod->setQuery(q);
 
-    qDebug()<<q.lastError().text()<<QString::number(lotid);
+   // // qDebug()<<q.lastError().text()<<QString::number(lotid);
 
     ui->tvComp->setModel(mod);
     ui->tvComp->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
@@ -385,7 +385,7 @@ void HAnalisi::getLotComponents()
     connect(ui->tvComp->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setCompSearch()));
     connect(ui->tvComp->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(narrow()));
 
-    //qDebug()<<"getlotcomponents: "<<q.lastError().text()<<q.lastQuery()<<lotid<<q.boundValue(":id").toString();
+    //// qDebug()<<"getlotcomponents: "<<q.lastError().text()<<q.lastQuery()<<lotid<<q.boundValue(":id").toString();
 
 
 }
@@ -411,7 +411,7 @@ void HAnalisi::getLotComponents(int idlotto)
 
     mod->setQuery(q);
 
-    qDebug()<<q.lastError().text()<<QString::number(idlotto);
+   // // qDebug()<<q.lastError().text()<<QString::number(idlotto);
 
     w->setModel(mod);
     w->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
@@ -524,7 +524,7 @@ void HAnalisi::doMenu(QPoint pos)
 
 void HAnalisi::printThis()
 {
-  qDebug()<<"STAMPA DEL RIQUADRO SELEZIONATO!";
+ // // qDebug()<<"STAMPA DEL RIQUADRO SELEZIONATO!";
 }
 
 
@@ -573,7 +573,7 @@ void HAnalisi::printLot()
     {
 
     QTextTable* table=f->addTable(righe,colonne);
-    qDebug()<<QString::number(righe)<<QString::number(colonne);
+   // // qDebug()<<QString::number(righe)<<QString::number(colonne);
 
     for (int i=0;i<righe;i++)
     {

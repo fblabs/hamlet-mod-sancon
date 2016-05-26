@@ -5,7 +5,7 @@
 #include <QSqlQuery>
 #include <QSqlDatabase>
 #include <QMessageBox>
-#include <QDebug>
+// #include <QDebug>
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QSqlField>
@@ -18,7 +18,7 @@ HNewOp::HNewOp(QWidget *parent) :
 
     this->setWindowModality(Qt::ApplicationModal);
     usr=user;
-  //qDebug() <<user<<"user";
+  //// qDebug() <<user<<"user";
     setupForm();
     createUmModel();
     APEX="'";
@@ -99,7 +99,7 @@ void HNewOp::elabLeLot()
 
     int tm =sLot.size()- sLot.lastIndexOf('-');
 
-    //qDebug() << tm;
+    //// qDebug() << tm;
 
     if (tm<8)
         return;
@@ -121,7 +121,7 @@ void HNewOp::elabLeLot()
 
 /*void HNewOp::saveOpScarico()
 {
-    //qDebug()<<"utente"<<usr;
+    //// qDebug()<<"utente"<<usr;
 
        QSqlQuery* qsaveOp = new QSqlQuery(db);
 
@@ -145,7 +145,7 @@ void HNewOp::elabLeLot()
        else
        {
            QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando l'operazione",QMessageBox::Ok);
-           //qDebug()<<qry<<qsaveOp->lastError().text();
+           //// qDebug()<<qry<<qsaveOp->lastError().text();
        }
 }*/
 
@@ -239,10 +239,10 @@ QString HNewOp::saveNewLotString(bool isLoad=true)
 
 /*void HNewOp::saveOpCarico()
 {
-    //qDebug()<<"newOp"<<usr;
+    //// qDebug()<<"newOp"<<usr;
 
     QString tipolot = tmtipi->index(ui->cbTipoLotto->currentIndex(), 0).data(0).toString();
-    //qDebug()<<tipolot;
+    //// qDebug()<<tipolot;
 
     sLot0 = getNewLot();
 
@@ -261,9 +261,9 @@ QString HNewOp::saveNewLotString(bool isLoad=true)
 
     QString qryop0 = "insert into operazioni (lot,data,utente,IDprodotto,azione,quantita,note) values('"+ sLot0 +"',NOW(),"+ QString::number(usr) +"," + sCurProd + ",1 ," + QString::number(quantita) + ",'')";
 
-    ////qDebug()<<"tipolot:" + tipolot;
-    ////qDebug() <<qryLot;
-    ////qDebug()<<qryop0;
+    ////// qDebug()<<"tipolot:" + tipolot;
+    ////// qDebug() <<qryLot;
+    ////// qDebug()<<qryop0;
 
     db.transaction();
    if(qsaveLot->exec(qryLot))
@@ -271,8 +271,8 @@ QString HNewOp::saveNewLotString(bool isLoad=true)
        if (!qsavec0->exec(qryop0))
        {
            QMessageBox::information(this,QApplication::applicationName(), qsavec0->lastError().text(),QMessageBox::Ok|QMessageBox::Cancel);
-//qDebug()<<qsavec0->lastError().text()<<qsavec0->lastError();
-           //qDebug()<<"not qsavec0"<<qsavec0;
+//// qDebug()<<qsavec0->lastError().text()<<qsavec0->lastError();
+           //// qDebug()<<"not qsavec0"<<qsavec0;
 
           db.rollback();
 
@@ -289,7 +289,7 @@ QString HNewOp::saveNewLotString(bool isLoad=true)
 
    }else
    {
-       //qDebug()<<"not qryLot"<<qryLot;
+       //// qDebug()<<"not qryLot"<<qryLot;
    }
 
   }
@@ -350,7 +350,7 @@ int HNewOp::saveOperation()
 
            if(!b)
            {
-               //qDebug()<<q.lastQuery()<<q.lastError().text()<<"line:352";
+               //// qDebug()<<q.lastQuery()<<q.lastError().text()<<"line:352";
                db.rollback();
                return -1;
 
@@ -366,7 +366,7 @@ int HNewOp::saveOperation()
        else
        {
            db.rollback();
-           //qDebug()<<q.lastQuery()<<q.lastError().text()<<"line:368";
+           //// qDebug()<<q.lastQuery()<<q.lastError().text()<<"line:368";
            return -1;
        }
 
@@ -379,7 +379,7 @@ int HNewOp::saveOperation()
 
         if(!b)
         {
-            //qDebug()<<q.lastQuery()<<q.lastError().text()<<"line:379";
+            //// qDebug()<<q.lastQuery()<<q.lastError().text()<<"line:379";
 
             db.rollback();
             return-1;
@@ -391,7 +391,7 @@ int HNewOp::saveOperation()
        return 0;
     }
 
-    //qDebug()<<q.lastQuery()<<q.lastError().text();
+    //// qDebug()<<q.lastQuery()<<q.lastError().text();
 
     return -1;
 }

@@ -8,7 +8,7 @@
 #include <QCompleter>
 
 #include <QSqlError>
-#include <QDebug>
+// #include <QDebug>
 #include <QDateTime>
 #include <QMessageBox>
 
@@ -190,7 +190,7 @@ bool HPackagesUnload::scarica()
   /*  else
     {
        // QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando l'operazione",QMessageBox::Ok);
-       // qDebug()<<"scarica: " +q.lastError().text()+q.lastQuery();
+       //// // qDebug()<<"scarica: " +q.lastError().text()+q.lastQuery();
     }*/
 
     return b;
