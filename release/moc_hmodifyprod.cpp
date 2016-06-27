@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hmodifyprod.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hmodifyprod.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,47 +20,48 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HModifyProd_t {
     QByteArrayData data[32];
-    char stringdata[460];
+    char stringdata0[460];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HModifyProd_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HModifyProd_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HModifyProd_t qt_meta_stringdata_HModifyProd = {
     {
-QT_MOC_LITERAL(0, 0, 11),
-QT_MOC_LITERAL(1, 12, 4),
-QT_MOC_LITERAL(2, 17, 0),
-QT_MOC_LITERAL(3, 18, 4),
-QT_MOC_LITERAL(4, 23, 6),
-QT_MOC_LITERAL(5, 30, 3),
-QT_MOC_LITERAL(6, 34, 15),
-QT_MOC_LITERAL(7, 50, 8),
-QT_MOC_LITERAL(8, 59, 13),
-QT_MOC_LITERAL(9, 73, 9),
-QT_MOC_LITERAL(10, 83, 9),
-QT_MOC_LITERAL(11, 93, 6),
-QT_MOC_LITERAL(12, 100, 23),
-QT_MOC_LITERAL(13, 124, 21),
-QT_MOC_LITERAL(14, 146, 23),
-QT_MOC_LITERAL(15, 170, 22),
-QT_MOC_LITERAL(16, 193, 24),
-QT_MOC_LITERAL(17, 218, 23),
-QT_MOC_LITERAL(18, 242, 27),
-QT_MOC_LITERAL(19, 270, 5),
-QT_MOC_LITERAL(20, 276, 23),
-QT_MOC_LITERAL(21, 300, 20),
-QT_MOC_LITERAL(22, 321, 4),
-QT_MOC_LITERAL(23, 326, 19),
-QT_MOC_LITERAL(24, 346, 23),
-QT_MOC_LITERAL(25, 370, 23),
-QT_MOC_LITERAL(26, 394, 4),
-QT_MOC_LITERAL(27, 399, 23),
-QT_MOC_LITERAL(28, 423, 6),
-QT_MOC_LITERAL(29, 430, 3),
-QT_MOC_LITERAL(30, 434, 17),
-QT_MOC_LITERAL(31, 452, 7)
+QT_MOC_LITERAL(0, 0, 11), // "HModifyProd"
+QT_MOC_LITERAL(1, 12, 4), // "init"
+QT_MOC_LITERAL(2, 17, 0), // ""
+QT_MOC_LITERAL(3, 18, 4), // "conn"
+QT_MOC_LITERAL(4, 23, 6), // "HUser*"
+QT_MOC_LITERAL(5, 30, 3), // "usr"
+QT_MOC_LITERAL(6, 34, 15), // "getComponetsLot"
+QT_MOC_LITERAL(7, 50, 8), // "getIDLot"
+QT_MOC_LITERAL(8, 59, 13), // "getLotRowData"
+QT_MOC_LITERAL(9, 73, 9), // "updateRow"
+QT_MOC_LITERAL(10, 83, 9), // "deleteRow"
+QT_MOC_LITERAL(11, 93, 6), // "addRow"
+QT_MOC_LITERAL(12, 100, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(13, 124, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(14, 146, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(15, 170, 22), // "on_radioButton_clicked"
+QT_MOC_LITERAL(16, 193, 24), // "on_radioButton_2_clicked"
+QT_MOC_LITERAL(17, 218, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(18, 242, 27), // "on_cbUm_currentIndexChanged"
+QT_MOC_LITERAL(19, 270, 5), // "index"
+QT_MOC_LITERAL(20, 276, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(21, 300, 20), // "on_deDal_dateChanged"
+QT_MOC_LITERAL(22, 321, 4), // "date"
+QT_MOC_LITERAL(23, 326, 19), // "on_deAl_dateChanged"
+QT_MOC_LITERAL(24, 346, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(25, 370, 23), // "on_leSearch_textChanged"
+QT_MOC_LITERAL(26, 394, 4), // "arg1"
+QT_MOC_LITERAL(27, 399, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(28, 423, 6), // "findIt"
+QT_MOC_LITERAL(29, 430, 3), // "arg"
+QT_MOC_LITERAL(30, 434, 17), // "on_rbprod_toggled"
+QT_MOC_LITERAL(31, 452, 7) // "checked"
+
     },
     "HModifyProd\0init\0\0conn\0HUser*\0usr\0"
     "getComponetsLot\0getIDLot\0getLotRowData\0"
@@ -146,6 +147,7 @@ void HModifyProd::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HModifyProd *_t = static_cast<HModifyProd *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->init((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< HUser*(*)>(_a[2]))); break;
         case 1: _t->getComponetsLot(); break;
@@ -190,7 +192,7 @@ void HModifyProd::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 
 const QMetaObject HModifyProd::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HModifyProd.data,
-      qt_meta_data_HModifyProd,  qt_static_metacall, 0, 0}
+      qt_meta_data_HModifyProd,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -201,8 +203,8 @@ const QMetaObject *HModifyProd::metaObject() const
 
 void *HModifyProd::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HModifyProd.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HModifyProd.stringdata0))
         return static_cast<void*>(const_cast< HModifyProd*>(this));
     return QWidget::qt_metacast(_clname);
 }

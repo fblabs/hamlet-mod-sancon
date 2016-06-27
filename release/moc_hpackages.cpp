@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hpackages.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hpackages.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,58 +20,59 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HPackages_t {
     QByteArrayData data[43];
-    char stringdata[592];
+    char stringdata0[592];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HPackages_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HPackages_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HPackages_t qt_meta_stringdata_HPackages = {
     {
-QT_MOC_LITERAL(0, 0, 9),
-QT_MOC_LITERAL(1, 10, 14),
-QT_MOC_LITERAL(2, 25, 0),
-QT_MOC_LITERAL(3, 26, 13),
-QT_MOC_LITERAL(4, 40, 19),
-QT_MOC_LITERAL(5, 60, 7),
-QT_MOC_LITERAL(6, 68, 23),
-QT_MOC_LITERAL(7, 92, 12),
-QT_MOC_LITERAL(8, 105, 19),
-QT_MOC_LITERAL(9, 125, 17),
-QT_MOC_LITERAL(10, 143, 8),
-QT_MOC_LITERAL(11, 152, 3),
-QT_MOC_LITERAL(12, 156, 7),
-QT_MOC_LITERAL(13, 164, 5),
-QT_MOC_LITERAL(14, 170, 18),
-QT_MOC_LITERAL(15, 189, 12),
-QT_MOC_LITERAL(16, 202, 2),
-QT_MOC_LITERAL(17, 205, 22),
-QT_MOC_LITERAL(18, 228, 4),
-QT_MOC_LITERAL(19, 233, 13),
-QT_MOC_LITERAL(20, 247, 15),
-QT_MOC_LITERAL(21, 263, 19),
-QT_MOC_LITERAL(22, 283, 22),
-QT_MOC_LITERAL(23, 306, 21),
-QT_MOC_LITERAL(24, 328, 23),
-QT_MOC_LITERAL(25, 352, 20),
-QT_MOC_LITERAL(26, 373, 9),
-QT_MOC_LITERAL(27, 383, 10),
-QT_MOC_LITERAL(28, 394, 10),
-QT_MOC_LITERAL(29, 405, 9),
-QT_MOC_LITERAL(30, 415, 10),
-QT_MOC_LITERAL(31, 426, 7),
-QT_MOC_LITERAL(32, 434, 7),
-QT_MOC_LITERAL(33, 442, 9),
-QT_MOC_LITERAL(34, 452, 4),
-QT_MOC_LITERAL(35, 457, 15),
-QT_MOC_LITERAL(36, 473, 5),
-QT_MOC_LITERAL(37, 479, 18),
-QT_MOC_LITERAL(38, 498, 27),
-QT_MOC_LITERAL(39, 526, 17),
-QT_MOC_LITERAL(40, 544, 18),
-QT_MOC_LITERAL(41, 563, 23),
-QT_MOC_LITERAL(42, 587, 4)
+QT_MOC_LITERAL(0, 0, 9), // "HPackages"
+QT_MOC_LITERAL(1, 10, 14), // "filterProducts"
+QT_MOC_LITERAL(2, 25, 0), // ""
+QT_MOC_LITERAL(3, 26, 13), // "getSubclients"
+QT_MOC_LITERAL(4, 40, 19), // "on_checkBox_toggled"
+QT_MOC_LITERAL(5, 60, 7), // "checked"
+QT_MOC_LITERAL(6, 68, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(7, 92, 12), // "createNewLot"
+QT_MOC_LITERAL(8, 105, 19), // "createNewLotInterno"
+QT_MOC_LITERAL(9, 125, 17), // "on_pbCrea_clicked"
+QT_MOC_LITERAL(10, 143, 8), // "checkLot"
+QT_MOC_LITERAL(11, 152, 3), // "lot"
+QT_MOC_LITERAL(12, 156, 7), // "saveLot"
+QT_MOC_LITERAL(13, 164, 5), // "lotto"
+QT_MOC_LITERAL(14, 170, 18), // "saveNewLotInLotdef"
+QT_MOC_LITERAL(15, 189, 12), // "chargeNewLot"
+QT_MOC_LITERAL(16, 202, 2), // "id"
+QT_MOC_LITERAL(17, 205, 22), // "unloadNewLotComponents"
+QT_MOC_LITERAL(18, 228, 4), // "nlot"
+QT_MOC_LITERAL(19, 233, 13), // "getIdProdotto"
+QT_MOC_LITERAL(20, 247, 15), // "getDescProdotto"
+QT_MOC_LITERAL(21, 263, 19), // "on_pbAddRow_clicked"
+QT_MOC_LITERAL(22, 283, 22), // "on_pbRemoveRow_clicked"
+QT_MOC_LITERAL(23, 306, 21), // "on_checkBox_2_toggled"
+QT_MOC_LITERAL(24, 328, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(25, 352, 20), // "on_pbAnnulla_clicked"
+QT_MOC_LITERAL(26, 373, 9), // "getLastId"
+QT_MOC_LITERAL(27, 383, 10), // "getIdLotto"
+QT_MOC_LITERAL(28, 394, 10), // "getEanList"
+QT_MOC_LITERAL(29, 405, 9), // "resetForm"
+QT_MOC_LITERAL(30, 415, 10), // "setLotText"
+QT_MOC_LITERAL(31, 426, 7), // "getumid"
+QT_MOC_LITERAL(32, 434, 7), // "idlotto"
+QT_MOC_LITERAL(33, 442, 9), // "getumdesc"
+QT_MOC_LITERAL(34, 452, 4), // "umid"
+QT_MOC_LITERAL(35, 457, 15), // "getumidfromdesc"
+QT_MOC_LITERAL(36, 473, 5), // "pdesc"
+QT_MOC_LITERAL(37, 479, 18), // "on_rbTutti_toggled"
+QT_MOC_LITERAL(38, 498, 27), // "on_rbProdottiFiniti_toggled"
+QT_MOC_LITERAL(39, 526, 17), // "on_rbVasi_toggled"
+QT_MOC_LITERAL(40, 544, 18), // "on_rbTappi_toggled"
+QT_MOC_LITERAL(41, 563, 23), // "on_leSearch_textChanged"
+QT_MOC_LITERAL(42, 587, 4) // "arg1"
+
     },
     "HPackages\0filterProducts\0\0getSubclients\0"
     "on_checkBox_toggled\0checked\0"
@@ -180,6 +181,7 @@ void HPackages::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HPackages *_t = static_cast<HPackages *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->filterProducts(); break;
         case 1: _t->getSubclients(); break;
@@ -232,7 +234,7 @@ void HPackages::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
 
 const QMetaObject HPackages::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HPackages.data,
-      qt_meta_data_HPackages,  qt_static_metacall, 0, 0}
+      qt_meta_data_HPackages,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -243,8 +245,8 @@ const QMetaObject *HPackages::metaObject() const
 
 void *HPackages::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HPackages.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HPackages.stringdata0))
         return static_cast<void*>(const_cast< HPackages*>(this));
     return QWidget::qt_metacast(_clname);
 }

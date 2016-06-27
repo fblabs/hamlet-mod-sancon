@@ -108,6 +108,9 @@
      <property name="selectionBehavior">
       <enum>QAbstractItemView::SelectRows</enum>
      </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
     </widget>
    </item>
    <item>
@@ -116,6 +119,9 @@
       <widget class="QCheckBox" name="checkBox">
        <property name="text">
         <string>Mostra in produzione</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

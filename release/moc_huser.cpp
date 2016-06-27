@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'huser.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'huser.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,35 +20,36 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HUser_t {
     QByteArrayData data[20];
-    char stringdata[166];
+    char stringdata0[166];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HUser_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HUser_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HUser_t qt_meta_stringdata_HUser = {
     {
-QT_MOC_LITERAL(0, 0, 5),
-QT_MOC_LITERAL(1, 6, 11),
-QT_MOC_LITERAL(2, 18, 0),
-QT_MOC_LITERAL(3, 19, 5),
-QT_MOC_LITERAL(4, 25, 7),
-QT_MOC_LITERAL(5, 33, 4),
-QT_MOC_LITERAL(6, 38, 7),
-QT_MOC_LITERAL(7, 46, 9),
-QT_MOC_LITERAL(8, 56, 8),
-QT_MOC_LITERAL(9, 65, 5),
-QT_MOC_LITERAL(10, 71, 2),
-QT_MOC_LITERAL(11, 74, 5),
-QT_MOC_LITERAL(12, 80, 12),
-QT_MOC_LITERAL(13, 93, 12),
-QT_MOC_LITERAL(14, 106, 3),
-QT_MOC_LITERAL(15, 110, 4),
-QT_MOC_LITERAL(16, 115, 4),
-QT_MOC_LITERAL(17, 120, 16),
-QT_MOC_LITERAL(18, 137, 16),
-QT_MOC_LITERAL(19, 154, 11)
+QT_MOC_LITERAL(0, 0, 5), // "HUser"
+QT_MOC_LITERAL(1, 6, 11), // "setUserName"
+QT_MOC_LITERAL(2, 18, 0), // ""
+QT_MOC_LITERAL(3, 19, 5), // "uname"
+QT_MOC_LITERAL(4, 25, 7), // "setRole"
+QT_MOC_LITERAL(5, 33, 4), // "role"
+QT_MOC_LITERAL(6, 38, 7), // "getRole"
+QT_MOC_LITERAL(7, 46, 9), // "setActive"
+QT_MOC_LITERAL(8, 56, 8), // "isActive"
+QT_MOC_LITERAL(9, 65, 5), // "setID"
+QT_MOC_LITERAL(10, 71, 2), // "ID"
+QT_MOC_LITERAL(11, 74, 5), // "getID"
+QT_MOC_LITERAL(12, 80, 12), // "getCanUpdate"
+QT_MOC_LITERAL(13, 93, 12), // "setCanUpdate"
+QT_MOC_LITERAL(14, 106, 3), // "upd"
+QT_MOC_LITERAL(15, 110, 4), // "init"
+QT_MOC_LITERAL(16, 115, 4), // "conn"
+QT_MOC_LITERAL(17, 120, 16), // "setCanUpdateAnag"
+QT_MOC_LITERAL(18, 137, 16), // "getCanUpdateAnag"
+QT_MOC_LITERAL(19, 154, 11) // "getUsername"
+
     },
     "HUser\0setUserName\0\0uname\0setRole\0role\0"
     "getRole\0setActive\0isActive\0setID\0ID\0"
@@ -106,6 +107,7 @@ void HUser::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HUser *_t = static_cast<HUser *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->setUserName((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->setRole((*reinterpret_cast< int(*)>(_a[1]))); break;
@@ -131,7 +133,7 @@ void HUser::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
 
 const QMetaObject HUser::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_HUser.data,
-      qt_meta_data_HUser,  qt_static_metacall, 0, 0}
+      qt_meta_data_HUser,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -142,8 +144,8 @@ const QMetaObject *HUser::metaObject() const
 
 void *HUser::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HUser.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HUser.stringdata0))
         return static_cast<void*>(const_cast< HUser*>(this));
     return QObject::qt_metacast(_clname);
 }

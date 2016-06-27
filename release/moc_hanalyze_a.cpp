@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hanalyze_a.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hanalyze_a.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,40 +20,41 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HAnalyze_a_t {
     QByteArrayData data[25];
-    char stringdata[406];
+    char stringdata0[406];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HAnalyze_a_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HAnalyze_a_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HAnalyze_a_t qt_meta_stringdata_HAnalyze_a = {
     {
-QT_MOC_LITERAL(0, 0, 10),
-QT_MOC_LITERAL(1, 11, 7),
-QT_MOC_LITERAL(2, 19, 0),
-QT_MOC_LITERAL(3, 20, 10),
-QT_MOC_LITERAL(4, 31, 3),
-QT_MOC_LITERAL(5, 35, 11),
-QT_MOC_LITERAL(6, 47, 12),
-QT_MOC_LITERAL(7, 60, 11),
-QT_MOC_LITERAL(8, 72, 28),
-QT_MOC_LITERAL(9, 101, 25),
-QT_MOC_LITERAL(10, 127, 9),
-QT_MOC_LITERAL(11, 137, 7),
-QT_MOC_LITERAL(12, 145, 21),
-QT_MOC_LITERAL(13, 167, 23),
-QT_MOC_LITERAL(14, 191, 20),
-QT_MOC_LITERAL(15, 212, 5),
-QT_MOC_LITERAL(16, 218, 17),
-QT_MOC_LITERAL(17, 236, 23),
-QT_MOC_LITERAL(18, 260, 7),
-QT_MOC_LITERAL(19, 268, 23),
-QT_MOC_LITERAL(20, 292, 20),
-QT_MOC_LITERAL(21, 313, 19),
-QT_MOC_LITERAL(22, 333, 21),
-QT_MOC_LITERAL(23, 355, 33),
-QT_MOC_LITERAL(24, 389, 16)
+QT_MOC_LITERAL(0, 0, 10), // "HAnalyze_a"
+QT_MOC_LITERAL(1, 11, 7), // "getLots"
+QT_MOC_LITERAL(2, 19, 0), // ""
+QT_MOC_LITERAL(3, 20, 10), // "getProduct"
+QT_MOC_LITERAL(4, 31, 3), // "lot"
+QT_MOC_LITERAL(5, 35, 11), // "loadDetails"
+QT_MOC_LITERAL(6, 47, 12), // "radioToggled"
+QT_MOC_LITERAL(7, 60, 11), // "requestData"
+QT_MOC_LITERAL(8, 72, 28), // "getProductsForClientsInRange"
+QT_MOC_LITERAL(9, 101, 25), // "on_tvMain_current_changed"
+QT_MOC_LITERAL(10, 127, 9), // "resetData"
+QT_MOC_LITERAL(11, 137, 7), // "getData"
+QT_MOC_LITERAL(12, 145, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(13, 167, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(14, 191, 20), // "on_tableView_clicked"
+QT_MOC_LITERAL(15, 212, 5), // "index"
+QT_MOC_LITERAL(16, 218, 17), // "on_tvMain_clicked"
+QT_MOC_LITERAL(17, 236, 23), // "on_rbAnagrafica_toggled"
+QT_MOC_LITERAL(18, 260, 7), // "checked"
+QT_MOC_LITERAL(19, 268, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(20, 292, 20), // "on_tvDetails_clicked"
+QT_MOC_LITERAL(21, 313, 19), // "on_pbFilter_toggled"
+QT_MOC_LITERAL(22, 333, 21), // "on_rbProdotti_toggled"
+QT_MOC_LITERAL(23, 355, 33), // "on_cbProdotti_currentIndexCha..."
+QT_MOC_LITERAL(24, 389, 16) // "on_rbLes_toggled"
+
     },
     "HAnalyze_a\0getLots\0\0getProduct\0lot\0"
     "loadDetails\0radioToggled\0requestData\0"
@@ -134,6 +135,7 @@ void HAnalyze_a::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HAnalyze_a *_t = static_cast<HAnalyze_a *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->getLots(); break;
         case 1: { QString _r = _t->getProduct((*reinterpret_cast< QString(*)>(_a[1])));
@@ -163,7 +165,7 @@ void HAnalyze_a::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
 
 const QMetaObject HAnalyze_a::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HAnalyze_a.data,
-      qt_meta_data_HAnalyze_a,  qt_static_metacall, 0, 0}
+      qt_meta_data_HAnalyze_a,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -174,8 +176,8 @@ const QMetaObject *HAnalyze_a::metaObject() const
 
 void *HAnalyze_a::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HAnalyze_a.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HAnalyze_a.stringdata0))
         return static_cast<void*>(const_cast< HAnalyze_a*>(this));
     return QWidget::qt_metacast(_clname);
 }

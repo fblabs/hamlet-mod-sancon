@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hmodricette.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -117,6 +117,7 @@ public:
         tableView->setAlternatingRowColors(true);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tableView->verticalHeader()->setVisible(false);
 
         verticalLayout_2->addWidget(tableView);
 
@@ -124,6 +125,7 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         checkBox = new QCheckBox(HModRicette);
         checkBox->setObjectName(QStringLiteral("checkBox"));
+        checkBox->setChecked(true);
 
         verticalLayout->addWidget(checkBox);
 

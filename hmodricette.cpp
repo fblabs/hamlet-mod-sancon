@@ -20,6 +20,7 @@ HModRicette::HModRicette(QWidget *parent) :
     ui(new Ui::HModRicette)
 {
     ui->setupUi(this);
+    ui->checkBox->setVisible(false);
 }
 
 void HModRicette::showContextMenu(const QPoint &pos)
@@ -315,7 +316,7 @@ void HModRicette::loadRicetta()
 
     int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
     QSqlQuery q(db);
-    QString sql = "SELECT DISTINCT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione,righe_ricette.quantita,righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta ORDER BY righe_ricette.quantita DESC";
+    QString sql = "SELECT DISTINCT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta ORDER BY righe_ricette.quantita DESC";
     q.prepare(sql);
     q.bindValue(":idricetta",QVariant(idricetta));
     q.exec();
@@ -335,7 +336,7 @@ void HModRicette::loadRicetta()
         QStandardItem *idricetta =new QStandardItem(q.value(1).toString());
         QStandardItem *idprodotto =new QStandardItem(q.value(2).toString());
         QStandardItem *descrizione =new QStandardItem(q.value(3).toString());
-        QStandardItem *quantita =new QStandardItem(q.value(4).toString());
+        QStandardItem *quantita =new QStandardItem(QString::number(q.value(4).toDouble(),'f',4));
         QString sh=q.value(5).toString();
         QStandardItem *show = new QStandardItem(sh);
 
@@ -357,11 +358,11 @@ void HModRicette::loadRicetta()
 
     }
 
+     ui->tableView->setModel(mod);
 
-
-    ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
-    ui->tableView->setModel(mod);
-    ui->tableView->resizeColumnsToContents();
+     mod->setHeaderData(3,Qt::Horizontal,"Ingrediente");
+     mod->setHeaderData(4,Qt::Horizontal,"Quantità");
+     mod->setHeaderData(5,Qt::Horizontal,"Mostra in Produzione");
 
 
      connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(findProduct()));
@@ -380,6 +381,7 @@ void HModRicette::loadRicetta()
      ui->tableView->setColumnHidden(1,true);
      ui->tableView->setColumnHidden(2,true);
      ui->tableView->setColumnHidden(6,true);
+
    //  ui->tvRecipe->horizontalHeader()->resizeSections(QHeaderView::Stretch);
 
      ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hschedeclienti.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hschedeclienti.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,35 +20,36 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HSchedeClienti_t {
     QByteArrayData data[20];
-    char stringdata[309];
+    char stringdata0[309];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HSchedeClienti_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HSchedeClienti_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HSchedeClienti_t qt_meta_stringdata_HSchedeClienti = {
     {
-QT_MOC_LITERAL(0, 0, 14),
-QT_MOC_LITERAL(1, 15, 22),
-QT_MOC_LITERAL(2, 38, 0),
-QT_MOC_LITERAL(3, 39, 13),
-QT_MOC_LITERAL(4, 53, 21),
-QT_MOC_LITERAL(5, 75, 23),
-QT_MOC_LITERAL(6, 99, 27),
-QT_MOC_LITERAL(7, 127, 7),
-QT_MOC_LITERAL(8, 135, 14),
-QT_MOC_LITERAL(9, 150, 7),
-QT_MOC_LITERAL(10, 158, 10),
-QT_MOC_LITERAL(11, 169, 11),
-QT_MOC_LITERAL(12, 181, 8),
-QT_MOC_LITERAL(13, 190, 12),
-QT_MOC_LITERAL(14, 203, 9),
-QT_MOC_LITERAL(15, 213, 17),
-QT_MOC_LITERAL(16, 231, 23),
-QT_MOC_LITERAL(17, 255, 23),
-QT_MOC_LITERAL(18, 279, 18),
-QT_MOC_LITERAL(19, 298, 10)
+QT_MOC_LITERAL(0, 0, 14), // "HSchedeClienti"
+QT_MOC_LITERAL(1, 15, 22), // "selectRecipesforClient"
+QT_MOC_LITERAL(2, 38, 0), // ""
+QT_MOC_LITERAL(3, 39, 13), // "getSubclients"
+QT_MOC_LITERAL(4, 53, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(5, 75, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(6, 99, 27), // "on_cbSelectCriteria_toggled"
+QT_MOC_LITERAL(7, 127, 7), // "checked"
+QT_MOC_LITERAL(8, 135, 14), // "showSubclients"
+QT_MOC_LITERAL(9, 150, 7), // "toggled"
+QT_MOC_LITERAL(10, 158, 10), // "saveScheda"
+QT_MOC_LITERAL(11, 169, 11), // "setImgWidth"
+QT_MOC_LITERAL(12, 181, 8), // "newWidth"
+QT_MOC_LITERAL(13, 190, 12), // "setImgHeight"
+QT_MOC_LITERAL(14, 203, 9), // "newHeight"
+QT_MOC_LITERAL(15, 213, 17), // "on_btnDup_clicked"
+QT_MOC_LITERAL(16, 231, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(17, 255, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(18, 279, 18), // "on_btnSave_clicked"
+QT_MOC_LITERAL(19, 298, 10) // "loadScheda"
+
     },
     "HSchedeClienti\0selectRecipesforClient\0"
     "\0getSubclients\0on_pushButton_clicked\0"
@@ -114,6 +115,7 @@ void HSchedeClienti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HSchedeClienti *_t = static_cast<HSchedeClienti *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->selectRecipesforClient(); break;
         case 1: _t->getSubclients(); break;
@@ -136,7 +138,7 @@ void HSchedeClienti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
 
 const QMetaObject HSchedeClienti::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HSchedeClienti.data,
-      qt_meta_data_HSchedeClienti,  qt_static_metacall, 0, 0}
+      qt_meta_data_HSchedeClienti,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -147,8 +149,8 @@ const QMetaObject *HSchedeClienti::metaObject() const
 
 void *HSchedeClienti::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HSchedeClienti.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HSchedeClienti.stringdata0))
         return static_cast<void*>(const_cast< HSchedeClienti*>(this));
     return QWidget::qt_metacast(_clname);
 }

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hanalisi.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hanalisi.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,50 +20,51 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HAnalisi_t {
     QByteArrayData data[35];
-    char stringdata[501];
+    char stringdata0[501];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HAnalisi_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HAnalisi_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HAnalisi_t qt_meta_stringdata_HAnalisi = {
     {
-QT_MOC_LITERAL(0, 0, 8),
-QT_MOC_LITERAL(1, 9, 4),
-QT_MOC_LITERAL(2, 14, 0),
-QT_MOC_LITERAL(3, 15, 4),
-QT_MOC_LITERAL(4, 20, 20),
-QT_MOC_LITERAL(5, 41, 16),
-QT_MOC_LITERAL(6, 58, 7),
-QT_MOC_LITERAL(7, 66, 8),
-QT_MOC_LITERAL(8, 75, 3),
-QT_MOC_LITERAL(9, 79, 10),
-QT_MOC_LITERAL(10, 90, 12),
-QT_MOC_LITERAL(11, 103, 3),
-QT_MOC_LITERAL(12, 107, 15),
-QT_MOC_LITERAL(13, 123, 6),
-QT_MOC_LITERAL(14, 130, 13),
-QT_MOC_LITERAL(15, 144, 16),
-QT_MOC_LITERAL(16, 161, 7),
-QT_MOC_LITERAL(17, 169, 25),
-QT_MOC_LITERAL(18, 195, 27),
-QT_MOC_LITERAL(19, 223, 25),
-QT_MOC_LITERAL(20, 249, 21),
-QT_MOC_LITERAL(21, 271, 21),
-QT_MOC_LITERAL(22, 293, 23),
-QT_MOC_LITERAL(23, 317, 23),
-QT_MOC_LITERAL(24, 341, 23),
-QT_MOC_LITERAL(25, 365, 19),
-QT_MOC_LITERAL(26, 385, 19),
-QT_MOC_LITERAL(27, 405, 21),
-QT_MOC_LITERAL(28, 427, 4),
-QT_MOC_LITERAL(29, 432, 19),
-QT_MOC_LITERAL(30, 452, 8),
-QT_MOC_LITERAL(31, 461, 9),
-QT_MOC_LITERAL(32, 471, 18),
-QT_MOC_LITERAL(33, 490, 6),
-QT_MOC_LITERAL(34, 497, 3)
+QT_MOC_LITERAL(0, 0, 8), // "HAnalisi"
+QT_MOC_LITERAL(1, 9, 4), // "init"
+QT_MOC_LITERAL(2, 14, 0), // ""
+QT_MOC_LITERAL(3, 15, 4), // "conn"
+QT_MOC_LITERAL(4, 20, 20), // "getProductsForClient"
+QT_MOC_LITERAL(5, 41, 16), // "getLotComponents"
+QT_MOC_LITERAL(6, 58, 7), // "idlotto"
+QT_MOC_LITERAL(7, 66, 8), // "getLotID"
+QT_MOC_LITERAL(8, 75, 3), // "lot"
+QT_MOC_LITERAL(9, 79, 10), // "findLotUse"
+QT_MOC_LITERAL(10, 90, 12), // "setLotSearch"
+QT_MOC_LITERAL(11, 103, 3), // "msg"
+QT_MOC_LITERAL(12, 107, 15), // "setNarrowSearch"
+QT_MOC_LITERAL(13, 123, 6), // "narrow"
+QT_MOC_LITERAL(14, 130, 13), // "setCompSearch"
+QT_MOC_LITERAL(15, 144, 16), // "on_rbAll_toggled"
+QT_MOC_LITERAL(16, 161, 7), // "checked"
+QT_MOC_LITERAL(17, 169, 25), // "on_rbMateriePrime_toggled"
+QT_MOC_LITERAL(18, 195, 27), // "on_rbProdottifiniti_toggled"
+QT_MOC_LITERAL(19, 223, 25), // "on_rbSemilavorati_toggled"
+QT_MOC_LITERAL(20, 249, 21), // "on_rbPackages_toggled"
+QT_MOC_LITERAL(21, 271, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(22, 293, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(23, 317, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(24, 341, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(25, 365, 19), // "getYearlyProduction"
+QT_MOC_LITERAL(26, 385, 19), // "on_checkBox_toggled"
+QT_MOC_LITERAL(27, 405, 21), // "on_deFrom_dateChanged"
+QT_MOC_LITERAL(28, 427, 4), // "date"
+QT_MOC_LITERAL(29, 432, 19), // "on_deTo_dateChanged"
+QT_MOC_LITERAL(30, 452, 8), // "printLot"
+QT_MOC_LITERAL(31, 461, 9), // "printThis"
+QT_MOC_LITERAL(32, 471, 18), // "on_pbPrint_clicked"
+QT_MOC_LITERAL(33, 490, 6), // "doMenu"
+QT_MOC_LITERAL(34, 497, 3) // "pos"
+
     },
     "HAnalisi\0init\0\0conn\0getProductsForClient\0"
     "getLotComponents\0idlotto\0getLotID\0lot\0"
@@ -160,6 +161,7 @@ void HAnalisi::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HAnalisi *_t = static_cast<HAnalisi *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->init((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->getProductsForClient(); break;
@@ -196,7 +198,7 @@ void HAnalisi::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
 
 const QMetaObject HAnalisi::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HAnalisi.data,
-      qt_meta_data_HAnalisi,  qt_static_metacall, 0, 0}
+      qt_meta_data_HAnalisi,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -207,8 +209,8 @@ const QMetaObject *HAnalisi::metaObject() const
 
 void *HAnalisi::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HAnalisi.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HAnalisi.stringdata0))
         return static_cast<void*>(const_cast< HAnalisi*>(this));
     return QWidget::qt_metacast(_clname);
 }

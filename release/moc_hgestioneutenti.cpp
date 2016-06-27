@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hgestioneutenti.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hgestioneutenti.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,29 +20,30 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HGestioneUtenti_t {
     QByteArrayData data[14];
-    char stringdata[241];
+    char stringdata0[241];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HGestioneUtenti_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HGestioneUtenti_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HGestioneUtenti_t qt_meta_stringdata_HGestioneUtenti = {
     {
-QT_MOC_LITERAL(0, 0, 15),
-QT_MOC_LITERAL(1, 16, 14),
-QT_MOC_LITERAL(2, 31, 0),
-QT_MOC_LITERAL(3, 32, 23),
-QT_MOC_LITERAL(4, 56, 21),
-QT_MOC_LITERAL(5, 78, 19),
-QT_MOC_LITERAL(6, 98, 7),
-QT_MOC_LITERAL(7, 106, 23),
-QT_MOC_LITERAL(8, 130, 26),
-QT_MOC_LITERAL(9, 157, 9),
-QT_MOC_LITERAL(10, 167, 11),
-QT_MOC_LITERAL(11, 179, 31),
-QT_MOC_LITERAL(12, 211, 5),
-QT_MOC_LITERAL(13, 217, 23)
+QT_MOC_LITERAL(0, 0, 15), // "HGestioneUtenti"
+QT_MOC_LITERAL(1, 16, 14), // "updatePassword"
+QT_MOC_LITERAL(2, 31, 0), // ""
+QT_MOC_LITERAL(3, 32, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(4, 56, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(5, 78, 19), // "on_checkBox_toggled"
+QT_MOC_LITERAL(6, 98, 7), // "checked"
+QT_MOC_LITERAL(7, 106, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(8, 130, 26), // "on_pbNuovaPassword_clicked"
+QT_MOC_LITERAL(9, 157, 9), // "getGruppo"
+QT_MOC_LITERAL(10, 167, 11), // "getIdUtente"
+QT_MOC_LITERAL(11, 179, 31), // "on_comboBox_currentIndexChanged"
+QT_MOC_LITERAL(12, 211, 5), // "index"
+QT_MOC_LITERAL(13, 217, 23) // "on_pushButton_4_clicked"
+
     },
     "HGestioneUtenti\0updatePassword\0\0"
     "on_pushButton_3_clicked\0on_pushButton_clicked\0"
@@ -98,6 +99,7 @@ void HGestioneUtenti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HGestioneUtenti *_t = static_cast<HGestioneUtenti *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: { bool _r = _t->updatePassword();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
@@ -118,7 +120,7 @@ void HGestioneUtenti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
 
 const QMetaObject HGestioneUtenti::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HGestioneUtenti.data,
-      qt_meta_data_HGestioneUtenti,  qt_static_metacall, 0, 0}
+      qt_meta_data_HGestioneUtenti,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -129,8 +131,8 @@ const QMetaObject *HGestioneUtenti::metaObject() const
 
 void *HGestioneUtenti::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HGestioneUtenti.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HGestioneUtenti.stringdata0))
         return static_cast<void*>(const_cast< HGestioneUtenti*>(this));
     return QWidget::qt_metacast(_clname);
 }

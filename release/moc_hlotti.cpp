@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hlotti.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hlotti.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,42 +20,43 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HLotti_t {
     QByteArrayData data[27];
-    char stringdata[443];
+    char stringdata0[443];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HLotti_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HLotti_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HLotti_t qt_meta_stringdata_HLotti = {
     {
-QT_MOC_LITERAL(0, 0, 6),
-QT_MOC_LITERAL(1, 7, 21),
-QT_MOC_LITERAL(2, 29, 0),
-QT_MOC_LITERAL(3, 30, 23),
-QT_MOC_LITERAL(4, 54, 13),
-QT_MOC_LITERAL(5, 68, 9),
-QT_MOC_LITERAL(6, 78, 23),
-QT_MOC_LITERAL(7, 102, 23),
-QT_MOC_LITERAL(8, 126, 9),
-QT_MOC_LITERAL(9, 136, 15),
-QT_MOC_LITERAL(10, 152, 3),
-QT_MOC_LITERAL(11, 156, 9),
-QT_MOC_LITERAL(12, 166, 7),
-QT_MOC_LITERAL(13, 174, 5),
-QT_MOC_LITERAL(14, 180, 10),
-QT_MOC_LITERAL(15, 191, 23),
-QT_MOC_LITERAL(16, 215, 23),
-QT_MOC_LITERAL(17, 239, 25),
-QT_MOC_LITERAL(18, 265, 4),
-QT_MOC_LITERAL(19, 270, 25),
-QT_MOC_LITERAL(20, 296, 7),
-QT_MOC_LITERAL(21, 304, 33),
-QT_MOC_LITERAL(22, 338, 5),
-QT_MOC_LITERAL(23, 344, 15),
-QT_MOC_LITERAL(24, 360, 32),
-QT_MOC_LITERAL(25, 393, 15),
-QT_MOC_LITERAL(26, 409, 33)
+QT_MOC_LITERAL(0, 0, 6), // "HLotti"
+QT_MOC_LITERAL(1, 7, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(2, 29, 0), // ""
+QT_MOC_LITERAL(3, 30, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(4, 54, 13), // "searchProduct"
+QT_MOC_LITERAL(5, 68, 9), // "resetData"
+QT_MOC_LITERAL(6, 78, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(7, 102, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(8, 126, 9), // "setFilter"
+QT_MOC_LITERAL(9, 136, 15), // "showContextMenu"
+QT_MOC_LITERAL(10, 152, 3), // "pos"
+QT_MOC_LITERAL(11, 156, 9), // "copyField"
+QT_MOC_LITERAL(12, 166, 7), // "editLot"
+QT_MOC_LITERAL(13, 174, 5), // "print"
+QT_MOC_LITERAL(14, 180, 10), // "updateData"
+QT_MOC_LITERAL(15, 191, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(16, 215, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(17, 239, 25), // "on_leLottoRaw_textChanged"
+QT_MOC_LITERAL(18, 265, 4), // "arg1"
+QT_MOC_LITERAL(19, 270, 25), // "on_chTipoProdotti_toggled"
+QT_MOC_LITERAL(20, 296, 7), // "checked"
+QT_MOC_LITERAL(21, 304, 33), // "on_cbTipoProd_currentIndexCha..."
+QT_MOC_LITERAL(22, 338, 5), // "index"
+QT_MOC_LITERAL(23, 344, 15), // "on_chbT_toggled"
+QT_MOC_LITERAL(24, 360, 32), // "on_cbTipiLot_currentIndexChanged"
+QT_MOC_LITERAL(25, 393, 15), // "on_chbP_toggled"
+QT_MOC_LITERAL(26, 409, 33) // "on_cbProdotti_currentIndexCha..."
+
     },
     "HLotti\0on_pushButton_clicked\0\0"
     "on_pushButton_3_clicked\0searchProduct\0"
@@ -139,6 +140,7 @@ void HLotti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HLotti *_t = static_cast<HLotti *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pushButton_clicked(); break;
         case 1: _t->on_pushButton_3_clicked(); break;
@@ -168,7 +170,7 @@ void HLotti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
 
 const QMetaObject HLotti::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HLotti.data,
-      qt_meta_data_HLotti,  qt_static_metacall, 0, 0}
+      qt_meta_data_HLotti,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -179,8 +181,8 @@ const QMetaObject *HLotti::metaObject() const
 
 void *HLotti::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HLotti.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HLotti.stringdata0))
         return static_cast<void*>(const_cast< HLotti*>(this));
     return QWidget::qt_metacast(_clname);
 }

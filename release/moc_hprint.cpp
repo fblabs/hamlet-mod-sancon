@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hprint.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hprint.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,32 +20,33 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HPrint_t {
     QByteArrayData data[17];
-    char stringdata[229];
+    char stringdata0[229];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HPrint_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HPrint_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HPrint_t qt_meta_stringdata_HPrint = {
     {
-QT_MOC_LITERAL(0, 0, 6),
-QT_MOC_LITERAL(1, 7, 11),
-QT_MOC_LITERAL(2, 19, 0),
-QT_MOC_LITERAL(3, 20, 11),
-QT_MOC_LITERAL(4, 32, 23),
-QT_MOC_LITERAL(5, 56, 21),
-QT_MOC_LITERAL(6, 78, 15),
-QT_MOC_LITERAL(7, 94, 8),
-QT_MOC_LITERAL(8, 103, 5),
-QT_MOC_LITERAL(9, 109, 12),
-QT_MOC_LITERAL(10, 122, 9),
-QT_MOC_LITERAL(11, 132, 7),
-QT_MOC_LITERAL(12, 140, 16),
-QT_MOC_LITERAL(13, 157, 19),
-QT_MOC_LITERAL(14, 177, 4),
-QT_MOC_LITERAL(15, 182, 19),
-QT_MOC_LITERAL(16, 202, 26)
+QT_MOC_LITERAL(0, 0, 6), // "HPrint"
+QT_MOC_LITERAL(1, 7, 11), // "imgwChanged"
+QT_MOC_LITERAL(2, 19, 0), // ""
+QT_MOC_LITERAL(3, 20, 11), // "imghChanged"
+QT_MOC_LITERAL(4, 32, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(5, 56, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(6, 78, 15), // "onConnectionSet"
+QT_MOC_LITERAL(7, 94, 8), // "addImage"
+QT_MOC_LITERAL(8, 103, 5), // "bytes"
+QT_MOC_LITERAL(9, 109, 12), // "printPreview"
+QT_MOC_LITERAL(10, 122, 9), // "QPrinter*"
+QT_MOC_LITERAL(11, 132, 7), // "printer"
+QT_MOC_LITERAL(12, 140, 16), // "on_pbant_clicked"
+QT_MOC_LITERAL(13, 157, 19), // "on_sbW_valueChanged"
+QT_MOC_LITERAL(14, 177, 4), // "arg1"
+QT_MOC_LITERAL(15, 182, 19), // "on_sbH_valueChanged"
+QT_MOC_LITERAL(16, 202, 26) // "on_spCharSize_valueChanged"
+
     },
     "HPrint\0imgwChanged\0\0imghChanged\0"
     "on_pushButton_2_clicked\0on_pushButton_clicked\0"
@@ -107,6 +108,7 @@ void HPrint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HPrint *_t = static_cast<HPrint *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: { int _r = _t->imgwChanged((*reinterpret_cast< int(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
@@ -143,7 +145,7 @@ void HPrint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
 
 const QMetaObject HPrint::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HPrint.data,
-      qt_meta_data_HPrint,  qt_static_metacall, 0, 0}
+      qt_meta_data_HPrint,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -154,8 +156,8 @@ const QMetaObject *HPrint::metaObject() const
 
 void *HPrint::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HPrint.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HPrint.stringdata0))
         return static_cast<void*>(const_cast< HPrint*>(this));
     return QWidget::qt_metacast(_clname);
 }

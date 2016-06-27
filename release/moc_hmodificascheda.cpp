@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hmodificascheda.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hmodificascheda.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,28 +20,29 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HModificaScheda_t {
     QByteArrayData data[13];
-    char stringdata[221];
+    char stringdata0[221];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HModificaScheda_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HModificaScheda_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HModificaScheda_t qt_meta_stringdata_HModificaScheda = {
     {
-QT_MOC_LITERAL(0, 0, 15),
-QT_MOC_LITERAL(1, 16, 16),
-QT_MOC_LITERAL(2, 33, 0),
-QT_MOC_LITERAL(3, 34, 21),
-QT_MOC_LITERAL(4, 56, 10),
-QT_MOC_LITERAL(5, 67, 10),
-QT_MOC_LITERAL(6, 78, 28),
-QT_MOC_LITERAL(7, 107, 23),
-QT_MOC_LITERAL(8, 131, 23),
-QT_MOC_LITERAL(9, 155, 10),
-QT_MOC_LITERAL(10, 166, 23),
-QT_MOC_LITERAL(11, 190, 6),
-QT_MOC_LITERAL(12, 197, 23)
+QT_MOC_LITERAL(0, 0, 15), // "HModificaScheda"
+QT_MOC_LITERAL(1, 16, 16), // "schedaAggiornata"
+QT_MOC_LITERAL(2, 33, 0), // ""
+QT_MOC_LITERAL(3, 34, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(4, 56, 10), // "updateFile"
+QT_MOC_LITERAL(5, 67, 10), // "reloadFile"
+QT_MOC_LITERAL(6, 78, 28), // "on_pushButton_reload_clicked"
+QT_MOC_LITERAL(7, 107, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(8, 131, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(9, 155, 10), // "loadScheda"
+QT_MOC_LITERAL(10, 166, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(11, 190, 6), // "update"
+QT_MOC_LITERAL(12, 197, 23) // "on_pushButton_6_clicked"
+
     },
     "HModificaScheda\0schedaAggiornata\0\0"
     "on_pushButton_clicked\0updateFile\0"
@@ -102,6 +103,7 @@ void HModificaScheda::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HModificaScheda *_t = static_cast<HModificaScheda *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->schedaAggiornata(); break;
         case 1: _t->on_pushButton_clicked(); break;
@@ -131,7 +133,7 @@ void HModificaScheda::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
 
 const QMetaObject HModificaScheda::staticMetaObject = {
     { &QDialog::staticMetaObject, qt_meta_stringdata_HModificaScheda.data,
-      qt_meta_data_HModificaScheda,  qt_static_metacall, 0, 0}
+      qt_meta_data_HModificaScheda,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -142,8 +144,8 @@ const QMetaObject *HModificaScheda::metaObject() const
 
 void *HModificaScheda::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HModificaScheda.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HModificaScheda.stringdata0))
         return static_cast<void*>(const_cast< HModificaScheda*>(this));
     return QDialog::qt_metacast(_clname);
 }
@@ -168,6 +170,6 @@ int HModificaScheda::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void HModificaScheda::schedaAggiornata()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, 0);
+    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE

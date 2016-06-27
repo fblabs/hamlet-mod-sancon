@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hnuovaoperazione.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hnuovaoperazione.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,47 +20,48 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HnuovaOperazione_t {
     QByteArrayData data[32];
-    char stringdata[519];
+    char stringdata0[519];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HnuovaOperazione_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HnuovaOperazione_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HnuovaOperazione_t qt_meta_stringdata_HnuovaOperazione = {
     {
-QT_MOC_LITERAL(0, 0, 16),
-QT_MOC_LITERAL(1, 17, 7),
-QT_MOC_LITERAL(2, 25, 0),
-QT_MOC_LITERAL(3, 26, 10),
-QT_MOC_LITERAL(4, 37, 17),
-QT_MOC_LITERAL(5, 55, 13),
-QT_MOC_LITERAL(6, 69, 8),
-QT_MOC_LITERAL(7, 78, 19),
-QT_MOC_LITERAL(8, 98, 20),
-QT_MOC_LITERAL(9, 119, 14),
-QT_MOC_LITERAL(10, 134, 15),
-QT_MOC_LITERAL(11, 150, 9),
-QT_MOC_LITERAL(12, 160, 10),
-QT_MOC_LITERAL(13, 171, 2),
-QT_MOC_LITERAL(14, 174, 23),
-QT_MOC_LITERAL(15, 198, 21),
-QT_MOC_LITERAL(16, 220, 12),
-QT_MOC_LITERAL(17, 233, 15),
-QT_MOC_LITERAL(18, 249, 13),
-QT_MOC_LITERAL(19, 263, 13),
-QT_MOC_LITERAL(20, 277, 24),
-QT_MOC_LITERAL(21, 302, 7),
-QT_MOC_LITERAL(22, 310, 22),
-QT_MOC_LITERAL(23, 333, 21),
-QT_MOC_LITERAL(24, 355, 25),
-QT_MOC_LITERAL(25, 381, 4),
-QT_MOC_LITERAL(26, 386, 22),
-QT_MOC_LITERAL(27, 409, 23),
-QT_MOC_LITERAL(28, 433, 23),
-QT_MOC_LITERAL(29, 457, 25),
-QT_MOC_LITERAL(30, 483, 29),
-QT_MOC_LITERAL(31, 513, 5)
+QT_MOC_LITERAL(0, 0, 16), // "HnuovaOperazione"
+QT_MOC_LITERAL(1, 17, 7), // "trigger"
+QT_MOC_LITERAL(2, 25, 0), // ""
+QT_MOC_LITERAL(3, 26, 10), // "updateData"
+QT_MOC_LITERAL(4, 37, 17), // "setFilterProdotti"
+QT_MOC_LITERAL(5, 55, 13), // "saveOperation"
+QT_MOC_LITERAL(6, 69, 8), // "isCarico"
+QT_MOC_LITERAL(7, 78, 19), // "saveOperationCarico"
+QT_MOC_LITERAL(8, 98, 20), // "saveOperationScarico"
+QT_MOC_LITERAL(9, 119, 14), // "setUiforCarico"
+QT_MOC_LITERAL(10, 134, 15), // "setUiForScarico"
+QT_MOC_LITERAL(11, 150, 9), // "getNewLot"
+QT_MOC_LITERAL(12, 160, 10), // "saveNewLot"
+QT_MOC_LITERAL(13, 171, 2), // "nl"
+QT_MOC_LITERAL(14, 174, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(15, 198, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(16, 220, 12), // "lastInsertID"
+QT_MOC_LITERAL(17, 233, 15), // "setProdottoText"
+QT_MOC_LITERAL(18, 249, 13), // "setLotsFilter"
+QT_MOC_LITERAL(19, 263, 13), // "setAnagFilter"
+QT_MOC_LITERAL(20, 277, 24), // "on_radioButton_2_toggled"
+QT_MOC_LITERAL(21, 302, 7), // "checked"
+QT_MOC_LITERAL(22, 310, 22), // "on_radioButton_toggled"
+QT_MOC_LITERAL(23, 333, 21), // "on_cbScadenza_toggled"
+QT_MOC_LITERAL(24, 355, 25), // "on_leProdotti_textChanged"
+QT_MOC_LITERAL(25, 381, 4), // "arg1"
+QT_MOC_LITERAL(26, 386, 22), // "on_leLotto_textChanged"
+QT_MOC_LITERAL(27, 409, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(28, 433, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(29, 457, 25), // "on_cbShowPackages_toggled"
+QT_MOC_LITERAL(30, 483, 29), // "on_cbtipo_currentIndexChanged"
+QT_MOC_LITERAL(31, 513, 5) // "index"
+
     },
     "HnuovaOperazione\0trigger\0\0updateData\0"
     "setFilterProdotti\0saveOperation\0"
@@ -158,6 +159,7 @@ void HnuovaOperazione::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HnuovaOperazione *_t = static_cast<HnuovaOperazione *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->trigger(); break;
         case 1: _t->updateData(); break;
@@ -212,7 +214,7 @@ void HnuovaOperazione::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
 
 const QMetaObject HnuovaOperazione::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HnuovaOperazione.data,
-      qt_meta_data_HnuovaOperazione,  qt_static_metacall, 0, 0}
+      qt_meta_data_HnuovaOperazione,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -223,8 +225,8 @@ const QMetaObject *HnuovaOperazione::metaObject() const
 
 void *HnuovaOperazione::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HnuovaOperazione.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HnuovaOperazione.stringdata0))
         return static_cast<void*>(const_cast< HnuovaOperazione*>(this));
     return QWidget::qt_metacast(_clname);
 }
@@ -249,12 +251,12 @@ int HnuovaOperazione::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void HnuovaOperazione::trigger()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, 0);
+    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }
 
 // SIGNAL 1
 void HnuovaOperazione::updateData()
 {
-    QMetaObject::activate(this, &staticMetaObject, 1, 0);
+    QMetaObject::activate(this, &staticMetaObject, 1, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hproduction.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hproduction.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,73 +20,74 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HProduction_t {
     QByteArrayData data[58];
-    char stringdata[946];
+    char stringdata0[946];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HProduction_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HProduction_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HProduction_t qt_meta_stringdata_HProduction = {
     {
-QT_MOC_LITERAL(0, 0, 11),
-QT_MOC_LITERAL(1, 12, 10),
-QT_MOC_LITERAL(2, 23, 0),
-QT_MOC_LITERAL(3, 24, 13),
-QT_MOC_LITERAL(4, 38, 19),
-QT_MOC_LITERAL(5, 58, 9),
-QT_MOC_LITERAL(6, 68, 12),
-QT_MOC_LITERAL(7, 81, 15),
-QT_MOC_LITERAL(8, 97, 11),
-QT_MOC_LITERAL(9, 109, 11),
-QT_MOC_LITERAL(10, 121, 10),
-QT_MOC_LITERAL(11, 132, 18),
-QT_MOC_LITERAL(12, 151, 14),
-QT_MOC_LITERAL(13, 166, 16),
-QT_MOC_LITERAL(14, 183, 20),
-QT_MOC_LITERAL(15, 204, 12),
-QT_MOC_LITERAL(16, 217, 27),
-QT_MOC_LITERAL(17, 245, 10),
-QT_MOC_LITERAL(18, 256, 3),
-QT_MOC_LITERAL(19, 260, 8),
-QT_MOC_LITERAL(20, 269, 11),
-QT_MOC_LITERAL(21, 281, 7),
-QT_MOC_LITERAL(22, 289, 13),
-QT_MOC_LITERAL(23, 303, 3),
-QT_MOC_LITERAL(24, 307, 6),
-QT_MOC_LITERAL(25, 314, 16),
-QT_MOC_LITERAL(26, 331, 11),
-QT_MOC_LITERAL(27, 343, 10),
-QT_MOC_LITERAL(28, 354, 17),
-QT_MOC_LITERAL(29, 372, 11),
-QT_MOC_LITERAL(30, 384, 15),
-QT_MOC_LITERAL(31, 400, 6),
-QT_MOC_LITERAL(32, 407, 12),
-QT_MOC_LITERAL(33, 420, 14),
-QT_MOC_LITERAL(34, 435, 9),
-QT_MOC_LITERAL(35, 445, 4),
-QT_MOC_LITERAL(36, 450, 23),
-QT_MOC_LITERAL(37, 474, 21),
-QT_MOC_LITERAL(38, 496, 21),
-QT_MOC_LITERAL(39, 518, 23),
-QT_MOC_LITERAL(40, 542, 23),
-QT_MOC_LITERAL(41, 566, 23),
-QT_MOC_LITERAL(42, 590, 27),
-QT_MOC_LITERAL(43, 618, 23),
-QT_MOC_LITERAL(44, 642, 23),
-QT_MOC_LITERAL(45, 666, 23),
-QT_MOC_LITERAL(46, 690, 23),
-QT_MOC_LITERAL(47, 714, 7),
-QT_MOC_LITERAL(48, 722, 33),
-QT_MOC_LITERAL(49, 756, 23),
-QT_MOC_LITERAL(50, 780, 23),
-QT_MOC_LITERAL(51, 804, 24),
-QT_MOC_LITERAL(52, 829, 19),
-QT_MOC_LITERAL(53, 849, 20),
-QT_MOC_LITERAL(54, 870, 24),
-QT_MOC_LITERAL(55, 895, 23),
-QT_MOC_LITERAL(56, 919, 4),
-QT_MOC_LITERAL(57, 924, 21)
+QT_MOC_LITERAL(0, 0, 11), // "HProduction"
+QT_MOC_LITERAL(1, 12, 10), // "getClients"
+QT_MOC_LITERAL(2, 23, 0), // ""
+QT_MOC_LITERAL(3, 24, 13), // "getSubclients"
+QT_MOC_LITERAL(4, 38, 19), // "getRecipesForClient"
+QT_MOC_LITERAL(5, 58, 9), // "getRecipe"
+QT_MOC_LITERAL(6, 68, 12), // "lastFiveLots"
+QT_MOC_LITERAL(7, 81, 15), // "productSelected"
+QT_MOC_LITERAL(8, 97, 11), // "getLotModel"
+QT_MOC_LITERAL(9, 109, 11), // "lotSelected"
+QT_MOC_LITERAL(10, 121, 10), // "addLotProd"
+QT_MOC_LITERAL(11, 132, 18), // "addLotFuoriRicetta"
+QT_MOC_LITERAL(12, 151, 14), // "saveProduction"
+QT_MOC_LITERAL(13, 166, 16), // "recalculateTotal"
+QT_MOC_LITERAL(14, 183, 20), // "calculateActualTotal"
+QT_MOC_LITERAL(15, 204, 12), // "updateTotals"
+QT_MOC_LITERAL(16, 217, 27), // "setAddProductFuoriRicettaUI"
+QT_MOC_LITERAL(17, 245, 10), // "saveNewLot"
+QT_MOC_LITERAL(18, 256, 3), // "lot"
+QT_MOC_LITERAL(19, 260, 8), // "prodotto"
+QT_MOC_LITERAL(20, 269, 11), // "saveLotLoad"
+QT_MOC_LITERAL(21, 281, 7), // "idlotto"
+QT_MOC_LITERAL(22, 289, 13), // "saveOperation"
+QT_MOC_LITERAL(23, 303, 3), // "row"
+QT_MOC_LITERAL(24, 307, 6), // "action"
+QT_MOC_LITERAL(25, 314, 16), // "saveComposizione"
+QT_MOC_LITERAL(26, 331, 11), // "lottotarget"
+QT_MOC_LITERAL(27, 343, 10), // "operazione"
+QT_MOC_LITERAL(28, 354, 17), // "updateComposition"
+QT_MOC_LITERAL(29, 372, 11), // "printRecipe"
+QT_MOC_LITERAL(30, 384, 15), // "printProduction"
+QT_MOC_LITERAL(31, 400, 6), // "actual"
+QT_MOC_LITERAL(32, 407, 12), // "lastInsertId"
+QT_MOC_LITERAL(33, 420, 14), // "getLotToModify"
+QT_MOC_LITERAL(34, 435, 9), // "getNewLot"
+QT_MOC_LITERAL(35, 445, 4), // "prod"
+QT_MOC_LITERAL(36, 450, 23), // "saveUpdatedComposizione"
+QT_MOC_LITERAL(37, 474, 21), // "saveUpdatedOperazione"
+QT_MOC_LITERAL(38, 496, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(39, 518, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(40, 542, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(41, 566, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(42, 590, 27), // "on_leQtyTotal_returnPressed"
+QT_MOC_LITERAL(43, 618, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(44, 642, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(45, 666, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(46, 690, 23), // "on_pushButton_7_toggled"
+QT_MOC_LITERAL(47, 714, 7), // "checked"
+QT_MOC_LITERAL(48, 722, 33), // "on_pbAddLottoFuoriRicetta_cli..."
+QT_MOC_LITERAL(49, 756, 23), // "on_pushButton_8_clicked"
+QT_MOC_LITERAL(50, 780, 23), // "on_pushButton_9_clicked"
+QT_MOC_LITERAL(51, 804, 24), // "on_pushButton_10_clicked"
+QT_MOC_LITERAL(52, 829, 19), // "on_checkBox_toggled"
+QT_MOC_LITERAL(53, 849, 20), // "on_pbAnnulla_clicked"
+QT_MOC_LITERAL(54, 870, 24), // "on_pushButton_11_clicked"
+QT_MOC_LITERAL(55, 895, 23), // "on_leQuaRic_textChanged"
+QT_MOC_LITERAL(56, 919, 4), // "arg1"
+QT_MOC_LITERAL(57, 924, 21) // "on_checkBox_2_toggled"
+
     },
     "HProduction\0getClients\0\0getSubclients\0"
     "getRecipesForClient\0getRecipe\0"
@@ -230,6 +231,7 @@ void HProduction::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HProduction *_t = static_cast<HProduction *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->getClients(); break;
         case 1: _t->getSubclients(); break;
@@ -292,7 +294,7 @@ void HProduction::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 
 const QMetaObject HProduction::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HProduction.data,
-      qt_meta_data_HProduction,  qt_static_metacall, 0, 0}
+      qt_meta_data_HProduction,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -303,8 +305,8 @@ const QMetaObject *HProduction::metaObject() const
 
 void *HProduction::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HProduction.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HProduction.stringdata0))
         return static_cast<void*>(const_cast< HProduction*>(this));
     return QWidget::qt_metacast(_clname);
 }

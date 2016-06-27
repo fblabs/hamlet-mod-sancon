@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hnewop.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hnewop.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,35 +20,36 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HNewOp_t {
     QByteArrayData data[20];
-    char stringdata[273];
+    char stringdata0[273];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HNewOp_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HNewOp_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HNewOp_t qt_meta_stringdata_HNewOp = {
     {
-QT_MOC_LITERAL(0, 0, 6),
-QT_MOC_LITERAL(1, 7, 7),
-QT_MOC_LITERAL(2, 15, 0),
-QT_MOC_LITERAL(3, 16, 9),
-QT_MOC_LITERAL(4, 26, 9),
-QT_MOC_LITERAL(5, 36, 12),
-QT_MOC_LITERAL(6, 49, 13),
-QT_MOC_LITERAL(7, 63, 23),
-QT_MOC_LITERAL(8, 87, 15),
-QT_MOC_LITERAL(9, 103, 17),
-QT_MOC_LITERAL(10, 121, 19),
-QT_MOC_LITERAL(11, 141, 13),
-QT_MOC_LITERAL(12, 155, 19),
-QT_MOC_LITERAL(13, 175, 4),
-QT_MOC_LITERAL(14, 180, 16),
-QT_MOC_LITERAL(15, 197, 6),
-QT_MOC_LITERAL(16, 204, 13),
-QT_MOC_LITERAL(17, 218, 21),
-QT_MOC_LITERAL(18, 240, 24),
-QT_MOC_LITERAL(19, 265, 7)
+QT_MOC_LITERAL(0, 0, 6), // "HNewOp"
+QT_MOC_LITERAL(1, 7, 7), // "trigger"
+QT_MOC_LITERAL(2, 15, 0), // ""
+QT_MOC_LITERAL(3, 16, 9), // "elabLeLot"
+QT_MOC_LITERAL(4, 26, 9), // "setupForm"
+QT_MOC_LITERAL(5, 36, 12), // "cbTipiLotSet"
+QT_MOC_LITERAL(6, 49, 13), // "cbunitaMisura"
+QT_MOC_LITERAL(7, 63, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(8, 87, 15), // "productSelected"
+QT_MOC_LITERAL(9, 103, 17), // "fornitoreSelected"
+QT_MOC_LITERAL(10, 121, 19), // "onConnectionNameSet"
+QT_MOC_LITERAL(11, 141, 13), // "createUmModel"
+QT_MOC_LITERAL(12, 155, 19), // "saveOperationString"
+QT_MOC_LITERAL(13, 175, 4), // "plot"
+QT_MOC_LITERAL(14, 180, 16), // "saveNewLotString"
+QT_MOC_LITERAL(15, 197, 6), // "isLoad"
+QT_MOC_LITERAL(16, 204, 13), // "saveOperation"
+QT_MOC_LITERAL(17, 218, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(18, 240, 24), // "on_radioButton_2_toggled"
+QT_MOC_LITERAL(19, 265, 7) // "checked"
+
     },
     "HNewOp\0trigger\0\0elabLeLot\0setupForm\0"
     "cbTipiLotSet\0cbunitaMisura\0"
@@ -119,6 +120,7 @@ void HNewOp::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HNewOp *_t = static_cast<HNewOp *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->trigger(); break;
         case 1: _t->elabLeLot(); break;
@@ -154,7 +156,7 @@ void HNewOp::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
 
 const QMetaObject HNewOp::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HNewOp.data,
-      qt_meta_data_HNewOp,  qt_static_metacall, 0, 0}
+      qt_meta_data_HNewOp,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -165,8 +167,8 @@ const QMetaObject *HNewOp::metaObject() const
 
 void *HNewOp::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HNewOp.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HNewOp.stringdata0))
         return static_cast<void*>(const_cast< HNewOp*>(this));
     return QWidget::qt_metacast(_clname);
 }
@@ -191,6 +193,6 @@ int HNewOp::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void HNewOp::trigger()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, 0);
+    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE
