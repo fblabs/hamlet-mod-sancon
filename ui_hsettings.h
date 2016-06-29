@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hsettings.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -156,7 +156,7 @@ public:
 
     void retranslateUi(QWidget *HSettings)
     {
-        HSettings->setWindowTitle(QApplication::translate("HSettings", "HamletModus 1.0 - Impostazioni", 0));
+        HSettings->setWindowTitle(QApplication::translate("HSettings", "Impostazioni", 0));
         label_2->setText(QApplication::translate("HSettings", "User", 0));
         label_5->setText(QApplication::translate("HSettings", "Password:", 0));
         label->setText(QApplication::translate("HSettings", "Indirizzo:", 0));

@@ -9,7 +9,7 @@ HSettings::HSettings(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QSettings settings("CIMIAPP2");
+    QSettings settings("hamletmod");
     ui->leUser->setText (settings.value("user").toString());
     ui->leAddress->setText(settings.value("server").toString());
     ui->lePort->setText(settings.value("port").toString());
@@ -25,7 +25,7 @@ HSettings::~HSettings()
 
 void HSettings::on_pushButton_clicked()
 {
-   QSettings settings ("CIMIAPP2");
+   QSettings settings ("hamletmod");
    QString sUser = ui->leUser->text();
    QString sAddress = ui->leAddress->text();
    QString sPort = ui->lePort->text();

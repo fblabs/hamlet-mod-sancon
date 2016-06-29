@@ -48,7 +48,9 @@ SOURCES += main.cpp\
     hduplicate.cpp \
     hmodifylot.cpp \
     hpackagesunload.cpp \
-    hgroups.cpp
+    hgroups.cpp \
+    hcontacts.cpp \
+    hnewcontact.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -85,7 +87,9 @@ HEADERS  += mainwindow.h \
     hduplicate.h \
     hmodifylot.h \
     hpackagesunload.h \
-    hgroups.h
+    hgroups.h \
+    hcontacts.h \
+    hnewcontact.h
 
 
 FORMS    += mainwindow.ui \
@@ -120,7 +124,9 @@ FORMS    += mainwindow.ui \
     hmodifylot.ui \
     hlotti.ui \
     hpackagesunload.ui \
-    hgroups.ui
+    hgroups.ui \
+    hcontacts.ui \
+    hnewcontact.ui
 
 RESOURCES += \
     icons.qrc \

@@ -30,21 +30,20 @@
 #include "hmodifyprod.h"
 #include "hpackages.h"
 #include "hpackagesunload.h"
+#include "hcontacts.h"
 #include <QDir>
 #include <QProcess>
+
+#include <QDebug>
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-  QSettings settings("DB");
+  QSettings settings("hamletmod");
 
     ui->setupUi(this);
     enableDB();
-//enableButtonsForRole(true);
-   // this->showMaximized();
-
-   // enableDB();
 
 
   sConn=settings.value("conn").toString();
@@ -73,7 +72,7 @@ void MainWindow::init()
 
 void MainWindow::userLogged(int id, int gruppo, bool update,bool updateanag)
 {
-    //// qDebug()<< "main->userLogged: id"+QString::number(id) << "Role: " + QString::number(gruppo);
+    qDebug()<< "main->userLogged: id"+QString::number(id) << "Role: " + QString::number(gruppo);
 
 
     user->setID(id);
@@ -88,20 +87,18 @@ void MainWindow::userLogged(int id, int gruppo, bool update,bool updateanag)
 
 void MainWindow::enableDB()
 {
-    QSettings settings("DB");
-    QString conn = settings.value("conn").toString();
+    QSettings settings("hamletmod");
+    sConn = settings.value("conn").toString();
 
-  //  db.removeDatabase(conn);
-    db = QSqlDatabase::addDatabase("QMYSQL",conn);
-    db.setHostName(settings.value("address").toString());
+    QString hostname=settings.value("server").toString();
+
+    db.removeDatabase(sConn);
+    db = QSqlDatabase::addDatabase("QMYSQL",sConn);
+    db.setHostName(hostname);
     db.setDatabaseName(settings.value("database").toString());
     db.setPort(settings.value("port").toInt());
     db.setUserName(settings.value("user").toString());
     db.setPassword(settings.value("pwd").toString());
-
-  //  db.setUserName("root");
-  // db.setPassword("joepass%2k13");
-
 
     db.open();
 
@@ -387,6 +384,7 @@ void MainWindow::on_tbClose_clicked()
 {
     if(QMessageBox::question(this,QApplication::applicationName(),"Uscire dall'applicazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
+        db.close();
         this->close();
         QApplication::quit();
     }
@@ -499,4 +497,12 @@ void MainWindow::on_pbUnload_clicked()
 {
   HPackagesUnload *f=new HPackagesUnload(0,user,sConn);
   f->show();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    HContacts *f=new HContacts(0,db);
+
+    f->show();
+
 }

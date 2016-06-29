@@ -36,6 +36,8 @@ INPUT(
 ./release/hmodifylot.o
 ./release/hpackagesunload.o
 ./release/hgroups.o
+./release/hcontacts.o
+./release/hnewcontact.o
 ./release/qrc_icons.o
 ./release/qrc_graphical.o
 ./release/moc_mainwindow.o
@@ -73,4 +75,6 @@ INPUT(
 ./release/moc_hmodifylot.o
 ./release/moc_hpackagesunload.o
 ./release/moc_hgroups.o
+./release/moc_hcontacts.o
+./release/moc_hnewcontact.o
 );

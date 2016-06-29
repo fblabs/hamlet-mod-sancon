@@ -57,6 +57,7 @@ public:
     QPushButton *pushButton;
     QToolButton *tbProdotti;
     QPushButton *pbUnload;
+    QPushButton *pushButton_2;
     QLabel *label_6;
 
     void setupUi(QMainWindow *MainWindow)
@@ -447,6 +448,11 @@ public:
 
         gridLayout->addWidget(pbUnload, 5, 2, 1, 1);
 
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+
+        gridLayout->addWidget(pushButton_2, 1, 1, 1, 1);
+
 
         verticalLayout_4->addLayout(gridLayout);
 
@@ -467,11 +473,11 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 1.5.7.9", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 1.5.8.0", 0));
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600;\">Hamlet Mod</span></p><p><span style=\" font-size:14pt; font-weight:600;\">Versione: 1.5.7.9</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">FBLABS 2015-2016</span></p></body></html>", 0));
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600;\">Hamlet Mod</span></p><p><span style=\" font-size:14pt; font-weight:600;\">Versione: 1.5.8.0</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">FBLABS 2015-2016</span></p></body></html>", 0));
         label_5->setText(QString());
         tbRicette->setText(QApplication::translate("MainWindow", "Ricette", 0));
         tnProduzione->setText(QApplication::translate("MainWindow", "Produzione", 0));
@@ -496,6 +502,7 @@ public:
         pushButton->setText(QApplication::translate("MainWindow", "Aggiorna", 0));
         tbProdotti->setText(QApplication::translate("MainWindow", "Prodotti", 0));
         pbUnload->setText(QApplication::translate("MainWindow", "Scarico Packages", 0));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Contatti", 0));
         label_6->setText(QString());
     } // retranslateUi
 

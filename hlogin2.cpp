@@ -26,7 +26,8 @@ HLogin2::HLogin2(QWidget *parent) :
 
 void HLogin2::init(QString conn)
 {
-    db=QSqlDatabase::database(conn);
+    sConnec=conn;
+    db=QSqlDatabase::database(sConnec);
 }
 
 HLogin2::~HLogin2()
@@ -99,19 +100,22 @@ void HLogin2::enableDB()
 {
 
 
-        QSettings settings("DB");
+        QSettings settings("hamletmod");
 
 
         sConnec=settings.value("conn").toString();
         db = QSqlDatabase::database(sConnec);
-        db.setHostName(settings.value("address").toString());
+        db.setHostName(settings.value("server").toString());
         db.setDatabaseName(settings.value("database").toString());
         db.setPort(settings.value("port").toInt());
         db.setUserName(settings.value("user").toString());
         db.setPassword(settings.value("pwd").toString());
 
 
-        db.open();
+        if (!db.open())
+        {
+            close();
+        }
 
 
 }
