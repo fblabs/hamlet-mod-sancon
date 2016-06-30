@@ -17,7 +17,6 @@ HLogin2::HLogin2(QWidget *parent) :
     QShortcut *ok= new QShortcut(this);
     ok->setKey(Qt::Key_Enter);
 
-    //db = QSqlDatabase::database("QMYSQL","temporary");
     connect(ok,SIGNAL(activated()),this,SLOT(on_pushButton_clicked()));
     this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 
@@ -47,10 +46,7 @@ void HLogin2::login()
     {
         QMessageBox::warning(this,"OCCHIO!","La connessione è chiusa",QMessageBox::Ok);
     }
-    else
-    {
-       QMessageBox::warning(this,"OCCHIO!","La connessione è aperta",QMessageBox::Ok);
-    }
+
 
     bool b=qrLogin.exec("Select utenti.ID,utenti.username,utenti.gruppo,gruppi.canupdate,gruppi.canupdateana,utenti.attivo from utenti,gruppi where gruppi.ID=utenti.gruppo and utenti.username='" + ui->leUser->text() + "' and pwd=SHA1('" + ui->lePwd->text() + "') and utenti.attivo=1");
 

@@ -457,20 +457,15 @@ void HAnalyze_a::on_tvMain_clicked(const QModelIndex &index)
     {
 
        lot=ui->tvMain->model()->index(index.row(),0).data(0).toString();
-       // QMessageBox::information(this,"PIPPO", "rbLin lot:" + lot,QMessageBox::Ok);
 
-       //// qDebug()<<"lin"<<lot;
+
+
     }
     else
     {
         lot=ui->tvMain->model()->index(index.row(),1).data(0).toString();
-      //  ui->tvDetails->setVisible(false);
-       // QMessageBox::information(this,"PIPPO", "rbLes lot:" + lot,QMessageBox::Ok+ "\n row=" + QString::number(index.row())+ " column: " + QString::number(index.column()));
-        //// qDebug()<<"les"<<lot;
     }
-  //// qDebug()<<lot;
 
-   // QString ana=
     QString select;
     QString space=" ";
     QString what="SELECT lotdef.lot as LOTTO, prodotti.descrizione AS PRODOTTO,  lotdef.data AS DATA, anagrafica.ragione_sociale AS 'RAGIONE SOCIALE',lotdef.lot_fornitore AS 'LOT FORNITORE',lotdef.EAN as 'LOTTO DI USCITA',lotdef.scadenza AS SCADENZA,lotdef.giacenza as giacenza, operazioni.note AS NOTE";
@@ -488,7 +483,6 @@ void HAnalyze_a::on_tvMain_clicked(const QModelIndex &index)
     else
     {
        what="SELECT distinct lotdef.lot as LOTTO, prodotti.descrizione AS PRODOTTO,  lotdef.data AS DATA, anagrafica.ragione_sociale AS 'RAGIONE SOCIALE',lotdef.lot_fornitore AS 'LOT FORNITORE',lotdef.EAN as 'LOTTO DI USCITA',lotdef.scadenza AS SCADENZA,lotdef.giacenza as giacenza, operazioni.note AS NOTE";
-       //where="WHERE anagrafica.ID = lotdef.anagrafica AND operazioni.lot=lotdef.lot AND prodotti.ID=operazioni.IDprodotto AND operazioni.azione=1 and lotdef.lot='"+lot+"' and prodotti.ID="+ID+" and lotdef.lot='"+lot+"'";
        where="WHERE anagrafica.ID = lotdef.anagrafica AND operazioni.lot=lotdef.lot AND prodotti.ID=operazioni.IDprodotto AND operazioni.azione=1 and lotdef.lot='"+lot+"' and lotdef.lot='"+lot+"'";
 
     }
@@ -517,7 +511,7 @@ void HAnalyze_a::on_tvMain_clicked(const QModelIndex &index)
     q.exec(select);
     m->setQuery(q);
 
-     //// qDebug()<<"SEEEELECT: " +lot+q.lastQuery();
+
 
     ui->tvDetails->setModel(m);
     ui->tvDetails->resizeColumnsToContents();
@@ -529,10 +523,6 @@ void HAnalyze_a::on_tvMain_clicked(const QModelIndex &index)
     ui->tableView->resizeColumnsToContents();
     ui->tableView->horizontalHeader()->stretchLastSection();
     ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
-//
- //   ui->tvDetailsLot->setVisible(false);
-
-    //// qDebug()<<select;
 
 }
 
