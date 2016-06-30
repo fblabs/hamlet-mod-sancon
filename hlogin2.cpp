@@ -43,6 +43,14 @@ void HLogin2::login()
     QSqlQuery qrLogin(db);
     HUser* usr=new HUser();
 
+    if(!db.isOpen())
+    {
+        QMessageBox::warning(this,"OCCHIO!","La connessione è chiusa",QMessageBox::Ok);
+    }
+    else
+    {
+       QMessageBox::warning(this,"OCCHIO!","La connessione è aperta",QMessageBox::Ok);
+    }
 
     bool b=qrLogin.exec("Select utenti.ID,utenti.username,utenti.gruppo,gruppi.canupdate,gruppi.canupdateana,utenti.attivo from utenti,gruppi where gruppi.ID=utenti.gruppo and utenti.username='" + ui->leUser->text() + "' and pwd=SHA1('" + ui->lePwd->text() + "') and utenti.attivo=1");
 
