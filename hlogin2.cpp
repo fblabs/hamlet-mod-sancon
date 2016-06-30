@@ -49,7 +49,7 @@ void HLogin2::login()
     if(!b)
     {
       // QMessageBox::critical(this,QApplication::applicationName(),"Errore di connessione: "+ qrLogin.lastError().text(),QMessageBox::Ok);
-       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! Errore: " + qrLogin.lastError().text(),QMessageBox::Ok);
+       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! ErroreSize:\n" + qrLogin.lastError().text(),QMessageBox::Ok);
        return;
 
     }
@@ -73,7 +73,7 @@ void HLogin2::login()
      }
   else
   {
-        QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utenteZZZZZ"+db .lastError().text(),QMessageBox::Ok);
+        QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente\nErrore Query"+qrLogin.lastError().text(),QMessageBox::Ok);
 
         ui->leUser->setText("");
         ui->lePwd->setText("");
