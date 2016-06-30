@@ -49,7 +49,7 @@ void HLogin2::login()
     if(!b)
     {
       // QMessageBox::critical(this,QApplication::applicationName(),"Errore di connessione: "+ qrLogin.lastError().text(),QMessageBox::Ok);
-       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! ErroreSize:\n" + qrLogin.lastError().text(),QMessageBox::Ok);
+       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! ErroreSize:\n"+db.isOpen()?"aperto ":"chiuso \n"+sConnec,QMessageBox::Ok);
        return;
 
     }
@@ -73,7 +73,7 @@ void HLogin2::login()
      }
   else
   {
-        QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente\nErrore Query"+qrLogin.lastError().text(),QMessageBox::Ok);
+        QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente\nErrore Query:"+db.isOpen()?"aperto ":"chiuso"+sConnec+QString::number(qrLogin.size()),QMessageBox::Ok);
 
         ui->leUser->setText("");
         ui->lePwd->setText("");
@@ -104,7 +104,7 @@ void HLogin2::enableDB()
 
 
         sConnec=settings.value("conn").toString();
-        db = QSqlDatabase::database(sConnec);
+        db = QSqlDatabase::database(settings.value("conn").toString());
         db.setHostName(settings.value("server").toString());
         db.setDatabaseName(settings.value("database").toString());
         db.setPort(settings.value("port").toInt());
