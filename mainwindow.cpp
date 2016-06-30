@@ -145,6 +145,7 @@ void MainWindow::disableUI()
     ui->pbSchede->setEnabled(false);
     ui->pbPackages->setEnabled(false);
     ui->pbUnload->setEnabled(false);
+    ui->pbContacts->setEnabled(false);
 }
 
 void MainWindow::enableButtonsForRole()
@@ -215,6 +216,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbLogout->setEnabled(true);
         ui->pbPackages->setEnabled(true);
         ui->pbUnload->setEnabled(true);
+        ui->pbContacts->setEnabled(true);
 
         break;
 
@@ -231,6 +233,8 @@ void MainWindow::enableButtonsForRole()
         ui->tbRicette->setEnabled(true);
         ui->tbAnalisi->setEnabled(true);
         ui->pbUnload->setEnabled(true);
+        ui->pbContacts->setEnabled(true);
+
         break;
     case 4://simone
         ui->tbMagaz->setEnabled(true);
@@ -246,6 +250,8 @@ void MainWindow::enableButtonsForRole()
         ui->tbAnalisi->setEnabled(true);
         ui->tbModificaLotti->setEnabled(true);
         ui->pbUnload->setEnabled(true);
+        ui->pbContacts->setEnabled(false);
+
         break;
      case 5://amministrativo
         ui->toolButton->setEnabled(false);
@@ -266,6 +272,8 @@ void MainWindow::enableButtonsForRole()
         ui->tbLogout->setEnabled(true);
         ui->pbPackages->setEnabled(true);
         ui->pbUnload->setEnabled(true);
+        ui->pbContacts->setEnabled(true);
+
         break;
      case 6:
         ui->tnProduzione->setEnabled(true);
@@ -288,6 +296,8 @@ void MainWindow::enableButtonsForRole()
         ui->tbLogout->setEnabled(true);
         ui->pbPackages->setEnabled(true);
         ui->pbUnload->setEnabled(true);
+        ui->pbContacts->setEnabled(false);
+
 
 
 
@@ -499,10 +509,11 @@ void MainWindow::on_pbUnload_clicked()
   f->show();
 }
 
-void MainWindow::on_pushButton_2_clicked()
+
+
+void MainWindow::on_pbContacts_clicked()
 {
     HContacts *f=new HContacts(0,db);
 
     f->show();
-
 }

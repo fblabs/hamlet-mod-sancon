@@ -21,8 +21,8 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListView>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -41,19 +41,24 @@ public:
     QFormLayout *formLayout;
     QLabel *label_2;
     QLineEdit *leReferente;
+    QFormLayout *formLayout_6;
+    QLabel *label_7;
+    QLineEdit *leArea;
     QFormLayout *formLayout_3;
     QLabel *label_3;
     QComboBox *cbTipo;
     QFormLayout *formLayout_4;
     QLabel *label_4;
     QComboBox *cbEtichetta;
+    QFormLayout *formLayout_5;
     QCheckBox *cbImport;
+    QCheckBox *cbFoto;
     QVBoxLayout *verticalLayout;
     QLabel *label_5;
-    QTextEdit *teInterests;
+    QPlainTextEdit *teInterests;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_6;
-    QTextEdit *teProdotti;
+    QPlainTextEdit *teAssaggi;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QPushButton *pushButton_5;
@@ -76,6 +81,7 @@ public:
         lvMain = new QListView(HContacts);
         lvMain->setObjectName(QStringLiteral("lvMain"));
         lvMain->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        lvMain->setSelectionBehavior(QAbstractItemView::SelectRows);
         lvMain->setModelColumn(0);
         lvMain->setSelectionRectVisible(true);
 
@@ -113,6 +119,21 @@ public:
 
         verticalLayout_3->addLayout(formLayout);
 
+        formLayout_6 = new QFormLayout();
+        formLayout_6->setObjectName(QStringLiteral("formLayout_6"));
+        label_7 = new QLabel(HContacts);
+        label_7->setObjectName(QStringLiteral("label_7"));
+
+        formLayout_6->setWidget(0, QFormLayout::LabelRole, label_7);
+
+        leArea = new QLineEdit(HContacts);
+        leArea->setObjectName(QStringLiteral("leArea"));
+
+        formLayout_6->setWidget(0, QFormLayout::FieldRole, leArea);
+
+
+        verticalLayout_3->addLayout(formLayout_6);
+
         formLayout_3 = new QFormLayout();
         formLayout_3->setObjectName(QStringLiteral("formLayout_3"));
         label_3 = new QLabel(HContacts);
@@ -122,6 +143,7 @@ public:
 
         cbTipo = new QComboBox(HContacts);
         cbTipo->setObjectName(QStringLiteral("cbTipo"));
+        cbTipo->setEditable(true);
 
         formLayout_3->setWidget(0, QFormLayout::FieldRole, cbTipo);
 
@@ -137,16 +159,27 @@ public:
 
         cbEtichetta = new QComboBox(HContacts);
         cbEtichetta->setObjectName(QStringLiteral("cbEtichetta"));
+        cbEtichetta->setEditable(true);
 
         formLayout_4->setWidget(0, QFormLayout::FieldRole, cbEtichetta);
 
+
+        verticalLayout_3->addLayout(formLayout_4);
+
+        formLayout_5 = new QFormLayout();
+        formLayout_5->setObjectName(QStringLiteral("formLayout_5"));
         cbImport = new QCheckBox(HContacts);
         cbImport->setObjectName(QStringLiteral("cbImport"));
 
-        formLayout_4->setWidget(1, QFormLayout::LabelRole, cbImport);
+        formLayout_5->setWidget(0, QFormLayout::LabelRole, cbImport);
+
+        cbFoto = new QCheckBox(HContacts);
+        cbFoto->setObjectName(QStringLiteral("cbFoto"));
+
+        formLayout_5->setWidget(0, QFormLayout::FieldRole, cbFoto);
 
 
-        verticalLayout_3->addLayout(formLayout_4);
+        verticalLayout_3->addLayout(formLayout_5);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -155,7 +188,7 @@ public:
 
         verticalLayout->addWidget(label_5);
 
-        teInterests = new QTextEdit(HContacts);
+        teInterests = new QPlainTextEdit(HContacts);
         teInterests->setObjectName(QStringLiteral("teInterests"));
 
         verticalLayout->addWidget(teInterests);
@@ -170,10 +203,10 @@ public:
 
         verticalLayout_2->addWidget(label_6);
 
-        teProdotti = new QTextEdit(HContacts);
-        teProdotti->setObjectName(QStringLiteral("teProdotti"));
+        teAssaggi = new QPlainTextEdit(HContacts);
+        teAssaggi->setObjectName(QStringLiteral("teAssaggi"));
 
-        verticalLayout_2->addWidget(teProdotti);
+        verticalLayout_2->addWidget(teAssaggi);
 
 
         verticalLayout_3->addLayout(verticalLayout_2);
@@ -188,32 +221,55 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pushButton = new QPushButton(HContacts);
         pushButton->setObjectName(QStringLiteral("pushButton"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon1);
+        pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton);
 
         pushButton_5 = new QPushButton(HContacts);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon2);
+        pushButton_5->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_5);
 
         pushButton_2 = new QPushButton(HContacts);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon3);
+        pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
 
         pushButton_3 = new QPushButton(HContacts);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Arrow-Right.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon4);
+        pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_3);
 
         pushButton_4 = new QPushButton(HContacts);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon5);
+        pushButton_4->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_4);
 
 
         verticalLayout_4->addLayout(horizontalLayout_2);
 
+        label_7->raise();
+        label_7->raise();
+        leArea->raise();
 
         retranslateUi(HContacts);
 
@@ -225,9 +281,11 @@ public:
         HContacts->setWindowTitle(QApplication::translate("HContacts", "Contatti", 0));
         label->setText(QApplication::translate("HContacts", "Nome:", 0));
         label_2->setText(QApplication::translate("HContacts", "Referente:", 0));
+        label_7->setText(QApplication::translate("HContacts", "Area:", 0));
         label_3->setText(QApplication::translate("HContacts", "Tipo:", 0));
         label_4->setText(QApplication::translate("HContacts", "Etichetta:", 0));
         cbImport->setText(QApplication::translate("HContacts", "Importa da Italia", 0));
+        cbFoto->setText(QApplication::translate("HContacts", "Foto", 0));
         label_5->setText(QApplication::translate("HContacts", "Interessati a:", 0));
         label_6->setText(QApplication::translate("HContacts", "Prodotti assaggiati", 0));
         pushButton->setText(QApplication::translate("HContacts", "Nuovo Contatto", 0));

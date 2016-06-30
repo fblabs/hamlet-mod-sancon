@@ -56,16 +56,8 @@ private slots:
     void on_pbPackages_clicked();
     void enableDB();
     void userLogged(int id, int gruppo, bool update, bool updateanag);
-
-
-
-
-
-
-
     void on_pbUnload_clicked();
-
-    void on_pushButton_2_clicked();
+    void on_pbContacts_clicked();
 
 private:
     Ui::MainWindow *ui;

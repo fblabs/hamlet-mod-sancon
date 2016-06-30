@@ -57,7 +57,7 @@ public:
     QPushButton *pushButton;
     QToolButton *tbProdotti;
     QPushButton *pbUnload;
-    QPushButton *pushButton_2;
+    QPushButton *pbContacts;
     QLabel *label_6;
 
     void setupUi(QMainWindow *MainWindow)
@@ -448,10 +448,15 @@ public:
 
         gridLayout->addWidget(pbUnload, 5, 2, 1, 1);
 
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pbContacts = new QPushButton(centralWidget);
+        pbContacts->setObjectName(QStringLiteral("pbContacts"));
+        pbContacts->setEnabled(false);
+        QIcon icon20;
+        icon20.addFile(QStringLiteral(":/Resources/user-group-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbContacts->setIcon(icon20);
+        pbContacts->setIconSize(QSize(32, 32));
 
-        gridLayout->addWidget(pushButton_2, 1, 1, 1, 1);
+        gridLayout->addWidget(pbContacts, 1, 1, 1, 1);
 
 
         verticalLayout_4->addLayout(gridLayout);
@@ -502,7 +507,7 @@ public:
         pushButton->setText(QApplication::translate("MainWindow", "Aggiorna", 0));
         tbProdotti->setText(QApplication::translate("MainWindow", "Prodotti", 0));
         pbUnload->setText(QApplication::translate("MainWindow", "Scarico Packages", 0));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Contatti", 0));
+        pbContacts->setText(QApplication::translate("MainWindow", "Contatti", 0));
         label_6->setText(QString());
     } // retranslateUi
 

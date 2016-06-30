@@ -38,6 +38,7 @@ public:
     QLabel *label_7;
     QLineEdit *leArea;
     QCheckBox *cbImport;
+    QCheckBox *cbFoto;
     QFormLayout *formLayout_2;
     QLabel *label_2;
     QLineEdit *leReferente;
@@ -102,6 +103,11 @@ public:
 
         verticalLayout_3->addWidget(cbImport);
 
+        cbFoto = new QCheckBox(HNewContact);
+        cbFoto->setObjectName(QStringLiteral("cbFoto"));
+
+        verticalLayout_3->addWidget(cbFoto);
+
         formLayout_2 = new QFormLayout();
         formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
         label_2 = new QLabel(HNewContact);
@@ -126,6 +132,7 @@ public:
 
         cbTipo = new QComboBox(HNewContact);
         cbTipo->setObjectName(QStringLiteral("cbTipo"));
+        cbTipo->setEditable(true);
 
         formLayout_3->setWidget(0, QFormLayout::FieldRole, cbTipo);
 
@@ -209,10 +216,11 @@ public:
 
     void retranslateUi(QWidget *HNewContact)
     {
-        HNewContact->setWindowTitle(QApplication::translate("HNewContact", "Form", 0));
+        HNewContact->setWindowTitle(QApplication::translate("HNewContact", "Nuovo Contatto", 0));
         label->setText(QApplication::translate("HNewContact", "Nome:", 0));
         label_7->setText(QApplication::translate("HNewContact", "Area:", 0));
         cbImport->setText(QApplication::translate("HNewContact", "Importa da italia", 0));
+        cbFoto->setText(QApplication::translate("HNewContact", "Foto", 0));
         label_2->setText(QApplication::translate("HNewContact", "Referente:", 0));
         label_3->setText(QApplication::translate("HNewContact", "Tipo:", 0));
         label_4->setText(QApplication::translate("HNewContact", "Etichetta:", 0));

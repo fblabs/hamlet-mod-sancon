@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[34];
-    char stringdata0[562];
+    char stringdata0[560];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -62,7 +62,7 @@ QT_MOC_LITERAL(29, 493, 6), // "gruppo"
 QT_MOC_LITERAL(30, 500, 6), // "update"
 QT_MOC_LITERAL(31, 507, 10), // "updateanag"
 QT_MOC_LITERAL(32, 518, 19), // "on_pbUnload_clicked"
-QT_MOC_LITERAL(33, 538, 23) // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(33, 538, 21) // "on_pbContacts_clicked"
 
     },
     "MainWindow\0onConnectionName\0\0init\0"
@@ -78,7 +78,7 @@ QT_MOC_LITERAL(33, 538, 23) // "on_pushButton_2_clicked"
     "on_tbUtenti_clicked\0on_tbModificaLotti_clicked\0"
     "on_pbPackages_clicked\0enableDB\0"
     "userLogged\0id\0gruppo\0update\0updateanag\0"
-    "on_pbUnload_clicked\0on_pushButton_2_clicked"
+    "on_pbUnload_clicked\0on_pbContacts_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -195,7 +195,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 24: _t->enableDB(); break;
         case 25: _t->userLogged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3])),(*reinterpret_cast< bool(*)>(_a[4]))); break;
         case 26: _t->on_pbUnload_clicked(); break;
-        case 27: _t->on_pushButton_2_clicked(); break;
+        case 27: _t->on_pbContacts_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

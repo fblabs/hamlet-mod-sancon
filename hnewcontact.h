@@ -25,6 +25,8 @@ private slots:
 private:
     Ui::HNewContact *ui;
     QSqlDatabase db;
+signals:
+    void newContactSaved();
 };
 
 #endif // HNEWCONTACT_H
