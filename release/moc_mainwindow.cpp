@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[33];
-    char stringdata0[551];
+    QByteArrayData data[35];
+    char stringdata0[568];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -60,8 +60,10 @@ QT_MOC_LITERAL(27, 481, 2), // "id"
 QT_MOC_LITERAL(28, 484, 6), // "gruppo"
 QT_MOC_LITERAL(29, 491, 6), // "update"
 QT_MOC_LITERAL(30, 498, 10), // "updateanag"
-QT_MOC_LITERAL(31, 509, 19), // "on_pbUnload_clicked"
-QT_MOC_LITERAL(32, 529, 21) // "on_pbContacts_clicked"
+QT_MOC_LITERAL(31, 509, 12), // "QSqlDatabase"
+QT_MOC_LITERAL(32, 522, 3), // "pdb"
+QT_MOC_LITERAL(33, 526, 19), // "on_pbUnload_clicked"
+QT_MOC_LITERAL(34, 546, 21) // "on_pbContacts_clicked"
 
     },
     "MainWindow\0onConnectionName\0\0init\0"
@@ -76,8 +78,8 @@ QT_MOC_LITERAL(32, 529, 21) // "on_pbContacts_clicked"
     "on_pbSchede_clicked\0on_pushButton_clicked\0"
     "on_tbUtenti_clicked\0on_tbModificaLotti_clicked\0"
     "on_pbPackages_clicked\0userLogged\0id\0"
-    "gruppo\0update\0updateanag\0on_pbUnload_clicked\0"
-    "on_pbContacts_clicked"
+    "gruppo\0update\0updateanag\0QSqlDatabase\0"
+    "pdb\0on_pbUnload_clicked\0on_pbContacts_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -121,9 +123,9 @@ static const uint qt_meta_data_MainWindow[] = {
       23,    0,  170,    2, 0x08 /* Private */,
       24,    0,  171,    2, 0x08 /* Private */,
       25,    0,  172,    2, 0x08 /* Private */,
-      26,    4,  173,    2, 0x08 /* Private */,
-      31,    0,  182,    2, 0x08 /* Private */,
-      32,    0,  183,    2, 0x08 /* Private */,
+      26,    5,  173,    2, 0x08 /* Private */,
+      33,    0,  184,    2, 0x08 /* Private */,
+      34,    0,  185,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -152,7 +154,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Bool, QMetaType::Bool,   27,   28,   29,   30,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Bool, QMetaType::Bool, 0x80000000 | 31,   27,   28,   29,   30,   32,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -189,7 +191,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 21: _t->on_tbUtenti_clicked(); break;
         case 22: _t->on_tbModificaLotti_clicked(); break;
         case 23: _t->on_pbPackages_clicked(); break;
-        case 24: _t->userLogged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3])),(*reinterpret_cast< bool(*)>(_a[4]))); break;
+        case 24: _t->userLogged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3])),(*reinterpret_cast< bool(*)>(_a[4])),(*reinterpret_cast< QSqlDatabase(*)>(_a[5]))); break;
         case 25: _t->on_pbUnload_clicked(); break;
         case 26: _t->on_pbContacts_clicked(); break;
         default: ;

@@ -67,11 +67,12 @@ void MainWindow::init()
 
 
 
-void MainWindow::userLogged(int id, int gruppo, bool update,bool updateanag)
+void MainWindow::userLogged(int id, int gruppo, bool update, bool updateanag, QSqlDatabase pdb)
 {
     qDebug()<< "main->userLogged: id"+QString::number(id) << "Role: " + QString::number(gruppo);
     QSettings settings("hamletmod");
     sConn=settings.value("conn").toString();
+    db=pdb;
     user= new HUser();
     user->init(sConn);
 
@@ -86,25 +87,6 @@ void MainWindow::userLogged(int id, int gruppo, bool update,bool updateanag)
 
 }
 
-/*void MainWindow::enableDB()
-{
-    QSettings settings("hamletmod");
-    sConn = settings.value("conn").toString();
-
-    QString hostname=settings.value("server").toString();
-
-    db.removeDatabase(sConn);
-    db = QSqlDatabase::addDatabase("QMYSQL",sConn);
-    db.setHostName(hostname);
-    db.setDatabaseName(settings.value("database").toString());
-    db.setPort(settings.value("port").toInt());
-    db.setUserName(settings.value("user").toString());
-    db.setPassword(settings.value("pwd").toString());
-
-    db.open();
-
-
-}*/
 
 void MainWindow::enableUI()
 {
@@ -427,7 +409,9 @@ void MainWindow::login()
 
     HLogin2 *f = new HLogin2();
   //  f->setDatabase(sConn);
-    connect(f,SIGNAL(userLogged(int,int,bool,bool)),this,SLOT(userLogged(int,int,bool,bool)));
+    connect(f,SIGNAL(userLogged(int,int,bool,bool,QSqlDatabase)),this,SLOT(userLogged(int,int,bool,bool,QSqlDatabase)));
+
+    QMessageBox::information(this,QApplication::applicationName(),QString::number(db.isOpen()? 1:0),QMessageBox::Ok);
 
     f->show();
 
@@ -439,8 +423,9 @@ void MainWindow::login()
 void MainWindow::on_tbLogout_clicked()
 {
 
-    user->init(sConn);
-     disableUI();
+    user->init("");
+    db.close();
+    disableUI();
 }
 
 

@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HLogin2_t {
-    QByteArrayData data[11];
-    char stringdata0[137];
+    QByteArrayData data[13];
+    char stringdata0[154];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,18 +32,21 @@ static const qt_meta_stringdata_HLogin2_t qt_meta_stringdata_HLogin2 = {
 QT_MOC_LITERAL(0, 0, 7), // "HLogin2"
 QT_MOC_LITERAL(1, 8, 10), // "userLogged"
 QT_MOC_LITERAL(2, 19, 0), // ""
-QT_MOC_LITERAL(3, 20, 7), // "setConn"
-QT_MOC_LITERAL(4, 28, 3), // "con"
-QT_MOC_LITERAL(5, 32, 5), // "login"
-QT_MOC_LITERAL(6, 38, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(7, 60, 23), // "on_pushButton_2_clicked"
-QT_MOC_LITERAL(8, 84, 24), // "on_lePwd_editingFinished"
-QT_MOC_LITERAL(9, 109, 19), // "on_checkBox_toggled"
-QT_MOC_LITERAL(10, 129, 7) // "checked"
+QT_MOC_LITERAL(3, 20, 12), // "QSqlDatabase"
+QT_MOC_LITERAL(4, 33, 3), // "pdb"
+QT_MOC_LITERAL(5, 37, 7), // "setConn"
+QT_MOC_LITERAL(6, 45, 3), // "con"
+QT_MOC_LITERAL(7, 49, 5), // "login"
+QT_MOC_LITERAL(8, 55, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(9, 77, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(10, 101, 24), // "on_lePwd_editingFinished"
+QT_MOC_LITERAL(11, 126, 19), // "on_checkBox_toggled"
+QT_MOC_LITERAL(12, 146, 7) // "checked"
 
     },
-    "HLogin2\0userLogged\0\0setConn\0con\0login\0"
-    "on_pushButton_clicked\0on_pushButton_2_clicked\0"
+    "HLogin2\0userLogged\0\0QSqlDatabase\0pdb\0"
+    "setConn\0con\0login\0on_pushButton_clicked\0"
+    "on_pushButton_2_clicked\0"
     "on_lePwd_editingFinished\0on_checkBox_toggled\0"
     "checked"
 };
@@ -63,26 +66,26 @@ static const uint qt_meta_data_HLogin2[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    4,   49,    2, 0x06 /* Public */,
-       3,    1,   58,    2, 0x06 /* Public */,
+       1,    5,   49,    2, 0x06 /* Public */,
+       5,    1,   60,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   61,    2, 0x08 /* Private */,
-       6,    0,   62,    2, 0x08 /* Private */,
        7,    0,   63,    2, 0x08 /* Private */,
        8,    0,   64,    2, 0x08 /* Private */,
-       9,    1,   65,    2, 0x08 /* Private */,
+       9,    0,   65,    2, 0x08 /* Private */,
+      10,    0,   66,    2, 0x08 /* Private */,
+      11,    1,   67,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Bool, QMetaType::Bool,    2,    2,    2,    2,
-    QMetaType::Void, QMetaType::QString,    4,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Bool, QMetaType::Bool, 0x80000000 | 3,    2,    2,    2,    2,    4,
+    QMetaType::Void, QMetaType::QString,    6,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   10,
+    QMetaType::Void, QMetaType::Bool,   12,
 
        0        // eod
 };
@@ -93,7 +96,7 @@ void HLogin2::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         HLogin2 *_t = static_cast<HLogin2 *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->userLogged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3])),(*reinterpret_cast< bool(*)>(_a[4]))); break;
+        case 0: _t->userLogged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3])),(*reinterpret_cast< bool(*)>(_a[4])),(*reinterpret_cast< QSqlDatabase(*)>(_a[5]))); break;
         case 1: _t->setConn((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 2: _t->login(); break;
         case 3: _t->on_pushButton_clicked(); break;
@@ -106,7 +109,7 @@ void HLogin2::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (HLogin2::*_t)(int , int , bool , bool );
+            typedef void (HLogin2::*_t)(int , int , bool , bool , QSqlDatabase );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&HLogin2::userLogged)) {
                 *result = 0;
             }
@@ -157,9 +160,9 @@ int HLogin2::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void HLogin2::userLogged(int _t1, int _t2, bool _t3, bool _t4)
+void HLogin2::userLogged(int _t1, int _t2, bool _t3, bool _t4, QSqlDatabase _t5)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)), const_cast<void*>(reinterpret_cast<const void*>(&_t5)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 

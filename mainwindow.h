@@ -55,7 +55,7 @@ private slots:
 
     void on_pbPackages_clicked();
   //  void enableDB();
-    void userLogged(int id, int gruppo, bool update, bool updateanag);
+    void userLogged(int id, int gruppo, bool update, bool updateanag, QSqlDatabase pdb);
     void on_pbUnload_clicked();
     void on_pbContacts_clicked();
 
@@ -63,6 +63,7 @@ private:
     Ui::MainWindow *ui;
     QString sConn;
     HUser *user;
+
 
 signals:
     void onConnectionName();
