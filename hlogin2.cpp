@@ -104,22 +104,27 @@ void HLogin2::enableDB()
 {
 
 
-        QSettings settings("hamletmod");
+
+    QSettings settings("hamletmod");
 
 
-        sConnec=settings.value("conn").toString();
-        db = QSqlDatabase::database(settings.value("conn").toString());
-        db.setHostName(settings.value("server").toString());
-        db.setDatabaseName(settings.value("database").toString());
-        db.setPort(settings.value("port").toInt());
-        db.setUserName(settings.value("user").toString());
-        db.setPassword(settings.value("pwd").toString());
+    sConnec=settings.value("conn").toString();
+    db = QSqlDatabase::database(settings.value("conn").toString());
+    db.setHostName(settings.value("server").toString());
+    db.setDatabaseName(settings.value("database").toString());
+    db.setPort(settings.value("port").toInt());
+    db.setUserName(settings.value("user").toString());
+    db.setPassword(settings.value("pwd").toString());
+
+    QString s="settings :"+db.hostName()+db.databaseName()+db.userName()+db.connectionName();
+
+    QMessageBox::information(this,"enableDB",s,QMessageBox::Ok);
 
 
-        if (!db.open())
-        {
-            close();
-        }
+    if (!db.open())
+    {
+        close();
+    }
 
 
 }
