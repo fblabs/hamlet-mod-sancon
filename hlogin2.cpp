@@ -5,7 +5,7 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QSqlError>
-// #include <QDebug>
+#include <QDebug>
 #include <QShortcut>
 #include "huser.h"
 
@@ -36,8 +36,14 @@ HLogin2::~HLogin2()
 
 void HLogin2::login()
 {
-
+    QString s="settings :"+db.hostName()+" "+db.databaseName()+" "+db.userName()+" "+db.connectionName();
     enableDB();
+
+    if (!db.open())
+    {
+        QMessageBox::information(this,"Errore","\n Non posso aprire la connessione\n"+s,QMessageBox::Ok);
+        close();
+    }
 
     QSqlQuery qrLogin(db);
     HUser* usr=new HUser();
@@ -116,16 +122,7 @@ void HLogin2::enableDB()
     db.setUserName(settings.value("user").toString());
     db.setPassword(settings.value("pwd").toString());
 
-    QString s="settings :"+db.hostName()+db.databaseName()+db.userName()+db.connectionName();
-
-    QMessageBox::information(this,"enableDB",s,QMessageBox::Ok);
-
-
-    if (!db.open())
-    {
-        close();
-    }
-
+ qDebug()<<sConnec;
 
 }
 
