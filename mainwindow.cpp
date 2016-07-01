@@ -43,12 +43,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
   QSettings settings("hamletmod");
 
     ui->setupUi(this);
-    enableDB();
+    //enableDB();
 
 
-  sConn=settings.value("conn").toString();
-  user= new HUser();
-  user->init(sConn);
 
 this->showMaximized();
 
@@ -73,6 +70,10 @@ void MainWindow::init()
 void MainWindow::userLogged(int id, int gruppo, bool update,bool updateanag)
 {
     qDebug()<< "main->userLogged: id"+QString::number(id) << "Role: " + QString::number(gruppo);
+    QSettings settings("hamletmod");
+    sConn=settings.value("conn").toString();
+    user= new HUser();
+    user->init(sConn);
 
 
     user->setID(id);
@@ -85,7 +86,7 @@ void MainWindow::userLogged(int id, int gruppo, bool update,bool updateanag)
 
 }
 
-void MainWindow::enableDB()
+/*void MainWindow::enableDB()
 {
     QSettings settings("hamletmod");
     sConn = settings.value("conn").toString();
@@ -103,7 +104,7 @@ void MainWindow::enableDB()
     db.open();
 
 
-}
+}*/
 
 void MainWindow::enableUI()
 {
@@ -425,7 +426,7 @@ void MainWindow::login()
 {
 
     HLogin2 *f = new HLogin2();
-    f->setDatabase(sConn);
+  //  f->setDatabase(sConn);
     connect(f,SIGNAL(userLogged(int,int,bool,bool)),this,SLOT(userLogged(int,int,bool,bool)));
 
     f->show();

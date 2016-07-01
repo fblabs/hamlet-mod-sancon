@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HLogin2_t {
-    QByteArrayData data[12];
-    char stringdata0[157];
+    QByteArrayData data[11];
+    char stringdata0[137];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,16 +37,15 @@ QT_MOC_LITERAL(4, 28, 3), // "con"
 QT_MOC_LITERAL(5, 32, 5), // "login"
 QT_MOC_LITERAL(6, 38, 21), // "on_pushButton_clicked"
 QT_MOC_LITERAL(7, 60, 23), // "on_pushButton_2_clicked"
-QT_MOC_LITERAL(8, 84, 19), // "onConnectionNameSet"
-QT_MOC_LITERAL(9, 104, 24), // "on_lePwd_editingFinished"
-QT_MOC_LITERAL(10, 129, 19), // "on_checkBox_toggled"
-QT_MOC_LITERAL(11, 149, 7) // "checked"
+QT_MOC_LITERAL(8, 84, 24), // "on_lePwd_editingFinished"
+QT_MOC_LITERAL(9, 109, 19), // "on_checkBox_toggled"
+QT_MOC_LITERAL(10, 129, 7) // "checked"
 
     },
     "HLogin2\0userLogged\0\0setConn\0con\0login\0"
     "on_pushButton_clicked\0on_pushButton_2_clicked\0"
-    "onConnectionNameSet\0on_lePwd_editingFinished\0"
-    "on_checkBox_toggled\0checked"
+    "on_lePwd_editingFinished\0on_checkBox_toggled\0"
+    "checked"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,7 +55,7 @@ static const uint qt_meta_data_HLogin2[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -64,16 +63,15 @@ static const uint qt_meta_data_HLogin2[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    4,   54,    2, 0x06 /* Public */,
-       3,    1,   63,    2, 0x06 /* Public */,
+       1,    4,   49,    2, 0x06 /* Public */,
+       3,    1,   58,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   66,    2, 0x08 /* Private */,
-       6,    0,   67,    2, 0x08 /* Private */,
-       7,    0,   68,    2, 0x08 /* Private */,
-       8,    0,   69,    2, 0x08 /* Private */,
-       9,    0,   70,    2, 0x08 /* Private */,
-      10,    1,   71,    2, 0x08 /* Private */,
+       5,    0,   61,    2, 0x08 /* Private */,
+       6,    0,   62,    2, 0x08 /* Private */,
+       7,    0,   63,    2, 0x08 /* Private */,
+       8,    0,   64,    2, 0x08 /* Private */,
+       9,    1,   65,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Bool, QMetaType::Bool,    2,    2,    2,    2,
@@ -84,8 +82,7 @@ static const uint qt_meta_data_HLogin2[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   11,
+    QMetaType::Void, QMetaType::Bool,   10,
 
        0        // eod
 };
@@ -101,9 +98,8 @@ void HLogin2::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 2: _t->login(); break;
         case 3: _t->on_pushButton_clicked(); break;
         case 4: _t->on_pushButton_2_clicked(); break;
-        case 5: _t->onConnectionNameSet(); break;
-        case 6: _t->on_lePwd_editingFinished(); break;
-        case 7: _t->on_checkBox_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 5: _t->on_lePwd_editingFinished(); break;
+        case 6: _t->on_checkBox_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -149,13 +145,13 @@ int HLogin2::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 7;
     }
     return _id;
 }

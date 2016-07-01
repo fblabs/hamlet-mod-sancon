@@ -13,7 +13,7 @@ HLogin2::HLogin2(QWidget *parent) :
     ui(new Ui::HLogin2)
 {
     ui->setupUi(this);
-   // enableDB();
+
     QShortcut *ok= new QShortcut(this);
     ok->setKey(Qt::Key_Enter);
 
@@ -23,11 +23,11 @@ HLogin2::HLogin2(QWidget *parent) :
 
 }
 
-void HLogin2::init(QString conn)
-{
-    sConnec=conn;
-    db=QSqlDatabase::database(sConnec);
-}
+//void HLogin2::init(QString conn)
+//{
+//   // sConnec=conn;
+//   // db=QSqlDatabase::database(sConnec);
+//}
 
 HLogin2::~HLogin2()
 {
@@ -36,30 +36,46 @@ HLogin2::~HLogin2()
 
 void HLogin2::login()
 {
-    QString s="settings :"+db.hostName()+" "+db.databaseName()+" "+db.userName()+" "+db.connectionName();
-    enableDB();
+
+    QSettings settings("hamletmod");
+
+    QString host,database,username,password,conname;
+    int port;
+
+    host=settings.value("server").toString();
+    database=settings.value("database").toString();
+    port=settings.value("port").toInt();
+    username=settings.value("user").toString();
+    password=settings.value("pwd").toString();
+    conname=settings.value("conn").toString();
+
+
+
+    db = QSqlDatabase::addDatabase("QMYSQL",conname);
+    db.setHostName(host);
+    db.setDatabaseName(database);
+    db.setPort(port);
+    db.setUserName(username);
+    db.setPassword(password);
+
+    QString s="settings: "+host+" "+database;
 
     if (!db.open())
     {
-        QMessageBox::information(this,"Errore","\n Non posso aprire la connessione\n"+s,QMessageBox::Ok);
+        QMessageBox::information(this,"Errore","\n Non posso aprire la connessione\n"+s+db.lastError().text(),QMessageBox::Ok);
         close();
     }
 
     QSqlQuery qrLogin(db);
     HUser* usr=new HUser();
 
-    if(!db.isOpen())
-    {
-        QMessageBox::warning(this,"OCCHIO!","La connessione è chiusa",QMessageBox::Ok);
-    }
-
 
     bool b=qrLogin.exec("Select utenti.ID,utenti.username,utenti.gruppo,gruppi.canupdate,gruppi.canupdateana,utenti.attivo from utenti,gruppi where gruppi.ID=utenti.gruppo and utenti.username='" + ui->leUser->text() + "' and pwd=SHA1('" + ui->lePwd->text() + "') and utenti.attivo=1");
 
     if(!b)
     {
-      // QMessageBox::critical(this,QApplication::applicationName(),"Errore di connessione: "+ qrLogin.lastError().text(),QMessageBox::Ok);
-       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! Errore Size:",QMessageBox::Ok);
+
+       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! Errore query",QMessageBox::Ok);
        return;
 
     }
@@ -83,7 +99,7 @@ void HLogin2::login()
      }
   else
   {
-        QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente\nErrore Query:"+db.isOpen()?"aperto ":"chiuso"+sConnec+QString::number(qrLogin.size()),QMessageBox::Ok);
+        QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente\nErrore Risposta database- query size= "+QString::number(qrLogin.size()),QMessageBox::Ok);
 
         ui->leUser->setText("");
         ui->lePwd->setText("");
@@ -106,44 +122,11 @@ void HLogin2::on_pushButton_2_clicked()
     close();
 }
 
-void HLogin2::enableDB()
-{
-
-
-
-    QSettings settings("hamletmod");
-
-
-    sConnec=settings.value("conn").toString();
-    db = QSqlDatabase::database(settings.value("conn").toString());
-    db.setHostName(settings.value("server").toString());
-    db.setDatabaseName(settings.value("database").toString());
-    db.setPort(settings.value("port").toInt());
-    db.setUserName(settings.value("user").toString());
-    db.setPassword(settings.value("pwd").toString());
-
- qDebug()<<sConnec;
-
-}
-
-
-void HLogin2::setDatabase(QString connessione)
-{
-    sConnec = connessione;
-}
-
-void HLogin2::onConnectionNameSet()
-{
-    enableDB();
-}
 
 void HLogin2::on_lePwd_editingFinished()
 {
 
 }
-
-
-
 
 void HLogin2::on_checkBox_toggled(bool checked)
 {
