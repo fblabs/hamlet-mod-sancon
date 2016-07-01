@@ -13,7 +13,7 @@ HLogin2::HLogin2(QWidget *parent) :
     ui(new Ui::HLogin2)
 {
     ui->setupUi(this);
-    enableDB();
+   // enableDB();
     QShortcut *ok= new QShortcut(this);
     ok->setKey(Qt::Key_Enter);
 
@@ -37,7 +37,7 @@ HLogin2::~HLogin2()
 void HLogin2::login()
 {
 
-
+    enableDB();
 
     QSqlQuery qrLogin(db);
     HUser* usr=new HUser();
@@ -53,7 +53,7 @@ void HLogin2::login()
     if(!b)
     {
       // QMessageBox::critical(this,QApplication::applicationName(),"Errore di connessione: "+ qrLogin.lastError().text(),QMessageBox::Ok);
-       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! ErroreSize:\n"+db.isOpen()?"aperto ":"chiuso \n"+sConnec,QMessageBox::Ok);
+       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! Errore Size:",QMessageBox::Ok);
        return;
 
     }
