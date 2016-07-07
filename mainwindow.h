@@ -4,6 +4,7 @@
 
 #include <QMainWindow>
 #include <QSqlDatabase>
+#include <QTimer>
 #include "huser.h"
 #include "hlogin2.h"
 
@@ -59,10 +60,15 @@ private slots:
     void on_pbUnload_clicked();
     void on_pbContacts_clicked();
 
+    void on_pbNotifiche_clicked();
+
+    void checkNotifications();
+
 private:
     Ui::MainWindow *ui;
     QString sConn;
     HUser *user;
+    QTimer timer;
 
 
 signals:

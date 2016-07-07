@@ -31,6 +31,8 @@ private slots:
 
     void reload();
 
+    void on_pushButton_6_clicked();
+
 private:
     Ui::HContacts *ui;
     QSqlDatabase db;

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hprodotti.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hprodotti.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,33 +20,34 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HProdotti_t {
     QByteArrayData data[18];
-    char stringdata[223];
+    char stringdata0[223];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HProdotti_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HProdotti_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HProdotti_t qt_meta_stringdata_HProdotti = {
     {
-QT_MOC_LITERAL(0, 0, 9),
-QT_MOC_LITERAL(1, 10, 7),
-QT_MOC_LITERAL(2, 18, 0),
-QT_MOC_LITERAL(3, 19, 11),
-QT_MOC_LITERAL(4, 31, 1),
-QT_MOC_LITERAL(5, 33, 13),
-QT_MOC_LITERAL(6, 47, 4),
-QT_MOC_LITERAL(7, 52, 6),
-QT_MOC_LITERAL(8, 59, 5),
-QT_MOC_LITERAL(9, 65, 13),
-QT_MOC_LITERAL(10, 79, 8),
-QT_MOC_LITERAL(11, 88, 7),
-QT_MOC_LITERAL(12, 96, 8),
-QT_MOC_LITERAL(13, 105, 21),
-QT_MOC_LITERAL(14, 127, 23),
-QT_MOC_LITERAL(15, 151, 23),
-QT_MOC_LITERAL(16, 175, 23),
-QT_MOC_LITERAL(17, 199, 23)
+QT_MOC_LITERAL(0, 0, 9), // "HProdotti"
+QT_MOC_LITERAL(1, 10, 7), // "setMain"
+QT_MOC_LITERAL(2, 18, 0), // ""
+QT_MOC_LITERAL(3, 19, 11), // "MainWindow*"
+QT_MOC_LITERAL(4, 31, 1), // "w"
+QT_MOC_LITERAL(5, 33, 13), // "setConnection"
+QT_MOC_LITERAL(6, 47, 4), // "conn"
+QT_MOC_LITERAL(7, 52, 6), // "HUser*"
+QT_MOC_LITERAL(8, 59, 5), // "puser"
+QT_MOC_LITERAL(9, 65, 13), // "productSearch"
+QT_MOC_LITERAL(10, 79, 8), // "showType"
+QT_MOC_LITERAL(11, 88, 7), // "setForm"
+QT_MOC_LITERAL(12, 96, 8), // "setImage"
+QT_MOC_LITERAL(13, 105, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(14, 127, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(15, 151, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(16, 175, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(17, 199, 23) // "on_pushButton_5_clicked"
+
     },
     "HProdotti\0setMain\0\0MainWindow*\0w\0"
     "setConnection\0conn\0HUser*\0puser\0"
@@ -103,6 +104,7 @@ void HProdotti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HProdotti *_t = static_cast<HProdotti *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->setMain((*reinterpret_cast< MainWindow*(*)>(_a[1]))); break;
         case 1: _t->setConnection((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< HUser*(*)>(_a[2]))); break;
@@ -140,7 +142,7 @@ void HProdotti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
 
 const QMetaObject HProdotti::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HProdotti.data,
-      qt_meta_data_HProdotti,  qt_static_metacall, 0, 0}
+      qt_meta_data_HProdotti,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -151,8 +153,8 @@ const QMetaObject *HProdotti::metaObject() const
 
 void *HProdotti::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HProdotti.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HProdotti.stringdata0))
         return static_cast<void*>(const_cast< HProdotti*>(this));
     return QWidget::qt_metacast(_clname);
 }

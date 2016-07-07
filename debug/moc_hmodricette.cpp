@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hmodricette.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,7 +13,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hmodricette.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,44 +21,45 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HModRicette_t {
     QByteArrayData data[29];
-    char stringdata[440];
+    char stringdata0[440];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HModRicette_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HModRicette_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HModRicette_t qt_meta_stringdata_HModRicette = {
     {
-QT_MOC_LITERAL(0, 0, 11),
-QT_MOC_LITERAL(1, 12, 23),
-QT_MOC_LITERAL(2, 36, 0),
-QT_MOC_LITERAL(3, 37, 11),
-QT_MOC_LITERAL(4, 49, 11),
-QT_MOC_LITERAL(5, 61, 10),
-QT_MOC_LITERAL(6, 72, 4),
-QT_MOC_LITERAL(7, 77, 14),
-QT_MOC_LITERAL(8, 92, 15),
-QT_MOC_LITERAL(9, 108, 10),
-QT_MOC_LITERAL(10, 119, 11),
-QT_MOC_LITERAL(11, 131, 8),
-QT_MOC_LITERAL(12, 140, 15),
-QT_MOC_LITERAL(13, 156, 3),
-QT_MOC_LITERAL(14, 160, 10),
-QT_MOC_LITERAL(15, 171, 7),
-QT_MOC_LITERAL(16, 179, 21),
-QT_MOC_LITERAL(17, 201, 14),
-QT_MOC_LITERAL(18, 216, 12),
-QT_MOC_LITERAL(19, 229, 19),
-QT_MOC_LITERAL(20, 249, 22),
-QT_MOC_LITERAL(21, 272, 23),
-QT_MOC_LITERAL(22, 296, 21),
-QT_MOC_LITERAL(23, 318, 23),
-QT_MOC_LITERAL(24, 342, 23),
-QT_MOC_LITERAL(25, 366, 20),
-QT_MOC_LITERAL(26, 387, 24),
-QT_MOC_LITERAL(27, 412, 22),
-QT_MOC_LITERAL(28, 435, 4)
+QT_MOC_LITERAL(0, 0, 11), // "HModRicette"
+QT_MOC_LITERAL(1, 12, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(2, 36, 0), // ""
+QT_MOC_LITERAL(3, 37, 11), // "loadRicetta"
+QT_MOC_LITERAL(4, 49, 11), // "findProduct"
+QT_MOC_LITERAL(5, 61, 10), // "removeItem"
+QT_MOC_LITERAL(6, 72, 4), // "save"
+QT_MOC_LITERAL(7, 77, 14), // "creatNewRecipe"
+QT_MOC_LITERAL(8, 92, 15), // "duplicateRecipe"
+QT_MOC_LITERAL(9, 108, 10), // "getRicette"
+QT_MOC_LITERAL(10, 119, 11), // "printRecipe"
+QT_MOC_LITERAL(11, 131, 8), // "saveNote"
+QT_MOC_LITERAL(12, 140, 15), // "showContextMenu"
+QT_MOC_LITERAL(13, 156, 3), // "pos"
+QT_MOC_LITERAL(14, 160, 10), // "showaddRow"
+QT_MOC_LITERAL(15, 171, 7), // "addRiga"
+QT_MOC_LITERAL(16, 179, 21), // "QList<QStandardItem*>"
+QT_MOC_LITERAL(17, 201, 14), // "calculateTotal"
+QT_MOC_LITERAL(18, 216, 12), // "updateTotals"
+QT_MOC_LITERAL(19, 229, 19), // "on_pbAddRow_clicked"
+QT_MOC_LITERAL(20, 249, 22), // "on_pbDeleteRow_clicked"
+QT_MOC_LITERAL(21, 272, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(22, 296, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(23, 318, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(24, 342, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(25, 366, 20), // "on_pbduplica_clicked"
+QT_MOC_LITERAL(26, 387, 24), // "on_leTotal_returnPressed"
+QT_MOC_LITERAL(27, 412, 22), // "on_leTotal_textChanged"
+QT_MOC_LITERAL(28, 435, 4) // "arg1"
+
     },
     "HModRicette\0on_pushButton_2_clicked\0"
     "\0loadRicetta\0findProduct\0removeItem\0"
@@ -147,6 +148,7 @@ void HModRicette::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HModRicette *_t = static_cast<HModRicette *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pushButton_2_clicked(); break;
         case 1: _t->loadRicetta(); break;
@@ -180,7 +182,7 @@ void HModRicette::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 
 const QMetaObject HModRicette::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HModRicette.data,
-      qt_meta_data_HModRicette,  qt_static_metacall, 0, 0}
+      qt_meta_data_HModRicette,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -191,8 +193,8 @@ const QMetaObject *HModRicette::metaObject() const
 
 void *HModRicette::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HModRicette.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HModRicette.stringdata0))
         return static_cast<void*>(const_cast< HModRicette*>(this));
     return QWidget::qt_metacast(_clname);
 }

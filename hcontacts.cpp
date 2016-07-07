@@ -6,12 +6,14 @@
 #include "hnewcontact.h"
 #include <QSqlQuery>
 #include <QDataWidgetMapper>
+#include "halarm.h"
 
 HContacts::HContacts(QWidget *parent,QSqlDatabase pdb) :
     QWidget(parent),
     ui(new Ui::HContacts)
 {
     ui->setupUi(this);
+    showMaximized();
     db = pdb;
 
     mod=new QSqlTableModel(0,db);
@@ -153,4 +155,10 @@ bool HContacts::removeContact()
     bool r=q.exec();
 
     return r;
+}
+
+void HContacts::on_pushButton_6_clicked()
+{
+    HAlarm *f=new HAlarm(0,db);
+    f->show();
 }

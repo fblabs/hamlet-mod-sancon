@@ -33,6 +33,8 @@
 #include "hcontacts.h"
 #include <QDir>
 #include <QProcess>
+#include "halarm.h"
+#include "hnotifica.h"
 
 #include <QDebug>
 
@@ -82,7 +84,9 @@ void MainWindow::userLogged(int id, int gruppo, bool update, bool updateanag, QS
     user->setCanUpdate(update);
     user->setCanUpdateAnag(updateanag);
 
+
     enableButtonsForRole();
+    checkNotifications();
 
 
 }
@@ -129,6 +133,7 @@ void MainWindow::disableUI()
     ui->pbPackages->setEnabled(false);
     ui->pbUnload->setEnabled(false);
     ui->pbContacts->setEnabled(false);
+    ui->pbNotifiche->setEnabled(false);
 }
 
 void MainWindow::enableButtonsForRole()
@@ -200,6 +205,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbPackages->setEnabled(true);
         ui->pbUnload->setEnabled(true);
         ui->pbContacts->setEnabled(true);
+        ui->pbNotifiche->setEnabled(true);
 
         break;
 
@@ -217,6 +223,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbAnalisi->setEnabled(true);
         ui->pbUnload->setEnabled(true);
         ui->pbContacts->setEnabled(true);
+        ui->pbNotifiche->setEnabled(true);
 
         break;
     case 4://simone
@@ -234,6 +241,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbModificaLotti->setEnabled(true);
         ui->pbUnload->setEnabled(true);
         ui->pbContacts->setEnabled(false);
+        ui->pbNotifiche->setEnabled(false);
 
         break;
      case 5://amministrativo
@@ -256,30 +264,32 @@ void MainWindow::enableButtonsForRole()
         ui->pbPackages->setEnabled(true);
         ui->pbUnload->setEnabled(true);
         ui->pbContacts->setEnabled(true);
+        ui->pbNotifiche->setEnabled(true);
 
         break;
      case 6:
-        ui->tnProduzione->setEnabled(true);
-        ui->tbLogout->setEnabled(true);
-        ui->toolButton->setEnabled(false);
-        ui->tbMagaz->setEnabled(true);
-        ui->tbLotti->setEnabled(true);
-        ui->tbAnag->setEnabled(true);
-        ui->tbClose->setEnabled(true);
-        ui->tbProdotti->setEnabled(true);
-        ui->tbRicette->setEnabled(true);
-        ui->tbModificaLotti->setEnabled(true);
+        ui->tnProduzione->setEnabled(false);
+        ui->tbLogout->setEnabled(false);
+        ui->toolButton->setEnabled(true);
+        ui->tbMagaz->setEnabled(false);
+        ui->tbLotti->setEnabled(false);
+        ui->tbAnag->setEnabled(false);
+        ui->tbClose->setEnabled(false);
+        ui->tbProdotti->setEnabled(false);
+        ui->tbRicette->setEnabled(false);
+        ui->tbModificaLotti->setEnabled(false);
         ui->tbSettings->setEnabled(false);
-        ui->tnProduzione->setEnabled(true);
+        ui->tnProduzione->setEnabled(false);
         ui->tbAnalisi->setEnabled(false);
-        ui->pBNewOperation->setEnabled(true);
-        ui->pbSchede->setEnabled(true);
+        ui->pBNewOperation->setEnabled(false);
+        ui->pbSchede->setEnabled(false);
         ui->tbAssociazioni->setEnabled(false);
-        ui->tbUtenti->setEnabled(true);
-        ui->tbLogout->setEnabled(true);
+        ui->tbUtenti->setEnabled(false);
+        ui->tbLogout->setEnabled(false);
         ui->pbPackages->setEnabled(true);
-        ui->pbUnload->setEnabled(true);
+        ui->pbUnload->setEnabled(false);
         ui->pbContacts->setEnabled(false);
+        ui->pbNotifiche->setEnabled(false);
 
 
 
@@ -411,7 +421,7 @@ void MainWindow::login()
   //  f->setDatabase(sConn);
     connect(f,SIGNAL(userLogged(int,int,bool,bool,QSqlDatabase)),this,SLOT(userLogged(int,int,bool,bool,QSqlDatabase)));
 
-    QMessageBox::information(this,QApplication::applicationName(),QString::number(db.isOpen()? 1:0),QMessageBox::Ok);
+   // QMessageBox::information(this,QApplication::applicationName(),QString::number(db.isOpen()? 1:0),QMessageBox::Ok);
 
     f->show();
 
@@ -502,4 +512,28 @@ void MainWindow::on_pbContacts_clicked()
     HContacts *f=new HContacts(0,db);
 
     f->show();
+}
+
+void MainWindow::on_pbNotifiche_clicked()
+{
+    HAlarm *f =new HAlarm(0,db);
+    f->show();
+}
+
+void MainWindow::checkNotifications()
+{
+    QSqlQuery q(db);
+    QString sql;
+
+    QString userID=QString::number(user->getID());
+
+    sql="SELECT * from notifiche where data=CURDATE() and IDUser=:user";
+    q.prepare(sql);
+    q.bindValue(":user",user->getID());
+    q.exec();
+    if(q.size()>0)
+    {
+        HNotifica *f= new HNotifica(0,user->getID(),db);
+        f->show();
+    }
 }

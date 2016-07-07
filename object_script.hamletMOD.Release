@@ -38,6 +38,8 @@ INPUT(
 ./release/hgroups.o
 ./release/hcontacts.o
 ./release/hnewcontact.o
+./release/halarm.o
+./release/hnotifica.o
 ./release/qrc_icons.o
 ./release/qrc_graphical.o
 ./release/moc_mainwindow.o
@@ -77,4 +79,6 @@ INPUT(
 ./release/moc_hgroups.o
 ./release/moc_hcontacts.o
 ./release/moc_hnewcontact.o
+./release/moc_halarm.o
+./release/moc_hnotifica.o
 );

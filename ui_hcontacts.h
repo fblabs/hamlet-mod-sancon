@@ -59,6 +59,7 @@ public:
     QVBoxLayout *verticalLayout_2;
     QLabel *label_6;
     QPlainTextEdit *teAssaggi;
+    QPushButton *pushButton_6;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QPushButton *pushButton_5;
@@ -208,6 +209,14 @@ public:
 
         verticalLayout_2->addWidget(teAssaggi);
 
+        pushButton_6 = new QPushButton(HContacts);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Chat.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_6->setIcon(icon1);
+
+        verticalLayout_2->addWidget(pushButton_6);
+
 
         verticalLayout_3->addLayout(verticalLayout_2);
 
@@ -221,45 +230,45 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pushButton = new QPushButton(HContacts);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon2);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton);
 
         pushButton_5 = new QPushButton(HContacts);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon3);
         pushButton_5->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_5);
 
         pushButton_2 = new QPushButton(HContacts);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon4);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
 
         pushButton_3 = new QPushButton(HContacts);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/Arrow-Right.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Arrow-Right.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon5);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_3);
 
         pushButton_4 = new QPushButton(HContacts);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon6);
         pushButton_4->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_4);
@@ -267,9 +276,6 @@ public:
 
         verticalLayout_4->addLayout(horizontalLayout_2);
 
-        label_7->raise();
-        label_7->raise();
-        leArea->raise();
 
         retranslateUi(HContacts);
 
@@ -288,6 +294,7 @@ public:
         cbFoto->setText(QApplication::translate("HContacts", "Foto", 0));
         label_5->setText(QApplication::translate("HContacts", "Interessati a:", 0));
         label_6->setText(QApplication::translate("HContacts", "Prodotti assaggiati", 0));
+        pushButton_6->setText(QApplication::translate("HContacts", "Imposta notifica", 0));
         pushButton->setText(QApplication::translate("HContacts", "Nuovo Contatto", 0));
         pushButton_5->setText(QApplication::translate("HContacts", "Salva", 0));
         pushButton_2->setText(QApplication::translate("HContacts", "Rimuovi", 0));

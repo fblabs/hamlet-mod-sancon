@@ -50,7 +50,9 @@ SOURCES += main.cpp\
     hpackagesunload.cpp \
     hgroups.cpp \
     hcontacts.cpp \
-    hnewcontact.cpp
+    hnewcontact.cpp \
+    halarm.cpp \
+    hnotifica.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -89,7 +91,9 @@ HEADERS  += mainwindow.h \
     hpackagesunload.h \
     hgroups.h \
     hcontacts.h \
-    hnewcontact.h
+    hnewcontact.h \
+    halarm.h \
+    hnotifica.h
 
 
 FORMS    += mainwindow.ui \
@@ -126,7 +130,9 @@ FORMS    += mainwindow.ui \
     hpackagesunload.ui \
     hgroups.ui \
     hcontacts.ui \
-    hnewcontact.ui
+    hnewcontact.ui \
+    halarm.ui \
+    hnotifica.ui
 
 RESOURCES += \
     icons.qrc \

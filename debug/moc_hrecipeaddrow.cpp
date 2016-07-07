@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hrecipeaddrow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,7 +13,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hrecipeaddrow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,23 +21,24 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HRecipeAddRow_t {
     QByteArrayData data[8];
-    char stringdata[131];
+    char stringdata0[131];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HRecipeAddRow_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HRecipeAddRow_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HRecipeAddRow_t qt_meta_stringdata_HRecipeAddRow = {
     {
-QT_MOC_LITERAL(0, 0, 13),
-QT_MOC_LITERAL(1, 14, 8),
-QT_MOC_LITERAL(2, 23, 0),
-QT_MOC_LITERAL(3, 24, 21),
-QT_MOC_LITERAL(4, 46, 23),
-QT_MOC_LITERAL(5, 70, 21),
-QT_MOC_LITERAL(6, 92, 25),
-QT_MOC_LITERAL(7, 118, 12)
+QT_MOC_LITERAL(0, 0, 13), // "HRecipeAddRow"
+QT_MOC_LITERAL(1, 14, 8), // "rowadded"
+QT_MOC_LITERAL(2, 23, 0), // ""
+QT_MOC_LITERAL(3, 24, 21), // "QList<QStandardItem*>"
+QT_MOC_LITERAL(4, 46, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(5, 70, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(6, 92, 25), // "on_lineEdit_returnPressed"
+QT_MOC_LITERAL(7, 118, 12) // "addRecipeRow"
+
     },
     "HRecipeAddRow\0rowadded\0\0QList<QStandardItem*>\0"
     "on_pushButton_2_clicked\0on_pushButton_clicked\0"
@@ -83,6 +84,7 @@ void HRecipeAddRow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HRecipeAddRow *_t = static_cast<HRecipeAddRow *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->rowadded((*reinterpret_cast< QList<QStandardItem*>(*)>(_a[1]))); break;
         case 1: _t->on_pushButton_2_clicked(); break;
@@ -105,7 +107,7 @@ void HRecipeAddRow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
 
 const QMetaObject HRecipeAddRow::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HRecipeAddRow.data,
-      qt_meta_data_HRecipeAddRow,  qt_static_metacall, 0, 0}
+      qt_meta_data_HRecipeAddRow,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -116,8 +118,8 @@ const QMetaObject *HRecipeAddRow::metaObject() const
 
 void *HRecipeAddRow::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HRecipeAddRow.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HRecipeAddRow.stringdata0))
         return static_cast<void*>(const_cast< HRecipeAddRow*>(this));
     return QWidget::qt_metacast(_clname);
 }
@@ -142,7 +144,7 @@ int HRecipeAddRow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void HRecipeAddRow::rowadded(QList<QStandardItem*> _t1)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

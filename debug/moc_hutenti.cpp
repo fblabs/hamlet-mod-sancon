@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hutenti.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hutenti.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,30 +20,31 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HUtenti_t {
     QByteArrayData data[15];
-    char stringdata[243];
+    char stringdata0[243];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HUtenti_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HUtenti_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HUtenti_t qt_meta_stringdata_HUtenti = {
     {
-QT_MOC_LITERAL(0, 0, 7),
-QT_MOC_LITERAL(1, 8, 13),
-QT_MOC_LITERAL(2, 22, 0),
-QT_MOC_LITERAL(3, 23, 14),
-QT_MOC_LITERAL(4, 38, 23),
-QT_MOC_LITERAL(5, 62, 8),
-QT_MOC_LITERAL(6, 71, 23),
-QT_MOC_LITERAL(7, 95, 19),
-QT_MOC_LITERAL(8, 115, 18),
-QT_MOC_LITERAL(9, 134, 15),
-QT_MOC_LITERAL(10, 150, 4),
-QT_MOC_LITERAL(11, 155, 21),
-QT_MOC_LITERAL(12, 177, 35),
-QT_MOC_LITERAL(13, 213, 5),
-QT_MOC_LITERAL(14, 219, 23)
+QT_MOC_LITERAL(0, 0, 7), // "HUtenti"
+QT_MOC_LITERAL(1, 8, 13), // "productSearch"
+QT_MOC_LITERAL(2, 22, 0), // ""
+QT_MOC_LITERAL(3, 23, 14), // "hidesubclienti"
+QT_MOC_LITERAL(4, 38, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(5, 62, 8), // "addreset"
+QT_MOC_LITERAL(6, 71, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(7, 95, 19), // "onConnectionNameSet"
+QT_MOC_LITERAL(8, 115, 18), // "selectMasterClient"
+QT_MOC_LITERAL(9, 134, 15), // "updateSubclient"
+QT_MOC_LITERAL(10, 150, 4), // "save"
+QT_MOC_LITERAL(11, 155, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(12, 177, 35), // "on_cbxMasterCli_currentIndexC..."
+QT_MOC_LITERAL(13, 213, 5), // "index"
+QT_MOC_LITERAL(14, 219, 23) // "on_pushButton_5_clicked"
+
     },
     "HUtenti\0productSearch\0\0hidesubclienti\0"
     "on_pushButton_3_clicked\0addreset\0"
@@ -103,6 +104,7 @@ void HUtenti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HUtenti *_t = static_cast<HUtenti *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->productSearch(); break;
         case 1: _t->hidesubclienti(); break;
@@ -123,7 +125,7 @@ void HUtenti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
 
 const QMetaObject HUtenti::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HUtenti.data,
-      qt_meta_data_HUtenti,  qt_static_metacall, 0, 0}
+      qt_meta_data_HUtenti,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -134,8 +136,8 @@ const QMetaObject *HUtenti::metaObject() const
 
 void *HUtenti::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HUtenti.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HUtenti.stringdata0))
         return static_cast<void*>(const_cast< HUtenti*>(this));
     return QWidget::qt_metacast(_clname);
 }

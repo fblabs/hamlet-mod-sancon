@@ -160,6 +160,17 @@
          <item>
           <widget class="QPlainTextEdit" name="teAssaggi"/>
          </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_6">
+           <property name="text">
+            <string>Imposta notifica</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/Resources/Chat.PNG</normaloff>:/Resources/Chat.PNG</iconset>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
       </layout>
@@ -256,9 +267,6 @@
     </layout>
    </item>
   </layout>
-  <zorder>label_7</zorder>
-  <zorder>label_7</zorder>
-  <zorder>leArea</zorder>
  </widget>
  <resources>
   <include location="icons.qrc"/>

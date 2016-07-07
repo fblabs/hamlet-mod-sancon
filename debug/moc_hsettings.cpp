@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hsettings.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hsettings.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,19 +20,20 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HSettings_t {
     QByteArrayData data[4];
-    char stringdata[57];
+    char stringdata0[57];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HSettings_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HSettings_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HSettings_t qt_meta_stringdata_HSettings = {
     {
-QT_MOC_LITERAL(0, 0, 9),
-QT_MOC_LITERAL(1, 10, 21),
-QT_MOC_LITERAL(2, 32, 0),
-QT_MOC_LITERAL(3, 33, 23)
+QT_MOC_LITERAL(0, 0, 9), // "HSettings"
+QT_MOC_LITERAL(1, 10, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(2, 32, 0), // ""
+QT_MOC_LITERAL(3, 33, 23) // "on_pushButton_2_clicked"
+
     },
     "HSettings\0on_pushButton_clicked\0\0"
     "on_pushButton_2_clicked"
@@ -67,6 +68,7 @@ void HSettings::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HSettings *_t = static_cast<HSettings *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pushButton_clicked(); break;
         case 1: _t->on_pushButton_2_clicked(); break;
@@ -78,7 +80,7 @@ void HSettings::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
 
 const QMetaObject HSettings::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HSettings.data,
-      qt_meta_data_HSettings,  qt_static_metacall, 0, 0}
+      qt_meta_data_HSettings,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -89,8 +91,8 @@ const QMetaObject *HSettings::metaObject() const
 
 void *HSettings::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HSettings.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HSettings.stringdata0))
         return static_cast<void*>(const_cast< HSettings*>(this));
     return QWidget::qt_metacast(_clname);
 }

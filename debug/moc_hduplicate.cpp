@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hduplicate.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hduplicate.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,22 +20,23 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HDuplicate_t {
     QByteArrayData data[7];
-    char stringdata[86];
+    char stringdata0[86];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HDuplicate_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HDuplicate_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HDuplicate_t qt_meta_stringdata_HDuplicate = {
     {
-QT_MOC_LITERAL(0, 0, 10),
-QT_MOC_LITERAL(1, 11, 6),
-QT_MOC_LITERAL(2, 18, 0),
-QT_MOC_LITERAL(3, 19, 10),
-QT_MOC_LITERAL(4, 30, 9),
-QT_MOC_LITERAL(5, 40, 21),
-QT_MOC_LITERAL(6, 62, 23)
+QT_MOC_LITERAL(0, 0, 10), // "HDuplicate"
+QT_MOC_LITERAL(1, 11, 6), // "update"
+QT_MOC_LITERAL(2, 18, 0), // ""
+QT_MOC_LITERAL(3, 19, 10), // "getRecipes"
+QT_MOC_LITERAL(4, 30, 9), // "duplicate"
+QT_MOC_LITERAL(5, 40, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(6, 62, 23) // "on_pushButton_2_clicked"
+
     },
     "HDuplicate\0update\0\0getRecipes\0duplicate\0"
     "on_pushButton_clicked\0on_pushButton_2_clicked"
@@ -80,6 +81,7 @@ void HDuplicate::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HDuplicate *_t = static_cast<HDuplicate *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->update(); break;
         case 1: _t->getRecipes(); break;
@@ -103,7 +105,7 @@ void HDuplicate::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
 
 const QMetaObject HDuplicate::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HDuplicate.data,
-      qt_meta_data_HDuplicate,  qt_static_metacall, 0, 0}
+      qt_meta_data_HDuplicate,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -114,8 +116,8 @@ const QMetaObject *HDuplicate::metaObject() const
 
 void *HDuplicate::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HDuplicate.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HDuplicate.stringdata0))
         return static_cast<void*>(const_cast< HDuplicate*>(this));
     return QWidget::qt_metacast(_clname);
 }
@@ -140,6 +142,6 @@ int HDuplicate::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void HDuplicate::update()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, 0);
+    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE

@@ -38,6 +38,8 @@ INPUT(
 ./debug/hgroups.o
 ./debug/hcontacts.o
 ./debug/hnewcontact.o
+./debug/halarm.o
+./debug/hnotifica.o
 ./debug/qrc_icons.o
 ./debug/qrc_graphical.o
 ./debug/moc_mainwindow.o
@@ -77,4 +79,6 @@ INPUT(
 ./debug/moc_hgroups.o
 ./debug/moc_hcontacts.o
 ./debug/moc_hnewcontact.o
+./debug/moc_halarm.o
+./debug/moc_hnotifica.o
 );

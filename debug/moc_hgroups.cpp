@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hgroups.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hgroups.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,20 +20,21 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HGroups_t {
     QByteArrayData data[5];
-    char stringdata[64];
+    char stringdata0[64];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HGroups_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HGroups_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_HGroups_t qt_meta_stringdata_HGroups = {
     {
-QT_MOC_LITERAL(0, 0, 7),
-QT_MOC_LITERAL(1, 8, 8),
-QT_MOC_LITERAL(2, 17, 0),
-QT_MOC_LITERAL(3, 18, 23),
-QT_MOC_LITERAL(4, 42, 21)
+QT_MOC_LITERAL(0, 0, 7), // "HGroups"
+QT_MOC_LITERAL(1, 8, 8), // "loadData"
+QT_MOC_LITERAL(2, 17, 0), // ""
+QT_MOC_LITERAL(3, 18, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(4, 42, 21) // "on_pushButton_clicked"
+
     },
     "HGroups\0loadData\0\0on_pushButton_2_clicked\0"
     "on_pushButton_clicked"
@@ -70,6 +71,7 @@ void HGroups::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         HGroups *_t = static_cast<HGroups *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->loadData(); break;
         case 1: _t->on_pushButton_2_clicked(); break;
@@ -82,7 +84,7 @@ void HGroups::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
 
 const QMetaObject HGroups::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_HGroups.data,
-      qt_meta_data_HGroups,  qt_static_metacall, 0, 0}
+      qt_meta_data_HGroups,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -93,8 +95,8 @@ const QMetaObject *HGroups::metaObject() const
 
 void *HGroups::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_HGroups.stringdata))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_HGroups.stringdata0))
         return static_cast<void*>(const_cast< HGroups*>(this));
     return QWidget::qt_metacast(_clname);
 }
