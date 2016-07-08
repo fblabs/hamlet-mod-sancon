@@ -41,10 +41,10 @@ public:
     QTableView *tvMain;
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout;
-    QCheckBox *cbSingolo;
     QGridLayout *gridLayout;
     QDateEdit *deData;
     QLabel *label_2;
+    QCheckBox *cbAttiva;
     QFormLayout *formLayout;
     QLabel *label_3;
     QComboBox *cbTipo;
@@ -101,24 +101,24 @@ public:
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        cbSingolo = new QCheckBox(HAlarm);
-        cbSingolo->setObjectName(QStringLiteral("cbSingolo"));
-        cbSingolo->setChecked(true);
-
-        horizontalLayout->addWidget(cbSingolo);
-
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         deData = new QDateEdit(HAlarm);
         deData->setObjectName(QStringLiteral("deData"));
 
-        gridLayout->addWidget(deData, 0, 1, 1, 1);
+        gridLayout->addWidget(deData, 1, 1, 1, 1);
 
         label_2 = new QLabel(HAlarm);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setMaximumSize(QSize(30, 16777215));
 
-        gridLayout->addWidget(label_2, 0, 0, 1, 1);
+        gridLayout->addWidget(label_2, 1, 0, 1, 1);
+
+        cbAttiva = new QCheckBox(HAlarm);
+        cbAttiva->setObjectName(QStringLiteral("cbAttiva"));
+        cbAttiva->setChecked(true);
+
+        gridLayout->addWidget(cbAttiva, 0, 0, 1, 1);
 
 
         horizontalLayout->addLayout(gridLayout);
@@ -281,8 +281,8 @@ public:
     {
         HAlarm->setWindowTitle(QApplication::translate("HAlarm", "Impostazione notifiche", 0));
         label_6->setText(QApplication::translate("HAlarm", "Notifiche impostate", 0));
-        cbSingolo->setText(QApplication::translate("HAlarm", "Esecuzione unica", 0));
         label_2->setText(QApplication::translate("HAlarm", "Data:", 0));
+        cbAttiva->setText(QApplication::translate("HAlarm", "Attiva", 0));
         label_3->setText(QApplication::translate("HAlarm", "Tipo:", 0));
         label_4->setText(QApplication::translate("HAlarm", "Notificare a:", 0));
         rbGroup->setText(QApplication::translate("HAlarm", "Gruppo", 0));

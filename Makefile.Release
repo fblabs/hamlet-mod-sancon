@@ -12664,19 +12664,8 @@ release/hnotifica.o: hnotifica.cpp hnotifica.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QPlainTextEdit \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qplaintextedit.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qtextedit.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtextdocument.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtextcursor.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpen.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qabstracttextdocumentlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtextlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qglyphrun.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qrawfont.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qfontdatabase.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \

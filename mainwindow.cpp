@@ -523,17 +523,22 @@ void MainWindow::on_pbNotifiche_clicked()
 void MainWindow::checkNotifications()
 {
     QSqlQuery q(db);
-    QString sql;
+    QString sql="";
 
     QString userID=QString::number(user->getID());
+    QString groupID=QString::number(user->getRole());
+    sql="SELECT ID,IDUtente,IDGRuppo from notifiche WHERE (IDUtente LIKE :userid or IDGruppo LIKE :groupid) and attiva > 0 ";
 
-    sql="SELECT * from notifiche where data=CURDATE() and IDUser=:user";
     q.prepare(sql);
-    q.bindValue(":user",user->getID());
+    q.bindValue(":userid",userID);
+    q.bindValue(":groupid",groupID);
     q.exec();
     if(q.size()>0)
     {
-        HNotifica *f= new HNotifica(0,user->getID(),db);
+        while (q.next())
+        {
+        HNotifica *f= new HNotifica(0,q.value(0).toInt(),db);
         f->show();
+        }
     }
 }

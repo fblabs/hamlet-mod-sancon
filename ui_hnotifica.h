@@ -15,7 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QPlainTextEdit>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -25,39 +25,54 @@ QT_BEGIN_NAMESPACE
 class Ui_HNotifica
 {
 public:
+    QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
-    QPlainTextEdit *peDescrizione;
+    QLabel *label;
     QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton;
+    QPushButton *pbChiudi;
 
     void setupUi(QWidget *HNotifica)
     {
         if (HNotifica->objectName().isEmpty())
             HNotifica->setObjectName(QStringLiteral("HNotifica"));
+        HNotifica->setWindowModality(Qt::ApplicationModal);
         HNotifica->resize(400, 300);
-        verticalLayout = new QVBoxLayout(HNotifica);
+        HNotifica->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        verticalLayout_2 = new QVBoxLayout(HNotifica);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        peDescrizione = new QPlainTextEdit(HNotifica);
-        peDescrizione->setObjectName(QStringLiteral("peDescrizione"));
-        peDescrizione->setReadOnly(true);
+        label = new QLabel(HNotifica);
+        label->setObjectName(QStringLiteral("label"));
+        label->setMinimumSize(QSize(0, 222));
+        label->setMaximumSize(QSize(16777215, 222));
+        QFont font;
+        font.setFamily(QStringLiteral("Arial"));
+        font.setPointSize(14);
+        label->setFont(font);
+        label->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        label->setWordWrap(true);
 
-        verticalLayout->addWidget(peDescrizione);
+        verticalLayout->addWidget(label);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        pushButton_2 = new QPushButton(HNotifica);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pbChiudi = new QPushButton(HNotifica);
+        pbChiudi->setObjectName(QStringLiteral("pbChiudi"));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Arial Black"));
+        font1.setBold(true);
+        font1.setWeight(75);
+        pbChiudi->setFont(font1);
+        pbChiudi->setFlat(true);
 
-        horizontalLayout->addWidget(pushButton_2);
-
-        pushButton = new QPushButton(HNotifica);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-
-        horizontalLayout->addWidget(pushButton);
+        horizontalLayout->addWidget(pbChiudi);
 
 
         verticalLayout->addLayout(horizontalLayout);
+
+
+        verticalLayout_2->addLayout(verticalLayout);
 
 
         retranslateUi(HNotifica);
@@ -68,8 +83,8 @@ public:
     void retranslateUi(QWidget *HNotifica)
     {
         HNotifica->setWindowTitle(QApplication::translate("HNotifica", "Form", 0));
-        pushButton_2->setText(QApplication::translate("HNotifica", "Cancella", 0));
-        pushButton->setText(QApplication::translate("HNotifica", "Chiudi", 0));
+        label->setText(QString());
+        pbChiudi->setText(QApplication::translate("HNotifica", "Chiudi", 0));
     } // retranslateUi
 
 };

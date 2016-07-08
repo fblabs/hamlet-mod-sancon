@@ -19,7 +19,7 @@ HAlarm::HAlarm(QWidget *parent,QSqlDatabase pdb) :
     ui->setupUi(this);
     updateButtons(true,true,true,false,false);
     db= pdb;
-    action="";
+    action="n";
 
     if (!db.isOpen())
     {
@@ -65,7 +65,8 @@ HAlarm::HAlarm(QWidget *parent,QSqlDatabase pdb) :
     wmap->addMapping(ui->deData,1);
     wmap->addMapping(ui->cbTipo,2,"currentText");
     wmap->addMapping(ui->ptDescrizione,5);
-    wmap->addMapping(ui->cbSingolo,6,"checked");
+    wmap->addMapping(ui->cbAttiva,7);
+
 
 
     wmap->toFirst();
@@ -73,15 +74,15 @@ HAlarm::HAlarm(QWidget *parent,QSqlDatabase pdb) :
 
 
 
-   ui->tvMain->setCurrentIndex(ui->tvMain->model()->index(-1,0));
+    ui->tvMain->setCurrentIndex(ui->tvMain->model()->index(-1,0));
 
     connect(ui->tvMain->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),wmap,SLOT(setCurrentModelIndex(QModelIndex)));
     connect(ui->tvMain->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setUI()));
     connect(ui->tvMain->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(filterTargets()));
 
     ui->tvMain->setCurrentIndex(ui->tvMain->model()->index(0,0));
-    setUI();
-    filterTargets();
+ //   setUI();
+ //   filterTargets();
 
 
 }
@@ -99,7 +100,7 @@ void HAlarm::updateButtons(bool nuovo, bool modifica, bool elimina, bool salva, 
 
 void HAlarm::setUI()
 {
-    int rbutton=ui->tvMain->model()->index(ui->tvMain->selectionModel()->currentIndex().row(),7).data(0).toInt();
+    int rbutton=ui->tvMain->model()->index(ui->tvMain->selectionModel()->currentIndex().row(),6).data(0).toInt();
 
     if(rbutton>0)
     {
@@ -118,8 +119,10 @@ void HAlarm::filterTargets()
    // setUI();
 
    // seleziono le righe del modello
-    bool usaidgruppo=ui->tvMain->model()->index(ui->tvMain->selectionModel()->currentIndex().row(),7).data(0).toBool();
+    bool usaidgruppo=ui->tvMain->model()->index(ui->tvMain->selectionModel()->currentIndex().row(),6).data(0).toBool();
+    qDebug()<<"usaidgruppo: "<<QString::number(usaidgruppo);
     int colonnaconids;
+    int number=0;
     QString idsindb;
 
 
@@ -136,40 +139,52 @@ void HAlarm::filterTargets()
 
 
     idsindb=ui->tvMain->model()->index(ui->tvMain->selectionModel()->currentIndex().row(),colonnaconids).data(0).toString();
- //   QStringList indexes=idsindb.split("-");
+ qDebug()<<"idsindb"<<idsindb<<ui->tvMain->model()->index(ui->tvMain->selectionModel()->currentIndex().row(),colonnaconids).data(0).toString();
     QStringList indexes=getIndexes(idsindb);
 
     QString filter;
-    if(action=="i" or action=="m")
+    if(action =="n")
     {
-        filter="";
+
+    indexes=getIndexes(idsindb);
+    number=indexes.count();
+qDebug()<<"indexes,count: "<<number;
+
+         if (number>0)
+         {
+                filter="ID IN (";
+
+                    for (int f=0;f<number;f++)
+                    {
+                       QString fid=indexes.at(f);
+
+                       fid=fid.replace("-",",");
+
+                       qDebug()<<"fid: "<<fid;
+
+                       filter += fid;
+
+                       if(f<indexes.count()-1)
+                       {
+                           filter +=",";
+                       }
+                    }
+
+                    filter +=")";
+         }
+        else
+        {
+            filter="";
+        }
     }
     else
     {
-        filter="ID IN (";
-
-
-
-        for (int f=0;f<indexes.count();f++)
-        {
-           QString fid=indexes.at(f);
-
-           fid=fid.replace("-",",");
-
-           qDebug()<<"fid: "<<fid;
-
-           filter += fid;
-
-           if(f<indexes.count()-1)
-           {
-               filter +=",";
-           }
-        }
-
-        filter +=")";
+        indexes=QStringList();
+        filter="";
     }
 
-    qDebug()<<filter;
+
+    qDebug()<<"filtertargets: action: "<<action<<"filter: "<<filter<<"number: "<<number;
 
     QSqlTableModel* lvmod=static_cast<QSqlTableModel*> (ui->lvTarget->model());
     lvmod->setFilter(filter);
@@ -218,7 +233,7 @@ HAlarm::~HAlarm()
 bool HAlarm::addAlarm()
 {
    QSqlQuery q(db);
-   QString sql="INSERT INTO notifiche(tipo,IDUtente,IDGruppo,descrizione,data,singolo,usaidgruppo) VALUES (:tipo,:IDUtente,:IDGruppo,:descrizione,:data,:singolo,:usaidgruppo)";
+   QString sql="INSERT INTO notifiche(tipo,IDUtente,IDGruppo,descrizione,data,usaidgruppo,attiva) VALUES (:tipo,:IDUtente,:IDGruppo,:descrizione,:data,:usaidgruppo,:attiva)";
    int column;
    QString ids;
 
@@ -282,7 +297,8 @@ bool HAlarm::addAlarm()
    }
    q.bindValue(":descrizione",ui->ptDescrizione->toPlainText());
    q.bindValue(":data",ui->deData->date().toString("yyyy-MM-dd"));
-   q.bindValue(":singolo",ui->cbSingolo->isChecked());
+   q.bindValue(":attiva",ui->cbAttiva->isChecked());
+
 
     b=q.exec();
 
@@ -297,7 +313,7 @@ bool HAlarm::updateAlarm()
 {
 
     QSqlQuery q(db);
-    QString sql="UPDATE notifiche SET tipo=:tipo,data=:data,IDUtente=:IDUtente,IDGruppo=:IDGruppo,descrizione=:descrizione,data=:data,singolo=:singolo,usaidgruppo=:usaidgruppo where ID=:ID";
+    QString sql="UPDATE notifiche SET tipo=:tipo,data=:data,IDUtente=:IDUtente,IDGruppo=:IDGruppo,descrizione=:descrizione,data=:data,usaidgruppo=:usaidgruppo,attiva=:attiva where ID=:ID";
 
     int column;
     QString ids;
@@ -362,7 +378,8 @@ bool HAlarm::updateAlarm()
     }
     q.bindValue(":descrizione",ui->ptDescrizione->toPlainText());
     q.bindValue(":data",ui->deData->date().toString("yyyy-MM-dd"));
-    q.bindValue(":singolo",ui->cbSingolo->isChecked());
+    q.bindValue(":attiva",ui->cbAttiva->isChecked());
+
 
     QString id=ui->tvMain->model()->index(ui->tvMain->selectionModel()->currentIndex().row(),0).data(0).toString();
     q.bindValue(":ID",id);
@@ -408,6 +425,7 @@ void HAlarm::on_rbGroup_toggled(bool checked)
     {
         ui->lvTarget->setModel(groupmod);
         ui->lvTarget->setModelColumn(1);
+        filterTargets();
 
     }
 }
@@ -419,6 +437,7 @@ void HAlarm::on_rbUser_toggled(bool checked)
     {
         ui->lvTarget->setModel(usermod);
         ui->lvTarget->setModelColumn(4);
+        filterTargets();
 
     }
 }
@@ -461,6 +480,7 @@ void HAlarm::on_pushButton_clicked()
         if(addAlarm())
         {
             mod->select();
+            filterTargets();
             QMessageBox::information(this,QApplication::applicationName(),"notifica registrata",QMessageBox::Ok);
         }
         else
@@ -475,6 +495,7 @@ void HAlarm::on_pushButton_clicked()
        if(updateAlarm())
        {
            mod->select();
+           filterTargets();
            QMessageBox::information(this,QApplication::applicationName(),"modifiche salvate",QMessageBox::Ok);
        }
        else
@@ -483,8 +504,10 @@ void HAlarm::on_pushButton_clicked()
        }
    }
 
-   action="";
+   action="n";
+
    updateButtons(true,true,true,false,false);
+   filterTargets();
 }
 
 void HAlarm::on_pushButton_3_clicked()
@@ -506,10 +529,10 @@ void HAlarm::on_pushButton_5_clicked()
     action="";
     ui->pushButton->setEnabled(false);
     ui->pushButton_5->setEnabled(false);
+
     mod->select();
-    QString filter="";
-    QSqlTableModel* lvmod=static_cast<QSqlTableModel*> (ui->lvTarget->model());
-    lvmod->setFilter(filter);
+
+    filterTargets();
     updateButtons(true,true,true,false,false);
 
 
@@ -520,9 +543,7 @@ void HAlarm::on_pushButton_6_clicked()
     action="m";
     ui->pushButton->setEnabled(true);
     ui->pushButton_5->setEnabled(true);
-     updateButtons(false,false,false,true,true);
-    QString filter="";
-    QSqlTableModel* lvmod=static_cast<QSqlTableModel*> (ui->lvTarget->model());
-    lvmod->setFilter(filter);
+    filterTargets();
+    updateButtons(false,false,false,true,true);
 
 }
