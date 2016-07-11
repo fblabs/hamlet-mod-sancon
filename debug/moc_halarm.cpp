@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HAlarm_t {
-    QByteArrayData data[27];
-    char stringdata0[351];
+    QByteArrayData data[29];
+    char stringdata0[382];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -55,7 +55,9 @@ QT_MOC_LITERAL(22, 314, 5), // "nuovo"
 QT_MOC_LITERAL(23, 320, 8), // "modifica"
 QT_MOC_LITERAL(24, 329, 7), // "elimina"
 QT_MOC_LITERAL(25, 337, 5), // "salva"
-QT_MOC_LITERAL(26, 343, 7) // "annulla"
+QT_MOC_LITERAL(26, 343, 7), // "annulla"
+QT_MOC_LITERAL(27, 351, 21), // "toggleUIInteractivity"
+QT_MOC_LITERAL(28, 373, 8) // "activate"
 
     },
     "HAlarm\0addAlarm\0\0updateAlarm\0"
@@ -67,7 +69,8 @@ QT_MOC_LITERAL(26, 343, 7) // "annulla"
     "on_pushButton_6_clicked\0buildFilterString\0"
     "QModelIndexList\0list\0getIndexes\0dbst\0"
     "updateButtons\0nuovo\0modifica\0elimina\0"
-    "salva\0annulla"
+    "salva\0annulla\0toggleUIInteractivity\0"
+    "activate"
 };
 #undef QT_MOC_LITERAL
 
@@ -77,7 +80,7 @@ static const uint qt_meta_data_HAlarm[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -85,22 +88,23 @@ static const uint qt_meta_data_HAlarm[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   94,    2, 0x08 /* Private */,
-       3,    0,   95,    2, 0x08 /* Private */,
-       4,    0,   96,    2, 0x08 /* Private */,
-       5,    0,   97,    2, 0x08 /* Private */,
-       6,    1,   98,    2, 0x08 /* Private */,
-       8,    1,  101,    2, 0x08 /* Private */,
-       9,    0,  104,    2, 0x08 /* Private */,
-      10,    0,  105,    2, 0x08 /* Private */,
-      11,    0,  106,    2, 0x08 /* Private */,
-      12,    0,  107,    2, 0x08 /* Private */,
-      13,    0,  108,    2, 0x08 /* Private */,
-      14,    0,  109,    2, 0x08 /* Private */,
-      15,    0,  110,    2, 0x08 /* Private */,
-      16,    1,  111,    2, 0x08 /* Private */,
-      19,    1,  114,    2, 0x08 /* Private */,
-      21,    5,  117,    2, 0x08 /* Private */,
+       1,    0,   99,    2, 0x08 /* Private */,
+       3,    0,  100,    2, 0x08 /* Private */,
+       4,    0,  101,    2, 0x08 /* Private */,
+       5,    0,  102,    2, 0x08 /* Private */,
+       6,    1,  103,    2, 0x08 /* Private */,
+       8,    1,  106,    2, 0x08 /* Private */,
+       9,    0,  109,    2, 0x08 /* Private */,
+      10,    0,  110,    2, 0x08 /* Private */,
+      11,    0,  111,    2, 0x08 /* Private */,
+      12,    0,  112,    2, 0x08 /* Private */,
+      13,    0,  113,    2, 0x08 /* Private */,
+      14,    0,  114,    2, 0x08 /* Private */,
+      15,    0,  115,    2, 0x08 /* Private */,
+      16,    1,  116,    2, 0x08 /* Private */,
+      19,    1,  119,    2, 0x08 /* Private */,
+      21,    5,  122,    2, 0x08 /* Private */,
+      27,    1,  133,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Bool,
@@ -119,6 +123,7 @@ static const uint qt_meta_data_HAlarm[] = {
     QMetaType::QString, 0x80000000 | 17,   18,
     QMetaType::QStringList, QMetaType::QString,   20,
     QMetaType::Void, QMetaType::Bool, QMetaType::Bool, QMetaType::Bool, QMetaType::Bool, QMetaType::Bool,   22,   23,   24,   25,   26,
+    QMetaType::Void, QMetaType::Bool,   28,
 
        0        // eod
 };
@@ -149,6 +154,7 @@ void HAlarm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 14: { QStringList _r = _t->getIndexes((*reinterpret_cast< QString(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< QStringList*>(_a[0]) = _r; }  break;
         case 15: _t->updateButtons((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3])),(*reinterpret_cast< bool(*)>(_a[4])),(*reinterpret_cast< bool(*)>(_a[5]))); break;
+        case 16: _t->toggleUIInteractivity((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -190,13 +196,13 @@ int HAlarm::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     }
     return _id;
 }

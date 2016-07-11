@@ -63,6 +63,10 @@ private slots:
     void on_pbNotifiche_clicked();
 
     void checkNotifications();
+  //  bool eventFilter(QObject *, QEvent *);
+protected:
+    void keyPressEvent(QKeyEvent *ke);
+
 
 private:
     Ui::MainWindow *ui;

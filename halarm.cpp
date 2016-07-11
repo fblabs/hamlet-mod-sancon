@@ -525,7 +525,9 @@ void HAlarm::toggleUIInteractivity(bool activate=true)
     ui->rbGroup->setEnabled(activate);
     ui->rbUser->setEnabled(activate);
     ui->lvTarget->setEnabled(activate);
-    ui->ptDescrizione->setReadOnly(activate);
+    ui->ptDescrizione->setReadOnly(!activate);
+
+    ui->tvMain->setEnabled(!activate);
 }
 
 void HAlarm::on_pushButton_3_clicked()

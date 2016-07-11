@@ -46,15 +46,29 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     ui->setupUi(this);
     //enableDB();
+    setFocusPolicy(Qt::StrongFocus);
+
+  //  installEventFilter(this);
+
+
 
 
 
 this->showMaximized();
 
+
+
 disableUI();
 
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *ke)
+{
+    if(ke->key()==Qt::Key_Enter or ke->key()==Qt::Key_Return)
+    {
+        login();
+    }
+}
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -64,8 +78,33 @@ void MainWindow::init()
 {
     user=new HUser();
     user->init(sConn);
-    ui->toolButton->setFocus();
+
+
 }
+
+
+/*bool MainWindow::eventFilter(QObject *target, QEvent *event)
+{
+    if (target==ui->toolButton)
+    {
+        if(event->type()==QEvent::KeyPress)
+        {
+
+            QKeyEvent *keyevent = static_cast<QKeyEvent *>(event);
+            if (keyevent->key()==Qt::Key_Enter || keyevent->key()==Qt::Key_Return)
+            {
+                login();
+            }
+            return true;
+        }
+        else
+        {
+            return QObject::eventFilter(target,event);
+        }
+    }
+    return false;
+}*/
+
 
 
 
@@ -527,20 +566,20 @@ void MainWindow::checkNotifications()
 
     QString userID=QString::number(user->getID());
     QString groupID=QString::number(user->getRole());
-    sql="SELECT ID,IDUtente,IDGRuppo from notifiche WHERE (IDUtente LIKE :userid or IDGruppo LIKE :groupid) and attiva > 0 and data >=CURDATE()-1 ";
+    sql="SELECT ID,IDUtente,IDGRuppo from notifiche WHERE (IDUtente LIKE :userid or IDGruppo LIKE :groupid) and (attiva > 0) and (data >=CURDATE())";
 
     q.prepare(sql);
     q.bindValue(":userid",userID);
     q.bindValue(":groupid",groupID);
     q.exec();
-    qDebug()<<"check: "<<q.lastError().text();
+    qDebug()<<"check: "<<q.lastQuery()<<q.lastError().text()<<q.size();
 
-    if(q.size()>0)
-    {
+   // if(q.size()>0)
+   // {
         while (q.next())
         {
         HNotifica *f= new HNotifica(0,q.value(0).toInt(),db);
         f->show();
         }
-    }
+   // }
 }
