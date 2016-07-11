@@ -51,11 +51,14 @@ HAlarm::HAlarm(QWidget *parent,QSqlDatabase pdb) :
 
     ui->tvMain->setModel(mod);
     ui->tvMain->setCurrentIndex(mod->index(0,0));
-   /* ui->tvMain->setColumnHidden(0,true);
+
+    ui->tvMain->setColumnHidden(0,true);
     ui->tvMain->setColumnHidden(3,true);
     ui->tvMain->setColumnHidden(4,true);
-   ui->tvMain->setColumnHidden(6,true);
-    ui->tvMain->setColumnHidden(7,true);*/
+    ui->tvMain->setColumnHidden(6,true);
+    ui->tvMain->setColumnHidden(7,true);
+    ui->tvMain->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    toggleUIInteractivity(false);
 
     QDataWidgetMapper *wmap=new QDataWidgetMapper();
 
@@ -412,6 +415,8 @@ void HAlarm::on_pushButton_4_clicked()
     ui->ptDescrizione->setPlainText("");
     mod->insertRow(mod->rowCount());
     ui->tvMain->setCurrentIndex(mod->index(mod->rowCount(),0));
+    toggleUIInteractivity(true);
+
 
 
 
@@ -487,6 +492,7 @@ void HAlarm::on_pushButton_clicked()
         {
             QMessageBox::warning(this,QApplication::applicationName(),"errore\n"+db.lastError().text(),QMessageBox::Ok);
         }
+        toggleUIInteractivity(false);
        }
    else if (action=="m")
    {
@@ -502,12 +508,24 @@ void HAlarm::on_pushButton_clicked()
        {
            QMessageBox::warning(this,QApplication::applicationName(),"errore salvando le modifiche",QMessageBox::Ok);
        }
+       toggleUIInteractivity(false);
    }
 
    action="n";
 
    updateButtons(true,true,true,false,false);
    filterTargets();
+}
+
+void HAlarm::toggleUIInteractivity(bool activate=true)
+{
+    ui->cbAttiva->setEnabled(activate);
+    ui->deData->setEnabled(activate);
+    ui->cbTipo->setEnabled(activate);
+    ui->rbGroup->setEnabled(activate);
+    ui->rbUser->setEnabled(activate);
+    ui->lvTarget->setEnabled(activate);
+    ui->ptDescrizione->setReadOnly(activate);
 }
 
 void HAlarm::on_pushButton_3_clicked()
@@ -534,6 +552,7 @@ void HAlarm::on_pushButton_5_clicked()
 
     filterTargets();
     updateButtons(true,true,true,false,false);
+    toggleUIInteractivity(false);
 
 
 }
@@ -545,5 +564,6 @@ void HAlarm::on_pushButton_6_clicked()
     ui->pushButton_5->setEnabled(true);
     filterTargets();
     updateButtons(false,false,false,true,true);
+    toggleUIInteractivity(true);
 
 }

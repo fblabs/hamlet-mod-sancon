@@ -43,6 +43,7 @@ private slots:
     QString buildFilterString(QModelIndexList list);
     QStringList getIndexes(QString dbst);
     void updateButtons(bool nuovo, bool modifica, bool elimina,bool salva, bool annulla);
+    void toggleUIInteractivity(bool activate);
 
 };
 

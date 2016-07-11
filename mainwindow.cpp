@@ -527,12 +527,14 @@ void MainWindow::checkNotifications()
 
     QString userID=QString::number(user->getID());
     QString groupID=QString::number(user->getRole());
-    sql="SELECT ID,IDUtente,IDGRuppo from notifiche WHERE (IDUtente LIKE :userid or IDGruppo LIKE :groupid) and attiva > 0 ";
+    sql="SELECT ID,IDUtente,IDGRuppo from notifiche WHERE (IDUtente LIKE :userid or IDGruppo LIKE :groupid) and attiva > 0 and data >=CURDATE()-1 ";
 
     q.prepare(sql);
     q.bindValue(":userid",userID);
     q.bindValue(":groupid",groupID);
     q.exec();
+    qDebug()<<"check: "<<q.lastError().text();
+
     if(q.size()>0)
     {
         while (q.next())
