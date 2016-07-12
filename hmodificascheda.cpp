@@ -178,7 +178,10 @@ void HModificaScheda::on_pushButton_reload_clicked()
 
 void HModificaScheda::on_pushButton_2_clicked()
 {
+    if (QMessageBox::question(this,QApplication::applicationName(),"Sicur* di chiudere?",QMessageBox::Ok|QMessageBox::Cancel))
+    {
     this->close();
+    }
 }
 
 void  HModificaScheda::loadScheda()

@@ -53,7 +53,10 @@ void HModRicette::showaddRow()
 
 void HModRicette::on_pushButton_2_clicked()
 {
-    close();
+    if (QMessageBox::question(this,QApplication::applicationName(),"Sicur* di chiudere?",QMessageBox::Ok|QMessageBox::Cancel))
+    {
+    this->close();
+    }
 }
 
 void HModRicette::init(QString conn,HUser *usr)
