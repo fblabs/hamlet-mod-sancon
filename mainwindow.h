@@ -64,6 +64,10 @@ private slots:
 
     void checkNotifications();
   //  bool eventFilter(QObject *, QEvent *);
+    //void on_pushButton_2_clicked();
+
+    void on_pbCkeckNotifications_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *ke);
 

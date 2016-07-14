@@ -173,6 +173,7 @@ void MainWindow::disableUI()
     ui->pbUnload->setEnabled(false);
     ui->pbContacts->setEnabled(false);
     ui->pbNotifiche->setEnabled(false);
+    ui->pbCkeckNotifications->setEnabled(false);
 }
 
 void MainWindow::enableButtonsForRole()
@@ -194,6 +195,8 @@ void MainWindow::enableButtonsForRole()
     {
     case 1:
 
+        //produzione
+
         ui->tnProduzione->setEnabled(true);
         ui->pbUnload->setEnabled(true);
         ui->tbLogout->setEnabled(true);
@@ -214,16 +217,19 @@ void MainWindow::enableButtonsForRole()
         ui->tbUtenti->setEnabled(false);
         ui->tbLogout->setEnabled(true);
         ui->pbPackages->setEnabled(true);
+        ui->pbNotifiche->setEnabled(false);
+        ui->pbContacts->setEnabled(false);
+        ui->pbCkeckNotifications->setEnabled(true);
 
 
         break;
 
     case 2:
-        // qui abilito tutto essendo un utente con privilegi amministrativi
+        // magazzino
 
 
      //   ui->pbRicercaLotto->setEnabled(true);
-        ui->tnProduzione->setEnabled(true);
+        ui->tnProduzione->setEnabled(false);
         ui->tbLogout->setEnabled(true);
         ui->toolButton->setEnabled(true);
         ui->tbMagaz->setEnabled(true);
@@ -243,12 +249,15 @@ void MainWindow::enableButtonsForRole()
         ui->tbLogout->setEnabled(true);
         ui->pbPackages->setEnabled(true);
         ui->pbUnload->setEnabled(true);
-        ui->pbContacts->setEnabled(true);
-        ui->pbNotifiche->setEnabled(true);
+        ui->pbContacts->setEnabled(false);
+        ui->pbNotifiche->setEnabled(false);
+        ui->pbCkeckNotifications->setEnabled(true);
+
 
         break;
 
     case 3:
+        //uffici
         ui->tbMagaz->setEnabled(true);
         ui->pBNewOperation->setEnabled(true);
         ui->tbAnag->setEnabled(true);
@@ -263,6 +272,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbUnload->setEnabled(true);
         ui->pbContacts->setEnabled(true);
         ui->pbNotifiche->setEnabled(true);
+        ui->pbCkeckNotifications->setEnabled(true);
 
         break;
     case 4://simone
@@ -281,6 +291,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbUnload->setEnabled(true);
         ui->pbContacts->setEnabled(false);
         ui->pbNotifiche->setEnabled(false);
+        ui->pbCkeckNotifications->setEnabled(true);
 
         break;
      case 5://amministrativo
@@ -304,6 +315,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbUnload->setEnabled(true);
         ui->pbContacts->setEnabled(true);
         ui->pbNotifiche->setEnabled(true);
+        ui->pbCkeckNotifications->setEnabled(true);
 
         break;
      case 6:
@@ -329,6 +341,8 @@ void MainWindow::enableButtonsForRole()
         ui->pbUnload->setEnabled(false);
         ui->pbContacts->setEnabled(false);
         ui->pbNotifiche->setEnabled(false);
+        ui->pbNotifiche->setEnabled(false);
+        ui->pbCkeckNotifications->setEnabled(false);
 
 
 
@@ -566,13 +580,13 @@ void MainWindow::checkNotifications()
 
     QString userID=QString::number(user->getID());
     QString groupID=QString::number(user->getRole());
-    sql="SELECT ID,IDUtente,IDGRuppo from notifiche WHERE (IDUtente LIKE :userid or IDGruppo LIKE :groupid) and (attiva > 0) and (data >=CURDATE())";
+    sql="SELECT ID,IDUtente,IDGruppo,descrizione from notifiche WHERE (IDUtente LIKE :userid) or (IDGruppo LIKE :groupid) and (attiva > 0) and (data >CURDATE()-interval 1 day)";
 
     q.prepare(sql);
     q.bindValue(":userid",userID);
     q.bindValue(":groupid",groupID);
     q.exec();
-    qDebug()<<"check: "<<q.lastQuery()<<q.lastError().text()<<q.size();
+    qDebug()<<"check: "<<q.lastQuery()<<q.lastError().text()<<q.size()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
 
    // if(q.size()>0)
    // {
@@ -582,4 +596,10 @@ void MainWindow::checkNotifications()
         f->show();
         }
    // }
+}
+
+
+void MainWindow::on_pbCkeckNotifications_clicked()
+{
+     checkNotifications();
 }

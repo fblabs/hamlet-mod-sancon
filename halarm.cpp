@@ -28,7 +28,7 @@ HAlarm::HAlarm(QWidget *parent,QSqlDatabase pdb) :
 
     mod= new QSqlTableModel(0,db);
     mod->setTable("notifiche");
-    mod->setSort(3,Qt::DescendingOrder);
+    mod->setSort(1,Qt::DescendingOrder);
     mod->select();
 
 

@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
@@ -25,10 +24,8 @@ QT_BEGIN_NAMESPACE
 class Ui_HNotifica
 {
 public:
-    QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QLabel *label;
-    QHBoxLayout *horizontalLayout;
     QPushButton *pbChiudi;
 
     void setupUi(QWidget *HNotifica)
@@ -36,46 +33,41 @@ public:
         if (HNotifica->objectName().isEmpty())
             HNotifica->setObjectName(QStringLiteral("HNotifica"));
         HNotifica->setWindowModality(Qt::ApplicationModal);
-        HNotifica->resize(400, 300);
-        HNotifica->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
-        verticalLayout_2 = new QVBoxLayout(HNotifica);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout = new QVBoxLayout();
+        HNotifica->resize(632, 392);
+        verticalLayout = new QVBoxLayout(HNotifica);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label = new QLabel(HNotifica);
         label->setObjectName(QStringLiteral("label"));
-        label->setMinimumSize(QSize(0, 222));
-        label->setMaximumSize(QSize(16777215, 222));
+        label->setMinimumSize(QSize(0, 0));
+        label->setMaximumSize(QSize(16777215, 16777215));
         QFont font;
         font.setFamily(QStringLiteral("Arial"));
         font.setPointSize(14);
         label->setFont(font);
+        label->setStyleSheet(QStringLiteral("background-color: rgb(255, 253, 187);"));
         label->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label->setWordWrap(true);
 
         verticalLayout->addWidget(label);
 
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pbChiudi = new QPushButton(HNotifica);
         pbChiudi->setObjectName(QStringLiteral("pbChiudi"));
+        pbChiudi->setMaximumSize(QSize(16777215, 20));
         QFont font1;
         font1.setFamily(QStringLiteral("Arial Black"));
         font1.setBold(true);
         font1.setWeight(75);
         pbChiudi->setFont(font1);
-        pbChiudi->setFlat(true);
+        pbChiudi->setAutoDefault(true);
+        pbChiudi->setFlat(false);
 
-        horizontalLayout->addWidget(pbChiudi);
-
-
-        verticalLayout->addLayout(horizontalLayout);
-
-
-        verticalLayout_2->addLayout(verticalLayout);
+        verticalLayout->addWidget(pbChiudi);
 
 
         retranslateUi(HNotifica);
+
+        pbChiudi->setDefault(true);
+
 
         QMetaObject::connectSlotsByName(HNotifica);
     } // setupUi

@@ -91,6 +91,8 @@ public:
         tvMain->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvMain->setSelectionMode(QAbstractItemView::SingleSelection);
         tvMain->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvMain->horizontalHeader()->setStretchLastSection(true);
+        tvMain->verticalHeader()->setVisible(false);
 
         verticalLayout_2->addWidget(tvMain);
 
