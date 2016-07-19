@@ -53,7 +53,7 @@ void HGestioneUtenti::init(QString conn)
     utm->setFilter("attivo=1");
     utm->setRelation(3,QSqlRelation("gruppi","ID","descrizione"));
 
-    utm->setSort(1,Qt::AscendingOrder);
+    utm->setSort(4,Qt::AscendingOrder);
     utm->setEditStrategy(QSqlRelationalTableModel::OnManualSubmit);
    // gtm->select();
     utm->select();
@@ -63,7 +63,7 @@ void HGestioneUtenti::init(QString conn)
 
 
     ui->lvUtenti->setModel(utm);
-    ui->lvUtenti->setModelColumn(1);
+    ui->lvUtenti->setModelColumn(4);
 
     mapper=new QDataWidgetMapper();
     mapper->setModel(utm);
@@ -111,7 +111,7 @@ void HGestioneUtenti::on_checkBox_toggled(bool checked)
     }
     else
     {
-         utm->setFilter("attivo=2");
+         utm->setFilter("attivo>0");
     }
 }
 
@@ -172,9 +172,10 @@ void HGestioneUtenti::on_pushButton_2_clicked()
 
   //  getGruppo();
 
-    q.prepare("update utenti SET gruppo=:idgruppo,attivo=:attivo where ID=:idutente");
+    q.prepare("update utenti SET gruppo=:idgruppo,attivo=:attivo,nome=:nome where ID=:idutente");
     q.bindValue(":idgruppo",QVariant(idgruppo));
     q.bindValue(":attivo",ui->cbAttivo->isChecked());
+    q.bindValue(":nome",ui->lenome->text());
     q.bindValue(":idutente",QVariant(idutente));
     q.exec();
    // // qDebug()<<"salva2:"<<"idutente:"<<idutente<<"idgruppo " + q.boundValue(0).toString()<<"idutente: "+q.boundValue(1).toString()<<utm->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString();

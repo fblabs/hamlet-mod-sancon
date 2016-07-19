@@ -75,9 +75,14 @@ void HNewAnagrafica::on_pushButton_clicked()
       {
 
           //// qDebug()<<q.lastError().text()<<"\n" + q.lastQuery();
-          QMessageBox::information(this,QApplication::applicationName(),"Errore durante il salvataggio",QMessageBox::Ok);
+          QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
 
       }
+      else
+      {
+         QMessageBox::information(this,QApplication::applicationName(),"Anagrafica salvata",QMessageBox::Ok);
+      }
+
     }
 }
 

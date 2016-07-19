@@ -197,10 +197,13 @@ bool HModifyLot::updateLot()
     if(b)
     {
         db.commit();
+        QMessageBox::information(this,QApplication::applicationName(),"modifiche salvate",QMessageBox::Ok);
         emit update();
     }
     else
     {
+
+        QMessageBox::warning(this,QApplication::applicationName(),"modifiche salvate",QMessageBox::Ok);
         db.rollback();
        // // qDebug()<<q.lastError().text();
     }

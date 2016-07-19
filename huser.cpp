@@ -7,17 +7,18 @@
 HUser::HUser(QObject *parent) :
     QObject(parent)
 {
-
-}
-
-void HUser::init(QString conn)
-{
     role=-1;
     username="";
+    nome="";
     id=-1;
-    sConn=conn;
     update=false;
     updateana=false;
+}
+
+
+void HUser::setNome(QString pnome)
+{
+    nome=pnome;
 }
 
 
@@ -77,4 +78,9 @@ void HUser::setCanUpdateAnag(bool upd)
 bool HUser::getCanUpdateAnag()
 {
     return updateana;
+}
+
+QString HUser::getName()
+{
+    return nome;
 }

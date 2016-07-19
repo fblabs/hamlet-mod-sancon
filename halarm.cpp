@@ -10,20 +10,22 @@
 #include <QMessageBox>
 #include <QSqlError>
 #include <QDebug>
+#include "huser.h"
 
 
-HAlarm::HAlarm(QWidget *parent,QSqlDatabase pdb) :
+HAlarm::HAlarm(QWidget *parent, QSqlDatabase pdb, HUser *puser) :
     QWidget(parent),
     ui(new Ui::HAlarm)
 {
     ui->setupUi(this);
     updateButtons(true,true,true,false,false);
-    db= pdb;
+    db=pdb;
     action="n";
+    user=puser;
 
     if (!db.isOpen())
     {
-        close();
+        QMessageBox::warning(this,QApplication::applicationName(),"Attenzione: connessioe chiusa, riloggare",QMessageBox::Ok);
     }
 
     mod= new QSqlTableModel(0,db);
@@ -69,6 +71,8 @@ HAlarm::HAlarm(QWidget *parent,QSqlDatabase pdb) :
     wmap->addMapping(ui->cbTipo,2,"currentText");
     wmap->addMapping(ui->ptDescrizione,5);
     wmap->addMapping(ui->cbAttiva,7);
+    wmap->addMapping(ui->leCreator,8);
+
 
 
 
@@ -236,7 +240,7 @@ HAlarm::~HAlarm()
 bool HAlarm::addAlarm()
 {
    QSqlQuery q(db);
-   QString sql="INSERT INTO notifiche(tipo,IDUtente,IDGruppo,descrizione,data,usaidgruppo,attiva) VALUES (:tipo,:IDUtente,:IDGruppo,:descrizione,:data,:usaidgruppo,:attiva)";
+   QString sql="INSERT INTO notifiche(tipo,IDUtente,IDGruppo,descrizione,data,usaidgruppo,attiva,creatore) VALUES (:tipo,:IDUtente,:IDGruppo,:descrizione,:data,:usaidgruppo,:attiva,:creatore)";
    int column;
    QString ids;
 
@@ -286,6 +290,7 @@ bool HAlarm::addAlarm()
    q.prepare(sql);
    q.bindValue(":tipo",ui->cbTipo->currentText());
 
+
    if (column==4)
    {
        q.bindValue(":IDUtente","");
@@ -301,6 +306,7 @@ bool HAlarm::addAlarm()
    q.bindValue(":descrizione",ui->ptDescrizione->toPlainText());
    q.bindValue(":data",ui->deData->date().toString("yyyy-MM-dd"));
    q.bindValue(":attiva",ui->cbAttiva->isChecked());
+   q.bindValue(":creatore",user->getName());
 
 
     b=q.exec();
@@ -406,6 +412,8 @@ void HAlarm::on_pushButton_4_clicked()
     setUI();
     filterTargets();
     updateButtons(false,false,false,true,true);
+
+    ui->leCreator->setText(user->getName());
 
     QString filter="";
     QSqlTableModel* lvmod=static_cast<QSqlTableModel*> (ui->lvTarget->model());

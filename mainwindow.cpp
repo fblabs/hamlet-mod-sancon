@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->setupUi(this);
     //enableDB();
     setFocusPolicy(Qt::StrongFocus);
+    sConn=settings.value("conn").toString();
 
   //  installEventFilter(this);
 
@@ -76,8 +77,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::init()
 {
-    user=new HUser();
-    user->init(sConn);
+    user=new HUser(0);
 
 
 }
@@ -108,7 +108,7 @@ void MainWindow::init()
 
 
 
-void MainWindow::userLogged(int id, int gruppo, bool update, bool updateanag, QSqlDatabase pdb)
+/*void MainWindow::userLogged(int id, int gruppo, bool update, bool updateanag, QSqlDatabase pdb)
 {
     qDebug()<< "main->userLogged: id"+QString::number(id) << "Role: " + QString::number(gruppo);
     QSettings settings("hamletmod");
@@ -128,6 +128,21 @@ void MainWindow::userLogged(int id, int gruppo, bool update, bool updateanag, QS
     checkNotifications();
 
 
+}*/
+
+void MainWindow::userLogged(HUser* usr,QSqlDatabase pdb)
+{
+    user=usr;
+    db=pdb;
+
+    if(usr)
+    {
+
+
+        bool b=db.isOpen();
+        qDebug()<<"userLogged Main"<<QString::number(b);
+        enableButtonsForRole();
+    }
 }
 
 
@@ -472,7 +487,7 @@ void MainWindow::login()
 
     HLogin2 *f = new HLogin2();
   //  f->setDatabase(sConn);
-    connect(f,SIGNAL(userLogged(int,int,bool,bool,QSqlDatabase)),this,SLOT(userLogged(int,int,bool,bool,QSqlDatabase)));
+    connect(f,SIGNAL(userLogged(HUser*,QSqlDatabase)),this,SLOT(userLogged(HUser*,QSqlDatabase)));
 
    // QMessageBox::information(this,QApplication::applicationName(),QString::number(db.isOpen()? 1:0),QMessageBox::Ok);
 
@@ -486,7 +501,7 @@ void MainWindow::login()
 void MainWindow::on_tbLogout_clicked()
 {
 
-    user->init("");
+    user=0;
     db.close();
     disableUI();
 }
@@ -562,14 +577,14 @@ void MainWindow::on_pbUnload_clicked()
 
 void MainWindow::on_pbContacts_clicked()
 {
-    HContacts *f=new HContacts(0,db);
+    HContacts *f=new HContacts(0,user,db);
 
     f->show();
 }
 
 void MainWindow::on_pbNotifiche_clicked()
 {
-    HAlarm *f =new HAlarm(0,db);
+    HAlarm *f =new HAlarm(0,db,user);
     f->show();
 }
 

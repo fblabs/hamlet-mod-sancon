@@ -21,6 +21,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
@@ -34,12 +35,12 @@ QT_BEGIN_NAMESPACE
 class Ui_HAlarm
 {
 public:
-    QVBoxLayout *verticalLayout_5;
+    QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout_5;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_6;
     QTableView *tvMain;
-    QVBoxLayout *verticalLayout_4;
+    QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QGridLayout *gridLayout;
     QDateEdit *deData;
@@ -48,12 +49,14 @@ public:
     QFormLayout *formLayout;
     QLabel *label_3;
     QComboBox *cbTipo;
-    QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_4;
     QHBoxLayout *horizontalLayout_2;
     QRadioButton *rbGroup;
     QRadioButton *rbUser;
+    QFormLayout *formLayout_2;
+    QLabel *label;
+    QLineEdit *leCreator;
     QListView *lvTarget;
     QVBoxLayout *verticalLayout_3;
     QLabel *label_5;
@@ -75,8 +78,8 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Chat.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HAlarm->setWindowIcon(icon);
-        verticalLayout_5 = new QVBoxLayout(HAlarm);
-        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        verticalLayout_4 = new QVBoxLayout(HAlarm);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         verticalLayout_2 = new QVBoxLayout();
@@ -99,8 +102,8 @@ public:
 
         horizontalLayout_5->addLayout(verticalLayout_2);
 
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         gridLayout = new QGridLayout();
@@ -126,7 +129,7 @@ public:
         horizontalLayout->addLayout(gridLayout);
 
 
-        verticalLayout_4->addLayout(horizontalLayout);
+        verticalLayout->addLayout(horizontalLayout);
 
         formLayout = new QFormLayout();
         formLayout->setObjectName(QStringLiteral("formLayout"));
@@ -142,10 +145,8 @@ public:
         formLayout->setWidget(0, QFormLayout::FieldRole, cbTipo);
 
 
-        verticalLayout_4->addLayout(formLayout);
+        verticalLayout->addLayout(formLayout);
 
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         label_4 = new QLabel(HAlarm);
@@ -172,18 +173,32 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_3);
 
+        formLayout_2 = new QFormLayout();
+        formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
+        label = new QLabel(HAlarm);
+        label->setObjectName(QStringLiteral("label"));
+
+        formLayout_2->setWidget(0, QFormLayout::LabelRole, label);
+
+        leCreator = new QLineEdit(HAlarm);
+        leCreator->setObjectName(QStringLiteral("leCreator"));
+        leCreator->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leCreator->setReadOnly(true);
+
+        formLayout_2->setWidget(0, QFormLayout::FieldRole, leCreator);
+
+
+        verticalLayout->addLayout(formLayout_2);
+
         lvTarget = new QListView(HAlarm);
         lvTarget->setObjectName(QStringLiteral("lvTarget"));
         lvTarget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         lvTarget->setAlternatingRowColors(true);
-        lvTarget->setSelectionMode(QAbstractItemView::MultiSelection);
+        lvTarget->setSelectionMode(QAbstractItemView::ExtendedSelection);
         lvTarget->setSelectionBehavior(QAbstractItemView::SelectRows);
         lvTarget->setViewMode(QListView::ListMode);
 
         verticalLayout->addWidget(lvTarget);
-
-
-        verticalLayout_4->addLayout(verticalLayout);
 
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
@@ -204,13 +219,13 @@ public:
         verticalLayout_3->addWidget(ptDescrizione);
 
 
-        verticalLayout_4->addLayout(verticalLayout_3);
+        verticalLayout->addLayout(verticalLayout_3);
 
 
-        horizontalLayout_5->addLayout(verticalLayout_4);
+        horizontalLayout_5->addLayout(verticalLayout);
 
 
-        verticalLayout_5->addLayout(horizontalLayout_5);
+        verticalLayout_4->addLayout(horizontalLayout_5);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
@@ -271,7 +286,7 @@ public:
         horizontalLayout_4->addWidget(pushButton_2);
 
 
-        verticalLayout_5->addLayout(horizontalLayout_4);
+        verticalLayout_4->addLayout(horizontalLayout_4);
 
 
         retranslateUi(HAlarm);
@@ -289,6 +304,7 @@ public:
         label_4->setText(QApplication::translate("HAlarm", "Notificare a:", 0));
         rbGroup->setText(QApplication::translate("HAlarm", "Gruppo", 0));
         rbUser->setText(QApplication::translate("HAlarm", "Utente", 0));
+        label->setText(QApplication::translate("HAlarm", "Impostata da:", 0));
         label_5->setText(QApplication::translate("HAlarm", "Descrizione:", 0));
         pushButton_4->setText(QApplication::translate("HAlarm", "Nuovo", 0));
         pushButton_6->setText(QApplication::translate("HAlarm", "Modifica", 0));

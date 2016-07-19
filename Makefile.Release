@@ -4772,6 +4772,8 @@ release/moc_halarm.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		halarm.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore halarm.h -o release/moc_halarm.cpp
 
@@ -6274,7 +6276,9 @@ release/hutenti.o: hutenti.cpp mainwindow.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlError \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlerror.h \
 		hgroups.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlTableModel
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlTableModel \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hutenti.o hutenti.cpp
 
 release/hnewop.o: hnewop.cpp hnewop.h \
@@ -12142,7 +12146,9 @@ release/hcontacts.o: hcontacts.cpp hcontacts.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QDataWidgetMapper \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qdatawidgetmapper.h \
-		halarm.h
+		halarm.h \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hcontacts.o hcontacts.cpp
 
 release/hnewcontact.o: hnewcontact.cpp hnewcontact.h \
@@ -12432,6 +12438,8 @@ release/halarm.o: halarm.cpp halarm.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		ui_halarm.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -12483,16 +12491,18 @@ release/halarm.o: halarm.cpp halarm.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QLineEdit \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextcursor.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpen.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QListView \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qlistview.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QPlainTextEdit \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qplaintextedit.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtextedit.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qtextdocument.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtextcursor.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpen.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qabstracttextdocumentlayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qtextlayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qglyphrun.h \
@@ -12641,11 +12651,6 @@ release/hnotifica.o: hnotifica.cpp hnotifica.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
@@ -12670,6 +12675,10 @@ release/hnotifica.o: hnotifica.cpp hnotifica.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQuery \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hnotifica.o hnotifica.cpp

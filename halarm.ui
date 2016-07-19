@@ -20,7 +20,7 @@
    <iconset resource="icons.qrc">
     <normaloff>:/Resources/Chat.PNG</normaloff>:/Resources/Chat.PNG</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5">
+  <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
@@ -54,7 +54,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
+      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
@@ -108,59 +108,76 @@
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Notificare a:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
-            <widget class="QLabel" name="label_4">
+            <widget class="QRadioButton" name="rbGroup">
              <property name="text">
-              <string>Notificare a:</string>
+              <string>Gruppo</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <widget class="QRadioButton" name="rbGroup">
-               <property name="text">
-                <string>Gruppo</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="rbUser">
-               <property name="text">
-                <string>Utente</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <widget class="QRadioButton" name="rbUser">
+             <property name="text">
+              <string>Utente</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
-         <item>
-          <widget class="QListView" name="lvTarget">
-           <property name="editTriggers">
-            <set>QAbstractItemView::NoEditTriggers</set>
+        </layout>
+       </item>
+       <item>
+        <layout class="QFormLayout" name="formLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Impostata da:</string>
            </property>
-           <property name="alternatingRowColors">
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="leCreator">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 127);</string>
+           </property>
+           <property name="readOnly">
             <bool>true</bool>
-           </property>
-           <property name="selectionMode">
-            <enum>QAbstractItemView::MultiSelection</enum>
-           </property>
-           <property name="selectionBehavior">
-            <enum>QAbstractItemView::SelectRows</enum>
-           </property>
-           <property name="viewMode">
-            <enum>QListView::ListMode</enum>
            </property>
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QListView" name="lvTarget">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="viewMode">
+          <enum>QListView::ListMode</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_3">

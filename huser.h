@@ -18,6 +18,7 @@ private:
      bool active;
      bool update;
      bool updateana;
+     QString nome;
      QString username;
      QString sConn;
 
@@ -33,10 +34,11 @@ public slots:
     int getID();
     bool getCanUpdate();
     void setCanUpdate(bool upd);
-    void init(QString conn);
     void setCanUpdateAnag(bool);
     bool getCanUpdateAnag();
     QString getUsername();
+    void setNome(QString pnome);
+    QString getName();
 
 
 };

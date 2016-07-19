@@ -70,7 +70,7 @@ void HLogin2::login()
     HUser* usr=new HUser();
 
 
-    bool b=qrLogin.exec("Select utenti.ID,utenti.username,utenti.gruppo,gruppi.canupdate,gruppi.canupdateana,utenti.attivo from utenti,gruppi where gruppi.ID=utenti.gruppo and utenti.username='" + ui->leUser->text() + "' and pwd=SHA1('" + ui->lePwd->text() + "') and utenti.attivo=1");
+    bool b=qrLogin.exec("Select utenti.ID,utenti.username,utenti.gruppo,gruppi.canupdate,gruppi.canupdateana,utenti.nome,utenti.attivo from utenti,gruppi where gruppi.ID=utenti.gruppo and utenti.username='" + ui->leUser->text() + "' and pwd=SHA1('" + ui->lePwd->text() + "') and utenti.attivo=1");
 
     if(!b)
     {
@@ -92,7 +92,10 @@ void HLogin2::login()
         usr->setRole(qrLogin.value(2).toInt());
         usr->setCanUpdate(qrLogin.value(3).toBool());
         usr->setCanUpdateAnag(qrLogin.value(4).toBool());
-        emit userLogged(usr->getID(),usr->getRole(),usr->getCanUpdate(),usr->getCanUpdateAnag(),db);
+        usr->setNome(qrLogin.value(5).toString());
+      //  emit userLogged(usr->getID(),usr->getRole(),usr->getCanUpdate(),usr->getCanUpdateAnag(),db);
+        emit userLogged(usr,db);
+
 
     // // qDebug()<<"HLogin2"<<usr->getUsername()<<QString::number(usr->getRole())<<usr->getCanUpdate()<<usr->getCanUpdateAnag();
         close();

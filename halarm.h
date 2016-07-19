@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QSqlDatabase>
 #include <QSqlTableModel>
+#include "huser.h"
 
 
 
@@ -16,7 +17,7 @@ class HAlarm : public QWidget
     Q_OBJECT
 
 public:
-    explicit HAlarm(QWidget *parent = 0,QSqlDatabase pdb=QSqlDatabase());
+    explicit HAlarm(QWidget *parent = 0,QSqlDatabase pdb=QSqlDatabase(),HUser *puser=0);
     ~HAlarm();
 
 private:
@@ -26,6 +27,7 @@ private:
     QSqlTableModel *usermod;
     QSqlTableModel *groupmod;
     QString action;
+    HUser *user;
 private slots:
     bool addAlarm();
     bool updateAlarm();

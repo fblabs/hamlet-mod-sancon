@@ -8,12 +8,14 @@
 #include <QDataWidgetMapper>
 #include "halarm.h"
 
-HContacts::HContacts(QWidget *parent,QSqlDatabase pdb) :
+HContacts::HContacts(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     QWidget(parent),
     ui(new Ui::HContacts)
 {
     ui->setupUi(this);
     showMaximized();
+    ui->pushButton_3->setVisible(false);
+    user=pusr;
     db = pdb;
 
     mod=new QSqlTableModel(0,db);
@@ -159,6 +161,6 @@ bool HContacts::removeContact()
 
 void HContacts::on_pushButton_6_clicked()
 {
-    HAlarm *f=new HAlarm(0,db);
+    HAlarm *f=new HAlarm(0,db,user);
     f->show();
 }

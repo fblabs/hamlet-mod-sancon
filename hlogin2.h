@@ -21,8 +21,9 @@ public:
      //void setDatabase(QString database);
     // void init(QString conn);
  signals:
-    void userLogged(int,int,bool,bool,QSqlDatabase pdb);
-    void setConn(QString con);
+  //  void userLogged(int,int,bool,bool,QSqlDatabase pdb);
+    void userLogged(HUser* usr,QSqlDatabase pdb);
+
 
 
 

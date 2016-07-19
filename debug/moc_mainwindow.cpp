@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[38];
-    char stringdata0[642];
+    QByteArrayData data[36];
+    char stringdata0[625];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -56,17 +56,15 @@ QT_MOC_LITERAL(23, 401, 19), // "on_tbUtenti_clicked"
 QT_MOC_LITERAL(24, 421, 26), // "on_tbModificaLotti_clicked"
 QT_MOC_LITERAL(25, 448, 21), // "on_pbPackages_clicked"
 QT_MOC_LITERAL(26, 470, 10), // "userLogged"
-QT_MOC_LITERAL(27, 481, 2), // "id"
-QT_MOC_LITERAL(28, 484, 6), // "gruppo"
-QT_MOC_LITERAL(29, 491, 6), // "update"
-QT_MOC_LITERAL(30, 498, 10), // "updateanag"
-QT_MOC_LITERAL(31, 509, 12), // "QSqlDatabase"
-QT_MOC_LITERAL(32, 522, 3), // "pdb"
-QT_MOC_LITERAL(33, 526, 19), // "on_pbUnload_clicked"
-QT_MOC_LITERAL(34, 546, 21), // "on_pbContacts_clicked"
-QT_MOC_LITERAL(35, 568, 22), // "on_pbNotifiche_clicked"
-QT_MOC_LITERAL(36, 591, 18), // "checkNotifications"
-QT_MOC_LITERAL(37, 610, 31) // "on_pbCkeckNotifications_clicked"
+QT_MOC_LITERAL(27, 481, 6), // "HUser*"
+QT_MOC_LITERAL(28, 488, 3), // "usr"
+QT_MOC_LITERAL(29, 492, 12), // "QSqlDatabase"
+QT_MOC_LITERAL(30, 505, 3), // "pdb"
+QT_MOC_LITERAL(31, 509, 19), // "on_pbUnload_clicked"
+QT_MOC_LITERAL(32, 529, 21), // "on_pbContacts_clicked"
+QT_MOC_LITERAL(33, 551, 22), // "on_pbNotifiche_clicked"
+QT_MOC_LITERAL(34, 574, 18), // "checkNotifications"
+QT_MOC_LITERAL(35, 593, 31) // "on_pbCkeckNotifications_clicked"
 
     },
     "MainWindow\0onConnectionName\0\0init\0"
@@ -80,9 +78,9 @@ QT_MOC_LITERAL(37, 610, 31) // "on_pbCkeckNotifications_clicked"
     "disableUI\0enableUI\0on_tbAssociazioni_clicked\0"
     "on_pbSchede_clicked\0on_pushButton_clicked\0"
     "on_tbUtenti_clicked\0on_tbModificaLotti_clicked\0"
-    "on_pbPackages_clicked\0userLogged\0id\0"
-    "gruppo\0update\0updateanag\0QSqlDatabase\0"
-    "pdb\0on_pbUnload_clicked\0on_pbContacts_clicked\0"
+    "on_pbPackages_clicked\0userLogged\0"
+    "HUser*\0usr\0QSqlDatabase\0pdb\0"
+    "on_pbUnload_clicked\0on_pbContacts_clicked\0"
     "on_pbNotifiche_clicked\0checkNotifications\0"
     "on_pbCkeckNotifications_clicked"
 };
@@ -128,12 +126,12 @@ static const uint qt_meta_data_MainWindow[] = {
       23,    0,  185,    2, 0x08 /* Private */,
       24,    0,  186,    2, 0x08 /* Private */,
       25,    0,  187,    2, 0x08 /* Private */,
-      26,    5,  188,    2, 0x08 /* Private */,
-      33,    0,  199,    2, 0x08 /* Private */,
-      34,    0,  200,    2, 0x08 /* Private */,
-      35,    0,  201,    2, 0x08 /* Private */,
-      36,    0,  202,    2, 0x08 /* Private */,
-      37,    0,  203,    2, 0x08 /* Private */,
+      26,    2,  188,    2, 0x08 /* Private */,
+      31,    0,  193,    2, 0x08 /* Private */,
+      32,    0,  194,    2, 0x08 /* Private */,
+      33,    0,  195,    2, 0x08 /* Private */,
+      34,    0,  196,    2, 0x08 /* Private */,
+      35,    0,  197,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -162,7 +160,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Bool, QMetaType::Bool, 0x80000000 | 31,   27,   28,   29,   30,   32,
+    QMetaType::Void, 0x80000000 | 27, 0x80000000 | 29,   28,   30,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -202,13 +200,24 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 21: _t->on_tbUtenti_clicked(); break;
         case 22: _t->on_tbModificaLotti_clicked(); break;
         case 23: _t->on_pbPackages_clicked(); break;
-        case 24: _t->userLogged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3])),(*reinterpret_cast< bool(*)>(_a[4])),(*reinterpret_cast< QSqlDatabase(*)>(_a[5]))); break;
+        case 24: _t->userLogged((*reinterpret_cast< HUser*(*)>(_a[1])),(*reinterpret_cast< QSqlDatabase(*)>(_a[2]))); break;
         case 25: _t->on_pbUnload_clicked(); break;
         case 26: _t->on_pbContacts_clicked(); break;
         case 27: _t->on_pbNotifiche_clicked(); break;
         case 28: _t->checkNotifications(); break;
         case 29: _t->on_pbCkeckNotifications_clicked(); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+        case 24:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< HUser* >(); break;
+            }
+            break;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
@@ -252,7 +261,7 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 30;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 30)
-            *reinterpret_cast<int*>(_a[0]) = -1;
+            qt_static_metacall(this, _c, _id, _a);
         _id -= 30;
     }
     return _id;

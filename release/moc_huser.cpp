@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HUser_t {
-    QByteArrayData data[20];
-    char stringdata0[166];
+    QByteArrayData data[21];
+    char stringdata0[178];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -44,18 +44,19 @@ QT_MOC_LITERAL(11, 74, 5), // "getID"
 QT_MOC_LITERAL(12, 80, 12), // "getCanUpdate"
 QT_MOC_LITERAL(13, 93, 12), // "setCanUpdate"
 QT_MOC_LITERAL(14, 106, 3), // "upd"
-QT_MOC_LITERAL(15, 110, 4), // "init"
-QT_MOC_LITERAL(16, 115, 4), // "conn"
-QT_MOC_LITERAL(17, 120, 16), // "setCanUpdateAnag"
-QT_MOC_LITERAL(18, 137, 16), // "getCanUpdateAnag"
-QT_MOC_LITERAL(19, 154, 11) // "getUsername"
+QT_MOC_LITERAL(15, 110, 16), // "setCanUpdateAnag"
+QT_MOC_LITERAL(16, 127, 16), // "getCanUpdateAnag"
+QT_MOC_LITERAL(17, 144, 11), // "getUsername"
+QT_MOC_LITERAL(18, 156, 7), // "setNome"
+QT_MOC_LITERAL(19, 164, 5), // "pnome"
+QT_MOC_LITERAL(20, 170, 7) // "getName"
 
     },
     "HUser\0setUserName\0\0uname\0setRole\0role\0"
     "getRole\0setActive\0isActive\0setID\0ID\0"
     "getID\0getCanUpdate\0setCanUpdate\0upd\0"
-    "init\0conn\0setCanUpdateAnag\0getCanUpdateAnag\0"
-    "getUsername"
+    "setCanUpdateAnag\0getCanUpdateAnag\0"
+    "getUsername\0setNome\0pnome\0getName"
 };
 #undef QT_MOC_LITERAL
 
@@ -65,7 +66,7 @@ static const uint qt_meta_data_HUser[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -73,18 +74,19 @@ static const uint qt_meta_data_HUser[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   74,    2, 0x0a /* Public */,
-       4,    1,   77,    2, 0x0a /* Public */,
-       6,    0,   80,    2, 0x0a /* Public */,
-       7,    1,   81,    2, 0x0a /* Public */,
-       9,    1,   84,    2, 0x0a /* Public */,
-      11,    0,   87,    2, 0x0a /* Public */,
-      12,    0,   88,    2, 0x0a /* Public */,
-      13,    1,   89,    2, 0x0a /* Public */,
-      15,    1,   92,    2, 0x0a /* Public */,
-      17,    1,   95,    2, 0x0a /* Public */,
-      18,    0,   98,    2, 0x0a /* Public */,
-      19,    0,   99,    2, 0x0a /* Public */,
+       1,    1,   79,    2, 0x0a /* Public */,
+       4,    1,   82,    2, 0x0a /* Public */,
+       6,    0,   85,    2, 0x0a /* Public */,
+       7,    1,   86,    2, 0x0a /* Public */,
+       9,    1,   89,    2, 0x0a /* Public */,
+      11,    0,   92,    2, 0x0a /* Public */,
+      12,    0,   93,    2, 0x0a /* Public */,
+      13,    1,   94,    2, 0x0a /* Public */,
+      15,    1,   97,    2, 0x0a /* Public */,
+      16,    0,  100,    2, 0x0a /* Public */,
+      17,    0,  101,    2, 0x0a /* Public */,
+      18,    1,  102,    2, 0x0a /* Public */,
+      20,    0,  105,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
@@ -95,9 +97,10 @@ static const uint qt_meta_data_HUser[] = {
     QMetaType::Int,
     QMetaType::Bool,
     QMetaType::Void, QMetaType::Bool,   14,
-    QMetaType::Void, QMetaType::QString,   16,
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Bool,
+    QMetaType::QString,
+    QMetaType::Void, QMetaType::QString,   19,
     QMetaType::QString,
 
        0        // eod
@@ -120,11 +123,13 @@ void HUser::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         case 6: { bool _r = _t->getCanUpdate();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         case 7: _t->setCanUpdate((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 8: _t->init((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 9: _t->setCanUpdateAnag((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 10: { bool _r = _t->getCanUpdateAnag();
+        case 8: _t->setCanUpdateAnag((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 9: { bool _r = _t->getCanUpdateAnag();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 11: { QString _r = _t->getUsername();
+        case 10: { QString _r = _t->getUsername();
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+        case 11: _t->setNome((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 12: { QString _r = _t->getName();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
         default: ;
         }
@@ -156,13 +161,13 @@ int HUser::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 13)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }

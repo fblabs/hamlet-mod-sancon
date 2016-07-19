@@ -92,7 +92,7 @@ static const uint qt_meta_data_HUtenti[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Bool,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   13,
     QMetaType::Void,
@@ -114,7 +114,8 @@ void HUtenti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 5: _t->onConnectionNameSet(); break;
         case 6: _t->selectMasterClient(); break;
         case 7: _t->updateSubclient(); break;
-        case 8: _t->save(); break;
+        case 8: { bool _r = _t->save();
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         case 9: _t->on_pushButton_clicked(); break;
         case 10: _t->on_cbxMasterCli_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 11: _t->on_pushButton_5_clicked(); break;

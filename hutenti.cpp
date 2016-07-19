@@ -18,6 +18,7 @@
 #include <QSqlError>
 #include "huser.h"
 #include "hgroups.h"
+#include <QMessageBox>
 
 HUtenti::HUtenti(QWidget *parent) :
     QWidget(parent),
@@ -213,10 +214,17 @@ void HUtenti::hidesubclienti()
 
 void HUtenti::on_pushButton_3_clicked()
 {
-   save();
+   if(save())
+   {
+       QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
+   }
+   else
+   {
+       QMessageBox::warning(this,QApplication::applicationName(),"ERRORE!!! Contattare l'assistenza",QMessageBox::Ok);
+   }
 }
 
-void HUtenti::save()
+bool HUtenti::save()
 {
     db.transaction();
 

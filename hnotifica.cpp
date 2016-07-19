@@ -12,12 +12,12 @@ HNotifica::HNotifica(QWidget *parent, int id, QSqlDatabase pdb) :
     idnotifica=id;
     QSqlQuery q(db);
     QString sql;
-    sql = "SELECT descrizione FROM notifiche where ID=:id";
+    sql = "SELECT descrizione,creatore FROM notifiche where ID=:id";
     q.prepare(sql);
     q.bindValue(":id",idnotifica);
     q.exec();
     q.first();
-    ui->label->setText(q.value(0).toString());
+    ui->label->setText(q.value(0).toString()+"\nNotifica impostata da "+ q.value(1).toString());
     q.clear();
 
 }

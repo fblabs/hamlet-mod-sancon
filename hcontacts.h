@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlTableModel>
 #include <QStringListModel>
+#include "huser.h"
 
 namespace Ui {
 class HContacts;
@@ -15,7 +16,7 @@ class HContacts : public QWidget
     Q_OBJECT
 
 public:
-    explicit HContacts(QWidget *parent = 0,QSqlDatabase pdb=QSqlDatabase());
+    explicit HContacts(QWidget *parent = 0,HUser* pusr=0,QSqlDatabase pdb=QSqlDatabase());
     ~HContacts();
 
 private slots:
@@ -38,6 +39,7 @@ private:
     QSqlDatabase db;
     QSqlTableModel *mod;
     QStringListModel *tipomod;
+    HUser *user;
 
 
 };
