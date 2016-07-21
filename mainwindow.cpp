@@ -83,53 +83,6 @@ void MainWindow::init()
 }
 
 
-/*bool MainWindow::eventFilter(QObject *target, QEvent *event)
-{
-    if (target==ui->toolButton)
-    {
-        if(event->type()==QEvent::KeyPress)
-        {
-
-            QKeyEvent *keyevent = static_cast<QKeyEvent *>(event);
-            if (keyevent->key()==Qt::Key_Enter || keyevent->key()==Qt::Key_Return)
-            {
-                login();
-            }
-            return true;
-        }
-        else
-        {
-            return QObject::eventFilter(target,event);
-        }
-    }
-    return false;
-}*/
-
-
-
-
-/*void MainWindow::userLogged(int id, int gruppo, bool update, bool updateanag, QSqlDatabase pdb)
-{
-    qDebug()<< "main->userLogged: id"+QString::number(id) << "Role: " + QString::number(gruppo);
-    QSettings settings("hamletmod");
-    sConn=settings.value("conn").toString();
-    db=pdb;
-    user= new HUser();
-    user->init(sConn);
-
-
-    user->setID(id);
-    user->setRole(gruppo);
-    user->setCanUpdate(update);
-    user->setCanUpdateAnag(updateanag);
-
-
-    enableButtonsForRole();
-    checkNotifications();
-
-
-}*/
-
 void MainWindow::userLogged(HUser* usr,QSqlDatabase pdb)
 {
     user=usr;
@@ -142,9 +95,9 @@ void MainWindow::userLogged(HUser* usr,QSqlDatabase pdb)
         bool b=db.isOpen();
         qDebug()<<"userLogged Main"<<QString::number(b);
         enableButtonsForRole();
+        checkNotifications();
     }
 }
-
 
 void MainWindow::enableUI()
 {
@@ -593,15 +546,15 @@ void MainWindow::checkNotifications()
     QSqlQuery q(db);
     QString sql="";
 
-    QString userID=QString::number(user->getID());
-    QString groupID=QString::number(user->getRole());
-    sql="SELECT ID,IDUtente,IDGruppo,descrizione from notifiche WHERE (IDUtente LIKE :userid) or (IDGruppo LIKE :groupid) and (attiva > 0) and (data >CURDATE()-interval 1 day)";
+    QString userID="'"+QString::number(user->getID())+"'";
+    QString groupID="'"+QString::number(user->getRole())+"'";
+    sql="SELECT ID,IDUtente,IDGruppo,descrizione from notifiche WHERE (IDUtente LIKE '%' ||:userid||'%') or (IDGruppo LIKE '%' ||:groupid||'%') and (attiva > 0) and (data >CURDATE()-interval 1 day)";
 
     q.prepare(sql);
     q.bindValue(":userid",userID);
     q.bindValue(":groupid",groupID);
     q.exec();
-    qDebug()<<"check: "<<q.lastQuery()<<q.lastError().text()<<q.size()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
+    qDebug()<<"check: "<<userID<<groupID<<q.lastQuery()<<q.lastError().text()<<q.size()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
 
    // if(q.size()>0)
    // {

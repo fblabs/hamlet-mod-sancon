@@ -133,6 +133,7 @@ void HAlarm::filterTargets()
     QString idsindb;
 
 
+
     if (usaidgruppo)
     {
        colonnaconids=4;
@@ -157,7 +158,7 @@ void HAlarm::filterTargets()
     number=indexes.count();
 qDebug()<<"indexes,count: "<<number;
 
-         if (number>0)
+         if (number>=1)
          {
                 filter="ID IN (";
 
@@ -187,7 +188,7 @@ qDebug()<<"indexes,count: "<<number;
     else
     {
         indexes=QStringList();
-        filter="";
+       // filter="";
     }
 
 
@@ -197,7 +198,7 @@ qDebug()<<"indexes,count: "<<number;
     lvmod->setFilter(filter);
     lvmod->select();
 
-    qDebug()<<lvmod->lastError().text()<<lvmod->query().lastQuery();
+
 
 
 
@@ -554,11 +555,12 @@ void HAlarm::on_pushButton_3_clicked()
 void HAlarm::on_pushButton_5_clicked()
 {
     //annulla
-    action="";
+    action="n";
     ui->pushButton->setEnabled(false);
     ui->pushButton_5->setEnabled(false);
 
     mod->select();
+    ui->tvMain->setCurrentIndex(ui->tvMain->model()->index(0,0));
 
     filterTargets();
     updateButtons(true,true,true,false,false);

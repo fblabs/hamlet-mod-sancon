@@ -74,7 +74,7 @@ public:
 
     void retranslateUi(QWidget *HNotifica)
     {
-        HNotifica->setWindowTitle(QApplication::translate("HNotifica", "Form", 0));
+        HNotifica->setWindowTitle(QApplication::translate("HNotifica", "Notifica", 0));
         label->setText(QString());
         pbChiudi->setText(QApplication::translate("HNotifica", "Chiudi", 0));
     } // retranslateUi
