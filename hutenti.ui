@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>862</width>
-    <height>544</height>
+    <height>508</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -180,7 +180,7 @@
            </property>
           </widget>
          </item>
-         <item row="14" column="1">
+         <item row="15" column="1">
           <widget class="QComboBox" name="cbxMasterCli">
            <property name="enabled">
             <bool>true</bool>
@@ -190,6 +190,17 @@
            </property>
            <property name="insertPolicy">
             <enum>QComboBox::NoInsert</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="16" column="1">
+          <widget class="QPushButton" name="pushButton_5">
+           <property name="text">
+            <string>Notifica</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/Resources/Chat.PNG</normaloff>:/Resources/Chat.PNG</iconset>
            </property>
           </widget>
          </item>

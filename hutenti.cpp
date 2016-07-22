@@ -19,6 +19,7 @@
 #include "huser.h"
 #include "hgroups.h"
 #include <QMessageBox>
+#include "halarm.h"
 
 HUtenti::HUtenti(QWidget *parent) :
     QWidget(parent),
@@ -56,6 +57,17 @@ void HUtenti::onConnectionNameSet()
 void HUtenti::initForm()
 {
     bool upd=user->getCanUpdateAnag();
+
+   //notifiche
+    int g=user->getRole();
+    if (g==3 || g==5)
+    {
+        ui->pushButton_5->setEnabled(true);
+    }
+    else
+    {
+        ui->pushButton_5->setEnabled(false);
+    }
 
     if(!upd)
     {
@@ -277,4 +289,7 @@ void HUtenti::on_cbxMasterCli_currentIndexChanged(int index)
 void HUtenti::on_pushButton_5_clicked()
 {
 
+    HAlarm *f=new HAlarm(0,db,user);
+
+    f->show();
 }

@@ -548,7 +548,7 @@ void MainWindow::checkNotifications()
 
     QString userID="'"+QString::number(user->getID())+"'";
     QString groupID="'"+QString::number(user->getRole())+"'";
-    sql="SELECT ID,IDUtente,IDGruppo,descrizione from notifiche WHERE (IDUtente LIKE '%' ||:userid||'%') or (IDGruppo LIKE '%' ||:groupid||'%') and (attiva > 0) and (data >CURDATE()-interval 1 day)";
+    sql="SELECT ID,IDUtente,IDGruppo,descrizione from notifiche WHERE (IDUtente LIKE '%' ||:userid||'%') or (IDGruppo LIKE '%' ||:groupid||'%') and (attiva > 0) and (data >=CURDATE())";
 
     q.prepare(sql);
     q.bindValue(":userid",userID);

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hutenti.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -64,6 +64,7 @@ public:
     QCheckBox *cbfor;
     QCheckBox *cbsub;
     QComboBox *cbxMasterCli;
+    QPushButton *pushButton_5;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
@@ -75,7 +76,7 @@ public:
         if (HUtenti->objectName().isEmpty())
             HUtenti->setObjectName(QStringLiteral("HUtenti"));
         HUtenti->setWindowModality(Qt::NonModal);
-        HUtenti->resize(862, 544);
+        HUtenti->resize(862, 508);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/User-Black.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HUtenti->setWindowIcon(icon);
@@ -232,7 +233,15 @@ public:
         cbxMasterCli->setEditable(true);
         cbxMasterCli->setInsertPolicy(QComboBox::NoInsert);
 
-        formLayout->setWidget(14, QFormLayout::FieldRole, cbxMasterCli);
+        formLayout->setWidget(15, QFormLayout::FieldRole, cbxMasterCli);
+
+        pushButton_5 = new QPushButton(HUtenti);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Chat.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon1);
+
+        formLayout->setWidget(16, QFormLayout::FieldRole, pushButton_5);
 
 
         horizontalLayout_3->addLayout(formLayout);
@@ -244,36 +253,36 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pushButton = new QPushButton(HUtenti);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon2);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton);
 
         pushButton_2 = new QPushButton(HUtenti);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon3);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
 
         pushButton_3 = new QPushButton(HUtenti);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon4);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_3);
 
         pushButton_4 = new QPushButton(HUtenti);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon5);
         pushButton_4->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_4);
@@ -308,6 +317,7 @@ public:
         cbtra->setText(QApplication::translate("HUtenti", "Trasportatore", 0));
         cbfor->setText(QApplication::translate("HUtenti", "Fornitore", 0));
         cbsub->setText(QApplication::translate("HUtenti", "Subcliente di:", 0));
+        pushButton_5->setText(QApplication::translate("HUtenti", "Notifica", 0));
         pushButton->setText(QApplication::translate("HUtenti", "Nuovo", 0));
         pushButton_2->setText(QApplication::translate("HUtenti", "Annulla", 0));
         pushButton_3->setText(QApplication::translate("HUtenti", "Salva", 0));
