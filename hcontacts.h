@@ -34,6 +34,8 @@ private slots:
 
     void on_pushButton_6_clicked();
 
+    void on_lineEdit_3_textChanged(const QString &arg1);
+
 private:
     Ui::HContacts *ui;
     QSqlDatabase db;

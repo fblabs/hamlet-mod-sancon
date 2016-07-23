@@ -23,6 +23,7 @@
 #include <QtWidgets/QListView>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -31,13 +32,24 @@ QT_BEGIN_NAMESPACE
 class Ui_HContacts
 {
 public:
+    QVBoxLayout *verticalLayout_7;
+    QVBoxLayout *verticalLayout_6;
+    QHBoxLayout *horizontalLayout_3;
+    QVBoxLayout *verticalLayout_5;
+    QListView *lvMain;
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout;
-    QListView *lvMain;
+    QLabel *label_10;
+    QRadioButton *rbNome;
+    QRadioButton *rbFiera;
+    QLineEdit *lineEdit_3;
     QVBoxLayout *verticalLayout_3;
     QFormLayout *formLayout_2;
     QLabel *label;
     QLineEdit *leNome;
+    QFormLayout *formLayout_7;
+    QLabel *label_8;
+    QPlainTextEdit *peRecapito;
     QFormLayout *formLayout;
     QLabel *label_2;
     QLineEdit *leReferente;
@@ -47,6 +59,9 @@ public:
     QFormLayout *formLayout_3;
     QLabel *label_3;
     QComboBox *cbTipo;
+    QFormLayout *formLayout_8;
+    QLabel *label_9;
+    QLineEdit *leFiera;
     QFormLayout *formLayout_4;
     QLabel *label_4;
     QComboBox *cbEtichetta;
@@ -71,14 +86,18 @@ public:
     {
         if (HContacts->objectName().isEmpty())
             HContacts->setObjectName(QStringLiteral("HContacts"));
-        HContacts->resize(1022, 600);
+        HContacts->resize(1097, 678);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/user-group-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HContacts->setWindowIcon(icon);
-        verticalLayout_4 = new QVBoxLayout(HContacts);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        verticalLayout_7 = new QVBoxLayout(HContacts);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        verticalLayout_6 = new QVBoxLayout();
+        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         lvMain = new QListView(HContacts);
         lvMain->setObjectName(QStringLiteral("lvMain"));
         lvMain->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -86,7 +105,41 @@ public:
         lvMain->setModelColumn(0);
         lvMain->setSelectionRectVisible(true);
 
-        horizontalLayout->addWidget(lvMain);
+        verticalLayout_5->addWidget(lvMain);
+
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        label_10 = new QLabel(HContacts);
+        label_10->setObjectName(QStringLiteral("label_10"));
+
+        horizontalLayout->addWidget(label_10);
+
+        rbNome = new QRadioButton(HContacts);
+        rbNome->setObjectName(QStringLiteral("rbNome"));
+        rbNome->setChecked(true);
+
+        horizontalLayout->addWidget(rbNome);
+
+        rbFiera = new QRadioButton(HContacts);
+        rbFiera->setObjectName(QStringLiteral("rbFiera"));
+
+        horizontalLayout->addWidget(rbFiera);
+
+
+        verticalLayout_4->addLayout(horizontalLayout);
+
+        lineEdit_3 = new QLineEdit(HContacts);
+        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+
+        verticalLayout_4->addWidget(lineEdit_3);
+
+
+        verticalLayout_5->addLayout(verticalLayout_4);
+
+
+        horizontalLayout_3->addLayout(verticalLayout_5);
 
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
@@ -104,6 +157,21 @@ public:
 
 
         verticalLayout_3->addLayout(formLayout_2);
+
+        formLayout_7 = new QFormLayout();
+        formLayout_7->setObjectName(QStringLiteral("formLayout_7"));
+        label_8 = new QLabel(HContacts);
+        label_8->setObjectName(QStringLiteral("label_8"));
+
+        formLayout_7->setWidget(0, QFormLayout::LabelRole, label_8);
+
+        peRecapito = new QPlainTextEdit(HContacts);
+        peRecapito->setObjectName(QStringLiteral("peRecapito"));
+
+        formLayout_7->setWidget(0, QFormLayout::FieldRole, peRecapito);
+
+
+        verticalLayout_3->addLayout(formLayout_7);
 
         formLayout = new QFormLayout();
         formLayout->setObjectName(QStringLiteral("formLayout"));
@@ -150,6 +218,21 @@ public:
 
 
         verticalLayout_3->addLayout(formLayout_3);
+
+        formLayout_8 = new QFormLayout();
+        formLayout_8->setObjectName(QStringLiteral("formLayout_8"));
+        label_9 = new QLabel(HContacts);
+        label_9->setObjectName(QStringLiteral("label_9"));
+
+        formLayout_8->setWidget(0, QFormLayout::LabelRole, label_9);
+
+        leFiera = new QLineEdit(HContacts);
+        leFiera->setObjectName(QStringLiteral("leFiera"));
+
+        formLayout_8->setWidget(0, QFormLayout::FieldRole, leFiera);
+
+
+        verticalLayout_3->addLayout(formLayout_8);
 
         formLayout_4 = new QFormLayout();
         formLayout_4->setObjectName(QStringLiteral("formLayout_4"));
@@ -221,10 +304,10 @@ public:
         verticalLayout_3->addLayout(verticalLayout_2);
 
 
-        horizontalLayout->addLayout(verticalLayout_3);
+        horizontalLayout_3->addLayout(verticalLayout_3);
 
 
-        verticalLayout_4->addLayout(horizontalLayout);
+        verticalLayout_6->addLayout(horizontalLayout_3);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
@@ -274,7 +357,10 @@ public:
         horizontalLayout_2->addWidget(pushButton_4);
 
 
-        verticalLayout_4->addLayout(horizontalLayout_2);
+        verticalLayout_6->addLayout(horizontalLayout_2);
+
+
+        verticalLayout_7->addLayout(verticalLayout_6);
 
 
         retranslateUi(HContacts);
@@ -285,10 +371,15 @@ public:
     void retranslateUi(QWidget *HContacts)
     {
         HContacts->setWindowTitle(QApplication::translate("HContacts", "Contatti", 0));
+        label_10->setText(QApplication::translate("HContacts", "Cerca:", 0));
+        rbNome->setText(QApplication::translate("HContacts", "Nome", 0));
+        rbFiera->setText(QApplication::translate("HContacts", "Fiera", 0));
         label->setText(QApplication::translate("HContacts", "Nome:", 0));
+        label_8->setText(QApplication::translate("HContacts", "Recapito:", 0));
         label_2->setText(QApplication::translate("HContacts", "Referente:", 0));
         label_7->setText(QApplication::translate("HContacts", "Area:", 0));
         label_3->setText(QApplication::translate("HContacts", "Tipo:", 0));
+        label_9->setText(QApplication::translate("HContacts", "Fiera:", 0));
         label_4->setText(QApplication::translate("HContacts", "Etichetta:", 0));
         cbImport->setText(QApplication::translate("HContacts", "Importa da Italia", 0));
         cbFoto->setText(QApplication::translate("HContacts", "Foto", 0));

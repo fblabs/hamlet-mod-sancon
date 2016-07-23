@@ -7,6 +7,8 @@
 #include <QSqlQuery>
 #include <QDataWidgetMapper>
 #include "halarm.h"
+#include <QDebug>
+#include <QSqlError>
 
 HContacts::HContacts(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     QWidget(parent),
@@ -78,14 +80,19 @@ HContacts::HContacts(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     QDataWidgetMapper *map=new QDataWidgetMapper();
     map->setModel(mod);
     map->addMapping(ui->leNome,1);
-    map->addMapping(ui->leArea,2);
-    map->addMapping(ui->leReferente,4);
-    map->addMapping(ui->cbImport,7);
-    map->addMapping(ui->teInterests,8);
-    map->addMapping(ui->teAssaggi,9);
-    map->addMapping(ui->cbTipo,3,"currentText");
-    map->addMapping(ui->cbEtichetta,5,"currentText");
-    map->addMapping(ui->cbFoto,10);
+    map->addMapping(ui->peRecapito,2);
+    map->addMapping(ui->leArea,3);
+    map->addMapping(ui->cbTipo,4,"currentText");
+    map->addMapping(ui->leFiera,5);
+    map->addMapping(ui->leReferente,6);
+    map->addMapping(ui->cbEtichetta,7,"currentText");
+    map->addMapping(ui->cbImport,8);
+    map->addMapping(ui->teInterests,9);
+    map->addMapping(ui->teAssaggi,10);
+    map->addMapping(ui->cbFoto,11);
+
+
+
     map->toFirst();
 
     connect(ui->lvMain->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),map,SLOT(setCurrentModelIndex(QModelIndex)));
@@ -163,4 +170,22 @@ void HContacts::on_pushButton_6_clicked()
 {
     HAlarm *f=new HAlarm(0,db,user);
     f->show();
+}
+
+void HContacts::on_lineEdit_3_textChanged(const QString &arg1)
+{
+   QString filter;
+
+   if (ui->rbNome->isChecked())
+   {
+       filter="nome like '%"+arg1+"%'";
+   }
+   else
+   {
+       filter ="fiera like '%"+arg1+"%'";
+   }
+
+   qDebug()<<filter<<mod->query().lastError().text();
+
+   mod->setFilter(filter);
 }

@@ -20,6 +20,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
@@ -30,13 +31,19 @@ QT_BEGIN_NAMESPACE
 class Ui_HNewContact
 {
 public:
+    QVBoxLayout *verticalLayout_5;
+    QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout_3;
+    QFormLayout *formLayout_6;
+    QLabel *label_8;
+    QLineEdit *leFiera;
     QFormLayout *formLayout;
     QLabel *label;
     QLineEdit *leNome;
     QFormLayout *formLayout_5;
     QLabel *label_7;
     QLineEdit *leArea;
+    QHBoxLayout *horizontalLayout_2;
     QCheckBox *cbImport;
     QCheckBox *cbFoto;
     QFormLayout *formLayout_2;
@@ -48,6 +55,9 @@ public:
     QFormLayout *formLayout_4;
     QLabel *label_4;
     QComboBox *cbEtichetta;
+    QVBoxLayout *verticalLayout_4;
+    QLabel *label_9;
+    QPlainTextEdit *peRecapito;
     QVBoxLayout *verticalLayout;
     QLabel *label_5;
     QTextEdit *teInterests;
@@ -62,12 +72,31 @@ public:
     {
         if (HNewContact->objectName().isEmpty())
             HNewContact->setObjectName(QStringLiteral("HNewContact"));
-        HNewContact->resize(741, 538);
+        HNewContact->resize(1118, 990);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/user-group-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HNewContact->setWindowIcon(icon);
-        verticalLayout_3 = new QVBoxLayout(HNewContact);
+        verticalLayout_5 = new QVBoxLayout(HNewContact);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        formLayout_6 = new QFormLayout();
+        formLayout_6->setObjectName(QStringLiteral("formLayout_6"));
+        label_8 = new QLabel(HNewContact);
+        label_8->setObjectName(QStringLiteral("label_8"));
+
+        formLayout_6->setWidget(0, QFormLayout::LabelRole, label_8);
+
+        leFiera = new QLineEdit(HNewContact);
+        leFiera->setObjectName(QStringLiteral("leFiera"));
+
+        formLayout_6->setWidget(0, QFormLayout::FieldRole, leFiera);
+
+
+        verticalLayout_3->addLayout(formLayout_6);
+
         formLayout = new QFormLayout();
         formLayout->setObjectName(QStringLiteral("formLayout"));
         label = new QLabel(HNewContact);
@@ -98,15 +127,20 @@ public:
 
         verticalLayout_3->addLayout(formLayout_5);
 
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         cbImport = new QCheckBox(HNewContact);
         cbImport->setObjectName(QStringLiteral("cbImport"));
 
-        verticalLayout_3->addWidget(cbImport);
+        horizontalLayout_2->addWidget(cbImport);
 
         cbFoto = new QCheckBox(HNewContact);
         cbFoto->setObjectName(QStringLiteral("cbFoto"));
 
-        verticalLayout_3->addWidget(cbFoto);
+        horizontalLayout_2->addWidget(cbFoto);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_2);
 
         formLayout_2 = new QFormLayout();
         formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
@@ -155,6 +189,27 @@ public:
 
         verticalLayout_3->addLayout(formLayout_4);
 
+
+        horizontalLayout_3->addLayout(verticalLayout_3);
+
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        label_9 = new QLabel(HNewContact);
+        label_9->setObjectName(QStringLiteral("label_9"));
+
+        verticalLayout_4->addWidget(label_9);
+
+        peRecapito = new QPlainTextEdit(HNewContact);
+        peRecapito->setObjectName(QStringLiteral("peRecapito"));
+
+        verticalLayout_4->addWidget(peRecapito);
+
+
+        horizontalLayout_3->addLayout(verticalLayout_4);
+
+
+        verticalLayout_5->addLayout(horizontalLayout_3);
+
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label_5 = new QLabel(HNewContact);
@@ -168,7 +223,7 @@ public:
         verticalLayout->addWidget(teInterests);
 
 
-        verticalLayout_3->addLayout(verticalLayout);
+        verticalLayout_5->addLayout(verticalLayout);
 
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
@@ -183,7 +238,7 @@ public:
         verticalLayout_2->addWidget(teAssaggi);
 
 
-        verticalLayout_3->addLayout(verticalLayout_2);
+        verticalLayout_5->addLayout(verticalLayout_2);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -206,7 +261,7 @@ public:
         horizontalLayout->addWidget(pushButton_2);
 
 
-        verticalLayout_3->addLayout(horizontalLayout);
+        verticalLayout_5->addLayout(horizontalLayout);
 
 
         retranslateUi(HNewContact);
@@ -217,6 +272,7 @@ public:
     void retranslateUi(QWidget *HNewContact)
     {
         HNewContact->setWindowTitle(QApplication::translate("HNewContact", "Nuovo Contatto", 0));
+        label_8->setText(QApplication::translate("HNewContact", "Fiera:", 0));
         label->setText(QApplication::translate("HNewContact", "Nome:", 0));
         label_7->setText(QApplication::translate("HNewContact", "Area:", 0));
         cbImport->setText(QApplication::translate("HNewContact", "Importa da italia", 0));
@@ -224,6 +280,7 @@ public:
         label_2->setText(QApplication::translate("HNewContact", "Referente:", 0));
         label_3->setText(QApplication::translate("HNewContact", "Tipo:", 0));
         label_4->setText(QApplication::translate("HNewContact", "Etichetta:", 0));
+        label_9->setText(QApplication::translate("HNewContact", "Recapito:", 0));
         label_5->setText(QApplication::translate("HNewContact", "Intereressati a:", 0));
         label_6->setText(QApplication::translate("HNewContact", "Assaggi:", 0));
         pushButton->setText(QApplication::translate("HNewContact", "Salva", 0));

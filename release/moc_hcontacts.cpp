@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HContacts_t {
-    QByteArrayData data[9];
-    char stringdata0[150];
+    QByteArrayData data[11];
+    char stringdata0[181];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,13 +37,16 @@ QT_MOC_LITERAL(4, 57, 23), // "on_pushButton_5_clicked"
 QT_MOC_LITERAL(5, 81, 13), // "removeContact"
 QT_MOC_LITERAL(6, 95, 23), // "on_pushButton_2_clicked"
 QT_MOC_LITERAL(7, 119, 6), // "reload"
-QT_MOC_LITERAL(8, 126, 23) // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(8, 126, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(9, 150, 25), // "on_lineEdit_3_textChanged"
+QT_MOC_LITERAL(10, 176, 4) // "arg1"
 
     },
     "HContacts\0on_pushButton_4_clicked\0\0"
     "on_pushButton_clicked\0on_pushButton_5_clicked\0"
     "removeContact\0on_pushButton_2_clicked\0"
-    "reload\0on_pushButton_6_clicked"
+    "reload\0on_pushButton_6_clicked\0"
+    "on_lineEdit_3_textChanged\0arg1"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,7 +56,7 @@ static const uint qt_meta_data_HContacts[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,13 +64,14 @@ static const uint qt_meta_data_HContacts[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x08 /* Private */,
-       3,    0,   50,    2, 0x08 /* Private */,
-       4,    0,   51,    2, 0x08 /* Private */,
-       5,    0,   52,    2, 0x08 /* Private */,
-       6,    0,   53,    2, 0x08 /* Private */,
-       7,    0,   54,    2, 0x08 /* Private */,
-       8,    0,   55,    2, 0x08 /* Private */,
+       1,    0,   54,    2, 0x08 /* Private */,
+       3,    0,   55,    2, 0x08 /* Private */,
+       4,    0,   56,    2, 0x08 /* Private */,
+       5,    0,   57,    2, 0x08 /* Private */,
+       6,    0,   58,    2, 0x08 /* Private */,
+       7,    0,   59,    2, 0x08 /* Private */,
+       8,    0,   60,    2, 0x08 /* Private */,
+       9,    1,   61,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -77,6 +81,7 @@ static const uint qt_meta_data_HContacts[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   10,
 
        0        // eod
 };
@@ -95,6 +100,7 @@ void HContacts::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 4: _t->on_pushButton_2_clicked(); break;
         case 5: _t->reload(); break;
         case 6: _t->on_pushButton_6_clicked(); break;
+        case 7: _t->on_lineEdit_3_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -125,13 +131,13 @@ int HContacts::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

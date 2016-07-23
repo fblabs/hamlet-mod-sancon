@@ -87,15 +87,16 @@ bool HNewContact::saveNewContact()
     QString sql;
     bool b=false;
 
-    sql="INSERT INTO contatti(nome,area,tipo,referente,etichetta,prodotti,import,interesse,assaggi,foto)VALUES(:nome,:area,:tipo,:referente,:etichetta,:prodotti,:import,:interesse,:assaggi,:foto)";
+    sql="INSERT INTO contatti(nome,recapito,area,tipo,fiera,referente,etichetta,import,interesse,assaggi,foto)VALUES(:nome,:recapito,:area,:tipo,:fiera,:referente,:etichetta,:import,:interesse,:assaggi,:foto)";
     q.prepare(sql);
 
     q.bindValue(":nome",ui->leNome->text());
+    q.bindValue(":recapito",ui->peRecapito->toPlainText());
     q.bindValue(":area",ui->leArea->text());
     q.bindValue(":tipo",ui->cbTipo->currentText());
+    q.bindValue(":fiera",ui->leFiera->text());
     q.bindValue(":referente",ui->leReferente->text());
     q.bindValue(":etichetta",ui->cbEtichetta->currentText());
-    q.bindValue(":prodotti",ui->teAssaggi->toPlainText());
     q.bindValue(":import",ui->cbImport->isChecked()?1:0);
     q.bindValue(":interesse",ui->teInterests->toPlainText());
     q.bindValue(":assaggi",ui->teAssaggi->toPlainText());
