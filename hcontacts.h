@@ -36,6 +36,8 @@ private slots:
 
     void on_lineEdit_3_textChanged(const QString &arg1);
 
+    void on_rbNome_toggled(bool checked);
+
 private:
     Ui::HContacts *ui;
     QSqlDatabase db;

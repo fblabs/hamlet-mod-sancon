@@ -176,6 +176,8 @@ void HContacts::on_lineEdit_3_textChanged(const QString &arg1)
 {
    QString filter;
 
+
+
    if (ui->rbNome->isChecked())
    {
        filter="nome like '%"+arg1+"%'";
@@ -188,4 +190,11 @@ void HContacts::on_lineEdit_3_textChanged(const QString &arg1)
    qDebug()<<filter<<mod->query().lastError().text();
 
    mod->setFilter(filter);
+
+
+}
+
+void HContacts::on_rbNome_toggled(bool checked)
+{
+    ui->lineEdit_3->setText("");
 }

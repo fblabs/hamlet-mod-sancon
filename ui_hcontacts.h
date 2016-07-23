@@ -21,6 +21,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListView>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
@@ -37,6 +38,7 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout_5;
     QListView *lvMain;
+    QListWidget *listWidget;
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout;
     QLabel *label_10;
@@ -107,6 +109,11 @@ public:
 
         verticalLayout_5->addWidget(lvMain);
 
+        listWidget = new QListWidget(HContacts);
+        listWidget->setObjectName(QStringLiteral("listWidget"));
+
+        verticalLayout_5->addWidget(listWidget);
+
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         horizontalLayout = new QHBoxLayout();
@@ -132,6 +139,7 @@ public:
 
         lineEdit_3 = new QLineEdit(HContacts);
         lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+        lineEdit_3->setClearButtonEnabled(true);
 
         verticalLayout_4->addWidget(lineEdit_3);
 
