@@ -546,24 +546,31 @@ void MainWindow::checkNotifications()
     QSqlQuery q(db);
     QString sql="";
 
-    QString userID="'"+QString::number(user->getID())+"'";
-    QString groupID="'"+QString::number(user->getRole())+"'";
-    sql="SELECT ID,IDUtente,IDGruppo,descrizione from notifiche WHERE (IDUtente LIKE '%' ||:userid||'%') or (IDGruppo LIKE '%' ||:groupid||'%') and (attiva > 0) and (data >=CURDATE())";
+    int userID=user->getID(); // l'utente corrente
+    int groupID=user->getRole(); // il gruppo dell'utente corrente
+
+    qDebug()<<userID<<groupID;
+
+
+    sql="SELECT ID,IDUtente,IDGruppo,descrizione from notifiche WHERE (IDUtente LIKE CONCAT('%',:userid,'%')) or (IDGruppo LIKE CONCAT('%',:groupid,'%')) and (attiva > 0) and (data >=CURDATE())";
+
 
     q.prepare(sql);
     q.bindValue(":userid",userID);
     q.bindValue(":groupid",groupID);
-    q.exec();
-    qDebug()<<"check: "<<userID<<groupID<<q.lastQuery()<<q.lastError().text()<<q.size()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
-
-   // if(q.size()>0)
-   // {
-        while (q.next())
+    bool b=q.exec();
+    qDebug()<<"check: "<<userID<<groupID<<q.lastQuery()<<q.lastError().text()<<"size:"<<q.size();
+    if(b)
+    {
+     qDebug()<<"b:true"<<q.lastError().text();
+    while (q.next())
         {
+        qDebug()<<"check open form: "<<q.value(1).toString();
         HNotifica *f= new HNotifica(0,q.value(0).toInt(),db);
         f->show();
         }
-   // }
+    }
+
 }
 
 

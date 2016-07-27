@@ -54,10 +54,10 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QRadioButton *rbGroup;
     QRadioButton *rbUser;
+    QListView *lvTarget;
     QFormLayout *formLayout_2;
     QLabel *label;
     QLineEdit *leCreator;
-    QListView *lvTarget;
     QVBoxLayout *verticalLayout_3;
     QLabel *label_5;
     QPlainTextEdit *ptDescrizione;
@@ -173,6 +173,16 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_3);
 
+        lvTarget = new QListView(HAlarm);
+        lvTarget->setObjectName(QStringLiteral("lvTarget"));
+        lvTarget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        lvTarget->setAlternatingRowColors(true);
+        lvTarget->setSelectionMode(QAbstractItemView::ExtendedSelection);
+        lvTarget->setSelectionBehavior(QAbstractItemView::SelectRows);
+        lvTarget->setViewMode(QListView::ListMode);
+
+        verticalLayout->addWidget(lvTarget);
+
         formLayout_2 = new QFormLayout();
         formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
         label = new QLabel(HAlarm);
@@ -189,16 +199,6 @@ public:
 
 
         verticalLayout->addLayout(formLayout_2);
-
-        lvTarget = new QListView(HAlarm);
-        lvTarget->setObjectName(QStringLiteral("lvTarget"));
-        lvTarget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        lvTarget->setAlternatingRowColors(true);
-        lvTarget->setSelectionMode(QAbstractItemView::ExtendedSelection);
-        lvTarget->setSelectionBehavior(QAbstractItemView::SelectRows);
-        lvTarget->setViewMode(QListView::ListMode);
-
-        verticalLayout->addWidget(lvTarget);
 
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
