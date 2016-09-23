@@ -60,6 +60,7 @@ public:
     QToolButton *tbUtenti;
     QToolButton *tbSettings;
     QPushButton *pbCkeckNotifications;
+    QPushButton *pbVerifyLabels;
     QLabel *label_6;
 
     void setupUi(QMainWindow *MainWindow)
@@ -474,6 +475,14 @@ public:
 
         gridLayout->addWidget(pbCkeckNotifications, 6, 0, 1, 1);
 
+        pbVerifyLabels = new QPushButton(centralWidget);
+        pbVerifyLabels->setObjectName(QStringLiteral("pbVerifyLabels"));
+        pbVerifyLabels->setEnabled(false);
+        pbVerifyLabels->setIcon(icon10);
+        pbVerifyLabels->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(pbVerifyLabels, 8, 7, 1, 1);
+
 
         verticalLayout_4->addLayout(gridLayout);
 
@@ -497,11 +506,11 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 1.5.8.1", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 1.5.9", 0));
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600;\">Hamlet Mod</span></p><p><span style=\" font-size:14pt; font-weight:600;\">Versione: 1.5.8.1</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">FBLABS 2015-2016</span></p></body></html>", 0));
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600;\">Hamlet Mod</span></p><p><span style=\" font-size:14pt; font-weight:600;\">Versione: 1.5.9</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">FBLABS 2015-2016</span></p></body></html>", 0));
         label_5->setText(QString());
         pbPackages->setText(QApplication::translate("MainWindow", "Packages", 0));
         tbLotti->setText(QApplication::translate("MainWindow", "Lotti", 0));
@@ -528,6 +537,7 @@ public:
         tbUtenti->setText(QApplication::translate("MainWindow", "Utenti", 0));
         tbSettings->setText(QApplication::translate("MainWindow", "Impostazioni   ", 0));
         pbCkeckNotifications->setText(QApplication::translate("MainWindow", "Verifica notifiche", 0));
+        pbVerifyLabels->setText(QApplication::translate("MainWindow", "Verifica etichette", 0));
         label_6->setText(QString());
     } // retranslateUi
 

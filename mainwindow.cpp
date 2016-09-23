@@ -21,7 +21,6 @@
 #include "hnuovaoperazione.h"
 #include "hanalyze_a.h"
 #include "hgestioneutenti.h"
-#include "hschedeclienti.h"
 #include "hassociazioni.h"
 #include "hproduction.h"
 #include "hprodottinew.h"
@@ -35,6 +34,10 @@
 #include <QProcess>
 #include "halarm.h"
 #include "hnotifica.h"
+#include "hverifylabels.h"
+#include "hschedeclienti.h"
+
+
 
 #include <QDebug>
 
@@ -142,6 +145,7 @@ void MainWindow::disableUI()
     ui->pbContacts->setEnabled(false);
     ui->pbNotifiche->setEnabled(false);
     ui->pbCkeckNotifications->setEnabled(false);
+    ui->pbVerifyLabels->setEnabled(false);
 }
 
 void MainWindow::enableButtonsForRole()
@@ -158,6 +162,8 @@ void MainWindow::enableButtonsForRole()
     int rol=user->getRole();
 
     //// qDebug()<<QString::number(rol);
+
+    ui->pbVerifyLabels->setEnabled(true);
 
     switch(user->getRole())
     {
@@ -552,6 +558,8 @@ void MainWindow::checkNotifications()
     qDebug()<<userID<<groupID;
 
 
+
+
     sql="SELECT ID,IDUtente,IDGruppo,descrizione from notifiche WHERE (IDUtente LIKE CONCAT('%',:userid,'%')) or (IDGruppo LIKE CONCAT('%',:groupid,'%')) and (attiva > 0) and (data >=CURDATE())";
 
 
@@ -577,4 +585,10 @@ void MainWindow::checkNotifications()
 void MainWindow::on_pbCkeckNotifications_clicked()
 {
      checkNotifications();
+}
+
+void MainWindow::on_pbVerifyLabels_clicked()
+{
+    HVerifyLabels *f = new HVerifyLabels();
+    f->show();
 }

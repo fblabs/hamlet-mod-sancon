@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hlogin2.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -106,7 +106,6 @@ public:
         icon1.addFile(QStringLiteral(":/Resources/Key.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon1);
         pushButton->setAutoExclusive(false);
-        pushButton->setDefault(true);
 
         horizontalLayout->addWidget(pushButton);
 
@@ -126,6 +125,9 @@ public:
 
 
         retranslateUi(HLogin2);
+
+        pushButton->setDefault(true);
+
 
         QMetaObject::connectSlotsByName(HLogin2);
     } // setupUi

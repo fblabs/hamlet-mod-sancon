@@ -40,6 +40,7 @@ INPUT(
 ./release/hnewcontact.o
 ./release/halarm.o
 ./release/hnotifica.o
+./release/hverifylabels.o
 ./release/qrc_icons.o
 ./release/qrc_graphical.o
 ./release/moc_mainwindow.o
@@ -81,4 +82,5 @@ INPUT(
 ./release/moc_hnewcontact.o
 ./release/moc_halarm.o
 ./release/moc_hnotifica.o
+./release/moc_hverifylabels.o
 );

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hprint.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -30,17 +29,14 @@ class Ui_HPrint
 public:
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
-    QTextEdit *textEdit;
-    QFormLayout *formLayout_3;
+    QHBoxLayout *horizontalLayout_2;
     QLabel *label_3;
     QSpinBox *spCharSize;
-    QHBoxLayout *horizontalLayout_2;
-    QFormLayout *formLayout;
     QLabel *label;
     QSpinBox *sbW;
-    QFormLayout *formLayout_2;
     QLabel *label_2;
     QSpinBox *sbH;
+    QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbant;
     QPushButton *pushButton_2;
@@ -64,6 +60,60 @@ public:
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
+        label_3 = new QLabel(HPrint);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setMaximumSize(QSize(100, 16777215));
+
+        horizontalLayout_2->addWidget(label_3);
+
+        spCharSize = new QSpinBox(HPrint);
+        spCharSize->setObjectName(QStringLiteral("spCharSize"));
+        spCharSize->setMaximumSize(QSize(50, 16777215));
+        spCharSize->setMinimum(5);
+        spCharSize->setMaximum(20);
+        spCharSize->setValue(10);
+
+        horizontalLayout_2->addWidget(spCharSize);
+
+        label = new QLabel(HPrint);
+        label->setObjectName(QStringLiteral("label"));
+        label->setMaximumSize(QSize(100, 16777215));
+
+        horizontalLayout_2->addWidget(label);
+
+        sbW = new QSpinBox(HPrint);
+        sbW->setObjectName(QStringLiteral("sbW"));
+        sbW->setMaximumSize(QSize(80, 16777215));
+        sbW->setMinimum(30);
+        sbW->setMaximum(800);
+        sbW->setSingleStep(10);
+        sbW->setValue(100);
+
+        horizontalLayout_2->addWidget(sbW);
+
+        label_2 = new QLabel(HPrint);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setMaximumSize(QSize(100, 16777215));
+        label_2->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+
+        horizontalLayout_2->addWidget(label_2);
+
+        sbH = new QSpinBox(HPrint);
+        sbH->setObjectName(QStringLiteral("sbH"));
+        sbH->setMaximumSize(QSize(80, 16777215));
+        sbH->setMinimum(30);
+        sbH->setMaximum(800);
+        sbH->setSingleStep(10);
+        sbH->setValue(100);
+
+        horizontalLayout_2->addWidget(sbH);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
+
         textEdit = new QTextEdit(HPrint);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -79,67 +129,6 @@ public:
         textEdit->setReadOnly(true);
 
         verticalLayout->addWidget(textEdit);
-
-        formLayout_3 = new QFormLayout();
-        formLayout_3->setObjectName(QStringLiteral("formLayout_3"));
-        label_3 = new QLabel(HPrint);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setMaximumSize(QSize(16777215, 16777215));
-
-        formLayout_3->setWidget(1, QFormLayout::LabelRole, label_3);
-
-        spCharSize = new QSpinBox(HPrint);
-        spCharSize->setObjectName(QStringLiteral("spCharSize"));
-        spCharSize->setMaximumSize(QSize(50, 16777215));
-        spCharSize->setValue(10);
-
-        formLayout_3->setWidget(1, QFormLayout::FieldRole, spCharSize);
-
-
-        verticalLayout->addLayout(formLayout_3);
-
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        formLayout = new QFormLayout();
-        formLayout->setObjectName(QStringLiteral("formLayout"));
-        label = new QLabel(HPrint);
-        label->setObjectName(QStringLiteral("label"));
-
-        formLayout->setWidget(0, QFormLayout::LabelRole, label);
-
-        sbW = new QSpinBox(HPrint);
-        sbW->setObjectName(QStringLiteral("sbW"));
-        sbW->setMinimum(30);
-        sbW->setMaximum(800);
-        sbW->setSingleStep(10);
-        sbW->setValue(100);
-
-        formLayout->setWidget(0, QFormLayout::FieldRole, sbW);
-
-
-        horizontalLayout_2->addLayout(formLayout);
-
-        formLayout_2 = new QFormLayout();
-        formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
-        label_2 = new QLabel(HPrint);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        formLayout_2->setWidget(0, QFormLayout::LabelRole, label_2);
-
-        sbH = new QSpinBox(HPrint);
-        sbH->setObjectName(QStringLiteral("sbH"));
-        sbH->setMinimum(30);
-        sbH->setMaximum(800);
-        sbH->setSingleStep(10);
-        sbH->setValue(100);
-
-        formLayout_2->setWidget(0, QFormLayout::FieldRole, sbH);
-
-
-        horizontalLayout_2->addLayout(formLayout_2);
-
-
-        verticalLayout->addLayout(horizontalLayout_2);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -185,14 +174,14 @@ public:
     void retranslateUi(QWidget *HPrint)
     {
         HPrint->setWindowTitle(QApplication::translate("HPrint", "Stampa", 0));
+        label_3->setText(QApplication::translate("HPrint", "Dimensione Caratteri:", 0));
+        label->setText(QApplication::translate("HPrint", "Larghezza immagine:", 0));
+        label_2->setText(QApplication::translate("HPrint", "Altezza immagine:", 0));
         textEdit->setHtml(QApplication::translate("HPrint", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Verdana'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8.25pt;\"><br /></p></body></html>", 0));
-        label_3->setText(QApplication::translate("HPrint", "Dimensione Caratteri:", 0));
-        label->setText(QApplication::translate("HPrint", "Larghezza immagine:", 0));
-        label_2->setText(QApplication::translate("HPrint", "Altezza immagine:", 0));
         pbant->setText(QApplication::translate("HPrint", "Anteprima di stampa", 0));
         pushButton_2->setText(QApplication::translate("HPrint", "Stampa", 0));
         pushButton->setText(QApplication::translate("HPrint", "Chiudi", 0));

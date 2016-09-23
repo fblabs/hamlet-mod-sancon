@@ -13,6 +13,7 @@
 #include <QGraphicsScene>
 #include <QBuffer>
 #include "hduplicate.h"
+#include <QGraphicsPixmapItem>
 
 HModificaScheda::HModificaScheda(QWidget *parent) :
     QDialog(parent),
@@ -63,8 +64,17 @@ void HModificaScheda::updateFile()
     QBuffer buffer(&ba);
     buffer.open(QIODevice::WriteOnly);
 
-    img = QPixmap::fromImage(*imgobj);
-    img.save(&buffer,"PNG");
+    QByteArray bc;
+    QBuffer bufferc(&bc);
+    bufferc.open(QIODevice::WriteOnly);
+
+
+
+    pixEtichetta = QPixmap::fromImage(imgEtichetta);
+    pixEtichetta.save(&buffer,"PNG");
+
+    pixCartone = QPixmap::fromImage(imgCartone);
+    pixCartone.save(&bufferc,"PNG");
 
 
 
@@ -81,11 +91,11 @@ void HModificaScheda::updateFile()
 
     if(temp.value(0).toInt()<1)
     {
-       sql="INSERT INTO schede(cliente,prodotto,olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy) values (:cliente,:prodotto,:olio,:vaso,:tappo,:etichette,:scatole,:note,:immagine,:imgx,:imgy)" ;
+       sql="INSERT INTO schede(cliente,prodotto,olio,vaso,tappo,etichette,scatole,note,immagine,imgcartone) values (:cliente,:prodotto,:olio,:vaso,:tappo,:etichette,:scatole,:note,:immagine,:imgcartone)" ;
     }
     else
     {
-      sql="UPDATE schede SET olio=:olio, vaso=:vaso,tappo=:tappo,etichette=:etichette,scatole=:scatole,note=:note,immagine=:immagine WHERE cliente=:cliente AND prodotto=:prodotto";
+      sql="UPDATE schede SET olio=:olio, vaso=:vaso,tappo=:tappo,etichette=:etichette,scatole=:scatole,note=:note,immagine=:immagine,imgcartone=:imgcartone WHERE cliente=:cliente AND prodotto=:prodotto";
 
 
     }
@@ -108,20 +118,20 @@ void HModificaScheda::updateFile()
     q.bindValue(":cliente",QVariant(idCliente));
     q.bindValue(":prodotto",QVariant(idProdotto));
     q.bindValue(":immagine",QVariant(ba));
- //   q.bindValue(":imgx",QVariant());
- //    q.bindValue(":imgy",QVariant());
+    q.bindValue(":imgcartone",QVariant(bc));
 
-//// qDebug()<<"Errore "<<q.lastError().text()<<q.lastQuery();
+
+
 
     if(q.exec())
     {
-        //// qDebug()<<q.lastQuery()<<db.lastError();
+
         QMessageBox::information(this,QApplication::applicationName(),"Scheda aggiornata",QMessageBox::Ok);
     }
     else
     {
         QMessageBox::warning(this,QApplication::applicationName(),"Errore aggiornando la scheda",QMessageBox::Ok);
-       // // qDebug()<<"Errore "<<q.lastError().text()<<q.lastQuery();
+
     }
 
 }
@@ -147,16 +157,16 @@ void HModificaScheda::reloadFile()
 
     QByteArray bytes;
     QGraphicsScene *scene;
-
-   imgobj = new QImage();
-   imgobj->fromData(bytes);
-   img = QPixmap::fromImage(*imgobj);
-   scene = new QGraphicsScene(this);
-   scene->addPixmap(img);
+/*
+  // imgobj = new QImage();
+  // imgobj->fromData(bytes);
+  // img = QPixmap::fromImage(*imgobj);
+ //  scene = new QGraphicsScene(this);
+ /  scene->addPixmap(img);
    scene->setSceneRect(img.rect());
    ui->gv->setScene(scene);
    ui->gv->setAlignment(Qt::AlignLeft);
-   ui->gv->fitInView(scene->itemsBoundingRect(),Qt::IgnoreAspectRatio);
+   ui->gv->fitInView(scene->itemsBoundingRect(),Qt::IgnoreAspectRatio);*/
 
 
 }
@@ -187,7 +197,7 @@ void HModificaScheda::on_pushButton_2_clicked()
 void  HModificaScheda::loadScheda()
 {
 
-    QString sql="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy from schede where cliente=:idcliente and prodotto=:idprodotto";
+    QString sql="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy,imgcartone from schede where cliente=:idcliente and prodotto=:idprodotto";
     QSqlQuery q(db);
     q.prepare(sql);
     q.bindValue(":idcliente",idCliente);
@@ -213,34 +223,46 @@ void  HModificaScheda::loadScheda()
     QByteArray bytes;
     bytes=q.value(6).toByteArray();
 
+    QByteArray bytesc;
+    bytesc=q.value(9).toByteArray();
+
 
     QGraphicsScene *scene;
-
-    imgobj = new QImage();
-    imgobj->loadFromData(bytes);
-
-
-    img = QPixmap::fromImage(*imgobj).scaled(200,100);
-
-
-
     scene = new QGraphicsScene(this);
-    scene->addPixmap(img.scaled(200,100));
 
 
+    imgCartone.loadFromData(bytesc);
+    imgEtichetta.loadFromData(bytes);
 
-    QRect r=img.rect();
-    r.setHeight(200);
-    r.setWidth(100);
+    QGraphicsPixmapItem *itemlab = new QGraphicsPixmapItem(QPixmap::fromImage(imgEtichetta));
+    itemlab->setFlags(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable);
+    itemlab->setPos(100,150);
+    itemlab->setScale(0.25);
 
-    scene->setSceneRect(r);
 
+    scene->addItem(itemlab);
 
 
 
     ui->gv->setScene(scene);
     ui->gv->setAlignment(Qt::AlignCenter);
   //  ui->gv->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);
+
+    QGraphicsScene *imgcartscn =new QGraphicsScene(this);
+
+
+
+
+
+    QGraphicsPixmapItem *itemcart = new QGraphicsPixmapItem(QPixmap::fromImage(imgCartone));
+    itemcart->setFlags(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable);
+    itemcart->setPos(100,150);
+    itemcart->setScale(0.25);
+
+
+    imgcartscn->addItem(itemcart);
+
+    ui->gvimgcart->setScene(imgcartscn);
 
 
 }
@@ -249,26 +271,26 @@ void HModificaScheda::on_pushButton_4_clicked()
 {
    QString imagepath;
    QByteArray bytes;
-   QGraphicsScene *scene;
+   QGraphicsScene *scene =new QGraphicsScene();
 
-   imgobj = new QImage();
 
 
   imagepath = QFileDialog::getOpenFileName(this,"Apri Immagine", QDir::currentPath(),"Immagini (*.png *.jpg);;Tutti i file (*.*)",0,QFileDialog::DontUseNativeDialog);
   if (imagepath.length()>0)
   {
-  imgobj = new QImage();
-  imgobj->load(imagepath);
-  img = QPixmap::fromImage(*imgobj);
-  scene = new QGraphicsScene(this);
-  scene->addPixmap(img);
-  img=img.scaledToWidth(scene->width());
-  scene->setSceneRect(img.rect());
-  ui->gv->setScene(scene);
-  ui->gv->setAlignment(Qt::AlignCenter);
-  ui->gv->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);
-  }
+ // imgobj = new QImage();
+  imgEtichetta.load(imagepath);
+  //img = QPixmap::fromImage(imgEtichetta);
 
+  QGraphicsPixmapItem *itemlab = new QGraphicsPixmapItem(QPixmap::fromImage(imgEtichetta));
+  itemlab->setFlags(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable);
+  itemlab->setPos(100,150);
+  itemlab->setScale(0.25);
+
+  scene->addItem(itemlab);
+  ui->gv->setScene(scene);
+
+  }
 
 }
 
@@ -290,7 +312,7 @@ void HModificaScheda::update()
 
 void HModificaScheda::on_pushButton_6_clicked()
 {
-    QGraphicsScene *scene;
+  /*  QGraphicsScene *scene;
     imgobj = new QImage();
     imgobj->load("");
     img = QPixmap::fromImage(*imgobj);
@@ -299,5 +321,30 @@ void HModificaScheda::on_pushButton_6_clicked()
     scene->setSceneRect(img.rect());
     ui->gv->setScene(scene);
     ui->gv->setAlignment(Qt::AlignCenter);
-    ui->gv->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);
+    ui->gv->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);*/
+}
+
+void HModificaScheda::on_pushButton_9_clicked()
+{
+    QString imagepath;
+    QByteArray bytes;
+    QGraphicsScene *scene =new QGraphicsScene();
+
+
+
+   imagepath = QFileDialog::getOpenFileName(this,"Apri Immagine", QDir::currentPath(),"Immagini (*.png *.jpg);;Tutti i file (*.*)",0,QFileDialog::DontUseNativeDialog);
+   if (imagepath.length()>0)
+   {
+  // imgobj = new QImage();
+   imgCartone.load(imagepath);
+   //img = QPixmap::fromImage(imgEtichetta);
+
+   QGraphicsPixmapItem *item = new QGraphicsPixmapItem(QPixmap::fromImage(imgCartone));
+   item->setFlags(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable);
+   item->setPos(100,150);
+   item->setScale(0.25);
+
+   scene->addItem(item);
+   ui->gvimgcart->setScene(scene);
+   }
 }

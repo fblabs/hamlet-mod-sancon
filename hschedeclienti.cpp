@@ -1,8 +1,9 @@
-#include "hschedeclienti.h"
 #include "ui_hschedeclienti.h"
+#include "hschedeclienti.h"
+#include <QImage>
 #include <QSqlDatabase>
 #include <QSqlError>
-// #include <QDebug>
+#include <QDebug>
 #include <QCompleter>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
@@ -11,7 +12,6 @@
 #include <QTextDocument>
 #include "huser.h"
 #include "hduplicate.h"
-
 #include "hmodificascheda.h"
 
 HSchedeClienti::HSchedeClienti(QWidget *parent) :
@@ -80,7 +80,7 @@ void HSchedeClienti::init(QString conn,HUser *usr)
     connect(ui->comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
     connect(ui->comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(selectRecipesforClient()));
     connect(ui->cbSelectCriteria,SIGNAL(toggled(bool)),this,SLOT(showSubclients(bool)));
-    connect(ui->listView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(loadScheda()));
+
     connect(ui->widget,SIGNAL(imghChanged(int)),this,SLOT(setImgHeight(int)));
     connect(ui->widget,SIGNAL(imgwChanged(int)),this,SLOT(setImgWidth(int)));
 
@@ -88,6 +88,8 @@ void HSchedeClienti::init(QString conn,HUser *usr)
     //set_midcliente();
 
     selectRecipesforClient();
+
+    connect(ui->listView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(loadScheda()));
 
     ui->listView->setCurrentIndex(ui->listView->model()->index(0,0));
     ui->lvSubclienti->setVisible(false);
@@ -217,8 +219,12 @@ void HSchedeClienti::loadScheda()
 
 
 
-    QString query="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy,fontsize from schede where cliente=:idcliente and prodotto=:idprodotto";
+   //original
+    QString query="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy,fontsize,imgcartone from schede where cliente=:idcliente and prodotto=:idprodotto";
+
+
     QSqlQuery q(db);
+
 
 
    ui->widget->resetText();
@@ -228,13 +234,22 @@ void HSchedeClienti::loadScheda()
     q.bindValue(":idprodotto",QVariant(prodotto));
     q.exec();
 
-    q.first();
+    qDebug()<<q.lastQuery()<<q.lastError().text();
+
+
+
+   bool b = q.first();
+
+   if(!b)
+   {
+       return;
+   }
 
    width=q.value(7).toInt();
    height=q.value(8).toInt();
    fontsize=q.value(9).toInt();
 
-  // // qDebug()<<"loadScheda"<<fontsize;
+   qDebug()<<"loadScheda"<<fontsize;
 
    ui->widget->setFontsize(fontsize);
 
@@ -269,16 +284,24 @@ void HSchedeClienti::loadScheda()
    ui->widget->append("NOTE: "+q.value(5).toString(),false);
    ui->widget->cursorToEnd();
 
+   //load img
+
+
    QByteArray bytes;
 
    bytes=q.value(6).toByteArray();
+   width=q.value(7).toInt();
+   height=q.value(8).toInt();
   // QTextEdit*  editor =ui->widget->getViewport();
   // QTextCursor cursor(editor->document());
    QImage* imgobj = new QImage();
 
    QImage scale;
-   imgobj->loadFromData(bytes);
+   bool bimg=imgobj->loadFromData(bytes);
 
+
+   if(bimg)
+   {
  // scale=imgobj->scaled(600,300,Qt::KeepAspectRatio,Qt::FastTransformation);
  //  scale=imgobj->scaled(imgobj->width(),imgobj->height());
    scale=imgobj->scaledToWidth(800,Qt::SmoothTransformation);
@@ -290,6 +313,7 @@ void HSchedeClienti::loadScheda()
     ui->widget->append("\n",false);
 
    ui->widget->getCursor().insertImage(scale);
+   }
 
    ui->widget->cursorToEnd();
 
@@ -299,6 +323,48 @@ void HSchedeClienti::loadScheda()
 
 //
    ui->widget->resizeImage(width,height);
+
+   //imgcartone
+   QByteArray bytesc;
+
+   bytesc=q.value(10).toByteArray();
+
+   QImage* imgobjc = new QImage();
+
+   QImage scalec;
+   bool bimgc=imgobjc->loadFromData(bytesc);
+
+
+
+
+
+   if(bimgc)
+   {
+ // scale=imgobj->scaled(600,300,Qt::KeepAspectRatio,Qt::FastTransformation);
+ //  scale=imgobj->scaled(imgobj->width(),imgobj->height());
+   scalec=imgobjc->scaledToWidth(800,Qt::SmoothTransformation);
+ //  img = QPixmap::fromImage(*imgobj);
+
+  // cursor.atEnd();
+
+    ui->widget->cursorToEnd();
+    ui->widget->append("\n",false);
+
+   ui->widget->getCursor().insertImage(scalec);
+
+   qDebug()<<"bimgc: "<<bytesc.size();
+   }
+
+   ui->widget->cursorToEnd();
+
+   ui->widget->setWidth(width);
+   ui->widget->setHeight(height);
+
+
+//
+   ui->widget->resizeImage(width,height);
+
+   qDebug()<<"dopo resizeimg"<<q.lastError().text();
 
 }
 

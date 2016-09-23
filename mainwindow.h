@@ -69,6 +69,8 @@ private slots:
 
     void on_pbCkeckNotifications_clicked();
 
+    void on_pbVerifyLabels_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *ke);
 

@@ -39,6 +39,8 @@ private slots:
 
     void on_pushButton_6_clicked();
 
+    void on_pushButton_9_clicked();
+
 private:
     Ui::HModificaScheda *ui;
     QSqlDatabase db;
@@ -46,8 +48,12 @@ private:
     int idCliente;
     int idProdotto;
     QString schedaName;
-    QPixmap img;
-    QImage *imgobj;
+    QPixmap pixEtichetta;
+    QImage imgEtichetta;
+    QPixmap pixCartone;
+    QImage imgCartone;
+
+
     int imgw;
     int imgh;
 signals:

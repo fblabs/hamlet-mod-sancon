@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hmodificascheda.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -14,8 +14,8 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGraphicsView>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -28,9 +28,9 @@ QT_BEGIN_NAMESPACE
 class Ui_HModificaScheda
 {
 public:
-    QVBoxLayout *verticalLayout;
+    QVBoxLayout *verticalLayout_2;
     QLabel *leTitolo;
-    QGridLayout *gridLayout;
+    QFormLayout *formLayout;
     QLabel *label;
     QPlainTextEdit *peOlio;
     QLabel *label_2;
@@ -43,11 +43,17 @@ public:
     QPlainTextEdit *peScatole;
     QLabel *label_6;
     QPlainTextEdit *ptNote;
+    QVBoxLayout *verticalLayout;
     QLabel *label_7;
-    QGraphicsView *gv;
-    QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_4;
     QPushButton *pushButton_6;
+    QGraphicsView *gv;
+    QVBoxLayout *verticalLayout_3;
+    QLabel *label_9;
+    QPushButton *pushButton_9;
+    QPushButton *pushButton_10;
+    QGraphicsView *gvimgcart;
+    QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_5;
     QPushButton *pushButton;
     QPushButton *pushButton_3;
@@ -58,12 +64,12 @@ public:
         if (HModificaScheda->objectName().isEmpty())
             HModificaScheda->setObjectName(QStringLiteral("HModificaScheda"));
         HModificaScheda->setWindowModality(Qt::ApplicationModal);
-        HModificaScheda->resize(1024, 768);
+        HModificaScheda->resize(1271, 807);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Art-Supplies.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HModificaScheda->setWindowIcon(icon);
-        verticalLayout = new QVBoxLayout(HModificaScheda);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout_2 = new QVBoxLayout(HModificaScheda);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         leTitolo = new QLabel(HModificaScheda);
         leTitolo->setObjectName(QStringLiteral("leTitolo"));
         QFont font;
@@ -75,147 +81,177 @@ public:
         leTitolo->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
         leTitolo->setAlignment(Qt::AlignCenter);
 
-        verticalLayout->addWidget(leTitolo);
+        verticalLayout_2->addWidget(leTitolo);
 
-        gridLayout = new QGridLayout();
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        formLayout = new QFormLayout();
+        formLayout->setObjectName(QStringLiteral("formLayout"));
         label = new QLabel(HModificaScheda);
         label->setObjectName(QStringLiteral("label"));
 
-        gridLayout->addWidget(label, 0, 0, 1, 1);
+        formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
         peOlio = new QPlainTextEdit(HModificaScheda);
         peOlio->setObjectName(QStringLiteral("peOlio"));
         peOlio->setMaximumSize(QSize(16777215, 80));
 
-        gridLayout->addWidget(peOlio, 0, 1, 1, 1);
+        formLayout->setWidget(0, QFormLayout::FieldRole, peOlio);
 
         label_2 = new QLabel(HModificaScheda);
         label_2->setObjectName(QStringLiteral("label_2"));
 
-        gridLayout->addWidget(label_2, 1, 0, 1, 1);
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
 
         peVaso = new QPlainTextEdit(HModificaScheda);
         peVaso->setObjectName(QStringLiteral("peVaso"));
         peVaso->setMaximumSize(QSize(16777215, 80));
 
-        gridLayout->addWidget(peVaso, 1, 1, 1, 1);
+        formLayout->setWidget(1, QFormLayout::FieldRole, peVaso);
 
         label_3 = new QLabel(HModificaScheda);
         label_3->setObjectName(QStringLiteral("label_3"));
 
-        gridLayout->addWidget(label_3, 2, 0, 1, 1);
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
 
         peTappo = new QPlainTextEdit(HModificaScheda);
         peTappo->setObjectName(QStringLiteral("peTappo"));
         peTappo->setMaximumSize(QSize(16777215, 80));
 
-        gridLayout->addWidget(peTappo, 2, 1, 1, 1);
+        formLayout->setWidget(2, QFormLayout::FieldRole, peTappo);
 
         label_4 = new QLabel(HModificaScheda);
         label_4->setObjectName(QStringLiteral("label_4"));
 
-        gridLayout->addWidget(label_4, 3, 0, 1, 1);
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_4);
 
         peEtichette = new QPlainTextEdit(HModificaScheda);
         peEtichette->setObjectName(QStringLiteral("peEtichette"));
         peEtichette->setMaximumSize(QSize(16777215, 80));
 
-        gridLayout->addWidget(peEtichette, 3, 1, 1, 1);
+        formLayout->setWidget(3, QFormLayout::FieldRole, peEtichette);
 
         label_5 = new QLabel(HModificaScheda);
         label_5->setObjectName(QStringLiteral("label_5"));
 
-        gridLayout->addWidget(label_5, 4, 0, 1, 1);
+        formLayout->setWidget(4, QFormLayout::LabelRole, label_5);
 
         peScatole = new QPlainTextEdit(HModificaScheda);
         peScatole->setObjectName(QStringLiteral("peScatole"));
         peScatole->setMaximumSize(QSize(16777215, 80));
 
-        gridLayout->addWidget(peScatole, 4, 1, 1, 1);
+        formLayout->setWidget(4, QFormLayout::FieldRole, peScatole);
 
         label_6 = new QLabel(HModificaScheda);
         label_6->setObjectName(QStringLiteral("label_6"));
 
-        gridLayout->addWidget(label_6, 5, 0, 1, 1);
+        formLayout->setWidget(5, QFormLayout::LabelRole, label_6);
 
         ptNote = new QPlainTextEdit(HModificaScheda);
         ptNote->setObjectName(QStringLiteral("ptNote"));
         ptNote->setMaximumSize(QSize(16777215, 80));
 
-        gridLayout->addWidget(ptNote, 5, 1, 1, 1);
+        formLayout->setWidget(5, QFormLayout::FieldRole, ptNote);
 
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label_7 = new QLabel(HModificaScheda);
         label_7->setObjectName(QStringLiteral("label_7"));
 
-        gridLayout->addWidget(label_7, 6, 0, 1, 1);
+        verticalLayout->addWidget(label_7);
 
-        gv = new QGraphicsView(HModificaScheda);
-        gv->setObjectName(QStringLiteral("gv"));
-
-        gridLayout->addWidget(gv, 6, 1, 1, 1);
-
-
-        verticalLayout->addLayout(gridLayout);
-
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pushButton_4 = new QPushButton(HModificaScheda);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Photocamera.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_4->setIcon(icon1);
-        pushButton_4->setIconSize(QSize(32, 32));
+        pushButton_4->setIconSize(QSize(16, 16));
 
-        horizontalLayout->addWidget(pushButton_4);
+        verticalLayout->addWidget(pushButton_4);
 
         pushButton_6 = new QPushButton(HModificaScheda);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_6->setIcon(icon2);
-        pushButton_6->setIconSize(QSize(32, 32));
+        pushButton_6->setIconSize(QSize(16, 16));
 
-        horizontalLayout->addWidget(pushButton_6);
+        verticalLayout->addWidget(pushButton_6);
 
+
+        formLayout->setLayout(6, QFormLayout::LabelRole, verticalLayout);
+
+        gv = new QGraphicsView(HModificaScheda);
+        gv->setObjectName(QStringLiteral("gv"));
+
+        formLayout->setWidget(6, QFormLayout::FieldRole, gv);
+
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        label_9 = new QLabel(HModificaScheda);
+        label_9->setObjectName(QStringLiteral("label_9"));
+
+        verticalLayout_3->addWidget(label_9);
+
+        pushButton_9 = new QPushButton(HModificaScheda);
+        pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
+        pushButton_9->setIcon(icon1);
+
+        verticalLayout_3->addWidget(pushButton_9);
+
+        pushButton_10 = new QPushButton(HModificaScheda);
+        pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
+        pushButton_10->setIcon(icon2);
+
+        verticalLayout_3->addWidget(pushButton_10);
+
+
+        formLayout->setLayout(7, QFormLayout::LabelRole, verticalLayout_3);
+
+        gvimgcart = new QGraphicsView(HModificaScheda);
+        gvimgcart->setObjectName(QStringLiteral("gvimgcart"));
+
+        formLayout->setWidget(7, QFormLayout::FieldRole, gvimgcart);
+
+
+        verticalLayout_2->addLayout(formLayout);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pushButton_5 = new QPushButton(HModificaScheda);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon3);
+        pushButton_5->setIcon(icon1);
         pushButton_5->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_5);
 
         pushButton = new QPushButton(HModificaScheda);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon4);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon3);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton);
 
         pushButton_3 = new QPushButton(HModificaScheda);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon5);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon4);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_3);
 
         pushButton_2 = new QPushButton(HModificaScheda);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon6);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon5);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_2);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout_2->addLayout(horizontalLayout);
 
 
         retranslateUi(HModificaScheda);
@@ -234,8 +270,11 @@ public:
         label_5->setText(QApplication::translate("HModificaScheda", "Scatole:", 0));
         label_6->setText(QApplication::translate("HModificaScheda", "Note:", 0));
         label_7->setText(QApplication::translate("HModificaScheda", "Immagine:", 0));
-        pushButton_4->setText(QApplication::translate("HModificaScheda", "Aggiungi immagine", 0));
-        pushButton_6->setText(QApplication::translate("HModificaScheda", "Rimuovi immagine", 0));
+        pushButton_4->setText(QApplication::translate("HModificaScheda", "Aggiungi", 0));
+        pushButton_6->setText(QApplication::translate("HModificaScheda", "Rimuovi", 0));
+        label_9->setText(QApplication::translate("HModificaScheda", "Img Cartone", 0));
+        pushButton_9->setText(QApplication::translate("HModificaScheda", "Aggiungi", 0));
+        pushButton_10->setText(QApplication::translate("HModificaScheda", "Rimuovi", 0));
         pushButton_5->setText(QApplication::translate("HModificaScheda", "Copia da Scheda", 0));
         pushButton->setText(QApplication::translate("HModificaScheda", "Salva", 0));
         pushButton_3->setText(QApplication::translate("HModificaScheda", "Annulla modifiche", 0));
