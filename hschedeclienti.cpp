@@ -310,7 +310,7 @@ void HSchedeClienti::loadScheda()
   // cursor.atEnd();
 
     ui->widget->cursorToEnd();
-    ui->widget->append("\n",false);
+    ui->widget->append("IMMAGINE\n",false);
 
    ui->widget->getCursor().insertImage(scale);
    }
@@ -348,7 +348,7 @@ void HSchedeClienti::loadScheda()
   // cursor.atEnd();
 
     ui->widget->cursorToEnd();
-    ui->widget->append("\n",false);
+    ui->widget->append("IMMAGINE CARTONE\n",false);
 
    ui->widget->getCursor().insertImage(scalec);
 

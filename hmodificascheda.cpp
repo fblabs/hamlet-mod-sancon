@@ -312,16 +312,32 @@ void HModificaScheda::update()
 
 void HModificaScheda::on_pushButton_6_clicked()
 {
-  /*  QGraphicsScene *scene;
-    imgobj = new QImage();
+   /* QGraphicsScene *scene;
+    QImage *imgobj = new QImage();
     imgobj->load("");
-    img = QPixmap::fromImage(*imgobj);
+    QPixmap img = QPixmap::fromImage(*imgobj);
     scene = new QGraphicsScene(this);
     scene->addPixmap(img);
     scene->setSceneRect(img.rect());
     ui->gv->setScene(scene);
     ui->gv->setAlignment(Qt::AlignCenter);
     ui->gv->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);*/
+
+    QSqlQuery q(db);
+    QString sql="update schede set immagine=NULL where prodotto=:prodotto and cliente=:cliente";
+    q.prepare(sql);
+    q.bindValue(":prodotto",idProdotto);
+    q.bindValue(":cliente",idCliente);
+    bool b=q.exec();
+    if(!b)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore:\n"+q.lastError().text(),QMessageBox::Ok);
+    }
+    else
+    {
+        loadScheda();
+    }
+
 }
 
 void HModificaScheda::on_pushButton_9_clicked()
@@ -347,4 +363,22 @@ void HModificaScheda::on_pushButton_9_clicked()
    scene->addItem(item);
    ui->gvimgcart->setScene(scene);
    }
+}
+
+void HModificaScheda::on_pushButton_10_clicked()
+{
+    QSqlQuery q(db);
+    QString sql="update schede set imgcartone=NULL where prodotto=:prodotto and cliente=:cliente";
+    q.prepare(sql);
+    q.bindValue(":prodotto",idProdotto);
+    q.bindValue(":cliente",idCliente);
+    bool b=q.exec();
+    if(!b)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore:\n"+q.lastError().text(),QMessageBox::Ok);
+    }
+    else
+    {
+        loadScheda();
+    }
 }
