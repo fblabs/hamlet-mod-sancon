@@ -531,7 +531,17 @@ void HSchedeClienti::saveScheda()
     q.bindValue(":prodotto",QVariant(prodotto));
 
 
-    q.exec();
+    bool b=q.exec();
+    if(b)
+    {
+        QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
+    }
+    else
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore\n"+q.lastError().text(),QMessageBox::Ok);
+    }
+
+
 
 
 

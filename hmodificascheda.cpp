@@ -382,3 +382,8 @@ void HModificaScheda::on_pushButton_10_clicked()
         loadScheda();
     }
 }
+
+void HModificaScheda::on_pushButton_3_clicked()
+{
+    loadScheda();
+}
