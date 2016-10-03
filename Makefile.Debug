@@ -7038,7 +7038,14 @@ debug/hprint.o: hprint.cpp hprint.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsScene \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qgraphicsscene.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrintPreviewDialog \
-		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprintpreviewdialog.h
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprintpreviewdialog.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsPixmapItem \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qgraphicsitem.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQuery \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlError \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hprint.o hprint.cpp
 
 debug/hanalisi.o: hanalisi.cpp hanalisi.h \
@@ -9300,6 +9307,13 @@ debug/hmodificascheda.o: hmodificascheda.cpp hmodificascheda.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QFormLayout \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qformlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QLayout \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsView \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qgraphicsview.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpainter.h \
@@ -9309,11 +9323,6 @@ debug/hmodificascheda.o: hmodificascheda.cpp hmodificascheda.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qgraphicsscene.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QGridLayout \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \

@@ -32,6 +32,8 @@ private:
     bool canUpdate;
     int width;
     int height;
+    int widthc;
+    int heightc;
     int fontsize;
 
 //    int m_idcliente;
@@ -50,6 +52,7 @@ private slots:
     void saveScheda();
     void setImgWidth(int newWidth);
     void setImgHeight(int newHeight);
+
 
 
 

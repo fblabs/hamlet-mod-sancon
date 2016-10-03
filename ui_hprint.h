@@ -87,8 +87,8 @@ public:
         sbW = new QSpinBox(HPrint);
         sbW->setObjectName(QStringLiteral("sbW"));
         sbW->setMaximumSize(QSize(80, 16777215));
-        sbW->setMinimum(30);
-        sbW->setMaximum(800);
+        sbW->setMinimum(100);
+        sbW->setMaximum(1000);
         sbW->setSingleStep(10);
         sbW->setValue(100);
 
@@ -104,8 +104,8 @@ public:
         sbH = new QSpinBox(HPrint);
         sbH->setObjectName(QStringLiteral("sbH"));
         sbH->setMaximumSize(QSize(80, 16777215));
-        sbH->setMinimum(30);
-        sbH->setMaximum(800);
+        sbH->setMinimum(100);
+        sbH->setMaximum(1000);
         sbH->setSingleStep(10);
         sbH->setValue(100);
 
@@ -126,6 +126,8 @@ public:
         font.setPointSize(12);
         font.setStyleStrategy(QFont::PreferAntialias);
         textEdit->setFont(font);
+        textEdit->setMouseTracking(false);
+        textEdit->setAcceptDrops(false);
         textEdit->setReadOnly(true);
 
         verticalLayout->addWidget(textEdit);

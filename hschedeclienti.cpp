@@ -14,6 +14,7 @@
 #include "hduplicate.h"
 #include "hmodificascheda.h"
 
+
 HSchedeClienti::HSchedeClienti(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HSchedeClienti)
@@ -81,8 +82,8 @@ void HSchedeClienti::init(QString conn,HUser *usr)
     connect(ui->comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(selectRecipesforClient()));
     connect(ui->cbSelectCriteria,SIGNAL(toggled(bool)),this,SLOT(showSubclients(bool)));
 
-    connect(ui->widget,SIGNAL(imghChanged(int)),this,SLOT(setImgHeight(int)));
-    connect(ui->widget,SIGNAL(imgwChanged(int)),this,SLOT(setImgWidth(int)));
+  //  connect(ui->widget,SIGNAL(imghChanged(int)),this,SLOT(setImgHeight(int)));
+  //  connect(ui->widget,SIGNAL(imgwChanged(int)),this,SLOT(setImgWidth(int)));
 
     ui->comboBox->setCurrentIndex(0);
     //set_midcliente();
@@ -220,7 +221,7 @@ void HSchedeClienti::loadScheda()
 
 
    //original
-    QString query="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy,fontsize,imgcartone from schede where cliente=:idcliente and prodotto=:idprodotto";
+    QString query="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy,fontsize,imgcartone,imgcw,imgch from schede where cliente=:idcliente and prodotto=:idprodotto";
 
 
     QSqlQuery q(db);
@@ -245,14 +246,21 @@ void HSchedeClienti::loadScheda()
        return;
    }
 
+   QByteArray bytes;
+   QByteArray bytesc;
+
+
+
+   bytes=q.value(6).toByteArray();
    width=q.value(7).toInt();
    height=q.value(8).toInt();
    fontsize=q.value(9).toInt();
+   bytesc=q.value(10).toByteArray();
+   widthc=q.value(11).toInt();
+   heightc=q.value(12).toInt();
 
-   qDebug()<<"loadScheda"<<fontsize;
 
-   ui->widget->setFontsize(fontsize);
-
+   ui->widget->setFontSize(fontsize);
 
 
 
@@ -287,84 +295,42 @@ void HSchedeClienti::loadScheda()
    //load img
 
 
-   QByteArray bytes;
 
-   bytes=q.value(6).toByteArray();
-   width=q.value(7).toInt();
-   height=q.value(8).toInt();
-  // QTextEdit*  editor =ui->widget->getViewport();
-  // QTextCursor cursor(editor->document());
-   QImage* imgobj = new QImage();
-
-   QImage scale;
-   bool bimg=imgobj->loadFromData(bytes);
+ //  QImage* imgobj = new QImage();
+//   QImage scale;
 
 
-   if(bimg)
+
+   if(bytes.size()>0)
    {
- // scale=imgobj->scaled(600,300,Qt::KeepAspectRatio,Qt::FastTransformation);
- //  scale=imgobj->scaled(imgobj->width(),imgobj->height());
-   scale=imgobj->scaledToWidth(800,Qt::SmoothTransformation);
- //  img = QPixmap::fromImage(*imgobj);
-
-  // cursor.atEnd();
-
     ui->widget->cursorToEnd();
     ui->widget->append("IMMAGINE\n",false);
 
-   ui->widget->getCursor().insertImage(scale);
-   }
-
-   ui->widget->cursorToEnd();
-
-   ui->widget->setWidth(width);
-   ui->widget->setHeight(height);
-
-
-//
-   ui->widget->resizeImage(width,height);
-
-   //imgcartone
-   QByteArray bytesc;
-
-   bytesc=q.value(10).toByteArray();
-
-   QImage* imgobjc = new QImage();
-
-   QImage scalec;
-   bool bimgc=imgobjc->loadFromData(bytesc);
-
-
-
-
-
-   if(bimgc)
-   {
- // scale=imgobj->scaled(600,300,Qt::KeepAspectRatio,Qt::FastTransformation);
- //  scale=imgobj->scaled(imgobj->width(),imgobj->height());
-   scalec=imgobjc->scaledToWidth(800,Qt::SmoothTransformation);
- //  img = QPixmap::fromImage(*imgobj);
-
-  // cursor.atEnd();
 
     ui->widget->cursorToEnd();
-    ui->widget->append("IMMAGINE CARTONE\n",false);
+    ui->widget->addImage(bytes,"0",width,height);
 
-   ui->widget->getCursor().insertImage(scalec);
-
-   qDebug()<<"bimgc: "<<bytesc.size();
    }
 
    ui->widget->cursorToEnd();
 
-   ui->widget->setWidth(width);
-   ui->widget->setHeight(height);
 
 
-//
-   ui->widget->resizeImage(width,height);
+   if(bytesc.size()>0)
+   {
 
-   qDebug()<<"dopo resizeimg"<<q.lastError().text();
+  // scalec=imgobjc->scaledToWidth(widthc,Qt::SmoothTransformation);
+   ui->widget->cursorToEnd();
+   ui->widget->append("IMMAGINE CARTONE\n",false);
+   ui->widget->addImage(bytesc,"1",widthc,heightc);
+
+
+
+
+   }
+
+   ui->widget->cursorToEnd();
+
 
 }
 
@@ -506,6 +472,16 @@ void HSchedeClienti::saveScheda()
     int prodotto;
     int fontsize;
 
+    width=ui->widget->getWidthImg0();
+    height=ui->widget->getHeightImg0();
+    widthc=ui->widget->getWidthImg1();
+    heightc=ui->widget->getHeightImg1();
+
+    qDebug()<<width<<height<<widthc<<heightc;
+
+
+
+
     if (ui->cbSelectCriteria->isChecked())
     {
        cliente=ui->lvSubclienti->model()->index(ui->lvSubclienti->currentIndex().row(),0).data(0).toInt();
@@ -515,17 +491,19 @@ void HSchedeClienti::saveScheda()
        cliente=ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toInt();
     }
 
-    fontsize=ui->widget->getFontsize();
+    fontsize=ui->widget->getFontSize();
 
 //// qDebug()<<"w"<<width<<"h"<<height;
     prodotto=ui->listView->model()->index(ui->listView->currentIndex().row(),0).data(0).toInt();
     //connect(f,SIGNAL(update()),this,SLOT(loadScheda()));
 
     QSqlQuery q(db);
-    QString sql="update schede set imgx=:w,imgy=:h,fontsize=:font where cliente=:cliente and prodotto=:prodotto";
+    QString sql="update schede set imgx=:w,imgy=:h,imgcw=:cw,imgch=:hw,fontsize=:font where cliente=:cliente and prodotto=:prodotto";
     q.prepare(sql);
     q.bindValue(":w",QVariant(width));
     q.bindValue(":h",QVariant(height));
+    q.bindValue(":cw",QVariant(widthc));
+    q.bindValue(":hw",QVariant(heightc));
     q.bindValue(":font",QVariant(fontsize));
     q.bindValue(":cliente",QVariant(cliente));
     q.bindValue(":prodotto",QVariant(prodotto));

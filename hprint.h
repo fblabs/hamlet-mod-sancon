@@ -27,35 +27,56 @@ public:
    void setConnection(QString conn);
    QTextTable *addTable(int rows,int columns);
    QTextTable *writeTableContent(QTextTable *table, int row, int column, QString text);
-   void cursorToEnd();
-   void cursorToStart();
+
    void hideClose();
    void resetText();
    void loadImage();
    QTextEdit *getViewport();
    QTextCursor getCursor();
    void resizeImage(int wr,int hr);
-   void setWidth(int);
-   void setHeight(int);
+
    void toggleImageUI(bool visible);
-   int getWidth();
-   int getHeight();
-   void setFontsize(int sz);
-   int getFontsize();
+
+
+
 private slots:
    void on_pushButton_2_clicked();
    void on_pushButton_clicked();
    void onConnectionSet();
-   void addImage(QByteArray bytes);
 
    void printPreview(QPrinter *printer);
-
    void on_pbant_clicked();
+   void on_spCharSize_valueChanged(int arg1);
+   void spSetValues();
+   bool eventFilter(QObject *target, QEvent *event);
+
+
+
+
+
+
 
    void on_sbW_valueChanged(int arg1);
 
    void on_sbH_valueChanged(int arg1);
-   void on_spCharSize_valueChanged(int arg1);
+
+   void on_textEdit_cursorPositionChanged();
+
+public slots:
+   void setsbWValue(int val);
+   void setsbHValue(int val);
+   QString getImageName();
+   int getsbWValue();
+   int getsbHValue();
+   int getWidthImg0();
+   int getHeightImg0();
+   int getWidthImg1();
+   int getHeightImg1();
+   void setFontSize(int sz);
+   int getFontSize();
+   void addImage(QByteArray bytes, QString name, int width, int height);
+   void cursorToEnd();
+   void cursorToStart();
 
 private:
     Ui::HPrint *ui;
@@ -66,9 +87,11 @@ private:
     QPrinter *printer;
     QImage *imgobj;
     QPixmap img;
+    int imgw,imgh,imgcw,imgch;
+
+
 signals:
-    int imgwChanged(int);
-    int imghChanged(int);
+
 };
 
 #endif // HPRINT_H
