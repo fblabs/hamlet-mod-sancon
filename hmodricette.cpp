@@ -14,6 +14,8 @@
 #include "huser.h"
 #include <QMenu>
 #include "hrecipeaddrow.h"
+#include "hclientiassociati.h"
+#include <QShortcut>
 
 HModRicette::HModRicette(QWidget *parent) :
     QWidget(parent),
@@ -21,6 +23,9 @@ HModRicette::HModRicette(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->checkBox->setVisible(false);
+    QShortcut *shortcut =new QShortcut(QKeySequence("F5"),this);
+    connect(shortcut,SIGNAL(activated()),this,SLOT(showAssociatedCustomers()));
+
 }
 
 void HModRicette::showContextMenu(const QPoint &pos)
@@ -29,10 +34,13 @@ void HModRicette::showContextMenu(const QPoint &pos)
     QMenu *menu=new QMenu(0);
     QAction *addIngredient=menu->addAction("Aggiungi Ingrediente");
     QAction *removeIngredient=menu->addAction("Rimuovi Ingrediente");
+    QAction *mostraAssociazioni=menu->addAction("Associata a...");
+
 
 
     connect(addIngredient,SIGNAL(triggered(bool)),this,SLOT(showaddRow()));
     connect(removeIngredient,SIGNAL(triggered(bool)),this,SLOT(removeItem()));
+    connect(mostraAssociazioni,SIGNAL(triggered(bool)),this,SLOT(showAssociatedCustomers()));
 
 
     menu->popup(globalPos);
@@ -49,6 +57,13 @@ void HModRicette::showaddRow()
     f->init(sConn,ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt());
     f->show();
     connect(f,SIGNAL(rowadded(QList<QStandardItem*>)),this,SLOT(addRiga( QList<QStandardItem*>)));
+}
+
+void HModRicette::showAssociatedCustomers()
+{
+    int id =ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
+    HClientiAssociati *f=new HClientiAssociati(0,id,db);
+    f->show();
 }
 
 void HModRicette::on_pushButton_2_clicked()

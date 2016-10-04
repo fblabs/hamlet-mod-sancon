@@ -53,7 +53,8 @@ SOURCES += main.cpp\
     hnewcontact.cpp \
     halarm.cpp \
     hnotifica.cpp \
-    hverifylabels.cpp
+    hverifylabels.cpp \
+    hclientiassociati.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -95,7 +96,8 @@ HEADERS  += mainwindow.h \
     hnewcontact.h \
     halarm.h \
     hnotifica.h \
-    hverifylabels.h
+    hverifylabels.h \
+    hclientiassociati.h
 
 
 
@@ -136,7 +138,8 @@ FORMS    += mainwindow.ui \
     hnewcontact.ui \
     halarm.ui \
     hnotifica.ui \
-    hverifylabels.ui
+    hverifylabels.ui \
+    hclientiassociati.ui
 
 RESOURCES += \
     icons.qrc \

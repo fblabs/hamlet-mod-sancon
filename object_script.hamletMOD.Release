@@ -41,6 +41,7 @@ INPUT(
 ./release/halarm.o
 ./release/hnotifica.o
 ./release/hverifylabels.o
+./release/hclientiassociati.o
 ./release/qrc_icons.o
 ./release/qrc_graphical.o
 ./release/moc_mainwindow.o
@@ -83,4 +84,5 @@ INPUT(
 ./release/moc_halarm.o
 ./release/moc_hnotifica.o
 ./release/moc_hverifylabels.o
+./release/moc_hclientiassociati.o
 );

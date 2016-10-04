@@ -37,6 +37,7 @@ private slots:
     void addRiga(QList<QStandardItem*>);
     void calculateTotal();
     void updateTotals();
+    void showAssociatedCustomers();
 
 
     void on_pbAddRow_clicked();
