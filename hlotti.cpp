@@ -1,6 +1,6 @@
 #include "hlotti.h"
 #include "ui_hlotti.h"
-// #include <QDebug>
+ #include <QDebug>
 #include <QSqlError>
 #include <QSqlquery>
 #include <QSqlRelationalDelegate>
@@ -230,8 +230,10 @@ void HLotti::setFilter()
 {
     QString tipo,prodotto,filter;
     filter="";
-    QString datafilter="lotdef.data between '" + ui->datadal->dateTime().toString("yyyy-MM-dd MM:mm:ss") + "' and '" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"'";
-//// qDebug()<<datafilter;
+ //   QString datafilter="lotdef.data between '" + ui->datadal->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' and '" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"'";
+    QString datafilter="lotdef.data between cast('" + ui->datadal->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' as date) and cast('" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"' as date)";
+
+    qDebug()<<datafilter;
 
     if (ui->chbT->isChecked() && !ui->chbP->isChecked())
     {
