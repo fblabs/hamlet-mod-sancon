@@ -177,14 +177,14 @@ void HModificaScheda::on_pushButton_clicked()
     emit(schedaAggiornata());
 }
 
-void HModificaScheda::on_pushButton_reload_clicked()
+/*void HModificaScheda::on_pushButton_reload_clicked()
 {
     if (QMessageBox::question(this,QApplication::applicationName(),"Annullare le modifiche?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
          reloadFile();
     }
 
-}
+}*/
 
 void HModificaScheda::on_pushButton_2_clicked()
 {

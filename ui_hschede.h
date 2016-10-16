@@ -17,7 +17,9 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,40 +27,89 @@ QT_BEGIN_NAMESPACE
 class Ui_HSchede
 {
 public:
-    QTextEdit *textEdit;
-    QComboBox *cbCliente;
-    QWidget *widget;
+    QVBoxLayout *verticalLayout_2;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_3;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
-    QLabel *lbProdotto;
+    QComboBox *cbClienti;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_2;
+    QComboBox *cbProdotti;
+    QTextEdit *textEdit;
+    QHBoxLayout *horizontalLayout_4;
+    QPushButton *pbMod;
+    QPushButton *pbClose;
 
     void setupUi(QWidget *HSchede)
     {
         if (HSchede->objectName().isEmpty())
             HSchede->setObjectName(QStringLiteral("HSchede"));
-        HSchede->resize(1251, 499);
-        textEdit = new QTextEdit(HSchede);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setGeometry(QRect(250, 40, 981, 281));
-        cbCliente = new QComboBox(HSchede);
-        cbCliente->setObjectName(QStringLiteral("cbCliente"));
-        cbCliente->setGeometry(QRect(20, 50, 221, 22));
-        widget = new QWidget(HSchede);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(20, 10, 1211, 16));
-        horizontalLayout = new QHBoxLayout(widget);
+        HSchede->resize(1293, 735);
+        verticalLayout_2 = new QVBoxLayout(HSchede);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget);
+        label = new QLabel(HSchede);
         label->setObjectName(QStringLiteral("label"));
-        label->setMaximumSize(QSize(50, 16777215));
 
         horizontalLayout->addWidget(label);
 
-        lbProdotto = new QLabel(widget);
-        lbProdotto->setObjectName(QStringLiteral("lbProdotto"));
+        cbClienti = new QComboBox(HSchede);
+        cbClienti->setObjectName(QStringLiteral("cbClienti"));
+        cbClienti->setEditable(true);
+        cbClienti->setInsertPolicy(QComboBox::NoInsert);
 
-        horizontalLayout->addWidget(lbProdotto);
+        horizontalLayout->addWidget(cbClienti);
+
+
+        horizontalLayout_3->addLayout(horizontalLayout);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        label_2 = new QLabel(HSchede);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        horizontalLayout_2->addWidget(label_2);
+
+        cbProdotti = new QComboBox(HSchede);
+        cbProdotti->setObjectName(QStringLiteral("cbProdotti"));
+        cbProdotti->setInsertPolicy(QComboBox::NoInsert);
+
+        horizontalLayout_2->addWidget(cbProdotti);
+
+
+        horizontalLayout_3->addLayout(horizontalLayout_2);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
+
+        textEdit = new QTextEdit(HSchede);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+
+        verticalLayout->addWidget(textEdit);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        pbMod = new QPushButton(HSchede);
+        pbMod->setObjectName(QStringLiteral("pbMod"));
+
+        horizontalLayout_4->addWidget(pbMod);
+
+        pbClose = new QPushButton(HSchede);
+        pbClose->setObjectName(QStringLiteral("pbClose"));
+
+        horizontalLayout_4->addWidget(pbClose);
+
+
+        verticalLayout->addLayout(horizontalLayout_4);
+
+
+        verticalLayout_2->addLayout(verticalLayout);
 
 
         retranslateUi(HSchede);
@@ -68,9 +119,11 @@ public:
 
     void retranslateUi(QWidget *HSchede)
     {
-        HSchede->setWindowTitle(QApplication::translate("HSchede", "Schede", 0));
-        label->setText(QApplication::translate("HSchede", "Scheda:", 0));
-        lbProdotto->setText(QApplication::translate("HSchede", "TextLabel", 0));
+        HSchede->setWindowTitle(QApplication::translate("HSchede", "Form", 0));
+        label->setText(QApplication::translate("HSchede", "Cliente:", 0));
+        label_2->setText(QApplication::translate("HSchede", "Prodotto:", 0));
+        pbMod->setText(QApplication::translate("HSchede", "Modifica", 0));
+        pbClose->setText(QApplication::translate("HSchede", "Chiudi", 0));
     } // retranslateUi
 
 };

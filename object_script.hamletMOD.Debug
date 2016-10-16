@@ -42,6 +42,7 @@ INPUT(
 ./debug/hnotifica.o
 ./debug/hverifylabels.o
 ./debug/hclientiassociati.o
+./debug/hschede.o
 ./debug/qrc_icons.o
 ./debug/qrc_graphical.o
 ./debug/moc_mainwindow.o
@@ -85,4 +86,5 @@ INPUT(
 ./debug/moc_hnotifica.o
 ./debug/moc_hverifylabels.o
 ./debug/moc_hclientiassociati.o
+./debug/moc_hschede.o
 );
