@@ -24,6 +24,9 @@ private slots:
     void retrieveProducts();
     //void retrieveCards();
     void loadScheda();
+    void addImage(QByteArray byte,QString name, int width,int height);
+    void resizeImage(QString name, int wr, int hr);
+    void addNewImage();
 
 private:
     Ui::HSchede *ui;

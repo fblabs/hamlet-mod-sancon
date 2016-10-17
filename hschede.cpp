@@ -5,11 +5,16 @@
 #include <QMessageBox>
 #include <QCompleter>
 #include <QTextCursor>
+#include <QTextFragment>
 #include "hmodificascheda.h"
 #include<QSqlQuery>
 #include <QSqlQueryModel>
 #include <QDebug>
 #include <QSqlError>
+#include <QShortcut>
+#include <QFileDialog>
+#include <QDir>
+#include <QBuffer>
 
 HSchede::HSchede(QWidget *parent, QSqlDatabase pdb) :
     QWidget(parent),
@@ -31,6 +36,7 @@ HSchede::HSchede(QWidget *parent, QSqlDatabase pdb) :
     ui->cbClienti->setCompleter(compclienti);
     ui->cbClienti->setCurrentIndex(0);
 
+
     int  cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
 
     QString query="SELECT ricette.ID_prodotto, prodotti.descrizione FROM ricette, prodotti WHERE prodotti.ID=ricette.ID_prodotto AND ricette.ID IN (SELECT ID_ricetta FROM associazioni WHERE ID_cliente=:id and visualizza=1)order by prodotti.descrizione";
@@ -47,8 +53,22 @@ HSchede::HSchede(QWidget *parent, QSqlDatabase pdb) :
     ui->cbProdotti->setModel(qrm);
     ui->cbProdotti->setModelColumn(1);
 
+    QCompleter* compprodotti= new QCompleter(qrm);
+    compprodotti->setCompletionMode(QCompleter::PopupCompletion);
+    compprodotti->setCaseSensitivity(Qt::CaseInsensitive);
+    compprodotti->setCompletionColumn(1);
+    ui->cbProdotti->setCompleter(compprodotti);
+    ui->cbProdotti->setCurrentIndex(0);
+
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(retrieveProducts()));
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(loadScheda()));
+    connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(loadScheda()));
+
+    loadScheda();
+
+
+    QShortcut *shortcut =new QShortcut(QKeySequence("Ctrl+Alt+I"),this);
+    connect(shortcut,SIGNAL(activated()),this,SLOT(addNewImage()));
 
 
 
@@ -92,22 +112,25 @@ void HSchede::on_pbMod_clicked()
     int prod = ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
     QString name = ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),1).data(0).toString();
 
-  /*  qDebug()<<cliente<<prod<<name;
 
     HModificaScheda *f=new HModificaScheda();
     f->init(db.connectionName(),cliente,prod,name,200,200,10);
-    f->show();*/
+    f->show();
 
-    loadScheda();
+   // loadScheda();
 }
 
 void HSchede::loadScheda()
 {
-    int  cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
+    int cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
     int prodotto = ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
+    int ids;
+    QString olio,vaso,tappo,etichette,scatole,note;
+    qreal fontsize;
+    QByteArray bytes;
 
    //original
-    QString query="SELECT olio,vaso,tappo,etichette,scatole,note,immagine,imgx,imgy,fontsize,imgcartone,imgcw,imgch from schede where cliente=:idcliente and prodotto=:idprodotto";
+    QString query="SELECT ID,olio,vaso,tappo,etichette,scatole,note,fontsize from schede where cliente=:idcliente and prodotto=:idprodotto";
 
 
     QSqlQuery q(db);
@@ -124,29 +147,26 @@ void HSchede::loadScheda()
 
    bool b = q.first();
 
-   if(!b)
+   if(b)
+   {
+
+
+
+       ids=q.value(0).toInt();
+       olio=q.value(1).toString();
+       vaso=q.value(2).toString();
+       tappo=q.value(3).toString();
+       etichette=q.value(4).toString();
+       scatole=q.value(5).toString();
+       note=q.value(6).toString();
+       fontsize =q.value(7).toReal();
+   }
+   else
    {
        return;
    }
 
-   QByteArray bytes;
-   QByteArray bytesc;
-
-
-
-   bytes=q.value(6).toByteArray();
- int  width=q.value(7).toInt();
- int  height=q.value(8).toInt();
- qreal fontsize =q.value(9).toReal();
- bytesc=q.value(10).toByteArray();
- int  widthc=q.value(11).toInt();
- int  heightc=q.value(12).toInt();
-
- QImage imgobj;
- QImage imgobjc;
-
-
-   ui->textEdit->setFontPointSize(fontsize);
+     ui->textEdit->setFontPointSize(fontsize);
 
 
 
@@ -161,48 +181,110 @@ void HSchede::loadScheda()
     ui->textEdit->moveCursor(QTextCursor::End);
 
 
-   ui->textEdit->append("OLIO:" +q.value(0).toString());
-   ui->textEdit->append("VASO: "+q.value(1).toString());
-   ui->textEdit->append("TAPPO: "+q.value(2).toString());
-  ui->textEdit->append("ETICHETTE: "+q.value(3).toString());
-  ui->textEdit->append("SCATOLE: "+q.value(4).toString());
-  ui->textEdit->append("NOTE: "+q.value(5).toString());
+   ui->textEdit->append("OLIO:" +q.value(1).toString());
+   ui->textEdit->append("VASO: "+q.value(2).toString());
+   ui->textEdit->append("TAPPO: "+q.value(3).toString());
+  ui->textEdit->append("ETICHETTE: "+q.value(4).toString());
+  ui->textEdit->append("SCATOLE: "+q.value(5).toString());
+  ui->textEdit->append("NOTE: "+q.value(6).toString());
   ui->textEdit->moveCursor(QTextCursor::End);
 
 
+  int iwidth,iheight;
 
+  query="SELECT bits,width,height FROM immagini_schede WHERE IDScheda=:id";
+  q.clear();
+  q.prepare(query);
+  q.bindValue(":id",ids);
+  q.exec();
+  q.first();
 
-   if(bytes.size()>0)
-   {
+  bytes=q.value(0).toByteArray();
+  iwidth=q.value(1).toInt();
+  iheight=q.value(2).toInt();
 
+qDebug()<<q.lastError().text()<<q.lastQuery();
 
-   ui->textEdit->append("IMMAGINE\n");
-   imgobj=QImage::fromData(bytes);
-   QImage scale=imgobj.scaledToWidth(width,Qt::SmoothTransformation);
-
-
-   ui->textEdit->moveCursor(QTextCursor::End);
-   //ui->textEdit->textCursor().insertImage(scale,"0");
-   ui->textEdit->moveCursor(QTextCursor::End);
-
-
-   }
-
-
-
-   if(bytesc.size()>0)
-   {
-       imgobjc=QImage::fromData(bytesc);
-
-   QImage scalec=imgobjc.scaledToWidth(widthc,Qt::SmoothTransformation);
-
-   ui->textEdit->append("IMMAGINE CARTONE\n");
-   ui->textEdit->textCursor().insertImage(scalec,"1");
-
-
-
-
-   }
+ui->textEdit->moveCursor(QTextCursor::End);
+  addImage(bytes,"0",iwidth,iheight);
 
 
 }
+
+void HSchede::addImage(QByteArray bytes, QString name, int width, int height)
+{
+    QTextCursor cursor(ui->textEdit->textCursor());
+    cursor.movePosition(QTextCursor::End);
+ //   ui->textEdit->setTextCursor(cursor);
+
+    QImage *imgobj = new QImage();
+    imgobj->loadFromData(bytes);
+
+    QImage scaled=imgobj->scaled(width,height,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+
+    cursor.movePosition(QTextCursor::End);
+    cursor.insertImage(scaled,name);
+    cursor.movePosition(QTextCursor::End);
+
+
+}
+
+void HSchede::resizeImage(QString name,int wr, int hr)
+{
+    QTextBlock currentBlock = ui->textEdit->textCursor().block();
+    QTextBlock::iterator it;
+
+
+        for (it = currentBlock.begin(); !(it.atEnd()); ++it)
+        {
+
+                 QTextFragment fragment = it.fragment();
+
+                 if (fragment.isValid())
+                 {
+
+                     if(fragment.charFormat().isImageFormat () )
+                     {
+                          QTextImageFormat newImageFormat = fragment.charFormat().toImageFormat();
+
+                    //      qDebug()<<newImageFormat.name();
+                          if(newImageFormat.name()==name)
+                          {
+                          newImageFormat.setWidth(wr);
+                          newImageFormat.setHeight(hr);
+                          }
+
+                          if (newImageFormat.isValid())
+                          {
+
+                              QTextCursor helper = ui->textEdit->textCursor();
+
+                              helper.setPosition(fragment.position());
+                              helper.setPosition(fragment.position() + fragment.length(),
+                                                  QTextCursor::KeepAnchor);
+                              helper.setCharFormat(newImageFormat);
+                          }
+                      }
+                  }
+           }
+
+}
+
+void HSchede::addNewImage()
+{
+    QString imagepath = QFileDialog::getOpenFileName(this,"Apri Immagine", QDir::currentPath(),"Immagini (*.png *.jpg);;Tutti i file (*.*)",0,QFileDialog::DontUseNativeDialog);
+    QImage image;
+    image.load(imagepath);
+
+
+    QByteArray bytes;
+    QBuffer buffer(&bytes);
+    buffer.open(QIODevice::WriteOnly);
+    image.save(&buffer,"PNG");
+
+
+
+    addImage(bytes,"1",200,200);
+
+}
+

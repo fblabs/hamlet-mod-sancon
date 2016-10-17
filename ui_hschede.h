@@ -56,6 +56,7 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         label = new QLabel(HSchede);
         label->setObjectName(QStringLiteral("label"));
+        label->setMaximumSize(QSize(72, 16777215));
 
         horizontalLayout->addWidget(label);
 
@@ -73,11 +74,13 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         label_2 = new QLabel(HSchede);
         label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setMaximumSize(QSize(72, 16777215));
 
         horizontalLayout_2->addWidget(label_2);
 
         cbProdotti = new QComboBox(HSchede);
         cbProdotti->setObjectName(QStringLiteral("cbProdotti"));
+        cbProdotti->setEditable(true);
         cbProdotti->setInsertPolicy(QComboBox::NoInsert);
 
         horizontalLayout_2->addWidget(cbProdotti);
@@ -119,7 +122,7 @@ public:
 
     void retranslateUi(QWidget *HSchede)
     {
-        HSchede->setWindowTitle(QApplication::translate("HSchede", "Form", 0));
+        HSchede->setWindowTitle(QApplication::translate("HSchede", "Schede", 0));
         label->setText(QApplication::translate("HSchede", "Cliente:", 0));
         label_2->setText(QApplication::translate("HSchede", "Prodotto:", 0));
         pbMod->setText(QApplication::translate("HSchede", "Modifica", 0));
