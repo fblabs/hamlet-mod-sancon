@@ -38,6 +38,7 @@ public:
     QComboBox *cbProdotti;
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout_4;
+    QPushButton *pushButton;
     QPushButton *pbMod;
     QPushButton *pbClose;
 
@@ -45,7 +46,12 @@ public:
     {
         if (HSchede->objectName().isEmpty())
             HSchede->setObjectName(QStringLiteral("HSchede"));
+        HSchede->setWindowModality(Qt::ApplicationModal);
         HSchede->resize(1293, 735);
+        HSchede->setContextMenuPolicy(Qt::CustomContextMenu);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/Resources/Folder.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        HSchede->setWindowIcon(icon);
         verticalLayout_2 = new QVBoxLayout(HSchede);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
@@ -93,11 +99,17 @@ public:
 
         textEdit = new QTextEdit(HSchede);
         textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setContextMenuPolicy(Qt::ActionsContextMenu);
 
         verticalLayout->addWidget(textEdit);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        pushButton = new QPushButton(HSchede);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        horizontalLayout_4->addWidget(pushButton);
+
         pbMod = new QPushButton(HSchede);
         pbMod->setObjectName(QStringLiteral("pbMod"));
 
@@ -125,6 +137,7 @@ public:
         HSchede->setWindowTitle(QApplication::translate("HSchede", "Schede", 0));
         label->setText(QApplication::translate("HSchede", "Cliente:", 0));
         label_2->setText(QApplication::translate("HSchede", "Prodotto:", 0));
+        pushButton->setText(QApplication::translate("HSchede", "Test", 0));
         pbMod->setText(QApplication::translate("HSchede", "Modifica", 0));
         pbClose->setText(QApplication::translate("HSchede", "Chiudi", 0));
     } // retranslateUi

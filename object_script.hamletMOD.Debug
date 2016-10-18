@@ -43,8 +43,8 @@ INPUT(
 ./debug/hverifylabels.o
 ./debug/hclientiassociati.o
 ./debug/hschede.o
+./debug/hnschede.o
 ./debug/qrc_icons.o
-./debug/qrc_graphical.o
 ./debug/moc_mainwindow.o
 ./debug/moc_huser.o
 ./debug/moc_hprodotti.o
@@ -87,4 +87,5 @@ INPUT(
 ./debug/moc_hverifylabels.o
 ./debug/moc_hclientiassociati.o
 ./debug/moc_hschede.o
+./debug/moc_hnschede.o
 );

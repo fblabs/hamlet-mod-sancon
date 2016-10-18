@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>HSchede</class>
  <widget class="QWidget" name="HSchede">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,8 +13,15 @@
     <height>735</height>
    </rect>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::CustomContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>Schede</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/Resources/Folder.PNG</normaloff>:/Resources/Folder.PNG</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
@@ -75,10 +85,21 @@
       </layout>
      </item>
      <item>
-      <widget class="QTextEdit" name="textEdit"/>
+      <widget class="QTextEdit" name="textEdit">
+       <property name="contextMenuPolicy">
+        <enum>Qt::ActionsContextMenu</enum>
+       </property>
+      </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Test</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QPushButton" name="pbMod">
          <property name="text">

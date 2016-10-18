@@ -55,7 +55,8 @@ SOURCES += main.cpp\
     hnotifica.cpp \
     hverifylabels.cpp \
     hclientiassociati.cpp \
-    hschede.cpp
+    hschede.cpp \
+    hnschede.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -99,7 +100,8 @@ HEADERS  += mainwindow.h \
     hnotifica.h \
     hverifylabels.h \
     hclientiassociati.h \
-    hschede.h
+    hschede.h \
+    hnschede.h
 
 
 
@@ -142,11 +144,12 @@ FORMS    += mainwindow.ui \
     hnotifica.ui \
     hverifylabels.ui \
     hclientiassociati.ui \
-    hschede.ui
+    hschede.ui \
+    hnschede.ui
 
 RESOURCES += \
-    icons.qrc \
-    Resources/graphical.qrc
+    icons.qrc
+
     win32:RC_ICONS += hamlet.ico
 
 DISTFILES += \

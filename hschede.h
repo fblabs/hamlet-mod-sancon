@@ -24,13 +24,18 @@ private slots:
     void retrieveProducts();
     //void retrieveCards();
     void loadScheda();
-    void addImage(QByteArray byte,QString name, int width,int height);
+    void addImage(QByteArray byte,int number, QString name,  int width, int height);
     void resizeImage(QString name, int wr, int hr);
     void addNewImage();
+    void loadImages(int id);
+    void showContextMenu(const QPoint& pos);
+
+    void on_pushButton_clicked();
 
 private:
     Ui::HSchede *ui;
     QSqlDatabase db;
+
 };
 
 #endif // HSCHEDE_H
