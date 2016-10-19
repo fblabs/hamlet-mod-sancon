@@ -17,15 +17,17 @@ public:
     ~HNSChede();
 
 private slots:
-    void on_pushButton_clicked();
+
     void insertImage();
-
     void on_pushButton_2_clicked();
-
-    void on_pushButton_3_clicked();
+    void showContextMenu(const QPoint& pos);
     bool saveCard();
     void getProducts();
     void loadCard();
+    void on_pbsave_clicked();
+    void on_pbClose_clicked();
+    void resizeImage(int nw, int nh);
+
 
 private:
     Ui::HNSChede *ui;

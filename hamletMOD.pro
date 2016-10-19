@@ -56,7 +56,8 @@ SOURCES += main.cpp\
     hverifylabels.cpp \
     hclientiassociati.cpp \
     hschede.cpp \
-    hnschede.cpp
+    hnschede.cpp \
+    hmodimage.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -101,7 +102,8 @@ HEADERS  += mainwindow.h \
     hverifylabels.h \
     hclientiassociati.h \
     hschede.h \
-    hnschede.h
+    hnschede.h \
+    hmodimage.h
 
 
 
@@ -145,7 +147,8 @@ FORMS    += mainwindow.ui \
     hverifylabels.ui \
     hclientiassociati.ui \
     hschede.ui \
-    hnschede.ui
+    hnschede.ui \
+    hmodimage.ui
 
 RESOURCES += \
     icons.qrc

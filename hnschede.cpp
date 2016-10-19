@@ -6,6 +6,7 @@
 #include <QCompleter>
 
 #include <QImageReader>
+#include <QTextBlock>
 #include <QPrinter>
 
 #include <QSqlQuery>
@@ -14,6 +15,8 @@
 #include <QSqlDatabase>
 #include <QSqlTableModel>
 #include <QSqlQueryModel>
+#include <QShortcut>
+#include <QMenu>
 #include <QDebug>
 
 
@@ -26,6 +29,14 @@ HNSChede::HNSChede(QWidget *parent,QSqlDatabase pdb) :
     ui->setupUi(this);
     db=pdb;
 
+    QShortcut *shortcut =new QShortcut(QKeySequence("Ctrl+I"),this);
+
+    QShortcut *shortcutsave =new QShortcut(QKeySequence("Ctrl+S"),this);
+    connect(shortcut,SIGNAL(activated()),this,SLOT(insertImage()));
+    connect(shortcutsave,SIGNAL(activated()),this,SLOT(saveCard()));
+
+
+
 
     QPrinter printer(QPrinter::HighResolution);
 
@@ -36,6 +47,7 @@ HNSChede::HNSChede(QWidget *parent,QSqlDatabase pdb) :
     QSqlTableModel *clientmod =new QSqlTableModel(0,db);
     clientmod->setTable("anagrafica");
     clientmod->setFilter("cliente=1");
+    clientmod->setSort(1,Qt::AscendingOrder);
     clientmod->select();
 
     ui->cbClienti->setModelColumn(1);
@@ -51,8 +63,7 @@ HNSChede::HNSChede(QWidget *parent,QSqlDatabase pdb) :
     connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(loadCard()));
     ui->cbClienti->setCurrentIndex(0);
 
-
-
+    connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
 
 
 
@@ -89,6 +100,9 @@ void HNSChede::getProducts()
         connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(loadCard()));
         ui->cbProdotti->setCurrentIndex(0);
 
+
+      //  connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+
 }
 
 HNSChede::~HNSChede()
@@ -96,13 +110,6 @@ HNSChede::~HNSChede()
     delete ui;
 }
 
-void HNSChede::on_pushButton_clicked()
-{
-    QString filter("Schede (.scd)");
-    QString filename=QFileDialog::getSaveFileName(this,"Save",QDir::currentPath(),filter,&filter);
-
-    setWindowTitle(filename);
-}
 
 void HNSChede::insertImage()
 {
@@ -129,12 +136,6 @@ void HNSChede::on_pushButton_2_clicked()
     insertImage();
 }
 
-void HNSChede::on_pushButton_3_clicked()
-{
-
-  saveCard();
-
-}
 
 bool HNSChede::saveCard()
 {
@@ -144,6 +145,8 @@ bool HNSChede::saveCard()
 
     cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
     prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
+
+    qDebug()<<"savecard: "<<prodotto<<cliente<<QString::number(update);
 
 
 
@@ -156,7 +159,7 @@ bool HNSChede::saveCard()
             }
             else
             {
-                sql="update schede_n set scheda=:scheda where prodotto=:prodotto and cliente=:cliente ";
+            sql="update schede_n set scheda=:scheda where prodotto=:prodotto and cliente=:cliente ";
             }
 
     q.prepare(sql);
@@ -166,26 +169,23 @@ bool HNSChede::saveCard()
 
     bool b=q.exec();
 
-    if (!b)
-    {
-        QMessageBox::warning(this,QApplication::applicationName(),"Errore:\n"+q.lastError().text(),QMessageBox::Ok);
-    }
-    else
-    {
-       QMessageBox::information(this,QApplication::applicationName(),"Scheda salvata",QMessageBox::Ok);
-    }
+    qDebug()<<"savecard: "<<q.lastError().text()<<cliente<<prodotto<<QString::number(update);
+    return b;
 }
 
 void HNSChede::loadCard()
 {
     int cliente,prodotto;
 
+
+
     update=false;
 
     cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
     prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
 
-    qDebug()<<cliente<<prodotto;
+     qDebug()<<"loadCard: "<<cliente<<prodotto;
+
 
     QSqlQuery q(db);
     QString sql="SELECT scheda FROM schede_n WHERE prodotto=:prodotto AND cliente=:cliente";
@@ -195,13 +195,19 @@ void HNSChede::loadCard()
 
     if(q.exec())
     {
+    if(q.size()>0)
+    {
+        update=true;
+    }else
+    {
+        update=false;
+    }
     q.first();
     QString doc =q.value(0).toString();
     //ui->textEdit->setHtml(doc);
     ui->textEdit->setText(doc);
    // QMessageBox::warning(this,QApplication::applicationName(),"Doc:\n"+doc,QMessageBox::Ok);
-    qDebug()<<"doc: "+doc;
-    update=true;
+
     }
     else
     {
@@ -209,4 +215,81 @@ void HNSChede::loadCard()
         QMessageBox::warning(this,QApplication::applicationName(),"Errore:\n"+q.lastError().text(),QMessageBox::Ok);
     }
 
+    qDebug()<<"Update "<<QString::number(update);
+
+}
+
+void HNSChede::on_pbsave_clicked()
+{
+    bool b=saveCard();
+
+    if (!b)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore",QMessageBox::Ok);
+    }
+    else
+    {
+       QMessageBox::information(this,QApplication::applicationName(),"Scheda salvata",QMessageBox::Ok);
+    }
+}
+
+void HNSChede::on_pbClose_clicked()
+{
+    if (QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Chiudere?",QMessageBox::Ok))
+    {
+        close();
+    }
+}
+
+void HNSChede::resizeImage(int nw, int nh)
+{
+    QTextBlock currentBlock = ui->textEdit->textCursor().block();
+    QTextBlock::iterator it;
+
+
+        for (it = currentBlock.begin(); !(it.atEnd()); ++it)
+        {
+
+                 QTextFragment fragment = it.fragment();
+
+                 if (fragment.isValid())
+                 {
+
+                     if(fragment.charFormat().isImageFormat ())
+                     {
+                          QTextImageFormat newImageFormat = fragment.charFormat().toImageFormat();
+
+                          qDebug()<<newImageFormat.name();
+                          newImageFormat.setWidth(nw);
+                          newImageFormat.setHeight(nh);
+
+                          if (newImageFormat.isValid())
+                          {
+
+                              QTextCursor helper = ui->textEdit->textCursor();
+
+                              helper.setPosition(fragment.position());
+                              helper.setPosition(fragment.position() + fragment.length(),
+                                                  QTextCursor::KeepAnchor);
+                              helper.setCharFormat(newImageFormat);
+                          }
+                      }
+                  }
+           }
+
+}
+
+void HNSChede::showContextMenu(const QPoint &pos)
+{
+    QPoint globalPos =mapToGlobal(pos);
+    QMenu *menu=new QMenu(this);
+    QAction *addImage=menu->addAction("Aggiungi Immagine...");
+    QAction *saveScheda = menu->addAction("Salva Scheda");
+    QAction *close = menu->addAction("Close");
+
+    connect(addImage,SIGNAL(triggered(bool)),this,SLOT(insertImage()));
+    connect(saveScheda,SIGNAL(triggered(bool)),this,SLOT(saveCard()));
+    connect(close,SIGNAL(triggered(bool)),this,SLOT(on_pbClose_clicked()));
+
+    menu->popup(globalPos);
 }

@@ -3,7 +3,7 @@
  <class>HSchede</class>
  <widget class="QWidget" name="HSchede">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -20,7 +20,7 @@
    <string>Schede</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="icons.qrc">
     <normaloff>:/Resources/Folder.PNG</normaloff>:/Resources/Folder.PNG</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -120,6 +120,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

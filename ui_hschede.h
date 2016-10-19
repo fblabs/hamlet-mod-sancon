@@ -46,7 +46,7 @@ public:
     {
         if (HSchede->objectName().isEmpty())
             HSchede->setObjectName(QStringLiteral("HSchede"));
-        HSchede->setWindowModality(Qt::ApplicationModal);
+        HSchede->setWindowModality(Qt::NonModal);
         HSchede->resize(1293, 735);
         HSchede->setContextMenuPolicy(Qt::CustomContextMenu);
         QIcon icon;

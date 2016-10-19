@@ -36,15 +36,20 @@ public:
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
+    QPushButton *pbsave;
+    QPushButton *pbClose;
 
     void setupUi(QWidget *HNSChede)
     {
         if (HNSChede->objectName().isEmpty())
             HNSChede->setObjectName(QStringLiteral("HNSChede"));
-        HNSChede->setWindowModality(Qt::ApplicationModal);
+        HNSChede->setWindowModality(Qt::NonModal);
         HNSChede->resize(1178, 673);
         HNSChede->setBaseSize(QSize(50, 0));
+        HNSChede->setContextMenuPolicy(Qt::CustomContextMenu);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/Resources/Folder.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        HNSChede->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(HNSChede);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
@@ -82,6 +87,7 @@ public:
 
         textEdit = new QTextEdit(HNSChede);
         textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setContextMenuPolicy(Qt::ActionsContextMenu);
 
         verticalLayout->addWidget(textEdit);
 
@@ -89,13 +95,27 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pushButton_2 = new QPushButton(HNSChede);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
 
-        pushButton_3 = new QPushButton(HNSChede);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pbsave = new QPushButton(HNSChede);
+        pbsave->setObjectName(QStringLiteral("pbsave"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbsave->setIcon(icon1);
+        pbsave->setIconSize(QSize(32, 32));
 
-        horizontalLayout_2->addWidget(pushButton_3);
+        horizontalLayout_2->addWidget(pbsave);
+
+        pbClose = new QPushButton(HNSChede);
+        pbClose->setObjectName(QStringLiteral("pbClose"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon2);
+        pbClose->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pbClose);
 
 
         verticalLayout->addLayout(horizontalLayout_2);
@@ -112,7 +132,8 @@ public:
         label->setText(QApplication::translate("HNSChede", "Cliente:", 0));
         label_2->setText(QApplication::translate("HNSChede", "Prodotto:", 0));
         pushButton_2->setText(QApplication::translate("HNSChede", "Immagine", 0));
-        pushButton_3->setText(QApplication::translate("HNSChede", "Save", 0));
+        pbsave->setText(QApplication::translate("HNSChede", "Salva", 0));
+        pbClose->setText(QApplication::translate("HNSChede", "Chiudi", 0));
     } // retranslateUi
 
 };
