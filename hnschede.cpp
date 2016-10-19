@@ -1,5 +1,6 @@
 #include "hnschede.h"
 #include "ui_hnschede.h"
+#include "hmodimage.h"
 #include <QFileDialog>
 #include <QMessageBox>
 
@@ -284,12 +285,21 @@ void HNSChede::showContextMenu(const QPoint &pos)
     QPoint globalPos =mapToGlobal(pos);
     QMenu *menu=new QMenu(this);
     QAction *addImage=menu->addAction("Aggiungi Immagine...");
+    QAction *modimage=menu->addAction("modifica immagine...");
     QAction *saveScheda = menu->addAction("Salva Scheda");
     QAction *close = menu->addAction("Close");
 
     connect(addImage,SIGNAL(triggered(bool)),this,SLOT(insertImage()));
+    connect(modimage,SIGNAL(triggered(bool)),this,SLOT(showResizeImage()));
     connect(saveScheda,SIGNAL(triggered(bool)),this,SLOT(saveCard()));
     connect(close,SIGNAL(triggered(bool)),this,SLOT(on_pbClose_clicked()));
 
     menu->popup(globalPos);
+}
+
+void HNSChede::showResizeImage()
+{
+    HModImage *f=new HModImage();
+    connect(f,SIGNAL(execResize(int,int)),this,SLOT(resizeImage(int,int)));
+    f->show();
 }

@@ -14,9 +14,12 @@ class HModImage : public QWidget
 public:
     explicit HModImage(QWidget *parent = 0);
     ~HModImage();
-
 private:
     Ui::HModImage *ui;
-};
+signals:
+    void execResize(int w,int h);
+private slots:
+    void doResize();
 
+};
 #endif // HMODIMAGE_H

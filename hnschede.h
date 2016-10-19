@@ -27,6 +27,7 @@ private slots:
     void on_pbsave_clicked();
     void on_pbClose_clicked();
     void resizeImage(int nw, int nh);
+    void showResizeImage();
 
 
 private:

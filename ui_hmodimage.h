@@ -13,9 +13,12 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpinBox>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -23,28 +26,64 @@ QT_BEGIN_NAMESPACE
 class Ui_HModImage
 {
 public:
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
     QLabel *label;
+    QSpinBox *spWidth;
+    QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
-    QSpinBox *spinBox;
-    QSpinBox *spinBox_2;
+    QSpinBox *spHeight;
+    QPushButton *pushButton;
 
     void setupUi(QWidget *HModImage)
     {
         if (HModImage->objectName().isEmpty())
             HModImage->setObjectName(QStringLiteral("HModImage"));
-        HModImage->resize(400, 300);
+        HModImage->resize(170, 116);
+        verticalLayout = new QVBoxLayout(HModImage);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         label = new QLabel(HModImage);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(30, 50, 47, 13));
+        label->setMaximumSize(QSize(50, 16777215));
+
+        horizontalLayout->addWidget(label);
+
+        spWidth = new QSpinBox(HModImage);
+        spWidth->setObjectName(QStringLiteral("spWidth"));
+        spWidth->setMinimum(50);
+        spWidth->setMaximum(1000);
+        spWidth->setValue(50);
+
+        horizontalLayout->addWidget(spWidth);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         label_2 = new QLabel(HModImage);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(20, 130, 47, 13));
-        spinBox = new QSpinBox(HModImage);
-        spinBox->setObjectName(QStringLiteral("spinBox"));
-        spinBox->setGeometry(QRect(80, 50, 101, 22));
-        spinBox_2 = new QSpinBox(HModImage);
-        spinBox_2->setObjectName(QStringLiteral("spinBox_2"));
-        spinBox_2->setGeometry(QRect(70, 130, 111, 22));
+        label_2->setMaximumSize(QSize(50, 16777215));
+
+        horizontalLayout_2->addWidget(label_2);
+
+        spHeight = new QSpinBox(HModImage);
+        spHeight->setObjectName(QStringLiteral("spHeight"));
+        spHeight->setMinimum(50);
+        spHeight->setMaximum(1000);
+
+        horizontalLayout_2->addWidget(spHeight);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
+
+        pushButton = new QPushButton(HModImage);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        verticalLayout->addWidget(pushButton);
+
 
         retranslateUi(HModImage);
 
@@ -56,6 +95,7 @@ public:
         HModImage->setWindowTitle(QApplication::translate("HModImage", "Form", 0));
         label->setText(QApplication::translate("HModImage", "Width:", 0));
         label_2->setText(QApplication::translate("HModImage", "Height", 0));
+        pushButton->setText(QApplication::translate("HModImage", "Chiudi", 0));
     } // retranslateUi
 
 };
