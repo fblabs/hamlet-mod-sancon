@@ -35,8 +35,8 @@ public:
     QComboBox *cbProdotti;
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout_2;
-    QPushButton *pushButton_2;
     QPushButton *pbsave;
+    QPushButton *pushButton_2;
     QPushButton *pbClose;
 
     void setupUi(QWidget *HNSChede)
@@ -93,12 +93,6 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        pushButton_2 = new QPushButton(HNSChede);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setIconSize(QSize(32, 32));
-
-        horizontalLayout_2->addWidget(pushButton_2);
-
         pbsave = new QPushButton(HNSChede);
         pbsave->setObjectName(QStringLiteral("pbsave"));
         QIcon icon1;
@@ -108,11 +102,20 @@ public:
 
         horizontalLayout_2->addWidget(pbsave);
 
+        pushButton_2 = new QPushButton(HNSChede);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon2);
+        pushButton_2->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pushButton_2);
+
         pbClose = new QPushButton(HNSChede);
         pbClose->setObjectName(QStringLiteral("pbClose"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon3);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbClose);
@@ -131,8 +134,8 @@ public:
         HNSChede->setWindowTitle(QApplication::translate("HNSChede", "SCHEDE CLIENTI", 0));
         label->setText(QApplication::translate("HNSChede", "Cliente:", 0));
         label_2->setText(QApplication::translate("HNSChede", "Prodotto:", 0));
-        pushButton_2->setText(QApplication::translate("HNSChede", "Immagine", 0));
         pbsave->setText(QApplication::translate("HNSChede", "Salva", 0));
+        pushButton_2->setText(QApplication::translate("HNSChede", "Stampa...", 0));
         pbClose->setText(QApplication::translate("HNSChede", "Chiudi", 0));
     } // retranslateUi
 

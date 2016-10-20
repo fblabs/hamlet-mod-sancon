@@ -20,6 +20,8 @@ HModificaScheda::HModificaScheda(QWidget *parent) :
     ui(new Ui::HModificaScheda)
 {
     ui->setupUi(this);
+
+
 }
 
 HModificaScheda::~HModificaScheda()

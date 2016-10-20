@@ -19,6 +19,8 @@
 #include <QShortcut>
 #include <QMenu>
 #include <QDebug>
+#include <QPrintDialog>
+#include <QPrintPreviewDialog>
 
 
 
@@ -31,10 +33,18 @@ HNSChede::HNSChede(QWidget *parent,QSqlDatabase pdb) :
     db=pdb;
 
     QShortcut *shortcut =new QShortcut(QKeySequence("Ctrl+I"),this);
+    QShortcut *modimg=new QShortcut(QKeySequence("Ctrl+alt+I"),this);
 
     QShortcut *shortcutsave =new QShortcut(QKeySequence("Ctrl+S"),this);
+    QShortcut *printCard = new QShortcut(QKeySequence("Ctrl+P"),this);
+    QShortcut *printPreviewCard = new QShortcut(QKeySequence("Ctrl+Alt+P"),this);
     connect(shortcut,SIGNAL(activated()),this,SLOT(insertImage()));
     connect(shortcutsave,SIGNAL(activated()),this,SLOT(saveCard()));
+    connect(printCard,SIGNAL(activated()),this,SLOT(print()));
+    connect (printPreviewCard,SIGNAL(activated()),this,SLOT(printPreviewSlot()));
+    connect(modimg,SIGNAL(activated()),this,SLOT(showResizeImage()));
+
+
 
 
 
@@ -68,6 +78,22 @@ HNSChede::HNSChede(QWidget *parent,QSqlDatabase pdb) :
 
 
 
+}
+
+void HNSChede::print()
+{
+
+     QPrinter *printer=new QPrinter(QPrinter::HighResolution);
+
+     printer->setPageSize(QPrinter::A4);
+
+     QPrintDialog   dialog( printer);
+
+     if (dialog.exec()==QDialog::Accepted)
+     {
+         ui->textEdit->print(printer);
+
+     }
 }
 
 void HNSChede::getProducts()
@@ -114,7 +140,7 @@ HNSChede::~HNSChede()
 
 void HNSChede::insertImage()
 {
-    QString file = QFileDialog::getOpenFileName(this,"Seleziona immagine",QDir::currentPath(),"Bitmap (*.bmp)\nJPEG (*.jpg)\nPNG (*.png)");
+    QString file = QFileDialog::getOpenFileName(this,"Seleziona immagine",QDir::currentPath(),"JPEG (*.jpg)\nPNG (*.png)\nBMP (*.bmp)");
     QUrl uri =QUrl::fromLocalFile(file);
     QImage img(file);
      ui->textEdit->document()->addResource(QTextDocument::ImageResource,uri,QVariant(img));
@@ -134,7 +160,7 @@ void HNSChede::insertImage()
 
 void HNSChede::on_pushButton_2_clicked()
 {
-    insertImage();
+  print();
 }
 
 
@@ -236,7 +262,7 @@ void HNSChede::on_pbsave_clicked()
 
 void HNSChede::on_pbClose_clicked()
 {
-    if (QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Chiudere?",QMessageBox::Ok))
+    if (QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Chiudere?",QMessageBox::Ok|QMessageBox::Cancel))
     {
         close();
     }
@@ -280,26 +306,143 @@ void HNSChede::resizeImage(int nw, int nh)
 
 }
 
+int HNSChede::getImageWidth()
+{
+    QTextBlock currentBlock = ui->textEdit->textCursor().block();
+    QTextBlock::iterator it;
+
+    int val=-1;
+
+
+        for (it = currentBlock.begin(); !(it.atEnd()); ++it)
+        {
+
+                 QTextFragment fragment = it.fragment();
+
+                 if (fragment.isValid())
+                 {
+
+                     if(fragment.charFormat().isImageFormat ())
+                     {
+                          QTextImageFormat newImageFormat = fragment.charFormat().toImageFormat();
+
+                          val= newImageFormat.width();
+
+                      }
+                  }
+           }
+
+    return val;
+}
+
+int HNSChede::getImageHeight()
+{
+    QTextBlock currentBlock = ui->textEdit->textCursor().block();
+    QTextBlock::iterator it;
+
+    int val=-1;
+
+
+        for (it = currentBlock.begin(); !(it.atEnd()); ++it)
+        {
+
+                 QTextFragment fragment = it.fragment();
+
+                 if (fragment.isValid())
+                 {
+
+                     if(fragment.charFormat().isImageFormat ())
+                     {
+                          QTextImageFormat newImageFormat = fragment.charFormat().toImageFormat();
+
+                          val = newImageFormat.height();
+
+                      }
+                  }
+         }
+
+        return val;
+}
+
 void HNSChede::showContextMenu(const QPoint &pos)
 {
     QPoint globalPos =mapToGlobal(pos);
     QMenu *menu=new QMenu(this);
     QAction *addImage=menu->addAction("Aggiungi Immagine...");
-    QAction *modimage=menu->addAction("modifica immagine...");
+    QAction *modimage=menu->addAction("Modifica immagine...");
+    QAction *addSeparator =menu->addSeparator();
     QAction *saveScheda = menu->addAction("Salva Scheda");
+    QAction *addSeparator2 =menu->addSeparator();
+    QAction *printPrev = menu->addAction("Anteprima di stampa...");
     QAction *close = menu->addAction("Close");
 
     connect(addImage,SIGNAL(triggered(bool)),this,SLOT(insertImage()));
     connect(modimage,SIGNAL(triggered(bool)),this,SLOT(showResizeImage()));
     connect(saveScheda,SIGNAL(triggered(bool)),this,SLOT(saveCard()));
     connect(close,SIGNAL(triggered(bool)),this,SLOT(on_pbClose_clicked()));
+    connect(printPrev,SIGNAL(triggered(bool)),this,SLOT(printPreviewSlot()));
 
     menu->popup(globalPos);
 }
 
+void HNSChede::printPreviewSlot()
+{
+    QPrinter lprinter(QPrinter::HighResolution);
+    lprinter.setPaperSize(QPrinter::A4);
+    QPrintPreviewDialog *dlg=new QPrintPreviewDialog(&lprinter);
+    connect(dlg,SIGNAL(paintRequested(QPrinter*)),this,SLOT(printPreview(QPrinter*)));
+    dlg->exec();
+}
+
 void HNSChede::showResizeImage()
 {
-    HModImage *f=new HModImage();
+    int w=getImageWidth();
+    int h=getImageHeight();
+
+    if ( w==-1 && h==-1)
+    {
+        return;
+    }
+
+    HModImage *f=new HModImage(0,w,h);
     connect(f,SIGNAL(execResize(int,int)),this,SLOT(resizeImage(int,int)));
     f->show();
 }
+
+void HNSChede::printPreview(QPrinter *printer)
+{
+    ui->textEdit->print(printer);
+}
+
+void HNSChede::setBold()
+{
+    QTextCharFormat fmt;
+
+    QTextCursor cursor=ui->textEdit->textCursor();
+    fmt=cursor.blockCharFormat();
+    if(!cursor.hasSelection())
+    {
+        return;
+    }
+    else
+    {
+        qDebug()<<fmt.fontWeight();
+        if (fmt.fontWeight()==50)
+        {
+            fmt.setFontWeight(QFont::Bold);
+        }
+        else
+        {
+            fmt.setFontWeight(QFont::Normal);
+        }
+        cursor.mergeCharFormat(fmt);
+
+         qDebug()<<fmt.fontWeight();
+
+    }
+}
+
+/*void HNSChede::on_pushButton_clicked()
+{
+    setBold();
+}*/

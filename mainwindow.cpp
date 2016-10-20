@@ -37,6 +37,7 @@
 #include "hverifylabels.h"
 #include "hschedeclienti.h"
 #include "hschede.h"
+#include "hnschede.h"
 
 
 
@@ -484,7 +485,10 @@ void MainWindow::on_pbSchede_clicked()
     f->showMaximized();
    */
 
-    HSchede *f =new HSchede(0,db);
+   /* HSchede *f =new HSchede(0,db);
+    f->show();*/
+
+    HNSChede *f= new HNSChede(0,db);
     f->show();
 
 }

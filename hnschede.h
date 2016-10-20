@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QSqlDatabase>
+#include <QPrinter>
 
 namespace Ui {
 class HNSChede;
@@ -28,6 +29,14 @@ private slots:
     void on_pbClose_clicked();
     void resizeImage(int nw, int nh);
     void showResizeImage();
+    int getImageWidth();
+    int getImageHeight();
+    void printPreview(QPrinter *printer);
+    void printPreviewSlot();
+    void print();
+    void setBold();
+
+
 
 
 private:

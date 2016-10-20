@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QSqlDatabase>
+#include <QPrinter>
 
 namespace Ui {
 class HSchede;
@@ -29,8 +30,10 @@ private slots:
     void addNewImage();
     void loadImages(int id);
     void showContextMenu(const QPoint& pos);
-
     void on_pushButton_clicked();
+
+
+
 
 private:
     Ui::HSchede *ui;

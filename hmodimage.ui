@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>HModImage</class>
  <widget class="QWidget" name="HModImage">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Moifica immagine</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

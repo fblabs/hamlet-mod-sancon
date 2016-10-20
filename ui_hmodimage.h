@@ -39,6 +39,7 @@ public:
     {
         if (HModImage->objectName().isEmpty())
             HModImage->setObjectName(QStringLiteral("HModImage"));
+        HModImage->setWindowModality(Qt::WindowModal);
         HModImage->resize(170, 116);
         verticalLayout = new QVBoxLayout(HModImage);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -92,7 +93,7 @@ public:
 
     void retranslateUi(QWidget *HModImage)
     {
-        HModImage->setWindowTitle(QApplication::translate("HModImage", "Form", 0));
+        HModImage->setWindowTitle(QApplication::translate("HModImage", "Moifica immagine", 0));
         label->setText(QApplication::translate("HModImage", "Width:", 0));
         label_2->setText(QApplication::translate("HModImage", "Height", 0));
         pushButton->setText(QApplication::translate("HModImage", "Chiudi", 0));

@@ -27,7 +27,6 @@ QT_BEGIN_NAMESPACE
 class Ui_HSchede
 {
 public:
-    QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_3;
     QHBoxLayout *horizontalLayout;
@@ -36,6 +35,7 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
     QComboBox *cbProdotti;
+    QPushButton *pushButton_2;
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pushButton;
@@ -52,9 +52,7 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Folder.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HSchede->setWindowIcon(icon);
-        verticalLayout_2 = new QVBoxLayout(HSchede);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout = new QVBoxLayout();
+        verticalLayout = new QVBoxLayout(HSchede);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
@@ -91,6 +89,11 @@ public:
 
         horizontalLayout_2->addWidget(cbProdotti);
 
+        pushButton_2 = new QPushButton(HSchede);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+
+        horizontalLayout_2->addWidget(pushButton_2);
+
 
         horizontalLayout_3->addLayout(horizontalLayout_2);
 
@@ -99,7 +102,13 @@ public:
 
         textEdit = new QTextEdit(HSchede);
         textEdit->setObjectName(QStringLiteral("textEdit"));
+        QFont font;
+        font.setFamily(QStringLiteral("Courier New"));
+        font.setPointSize(10);
+        textEdit->setFont(font);
         textEdit->setContextMenuPolicy(Qt::ActionsContextMenu);
+        textEdit->setFrameShape(QFrame::StyledPanel);
+        textEdit->setAutoFormatting(QTextEdit::AutoNone);
 
         verticalLayout->addWidget(textEdit);
 
@@ -124,9 +133,6 @@ public:
         verticalLayout->addLayout(horizontalLayout_4);
 
 
-        verticalLayout_2->addLayout(verticalLayout);
-
-
         retranslateUi(HSchede);
 
         QMetaObject::connectSlotsByName(HSchede);
@@ -137,6 +143,7 @@ public:
         HSchede->setWindowTitle(QApplication::translate("HSchede", "Schede", 0));
         label->setText(QApplication::translate("HSchede", "Cliente:", 0));
         label_2->setText(QApplication::translate("HSchede", "Prodotto:", 0));
+        pushButton_2->setText(QApplication::translate("HSchede", "PushButton", 0));
         pushButton->setText(QApplication::translate("HSchede", "Test", 0));
         pbMod->setText(QApplication::translate("HSchede", "Modifica", 0));
         pbClose->setText(QApplication::translate("HSchede", "Chiudi", 0));

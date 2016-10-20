@@ -99,9 +99,13 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pbsave">
        <property name="text">
-        <string>Immagine</string>
+        <string>Salva</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/save-icon.png</normaloff>:/Resources/save-icon.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -112,13 +116,13 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbsave">
+      <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string>Salva</string>
+        <string>Stampa...</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
-         <normaloff>:/Resources/save-icon.png</normaloff>:/Resources/save-icon.png</iconset>
+         <normaloff>:/Resources/Printer-icon.png</normaloff>:/Resources/Printer-icon.png</iconset>
        </property>
        <property name="iconSize">
         <size>

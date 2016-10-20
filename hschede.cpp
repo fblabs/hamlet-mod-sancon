@@ -17,6 +17,7 @@
 #include <QDir>
 #include <QBuffer>
 #include "hnschede.h"
+#include <QPrinter>
 
 HSchede::HSchede(QWidget *parent, QSqlDatabase pdb) :
     QWidget(parent),
@@ -328,3 +329,6 @@ void HSchede::on_pushButton_clicked()
     HNSChede *f= new HNSChede(0,db);
     f->show();
 }
+
+
+
