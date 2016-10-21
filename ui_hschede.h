@@ -35,7 +35,6 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
     QComboBox *cbProdotti;
-    QPushButton *pushButton_2;
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pushButton;
@@ -89,11 +88,6 @@ public:
 
         horizontalLayout_2->addWidget(cbProdotti);
 
-        pushButton_2 = new QPushButton(HSchede);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-
-        horizontalLayout_2->addWidget(pushButton_2);
-
 
         horizontalLayout_3->addLayout(horizontalLayout_2);
 
@@ -143,7 +137,6 @@ public:
         HSchede->setWindowTitle(QApplication::translate("HSchede", "Schede", 0));
         label->setText(QApplication::translate("HSchede", "Cliente:", 0));
         label_2->setText(QApplication::translate("HSchede", "Prodotto:", 0));
-        pushButton_2->setText(QApplication::translate("HSchede", "PushButton", 0));
         pushButton->setText(QApplication::translate("HSchede", "Test", 0));
         pbMod->setText(QApplication::translate("HSchede", "Modifica", 0));
         pbClose->setText(QApplication::translate("HSchede", "Chiudi", 0));

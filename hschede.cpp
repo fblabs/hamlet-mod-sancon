@@ -326,8 +326,8 @@ void HSchede::addNewImage()
 
 void HSchede::on_pushButton_clicked()
 {
-    HNSChede *f= new HNSChede(0,db);
-    f->show();
+   /* HNSChede *f= new HNSChede(0,u,db);
+    f->show();*/
 }
 
 

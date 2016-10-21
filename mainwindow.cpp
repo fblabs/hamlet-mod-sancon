@@ -35,8 +35,8 @@
 #include "halarm.h"
 #include "hnotifica.h"
 #include "hverifylabels.h"
-#include "hschedeclienti.h"
-#include "hschede.h"
+//#include "hschedeclienti.h"
+//#include "hschede.h"
 #include "hnschede.h"
 
 
@@ -488,7 +488,7 @@ void MainWindow::on_pbSchede_clicked()
    /* HSchede *f =new HSchede(0,db);
     f->show();*/
 
-    HNSChede *f= new HNSChede(0,db);
+    HNSChede *f= new HNSChede(0,user,db);
     f->show();
 
 }

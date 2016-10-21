@@ -21,25 +21,34 @@
 #include <QDebug>
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
+#include <QFontDialog>
 
 
 
 
-HNSChede::HNSChede(QWidget *parent,QSqlDatabase pdb) :
+HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     QWidget(parent),
     ui(new Ui::HNSChede)
 {
     ui->setupUi(this);
     db=pdb;
+    usr=pusr;
+
+    bool upd=usr->getCanUpdate();
+
+    if (!upd)
+    {
+        ui->pbsave->setVisible(false);
+    }
 
     QShortcut *shortcut =new QShortcut(QKeySequence("Ctrl+I"),this);
     QShortcut *modimg=new QShortcut(QKeySequence("Ctrl+alt+I"),this);
 
-    QShortcut *shortcutsave =new QShortcut(QKeySequence("Ctrl+S"),this);
+   // QShortcut *shortcutsave =new QShortcut(QKeySequence("Ctrl+S"),this);
     QShortcut *printCard = new QShortcut(QKeySequence("Ctrl+P"),this);
     QShortcut *printPreviewCard = new QShortcut(QKeySequence("Ctrl+Alt+P"),this);
     connect(shortcut,SIGNAL(activated()),this,SLOT(insertImage()));
-    connect(shortcutsave,SIGNAL(activated()),this,SLOT(saveCard()));
+   // connect(shortcutsave,SIGNAL(activated()),this,SLOT(saveCard()));
     connect(printCard,SIGNAL(activated()),this,SLOT(print()));
     connect (printPreviewCard,SIGNAL(activated()),this,SLOT(printPreviewSlot()));
     connect(modimg,SIGNAL(activated()),this,SLOT(showResizeImage()));
@@ -416,33 +425,72 @@ void HNSChede::printPreview(QPrinter *printer)
 
 void HNSChede::setBold()
 {
-    QTextCharFormat fmt;
 
     QTextCursor cursor=ui->textEdit->textCursor();
-    fmt=cursor.blockCharFormat();
-    if(!cursor.hasSelection())
-    {
-        return;
-    }
-    else
-    {
-        qDebug()<<fmt.fontWeight();
-        if (fmt.fontWeight()==50)
-        {
-            fmt.setFontWeight(QFont::Bold);
-        }
-        else
-        {
-            fmt.setFontWeight(QFont::Normal);
-        }
-        cursor.mergeCharFormat(fmt);
+    QTextCharFormat currentFormat=cursor.charFormat();
 
-         qDebug()<<fmt.fontWeight();
+    if(!cursor.charFormat().font().bold())
+    {
+        qDebug()<<"not bold";
+        currentFormat.setFontWeight(QFont::Bold);
+       // cursor.charFormat().setFontWeight(QFont::Bold);
+
+    }else
+    {
+        qDebug()<<"bold";
+        currentFormat.setFontWeight(QFont::Normal);
+
+
 
     }
+
+    cursor.mergeCharFormat(currentFormat);
+
+
+
+
 }
 
-/*void HNSChede::on_pushButton_clicked()
+void HNSChede::setEvidence()
+{
+    QTextCursor cursor=ui->textEdit->textCursor();
+    QTextCharFormat currentFormat=cursor.charFormat();
+
+    currentFormat.setBackground(QBrush(QColor(Qt::yellow)));
+    cursor.mergeCharFormat(currentFormat);
+}
+
+
+
+void HNSChede::on_pbBold_clicked()
 {
     setBold();
-}*/
+}
+
+void HNSChede::setFont()
+{
+    bool ok;
+
+    QTextCursor cursor=ui->textEdit->textCursor();
+    QTextCharFormat currentFormat=cursor.charFormat();
+
+    QFont font=QFontDialog::getFont(&ok,currentFormat.font());
+
+   if(ok)
+   {
+    currentFormat.setFont(font);
+    cursor.mergeCharFormat(currentFormat);
+   }
+
+
+}
+
+void HNSChede::on_pushButton_3_clicked()
+{
+        setFont();
+}
+
+void HNSChede::on_pushButton_clicked()
+{
+       setEvidence();
+}

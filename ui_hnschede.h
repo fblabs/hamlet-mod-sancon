@@ -33,6 +33,10 @@ public:
     QComboBox *cbClienti;
     QLabel *label_2;
     QComboBox *cbProdotti;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton;
+    QPushButton *pbBold;
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pbsave;
@@ -85,6 +89,26 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        pushButton_3 = new QPushButton(HNSChede);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+
+        horizontalLayout_3->addWidget(pushButton_3);
+
+        pushButton = new QPushButton(HNSChede);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        horizontalLayout_3->addWidget(pushButton);
+
+        pbBold = new QPushButton(HNSChede);
+        pbBold->setObjectName(QStringLiteral("pbBold"));
+
+        horizontalLayout_3->addWidget(pbBold);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
+
         textEdit = new QTextEdit(HNSChede);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -134,6 +158,9 @@ public:
         HNSChede->setWindowTitle(QApplication::translate("HNSChede", "SCHEDE CLIENTI", 0));
         label->setText(QApplication::translate("HNSChede", "Cliente:", 0));
         label_2->setText(QApplication::translate("HNSChede", "Prodotto:", 0));
+        pushButton_3->setText(QApplication::translate("HNSChede", "Font", 0));
+        pushButton->setText(QApplication::translate("HNSChede", "Evidenzia", 0));
+        pbBold->setText(QApplication::translate("HNSChede", "B", 0));
         pbsave->setText(QApplication::translate("HNSChede", "Salva", 0));
         pushButton_2->setText(QApplication::translate("HNSChede", "Stampa...", 0));
         pbClose->setText(QApplication::translate("HNSChede", "Chiudi", 0));

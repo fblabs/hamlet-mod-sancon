@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QSqlDatabase>
 #include <QPrinter>
+#include "huser.h"
 
 namespace Ui {
 class HNSChede;
@@ -14,7 +15,7 @@ class HNSChede : public QWidget
     Q_OBJECT
 
 public:
-    explicit HNSChede(QWidget *parent = 0,QSqlDatabase pdb=QSqlDatabase());
+    explicit HNSChede(QWidget *parent = 0, HUser* pusr=0,QSqlDatabase pdb=QSqlDatabase());
     ~HNSChede();
 
 private slots:
@@ -35,13 +36,23 @@ private slots:
     void printPreviewSlot();
     void print();
     void setBold();
+    void setFont();
+    void setEvidence();
 
 
 
+
+    void on_pbBold_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::HNSChede *ui;
     QSqlDatabase db;
+    HUser *usr;
+
     bool update;
 };
 

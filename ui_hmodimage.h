@@ -40,7 +40,7 @@ public:
         if (HModImage->objectName().isEmpty())
             HModImage->setObjectName(QStringLiteral("HModImage"));
         HModImage->setWindowModality(Qt::WindowModal);
-        HModImage->resize(170, 116);
+        HModImage->resize(219, 116);
         verticalLayout = new QVBoxLayout(HModImage);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();

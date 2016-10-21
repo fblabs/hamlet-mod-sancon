@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HNSChede_t {
-    QByteArrayData data[23];
-    char stringdata0[258];
+    QByteArrayData data[28];
+    char stringdata0[342];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -51,7 +51,12 @@ QT_MOC_LITERAL(18, 209, 9), // "QPrinter*"
 QT_MOC_LITERAL(19, 219, 7), // "printer"
 QT_MOC_LITERAL(20, 227, 16), // "printPreviewSlot"
 QT_MOC_LITERAL(21, 244, 5), // "print"
-QT_MOC_LITERAL(22, 250, 7) // "setBold"
+QT_MOC_LITERAL(22, 250, 7), // "setBold"
+QT_MOC_LITERAL(23, 258, 7), // "setFont"
+QT_MOC_LITERAL(24, 266, 11), // "setEvidence"
+QT_MOC_LITERAL(25, 278, 17), // "on_pbBold_clicked"
+QT_MOC_LITERAL(26, 296, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(27, 320, 21) // "on_pushButton_clicked"
 
     },
     "HNSChede\0insertImage\0\0on_pushButton_2_clicked\0"
@@ -60,7 +65,9 @@ QT_MOC_LITERAL(22, 250, 7) // "setBold"
     "on_pbClose_clicked\0resizeImage\0nw\0nh\0"
     "showResizeImage\0getImageWidth\0"
     "getImageHeight\0printPreview\0QPrinter*\0"
-    "printer\0printPreviewSlot\0print\0setBold"
+    "printer\0printPreviewSlot\0print\0setBold\0"
+    "setFont\0setEvidence\0on_pbBold_clicked\0"
+    "on_pushButton_3_clicked\0on_pushButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -70,7 +77,7 @@ static const uint qt_meta_data_HNSChede[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      21,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -78,22 +85,27 @@ static const uint qt_meta_data_HNSChede[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   94,    2, 0x08 /* Private */,
-       3,    0,   95,    2, 0x08 /* Private */,
-       4,    1,   96,    2, 0x08 /* Private */,
-       6,    0,   99,    2, 0x08 /* Private */,
-       7,    0,  100,    2, 0x08 /* Private */,
-       8,    0,  101,    2, 0x08 /* Private */,
-       9,    0,  102,    2, 0x08 /* Private */,
-      10,    0,  103,    2, 0x08 /* Private */,
-      11,    2,  104,    2, 0x08 /* Private */,
-      14,    0,  109,    2, 0x08 /* Private */,
-      15,    0,  110,    2, 0x08 /* Private */,
-      16,    0,  111,    2, 0x08 /* Private */,
-      17,    1,  112,    2, 0x08 /* Private */,
-      20,    0,  115,    2, 0x08 /* Private */,
-      21,    0,  116,    2, 0x08 /* Private */,
-      22,    0,  117,    2, 0x08 /* Private */,
+       1,    0,  119,    2, 0x08 /* Private */,
+       3,    0,  120,    2, 0x08 /* Private */,
+       4,    1,  121,    2, 0x08 /* Private */,
+       6,    0,  124,    2, 0x08 /* Private */,
+       7,    0,  125,    2, 0x08 /* Private */,
+       8,    0,  126,    2, 0x08 /* Private */,
+       9,    0,  127,    2, 0x08 /* Private */,
+      10,    0,  128,    2, 0x08 /* Private */,
+      11,    2,  129,    2, 0x08 /* Private */,
+      14,    0,  134,    2, 0x08 /* Private */,
+      15,    0,  135,    2, 0x08 /* Private */,
+      16,    0,  136,    2, 0x08 /* Private */,
+      17,    1,  137,    2, 0x08 /* Private */,
+      20,    0,  140,    2, 0x08 /* Private */,
+      21,    0,  141,    2, 0x08 /* Private */,
+      22,    0,  142,    2, 0x08 /* Private */,
+      23,    0,  143,    2, 0x08 /* Private */,
+      24,    0,  144,    2, 0x08 /* Private */,
+      25,    0,  145,    2, 0x08 /* Private */,
+      26,    0,  146,    2, 0x08 /* Private */,
+      27,    0,  147,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -109,6 +121,11 @@ static const uint qt_meta_data_HNSChede[] = {
     QMetaType::Int,
     QMetaType::Int,
     QMetaType::Void, 0x80000000 | 18,   19,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -141,6 +158,11 @@ void HNSChede::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 13: _t->printPreviewSlot(); break;
         case 14: _t->print(); break;
         case 15: _t->setBold(); break;
+        case 16: _t->setFont(); break;
+        case 17: _t->setEvidence(); break;
+        case 18: _t->on_pbBold_clicked(); break;
+        case 19: _t->on_pushButton_3_clicked(); break;
+        case 20: _t->on_pushButton_clicked(); break;
         default: ;
         }
     }
@@ -171,13 +193,13 @@ int HNSChede::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 21)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 21;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 21)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 16;
+        _id -= 21;
     }
     return _id;
 }
