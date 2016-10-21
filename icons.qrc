@@ -70,5 +70,8 @@
         <file>Resources/hamlet.PNG</file>
         <file>Resources/user-group-icon.png</file>
         <file>Resources/addimage.png</file>
+        <file>Resources/Text-bold64.png</file>
+        <file>Resources/Flag-yellow64.png</file>
+        <file>Resources/Font64.png</file>
     </qresource>
 </RCC>

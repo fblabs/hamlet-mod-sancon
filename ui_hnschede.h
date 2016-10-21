@@ -93,16 +93,28 @@ public:
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         pushButton_3 = new QPushButton(HNSChede);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setMaximumSize(QSize(32, 16777215));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Font64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon1);
 
         horizontalLayout_3->addWidget(pushButton_3);
 
         pushButton = new QPushButton(HNSChede);
         pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setMaximumSize(QSize(32, 16777215));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Flag-yellow64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon2);
 
         horizontalLayout_3->addWidget(pushButton);
 
         pbBold = new QPushButton(HNSChede);
         pbBold->setObjectName(QStringLiteral("pbBold"));
+        pbBold->setMaximumSize(QSize(32, 16777215));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Text-bold64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbBold->setIcon(icon3);
 
         horizontalLayout_3->addWidget(pbBold);
 
@@ -119,27 +131,27 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pbsave = new QPushButton(HNSChede);
         pbsave->setObjectName(QStringLiteral("pbsave"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbsave->setIcon(icon1);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbsave->setIcon(icon4);
         pbsave->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbsave);
 
         pushButton_2 = new QPushButton(HNSChede);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon2);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon5);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
 
         pbClose = new QPushButton(HNSChede);
         pbClose->setObjectName(QStringLiteral("pbClose"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon3);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon6);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbClose);
@@ -158,9 +170,18 @@ public:
         HNSChede->setWindowTitle(QApplication::translate("HNSChede", "SCHEDE CLIENTI", 0));
         label->setText(QApplication::translate("HNSChede", "Cliente:", 0));
         label_2->setText(QApplication::translate("HNSChede", "Prodotto:", 0));
-        pushButton_3->setText(QApplication::translate("HNSChede", "Font", 0));
-        pushButton->setText(QApplication::translate("HNSChede", "Evidenzia", 0));
-        pbBold->setText(QApplication::translate("HNSChede", "B", 0));
+#ifndef QT_NO_TOOLTIP
+        pushButton_3->setToolTip(QApplication::translate("HNSChede", "Font", 0));
+#endif // QT_NO_TOOLTIP
+        pushButton_3->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pushButton->setToolTip(QApplication::translate("HNSChede", "<html><head/><body><p>Evidenzia il testo selezionato</p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
+        pushButton->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pbBold->setToolTip(QApplication::translate("HNSChede", "Grassetto", 0));
+#endif // QT_NO_TOOLTIP
+        pbBold->setText(QString());
         pbsave->setText(QApplication::translate("HNSChede", "Salva", 0));
         pushButton_2->setText(QApplication::translate("HNSChede", "Stampa...", 0));
         pbClose->setText(QApplication::translate("HNSChede", "Chiudi", 0));

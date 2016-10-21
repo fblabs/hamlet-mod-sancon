@@ -456,7 +456,17 @@ void HNSChede::setEvidence()
     QTextCursor cursor=ui->textEdit->textCursor();
     QTextCharFormat currentFormat=cursor.charFormat();
 
-    currentFormat.setBackground(QBrush(QColor(Qt::yellow)));
+    qDebug()<<currentFormat.background().color().name();
+
+    if(currentFormat.background().color().name()=="#ffffff")
+    {
+qDebug()<<currentFormat.background().color().name();
+        currentFormat.setBackground(QBrush(QColor(Qt::yellow)));
+    }
+    else
+    {
+       currentFormat.setBackground(QBrush(QColor(Qt::white)));
+    }
     cursor.mergeCharFormat(currentFormat);
 }
 
