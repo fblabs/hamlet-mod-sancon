@@ -61,6 +61,7 @@ public:
     QToolButton *tbSettings;
     QPushButton *pbCkeckNotifications;
     QPushButton *pbVerifyLabels;
+    QPushButton *pbOldCards;
     QLabel *label_6;
 
     void setupUi(QMainWindow *MainWindow)
@@ -483,6 +484,11 @@ public:
 
         gridLayout->addWidget(pbVerifyLabels, 8, 7, 1, 1);
 
+        pbOldCards = new QPushButton(centralWidget);
+        pbOldCards->setObjectName(QStringLiteral("pbOldCards"));
+
+        gridLayout->addWidget(pbOldCards, 2, 6, 1, 1);
+
 
         verticalLayout_4->addLayout(gridLayout);
 
@@ -538,6 +544,7 @@ public:
         tbSettings->setText(QApplication::translate("MainWindow", "Impostazioni   ", 0));
         pbCkeckNotifications->setText(QApplication::translate("MainWindow", "Verifica notifiche", 0));
         pbVerifyLabels->setText(QApplication::translate("MainWindow", "Verifica etichette", 0));
+        pbOldCards->setText(QApplication::translate("MainWindow", "Schede (legacy)", 0));
         label_6->setText(QString());
     } // retranslateUi
 

@@ -1267,6 +1267,13 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="6">
+         <widget class="QPushButton" name="pbOldCards">
+          <property name="text">
+           <string>Schede (legacy)</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>

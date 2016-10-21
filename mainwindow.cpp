@@ -35,7 +35,7 @@
 #include "halarm.h"
 #include "hnotifica.h"
 #include "hverifylabels.h"
-//#include "hschedeclienti.h"
+#include "hschedeclienti.h"
 //#include "hschede.h"
 #include "hnschede.h"
 
@@ -480,13 +480,13 @@ void MainWindow::on_tbAssociazioni_clicked()
 void MainWindow::on_pbSchede_clicked()
 {
    // QApplication::setOverrideCursor(Qt::WaitCursor);
-  /*  HSchedeClienti *f = new HSchedeClienti();
-    f->init(sConn,user);
-    f->showMaximized();
-   */
+   // HSchedeClienti *f = new HSchedeClienti();
+   // f->init(sConn,user);
+   // f->showMaximized();
+
 
    /* HSchede *f =new HSchede(0,db);
-    f->show();*/
+    f->show();**/
 
     HNSChede *f= new HNSChede(0,user,db);
     f->show();
@@ -600,4 +600,11 @@ void MainWindow::on_pbVerifyLabels_clicked()
 {
     HVerifyLabels *f = new HVerifyLabels();
     f->show();
+}
+
+void MainWindow::on_pbOldCards_clicked()
+{
+     HSchedeClienti *f = new HSchedeClienti();
+     f->init(sConn,user);
+     f->showMaximized();
 }

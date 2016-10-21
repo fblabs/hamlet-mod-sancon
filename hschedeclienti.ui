@@ -119,6 +119,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QPushButton" name="pushButton_4">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Modifica</string>
        </property>
@@ -136,6 +139,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnSave">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Salva</string>
        </property>
@@ -153,6 +159,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnDup">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Copia da scheda...</string>
        </property>
@@ -170,6 +179,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_3">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Elimina</string>
        </property>

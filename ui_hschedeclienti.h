@@ -116,6 +116,7 @@ public:
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         pushButton_4 = new QPushButton(HSchedeClienti);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setEnabled(false);
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/Resources/Art-Supplies.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_4->setIcon(icon1);
@@ -125,6 +126,7 @@ public:
 
         btnSave = new QPushButton(HSchedeClienti);
         btnSave->setObjectName(QStringLiteral("btnSave"));
+        btnSave->setEnabled(false);
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnSave->setIcon(icon2);
@@ -134,6 +136,7 @@ public:
 
         btnDup = new QPushButton(HSchedeClienti);
         btnDup->setObjectName(QStringLiteral("btnDup"));
+        btnDup->setEnabled(false);
         QIcon icon3;
         icon3.addFile(QStringLiteral(":/Resources/Sheet-Of-Paper.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         btnDup->setIcon(icon3);
@@ -143,6 +146,7 @@ public:
 
         pushButton_3 = new QPushButton(HSchedeClienti);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setEnabled(false);
         QIcon icon4;
         icon4.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_3->setIcon(icon4);
