@@ -239,9 +239,9 @@ void HNSChede::loadCard()
         update=false;
     }
     q.first();
-    QString doc =q.value(0).toString();
+    QString doc ="<p></p>"+q.value(0).toString();
     //ui->textEdit->setHtml(doc);
-    ui->textEdit->setText(doc);
+    ui->textEdit->setHtml(doc);
    // QMessageBox::warning(this,QApplication::applicationName(),"Doc:\n"+doc,QMessageBox::Ok);
 
     }

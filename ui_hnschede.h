@@ -18,6 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -37,6 +38,8 @@ public:
     QPushButton *pushButton_3;
     QPushButton *pushButton;
     QPushButton *pbBold;
+    QPushButton *pbSaveAsTemplate;
+    QSpacerItem *horizontalSpacer;
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pbsave;
@@ -104,7 +107,7 @@ public:
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setMaximumSize(QSize(32, 16777215));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Flag-yellow64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/Resources/Bullhorn.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon2);
 
         horizontalLayout_3->addWidget(pushButton);
@@ -118,12 +121,28 @@ public:
 
         horizontalLayout_3->addWidget(pbBold);
 
+        pbSaveAsTemplate = new QPushButton(HNSChede);
+        pbSaveAsTemplate->setObjectName(QStringLiteral("pbSaveAsTemplate"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Note64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSaveAsTemplate->setIcon(icon4);
+
+        horizontalLayout_3->addWidget(pbSaveAsTemplate);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer);
+
 
         verticalLayout->addLayout(horizontalLayout_3);
 
         textEdit = new QTextEdit(HNSChede);
         textEdit->setObjectName(QStringLiteral("textEdit"));
+        QFont font;
+        font.setPointSize(10);
+        textEdit->setFont(font);
         textEdit->setContextMenuPolicy(Qt::ActionsContextMenu);
+        textEdit->setAutoFormatting(QTextEdit::AutoNone);
 
         verticalLayout->addWidget(textEdit);
 
@@ -131,27 +150,27 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pbsave = new QPushButton(HNSChede);
         pbsave->setObjectName(QStringLiteral("pbsave"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbsave->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbsave->setIcon(icon5);
         pbsave->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbsave);
 
         pushButton_2 = new QPushButton(HNSChede);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon6);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
 
         pbClose = new QPushButton(HNSChede);
         pbClose->setObjectName(QStringLiteral("pbClose"));
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon6);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon7);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbClose);
@@ -182,6 +201,11 @@ public:
         pbBold->setToolTip(QApplication::translate("HNSChede", "Grassetto", 0));
 #endif // QT_NO_TOOLTIP
         pbBold->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pbSaveAsTemplate->setToolTip(QApplication::translate("HNSChede", "Salva come template", 0));
+#endif // QT_NO_TOOLTIP
+        pbSaveAsTemplate->setText(QString());
+        textEdit->setPlaceholderText(QString());
         pbsave->setText(QApplication::translate("HNSChede", "Salva", 0));
         pushButton_2->setText(QApplication::translate("HNSChede", "Stampa...", 0));
         pbClose->setText(QApplication::translate("HNSChede", "Chiudi", 0));
