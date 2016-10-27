@@ -210,8 +210,8 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(pbPackages->sizePolicy().hasHeightForWidth());
         pbPackages->setSizePolicy(sizePolicy);
-        pbPackages->setMinimumSize(QSize(120, 0));
-        pbPackages->setMaximumSize(QSize(120, 16777215));
+        pbPackages->setMinimumSize(QSize(130, 0));
+        pbPackages->setMaximumSize(QSize(125, 16777215));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pbPackages->setIcon(icon1);
@@ -266,7 +266,7 @@ public:
         pbSchede->setObjectName(QStringLiteral("pbSchede"));
         pbSchede->setEnabled(false);
         pbSchede->setMinimumSize(QSize(80, 0));
-        pbSchede->setMaximumSize(QSize(120, 16777215));
+        pbSchede->setMaximumSize(QSize(16777215, 16777215));
         QIcon icon5;
         icon5.addFile(QStringLiteral(":/Resources/Folder.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pbSchede->setIcon(icon5);
@@ -313,7 +313,7 @@ public:
         tnProduzione = new QToolButton(centralWidget);
         tnProduzione->setObjectName(QStringLiteral("tnProduzione"));
         tnProduzione->setEnabled(false);
-        tnProduzione->setMinimumSize(QSize(80, 0));
+        tnProduzione->setMinimumSize(QSize(130, 0));
         tnProduzione->setMaximumSize(QSize(120, 16777215));
         QIcon icon9;
         icon9.addFile(QStringLiteral(":/Resources/Gears.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -327,7 +327,7 @@ public:
         tbAssociazioni->setObjectName(QStringLiteral("tbAssociazioni"));
         tbAssociazioni->setEnabled(false);
         tbAssociazioni->setMinimumSize(QSize(80, 0));
-        tbAssociazioni->setMaximumSize(QSize(120, 16777215));
+        tbAssociazioni->setMaximumSize(QSize(134, 16777215));
         QIcon icon10;
         icon10.addFile(QStringLiteral(":/Resources/Map.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         tbAssociazioni->setIcon(icon10);
@@ -373,6 +373,7 @@ public:
         pBNewOperation = new QToolButton(centralWidget);
         pBNewOperation->setObjectName(QStringLiteral("pBNewOperation"));
         pBNewOperation->setEnabled(false);
+        pBNewOperation->setMinimumSize(QSize(138, 0));
         QIcon icon14;
         icon14.addFile(QStringLiteral(":/Resources/Actions-configure-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pBNewOperation->setIcon(icon14);
@@ -385,8 +386,9 @@ public:
         tbRicette = new QToolButton(centralWidget);
         tbRicette->setObjectName(QStringLiteral("tbRicette"));
         tbRicette->setEnabled(false);
-        tbRicette->setMinimumSize(QSize(80, 0));
-        tbRicette->setMaximumSize(QSize(120, 16777215));
+        tbRicette->setMinimumSize(QSize(134, 0));
+        tbRicette->setMaximumSize(QSize(16777215, 16777215));
+        tbRicette->setBaseSize(QSize(0, 0));
         QIcon icon15;
         icon15.addFile(QStringLiteral(":/Resources/Notepad.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         tbRicette->setIcon(icon15);
@@ -397,6 +399,7 @@ public:
 
         toolButton = new QPushButton(centralWidget);
         toolButton->setObjectName(QStringLiteral("toolButton"));
+        toolButton->setMaximumSize(QSize(16777215, 16777215));
         toolButton->setIcon(icon11);
         toolButton->setIconSize(QSize(32, 32));
         toolButton->setAutoDefault(true);
@@ -486,6 +489,7 @@ public:
 
         pbOldCards = new QPushButton(centralWidget);
         pbOldCards->setObjectName(QStringLiteral("pbOldCards"));
+        pbOldCards->setEnabled(false);
 
         gridLayout->addWidget(pbOldCards, 2, 6, 1, 1);
 
@@ -512,33 +516,41 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 1.5.9.4", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 1.5.9.5", 0));
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600;\">Hamlet Mod</span></p><p><span style=\" font-size:14pt; font-weight:600;\">Versione: 1.5.9.4</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">FBLABS 2015-2016</span></p></body></html>", 0));
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600;\">Hamlet Mod</span></p><p><span style=\" font-size:14pt; font-weight:600;\">Versione: 1.5.9.5</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">FBLABS 2015-2016</span></p></body></html>", 0));
         label_5->setText(QString());
-        pbPackages->setText(QApplication::translate("MainWindow", "Packages", 0));
-        tbLotti->setText(QApplication::translate("MainWindow", "Lotti", 0));
-        tbAnalisi->setText(QApplication::translate("MainWindow", "Analisi", 0));
+        pbPackages->setText(QApplication::translate("MainWindow", "Packages (F9)", 0));
+        pbPackages->setShortcut(QApplication::translate("MainWindow", "Return", 0));
+        tbLotti->setText(QApplication::translate("MainWindow", "Lotti (F5)", 0));
+        tbLotti->setShortcut(QApplication::translate("MainWindow", "F5", 0));
+        tbAnalisi->setText(QApplication::translate("MainWindow", "Analisi (F8)", 0));
+        tbAnalisi->setShortcut(QApplication::translate("MainWindow", "F8", 0));
         tbProdotti->setText(QApplication::translate("MainWindow", "Prodotti", 0));
-        pbSchede->setText(QApplication::translate("MainWindow", "Schede Clienti", 0));
+        pbSchede->setText(QApplication::translate("MainWindow", "Schede Clienti (F3)", 0));
+        pbSchede->setShortcut(QApplication::translate("MainWindow", "F3", 0));
         tbClose->setText(QApplication::translate("MainWindow", "Chiudi", 0));
         tbModificaLotti->setText(QApplication::translate("MainWindow", "Modifica lotti", 0));
         pbContacts->setText(QApplication::translate("MainWindow", "Contatti", 0));
-        tnProduzione->setText(QApplication::translate("MainWindow", "Produzione", 0));
+        tnProduzione->setText(QApplication::translate("MainWindow", "Produzione (F4)", 0));
+        tnProduzione->setShortcut(QApplication::translate("MainWindow", "F4", 0));
         tbAssociazioni->setText(QApplication::translate("MainWindow", "Associa Ricette", 0));
         tbAnag->setText(QApplication::translate("MainWindow", "Anagrafica      ", 0));
         pbNotifiche->setText(QApplication::translate("MainWindow", "Notifiche", 0));
         pbUnload->setText(QApplication::translate("MainWindow", "Scarico Packages", 0));
-        pBNewOperation->setText(QApplication::translate("MainWindow", "Nuova Operazione", 0));
-        tbRicette->setText(QApplication::translate("MainWindow", "Ricette", 0));
+        pBNewOperation->setText(QApplication::translate("MainWindow", "Operazioni (F6)", 0));
+        pBNewOperation->setShortcut(QApplication::translate("MainWindow", "F6", 0));
+        tbRicette->setText(QApplication::translate("MainWindow", "Ricette (F7)", 0));
+        tbRicette->setShortcut(QApplication::translate("MainWindow", "F7", 0));
         toolButton->setText(QApplication::translate("MainWindow", "Login", 0));
         tbLogout->setText(QApplication::translate("MainWindow", "Logout", 0));
 #ifndef QT_NO_TOOLTIP
         tbMagaz->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>Operazioni legate al Magazzino,movimentazione di carico e scarico, correzione errori,ecc.</p></body></html>", 0));
 #endif // QT_NO_TOOLTIP
-        tbMagaz->setText(QApplication::translate("MainWindow", "magazzino", 0));
+        tbMagaz->setText(QApplication::translate("MainWindow", " Magazzino (F2)", 0));
+        tbMagaz->setShortcut(QApplication::translate("MainWindow", "F2", 0));
         pushButton->setText(QApplication::translate("MainWindow", "Aggiorna", 0));
         tbUtenti->setText(QApplication::translate("MainWindow", "Utenti", 0));
         tbSettings->setText(QApplication::translate("MainWindow", "Impostazioni   ", 0));

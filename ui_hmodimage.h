@@ -54,7 +54,7 @@ public:
         spWidth = new QSpinBox(HModImage);
         spWidth->setObjectName(QStringLiteral("spWidth"));
         spWidth->setMinimum(50);
-        spWidth->setMaximum(1000);
+        spWidth->setMaximum(500);
         spWidth->setValue(50);
 
         horizontalLayout->addWidget(spWidth);

@@ -148,6 +148,7 @@ void MainWindow::disableUI()
     ui->pbNotifiche->setEnabled(false);
     ui->pbCkeckNotifications->setEnabled(false);
     ui->pbVerifyLabels->setEnabled(false);
+    ui->pbOldCards->setEnabled(false);
 }
 
 void MainWindow::enableButtonsForRole()
@@ -189,6 +190,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbAnalisi->setEnabled(true);
         ui->pBNewOperation->setEnabled(true);
         ui->pbSchede->setEnabled(true);
+        ui->pbOldCards->setEnabled(true);
         ui->tbAssociazioni->setEnabled(false);
         ui->tbUtenti->setEnabled(false);
         ui->tbLogout->setEnabled(true);
@@ -221,6 +223,7 @@ void MainWindow::enableButtonsForRole()
         ui->pBNewOperation->setEnabled(true);
         ui->pbSchede->setEnabled(true);
         ui->tbAssociazioni->setEnabled(true);
+        ui->pbOldCards->setEnabled(true);
         ui->tbUtenti->setEnabled(true);
         ui->tbLogout->setEnabled(true);
         ui->pbPackages->setEnabled(true);
@@ -241,6 +244,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbProdotti->setEnabled(true);
         ui->tbLogout->setEnabled(true);
         ui->pbSchede->setEnabled(true);
+        ui->pbOldCards->setEnabled(true);
         ui->tbModificaLotti->setEnabled(false);
         ui->tnProduzione->setEnabled(true);
         ui->tbRicette->setEnabled(true);
@@ -259,6 +263,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbProdotti->setEnabled(true);
         ui->tbLogout->setEnabled(true);
         ui->pbSchede->setEnabled(true);
+        ui->pbOldCards->setEnabled(true);
         ui->tbModificaLotti->setEnabled(false);
         ui->tnProduzione->setEnabled(true);
         ui->tbRicette->setEnabled(true);
@@ -284,6 +289,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbAnalisi->setEnabled(true);
         ui->pBNewOperation->setEnabled(true);
         ui->pbSchede->setEnabled(true);
+        ui->pbOldCards->setEnabled(true);
         ui->tbAssociazioni->setEnabled(true);
         ui->tbUtenti->setEnabled(true);
         ui->tbLogout->setEnabled(true);
@@ -310,6 +316,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbAnalisi->setEnabled(false);
         ui->pBNewOperation->setEnabled(false);
         ui->pbSchede->setEnabled(false);
+        ui->pbOldCards->setEnabled(false);
         ui->tbAssociazioni->setEnabled(false);
         ui->tbUtenti->setEnabled(false);
         ui->tbLogout->setEnabled(false);

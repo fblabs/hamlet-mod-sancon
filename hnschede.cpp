@@ -70,14 +70,16 @@ HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     clientmod->setSort(1,Qt::AscendingOrder);
     clientmod->select();
 
-    ui->cbClienti->setModelColumn(1);
     ui->cbClienti->setModel(clientmod);
+    ui->cbClienti->setModelColumn(1);
     QCompleter *cc = new QCompleter(clientmod);
     cc->setCaseSensitivity(Qt::CaseInsensitive);
     cc->setCompletionColumn(1);
     cc->setCompletionMode(QCompleter::PopupCompletion);
     ui->cbClienti->setCompleter(cc);
     ui->cbClienti->setCurrentIndex(-1);
+
+
 
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(QString)),this,SLOT(getProducts()));
     connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(loadCard()));

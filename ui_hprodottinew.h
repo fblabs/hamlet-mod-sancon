@@ -110,6 +110,7 @@ public:
         tvProdotti->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvProdotti->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
         tvProdotti->horizontalHeader()->setStretchLastSection(true);
+        tvProdotti->verticalHeader()->setVisible(false);
         tvProdotti->verticalHeader()->setStretchLastSection(false);
 
         verticalLayout->addWidget(tvProdotti);
