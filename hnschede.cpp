@@ -39,6 +39,7 @@ HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     if (!upd)
     {
         ui->pbsave->setVisible(false);
+        ui->textEdit->setReadOnly(true);
     }
 
     QShortcut *shortcut =new QShortcut(QKeySequence("Ctrl+I"),this);
