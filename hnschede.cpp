@@ -504,3 +504,18 @@ void HNSChede::on_pushButton_clicked()
 {
        setEvidence();
 }
+
+void HNSChede::on_pushButton_4_clicked()
+{
+    printPreviewSlot();
+}
+
+void HNSChede::on_pushButton_6_clicked()
+{
+    showResizeImage();
+}
+
+void HNSChede::on_pushButton_5_clicked()
+{
+    insertImage();
+}

@@ -152,16 +152,53 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbSaveAsTemplate">
+      <widget class="QPushButton" name="pushButton_5">
        <property name="toolTip">
-        <string>Salva come template</string>
+        <string>Aggiungi immagine</string>
        </property>
        <property name="text">
         <string/>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Note64.png</normaloff>:/Resources/Note64.png</iconset>
+         <normaloff>:/Resources/addimage.png</normaloff>:/Resources/addimage.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+I</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_6">
+       <property name="toolTip">
+        <string>Modifica immagine</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Right-align64.png</normaloff>:/Resources/Right-align64.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+Alt+I</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="toolTip">
+        <string>Stampa</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/print-icon.png</normaloff>:/Resources/print-icon.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+Alt+P</string>
        </property>
       </widget>
      </item>
@@ -194,7 +231,7 @@
       <set>QTextEdit::AutoNone</set>
      </property>
      <property name="placeholderText">
-      <string> </string>
+      <string/>
      </property>
     </widget>
    </item>

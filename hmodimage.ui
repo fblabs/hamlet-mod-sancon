@@ -3,13 +3,13 @@
  <class>HModImage</class>
  <widget class="QWidget" name="HModImage">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::ApplicationModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>219</width>
+    <width>233</width>
     <height>116</height>
    </rect>
   </property>
