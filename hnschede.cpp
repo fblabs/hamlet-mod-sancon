@@ -40,6 +40,9 @@ HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     {
         ui->pbsave->setVisible(false);
         ui->textEdit->setReadOnly(true);
+        ui->pushButton_8->setEnabled(false);
+        ui->pushButton_7->setEnabled(false);
+
     }
 
     QShortcut *shortcut =new QShortcut(QKeySequence("Ctrl+I"),this);
@@ -241,6 +244,7 @@ void HNSChede::loadCard()
     {
         update=false;
     }
+    ui->pbInit->setEnabled(!update);
     q.first();
     QString doc ="<p></p>"+q.value(0).toString();
     //ui->textEdit->setHtml(doc);
@@ -383,15 +387,15 @@ void HNSChede::showContextMenu(const QPoint &pos)
     QAction *addImage=menu->addAction("Aggiungi Immagine...");
     QAction *modimage=menu->addAction("Modifica immagine...");
     QAction *addSeparator =menu->addSeparator();
-    QAction *saveScheda = menu->addAction("Salva Scheda");
+ //   QAction *saveScheda = menu->addAction("Salva Scheda");
     QAction *addSeparator2 =menu->addSeparator();
     QAction *printPrev = menu->addAction("Anteprima di stampa...");
-    QAction *close = menu->addAction("Close");
+  //  QAction *close = menu->addAction("Close");
 
     connect(addImage,SIGNAL(triggered(bool)),this,SLOT(insertImage()));
     connect(modimage,SIGNAL(triggered(bool)),this,SLOT(showResizeImage()));
-    connect(saveScheda,SIGNAL(triggered(bool)),this,SLOT(saveCard()));
-    connect(close,SIGNAL(triggered(bool)),this,SLOT(on_pbClose_clicked()));
+ //   connect(saveScheda,SIGNAL(triggered(bool)),this,SLOT(saveCard()));
+ //   connect(close,SIGNAL(triggered(bool)),this,SLOT(on_pbClose_clicked()));
     connect(printPrev,SIGNAL(triggered(bool)),this,SLOT(printPreviewSlot()));
 
     menu->popup(globalPos);
@@ -521,4 +525,49 @@ void HNSChede::on_pushButton_6_clicked()
 void HNSChede::on_pushButton_5_clicked()
 {
     insertImage();
+}
+
+void HNSChede::initCard(int idProdotto, int idCliente)
+{
+   QSqlQuery q(db);
+   QString sql="INSERT INTO schede_n(prodotto,cliente,scheda) VALUES (:ip,:ic,:cs)";
+   QString scheda="<table align=center width='98%' border=1><tr><th colspan=5><br>SCHEDA: "+ui->cbClienti->currentText()+" - "+ui->cbProdotti->currentText()+"<br></th></tr><tr><td><b>OLIO:</b></td><td colspan=4> &nbsp;</td></tr><tr><td><b>VASO:</b></td><td colspan=4> &nbsp;</td></tr><tr><td><b>TAPPO:</b></td><td colspan=4>&nbsp;</td></tr><tr><td><b>ETICHETTE:</b></td><td colspan=4></td></tr><tr><td><b>SCATOLE:</b></td><td colspan=4></td></tr><tr><td><b>NOTE:</b></td><td colspan=4></td></tr><tr><td align=left>&nbsp;</td><td align=center colspan=4></td></tr></table>";
+
+
+   q.prepare(sql);
+   q.bindValue(":ip",idProdotto);
+   q.bindValue(":ic",idCliente);
+   q.bindValue(":cs",scheda);
+
+   bool b= q.exec();
+
+   if(b)
+   {
+       loadCard();
+   }
+   else
+   {
+       ui->textEdit->clear();
+       qDebug()<<q.lastError().text();
+   }
+}
+
+void HNSChede::on_pbInit_clicked()
+{
+    if(QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Inizializzare la scheda?",QMessageBox::Ok|QMessageBox::Cancel))
+    {
+        initCard(ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt(),ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt());
+    }
+}
+
+void HNSChede::on_pushButton_7_clicked()
+{
+    loadCard();
+}
+
+void HNSChede::on_pushButton_8_toggled(bool checked)
+{
+    ui->textEdit->setReadOnly(!checked);
+    ui->cbClienti->setEnabled(!checked);
+    ui->cbProdotti->setEnabled(!checked);
 }

@@ -38,6 +38,7 @@ private slots:
     void setBold();
     void setFont();
     void setEvidence();
+    void initCard(int idProdotto, int idCliente);
 
 
 
@@ -53,6 +54,12 @@ private slots:
     void on_pushButton_6_clicked();
 
     void on_pushButton_5_clicked();
+
+    void on_pbInit_clicked();
+
+    void on_pushButton_7_clicked();
+
+    void on_pushButton_8_toggled(bool checked);
 
 private:
     Ui::HNSChede *ui;

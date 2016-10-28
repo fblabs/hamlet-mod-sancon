@@ -35,6 +35,8 @@ public:
     QLabel *label_2;
     QComboBox *cbProdotti;
     QHBoxLayout *horizontalLayout_3;
+    QPushButton *pbInit;
+    QPushButton *pushButton_8;
     QPushButton *pushButton_3;
     QPushButton *pushButton;
     QPushButton *pbBold;
@@ -45,6 +47,7 @@ public:
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pbsave;
+    QPushButton *pushButton_7;
     QPushButton *pushButton_2;
     QPushButton *pbClose;
 
@@ -96,54 +99,71 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        pbInit = new QPushButton(HNSChede);
+        pbInit->setObjectName(QStringLiteral("pbInit"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbInit->setIcon(icon1);
+
+        horizontalLayout_3->addWidget(pbInit);
+
+        pushButton_8 = new QPushButton(HNSChede);
+        pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_8->setIcon(icon2);
+        pushButton_8->setCheckable(true);
+
+        horizontalLayout_3->addWidget(pushButton_8);
+
         pushButton_3 = new QPushButton(HNSChede);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setMaximumSize(QSize(32, 16777215));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Font64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon1);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Font64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon3);
 
         horizontalLayout_3->addWidget(pushButton_3);
 
         pushButton = new QPushButton(HNSChede);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setMaximumSize(QSize(32, 16777215));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Bullhorn.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon2);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Bullhorn.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon4);
 
         horizontalLayout_3->addWidget(pushButton);
 
         pbBold = new QPushButton(HNSChede);
         pbBold->setObjectName(QStringLiteral("pbBold"));
         pbBold->setMaximumSize(QSize(32, 16777215));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Text-bold64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbBold->setIcon(icon3);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Text-bold64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbBold->setIcon(icon5);
 
         horizontalLayout_3->addWidget(pbBold);
 
         pushButton_5 = new QPushButton(HNSChede);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/addimage.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon4);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/addimage.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon6);
 
         horizontalLayout_3->addWidget(pushButton_5);
 
         pushButton_6 = new QPushButton(HNSChede);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/Right-align64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_6->setIcon(icon5);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/Resources/Right-align64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_6->setIcon(icon7);
 
         horizontalLayout_3->addWidget(pushButton_6);
 
         pushButton_4 = new QPushButton(HNSChede);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/Resources/print-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon6);
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/Resources/print-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon8);
 
         horizontalLayout_3->addWidget(pushButton_4);
 
@@ -156,11 +176,13 @@ public:
 
         textEdit = new QTextEdit(HNSChede);
         textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setEnabled(true);
         QFont font;
         font.setPointSize(10);
         textEdit->setFont(font);
         textEdit->setContextMenuPolicy(Qt::ActionsContextMenu);
         textEdit->setAutoFormatting(QTextEdit::AutoNone);
+        textEdit->setReadOnly(true);
 
         verticalLayout->addWidget(textEdit);
 
@@ -168,27 +190,36 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pbsave = new QPushButton(HNSChede);
         pbsave->setObjectName(QStringLiteral("pbsave"));
-        QIcon icon7;
-        icon7.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbsave->setIcon(icon7);
+        QIcon icon9;
+        icon9.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbsave->setIcon(icon9);
         pbsave->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbsave);
 
+        pushButton_7 = new QPushButton(HNSChede);
+        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
+        QIcon icon10;
+        icon10.addFile(QStringLiteral(":/Resources/Clockwise-arrow64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_7->setIcon(icon10);
+        pushButton_7->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pushButton_7);
+
         pushButton_2 = new QPushButton(HNSChede);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon8;
-        icon8.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon8);
+        QIcon icon11;
+        icon11.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon11);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
 
         pbClose = new QPushButton(HNSChede);
         pbClose->setObjectName(QStringLiteral("pbClose"));
-        QIcon icon9;
-        icon9.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon9);
+        QIcon icon12;
+        icon12.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon12);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbClose);
@@ -207,6 +238,8 @@ public:
         HNSChede->setWindowTitle(QApplication::translate("HNSChede", "SCHEDE CLIENTI", 0));
         label->setText(QApplication::translate("HNSChede", "Cliente:", 0));
         label_2->setText(QApplication::translate("HNSChede", "Prodotto:", 0));
+        pbInit->setText(QString());
+        pushButton_8->setText(QString());
 #ifndef QT_NO_TOOLTIP
         pushButton_3->setToolTip(QApplication::translate("HNSChede", "Font", 0));
 #endif // QT_NO_TOOLTIP
@@ -236,6 +269,7 @@ public:
         pushButton_4->setShortcut(QApplication::translate("HNSChede", "Ctrl+Alt+P", 0));
         textEdit->setPlaceholderText(QString());
         pbsave->setText(QApplication::translate("HNSChede", "Salva", 0));
+        pushButton_7->setText(QApplication::translate("HNSChede", "Annulla modifiche", 0));
         pushButton_2->setText(QApplication::translate("HNSChede", "Stampa...", 0));
         pbClose->setText(QApplication::translate("HNSChede", "Chiudi", 0));
     } // retranslateUi
