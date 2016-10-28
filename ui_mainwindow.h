@@ -523,7 +523,7 @@ public:
         label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600;\">Hamlet Mod</span></p><p><span style=\" font-size:14pt; font-weight:600;\">Versione: 1.5.9.5</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">FBLABS 2015-2016</span></p></body></html>", 0));
         label_5->setText(QString());
         pbPackages->setText(QApplication::translate("MainWindow", "Packages (F9)", 0));
-        pbPackages->setShortcut(QApplication::translate("MainWindow", "Return", 0));
+        pbPackages->setShortcut(QApplication::translate("MainWindow", "F9", 0));
         tbLotti->setText(QApplication::translate("MainWindow", "Lotti (F5)", 0));
         tbLotti->setShortcut(QApplication::translate("MainWindow", "F5", 0));
         tbAnalisi->setText(QApplication::translate("MainWindow", "Analisi (F8)", 0));

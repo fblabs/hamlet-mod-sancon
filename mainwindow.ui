@@ -595,7 +595,7 @@
            </size>
           </property>
           <property name="shortcut">
-           <string>Return</string>
+           <string>F9</string>
           </property>
          </widget>
         </item>
