@@ -37,6 +37,7 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pbInit;
     QPushButton *pushButton_8;
+    QLabel *lblLed;
     QPushButton *pushButton_3;
     QPushButton *pushButton;
     QPushButton *pbBold;
@@ -115,6 +116,14 @@ public:
         pushButton_8->setCheckable(true);
 
         horizontalLayout_3->addWidget(pushButton_8);
+
+        lblLed = new QLabel(HNSChede);
+        lblLed->setObjectName(QStringLiteral("lblLed"));
+        lblLed->setMaximumSize(QSize(32, 32));
+        lblLed->setPixmap(QPixmap(QString::fromUtf8(":/Resources/Flag-red64.png")));
+        lblLed->setScaledContents(true);
+
+        horizontalLayout_3->addWidget(lblLed);
 
         pushButton_3 = new QPushButton(HNSChede);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
@@ -240,6 +249,7 @@ public:
         label_2->setText(QApplication::translate("HNSChede", "Prodotto:", 0));
         pbInit->setText(QString());
         pushButton_8->setText(QString());
+        lblLed->setText(QString());
 #ifndef QT_NO_TOOLTIP
         pushButton_3->setToolTip(QApplication::translate("HNSChede", "Font", 0));
 #endif // QT_NO_TOOLTIP

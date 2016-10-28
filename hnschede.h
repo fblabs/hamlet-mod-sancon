@@ -61,6 +61,7 @@ private slots:
 
     void on_pushButton_8_toggled(bool checked);
 
+
 private:
     Ui::HNSChede *ui;
     QSqlDatabase db;

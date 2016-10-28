@@ -36,6 +36,8 @@ HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
 
     bool upd=usr->getCanUpdate();
 
+    ui->lblLed->setVisible(false);
+
     if (!upd)
     {
         ui->pbsave->setVisible(false);
@@ -246,7 +248,7 @@ void HNSChede::loadCard()
     }
     ui->pbInit->setEnabled(!update);
     q.first();
-    QString doc ="<p></p>"+q.value(0).toString();
+    QString doc =q.value(0).toString();
     //ui->textEdit->setHtml(doc);
     ui->textEdit->setHtml(doc);
    // QMessageBox::warning(this,QApplication::applicationName(),"Doc:\n"+doc,QMessageBox::Ok);
@@ -570,4 +572,7 @@ void HNSChede::on_pushButton_8_toggled(bool checked)
     ui->textEdit->setReadOnly(!checked);
     ui->cbClienti->setEnabled(!checked);
     ui->cbProdotti->setEnabled(!checked);
+    ui->lblLed->setVisible(checked);
 }
+
+
