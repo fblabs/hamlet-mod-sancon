@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HNSChede_t {
-    QByteArrayData data[38];
-    char stringdata0[518];
+    QByteArrayData data[39];
+    char stringdata0[534];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -57,16 +57,17 @@ QT_MOC_LITERAL(24, 266, 11), // "setEvidence"
 QT_MOC_LITERAL(25, 278, 8), // "initCard"
 QT_MOC_LITERAL(26, 287, 10), // "idProdotto"
 QT_MOC_LITERAL(27, 298, 9), // "idCliente"
-QT_MOC_LITERAL(28, 308, 17), // "on_pbBold_clicked"
-QT_MOC_LITERAL(29, 326, 23), // "on_pushButton_3_clicked"
-QT_MOC_LITERAL(30, 350, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(31, 372, 23), // "on_pushButton_4_clicked"
-QT_MOC_LITERAL(32, 396, 23), // "on_pushButton_6_clicked"
-QT_MOC_LITERAL(33, 420, 23), // "on_pushButton_5_clicked"
-QT_MOC_LITERAL(34, 444, 17), // "on_pbInit_clicked"
-QT_MOC_LITERAL(35, 462, 23), // "on_pushButton_7_clicked"
-QT_MOC_LITERAL(36, 486, 23), // "on_pushButton_8_toggled"
-QT_MOC_LITERAL(37, 510, 7) // "checked"
+QT_MOC_LITERAL(28, 308, 15), // "documentChanged"
+QT_MOC_LITERAL(29, 324, 17), // "on_pbBold_clicked"
+QT_MOC_LITERAL(30, 342, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(31, 366, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(32, 388, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(33, 412, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(34, 436, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(35, 460, 17), // "on_pbInit_clicked"
+QT_MOC_LITERAL(36, 478, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(37, 502, 23), // "on_pushButton_8_toggled"
+QT_MOC_LITERAL(38, 526, 7) // "checked"
 
     },
     "HNSChede\0insertImage\0\0on_pushButton_2_clicked\0"
@@ -77,7 +78,7 @@ QT_MOC_LITERAL(37, 510, 7) // "checked"
     "getImageHeight\0printPreview\0QPrinter*\0"
     "printer\0printPreviewSlot\0print\0setBold\0"
     "setFont\0setEvidence\0initCard\0idProdotto\0"
-    "idCliente\0on_pbBold_clicked\0"
+    "idCliente\0documentChanged\0on_pbBold_clicked\0"
     "on_pushButton_3_clicked\0on_pushButton_clicked\0"
     "on_pushButton_4_clicked\0on_pushButton_6_clicked\0"
     "on_pushButton_5_clicked\0on_pbInit_clicked\0"
@@ -92,7 +93,7 @@ static const uint qt_meta_data_HNSChede[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      28,   14, // methods
+      29,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -100,34 +101,35 @@ static const uint qt_meta_data_HNSChede[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  154,    2, 0x08 /* Private */,
-       3,    0,  155,    2, 0x08 /* Private */,
-       4,    1,  156,    2, 0x08 /* Private */,
-       6,    0,  159,    2, 0x08 /* Private */,
-       7,    0,  160,    2, 0x08 /* Private */,
-       8,    0,  161,    2, 0x08 /* Private */,
-       9,    0,  162,    2, 0x08 /* Private */,
-      10,    0,  163,    2, 0x08 /* Private */,
-      11,    2,  164,    2, 0x08 /* Private */,
-      14,    0,  169,    2, 0x08 /* Private */,
-      15,    0,  170,    2, 0x08 /* Private */,
-      16,    0,  171,    2, 0x08 /* Private */,
-      17,    1,  172,    2, 0x08 /* Private */,
-      20,    0,  175,    2, 0x08 /* Private */,
-      21,    0,  176,    2, 0x08 /* Private */,
-      22,    0,  177,    2, 0x08 /* Private */,
-      23,    0,  178,    2, 0x08 /* Private */,
-      24,    0,  179,    2, 0x08 /* Private */,
-      25,    2,  180,    2, 0x08 /* Private */,
-      28,    0,  185,    2, 0x08 /* Private */,
-      29,    0,  186,    2, 0x08 /* Private */,
-      30,    0,  187,    2, 0x08 /* Private */,
-      31,    0,  188,    2, 0x08 /* Private */,
-      32,    0,  189,    2, 0x08 /* Private */,
-      33,    0,  190,    2, 0x08 /* Private */,
-      34,    0,  191,    2, 0x08 /* Private */,
-      35,    0,  192,    2, 0x08 /* Private */,
-      36,    1,  193,    2, 0x08 /* Private */,
+       1,    0,  159,    2, 0x08 /* Private */,
+       3,    0,  160,    2, 0x08 /* Private */,
+       4,    1,  161,    2, 0x08 /* Private */,
+       6,    0,  164,    2, 0x08 /* Private */,
+       7,    0,  165,    2, 0x08 /* Private */,
+       8,    0,  166,    2, 0x08 /* Private */,
+       9,    0,  167,    2, 0x08 /* Private */,
+      10,    0,  168,    2, 0x08 /* Private */,
+      11,    2,  169,    2, 0x08 /* Private */,
+      14,    0,  174,    2, 0x08 /* Private */,
+      15,    0,  175,    2, 0x08 /* Private */,
+      16,    0,  176,    2, 0x08 /* Private */,
+      17,    1,  177,    2, 0x08 /* Private */,
+      20,    0,  180,    2, 0x08 /* Private */,
+      21,    0,  181,    2, 0x08 /* Private */,
+      22,    0,  182,    2, 0x08 /* Private */,
+      23,    0,  183,    2, 0x08 /* Private */,
+      24,    0,  184,    2, 0x08 /* Private */,
+      25,    2,  185,    2, 0x08 /* Private */,
+      28,    0,  190,    2, 0x08 /* Private */,
+      29,    0,  191,    2, 0x08 /* Private */,
+      30,    0,  192,    2, 0x08 /* Private */,
+      31,    0,  193,    2, 0x08 /* Private */,
+      32,    0,  194,    2, 0x08 /* Private */,
+      33,    0,  195,    2, 0x08 /* Private */,
+      34,    0,  196,    2, 0x08 /* Private */,
+      35,    0,  197,    2, 0x08 /* Private */,
+      36,    0,  198,    2, 0x08 /* Private */,
+      37,    1,  199,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -157,7 +159,8 @@ static const uint qt_meta_data_HNSChede[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   37,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   38,
 
        0        // eod
 };
@@ -190,15 +193,16 @@ void HNSChede::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 16: _t->setFont(); break;
         case 17: _t->setEvidence(); break;
         case 18: _t->initCard((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 19: _t->on_pbBold_clicked(); break;
-        case 20: _t->on_pushButton_3_clicked(); break;
-        case 21: _t->on_pushButton_clicked(); break;
-        case 22: _t->on_pushButton_4_clicked(); break;
-        case 23: _t->on_pushButton_6_clicked(); break;
-        case 24: _t->on_pushButton_5_clicked(); break;
-        case 25: _t->on_pbInit_clicked(); break;
-        case 26: _t->on_pushButton_7_clicked(); break;
-        case 27: _t->on_pushButton_8_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 19: _t->documentChanged(); break;
+        case 20: _t->on_pbBold_clicked(); break;
+        case 21: _t->on_pushButton_3_clicked(); break;
+        case 22: _t->on_pushButton_clicked(); break;
+        case 23: _t->on_pushButton_4_clicked(); break;
+        case 24: _t->on_pushButton_6_clicked(); break;
+        case 25: _t->on_pushButton_5_clicked(); break;
+        case 26: _t->on_pbInit_clicked(); break;
+        case 27: _t->on_pushButton_7_clicked(); break;
+        case 28: _t->on_pushButton_8_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -229,13 +233,13 @@ int HNSChede::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 28)
+        if (_id < 29)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 28;
+        _id -= 29;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 28)
+        if (_id < 29)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 28;
+        _id -= 29;
     }
     return _id;
 }

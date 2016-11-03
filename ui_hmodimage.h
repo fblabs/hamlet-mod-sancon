@@ -53,8 +53,8 @@ public:
 
         spWidth = new QSpinBox(HModImage);
         spWidth->setObjectName(QStringLiteral("spWidth"));
-        spWidth->setMinimum(50);
-        spWidth->setMaximum(500);
+        spWidth->setMinimum(10);
+        spWidth->setMaximum(2000);
         spWidth->setValue(50);
 
         horizontalLayout->addWidget(spWidth);
@@ -72,8 +72,8 @@ public:
 
         spHeight = new QSpinBox(HModImage);
         spHeight->setObjectName(QStringLiteral("spHeight"));
-        spHeight->setMinimum(50);
-        spHeight->setMaximum(1000);
+        spHeight->setMinimum(10);
+        spHeight->setMaximum(2000);
 
         horizontalLayout_2->addWidget(spHeight);
 

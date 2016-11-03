@@ -39,6 +39,7 @@ private slots:
     void setFont();
     void setEvidence();
     void initCard(int idProdotto, int idCliente);
+    void documentChanged();
 
 
 
@@ -68,6 +69,7 @@ private:
     HUser *usr;
 
     bool update;
+    bool changed;
 };
 
 #endif // HNSCHEDE_H

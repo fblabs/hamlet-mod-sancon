@@ -33,6 +33,7 @@ HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     ui->setupUi(this);
     db=pdb;
     usr=pusr;
+    changed=false;
 
     bool upd=usr->getCanUpdate();
 
@@ -45,7 +46,10 @@ HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
         ui->pushButton_8->setEnabled(false);
         ui->pushButton_7->setEnabled(false);
 
+
     }
+
+    ui->pbsave->setEnabled(false);
 
     QShortcut *shortcut =new QShortcut(QKeySequence("Ctrl+I"),this);
     QShortcut *modimg=new QShortcut(QKeySequence("Ctrl+alt+I"),this);
@@ -92,8 +96,15 @@ HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     ui->cbClienti->setCurrentIndex(0);
 
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+    connect(ui->textEdit->document(),SIGNAL(contentsChanged()),this,SLOT(documentChanged()));
 
 
+
+}
+
+void HNSChede::documentChanged()
+{
+    changed=true;
 
 }
 
@@ -183,7 +194,7 @@ void HNSChede::on_pushButton_2_clicked()
 
 bool HNSChede::saveCard()
 {
-    QString document=ui->textEdit->toHtml();
+    QString document=ui->textEdit->document()->toHtml();
 
     int cliente,prodotto;
 
@@ -249,8 +260,8 @@ void HNSChede::loadCard()
     ui->pbInit->setEnabled(!update);
     q.first();
     QString doc =q.value(0).toString();
-    //ui->textEdit->setHtml(doc);
-    ui->textEdit->setHtml(doc);
+
+    ui->textEdit->document()->setHtml(doc);
    // QMessageBox::warning(this,QApplication::applicationName(),"Doc:\n"+doc,QMessageBox::Ok);
 
     }
@@ -280,7 +291,25 @@ void HNSChede::on_pbsave_clicked()
 
 void HNSChede::on_pbClose_clicked()
 {
-    if (QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Chiudere?",QMessageBox::Ok|QMessageBox::Cancel))
+    if(changed)
+    {
+    if (QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Salvare le modifiche?",QMessageBox::Ok|QMessageBox::Cancel))
+    {
+       bool b=saveCard();
+
+       if (!b)
+       {
+           QMessageBox::warning(this,QApplication::applicationName(),"Errore",QMessageBox::Ok);
+       }
+       else
+       {
+          changed=false;
+          QMessageBox::information(this,QApplication::applicationName(),"Scheda salvata",QMessageBox::Ok);
+       }
+
+    }
+    }
+    else
     {
         close();
     }
@@ -305,8 +334,13 @@ void HNSChede::resizeImage(int nw, int nh)
                           QTextImageFormat newImageFormat = fragment.charFormat().toImageFormat();
 
                           qDebug()<<newImageFormat.name();
+
+
+
                           newImageFormat.setWidth(nw);
                           newImageFormat.setHeight(nh);
+
+
 
                           if (newImageFormat.isValid())
                           {
@@ -339,7 +373,7 @@ int HNSChede::getImageWidth()
 
                  if (fragment.isValid())
                  {
-
+                                   qDebug()<< fragment.charFormat().ImageObject;
                      if(fragment.charFormat().isImageFormat ())
                      {
                           QTextImageFormat newImageFormat = fragment.charFormat().toImageFormat();
@@ -372,7 +406,6 @@ int HNSChede::getImageHeight()
                      if(fragment.charFormat().isImageFormat ())
                      {
                           QTextImageFormat newImageFormat = fragment.charFormat().toImageFormat();
-
                           val = newImageFormat.height();
 
                       }
@@ -573,6 +606,7 @@ void HNSChede::on_pushButton_8_toggled(bool checked)
     ui->cbClienti->setEnabled(!checked);
     ui->cbProdotti->setEnabled(!checked);
     ui->lblLed->setVisible(checked);
+    ui->pbsave->setEnabled(ui->pushButton_8->isChecked());
 }
 
 
