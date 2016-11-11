@@ -57,7 +57,8 @@ SOURCES += main.cpp\
     hclientiassociati.cpp \
     hschede.cpp \
     hnschede.cpp \
-    hmodimage.cpp
+    hmodimage.cpp \
+    hcopycard.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -103,7 +104,8 @@ HEADERS  += mainwindow.h \
     hclientiassociati.h \
     hschede.h \
     hnschede.h \
-    hmodimage.h
+    hmodimage.h \
+    hcopycard.h
 
 
 
@@ -148,7 +150,8 @@ FORMS    += mainwindow.ui \
     hclientiassociati.ui \
     hschede.ui \
     hnschede.ui \
-    hmodimage.ui
+    hmodimage.ui \
+    hcopycard.ui
 
 RESOURCES += \
     icons.qrc

@@ -45,6 +45,7 @@ INPUT(
 ./debug/hschede.o
 ./debug/hnschede.o
 ./debug/hmodimage.o
+./debug/hcopycard.o
 ./debug/qrc_icons.o
 ./debug/moc_mainwindow.o
 ./debug/moc_huser.o
@@ -90,4 +91,5 @@ INPUT(
 ./debug/moc_hschede.o
 ./debug/moc_hnschede.o
 ./debug/moc_hmodimage.o
+./debug/moc_hcopycard.o
 );

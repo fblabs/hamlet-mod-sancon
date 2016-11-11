@@ -45,6 +45,7 @@ INPUT(
 ./release/hschede.o
 ./release/hnschede.o
 ./release/hmodimage.o
+./release/hcopycard.o
 ./release/qrc_icons.o
 ./release/moc_mainwindow.o
 ./release/moc_huser.o
@@ -90,4 +91,5 @@ INPUT(
 ./release/moc_hschede.o
 ./release/moc_hnschede.o
 ./release/moc_hmodimage.o
+./release/moc_hcopycard.o
 );

@@ -40,6 +40,7 @@ private slots:
     void setEvidence();
     void initCard(int idProdotto, int idCliente);
     void documentChanged();
+    void copyCard(int cliente,int prodotto);
 
 
 
@@ -62,6 +63,8 @@ private slots:
 
     void on_pushButton_8_toggled(bool checked);
 
+
+    void on_pushButton_9_clicked();
 
 private:
     Ui::HNSChede *ui;

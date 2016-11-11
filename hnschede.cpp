@@ -22,6 +22,7 @@
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
 #include <QFontDialog>
+#include "hcopycard.h"
 
 
 
@@ -41,15 +42,16 @@ HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
 
     if (!upd)
     {
-        ui->pbsave->setVisible(false);
-        ui->textEdit->setReadOnly(true);
-        ui->pushButton_8->setEnabled(false);
-        ui->pushButton_7->setEnabled(false);
+        ui->pbsave->setVisible(upd);
+        ui->textEdit->setReadOnly(upd);
+        ui->pushButton_8->setEnabled(upd);
+        ui->pushButton_7->setEnabled(upd);
+        ui->pushButton_9->setEnabled(upd);
+        ui->pbsave->setEnabled(upd);
+        ui->pbInit->setEnabled(upd);
 
 
     }
-
-    ui->pbsave->setEnabled(false);
 
     QShortcut *shortcut =new QShortcut(QKeySequence("Ctrl+I"),this);
     QShortcut *modimg=new QShortcut(QKeySequence("Ctrl+alt+I"),this);
@@ -88,6 +90,9 @@ HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     cc->setCompletionMode(QCompleter::PopupCompletion);
     ui->cbClienti->setCompleter(cc);
     ui->cbClienti->setCurrentIndex(-1);
+
+  //  ui->pushButton_9->setEnabled(false);
+
 
 
 
@@ -154,6 +159,10 @@ void HNSChede::getProducts()
         ui->cbProdotti->setCurrentIndex(-1);
         connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(loadCard()));
         ui->cbProdotti->setCurrentIndex(0);
+
+
+      //  ui->pushButton_9->setEnabled(ui->pushButton_8->isChecked());
+
 
 
       //  connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
@@ -232,12 +241,15 @@ void HNSChede::loadCard()
 {
     int cliente,prodotto;
 
-
-
     update=false;
 
+    changed=false;
+
     cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
-    prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
+    prodotto = ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
+
+
+
 
      qDebug()<<"loadCard: "<<cliente<<prodotto;
 
@@ -258,6 +270,7 @@ void HNSChede::loadCard()
         update=false;
     }
     ui->pbInit->setEnabled(!update);
+  //  ui->pushButton_9->setEnabled(!update);
     q.first();
     QString doc =q.value(0).toString();
 
@@ -270,6 +283,8 @@ void HNSChede::loadCard()
         update=false;
         QMessageBox::warning(this,QApplication::applicationName(),"Errore:\n"+q.lastError().text(),QMessageBox::Ok);
     }
+
+    changed=false;
 
     qDebug()<<"Update "<<QString::number(update);
 
@@ -285,7 +300,9 @@ void HNSChede::on_pbsave_clicked()
     }
     else
     {
+       changed=false;
        QMessageBox::information(this,QApplication::applicationName(),"Scheda salvata",QMessageBox::Ok);
+       ui->pushButton_8->toggle();
     }
 }
 
@@ -585,6 +602,8 @@ void HNSChede::initCard(int idProdotto, int idCliente)
        ui->textEdit->clear();
        qDebug()<<q.lastError().text();
    }
+
+   ui->pushButton_9->setEnabled(true);
 }
 
 void HNSChede::on_pbInit_clicked()
@@ -605,8 +624,64 @@ void HNSChede::on_pushButton_8_toggled(bool checked)
     ui->textEdit->setReadOnly(!checked);
     ui->cbClienti->setEnabled(!checked);
     ui->cbProdotti->setEnabled(!checked);
+
+
+    ui->pbInit->setEnabled(checked);
+    ui->pbBold->setEnabled(checked);
+    ui->pushButton->setEnabled(checked);
+    ui->pushButton_4->setEnabled(checked);
+    ui->pushButton_3->setEnabled(checked);
+    ui->pushButton_5->setEnabled(checked);
+    ui->pushButton_6->setEnabled(checked);
+    ui->pushButton_9->setEnabled(checked);
     ui->lblLed->setVisible(checked);
-    ui->pbsave->setEnabled(ui->pushButton_8->isChecked());
+
+ //   ui->pushButton_9->setEnabled(checked);
+}
+
+
+
+void HNSChede::on_pushButton_9_clicked()
+{
+    HCopyCard *f=new HCopyCard(0,db);
+    f->setWindowModality(Qt::ApplicationModal);
+    connect(f,SIGNAL(copyRecipe(int,int)),this,SLOT(copyCard(int,int)));
+    f->show();
+
+}
+
+void HNSChede::copyCard(int cliente, int prodotto)
+{
+    //TODO copia scheda
+
+    qDebug()<<"CC"<<cliente<<prodotto;
+    QString scheda,sql;
+    QSqlQuery q(db);
+    bool b;
+
+    db.transaction();
+
+    q.prepare("select scheda from schede_n where cliente=:cli and prodotto=:prod" );
+    q.bindValue(":cli",cliente);
+    q.bindValue(":prod",prodotto);
+    b=q.exec();
+    if (!b)
+    {
+        qDebug()<<"SELECT: "<<q.lastError().text();
+
+    }
+
+    q.first();
+    scheda=q.value(0).toString();
+   // qDebug()<<scheda<<"orcli:" <<cliente<<prodotto;
+    q.clear();
+
+    ui->textEdit->setHtml(scheda);
+
+
+
+
+
 }
 
 

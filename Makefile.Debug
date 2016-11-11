@@ -88,7 +88,8 @@ SOURCES       = main.cpp \
 		hclientiassociati.cpp \
 		hschede.cpp \
 		hnschede.cpp \
-		hmodimage.cpp debug/qrc_icons.cpp \
+		hmodimage.cpp \
+		hcopycard.cpp debug/qrc_icons.cpp \
 		debug/moc_mainwindow.cpp \
 		debug/moc_huser.cpp \
 		debug/moc_hprodotti.cpp \
@@ -132,7 +133,8 @@ SOURCES       = main.cpp \
 		debug/moc_hclientiassociati.cpp \
 		debug/moc_hschede.cpp \
 		debug/moc_hnschede.cpp \
-		debug/moc_hmodimage.cpp
+		debug/moc_hmodimage.cpp \
+		debug/moc_hcopycard.cpp
 OBJECTS       = debug/main.o \
 		debug/mainwindow.o \
 		debug/huser.o \
@@ -179,6 +181,7 @@ OBJECTS       = debug/main.o \
 		debug/hschede.o \
 		debug/hnschede.o \
 		debug/hmodimage.o \
+		debug/hcopycard.o \
 		debug/qrc_icons.o \
 		debug/moc_mainwindow.o \
 		debug/moc_huser.o \
@@ -223,7 +226,8 @@ OBJECTS       = debug/main.o \
 		debug/moc_hclientiassociati.o \
 		debug/moc_hschede.o \
 		debug/moc_hnschede.o \
-		debug/moc_hmodimage.o
+		debug/moc_hmodimage.o \
+		debug/moc_hcopycard.o
 
 DIST          = Resources/hamlet.PNG mainwindow.h \
 		huser.h \
@@ -269,7 +273,8 @@ DIST          = Resources/hamlet.PNG mainwindow.h \
 		hclientiassociati.h \
 		hschede.h \
 		hnschede.h \
-		hmodimage.h main.cpp \
+		hmodimage.h \
+		hcopycard.h main.cpp \
 		mainwindow.cpp \
 		huser.cpp \
 		hprodotti.cpp \
@@ -314,7 +319,8 @@ DIST          = Resources/hamlet.PNG mainwindow.h \
 		hclientiassociati.cpp \
 		hschede.cpp \
 		hnschede.cpp \
-		hmodimage.cpp
+		hmodimage.cpp \
+		hcopycard.cpp
 QMAKE_TARGET  = hamletMOD
 DESTDIR        = debug/ #avoid trailing-slash linebreak
 TARGET         = hamletMOD.exe
@@ -341,7 +347,7 @@ DESTDIR_TARGET = debug/hamletMOD.exe
 first: all
 all: Makefile.Debug  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h $(OBJECTS) debug/hamletMOD_resource_res.o
+$(DESTDIR_TARGET): ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h ui_hcopycard.h $(OBJECTS) debug/hamletMOD_resource_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.hamletMOD.Debug  $(LIBS)
 
 debug/hamletMOD_resource_res.o: hamletMOD_resource.rc
@@ -356,7 +362,7 @@ dist:
 	$(ZIP) hamletMOD.zip $(SOURCES) $(DIST) hamletMOD.pro ../../Qt/5.5/mingw492_32/mkspecs/features/spec_pre.prf ../../Qt/5.5/mingw492_32/mkspecs/qdevice.pri ../../Qt/5.5/mingw492_32/mkspecs/features/device_config.prf ../../Qt/5.5/mingw492_32/mkspecs/qconfig.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axbase.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axbase_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axcontainer.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axcontainer_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axserver.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axserver_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_bluetooth.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_bluetooth_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_bootstrap_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_clucene_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_concurrent.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_concurrent_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_core.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_core_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_dbus.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_dbus_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_designer.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_designer_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_designercomponents_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_enginio.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_enginio_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_gui.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_gui_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_help.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_help_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_multimedia.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_multimedia_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_multimediawidgets.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_network.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_network_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_nfc.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_nfc_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_opengl.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_opengl_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_openglextensions.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_openglextensions_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_platformsupport_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_positioning.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_positioning_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_printsupport.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_printsupport_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qml.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qml_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qmldevtools_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qmltest.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qmltest_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_quick.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_quick_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_quickparticles_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_quickwidgets.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_quickwidgets_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_sensors.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_sensors_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_serialport.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_serialport_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_sql.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_sql_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_svg.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_svg_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_testlib.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_testlib_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_uiplugin.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_uitools.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_uitools_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webchannel.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webchannel_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webkit.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webkit_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webkitwidgets.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webkitwidgets_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_websockets.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_websockets_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_widgets.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_widgets_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_winextras.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_winextras_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_xml.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_xml_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_xmlpatterns.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_xmlpatterns_private.pri ../../Qt/5.5/mingw492_32/mkspecs/features/qt_functions.prf ../../Qt/5.5/mingw492_32/mkspecs/features/qt_config.prf ../../Qt/5.5/mingw492_32/mkspecs/features/win32/qt_config.prf ../../Qt/5.5/mingw492_32/mkspecs/win32-g++/qmake.conf ../../Qt/5.5/mingw492_32/mkspecs/features/spec_post.prf ../../Qt/5.5/mingw492_32/mkspecs/features/exclusive_builds.prf ../../Qt/5.5/mingw492_32/mkspecs/features/default_pre.prf ../../Qt/5.5/mingw492_32/mkspecs/features/win32/default_pre.prf ../../Qt/5.5/mingw492_32/mkspecs/features/resolve_config.prf ../../Qt/5.5/mingw492_32/mkspecs/features/exclusive_builds_post.prf ../../Qt/5.5/mingw492_32/mkspecs/features/default_post.prf ../../Qt/5.5/mingw492_32/mkspecs/features/build_pass.prf ../../Qt/5.5/mingw492_32/mkspecs/features/win32/rtti.prf ../../Qt/5.5/mingw492_32/mkspecs/features/precompile_header.prf ../../Qt/5.5/mingw492_32/mkspecs/features/warn_on.prf ../../Qt/5.5/mingw492_32/mkspecs/features/qt.prf ../../Qt/5.5/mingw492_32/mkspecs/features/resources.prf ../../Qt/5.5/mingw492_32/mkspecs/features/moc.prf ../../Qt/5.5/mingw492_32/mkspecs/features/win32/opengl.prf ../../Qt/5.5/mingw492_32/mkspecs/features/uic.prf ../../Qt/5.5/mingw492_32/mkspecs/features/win32/windows.prf ../../Qt/5.5/mingw492_32/mkspecs/features/testcase_targets.prf ../../Qt/5.5/mingw492_32/mkspecs/features/exceptions.prf ../../Qt/5.5/mingw492_32/mkspecs/features/yacc.prf ../../Qt/5.5/mingw492_32/mkspecs/features/lex.prf hamletMOD.pro icons.qrc C:/Qt/5.5/mingw492_32/lib/qtmaind.prl C:/Qt/5.5/mingw492_32/lib/Qt5PrintSupportd.prl C:/Qt/5.5/mingw492_32/lib/Qt5Widgetsd.prl C:/Qt/5.5/mingw492_32/lib/Qt5Guid.prl C:/Qt/5.5/mingw492_32/lib/Qt5Sqld.prl C:/Qt/5.5/mingw492_32/lib/Qt5Cored.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug/main.o debug/mainwindow.o debug/huser.o debug/hprodotti.o debug/hutenti.o debug/hnewop.o debug/hsettings.o debug/hreadonlymodel.o debug/hprint.o debug/hanalisi.o debug/hnewproduct.o debug/hlogin2.o debug/hreadonlymodellots.o debug/hanalyze_a.o debug/hnuovaoperazione.o debug/hoverview.o debug/hgestioneutenti.o debug/hnewuser.o debug/hnewanagrafica.o debug/hschedeclienti.o debug/hassociazioni.o debug/hmodificascheda.o debug/hproduction.o debug/hfindlotuse.o debug/hprodottinew.o debug/hwarehouse.o debug/hmodifyprod.o debug/hpackages.o debug/hmodricette.o debug/hrecipeaddrow.o debug/hlotti.o debug/htextedit.o debug/hreadonlymodelnew.o debug/hduplicate.o debug/hmodifylot.o debug/hpackagesunload.o debug/hgroups.o debug/hcontacts.o debug/hnewcontact.o debug/halarm.o debug/hnotifica.o debug/hverifylabels.o debug/hclientiassociati.o debug/hschede.o debug/hnschede.o debug/hmodimage.o debug/qrc_icons.o debug/moc_mainwindow.o debug/moc_huser.o debug/moc_hprodotti.o debug/moc_hutenti.o debug/moc_hnewop.o debug/moc_hsettings.o debug/moc_hreadonlymodel.o debug/moc_hprint.o debug/moc_hanalisi.o debug/moc_hnewproduct.o debug/moc_hlogin2.o debug/moc_hreadonlymodellots.o debug/moc_hanalyze_a.o debug/moc_hnuovaoperazione.o debug/moc_hoverview.o debug/moc_hgestioneutenti.o debug/moc_hnewuser.o debug/moc_hnewanagrafica.o debug/moc_hschedeclienti.o debug/moc_hassociazioni.o debug/moc_hmodificascheda.o debug/moc_hproduction.o debug/moc_hfindlotuse.o debug/moc_hprodottinew.o debug/moc_hwarehouse.o debug/moc_hmodifyprod.o debug/moc_hpackages.o debug/moc_hmodricette.o debug/moc_hrecipeaddrow.o debug/moc_hlotti.o debug/moc_hreadonlymodelnew.o debug/moc_hduplicate.o debug/moc_hmodifylot.o debug/moc_hpackagesunload.o debug/moc_hgroups.o debug/moc_hcontacts.o debug/moc_hnewcontact.o debug/moc_halarm.o debug/moc_hnotifica.o debug/moc_hverifylabels.o debug/moc_hclientiassociati.o debug/moc_hschede.o debug/moc_hnschede.o debug/moc_hmodimage.o
+	-$(DEL_FILE) debug/main.o debug/mainwindow.o debug/huser.o debug/hprodotti.o debug/hutenti.o debug/hnewop.o debug/hsettings.o debug/hreadonlymodel.o debug/hprint.o debug/hanalisi.o debug/hnewproduct.o debug/hlogin2.o debug/hreadonlymodellots.o debug/hanalyze_a.o debug/hnuovaoperazione.o debug/hoverview.o debug/hgestioneutenti.o debug/hnewuser.o debug/hnewanagrafica.o debug/hschedeclienti.o debug/hassociazioni.o debug/hmodificascheda.o debug/hproduction.o debug/hfindlotuse.o debug/hprodottinew.o debug/hwarehouse.o debug/hmodifyprod.o debug/hpackages.o debug/hmodricette.o debug/hrecipeaddrow.o debug/hlotti.o debug/htextedit.o debug/hreadonlymodelnew.o debug/hduplicate.o debug/hmodifylot.o debug/hpackagesunload.o debug/hgroups.o debug/hcontacts.o debug/hnewcontact.o debug/halarm.o debug/hnotifica.o debug/hverifylabels.o debug/hclientiassociati.o debug/hschede.o debug/hnschede.o debug/hmodimage.o debug/hcopycard.o debug/qrc_icons.o debug/moc_mainwindow.o debug/moc_huser.o debug/moc_hprodotti.o debug/moc_hutenti.o debug/moc_hnewop.o debug/moc_hsettings.o debug/moc_hreadonlymodel.o debug/moc_hprint.o debug/moc_hanalisi.o debug/moc_hnewproduct.o debug/moc_hlogin2.o debug/moc_hreadonlymodellots.o debug/moc_hanalyze_a.o debug/moc_hnuovaoperazione.o debug/moc_hoverview.o debug/moc_hgestioneutenti.o debug/moc_hnewuser.o debug/moc_hnewanagrafica.o debug/moc_hschedeclienti.o debug/moc_hassociazioni.o debug/moc_hmodificascheda.o debug/moc_hproduction.o debug/moc_hfindlotuse.o debug/moc_hprodottinew.o debug/moc_hwarehouse.o debug/moc_hmodifyprod.o debug/moc_hpackages.o debug/moc_hmodricette.o debug/moc_hrecipeaddrow.o debug/moc_hlotti.o debug/moc_hreadonlymodelnew.o debug/moc_hduplicate.o debug/moc_hmodifylot.o debug/moc_hpackagesunload.o debug/moc_hgroups.o debug/moc_hcontacts.o debug/moc_hnewcontact.o debug/moc_halarm.o debug/moc_hnotifica.o debug/moc_hverifylabels.o debug/moc_hclientiassociati.o debug/moc_hschede.o debug/moc_hnschede.o debug/moc_hmodimage.o debug/moc_hcopycard.o
 	-$(DEL_FILE) debug/hamletMOD_resource_res.o
 
 distclean: clean 
@@ -376,25 +382,46 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug/qrc_icons.cpp
 debug/qrc_icons.cpp: icons.qrc \
 		Resources/fork-1-icon.png \
+		Resources/light-bulb-icon.png \
 		Resources/Wood-4-icon.png \
+		Resources/Insert-image64.png \
+		Resources/Text-columns64.png \
+		Resources/Comment-add64.png \
+		Resources/addimage.png \
+		Resources/Trash-can64.png \
 		Resources/ZIP-icon.png \
 		Resources/Map.PNG \
 		Resources/Folder.PNG \
 		Resources/Computer.PNG \
 		Resources/Key.PNG \
 		Resources/Chart.PNG \
+		Resources/Clock64.png \
+		Resources/Comment-delete64.png \
 		Resources/Actions-configure-icon.png \
+		Resources/Right-align64.png \
+		Resources/3D_Icons_Icon_256.png \
+		Resources/palet-03-icon.png \
 		Resources/Box.PNG \
+		Resources/Flag-yellow64.png \
 		Resources/Cart.PNG \
 		Resources/Arrow-Up.PNG \
 		Resources/Heart.PNG \
+		Resources/Gas-pump64.png \
+		Resources/Pause64.png \
 		Resources/Links.png \
 		Resources/App-ark-2-icon.png \
 		Resources/Bullhorn.PNG \
+		Resources/Comment64.png \
 		Resources/save-icon.png \
+		Resources/Arrow-turn-left64.png \
+		Resources/Thumb-down64.png \
 		Resources/Cellphone.PNG \
+		Resources/Handtool64.png \
+		Resources/palet-02-icon.png \
+		Resources/Bar-chart64.png \
 		Resources/Search.PNG \
 		Resources/Photocamera.PNG \
+		Resources/Note64.png \
 		Resources/User-Male.PNG \
 		Resources/user-group-icon.png \
 		Resources/Rss.PNG \
@@ -403,50 +430,90 @@ debug/qrc_icons.cpp: icons.qrc \
 		Resources/hamlet.PNG \
 		Resources/Warning-Sign.PNG \
 		Resources/Plus.PNG \
+		Resources/Flag-green64.png \
+		Resources/Text-align-center64.png \
 		Resources/Touch-Phone.PNG \
+		Resources/Downright64.png \
+		Resources/Flag-blue64.png \
+		Resources/Text-bold64.png \
 		Resources/Actions-window-close-icon.png \
 		Resources/Thumbs.db \
+		Resources/User-blue64.png \
 		Resources/png3.256.png \
+		Resources/Eye64.png \
+		Resources/Flag-red64.png \
 		Resources/modlots.png \
+		Resources/Counterclockwise-arrow64.png \
 		Resources/Database.PNG \
 		Resources/Planet.PNG \
 		Resources/Abstract-green-backgrounds.jpg \
+		Resources/Users64.png \
 		Resources/Pin.PNG \
+		Resources/Text-align--justify64.png \
 		Resources/Sheet-Of-Paper.PNG \
+		Resources/Eject64.png \
+		Resources/Record64.png \
+		Resources/Accept64.png \
+		Resources/Left-align64.png \
+		Resources/Portrait64.png \
 		Resources/Arrow-Right.PNG \
 		Resources/Lock.PNG \
+		Resources/Monitoring64.png \
 		Resources/Minus.PNG \
 		Resources/Visa.PNG \
+		Resources/Insert-hyperlink64.png \
+		Resources/Text-align-right64.png \
 		Resources/Music-Note.PNG \
 		Resources/Case.PNG \
+		Resources/Pie-chart64.png \
 		Resources/Art-Supplies.PNG \
+		Resources/graphical.qrc \
 		Resources/Arrow-Left.PNG \
 		Resources/Gift.PNG \
+		Resources/Clockwise-arrow64.png \
 		Resources/Question-Mark.PNG \
+		Resources/User-yellow64.png \
 		Resources/Gears.PNG \
+		Resources/Upright64.png \
+		Resources/User-green64.png \
 		Resources/Download.PNG \
 		Resources/Pencil.PNG \
 		Resources/User-Female.PNG \
+		Resources/Downleft64.png \
+		Resources/Text-align-left64.png \
 		Resources/Chat.PNG \
 		Resources/Calendar.PNG \
+		Resources/Text-itailc64.png \
+		Resources/Upleft64.png \
+		Resources/Thumb-up64.png \
 		Resources/Strings.qrc \
+		Resources/print-icon.png \
 		Resources/Notepad.PNG \
 		Resources/Printer-icon.png \
+		Resources/Play64.png \
+		Resources/Link64.png \
+		Resources/Font64.png \
 		Resources/User-Black.PNG \
+		Resources/Line-chart64.png \
 		Resources/Truck.PNG \
 		Resources/Cube.PNG \
 		Resources/Book.PNG \
 		Resources/Upload.PNG \
 		Resources/background.svg \
+		Resources/User-red64.png \
 		Resources/Banned-Sign.PNG \
 		Resources/Flag.PNG \
+		Resources/addimage2.png \
+		Resources/hamlet_1.ico \
+		Resources/Theme64.png \
 		Resources/Clock.PNG \
-		Resources/Mail.PNG
+		Resources/Mail.PNG \
+		Resources/Center64.png
 	'C:\Qt\5.5\mingw492_32\bin\rcc.exe' -name icons icons.qrc -o debug/qrc_icons.cpp
 
-compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_huser.cpp debug/moc_hprodotti.cpp debug/moc_hutenti.cpp debug/moc_hnewop.cpp debug/moc_hsettings.cpp debug/moc_hreadonlymodel.cpp debug/moc_hprint.cpp debug/moc_hanalisi.cpp debug/moc_hnewproduct.cpp debug/moc_hlogin2.cpp debug/moc_hreadonlymodellots.cpp debug/moc_hanalyze_a.cpp debug/moc_hnuovaoperazione.cpp debug/moc_hoverview.cpp debug/moc_hgestioneutenti.cpp debug/moc_hnewuser.cpp debug/moc_hnewanagrafica.cpp debug/moc_hschedeclienti.cpp debug/moc_hassociazioni.cpp debug/moc_hmodificascheda.cpp debug/moc_hproduction.cpp debug/moc_hfindlotuse.cpp debug/moc_hprodottinew.cpp debug/moc_hwarehouse.cpp debug/moc_hmodifyprod.cpp debug/moc_hpackages.cpp debug/moc_hmodricette.cpp debug/moc_hrecipeaddrow.cpp debug/moc_hlotti.cpp debug/moc_hreadonlymodelnew.cpp debug/moc_hduplicate.cpp debug/moc_hmodifylot.cpp debug/moc_hpackagesunload.cpp debug/moc_hgroups.cpp debug/moc_hcontacts.cpp debug/moc_hnewcontact.cpp debug/moc_halarm.cpp debug/moc_hnotifica.cpp debug/moc_hverifylabels.cpp debug/moc_hclientiassociati.cpp debug/moc_hschede.cpp debug/moc_hnschede.cpp debug/moc_hmodimage.cpp
+compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_huser.cpp debug/moc_hprodotti.cpp debug/moc_hutenti.cpp debug/moc_hnewop.cpp debug/moc_hsettings.cpp debug/moc_hreadonlymodel.cpp debug/moc_hprint.cpp debug/moc_hanalisi.cpp debug/moc_hnewproduct.cpp debug/moc_hlogin2.cpp debug/moc_hreadonlymodellots.cpp debug/moc_hanalyze_a.cpp debug/moc_hnuovaoperazione.cpp debug/moc_hoverview.cpp debug/moc_hgestioneutenti.cpp debug/moc_hnewuser.cpp debug/moc_hnewanagrafica.cpp debug/moc_hschedeclienti.cpp debug/moc_hassociazioni.cpp debug/moc_hmodificascheda.cpp debug/moc_hproduction.cpp debug/moc_hfindlotuse.cpp debug/moc_hprodottinew.cpp debug/moc_hwarehouse.cpp debug/moc_hmodifyprod.cpp debug/moc_hpackages.cpp debug/moc_hmodricette.cpp debug/moc_hrecipeaddrow.cpp debug/moc_hlotti.cpp debug/moc_hreadonlymodelnew.cpp debug/moc_hduplicate.cpp debug/moc_hmodifylot.cpp debug/moc_hpackagesunload.cpp debug/moc_hgroups.cpp debug/moc_hcontacts.cpp debug/moc_hnewcontact.cpp debug/moc_halarm.cpp debug/moc_hnotifica.cpp debug/moc_hverifylabels.cpp debug/moc_hclientiassociati.cpp debug/moc_hschede.cpp debug/moc_hnschede.cpp debug/moc_hmodimage.cpp debug/moc_hcopycard.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug/moc_mainwindow.cpp debug/moc_huser.cpp debug/moc_hprodotti.cpp debug/moc_hutenti.cpp debug/moc_hnewop.cpp debug/moc_hsettings.cpp debug/moc_hreadonlymodel.cpp debug/moc_hprint.cpp debug/moc_hanalisi.cpp debug/moc_hnewproduct.cpp debug/moc_hlogin2.cpp debug/moc_hreadonlymodellots.cpp debug/moc_hanalyze_a.cpp debug/moc_hnuovaoperazione.cpp debug/moc_hoverview.cpp debug/moc_hgestioneutenti.cpp debug/moc_hnewuser.cpp debug/moc_hnewanagrafica.cpp debug/moc_hschedeclienti.cpp debug/moc_hassociazioni.cpp debug/moc_hmodificascheda.cpp debug/moc_hproduction.cpp debug/moc_hfindlotuse.cpp debug/moc_hprodottinew.cpp debug/moc_hwarehouse.cpp debug/moc_hmodifyprod.cpp debug/moc_hpackages.cpp debug/moc_hmodricette.cpp debug/moc_hrecipeaddrow.cpp debug/moc_hlotti.cpp debug/moc_hreadonlymodelnew.cpp debug/moc_hduplicate.cpp debug/moc_hmodifylot.cpp debug/moc_hpackagesunload.cpp debug/moc_hgroups.cpp debug/moc_hcontacts.cpp debug/moc_hnewcontact.cpp debug/moc_halarm.cpp debug/moc_hnotifica.cpp debug/moc_hverifylabels.cpp debug/moc_hclientiassociati.cpp debug/moc_hschede.cpp debug/moc_hnschede.cpp debug/moc_hmodimage.cpp
+	-$(DEL_FILE) debug/moc_mainwindow.cpp debug/moc_huser.cpp debug/moc_hprodotti.cpp debug/moc_hutenti.cpp debug/moc_hnewop.cpp debug/moc_hsettings.cpp debug/moc_hreadonlymodel.cpp debug/moc_hprint.cpp debug/moc_hanalisi.cpp debug/moc_hnewproduct.cpp debug/moc_hlogin2.cpp debug/moc_hreadonlymodellots.cpp debug/moc_hanalyze_a.cpp debug/moc_hnuovaoperazione.cpp debug/moc_hoverview.cpp debug/moc_hgestioneutenti.cpp debug/moc_hnewuser.cpp debug/moc_hnewanagrafica.cpp debug/moc_hschedeclienti.cpp debug/moc_hassociazioni.cpp debug/moc_hmodificascheda.cpp debug/moc_hproduction.cpp debug/moc_hfindlotuse.cpp debug/moc_hprodottinew.cpp debug/moc_hwarehouse.cpp debug/moc_hmodifyprod.cpp debug/moc_hpackages.cpp debug/moc_hmodricette.cpp debug/moc_hrecipeaddrow.cpp debug/moc_hlotti.cpp debug/moc_hreadonlymodelnew.cpp debug/moc_hduplicate.cpp debug/moc_hmodifylot.cpp debug/moc_hpackagesunload.cpp debug/moc_hgroups.cpp debug/moc_hcontacts.cpp debug/moc_hnewcontact.cpp debug/moc_halarm.cpp debug/moc_hnotifica.cpp debug/moc_hverifylabels.cpp debug/moc_hclientiassociati.cpp debug/moc_hschede.cpp debug/moc_hnschede.cpp debug/moc_hmodimage.cpp debug/moc_hcopycard.cpp
 debug/moc_mainwindow.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qmainwindow.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
@@ -5181,6 +5248,12 @@ debug/moc_hschede.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrinter \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprinter.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
 		hschede.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hschede.h -o debug/moc_hschede.cpp
 
@@ -5289,6 +5362,14 @@ debug/moc_hnschede.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrinter \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprinter.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		hnschede.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hnschede.h -o debug/moc_hnschede.cpp
 
@@ -5397,11 +5478,119 @@ debug/moc_hmodimage.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		hmodimage.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hmodimage.h -o debug/moc_hmodimage.cpp
 
+debug/moc_hcopycard.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qglobal.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qconfig.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qfeatures.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qsystemdetection.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qprocessordetection.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qcompilerdetection.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qtypeinfo.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qtypetraits.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qsysinfo.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qlogging.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qflags.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qbasicatomic.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_bootstrap.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qgenericatomic.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_cxx11.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_gcc.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_msvc.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv7.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv6.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv5.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_ia64.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_mips.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_x86.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_unix.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qmutex.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qnumeric.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qobject.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qstring.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qchar.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qbytearray.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qrefcount.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qarraydata.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qlist.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qcoreevent.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qmetatype.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qmargins.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qrect.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qsize.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qcolor.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qrgb.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qbrush.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qmatrix.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpolygon.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qregion.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qline.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtransform.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpainterpath.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qimage.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpixelformat.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpixmap.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qhash.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qfont.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qfontinfo.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qkeysequence.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qevent.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qmap.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qset.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qurl.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qurlquery.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qfile.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
+		hcopycard.h
+	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hcopycard.h -o debug/moc_hcopycard.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h
+compiler_uic_make_all: ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h ui_hcopycard.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h
+	-$(DEL_FILE) ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h ui_hcopycard.h
 ui_mainwindow.h: mainwindow.ui
 	'C:\Qt\5.5\mingw492_32\bin\uic.exe' mainwindow.ui -o ui_mainwindow.h
 
@@ -5657,6 +5846,9 @@ ui_hnschede.h: hnschede.ui
 
 ui_hmodimage.h: hmodimage.ui
 	'C:\Qt\5.5\mingw492_32\bin\uic.exe' hmodimage.ui -o ui_hmodimage.h
+
+ui_hcopycard.h: hcopycard.ui
+	'C:\Qt\5.5\mingw492_32\bin\uic.exe' hcopycard.ui -o ui_hcopycard.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -6061,7 +6253,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		hnotifica.h \
 		hverifylabels.h \
 		hschedeclienti.h \
-		hschede.h \
+		hnschede.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/mainwindow.o mainwindow.cpp
 
@@ -13659,6 +13851,12 @@ debug/hschede.o: hschede.cpp hschede.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrinter \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprinter.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
 		ui_hschede.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -13748,7 +13946,9 @@ debug/hschede.o: hschede.cpp hschede.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDir \
 		../../Qt/5.5/mingw492_32/include/QtCore/QBuffer \
 		../../Qt/5.5/mingw492_32/include/QtCore/qbuffer.h \
-		hnschede.h
+		hnschede.h \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hschede.o hschede.cpp
 
 debug/hnschede.o: hnschede.cpp hnschede.h \
@@ -13857,6 +14057,14 @@ debug/hnschede.o: hnschede.cpp hnschede.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrinter \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprinter.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		ui_hnschede.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -13902,6 +14110,7 @@ debug/hnschede.o: hnschede.cpp hnschede.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QSpacerItem \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QTextEdit \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtextedit.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qtextdocument.h \
@@ -13910,6 +14119,7 @@ debug/hnschede.o: hnschede.cpp hnschede.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpen.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
+		hmodimage.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QFileDialog \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qfiledialog.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qdir.h \
@@ -13933,12 +14143,6 @@ debug/hnschede.o: hnschede.cpp hnschede.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qglyphrun.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qrawfont.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qfontdatabase.h \
-		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrinter \
-		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprinter.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
-		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQuery \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlError \
@@ -13951,7 +14155,14 @@ debug/hnschede.o: hnschede.cpp hnschede.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qmenu.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/QDebug
+		../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrintDialog \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprintdialog.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qabstractprintdialog.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrintPreviewDialog \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprintpreviewdialog.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QFontDialog \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qfontdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hnschede.o hnschede.cpp
 
 debug/hmodimage.o: hmodimage.cpp hmodimage.h \
@@ -14072,6 +14283,11 @@ debug/hmodimage.o: hmodimage.cpp hmodimage.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
@@ -14092,9 +14308,126 @@ debug/hmodimage.o: hmodimage.cpp hmodimage.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QSpinBox \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qspinbox.h
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qspinbox.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hmodimage.o hmodimage.cpp
+
+debug/hcopycard.o: hcopycard.cpp hcopycard.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qglobal.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qconfig.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qfeatures.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qsystemdetection.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qprocessordetection.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qcompilerdetection.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qtypeinfo.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qtypetraits.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qsysinfo.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qlogging.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qflags.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qbasicatomic.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_bootstrap.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qgenericatomic.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_cxx11.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_gcc.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_msvc.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv7.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv6.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv5.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_ia64.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_mips.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_x86.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_unix.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qmutex.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qnumeric.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qobject.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qstring.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qchar.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qbytearray.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qrefcount.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qarraydata.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qlist.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qcoreevent.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qmetatype.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qmargins.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qrect.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qsize.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qcolor.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qrgb.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qbrush.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qmatrix.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpolygon.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qregion.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qline.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtransform.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpainterpath.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qimage.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpixelformat.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpixmap.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qhash.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qfont.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qfontinfo.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qkeysequence.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qevent.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qmap.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qset.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qurl.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qurlquery.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qfile.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
+		ui_hcopycard.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlTableModel \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hcopycard.o hcopycard.cpp
 
 debug/qrc_icons.o: debug/qrc_icons.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/qrc_icons.o debug/qrc_icons.cpp
@@ -14230,6 +14563,9 @@ debug/moc_hnschede.o: debug/moc_hnschede.cpp
 
 debug/moc_hmodimage.o: debug/moc_hmodimage.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_hmodimage.o debug/moc_hmodimage.cpp
+
+debug/moc_hcopycard.o: debug/moc_hcopycard.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_hcopycard.o debug/moc_hcopycard.cpp
 
 ####### Install
 

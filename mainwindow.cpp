@@ -498,7 +498,7 @@ void MainWindow::on_pbSchede_clicked()
     f->show();**/
 
     HNSChede *f= new HNSChede(0,user,db);
-    f->show();
+    f->showMaximized();
 
 }
 
