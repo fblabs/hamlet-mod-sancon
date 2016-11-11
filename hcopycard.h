@@ -26,7 +26,7 @@ private slots:
     void on_pushButton_2_clicked();
 
 signals:
-    void copyRecipe(int cliente,int prodotto);
+    void copyRecipe(int cliente,int prodotto,QString newHead);
 };
 
 #endif // HCOPYCARD_H

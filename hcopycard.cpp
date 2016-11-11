@@ -87,8 +87,10 @@ void HCopyCard::on_pushButton_clicked()
 
     client=ui->cbC->model()->index(ui->cbC->currentIndex(),0).data(0).toInt();
     product=ui->cbP->model()->index(ui->cbP->currentIndex(),0).data(0).toInt();
+    QString newHeader="SCHEDA: "+ui->cbC->currentText()+" - "+ui->cbP->currentText();
 
-    emit copyRecipe(client,product);
+    emit copyRecipe(client,product,newHeader);
+    close();
 }
 
 void HCopyCard::on_pushButton_2_clicked()

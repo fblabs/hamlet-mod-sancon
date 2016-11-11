@@ -40,7 +40,7 @@ private slots:
     void setEvidence();
     void initCard(int idProdotto, int idCliente);
     void documentChanged();
-    void copyCard(int cliente,int prodotto);
+    void copyCard(int cliente, int prodotto, QString newHead);
 
 
 

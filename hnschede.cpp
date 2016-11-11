@@ -325,6 +325,10 @@ void HNSChede::on_pbClose_clicked()
        }
 
     }
+    else
+    {
+        close();
+    }
     }
     else
     {
@@ -645,16 +649,16 @@ void HNSChede::on_pushButton_9_clicked()
 {
     HCopyCard *f=new HCopyCard(0,db);
     f->setWindowModality(Qt::ApplicationModal);
-    connect(f,SIGNAL(copyRecipe(int,int)),this,SLOT(copyCard(int,int)));
+    connect(f,SIGNAL(copyRecipe(int,int,QString)),this,SLOT(copyCard(int,int,QString)));
     f->show();
 
 }
 
-void HNSChede::copyCard(int cliente, int prodotto)
+void HNSChede::copyCard(int cliente, int prodotto, QString newHead)
 {
     //TODO copia scheda
 
-    qDebug()<<"CC"<<cliente<<prodotto;
+    qDebug()<<"CC"<<cliente<<prodotto<<newHead;
     QString scheda,sql;
     QSqlQuery q(db);
     bool b;
@@ -676,7 +680,18 @@ void HNSChede::copyCard(int cliente, int prodotto)
    // qDebug()<<scheda<<"orcli:" <<cliente<<prodotto;
     q.clear();
 
-    ui->textEdit->setHtml(scheda);
+    QString current="SCHEDA: "+ui->cbClienti->currentText()+" - "+ ui->cbProdotti->currentText()+" <br>";
+
+    int from=scheda.indexOf(newHead,0,Qt::CaseSensitive);
+    int len=current.length();
+
+    qDebug()<<"copycard old:"<<from<<len<<"newhewader:"<<newHead;
+
+    QString newCard =scheda.replace(from,len,current);
+
+
+
+    ui->textEdit->setHtml(newCard);
 
 
 

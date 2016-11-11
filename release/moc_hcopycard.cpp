@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HCopyCard_t {
-    QByteArrayData data[8];
-    char stringdata0[97];
+    QByteArrayData data[9];
+    char stringdata0[105];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,13 +34,14 @@ QT_MOC_LITERAL(1, 10, 10), // "copyRecipe"
 QT_MOC_LITERAL(2, 21, 0), // ""
 QT_MOC_LITERAL(3, 22, 7), // "cliente"
 QT_MOC_LITERAL(4, 30, 8), // "prodotto"
-QT_MOC_LITERAL(5, 39, 11), // "getProducts"
-QT_MOC_LITERAL(6, 51, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(7, 73, 23) // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(5, 39, 7), // "newHead"
+QT_MOC_LITERAL(6, 47, 11), // "getProducts"
+QT_MOC_LITERAL(7, 59, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(8, 81, 23) // "on_pushButton_2_clicked"
 
     },
     "HCopyCard\0copyRecipe\0\0cliente\0prodotto\0"
-    "getProducts\0on_pushButton_clicked\0"
+    "newHead\0getProducts\0on_pushButton_clicked\0"
     "on_pushButton_2_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -59,15 +60,15 @@ static const uint qt_meta_data_HCopyCard[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   34,    2, 0x06 /* Public */,
+       1,    3,   34,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   39,    2, 0x08 /* Private */,
-       6,    0,   40,    2, 0x08 /* Private */,
-       7,    0,   41,    2, 0x08 /* Private */,
+       6,    0,   41,    2, 0x08 /* Private */,
+       7,    0,   42,    2, 0x08 /* Private */,
+       8,    0,   43,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    3,    4,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::QString,    3,    4,    5,
 
  // slots: parameters
     QMetaType::Void,
@@ -83,7 +84,7 @@ void HCopyCard::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         HCopyCard *_t = static_cast<HCopyCard *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->copyRecipe((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 0: _t->copyRecipe((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3]))); break;
         case 1: _t->getProducts(); break;
         case 2: _t->on_pushButton_clicked(); break;
         case 3: _t->on_pushButton_2_clicked(); break;
@@ -93,7 +94,7 @@ void HCopyCard::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (HCopyCard::*_t)(int , int );
+            typedef void (HCopyCard::*_t)(int , int , QString );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&HCopyCard::copyRecipe)) {
                 *result = 0;
             }
@@ -138,9 +139,9 @@ int HCopyCard::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void HCopyCard::copyRecipe(int _t1, int _t2)
+void HCopyCard::copyRecipe(int _t1, int _t2, QString _t3)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

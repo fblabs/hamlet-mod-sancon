@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HNSChede_t {
-    QByteArrayData data[43];
-    char stringdata0[584];
+    QByteArrayData data[44];
+    char stringdata0[592];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -61,17 +61,18 @@ QT_MOC_LITERAL(28, 308, 15), // "documentChanged"
 QT_MOC_LITERAL(29, 324, 8), // "copyCard"
 QT_MOC_LITERAL(30, 333, 7), // "cliente"
 QT_MOC_LITERAL(31, 341, 8), // "prodotto"
-QT_MOC_LITERAL(32, 350, 17), // "on_pbBold_clicked"
-QT_MOC_LITERAL(33, 368, 23), // "on_pushButton_3_clicked"
-QT_MOC_LITERAL(34, 392, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(35, 414, 23), // "on_pushButton_4_clicked"
-QT_MOC_LITERAL(36, 438, 23), // "on_pushButton_6_clicked"
-QT_MOC_LITERAL(37, 462, 23), // "on_pushButton_5_clicked"
-QT_MOC_LITERAL(38, 486, 17), // "on_pbInit_clicked"
-QT_MOC_LITERAL(39, 504, 23), // "on_pushButton_7_clicked"
-QT_MOC_LITERAL(40, 528, 23), // "on_pushButton_8_toggled"
-QT_MOC_LITERAL(41, 552, 7), // "checked"
-QT_MOC_LITERAL(42, 560, 23) // "on_pushButton_9_clicked"
+QT_MOC_LITERAL(32, 350, 7), // "newHead"
+QT_MOC_LITERAL(33, 358, 17), // "on_pbBold_clicked"
+QT_MOC_LITERAL(34, 376, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(35, 400, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(36, 422, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(37, 446, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(38, 470, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(39, 494, 17), // "on_pbInit_clicked"
+QT_MOC_LITERAL(40, 512, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(41, 536, 23), // "on_pushButton_8_toggled"
+QT_MOC_LITERAL(42, 560, 7), // "checked"
+QT_MOC_LITERAL(43, 568, 23) // "on_pushButton_9_clicked"
 
     },
     "HNSChede\0insertImage\0\0on_pushButton_2_clicked\0"
@@ -83,7 +84,7 @@ QT_MOC_LITERAL(42, 560, 23) // "on_pushButton_9_clicked"
     "printer\0printPreviewSlot\0print\0setBold\0"
     "setFont\0setEvidence\0initCard\0idProdotto\0"
     "idCliente\0documentChanged\0copyCard\0"
-    "cliente\0prodotto\0on_pbBold_clicked\0"
+    "cliente\0prodotto\0newHead\0on_pbBold_clicked\0"
     "on_pushButton_3_clicked\0on_pushButton_clicked\0"
     "on_pushButton_4_clicked\0on_pushButton_6_clicked\0"
     "on_pushButton_5_clicked\0on_pbInit_clicked\0"
@@ -126,17 +127,17 @@ static const uint qt_meta_data_HNSChede[] = {
       24,    0,  194,    2, 0x08 /* Private */,
       25,    2,  195,    2, 0x08 /* Private */,
       28,    0,  200,    2, 0x08 /* Private */,
-      29,    2,  201,    2, 0x08 /* Private */,
-      32,    0,  206,    2, 0x08 /* Private */,
-      33,    0,  207,    2, 0x08 /* Private */,
-      34,    0,  208,    2, 0x08 /* Private */,
-      35,    0,  209,    2, 0x08 /* Private */,
-      36,    0,  210,    2, 0x08 /* Private */,
-      37,    0,  211,    2, 0x08 /* Private */,
-      38,    0,  212,    2, 0x08 /* Private */,
-      39,    0,  213,    2, 0x08 /* Private */,
-      40,    1,  214,    2, 0x08 /* Private */,
-      42,    0,  217,    2, 0x08 /* Private */,
+      29,    3,  201,    2, 0x08 /* Private */,
+      33,    0,  208,    2, 0x08 /* Private */,
+      34,    0,  209,    2, 0x08 /* Private */,
+      35,    0,  210,    2, 0x08 /* Private */,
+      36,    0,  211,    2, 0x08 /* Private */,
+      37,    0,  212,    2, 0x08 /* Private */,
+      38,    0,  213,    2, 0x08 /* Private */,
+      39,    0,  214,    2, 0x08 /* Private */,
+      40,    0,  215,    2, 0x08 /* Private */,
+      41,    1,  216,    2, 0x08 /* Private */,
+      43,    0,  219,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -159,7 +160,7 @@ static const uint qt_meta_data_HNSChede[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,   26,   27,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   30,   31,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::QString,   30,   31,   32,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -168,7 +169,7 @@ static const uint qt_meta_data_HNSChede[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   41,
+    QMetaType::Void, QMetaType::Bool,   42,
     QMetaType::Void,
 
        0        // eod
@@ -203,7 +204,7 @@ void HNSChede::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 17: _t->setEvidence(); break;
         case 18: _t->initCard((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 19: _t->documentChanged(); break;
-        case 20: _t->copyCard((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 20: _t->copyCard((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3]))); break;
         case 21: _t->on_pbBold_clicked(); break;
         case 22: _t->on_pushButton_3_clicked(); break;
         case 23: _t->on_pushButton_clicked(); break;
