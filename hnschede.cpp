@@ -680,12 +680,12 @@ void HNSChede::copyCard(int cliente, int prodotto, QString newHead)
    // qDebug()<<scheda<<"orcli:" <<cliente<<prodotto;
     q.clear();
 
-    QString current="SCHEDA: "+ui->cbClienti->currentText()+" - "+ ui->cbProdotti->currentText()+" <br>";
+    QString current="SCHEDA: "+ui->cbClienti->currentText()+" - "+ ui->cbProdotti->currentText();
 
     int from=scheda.indexOf(newHead,0,Qt::CaseSensitive);
-    int len=current.length();
+    int len=newHead.length();
 
-    qDebug()<<"copycard old:"<<from<<len<<"newhewader:"<<newHead;
+   // qDebug()<<"copycard old:"<<from<<len<<"newhewader:"<<newHead<<"current: "<<current;
 
     QString newCard =scheda.replace(from,len,current);
 

@@ -103,6 +103,9 @@
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
        </property>
+       <property name="shortcut">
+        <string>Ctrl+M</string>
+       </property>
        <property name="checkable">
         <bool>true</bool>
        </property>

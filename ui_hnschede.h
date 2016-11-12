@@ -264,6 +264,7 @@ public:
         label->setText(QApplication::translate("HNSChede", "Cliente:", 0));
         label_2->setText(QApplication::translate("HNSChede", "Prodotto:", 0));
         pushButton_8->setText(QString());
+        pushButton_8->setShortcut(QApplication::translate("HNSChede", "Ctrl+M", 0));
         lblLed->setText(QString());
         pbInit->setText(QString());
         pushButton_9->setText(QString());
