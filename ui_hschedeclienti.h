@@ -41,6 +41,7 @@ public:
     QPushButton *btnSave;
     QPushButton *btnDup;
     QPushButton *pushButton_3;
+    QPushButton *pbExport;
     QPushButton *pushButton;
 
     void setupUi(QWidget *HSchedeClienti)
@@ -154,11 +155,20 @@ public:
 
         horizontalLayout_3->addWidget(pushButton_3);
 
+        pbExport = new QPushButton(HSchedeClienti);
+        pbExport->setObjectName(QStringLiteral("pbExport"));
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Downright64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbExport->setIcon(icon5);
+        pbExport->setIconSize(QSize(32, 32));
+
+        horizontalLayout_3->addWidget(pbExport);
+
         pushButton = new QPushButton(HSchedeClienti);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon6);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout_3->addWidget(pushButton);
@@ -181,6 +191,7 @@ public:
         btnSave->setText(QApplication::translate("HSchedeClienti", "Salva", 0));
         btnDup->setText(QApplication::translate("HSchedeClienti", "Copia da scheda...", 0));
         pushButton_3->setText(QApplication::translate("HSchedeClienti", "Elimina", 0));
+        pbExport->setText(QApplication::translate("HSchedeClienti", "Esporta immagini", 0));
         pushButton->setText(QApplication::translate("HSchedeClienti", "Chiudi", 0));
     } // retranslateUi
 

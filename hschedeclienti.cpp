@@ -13,6 +13,7 @@
 #include "huser.h"
 #include "hduplicate.h"
 #include "hmodificascheda.h"
+#include <QFileDialog>
 
 
 HSchedeClienti::HSchedeClienti(QWidget *parent) :
@@ -463,7 +464,7 @@ void HSchedeClienti::on_pushButton_3_clicked()
 
 void HSchedeClienti::on_pushButton_2_clicked()
 {
-    saveScheda();
+    exportImages();
 }
 
 void HSchedeClienti::saveScheda()
@@ -540,4 +541,36 @@ void HSchedeClienti::setImgWidth(int newWidth)
 void HSchedeClienti::setImgHeight(int newHeight)
 {
     height=newHeight;
+}
+
+void HSchedeClienti::exportImages()
+{
+    QPixmap pixmap;
+    QByteArray data;
+    QSqlQuery q(db);
+    QDir dir;
+
+
+    //QString sql="select prodotto,cliente,prodotti.descrizione,immagine from schede,prodotti where prodotti.ID=schede.prodotto and immagine is not null";
+    QString sql="select prodotto,schede.cliente,prodotti.descrizione,anagrafica.ragione_sociale,schede.immagine from schede,prodotti,anagrafica where prodotti.ID=schede.prodotto and anagrafica.ID=schede.cliente and immagine is not null;";
+    dir=QFileDialog::getExistingDirectory(this,"Scegliere la directory di destinazione",QString());
+    QDir::setCurrent(dir.absolutePath());
+    q.prepare(sql);
+    q.exec();
+    qDebug()<<q.lastError().text();
+    while (q.next())
+    {
+
+        QString nomefile=q.value(3).toString() + " - " + q.value(2).toString()+".jpg";
+        data=q.value(4).toByteArray();
+        pixmap.loadFromData(data);
+
+        pixmap.save(nomefile,"JPG");
+    }
+
+}
+
+void HSchedeClienti::on_pbExport_clicked()
+{
+    exportImages();
 }

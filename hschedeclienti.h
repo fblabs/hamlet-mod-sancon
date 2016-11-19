@@ -52,6 +52,7 @@ private slots:
     void saveScheda();
     void setImgWidth(int newWidth);
     void setImgHeight(int newHeight);
+    void exportImages();
 
 
 
@@ -65,6 +66,8 @@ private slots:
 
     void on_btnSave_clicked();
 
+
+    void on_pbExport_clicked();
 
 signals:
 public slots:
