@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     setFocusPolicy(Qt::StrongFocus);
     sConn=settings.value("conn").toString();
 
-   // ui->pbOldCards->setVisible(false);
+    ui->pbOldCards->setVisible(false);
 
   //  installEventFilter(this);
 
