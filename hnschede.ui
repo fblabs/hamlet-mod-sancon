@@ -96,6 +96,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QPushButton" name="pushButton_8">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;modifica scheda&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -132,6 +135,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pbInit">
+       <property name="toolTip">
+        <string>nuova scheda</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -145,6 +151,9 @@
       <widget class="QPushButton" name="pushButton_9">
        <property name="enabled">
         <bool>false</bool>
+       </property>
+       <property name="toolTip">
+        <string>copia da scheda</string>
        </property>
        <property name="text">
         <string/>

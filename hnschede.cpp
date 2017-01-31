@@ -212,7 +212,7 @@ bool HNSChede::saveCard()
 
     qDebug()<<"savecard: "<<prodotto<<cliente<<QString::number(update);
 
-
+    db.transaction();
 
     QSqlQuery q(db);
     QString sql;
@@ -233,7 +233,17 @@ bool HNSChede::saveCard()
 
     bool b=q.exec();
 
-    qDebug()<<"savecard: "<<q.lastError().text()<<cliente<<prodotto<<QString::number(update);
+    if(b)
+    {
+        db.commit();
+    }
+    else {
+        db.rollback();
+        qDebug()<<"savecard: "<<q.lastError().text()<<cliente<<prodotto<<QString::number(update);
+    }
+
+
+
     return b;
 }
 
@@ -663,7 +673,7 @@ void HNSChede::copyCard(int cliente, int prodotto, QString newHead)
     QSqlQuery q(db);
     bool b;
 
-    db.transaction();
+
 
     q.prepare("select scheda from schede_n where cliente=:cli and prodotto=:prod" );
     q.bindValue(":cli",cliente);

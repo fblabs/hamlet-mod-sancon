@@ -263,10 +263,19 @@ public:
         HNSChede->setWindowTitle(QApplication::translate("HNSChede", "SCHEDE CLIENTI", 0));
         label->setText(QApplication::translate("HNSChede", "Cliente:", 0));
         label_2->setText(QApplication::translate("HNSChede", "Prodotto:", 0));
+#ifndef QT_NO_TOOLTIP
+        pushButton_8->setToolTip(QApplication::translate("HNSChede", "<html><head/><body><p>modifica scheda</p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
         pushButton_8->setText(QString());
         pushButton_8->setShortcut(QApplication::translate("HNSChede", "Ctrl+M", 0));
         lblLed->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pbInit->setToolTip(QApplication::translate("HNSChede", "nuova scheda", 0));
+#endif // QT_NO_TOOLTIP
         pbInit->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pushButton_9->setToolTip(QApplication::translate("HNSChede", "copia da scheda", 0));
+#endif // QT_NO_TOOLTIP
         pushButton_9->setText(QString());
 #ifndef QT_NO_TOOLTIP
         pushButton_3->setToolTip(QApplication::translate("HNSChede", "Font", 0));
