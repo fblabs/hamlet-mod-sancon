@@ -104,7 +104,7 @@ void HProduction::init(QString conn, QString userid)
 
 
 
-     ui->tableView->setEnabled(false);
+   //  ui->tableView->setEnabled(false);
      ui->lvRicette->setEnabled(true);
    //  ui->leQtyTotal->setReadOnly(true);
      ui->lvSubclienti->setVisible(false);
@@ -980,7 +980,7 @@ void HProduction::on_pushButton_5_clicked()
 
 void HProduction::on_pushButton_6_clicked()
 {
-    ui->tableView->setEnabled(false);
+    //ui->tableView->setEnabled(false);
     ui->lvRicette->setEnabled(true);
     ui->pushButton_5->setVisible(true);
     ui->pushButton_6->setVisible(false);
@@ -1318,7 +1318,7 @@ void HProduction::on_pushButton_3_clicked()
    {
        updateComposition();
    }
-   ui->tableView->setEnabled(false);
+  // ui->tableView->setEnabled(false);
    ui->lvRicette->setEnabled(true);
    ui->pushButton_5->setVisible(true);
    ui->pushButton_6->setVisible(false);

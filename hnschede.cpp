@@ -197,7 +197,8 @@ void HNSChede::insertImage()
 
 void HNSChede::on_pushButton_2_clicked()
 {
-  print();
+ // print();
+    printPreviewSlot();
 }
 
 
