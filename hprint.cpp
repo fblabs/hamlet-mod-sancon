@@ -35,6 +35,7 @@ HPrint::HPrint(QWidget *parent) :
 
 
 
+
 }
 
 bool HPrint::eventFilter(QObject *target, QEvent *event)
@@ -281,6 +282,18 @@ QTextTable* HPrint::writeTableContent(QTextTable *table,int row, int column, QSt
 {
    QTextCursor c=table->cellAt(row,column).firstCursorPosition();
 
+   c.insertText(text);
+
+   return table;
+}
+
+QTextTable* HPrint::writeTableContentRed(QTextTable *table,int row, int column,QString text)
+{
+  QTextCharFormat format;
+  format.setForeground(QColor("red"));
+  QTextCursor c=table->cellAt(row,column).firstCursorPosition();
+
+   c.setCharFormat(format);
    c.insertText(text);
 
    return table;

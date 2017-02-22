@@ -6,6 +6,7 @@
 #include <QSqlTableModel>
 #include <QStandardItem>
 #include "huser.h"
+#include <QList>
 
 namespace Ui {
 class HModRicette;
@@ -68,6 +69,7 @@ private:
     QString sConn;
     QSqlTableModel *tric;
     QSqlQueryModel *qmric;
+    QList<int> *writeRed;
 
 };
 

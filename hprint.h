@@ -8,6 +8,7 @@
 #include <QTextCursor>
 #include <QTextEdit>
 #include <QPrinter>
+#include <QList>
 
 
 namespace Ui {
@@ -27,6 +28,7 @@ public:
    void setConnection(QString conn);
    QTextTable *addTable(int rows,int columns);
    QTextTable *writeTableContent(QTextTable *table, int row, int column, QString text);
+   QTextTable* writeTableContentRed(QTextTable *table,int row, int column, QString text);
 
    void hideClose();
    void resetText();
@@ -34,6 +36,7 @@ public:
    QTextEdit *getViewport();
    QTextCursor getCursor();
    void resizeImage(int wr,int hr);
+
 
    void toggleImageUI(bool visible);
 
@@ -88,6 +91,7 @@ private:
     QImage *imgobj;
     QPixmap img;
     int imgw,imgh,imgcw,imgch;
+
 
 
 signals:

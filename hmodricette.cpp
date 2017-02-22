@@ -339,13 +339,16 @@ void HModRicette::loadRicetta()
     q.bindValue(":idricetta",QVariant(idricetta));
     q.exec();
 
+    writeRed=new QList<int>();
+
 
     QStandardItemModel *mod=new QStandardItemModel();
+    int k=-1;
     while (q.next())
     {
-        int alle=q.value(6).toInt();
 
 
+        k++;
 
 
         QList<QStandardItem*>list;
@@ -357,6 +360,12 @@ void HModRicette::loadRicetta()
         QStandardItem *quantita =new QStandardItem(QString::number(q.value(4).toDouble(),'f',4));
         QString sh=q.value(5).toString();
         QStandardItem *show = new QStandardItem(sh);
+
+        int alle=q.value(6).toInt();
+
+
+         writeRed->append(alle);
+
 
          if (alle==1)
          {
@@ -373,6 +382,8 @@ void HModRicette::loadRicetta()
         list.append(show);
 
         mod->appendRow(list);
+
+
 
     }
 
@@ -543,7 +554,7 @@ void HModRicette::printRecipe()
 {
     //stampa Ricetta
 
-    HPrint *f=new HPrint();
+    HPrint *f=new HPrint(0);
 
     f->toggleImageUI(false);
 
@@ -564,11 +575,22 @@ void HModRicette::printRecipe()
 
     QTextTable* table=f->addTable(righe,colonne-4);
 
+
+
     for (int i=0;i<righe;i++)
     {
       // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
+
+      if(writeRed->at(i)>0)
+      {
+          f->writeTableContentRed(table,i,0,ui->tableView->model()->index(i,3).data(0).toString());
+          f->writeTableContentRed(table,i,1,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+      }
+      else
+      {
       f->writeTableContent(table,i,0,ui->tableView->model()->index(i,3).data(0).toString());
       f->writeTableContent(table,i,1,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+      }
 
 
 

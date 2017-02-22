@@ -1405,6 +1405,7 @@ debug/moc_hprint.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		hprint.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hprint.h -o debug/moc_hprint.cpp
 
@@ -2636,6 +2637,7 @@ debug/moc_hschedeclienti.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		huser.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		hschedeclienti.h
@@ -3728,6 +3730,7 @@ debug/moc_hmodricette.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../../Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		huser.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		hmodricette.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hmodricette.h -o debug/moc_hmodricette.cpp
 
@@ -5769,7 +5772,8 @@ ui_hschedeclienti.h: hschedeclienti.ui \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
-		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList
 	'C:\Qt\5.5\mingw492_32\bin\uic.exe' hschedeclienti.ui -o ui_hschedeclienti.h
 
 ui_hassociazioni.h: hassociazioni.ui
@@ -6178,9 +6182,9 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlTableModel \
 		../../Qt/5.5/mingw492_32/include/QtGui/QStandardItem \
 		../../Qt/5.5/mingw492_32/include/QtGui/qstandarditemmodel.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		hproduzione.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSql \
-		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		../../Qt/5.5/mingw492_32/include/QtGui/QStandardItemModel \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
 		hprint.h \
@@ -7587,6 +7591,7 @@ debug/hprint.o: hprint.cpp hprint.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrintDialog \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprintdialog.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qabstractprintdialog.h \
@@ -7847,6 +7852,7 @@ debug/hanalisi.o: hanalisi.cpp hanalisi.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QCompleter \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qcompleter.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
@@ -8514,7 +8520,8 @@ debug/hanalyze_a.o: hanalyze_a.cpp hanalyze_a.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
-		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hanalyze_a.o hanalyze_a.cpp
 
 debug/hnuovaoperazione.o: hnuovaoperazione.cpp hnuovaoperazione.h \
@@ -9580,6 +9587,7 @@ debug/hschedeclienti.o: hschedeclienti.cpp ui_hschedeclienti.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		hschedeclienti.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlTableModel \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
@@ -9601,7 +9609,11 @@ debug/hschedeclienti.o: hschedeclienti.cpp ui_hschedeclienti.h \
 		hduplicate.h \
 		hmodificascheda.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
-		../../Qt/5.5/mingw492_32/include/QtGui/QPixmap
+		../../Qt/5.5/mingw492_32/include/QtGui/QPixmap \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QFileDialog \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qfiledialog.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qdir.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qfileinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hschedeclienti.o hschedeclienti.cpp
 
 debug/hassociazioni.o: hassociazioni.cpp hassociazioni.h \
@@ -11255,6 +11267,7 @@ debug/hmodricette.o: hmodricette.cpp hmodricette.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		huser.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		ui_hmodricette.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -11348,7 +11361,6 @@ debug/hmodricette.o: hmodricette.cpp hmodricette.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qmenu.h \
 		hrecipeaddrow.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		hclientiassociati.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h
@@ -11753,6 +11765,7 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		../../Qt/5.5/mingw492_32/include/QtCore/QThread \
 		../../Qt/5.5/mingw492_32/include/QtCore/qthread.h \
 		hpackagesunload.h \
@@ -14162,7 +14175,8 @@ debug/hnschede.o: hnschede.cpp hnschede.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrintPreviewDialog \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprintpreviewdialog.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QFontDialog \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qfontdialog.h
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qfontdialog.h \
+		hcopycard.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hnschede.o hnschede.cpp
 
 debug/hmodimage.o: hmodimage.cpp hmodimage.h \
@@ -14423,10 +14437,65 @@ debug/hcopycard.o: hcopycard.cpp hcopycard.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
 		ui_hcopycard.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qaction.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qicon.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qeventloop.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QComboBox \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlTableModel \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQuery \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QCompleter \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qcompleter.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlError \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hcopycard.o hcopycard.cpp
 
 debug/qrc_icons.o: debug/qrc_icons.cpp 
