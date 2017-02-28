@@ -504,7 +504,7 @@ void HProduction::getRecipe()
     //QString sql="SELECT righe_ricette.ID,righe_ricette.ID_prodotto,righe_ricette.ID_ricetta,prodotti.descrizione,righe_ricette.quantita FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto AND righe_ricette.ID_ricetta=:idricetta AND righe_ricette.show_prod=1 ORDER BY righe_ricette.quantita DESC";
   //  QString sql="SELECT distinct righe_ricette.ID,righe_ricette.ID_prodotto,prodotti.descrizione,righe_ricette.quantita FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto AND righe_ricette.ID_ricetta=:idricetta AND righe_ricette.show_prod=1 ORDER BY righe_ricette.quantita DESC";
     QString sql="select distinct prodotti.ID ,prodotti.descrizione,prodotti.allergenico,righe_ricette.quantita from prodotti,righe_ricette where righe_ricette.ID_prodotto=prodotti.ID and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
-
+    writeRed=new QList<int>();
     QSqlQuery q(db);
   //  QStandardItemModel *qmrighe=new QStandardItemModel();
   //  QStandardItemModel *qmrighecreate = new QStandardItemModel();
@@ -512,11 +512,6 @@ void HProduction::getRecipe()
     q.bindValue(":idricetta",QVariant(idricetta));
 
     q.exec();
-    // qDebug()<<q.lastError().text();
-
-    // int righe=q.size();
-
-    // // qDebug()<<q.size()<<q.lastError().text();
 
     model = new QStandardItemModel(0,6);
 
@@ -537,6 +532,9 @@ void HProduction::getRecipe()
 
        bool ok;
        alle=q.value(2).toInt();
+       writeRed->append(alle);
+
+
        quantitatot +=q.value(3).toDouble(&ok);
        if(!ok)
        {
@@ -672,9 +670,19 @@ void HProduction::printProduction(bool actual=false)
 
           f->cursorToEnd();
 
+          if(writeRed->at(i)>0)
+          {
+              f->writeTableContentRed(table,i,0,col1);
+              f->writeTableContentRed(table,i,1,col2);
+              f->writeTableContentRed(table,i,2,col3);
+          }
+          else
+          {
+
           f->writeTableContent(table,i,0,col1);
           f->writeTableContent(table,i,1,col2);
           f->writeTableContent(table,i,2,col3);
+          }
 
           f->cursorToEnd();
 
@@ -738,16 +746,34 @@ void HProduction::printRecipe()
           col1=ui->tableView->model()->index(i,1).data(0).toString();
           col2=ui->tableView->model()->index(i,2).data(0).toString();
 
-          f->writeTableContent(table,i,0,col1);
+    //      f->writeTableContent(table,i,0,col1);
 
-          f->writeTableContent(table,i,1,col2);
+     //     f->writeTableContent(table,i,1,col2);
 
-          f->cursorToEnd();
+
+
+
+            // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
+
+            if(writeRed->at(i)>0)
+            {
+                f->writeTableContentRed(table,i,0,ui->tableView->model()->index(i,3).data(0).toString());
+                f->writeTableContentRed(table,i,1,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+            }
+            else
+            {
+            f->writeTableContent(table,i,0,ui->tableView->model()->index(i,3).data(0).toString());
+            f->writeTableContent(table,i,1,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+            }
+
+         f->cursorToEnd();
+
+
 
 
           }
 
-    f->cursorToEnd();
+   // f->cursorToEnd();
 
     f->append("QUANTITA': " +ui->leQuaRic->text(),false);
 
@@ -1414,7 +1440,8 @@ void HProduction::on_pbAddLottoFuoriRicetta_clicked()
 
 void HProduction::on_pushButton_8_clicked()
 {
-    printProduction(false);
+   // printProduction(false);
+    printRecipe();
 }
 
 void HProduction::on_pushButton_9_clicked()
@@ -1573,8 +1600,4 @@ void HProduction::on_leQuaRic_textChanged(const QString &arg1)
    // // qDebug()<<arg1;
 }
 
-void HProduction::on_checkBox_2_toggled(bool checked)
-{
 
-
-}
