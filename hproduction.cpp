@@ -555,6 +555,7 @@ void HProduction::getRecipe()
         if (alle==1)
         {
             prodotto->setForeground(Qt::red);
+            prodotto->setIcon(QIcon(":/Resources/Flag-red64.png"));
         }
 
 
