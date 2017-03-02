@@ -329,7 +329,7 @@ public:
         tableView->setObjectName(QStringLiteral("tableView"));
         tableView->setEnabled(true);
         tableView->setFont(font1);
-        tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 

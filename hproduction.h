@@ -10,6 +10,11 @@
 #include <QSqlRecord>
 #include <QList>
 
+
+
+
+
+
 namespace Ui {
 class HProduction;
 }
@@ -35,6 +40,7 @@ private:
     QSqlTableModel *tmTipiLotti;
     QSqlTableModel *tmUm;
     QList<int> *writeRed;
+
 
     bool modifyLot;
     int lottomodifica;

@@ -19,6 +19,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -33,6 +34,7 @@ public:
     QLabel *label_3;
     QLabel *label_4;
     QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer;
     QLabel *label;
     QLabel *label_2;
     QLabel *label_5;
@@ -170,6 +172,10 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalSpacer = new QSpacerItem(80, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setMinimumSize(QSize(326, 256));
@@ -517,11 +523,11 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 1.6.0.6", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 1.6.0.7", 0));
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600;\">Hamlet Mod</span></p><p><span style=\" font-size:14pt; font-weight:600;\">Versione: 1.6.0.6</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2017</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti</span></a></p></body></html>", 0));
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600;\">Hamlet Mod</span></p><p><span style=\" font-size:14pt; font-weight:600;\">Versione: 1.6.0.7</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2017</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti</span></a></p></body></html>", 0));
         label_5->setText(QString());
         pbPackages->setText(QApplication::translate("MainWindow", "Packages (F9)", 0));
         pbPackages->setShortcut(QApplication::translate("MainWindow", "F9", 0));

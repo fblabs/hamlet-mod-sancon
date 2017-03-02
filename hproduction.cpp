@@ -19,6 +19,8 @@
 #include <QTextTable>
 #include <QSqlQueryModel>
 
+
+
 HProduction::HProduction(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HProduction)
@@ -31,6 +33,7 @@ HProduction::HProduction(QWidget *parent) :
     ui->pushButton_10->setEnabled(false);
    // ui->label_11->setVisible(false);
    // ui->leQuaRic->setVisible(false);
+
 }
 
 HProduction::~HProduction()
@@ -558,8 +561,12 @@ void HProduction::getRecipe()
             prodotto->setIcon(QIcon(":/Resources/Flag-red64.png"));
         }
 
+        prodotto->setEditable(false);
+        lotto->setEditable(false);
 
+        quantita->setEditable(true);
 
+        quadd->setEditable(true);
 
 
 
