@@ -890,6 +890,7 @@ void HProduction::addLotFuoriRicetta()
     int prod;
     QString descprod;
     QString peso;
+    bool alle;
     QString lotToadd;
     double qty;
     QStandardItemModel *mod=static_cast<QStandardItemModel*>(ui->tableView->model());
@@ -912,7 +913,7 @@ void HProduction::addLotFuoriRicetta()
 
 
     QSqlQuery p(db);
-    QString qps="SELECT descrizione from prodotti where ID=:id";
+    QString qps="SELECT descrizione,allergenico from prodotti where ID=:id";
     p.prepare(qps);
     p.bindValue(":id",QVariant(prod));
 
@@ -920,6 +921,7 @@ void HProduction::addLotFuoriRicetta()
     {
         p.first();
         descprod=p.value(0).toString();
+        alle=p.value(1).toBool();
     }
 
     peso=ui->leqtytoAdd->text();
@@ -942,6 +944,11 @@ void HProduction::addLotFuoriRicetta()
 
     QStandardItem *idprodotto=new QStandardItem(QString::number(prod));
     QStandardItem *prodotto=new QStandardItem(descprod);
+    if(alle)
+    {
+        prodotto->setForeground(Qt::red);
+        prodotto->setIcon(QIcon(":/Resources/Flag-red64.png"));
+    }
     QStandardItem *quantita=new QStandardItem("0.0");
     QStandardItem *idlotto=new QStandardItem(QString::number(id_lotto));
     QStandardItem *lotto =new QStandardItem(lotToadd);
