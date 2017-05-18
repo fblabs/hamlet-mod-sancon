@@ -88,7 +88,7 @@ void HAnalisi::getYearlyProduction()
         QSqlQueryModel *yprod=new QSqlQueryModel();
         QString sql="SELECT DISTINCT prodotti.ID,prodotti.descrizione from prodotti,lotdef where prodotti.ID=lotdef.prodotto and prodotti.tipo=2 and lotdef.anagrafica=:cliente and lotdef.data between :datedal and :dateal";
         int cliente;
-        QDate datedal,dateal;
+
         cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
         datedal=ui->deFrom->date();
         dateal=ui->deTo->date();
@@ -498,6 +498,8 @@ void HAnalisi::on_checkBox_toggled(bool checked)
 void HAnalisi::on_deFrom_dateChanged(const QDate &date)
 {
     datedal=ui->deFrom->date();
+    getYearlyProduction();
+    getProductsForClient();
 }
 
 void HAnalisi::on_deTo_dateChanged(const QDate &date)

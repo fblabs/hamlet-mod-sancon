@@ -250,7 +250,8 @@ bool HNSChede::saveCard()
 
 void HNSChede::loadCard()
 {
-    int cliente,prodotto;
+    int cliente,prodotto,ix,ixe;
+    QString doc;
 
     update=false;
 
@@ -273,17 +274,19 @@ void HNSChede::loadCard()
 
     if(q.exec())
     {
-    if(q.size()>0)
-    {
-        update=true;
-    }else
-    {
-        update=false;
-    }
-    ui->pbInit->setEnabled(!update);
+        if(q.size()>0)
+        {
+            update=true;
+        }else
+        {
+            update=false;
+        }
+        ui->pbInit->setEnabled(!update);
   //  ui->pushButton_9->setEnabled(!update);
     q.first();
-    QString doc =q.value(0).toString();
+
+     doc =q.value(0).toString();
+
 
     ui->textEdit->document()->setHtml(doc);
    // QMessageBox::warning(this,QApplication::applicationName(),"Doc:\n"+doc,QMessageBox::Ok);
@@ -297,7 +300,6 @@ void HNSChede::loadCard()
 
     changed=false;
 
-    qDebug()<<"Update "<<QString::number(update);
 
 }
 

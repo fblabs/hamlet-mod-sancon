@@ -572,6 +572,12 @@ void HModRicette::printRecipe()
     int colonne=ui->tableView->model()->columnCount();
 
     f->cursorToEnd();
+    f->append("NOTE:",false);
+    f->append(ui->tbnote->toPlainText(),false);
+
+    f->cursorToEnd();
+    f->append("",false);
+    f->cursorToEnd();
 
     QTextTable* table=f->addTable(righe,colonne-4);
 
@@ -597,7 +603,7 @@ void HModRicette::printRecipe()
     }
     f->append("Quantità: " + ui->leTotal->text(),false);
 
-    f->append(ui->tbnote->toPlainText(),false);
+    //f->append(ui->tbnote->toPlainText(),false);
 }
 
 void HModRicette::saveNote()
