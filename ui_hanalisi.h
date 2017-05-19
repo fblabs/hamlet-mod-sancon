@@ -22,6 +22,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -43,6 +44,7 @@ public:
     QDateEdit *deFrom;
     QLabel *label;
     QDateEdit *deTo;
+    QSpacerItem *horizontalSpacer;
     QPushButton *pushButton;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_4;
@@ -89,6 +91,7 @@ public:
         tvYearlyProduction = new QTableView(HAnalisi);
         tvYearlyProduction->setObjectName(QStringLiteral("tvYearlyProduction"));
         tvYearlyProduction->setContextMenuPolicy(Qt::ActionsContextMenu);
+        tvYearlyProduction->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvYearlyProduction->setAlternatingRowColors(true);
         tvYearlyProduction->setSelectionMode(QAbstractItemView::SingleSelection);
         tvYearlyProduction->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -122,6 +125,10 @@ public:
         deTo->setObjectName(QStringLiteral("deTo"));
 
         horizontalLayout->addWidget(deTo);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
 
         pushButton = new QPushButton(HAnalisi);
         pushButton->setObjectName(QStringLiteral("pushButton"));
@@ -165,6 +172,7 @@ public:
         tvLots = new QTableView(HAnalisi);
         tvLots->setObjectName(QStringLiteral("tvLots"));
         tvLots->setContextMenuPolicy(Qt::CustomContextMenu);
+        tvLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvLots->setAlternatingRowColors(true);
         tvLots->setSelectionMode(QAbstractItemView::SingleSelection);
         tvLots->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -181,6 +189,7 @@ public:
         tvComp = new QTableView(HAnalisi);
         tvComp->setObjectName(QStringLiteral("tvComp"));
         tvComp->setContextMenuPolicy(Qt::CustomContextMenu);
+        tvComp->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvComp->setAlternatingRowColors(true);
         tvComp->setSelectionMode(QAbstractItemView::SingleSelection);
         tvComp->setSelectionBehavior(QAbstractItemView::SelectRows);

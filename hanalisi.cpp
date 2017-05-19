@@ -28,7 +28,9 @@ HAnalisi::~HAnalisi()
 void HAnalisi::init(QString conn )
 {
     sConn=conn;
+    ui->pushButton->setVisible(false);
     db=QSqlDatabase::database(sConn);
+
 
 
     QDate to=QDate::currentDate().addDays(1);
@@ -86,12 +88,15 @@ void HAnalisi::getYearlyProduction()
 {
         QSqlQuery q(db);
         QSqlQueryModel *yprod=new QSqlQueryModel();
-        QString sql="SELECT DISTINCT prodotti.ID,prodotti.descrizione from prodotti,lotdef where prodotti.ID=lotdef.prodotto and prodotti.tipo=2 and lotdef.anagrafica=:cliente and lotdef.data between :datedal and :dateal";
+        QString sql="SELECT DISTINCT prodotti.ID,prodotti.descrizione from prodotti,lotdef where prodotti.ID=lotdef.prodotto and prodotti.tipo=2 and lotdef.anagrafica=:cliente"
+                   /* "/* and lotdef.data between :datedal and :dateal"*/;
         int cliente;
 
         cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
         datedal=ui->deFrom->date();
         dateal=ui->deTo->date();
+
+        QModelIndex ix=ui->tvYearlyProduction->currentIndex();
 
         q.prepare(sql);
         q.bindValue(":cliente",cliente);
@@ -103,6 +108,9 @@ void HAnalisi::getYearlyProduction()
 
         ui->tvYearlyProduction->setModel(yprod);
         ui->tvYearlyProduction->horizontalHeader()->setStretchLastSection(true);
+
+        ui->tvYearlyProduction->setCurrentIndex(ix);
+
 
        // if (ui->checkBox->isChecked())
         connect(ui->tvYearlyProduction->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
@@ -483,7 +491,7 @@ void HAnalisi::on_pushButton_5_clicked()
 
 void HAnalisi::on_checkBox_toggled(bool checked)
 {
-      if (checked && ui->tvYearlyProduction->model())
+    /*  if (checked && ui->tvYearlyProduction->model())
       {
           connect(ui->tvYearlyProduction->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
            getProductsForClient();
@@ -491,20 +499,28 @@ void HAnalisi::on_checkBox_toggled(bool checked)
       else
       {
           disconnect(ui->tvYearlyProduction->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
-      }
+      }*/
+
+    if(ui->tvYearlyProduction->model())
+    {
+        connect(ui->tvYearlyProduction->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
+        getProductsForClient();
+    }
 
 }
 
 void HAnalisi::on_deFrom_dateChanged(const QDate &date)
 {
     datedal=ui->deFrom->date();
-    getYearlyProduction();
+   // getYearlyProduction();
     getProductsForClient();
 }
 
 void HAnalisi::on_deTo_dateChanged(const QDate &date)
 {
     dateal=ui->deTo->date();
+   // getYearlyProduction();
+    getProductsForClient();
 }
 
 

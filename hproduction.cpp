@@ -649,8 +649,14 @@ void HProduction::printProduction(bool actual=false)
     f->append(title,false);
     f->cursorToEnd();
 
-    f->append("",false);
+   /* f->append("",false);
+    f->cursorToEnd();*/
+    f->append("NOTE: " + ui->tNote->toPlainText(),false);
     f->cursorToEnd();
+
+
+    f->append(ui->textBrowser->toPlainText().toUpper(),false);
+
 
     f->append("",false);
     f->cursorToEnd();
@@ -705,19 +711,13 @@ void HProduction::printProduction(bool actual=false)
          f->append("Quantità: " + ui->leQuaRic->text(),false);
       }
       f->append("",false);
-      f->append("Note: " + ui->tNote->toPlainText(),false);
-      f->append("",false);
+
 
       f->append("..............................................................................",false);
       f->cursorToEnd();
       f->append("..............................................................................",false);
       f->cursorToEnd();
       f->append("..............................................................................",false);
-      f->cursorToEnd();
-
-
-
-    f->append(ui->textBrowser->toPlainText(),false);
 
     f->showMaximized();
 }
@@ -745,6 +745,9 @@ void HProduction::printRecipe()
     f->cursorToEnd();
     f->append("",false);
     QString col1,col2;
+    f->cursorToEnd();
+
+    f->append(ui->textBrowser->toPlainText(),false);
 
     QTextTable *table= f->addTable(rows,cols);
 
@@ -785,7 +788,7 @@ void HProduction::printRecipe()
 
     f->append("QUANTITA': " +ui->leQuaRic->text(),false);
 
-    f->cursorToEnd();
+ /*   f->cursorToEnd();
 
 
 
@@ -793,7 +796,7 @@ void HProduction::printRecipe()
 
 
 
-    f->append(ui->textBrowser->toPlainText(),false);
+    f->append(ui->textBrowser->toPlainText(),false);*/
 
     f->toggleImageUI(false);
     f->show();
