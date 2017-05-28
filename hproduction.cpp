@@ -951,6 +951,7 @@ void HProduction::addLotFuoriRicetta()
     {
         prodotto->setForeground(Qt::red);
         prodotto->setIcon(QIcon(":/Resources/Flag-red64.png"));
+
     }
     QStandardItem *quantita=new QStandardItem("0.0");
     QStandardItem *idlotto=new QStandardItem(QString::number(id_lotto));
@@ -966,8 +967,8 @@ void HProduction::addLotFuoriRicetta()
     row.append(idlotto);
     row.append(lotto);
     row.append(qua);
-
     mod->insertRow(ui->tableView->currentIndex().row(),row);
+    if(alle) writeRed->insert(ui->tableView->currentIndex().row(),alle);
    // connect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
     ui->tableView->setCurrentIndex(ui->tableView->model()->index(ui->tableView->currentIndex().row()+1,0));
 

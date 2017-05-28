@@ -37,7 +37,7 @@ public:
     QSpacerItem *horizontalSpacer;
     QLabel *label;
     QLabel *label_2;
-    QLabel *label_5;
+    QSpacerItem *verticalSpacer;
     QVBoxLayout *verticalLayout_4;
     QGridLayout *gridLayout;
     QPushButton *pbPackages;
@@ -196,12 +196,9 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        label_5 = new QLabel(centralWidget);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setEnabled(false);
-        label_5->setMinimumSize(QSize(0, 140));
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout->addWidget(label_5);
+        verticalLayout->addItem(verticalSpacer);
 
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setSpacing(6);
@@ -523,12 +520,11 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 1.6.1.1", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 1.6.1.2", 0));
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600;\">Hamlet Mod</span></p><p><span style=\" font-size:14pt; font-weight:600;\">Versione: 1.6.1.1</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2017</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti</span></a></p></body></html>", 0));
-        label_5->setText(QString());
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600;\">Hamlet Mod</span></p><p><span style=\" font-size:14pt; font-weight:600;\">Versione: 1.6.1.2</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2017</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti (github)</span></a></p></body></html>", 0));
         pbPackages->setText(QApplication::translate("MainWindow", "Packages (F9)", 0));
         pbPackages->setShortcut(QApplication::translate("MainWindow", "F9", 0));
         tbLotti->setText(QApplication::translate("MainWindow", "Lotti (F5)", 0));
