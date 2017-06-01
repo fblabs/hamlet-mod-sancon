@@ -75,7 +75,7 @@ void HLogin2::login()
     if(!b)
     {
 
-       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! Errore query",QMessageBox::Ok);
+       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! Errore query\n" + qrLogin.lastError().text() ,QMessageBox::Ok);
        return;
 
     }
@@ -102,7 +102,7 @@ void HLogin2::login()
      }
   else
   {
-        QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente\nErrore Risposta database- query size= "+QString::number(qrLogin.size()),QMessageBox::Ok);
+        QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente\nErrore Risposta database- query size= "+QString::number(qrLogin.size())+qrLogin.lastError().text()+"*",QMessageBox::Ok);
 
         ui->leUser->setText("");
         ui->lePwd->setText("");

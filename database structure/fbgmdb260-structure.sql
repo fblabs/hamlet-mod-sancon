@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `fbgmdb260` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `fbgmdb260`;
--- MySQL dump 10.13  Distrib 5.5.46, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.18, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: fbgmdb260
+-- Host: localhost    Database: fbgmdb260
 -- ------------------------------------------------------
--- Server version	5.5.46-0ubuntu0.14.04.2
+-- Server version	5.7.18-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,7 +40,7 @@ CREATE TABLE `anagrafica` (
   `IDCliente` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Index_2` (`ragione_sociale`)
-) ENGINE=InnoDB AUTO_INCREMENT=541 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +73,7 @@ CREATE TABLE `azioni` (
   `descrizione` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Index_2` (`descrizione`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,9 +91,33 @@ CREATE TABLE `composizione_lot` (
   PRIMARY KEY (`ID`),
   KEY `fk_composizione_lot_1_idx` (`ID_lotto`),
   KEY `fk_composizione_lot_2_idx` (`operazione`),
-  CONSTRAINT `fk_composizione_lot_2` FOREIGN KEY (`operazione`) REFERENCES `operazioni` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_composizione_lot_1` FOREIGN KEY (`ID_lotto`) REFERENCES `lotdef` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=304773 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_composizione_lot_1` FOREIGN KEY (`ID_lotto`) REFERENCES `lotdef` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_composizione_lot_2` FOREIGN KEY (`operazione`) REFERENCES `operazioni` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `contatti`
+--
+
+DROP TABLE IF EXISTS `contatti`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `contatti` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) DEFAULT NULL,
+  `recapito` varchar(150) DEFAULT NULL,
+  `area` varchar(45) DEFAULT NULL,
+  `tipo` varchar(45) DEFAULT NULL,
+  `fiera` varchar(50) DEFAULT NULL,
+  `referente` varchar(100) DEFAULT NULL,
+  `etichetta` varchar(45) DEFAULT NULL,
+  `import` tinyint(3) unsigned DEFAULT NULL,
+  `interesse` varchar(250) DEFAULT NULL,
+  `assaggi` varchar(250) DEFAULT NULL,
+  `foto` tinyint(3) unsigned DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +133,7 @@ CREATE TABLE `gruppi` (
   `canupdate` tinyint(3) unsigned DEFAULT '0',
   `canupdateana` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +148,7 @@ CREATE TABLE `lotdef` (
   `lot` char(45) DEFAULT NULL,
   `prodotto` int(10) unsigned NOT NULL DEFAULT '0',
   `data` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `giacenza` double DEFAULT '0',
+  `giacenza` decimal(10,4) DEFAULT '0.0000',
   `um` int(10) unsigned DEFAULT NULL,
   `scadenza` datetime DEFAULT NULL,
   `anagrafica` int(10) unsigned DEFAULT NULL,
@@ -146,7 +168,28 @@ CREATE TABLE `lotdef` (
   CONSTRAINT `fk_lotdef_2` FOREIGN KEY (`tipo`) REFERENCES `tipi_lot` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_lotdef_3` FOREIGN KEY (`anagrafica`) REFERENCES `anagrafica` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_lotdef_4` FOREIGN KEY (`um`) REFERENCES `unita_di_misura` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=56444 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `notifiche`
+--
+
+DROP TABLE IF EXISTS `notifiche`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notifiche` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `data` datetime DEFAULT NULL,
+  `tipo` varchar(45) DEFAULT NULL,
+  `IDUtente` varchar(50) DEFAULT NULL,
+  `IDGruppo` varchar(45) DEFAULT NULL,
+  `descrizione` varchar(250) DEFAULT NULL,
+  `usaidgruppo` tinyint(3) unsigned DEFAULT NULL,
+  `attiva` tinyint(3) unsigned DEFAULT NULL,
+  `creatore` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +206,7 @@ CREATE TABLE `operazioni` (
   `utente` int(10) unsigned NOT NULL DEFAULT '0',
   `IDprodotto` int(10) unsigned DEFAULT NULL,
   `azione` int(10) unsigned NOT NULL DEFAULT '0',
-  `quantita` double NOT NULL DEFAULT '0',
+  `quantita` decimal(10,4) NOT NULL DEFAULT '0.0000',
   `um` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '0: Kg 1: pz',
   `note` longtext,
   PRIMARY KEY (`ID`),
@@ -177,7 +220,7 @@ CREATE TABLE `operazioni` (
   CONSTRAINT `fk_operazioni_3` FOREIGN KEY (`utente`) REFERENCES `utenti` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_operazioni_4` FOREIGN KEY (`azione`) REFERENCES `azioni` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_operazioni_5` FOREIGN KEY (`um`) REFERENCES `unita_di_misura` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=445753 DEFAULT CHARSET=latin1 COMMENT='InnoDB free: 3072 kB; (`ID_ricetta`) REFER `fbgmdb/ricette`(';
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='InnoDB free: 3072 kB; (`ID_ricetta`) REFER `fbgmdb/ricette`(';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +237,7 @@ CREATE TABLE `prodotti` (
   `allergenico` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `IDX_DESC` (`descrizione`)
-) ENGINE=InnoDB AUTO_INCREMENT=1008 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +254,7 @@ CREATE TABLE `ricette` (
   PRIMARY KEY (`ID`,`ID_prodotto`),
   KEY `FK_ricette_1` (`ID_prodotto`),
   CONSTRAINT `FK_ricette_1` FOREIGN KEY (`ID_prodotto`) REFERENCES `prodotti` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=633 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,9 +273,9 @@ CREATE TABLE `righe_ricette` (
   PRIMARY KEY (`ID`),
   KEY `FK_righe_ricette_2` (`ID_prodotto`),
   KEY `fk_righe_ricette_1_idx` (`ID_ricetta`),
-  CONSTRAINT `fk_righe_ricette_2` FOREIGN KEY (`ID_prodotto`) REFERENCES `prodotti` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_righe_ricette_1` FOREIGN KEY (`ID_ricetta`) REFERENCES `ricette` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5927 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_righe_ricette_1` FOREIGN KEY (`ID_ricetta`) REFERENCES `ricette` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_righe_ricette_2` FOREIGN KEY (`ID_prodotto`) REFERENCES `prodotti` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,9 +297,29 @@ CREATE TABLE `schede` (
   `immagine` mediumblob,
   PRIMARY KEY (`prodotto`,`cliente`),
   KEY `fk_schede_2_idx` (`cliente`),
-  CONSTRAINT `fk_schede_2` FOREIGN KEY (`cliente`) REFERENCES `anagrafica` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_schede_1` FOREIGN KEY (`prodotto`) REFERENCES `prodotti` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_schede_1` FOREIGN KEY (`prodotto`) REFERENCES `prodotti` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_schede_2` FOREIGN KEY (`cliente`) REFERENCES `anagrafica` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='InnoDB free: 5120 kB; (`cliente`) REFER `fbgmdb2/anagrafica`';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `schede_n`
+--
+
+DROP TABLE IF EXISTS `schede_n`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schede_n` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `prodotto` int(10) unsigned DEFAULT NULL,
+  `cliente` int(10) unsigned DEFAULT NULL,
+  `scheda` text,
+  PRIMARY KEY (`ID`),
+  KEY `fk_schede_n_1_idx` (`prodotto`),
+  KEY `fk_schede_n_2_idx` (`cliente`),
+  CONSTRAINT `fk_schede_n_1` FOREIGN KEY (`prodotto`) REFERENCES `prodotti` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_schede_n_2` FOREIGN KEY (`cliente`) REFERENCES `anagrafica` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4183 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,7 +354,7 @@ CREATE TABLE `tipi_lot` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `descrizione` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -305,7 +368,7 @@ CREATE TABLE `tipi_prodotto` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `descrizione` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,7 +382,7 @@ CREATE TABLE `unita_di_misura` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `descrizione` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -339,7 +402,7 @@ CREATE TABLE `utenti` (
   PRIMARY KEY (`ID`),
   KEY `fk_utenti_1_idx` (`gruppo`),
   CONSTRAINT `fk_utenti_1` FOREIGN KEY (`gruppo`) REFERENCES `gruppi` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -357,7 +420,7 @@ CREATE TABLE `utenti` (
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` FUNCTION `createID`(idprod TEXT) RETURNS varchar(25) CHARSET latin1
 BEGIN
@@ -376,7 +439,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `giac` */;
+/*!50003 DROP FUNCTION IF EXISTS `getgiacenza` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -384,19 +447,84 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` FUNCTION `giac`(idl integer) RETURNS double
+CREATE DEFINER=`root`@`localhost` FUNCTION `getgiacenza`(idlot integer(10) unsigned) RETURNS decimal(10,4)
 BEGIN
-declare a double;
-declare b double;
-declare g double;
-select sum(quantita) from operazioni where azione=1 and IDlotto=idl into a;
-select sum(quantita) from operazioni where azione=2 and IDlotto=idl into b;
+set @c =(select sum(quantita)from operazioni where IDlotto=idlot and azione=1);
+set @s =(select sum(quantita)from operazioni where IDlotto=idlot and azione=2);
+set @r=@c-@s;
 
-set g=a-b;
+RETURN @r;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `newschede17` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `newschede17`(idx INTEGER UNSIGNED) RETURNS mediumtext CHARSET latin1
+BEGIN
 
-RETURN g;
+declare s integer;
+declare e integer;
+declare newf mediumtext;
+declare old mediumtext;
+
+declare tr varchar(4);
+declare etr varchar(5);
+SELECT scheda from schede_n where ID=idx INTO old;
+set @tr="<tr>";
+set @etr="</tr>";
+
+set s= substring_index(old, tr, -1);
+set e= substring_index(old,etr,-1);
+
+set newf=substring(old,s,e);
+
+
+RETURN newf;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_newsch` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_newsch`(old mediumtext)
+BEGIN
+declare s integer;
+declare e integer;
+declare newf mediumtext;
+
+declare tr varchar(4);
+declare etr varchar(5);
+set @tr="NOTE:";
+set @etr="</tr>";
+
+set s= substring_index(old, tr, 1);
+set e= substring_index(old,etr,1);
+
+set newf=substring(old,s,e-s);
+SELECT newf;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -413,4 +541,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-30 17:46:41
+-- Dump completed on 2017-06-01 15:19:46
