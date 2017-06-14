@@ -35,11 +35,12 @@ private:
     QSqlQueryModel *qmClienti;
     QString  userID;
     QSqlQueryModel *qmRicette;
-  //  QStandardItemModel *model;
-    QSqlQueryModel *model;
+    QStandardItemModel *model;
     QSqlTableModel *tmTipiLotti;
     QSqlTableModel *tmUm;
-    QList<int> *writeRed;
+ //   QList<int> *writeRed;
+ //   QStandardItemModel *tableModel;
+    QSqlQueryModel* qmod;
 
 
     bool modifyLot;
@@ -74,6 +75,7 @@ private slots:
     QString getNewLot(int prod);
     bool saveUpdatedComposizione();
     bool saveUpdatedOperazione(int row);
+
    // QList<QStandardItem*>createRecipeRow(int iProd, QString, QString, QString, QString);
   //  QList<QStandardItem*>createRecipeRow(int iProd, QString sDescProdotto, QString sPeso);
 

@@ -332,6 +332,7 @@ public:
         tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tableView->verticalHeader()->setVisible(false);
 
         verticalLayout_3->addWidget(tableView);
 

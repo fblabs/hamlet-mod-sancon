@@ -7826,6 +7826,7 @@ debug/hanalisi.o: hanalisi.cpp hanalisi.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QRadioButton \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qradiobutton.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QSpacerItem \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QTableView \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtableview.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
