@@ -17,6 +17,7 @@
 #include "hprint.h"
 #include <QTextTable>
 #include <QSqlQueryModel>
+#include <math.h>
 
 
 
@@ -615,12 +616,14 @@ void HProduction::getRecipe()
     connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(calculateActualTotal()));
     connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(productSelected()));
     connect(model,SIGNAL(dataChanged(QModelIndex,QModelIndex)),this,SLOT(calculateActualTotal()));
-  //  ui->tableView->setColumnHidden(0,true);
-  //  ui->tableView->setColumnHidden(1,true);
-  //  ui->tableView->setColumnHidden(3,true);
+    ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setColumnHidden(3,true);
+    ui->tableView->setColumnHidden(6,true);
 
     ui->pushButton_8->setEnabled(true);
     ui->pushButton_10->setEnabled(true);
+
+
 
 }
 
@@ -632,6 +635,7 @@ void HProduction::printProduction(bool actual=false)
     f->toggleImageUI(false);
 
     QString title;
+    double quanteff=0.0;
   //  printModel=static_cast<QStandardItemModel*>(ui->tableView->model());
 
     title=ui->lbRicetta->text();
@@ -671,7 +675,7 @@ void HProduction::printProduction(bool actual=false)
 
       for (int i=0;i<rows;i++)
         {
-
+           quanteff+=model->index(i,5).data(0).toDouble();
           if (ui->checkBox_2->isChecked())
           {
               col1=model->index(i,1).data(0).toString();
@@ -877,14 +881,14 @@ void HProduction::addLotProd()
  //   QModelIndex quantita =qm->index(ui->tableView->currentIndex().row(),2);
     QModelIndex idlotto =model->index(ui->tableView->currentIndex().row(),3);
     QModelIndex lotto =model->index(ui->tableView->currentIndex().row(),4);
-    QModelIndex quanteff =model->index(ui->tableView->currentIndex().row(),5);
+  //  QModelIndex quanteff =model->index(ui->tableView->currentIndex().row(),5);
     QModelIndex allergene=model->index(ui->tableView->currentIndex().row(),6);
 
     int row=ui->tableView->currentIndex().row();
 
     model->setData(idlotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),0).data(0).toString());
     model->setData(lotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString());
-    model->setData(quanteff,model->index(row,2).data(0).toString());
+  //  model->setData(quanteff,model->index(row,2).data(0).toString());
     model->setData(allergene,model->index(row,6).data(0).toString());
 
 
@@ -953,7 +957,7 @@ void HProduction::addLotFuoriRicetta()
         return;
     }
    // qty=QString::number(ui->leqtytoAdd->text(),'g',2);
-    qty=ui->leqtytoAdd->text().toDouble();
+    qty=fabs(ui->leqtytoAdd->text().toDouble());
 
     QStandardItem *idprodotto=new QStandardItem(QString::number(prod));
     QStandardItem *prodotto=new QStandardItem(descprod);
@@ -968,8 +972,8 @@ void HProduction::addLotFuoriRicetta()
     QStandardItem *lotto =new QStandardItem(lotToadd);
     //QStandardItem *qua=new QStandardItem(ui->tableView->model()->index(ui->tableView->currentIndex().row(),5).data(0).toString());
 
-    double quag=ui->leqtytoAdd->text().toDouble();
-    QStandardItem *qua=new QStandardItem(QString::number(quag,'f',4));
+   // double quag=ui->leqtytoAdd->text().toDouble();
+    QStandardItem *qua=new QStandardItem(QString::number(qty,'f',3));
     QStandardItem *allergene=new QStandardItem(QString::number(ui->tableView->model()->index(ui->tableView->currentIndex().row(),6).data(0).toBool()));
 
     row.append(idprodotto);
@@ -983,7 +987,7 @@ void HProduction::addLotFuoriRicetta()
   //  model->appendRow(row);
   //  if(alle) writeRed->insert(ui->tableView->currentIndex().row(),alle);
    // connect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
-    ui->tableView->setCurrentIndex(ui->tableView->model()->index(ui->tableView->currentIndex().row()+1,0));
+    ui->tableView->setCurrentIndex(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0));
 
     ui->leLotToadd->setText("");
     ui->leqtytoAdd->setText("");
@@ -1629,9 +1633,9 @@ void HProduction::on_pushButton_11_clicked()
 }
 
 
-void HProduction::on_leQuaRic_textChanged(const QString &arg1)
+/*void HProduction::on_leQuaRic_textChanged(const QString &arg1)
 {
    // // qDebug()<<arg1;
-}
+}*/
 
 
