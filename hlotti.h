@@ -63,6 +63,8 @@ private slots:
 
     void on_cbProdotti_currentIndexChanged(int index);
 
+    void on_twLots_doubleClicked(const QModelIndex &index);
+
 private:
 
     Ui::HLotti *ui;

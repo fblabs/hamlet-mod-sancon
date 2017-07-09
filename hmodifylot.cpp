@@ -84,7 +84,7 @@ void HModifyLot::init(int idlotto, QString conn)
 
     ui->leLot->setText(q.value(1).toString());
 
-    ui->leGiac->setText(q.value(4).toString());
+    ui->leGiac->setText(QString::number(q.value(4).toDouble(),'n',3));
     ui->deScad->setDate(q.value(6).toDate());
     ui->leLotFornitore->setText(q.value(8).toString());
     ui->leEan->setText(q.value(9).toString());

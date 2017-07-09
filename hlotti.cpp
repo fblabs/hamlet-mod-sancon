@@ -333,8 +333,9 @@ void HLotti::on_pushButton_7_clicked()
     //modifica lotto  selezionato
     HModifyLot *f=new HModifyLot();
     connect(f,SIGNAL(update()),this,SLOT(updateData()));
-    f->show();
+    f->setWindowModality(Qt::ApplicationModal);
     f->init(ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt(),sConnection);
+    f->show();
 
 }
 
@@ -487,4 +488,15 @@ void HLotti::on_chbP_toggled(bool checked)
 void HLotti::on_cbProdotti_currentIndexChanged(int index)
 {
     setFilter();
+}
+
+void HLotti::on_twLots_doubleClicked(const QModelIndex &index)
+{
+    //modifica lotto  selezionato
+    HModifyLot *f=new HModifyLot();
+    connect(f,SIGNAL(update()),this,SLOT(updateData()));
+    f->setWindowModality(Qt::ApplicationModal);
+    f->init(ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt(),sConnection);
+    f->show();
+
 }

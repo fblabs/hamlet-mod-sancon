@@ -234,7 +234,7 @@ public:
 
     void retranslateUi(QWidget *HModifyLot)
     {
-        HModifyLot->setWindowTitle(QApplication::translate("HModifyLot", "Form", 0));
+        HModifyLot->setWindowTitle(QApplication::translate("HModifyLot", "Modifica Lotto", 0));
         label_5->setText(QApplication::translate("HModifyLot", "Giacenza:", 0));
         label_3->setText(QApplication::translate("HModifyLot", "Prodotto:", 0));
         label->setText(QApplication::translate("HModifyLot", "Lotto:", 0));

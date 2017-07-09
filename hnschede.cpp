@@ -669,7 +669,7 @@ void HNSChede::on_pushButton_9_clicked()
 
 void HNSChede::copyCard(int cliente, int prodotto, QString newHead)
 {
-    //TODO copia scheda
+
 
     qDebug()<<"CC"<<cliente<<prodotto<<newHead;
     QString scheda,sql;
