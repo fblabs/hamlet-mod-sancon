@@ -281,9 +281,11 @@ void HProduction::lastFiveLots()
 
 
    // disconnect(ui->lvLastLots->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),this,SLOT(lotSelected()));
+
     ui->lvLastLots->clearSelection();
     ui->lvLastLots->setModel(qmLots);
     ui->lvLastLots->setModelColumn(1);
+     ui->lvLastLots->setCurrentIndex(ui->lvLastLots->model()->index(-1,0));
 
 
  // ui->lvLastLots->setCurrentIndex();
@@ -885,6 +887,17 @@ void HProduction::addLotProd()
     QModelIndex allergene=model->index(ui->tableView->currentIndex().row(),6);
 
     int row=ui->tableView->currentIndex().row();
+    if(row==-1)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Selezionare il prodotto da aggiungere",QMessageBox::Ok);
+        return;
+    }
+
+    if(lotToadd=="")
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Selezionare il lotto da aggiungere",QMessageBox::Ok);
+        return;
+    }
 
     model->setData(idlotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),0).data(0).toString());
     model->setData(lotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString());
@@ -1034,6 +1047,12 @@ void HProduction::on_pushButton_5_clicked()
     ui->cbClienti->setEnabled(false);
 
     getRecipe();
+
+    if(ui->leQtyTotal->text().toDouble()==0.0)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Inserire la quantità totale da produrre",QMessageBox::Ok);
+
+    }
 
 
 

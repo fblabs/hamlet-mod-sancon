@@ -440,10 +440,10 @@ void HAnalisi::on_rbAll_toggled(bool checked)
    if (checked) getProductsForClient();
 }
 
-void HAnalisi::on_rbMateriePrime_toggled(bool checked)
-{
-    if (checked) getProductsForClient();
-}
+//void HAnalisi::on_rbMateriePrime_toggled(bool checked)
+//{
+  //  if (checked) getProductsForClient();
+//}
 
 
 void HAnalisi::on_rbProdottifiniti_toggled(bool checked)
@@ -452,10 +452,10 @@ void HAnalisi::on_rbProdottifiniti_toggled(bool checked)
     ui->tvNarrow->setVisible(!checked);
 }
 
-void HAnalisi::on_rbSemilavorati_toggled(bool checked)
+/*void HAnalisi::on_rbSemilavorati_toggled(bool checked)
 {
     if (checked) getProductsForClient();
-}
+}*/
 
 
 

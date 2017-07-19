@@ -42,9 +42,9 @@ private slots:
     void narrow();
     void setCompSearch();
     void on_rbAll_toggled(bool checked);
-    void on_rbMateriePrime_toggled(bool checked);
+   // void on_rbMateriePrime_toggled(bool checked);
     void on_rbProdottifiniti_toggled(bool checked);
-    void on_rbSemilavorati_toggled(bool checked);
+   // void on_rbSemilavorati_toggled(bool checked);
     void on_rbPackages_toggled(bool checked);
     void on_pushButton_clicked();
     void on_pushButton_3_clicked();
