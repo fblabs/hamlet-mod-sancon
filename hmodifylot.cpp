@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QSqlTableModel>
 // #include <QDebug>
+#include "hcomposizionelotto.h"
 #include <QSqlError>
 
 
@@ -218,4 +219,12 @@ void HModifyLot::on_pushButton_clicked()
     {
          updateLot();
     }
+}
+
+void HModifyLot::on_pbComposizione_clicked()
+{
+    HComposizioneLotto *f=new HComposizioneLotto(0,db,lot,ui->leLot->text() + " - " + ui->leProd->text());
+    f->show();
+
+
 }

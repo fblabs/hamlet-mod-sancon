@@ -58,7 +58,8 @@ SOURCES += main.cpp\
     hschede.cpp \
     hnschede.cpp \
     hmodimage.cpp \
-    hcopycard.cpp
+    hcopycard.cpp \
+    hcomposizionelotto.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -105,7 +106,8 @@ HEADERS  += mainwindow.h \
     hschede.h \
     hnschede.h \
     hmodimage.h \
-    hcopycard.h
+    hcopycard.h \
+    hcomposizionelotto.h
 
 
 
@@ -151,7 +153,8 @@ FORMS    += mainwindow.ui \
     hschede.ui \
     hnschede.ui \
     hmodimage.ui \
-    hcopycard.ui
+    hcopycard.ui \
+    hcomposizionelotto.ui
 
 RESOURCES += \
     icons.qrc

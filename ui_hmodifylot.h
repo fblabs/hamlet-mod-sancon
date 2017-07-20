@@ -58,13 +58,14 @@ public:
     QCheckBox *cbAttivo;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
+    QPushButton *pbComposizione;
     QPushButton *pushButton_2;
 
     void setupUi(QWidget *HModifyLot)
     {
         if (HModifyLot->objectName().isEmpty())
             HModifyLot->setObjectName(QStringLiteral("HModifyLot"));
-        HModifyLot->setWindowModality(Qt::NonModal);
+        HModifyLot->setWindowModality(Qt::ApplicationModal);
         HModifyLot->resize(914, 467);
         verticalLayout = new QVBoxLayout(HModifyLot);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -214,11 +215,20 @@ public:
 
         horizontalLayout_2->addWidget(pushButton);
 
+        pbComposizione = new QPushButton(HModifyLot);
+        pbComposizione->setObjectName(QStringLiteral("pbComposizione"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbComposizione->setIcon(icon1);
+        pbComposizione->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pbComposizione);
+
         pushButton_2 = new QPushButton(HModifyLot);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon2);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
@@ -248,6 +258,7 @@ public:
         cbScad->setText(QApplication::translate("HModifyLot", "No scadenza", 0));
         cbAttivo->setText(QApplication::translate("HModifyLot", "Attivo", 0));
         pushButton->setText(QApplication::translate("HModifyLot", "Salva", 0));
+        pbComposizione->setText(QApplication::translate("HModifyLot", "Composizione", 0));
         pushButton_2->setText(QApplication::translate("HModifyLot", "Chiudi", 0));
     } // retranslateUi
 
