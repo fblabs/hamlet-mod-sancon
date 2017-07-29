@@ -67,6 +67,7 @@ void HModifyLot::init(int idlotto, QString conn)
     QVariant prod=q.value(2);
     QVariant anag=q.value(7);
     QVariant ixtipo=q.value(10);
+    tipo=q.value(10).toInt();
     QVariant ixum=q.value(5);
     QVariant scadz= q.value(6);
     QVariant attv=q.value(11);
@@ -138,6 +139,7 @@ void HModifyLot::on_pushButton_2_clicked()
 {
     if (QMessageBox::Ok==QMessageBox::information(this,QApplication::applicationName(),"Chiudere? Tutte le modifiche non salvate andranno perdute",QMessageBox::Ok|QMessageBox::Cancel))
     {
+
         close();
     }
 }
@@ -223,7 +225,9 @@ void HModifyLot::on_pushButton_clicked()
 
 void HModifyLot::on_pbComposizione_clicked()
 {
-    HComposizioneLotto *f=new HComposizioneLotto(0,db,lot,ui->leLot->text() + " - " + ui->leProd->text());
+    bool act=(tipo>1);
+
+    HComposizioneLotto *f=new HComposizioneLotto(0,db,lot,ui->leLot->text() + " - " + ui->leProd->text(),act,0);
     f->show();
 
 

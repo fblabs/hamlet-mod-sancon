@@ -3,18 +3,18 @@
  <class>HComposizioneLotto</class>
  <widget class="QWidget" name="HComposizioneLotto">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>764</width>
-    <height>568</height>
+    <width>1213</width>
+    <height>770</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Composizione Lotto</string>
+   <string>Dettagli Lotto</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
@@ -53,6 +53,9 @@
      <property name="selectionBehavior">
       <enum>QAbstractItemView::SelectRows</enum>
      </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
      </attribute>
@@ -61,9 +64,49 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
+      <widget class="QCheckBox" name="checkBox">
+       <property name="text">
+        <string>Visualizza uso</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbUse">
+       <property name="text">
+        <string>Visualizza</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Download.PNG</normaloff>:/Resources/Download.PNG</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string>PushButton</string>
+        <string>Stampa</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">

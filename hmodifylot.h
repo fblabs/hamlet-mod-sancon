@@ -33,6 +33,7 @@ private:
     Ui::HModifyLot *ui;
     QSqlDatabase db;
     int lot;
+    int tipo;
 signals:
     void update();
 };

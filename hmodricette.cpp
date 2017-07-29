@@ -236,7 +236,7 @@ bool HModRicette::duplicateRecipe()
 {
 
     int ricettaorg=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
-    bool b;
+    bool b=false;
     bool ok;
     //nuova ricetta
     //QString text=QInputDialog::getText(this,"Nuova Ricetta","Inserire il nome\nVerrà creata una nuova ricetta copiata da quella corrente",QLineEdit::Normal,"",&ok);

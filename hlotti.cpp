@@ -130,7 +130,8 @@ void HLotti::setupForm()
     tbm->setSort(3,Qt::DescendingOrder);
     setFilter();
     ui->twLots->setColumnWidth(11,10);
-     ui->twLots->setColumnHidden(0,true);
+    ui->twLots->setColumnHidden(0,true);
+    ui->twLots->setCurrentIndex(ui->twLots->model()->index(0,0));
 
    // connect(ui->cbTipiLot,SIGNAL(currentIndexChanged(QString)),this,SLOT(setFilter()));
    // connect(ui->cbProdotti,SIGNAL(currentIndexChanged(QString)),this,SLOT(setFilter()));
@@ -313,10 +314,12 @@ void HLotti::print()
             f->writeTableContent(tb,r,c,txt);
             QApplication::processEvents();
 
+
         }
         QApplication::processEvents();
 
     }
+    QApplication::processEvents();
 
 
 

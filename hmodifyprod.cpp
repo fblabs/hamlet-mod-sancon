@@ -554,5 +554,5 @@ void HModifyProd::on_pushButton_7_clicked()
 void HModifyProd::on_rbprod_toggled(bool checked)
 {
     ui->leSearch->setText("");
-    ;
+
 }

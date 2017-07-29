@@ -51,7 +51,7 @@ void HRecipeAddRow::on_pushButton_clicked()
 }
 void HRecipeAddRow::addRecipeRow()
 {
-    bool ok;
+  //  bool ok;
     QList<QStandardItem*> list;
     /*
     q.bindValue(":idricetta",ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0));
@@ -84,7 +84,7 @@ void HRecipeAddRow::addRecipeRow()
 
     QSqlQuery q(db);
     QString sql="INSERT INTO righe_ricette`(`ID_ricetta`,`ID_prodotto`,`quantita`,`show_prod`)VALUES(:idricetta,:idprodotto,:qua,:show)";
-    double qua=ui->lineEdit->text().toDouble(&quack);
+    //double qua=ui->lineEdit->text().toDouble(&quack);
     if(!quack)
     {
         QMessageBox::warning(this,QApplication::applicationName(),"Errore di formato(quantità)",QMessageBox::Ok);

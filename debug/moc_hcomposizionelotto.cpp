@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HComposizioneLotto_t {
-    QByteArrayData data[6];
-    char stringdata0[95];
+    QByteArrayData data[16];
+    char stringdata0[218];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,14 +32,27 @@ static const qt_meta_stringdata_HComposizioneLotto_t qt_meta_stringdata_HComposi
 QT_MOC_LITERAL(0, 0, 18), // "HComposizioneLotto"
 QT_MOC_LITERAL(1, 19, 17), // "getLotComposition"
 QT_MOC_LITERAL(2, 37, 0), // ""
-QT_MOC_LITERAL(3, 38, 26), // "on_tableView_doubleClicked"
-QT_MOC_LITERAL(4, 65, 5), // "index"
-QT_MOC_LITERAL(5, 71, 23) // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(3, 38, 9), // "getLotUse"
+QT_MOC_LITERAL(4, 48, 26), // "on_tableView_doubleClicked"
+QT_MOC_LITERAL(5, 75, 5), // "index"
+QT_MOC_LITERAL(6, 81, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(7, 105, 5), // "print"
+QT_MOC_LITERAL(8, 111, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(9, 135, 16), // "on_pbUse_clicked"
+QT_MOC_LITERAL(10, 152, 19), // "on_checkBox_toggled"
+QT_MOC_LITERAL(11, 172, 7), // "checked"
+QT_MOC_LITERAL(12, 180, 8), // "printUse"
+QT_MOC_LITERAL(13, 189, 16), // "printComposition"
+QT_MOC_LITERAL(14, 206, 7), // "getTipo"
+QT_MOC_LITERAL(15, 214, 3) // "idl"
 
     },
     "HComposizioneLotto\0getLotComposition\0"
-    "\0on_tableView_doubleClicked\0index\0"
-    "on_pushButton_3_clicked"
+    "\0getLotUse\0on_tableView_doubleClicked\0"
+    "index\0on_pushButton_3_clicked\0print\0"
+    "on_pushButton_2_clicked\0on_pbUse_clicked\0"
+    "on_checkBox_toggled\0checked\0printUse\0"
+    "printComposition\0getTipo\0idl"
 };
 #undef QT_MOC_LITERAL
 
@@ -49,7 +62,7 @@ static const uint qt_meta_data_HComposizioneLotto[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -57,14 +70,30 @@ static const uint qt_meta_data_HComposizioneLotto[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x08 /* Private */,
-       3,    1,   30,    2, 0x08 /* Private */,
-       5,    0,   33,    2, 0x08 /* Private */,
+       1,    0,   69,    2, 0x08 /* Private */,
+       3,    0,   70,    2, 0x08 /* Private */,
+       4,    1,   71,    2, 0x08 /* Private */,
+       6,    0,   74,    2, 0x08 /* Private */,
+       7,    0,   75,    2, 0x08 /* Private */,
+       8,    0,   76,    2, 0x08 /* Private */,
+       9,    0,   77,    2, 0x08 /* Private */,
+      10,    1,   78,    2, 0x08 /* Private */,
+      12,    0,   81,    2, 0x08 /* Private */,
+      13,    0,   82,    2, 0x08 /* Private */,
+      14,    1,   83,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,    4,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QModelIndex,    5,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   11,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Int, QMetaType::Int,   15,
 
        0        // eod
 };
@@ -76,8 +105,17 @@ void HComposizioneLotto::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->getLotComposition(); break;
-        case 1: _t->on_tableView_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 2: _t->on_pushButton_3_clicked(); break;
+        case 1: _t->getLotUse(); break;
+        case 2: _t->on_tableView_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 3: _t->on_pushButton_3_clicked(); break;
+        case 4: _t->print(); break;
+        case 5: _t->on_pushButton_2_clicked(); break;
+        case 6: _t->on_pbUse_clicked(); break;
+        case 7: _t->on_checkBox_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 8: _t->printUse(); break;
+        case 9: _t->printComposition(); break;
+        case 10: { int _r = _t->getTipo((*reinterpret_cast< int(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         default: ;
         }
     }
@@ -108,13 +146,13 @@ int HComposizioneLotto::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 3;
+        _id -= 11;
     }
     return _id;
 }

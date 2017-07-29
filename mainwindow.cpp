@@ -164,7 +164,7 @@ void MainWindow::enableButtonsForRole()
 
     }
 
-    int rol=user->getRole();
+
 
     //// qDebug()<<QString::number(rol);
 

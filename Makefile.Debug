@@ -14751,6 +14751,9 @@ debug/hcomposizionelotto.o: hcomposizionelotto.cpp hcomposizionelotto.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QCheckBox \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qcheckbox.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
@@ -14783,13 +14786,34 @@ debug/hcomposizionelotto.o: hcomposizionelotto.cpp hcomposizionelotto.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QSpacerItem \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QTableView \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtableview.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlError \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsqlerror.h
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlerror.h \
+		hprint.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/QTextDocument \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextdocument.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/QTextTable \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtexttable.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextobject.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qglyphrun.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qrawfont.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qfontdatabase.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/QTextCursor \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QTextEdit \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qtextedit.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrinter \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprinter.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
+		../../Qt/5.5/mingw492_32/include/QtGui/QCursor
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hcomposizionelotto.o hcomposizionelotto.cpp
 
 debug/qrc_icons.o: debug/qrc_icons.cpp 
