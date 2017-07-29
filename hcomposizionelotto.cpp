@@ -242,7 +242,7 @@ void HComposizioneLotto::printComposition()
     f->writeTableContent(tb,0,2,txt);
     txt="PRODOTTO";
     f->writeTableContent(tb,0,3,txt);
-    txt="CLIENTE";
+    txt="FORNITORE";
     f->writeTableContent(tb,0,4,txt);
     txt="QUANTITA'";
     f->writeTableContent(tb,0,5,txt);

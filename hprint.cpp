@@ -283,6 +283,7 @@ QTextTable* HPrint::writeTableContent(QTextTable *table,int row, int column, QSt
    QTextCursor c=table->cellAt(row,column).firstCursorPosition();
 
    c.insertText(text);
+   QApplication::processEvents();
 
    return table;
 }
