@@ -234,7 +234,7 @@
      <item>
       <widget class="QPushButton" name="pbComposizione">
        <property name="text">
-        <string>Composizione</string>
+        <string>Dettagli</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">

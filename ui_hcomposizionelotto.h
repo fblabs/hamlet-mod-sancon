@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -35,7 +34,6 @@ public:
     QLineEdit *leDesc;
     QTableView *tableView;
     QHBoxLayout *horizontalLayout;
-    QCheckBox *checkBox;
     QPushButton *pbUse;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_2;
@@ -81,11 +79,6 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        checkBox = new QCheckBox(HComposizioneLotto);
-        checkBox->setObjectName(QStringLiteral("checkBox"));
-
-        horizontalLayout->addWidget(checkBox);
-
         pbUse = new QPushButton(HComposizioneLotto);
         pbUse->setObjectName(QStringLiteral("pbUse"));
         QIcon icon1;
@@ -131,7 +124,6 @@ public:
     {
         HComposizioneLotto->setWindowTitle(QApplication::translate("HComposizioneLotto", "Dettagli Lotto", 0));
         label->setText(QApplication::translate("HComposizioneLotto", "Lotto:", 0));
-        checkBox->setText(QApplication::translate("HComposizioneLotto", "Visualizza uso", 0));
         pbUse->setText(QApplication::translate("HComposizioneLotto", "Visualizza", 0));
         pushButton_2->setText(QApplication::translate("HComposizioneLotto", "Stampa", 0));
         pushButton_3->setText(QApplication::translate("HComposizioneLotto", "Chiudi", 0));

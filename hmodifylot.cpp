@@ -225,9 +225,9 @@ void HModifyLot::on_pushButton_clicked()
 
 void HModifyLot::on_pbComposizione_clicked()
 {
-    bool act=(tipo>1);
 
-    HComposizioneLotto *f=new HComposizioneLotto(0,db,lot,ui->leLot->text() + " - " + ui->leProd->text(),act,0);
+
+    HComposizioneLotto *f=new HComposizioneLotto(0,db,lot,ui->leLot->text() + " - " + ui->leProd->text());
     f->show();
 
 

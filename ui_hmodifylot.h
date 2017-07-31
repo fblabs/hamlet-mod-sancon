@@ -258,7 +258,7 @@ public:
         cbScad->setText(QApplication::translate("HModifyLot", "No scadenza", 0));
         cbAttivo->setText(QApplication::translate("HModifyLot", "Attivo", 0));
         pushButton->setText(QApplication::translate("HModifyLot", "Salva", 0));
-        pbComposizione->setText(QApplication::translate("HModifyLot", "Composizione", 0));
+        pbComposizione->setText(QApplication::translate("HModifyLot", "Dettagli", 0));
         pushButton_2->setText(QApplication::translate("HModifyLot", "Chiudi", 0));
     } // retranslateUi
 

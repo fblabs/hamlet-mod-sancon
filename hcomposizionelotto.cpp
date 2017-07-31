@@ -7,7 +7,7 @@
 #include "hprint.h"
 #include <QCursor>
 
-HComposizioneLotto::HComposizioneLotto(QWidget *parent, QSqlDatabase pdb, int idLotto, QString descrizione, bool paction, HComposizioneLotto *parentForm) :
+HComposizioneLotto::HComposizioneLotto(QWidget *parent, QSqlDatabase pdb, int idLotto, QString descrizione) :
     QWidget(parent),
     ui(new Ui::HComposizioneLotto)
 {
@@ -15,24 +15,20 @@ HComposizioneLotto::HComposizioneLotto(QWidget *parent, QSqlDatabase pdb, int id
     ui->setupUi(this);
     //ui->pushButton_2->setVisible(false);
     ui->pbUse->setVisible(false);
-    ui->checkBox->setVisible(false);
+    //ui->checkBox->setVisible(false);
     db=pdb;
     id=idLotto;
+
+    qDebug()<<"ID:"<<id;
     tipo=getTipo(id);
+
+    qDebug()<<"TIPO:"<<tipo;
 
     desc=descrizione;
     ui->leDesc->setText(descrizione);
 
-    action=paction;
-    ui->checkBox->setChecked(!action);
-    if(parentForm)
-    {
-    parf=parentForm;
-    }
 
-qDebug()<<action<<id<<tipo;
-
-    if(action)
+    if(tipo!=1)
     {
         this->setWindowTitle("Composizione Lotto");
         getLotComposition();
@@ -106,8 +102,6 @@ void HComposizioneLotto::getLotUse()
 
         QSqlQuery q(db);
         QString sql;
-        QSqlDatabase pdb=db;
-
 
 
         mod=new QSqlQueryModel();
@@ -150,7 +144,6 @@ void HComposizioneLotto::getLotUse()
 void HComposizioneLotto::on_tableView_doubleClicked(const QModelIndex &index)
 {
     int idlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
-    int idtipo=getTipo(idlot);
     QModelIndex ixlot;
     QModelIndex ixpro;
     if(tipo > 1)
@@ -167,34 +160,26 @@ void HComposizioneLotto::on_tableView_doubleClicked(const QModelIndex &index)
     QString desc=ixlot.data(0).toString()+" - "+ ixpro.data(0).toString();
 
     HComposizioneLotto *f;
-    bool w;
-            if(idtipo>1)
-            {
-                w=true;
-            }else
-            {
-                w=false;
-            }
-      f=new HComposizioneLotto(0,db,idlot,desc,w);
+
+
+      f=new HComposizioneLotto(0,db,idlot,desc);
       f->show();
 
-   // close();
+
 }
 
 void HComposizioneLotto::on_pushButton_3_clicked()
 {
-    //if(parf)
-    //{parf->close();}
+
     close();
 }
 
 void HComposizioneLotto::print()
 {
-    qDebug()<<tipo;
+
 
         if(tipo<2)
         {
-
           printUse();
         }
         else
@@ -381,9 +366,8 @@ int HComposizioneLotto::getTipo(int idl)
 void HComposizioneLotto::on_pbUse_clicked()
 {
   HComposizioneLotto *f;
-  if(ui->checkBox->isChecked())
-  {
-      //visualizza uso
+
+
 
       int lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
       lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
@@ -393,36 +377,11 @@ void HComposizioneLotto::on_pbUse_clicked()
       QString desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
 
 
-      f=new HComposizioneLotto(0,db,lotid,desc,true,this);
+      f=new HComposizioneLotto(0,db,lotid,desc);
       f->show();
   }
-  else
-  {
-      int lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
-      lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
-      QModelIndex ixlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),2);
-      QModelIndex ixpro=mod->index(ui->tableView->selectionModel()->currentIndex().row(),4);
-
-      QString desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
 
 
-      f=new HComposizioneLotto(0,db,lotid,desc,false,this);
-      f->show();
-  }
-}
 
 
-void HComposizioneLotto::on_checkBox_toggled(bool checked)
-{
-  /* if (checked)
-    {
-        ui->pbUse->setText("Visualizza uso del lotto selezionato");
 
-    }
-    else
-    {
-        ui->pbUse->setText("Visualizza composizione del lotto selezionato");
-
-    }*/
-    //on_pbUse_clicked();
-}

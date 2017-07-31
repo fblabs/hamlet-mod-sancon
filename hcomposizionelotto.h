@@ -15,7 +15,7 @@ class HComposizioneLotto : public QWidget
     Q_OBJECT
 
 public:
-    explicit HComposizioneLotto(QWidget *parent = 0, QSqlDatabase pdb=QSqlDatabase(), int idLotto=-1, QString descrizione="", bool paction=false, HComposizioneLotto *parentForm=0);
+    explicit HComposizioneLotto(QWidget *parent = 0, QSqlDatabase pdb=QSqlDatabase(), int idLotto=-1, QString descrizione="");
     ~HComposizioneLotto();
 
 private:
@@ -23,7 +23,7 @@ private:
     QSqlDatabase db;
     int id;
     int tipo;
-    bool action; //false composizione true uso
+
     QString desc;
     QSqlQueryModel *mod;
     HComposizioneLotto *parf;
@@ -36,7 +36,6 @@ private slots:
     void print();
     void on_pushButton_2_clicked();
     void on_pbUse_clicked();
-    void on_checkBox_toggled(bool checked);
     void printUse();
     void printComposition();
     int getTipo(int idl);
