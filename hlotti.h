@@ -9,6 +9,7 @@
 #include <QSqlDatabase>
 #include "hreadonlymodellots.h"
 #include "huser.h"
+#include <QShortcut>
 
 namespace Ui {
 class HLotti;
@@ -48,6 +49,7 @@ private slots:
     void updateData();
     void on_pushButton_6_clicked();
     void on_pushButton_7_clicked();
+    void getDetails();
 
     void on_leLottoRaw_textChanged(const QString &arg1);
 
@@ -76,6 +78,7 @@ private:
     QSqlTableModel *mTipi;
     QSqlTableModel *mProdotti;
     QSqlTableModel *mTipiProdotto;
+    QShortcut *det;
 
 
     void setupForm();

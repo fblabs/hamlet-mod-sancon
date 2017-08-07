@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QSqlDatabase>
 
+
 namespace Ui {
 class HModifyLot;
 }
@@ -34,6 +35,7 @@ private:
     QSqlDatabase db;
     int lot;
     int tipo;
+
 signals:
     void update();
 };

@@ -38,6 +38,7 @@
 #include "hschedeclienti.h"
 //#include "hschede.h"
 #include "hnschede.h"
+#include "hgraphicprint.h"
 
 
 
@@ -50,6 +51,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
   QSettings settings("hamletmod");
 
     ui->setupUi(this);
+    ui->pushButton->setVisible(false);
+
     //enableDB();
     setFocusPolicy(Qt::StrongFocus);
     sConn=settings.value("conn").toString();
@@ -532,13 +535,15 @@ void MainWindow::on_pbPackages_clicked()
 void MainWindow::on_pushButton_clicked()
 {
 
-    if(QMessageBox::Ok==QMessageBox::information(this,QApplication::applicationName(),"L'applicazione verrà chiusa per permettere l'aggiornamento. Continuare?",QMessageBox::Ok|QMessageBox::Cancel))
+   /* if(QMessageBox::Ok==QMessageBox::information(this,QApplication::applicationName(),"L'applicazione verrà chiusa per permettere l'aggiornamento. Continuare?",QMessageBox::Ok|QMessageBox::Cancel))
     {
         QString file="./EasyUpdater/EasyUpdater.exe";
         QProcess::startDetached(file);
         QApplication::quit();
 
-    }
+    }*/
+    HGraphicPrint *f=new HGraphicPrint(0);
+    f->show();
 
 
 }

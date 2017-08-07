@@ -17,6 +17,7 @@
 #include <QThread>
 #include "huser.h"
 #include "hpackagesunload.h"
+#include "hcomposizionelotto.h"
 #include <QCompleter>
 
 
@@ -133,9 +134,12 @@ void HLotti::setupForm()
     ui->twLots->setColumnHidden(0,true);
     ui->twLots->setCurrentIndex(ui->twLots->model()->index(0,0));
 
+    det=new QShortcut(QKeySequence("F5"),this);
+
    // connect(ui->cbTipiLot,SIGNAL(currentIndexChanged(QString)),this,SLOT(setFilter()));
    // connect(ui->cbProdotti,SIGNAL(currentIndexChanged(QString)),this,SLOT(setFilter()));
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+    connect(det,SIGNAL(activated()),this,SLOT(getDetails()));
    // connect(this,SIGNAL(actionCopia),this,SLOT(showContextMenu(QPoint));
 
 }
@@ -148,16 +152,38 @@ void HLotti::editLot()
     f->init(ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt(),sConnection);
 }
 
+void HLotti::getDetails()
+{
+   /* HModifyLot *f=new HModifyLot();
+    connect(f,SIGNAL(update()),this,SLOT(updateData()));
+    f->setWindowModality(Qt::ApplicationModal);
+    f->init(ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt(),sConnection);
+    f->show();*/
+    int lot=ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt();
+    QString desc=ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),1).data(0).toString();
+    desc+= " - ";
+    desc+=ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),2).data(0).toString();
+
+
+    HComposizioneLotto *f=new HComposizioneLotto(0,db,lot,desc);
+    f->show();
+}
+
 void HLotti::showContextMenu(const QPoint &pos)
 {
     QPoint globalPos =mapToGlobal(pos);
     QMenu *menu=new QMenu(0);
 
+    QAction *detailsAction=menu->addAction("Composizione/uso lotto");
+    menu->addSeparator();
     QAction *copyAction=menu->addAction("Copia il testo sotto il cursore");
-    QAction *editaction=menu->addAction("Modifica/Copia dati ...");
+    QAction *editAction=menu->addAction("Modifica/Copia dati ...");
+   //. detailsAction->setShortcut(QKeySequence("Ctrl+F5"));
 
+    connect(detailsAction,SIGNAL(triggered(bool)),this,SLOT(getDetails()));
     connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyField()));
-    connect(editaction,SIGNAL(triggered(bool)),this,SLOT(editLot()));
+    connect(editAction,SIGNAL(triggered(bool)),this,SLOT(editLot()));
+
 
 
     menu->popup(globalPos);

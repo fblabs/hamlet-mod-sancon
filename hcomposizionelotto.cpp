@@ -6,6 +6,7 @@
 #include <QSqlError>
 #include "hprint.h"
 #include <QCursor>
+#include <QShortcut>
 
 HComposizioneLotto::HComposizioneLotto(QWidget *parent, QSqlDatabase pdb, int idLotto, QString descrizione) :
     QWidget(parent),
@@ -19,7 +20,10 @@ HComposizioneLotto::HComposizioneLotto(QWidget *parent, QSqlDatabase pdb, int id
     db=pdb;
     id=idLotto;
 
-    qDebug()<<"ID:"<<id;
+    det=new QShortcut(QKeySequence("F5"),this);
+
+    connect(det,SIGNAL(activated()),this,SLOT(getDetails()));
+
     tipo=getTipo(id);
 
     qDebug()<<"TIPO:"<<tipo;
@@ -53,6 +57,37 @@ HComposizioneLotto::~HComposizioneLotto()
     delete ui;
 }
 
+void HComposizioneLotto::getDetails()
+{
+        HComposizioneLotto *f;
+
+        int lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
+        lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
+
+        QModelIndex ixlot;
+        QModelIndex ixpro;
+
+        if (tipo != 1)
+        {
+         ixlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),2);
+         ixpro=mod->index(ui->tableView->selectionModel()->currentIndex().row(),3);
+        }
+        else
+        {
+          ixlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),2);
+          ixpro=mod->index(ui->tableView->selectionModel()->currentIndex().row(),4);
+
+        }
+
+
+        QString desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
+
+
+        f=new HComposizioneLotto(0,db,lotid,desc);
+        f->show();
+
+}
+
 void HComposizioneLotto::getLotComposition()
 {
     QSqlQuery q(db);
@@ -80,6 +115,7 @@ void HComposizioneLotto::getLotComposition()
 
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
     ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setCurrentIndex(ui->tableView->model()->index(0,0));
     }//
     /*else
     {
@@ -108,7 +144,7 @@ void HComposizioneLotto::getLotUse()
 
 
 
-        sql="select lotdef.ID,lotdef.data,lotdef.lot,lotdef.EAN as 'Lot. esterno',prodotti.descrizione,anagrafica.ragione_sociale from  lotdef,prodotti,operazioni,anagrafica,composizione_lot where prodotti.ID=lotdef.prodotto and lotdef.ID =composizione_lot.ID_lotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID=composizione_lot.operazione and operazioni.IDlotto =:id";
+        sql="select lotdef.ID,lotdef.data,lotdef.lot,lotdef.EAN as 'Lot. esterno',prodotti.descrizione,anagrafica.ragione_sociale from  lotdef,prodotti,operazioni,anagrafica,composizione_lot where prodotti.ID=lotdef.prodotto and lotdef.ID =composizione_lot.ID_lotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID=composizione_lot.operazione and operazioni.IDlotto =:id ORDER BY lotdef.data desc";
 
         q.prepare(sql);
         q.bindValue(":id",id);
@@ -122,6 +158,7 @@ void HComposizioneLotto::getLotUse()
         ui->tableView->setModel(mod);
         ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
         ui->tableView->setColumnHidden(0,true);
+        ui->tableView->setCurrentIndex(ui->tableView->model()->index(0,0));
 
 
 
@@ -143,7 +180,7 @@ void HComposizioneLotto::getLotUse()
 
 void HComposizioneLotto::on_tableView_doubleClicked(const QModelIndex &index)
 {
-    int idlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
+   /* int idlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
     QModelIndex ixlot;
     QModelIndex ixpro;
     if(tipo > 1)
@@ -163,7 +200,9 @@ void HComposizioneLotto::on_tableView_doubleClicked(const QModelIndex &index)
 
 
       f=new HComposizioneLotto(0,db,idlot,desc);
-      f->show();
+      f->show();*/
+
+    getDetails();
 
 
 }
@@ -365,21 +404,8 @@ int HComposizioneLotto::getTipo(int idl)
 
 void HComposizioneLotto::on_pbUse_clicked()
 {
-  HComposizioneLotto *f;
-
-
-
-      int lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
-      lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
-      QModelIndex ixlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),2);
-      QModelIndex ixpro=mod->index(ui->tableView->selectionModel()->currentIndex().row(),3);
-
-      QString desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
-
-
-      f=new HComposizioneLotto(0,db,lotid,desc);
-      f->show();
-  }
+  getDetails();
+}
 
 
 

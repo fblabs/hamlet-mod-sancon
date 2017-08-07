@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QShortcut>
 
 namespace Ui {
 class HComposizioneLotto;
@@ -27,6 +28,7 @@ private:
     QString desc;
     QSqlQueryModel *mod;
     HComposizioneLotto *parf;
+    QShortcut *det;
 private slots:
     void getLotComposition();
     void getLotUse();
@@ -39,6 +41,7 @@ private slots:
     void printUse();
     void printComposition();
     int getTipo(int idl);
+    void getDetails();
 };
 
 #endif // HCOMPOSIZIONELOTTO_H
