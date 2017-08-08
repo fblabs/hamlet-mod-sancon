@@ -100,7 +100,7 @@ void HComposizioneLotto::getLotComposition()
 
     QString pdesc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();*/
 
-    sql="select lotdef.ID,operazioni.data,lotdef.lot,prodotti.descrizione,anagrafica.ragione_sociale, operazioni.quantita,unita_di_misura.descrizione as 'Unità di misura',lotdef.giacenza as 'Giacenza' from operazioni,prodotti,lotdef,anagrafica,unita_di_misura where prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and anagrafica.ID=lotdef.anagrafica and unita_di_misura.ID=operazioni.um and operazioni.ID in (SELECT operazione from composizione_lot where ID_lotto=:lotid)";
+    sql="select lotdef.ID,operazioni.data as 'DATA',lotdef.lot as 'LOTTO',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale as 'FORNITORE', operazioni.quantita as 'QUANTITA\\'',unita_di_misura.descrizione as 'UNITA\\'',lotdef.giacenza as 'GIACENZA' from operazioni,prodotti,lotdef,anagrafica,unita_di_misura where prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and anagrafica.ID=lotdef.anagrafica and unita_di_misura.ID=operazioni.um and operazioni.ID in (SELECT operazione from composizione_lot where ID_lotto=:lotid)";
 
     q.prepare(sql);
     q.bindValue(":lotid",QVariant(id));
@@ -144,7 +144,7 @@ void HComposizioneLotto::getLotUse()
 
 
 
-        sql="select lotdef.ID,lotdef.data,lotdef.lot,lotdef.EAN as 'Lot. esterno',prodotti.descrizione,anagrafica.ragione_sociale from  lotdef,prodotti,operazioni,anagrafica,composizione_lot where prodotti.ID=lotdef.prodotto and lotdef.ID =composizione_lot.ID_lotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID=composizione_lot.operazione and operazioni.IDlotto =:id ORDER BY lotdef.data desc";
+        sql="select lotdef.ID,lotdef.data as 'DATA',lotdef.lot as 'LOTTO',lotdef.EAN as 'LOT. ESTERNO',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE' from  lotdef,prodotti,operazioni,anagrafica,composizione_lot where prodotti.ID=lotdef.prodotto and lotdef.ID =composizione_lot.ID_lotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID=composizione_lot.operazione and operazioni.IDlotto =:id ORDER BY lotdef.data desc";
 
         q.prepare(sql);
         q.bindValue(":id",id);
