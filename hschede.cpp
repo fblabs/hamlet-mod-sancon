@@ -249,6 +249,8 @@ void HSchede::loadImages(int id)
 
 void HSchede::addImage(QByteArray bytes, int number, QString name, int width, int height)
 {
+    Q_UNUSED(number);
+
     QTextCursor cursor(ui->textEdit->textCursor());
 
     QImage *imgobj = new QImage();

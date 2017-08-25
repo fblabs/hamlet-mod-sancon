@@ -125,7 +125,7 @@ void HUtenti::initForm()
    // dwMapper->addMapping(ui->cbxMasterCli,tm->fieldIndex("IDCliente"),"currentIndex");
   /*  QSqlQuery q(db);
     QString sql="SELECT ID,descrizione from anagrafica where subcliente=1 and ID=:id";*/
-    int id=tm->index(ui->lvUtenti->currentIndex().row(),14).data(0).toInt();
+    //int id=tm->index(ui->lvUtenti->currentIndex().row(),14).data(0).toInt();
    /* q.prepare(sql);
 
     q.bindValue(":id",QVariant(id));
@@ -249,14 +249,14 @@ bool HUtenti::save()
    // // qDebug()<<tm->query().lastQuery()<<tm->lastError().text();
 
     tm->select();
+
+    return true;
+
 }
 
 void HUtenti::addreset()
 {
-  //  tm->insertRow(tm->rowCount());
-  //  QModelIndex mix = tm->index(tm->rowCount()-1,0);
-  //  selm->setCurrentIndex(mix,QItemSelectionModel::Select);
-  //  ui->lvUtenti->setCurrentIndex(mix);
+
   HNewAnagrafica *f=new HNewAnagrafica();
   f->init(sConn);
   f->show();
@@ -283,6 +283,7 @@ void HUtenti::on_pushButton_clicked()
 
 void HUtenti::on_cbxMasterCli_currentIndexChanged(int index)
 {
+    Q_UNUSED(index);
 
 }
 

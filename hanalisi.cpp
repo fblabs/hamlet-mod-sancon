@@ -88,8 +88,8 @@ void HAnalisi::getYearlyProduction()
 {
         QSqlQuery q(db);
         QSqlQueryModel *yprod=new QSqlQueryModel();
-        QString sql="SELECT DISTINCT prodotti.ID,prodotti.descrizione from prodotti,lotdef where prodotti.ID=lotdef.prodotto and prodotti.tipo=2 and lotdef.anagrafica=:cliente"
-                   /* "/* and lotdef.data between :datedal and :dateal"*/;
+        QString sql="SELECT DISTINCT prodotti.ID,prodotti.descrizione from prodotti,lotdef where prodotti.ID=lotdef.prodotto and prodotti.tipo=2 and lotdef.anagrafica=:cliente";
+
         int cliente;
 
         cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
@@ -491,15 +491,7 @@ void HAnalisi::on_pushButton_5_clicked()
 
 void HAnalisi::on_checkBox_toggled(bool checked)
 {
-    /*  if (checked && ui->tvYearlyProduction->model())
-      {
-          connect(ui->tvYearlyProduction->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
-           getProductsForClient();
-      }
-      else
-      {
-          disconnect(ui->tvYearlyProduction->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
-      }*/
+    Q_UNUSED(checked);
 
     if(ui->tvYearlyProduction->model())
     {
@@ -511,6 +503,7 @@ void HAnalisi::on_checkBox_toggled(bool checked)
 
 void HAnalisi::on_deFrom_dateChanged(const QDate &date)
 {
+    Q_UNUSED(date);
     datedal=ui->deFrom->date();
    // getYearlyProduction();
     getProductsForClient();
@@ -518,6 +511,7 @@ void HAnalisi::on_deFrom_dateChanged(const QDate &date)
 
 void HAnalisi::on_deTo_dateChanged(const QDate &date)
 {
+    Q_UNUSED(date);
     dateal=ui->deTo->date();
    // getYearlyProduction();
     getProductsForClient();
@@ -527,7 +521,7 @@ void HAnalisi::on_deTo_dateChanged(const QDate &date)
 void HAnalisi::doMenu(QPoint pos)
 {
 
-        QPoint globalPos = ui->tvLots->viewport()->mapToGlobal(pos);
+     //   QPoint globalPos = ui->tvLots->viewport()->mapToGlobal(pos);
 
 
 

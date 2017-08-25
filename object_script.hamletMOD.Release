@@ -48,6 +48,7 @@ INPUT(
 ./release/hcopycard.o
 ./release/hcomposizionelotto.o
 ./release/hgraphicprint.o
+./release/nouse.o
 ./release/qrc_icons.o
 ./release/moc_mainwindow.o
 ./release/moc_huser.o
@@ -96,4 +97,5 @@ INPUT(
 ./release/moc_hcopycard.o
 ./release/moc_hcomposizionelotto.o
 ./release/moc_hgraphicprint.o
+./release/moc_nouse.o
 );

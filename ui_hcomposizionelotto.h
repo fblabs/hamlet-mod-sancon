@@ -28,6 +28,7 @@ QT_BEGIN_NAMESPACE
 class Ui_HComposizioneLotto
 {
 public:
+    QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
@@ -48,7 +49,9 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
         HComposizioneLotto->setWindowIcon(icon);
-        verticalLayout = new QVBoxLayout(HComposizioneLotto);
+        verticalLayout_2 = new QVBoxLayout(HComposizioneLotto);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
@@ -76,6 +79,9 @@ public:
         tableView->verticalHeader()->setVisible(false);
 
         verticalLayout->addWidget(tableView);
+
+
+        verticalLayout_2->addLayout(verticalLayout);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -112,7 +118,7 @@ public:
         horizontalLayout->addWidget(pushButton_3);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout_2->addLayout(horizontalLayout);
 
 
         retranslateUi(HComposizioneLotto);

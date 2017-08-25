@@ -694,6 +694,7 @@ void HAnalyze_a::on_pushButton_3_clicked()
 
 void HAnalyze_a::on_tvDetails_clicked(const QModelIndex &index)
 {
+    Q_UNUSED(index);
   //  QString lot;
 
   //  lot=ui->tvMain->model()->index(ui->tvDetails->currentIndex().row(),0).data(0).toString();
@@ -734,10 +735,10 @@ void HAnalyze_a::on_rbProdotti_toggled(bool checked)
 
 void HAnalyze_a::on_cbProdotti_currentIndexChanged(int index)
 {
-
+    Q_UNUSED(index);
 }
 
 void HAnalyze_a::on_rbLes_toggled(bool checked)
 {
-
+    Q_UNUSED(checked);
 }

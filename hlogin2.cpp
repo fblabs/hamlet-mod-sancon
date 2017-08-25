@@ -12,6 +12,7 @@
 HLogin2::HLogin2(QWidget *parent) :
     ui(new Ui::HLogin2)
 {
+    Q_UNUSED(parent);
     ui->setupUi(this);
 
     QShortcut *ok= new QShortcut(this);

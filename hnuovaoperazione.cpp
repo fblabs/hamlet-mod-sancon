@@ -421,19 +421,19 @@ bool HnuovaOperazione::saveNewLot(QString nl)
 
     idprod=ui->lvProdotti->model()->index(ui->lvProdotti->currentIndex().row(),0).data(0).toInt();
 
-             data=QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
+    data=QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
 
-     tipo=ui->cbTipoLot->model()->index(ui->cbTipoLot->currentIndex(),0).data(0).toInt();
+    tipo=ui->cbTipoLot->model()->index(ui->cbTipoLot->currentIndex(),0).data(0).toInt();
     giacenza=ui->leQuantita->text().toDouble();
 
 
      if(ui->cbScadenza->isChecked())
     {
-       scadenza="";
+       scadenza=QVariant(QVariant::String).toString();
     }
     else
     {
-       scadenza=ui->deScadenza->date().toString("yyyy-MM-dd HH:mm:ss");
+       scadenza=ui->deScadenza->date().toString("yyyy-MM-dd");
     }
 
     anagrafica=ui->cbAnagrafica->model()->index(ui->cbAnagrafica->currentIndex(),0).data(0).toInt();
@@ -645,10 +645,9 @@ bool HnuovaOperazione::saveOperationCarico()
     {
       op.first();
       quantitaope=op.value(0).toDouble();
-     // // qDebug()<<"quantitaope:"<<QString::number(quantitaope)<<QString::number(idlotto);
-
-
     }
+
+    ui->leQuantita->setText(QString::number(quantitaope,'f',4));
 
     return b;
 
@@ -699,7 +698,7 @@ void HnuovaOperazione::on_pushButton_clicked()
         ui->pushButton_2->setEnabled(false);
         ui->pushButton_3->setEnabled(true);
         ui->tNote->clear();
-        ui->leLotto->clear();
+       // ui->leLotto->clear();
         ui->leQuantita->clear();
 
 
@@ -709,7 +708,7 @@ void HnuovaOperazione::on_pushButton_clicked()
         ui->leProdotti->setEnabled(false);
         ui->cbtipo->setEnabled(false);
         ui->cbAnagrafica->setEnabled(false);
-     //   QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
+        QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
 
    }
    else
@@ -752,6 +751,7 @@ void HnuovaOperazione::on_cbScadenza_toggled(bool checked)
 
 void HnuovaOperazione::on_leProdotti_textChanged(const QString &arg1)
 {
+    Q_UNUSED(arg1);
     QString filter;
     filter="descrizione LIKE '%";
     filter.append(ui->leProdotti->text());
@@ -835,7 +835,7 @@ void HnuovaOperazione::on_pushButton_3_clicked()
 
 void HnuovaOperazione::on_cbShowPackages_toggled(bool checked)
 {
-
+       Q_UNUSED(checked);
        setLotsFilter();
 
 
@@ -844,6 +844,7 @@ void HnuovaOperazione::on_cbShowPackages_toggled(bool checked)
 
 void HnuovaOperazione::on_cbtipo_currentIndexChanged(int index)
 {
+    Q_UNUSED(index);
     QString tipo;
     tipo=ui->cbtipo->currentText();
    // // qDebug()<<"tipo:"+tipo;

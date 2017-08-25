@@ -7,6 +7,7 @@
 #include "hprint.h"
 #include <QCursor>
 #include <QShortcut>
+#include "nouse.h"
 
 HComposizioneLotto::HComposizioneLotto(QWidget *parent, QSqlDatabase pdb, int idLotto, QString descrizione) :
     QWidget(parent),
@@ -109,25 +110,34 @@ void HComposizioneLotto::getLotComposition()
     mod=new QSqlQueryModel();
     mod->setQuery(q);
 
-  //  if(mod->rowCount()>0)
-  // {
+   if(mod->rowCount()>0)
+   {
     ui->tableView->setModel(mod);
 
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
+        ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setCurrentIndex(ui->tableView->model()->index(0,0));
-    }//
-    /*else
+    }
+    else
     {
-        ui->tableView->setEnabled(false);
+
+            ui->tableView->setVisible(false);
+            NoUse *w=new NoUse();
+            ui->verticalLayout->addWidget(w);
+            w->SetLabelText("Ricerca composizione non applicabile per il tipo di lotto selezionato");
+            w->show();
+
+   }
 
 
-       setAttribute(Qt::WA_DeleteOnClose);
-
-       close();
 
 
-    }*/
+      // setAttribute(Qt::WA_DeleteOnClose);
+
+      // close();
+
+
+    }
 
 
 //}
@@ -159,6 +169,17 @@ void HComposizioneLotto::getLotUse()
         ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
         ui->tableView->setColumnHidden(0,true);
         ui->tableView->setCurrentIndex(ui->tableView->model()->index(0,0));
+
+
+        if(mod->rowCount()<1)
+        {
+            ui->tableView->setVisible(false);
+            NoUse *w=new NoUse();
+            w->SetLabelText("Lotto non ancora utilizzato o ricerca uso del lotto non applicabile a questa tipologia di lotto");
+            ui->verticalLayout->addWidget(w);
+            w->show();
+
+        }
 
 
 

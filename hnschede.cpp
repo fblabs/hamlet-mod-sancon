@@ -250,7 +250,11 @@ bool HNSChede::saveCard()
 
 void HNSChede::loadCard()
 {
-    int cliente,prodotto,ix,ixe;
+    int cliente,prodotto;
+
+   // Q_UNUSED(ix);
+   // Q_UNUSED(ixe);
+
     QString doc;
 
     update=false;
@@ -455,9 +459,9 @@ void HNSChede::showContextMenu(const QPoint &pos)
     QMenu *menu=new QMenu(this);
     QAction *addImage=menu->addAction("Aggiungi Immagine...");
     QAction *modimage=menu->addAction("Modifica immagine...");
-    QAction *addSeparator =menu->addSeparator();
+   // QAction *addSeparator =menu->addSeparator();
  //   QAction *saveScheda = menu->addAction("Salva Scheda");
-    QAction *addSeparator2 =menu->addSeparator();
+   // QAction *addSeparator2 =menu->addSeparator();
     QAction *printPrev = menu->addAction("Anteprima di stampa...");
   //  QAction *close = menu->addAction("Close");
 

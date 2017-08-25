@@ -507,7 +507,7 @@ void MainWindow::on_pbSchede_clicked()
 
 void MainWindow::on_tbUtenti_clicked()
 {
-    int i=1;
+   // int i=1;
     HGestioneUtenti *f=new HGestioneUtenti();
     f->init(sConn);
     f->show();
