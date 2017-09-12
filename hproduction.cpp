@@ -17,8 +17,11 @@
 #include "hprint.h"
 #include <QTextTable>
 #include <QSqlQueryModel>
+#include "haddlotinproduction.h"
 #include <math.h>
-
+#include <QDebug>
+#include <QStandardItemModel>
+#include "hdatatopass.h"
 
 
 HProduction::HProduction(QWidget *parent) :
@@ -611,7 +614,7 @@ void HProduction::getRecipe()
    // ui->tableView->resizeColumnsToContents();
      ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
- //   ui->tableView->setColumnHidden(0,true);
+  //  ui->tableView->setColumnHidden(0,true);
  //   ui->tableView->setColumnHidden(3,true);
 
 
@@ -966,7 +969,7 @@ void HProduction::addLotFuoriRicetta()
 
     if (id_lotto<1)
     {
-        QMessageBox::warning(this,QApplication::applicationName(),"ERRORE\Il lotto inserito non esiste",QMessageBox::Ok);
+        QMessageBox::warning(this,QApplication::applicationName(),"ERRORE\nIl lotto inserito non esiste",QMessageBox::Ok);
         return;
     }
    // qty=QString::number(ui->leqtytoAdd->text(),'g',2);
@@ -1046,7 +1049,7 @@ void HProduction::on_pushButton_5_clicked()
     ui->checkBox->setEnabled(false);
     ui->cbClienti->setEnabled(false);
 
-    getRecipe();
+   // getRecipe();
 
     if(ui->leQtyTotal->text().toDouble()==0.0)
     {
@@ -1656,5 +1659,33 @@ void HProduction::on_pushButton_11_clicked()
 {
    // // qDebug()<<arg1;
 }*/
+
+
+
+void HProduction::on_tableView_doubleClicked(const QModelIndex &index)
+{
+
+
+    HDataToPass *data=new HDataToPass(0);
+
+
+    data->allergene=ui->tableView->model()->index(ui->tableView->currentIndex().row(),6).data(0).toBool();
+    data->description=ui->tableView->model()->index(ui->tableView->currentIndex().row(),1).data(0).toString();
+    data->productId=ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0)).toInt();
+    data->row=index.row();
+    data->quantity=ui->tableView->model()->index(ui->tableView->currentIndex().row(),5).data(0).toDouble();
+    data->mod=static_cast<QStandardItemModel*>(ui->tableView->model());
+
+
+   HAddLotInProduction *f= new HAddLotInProduction(0,data,db);
+   f->setWindowModality(Qt::ApplicationModal);
+
+
+   f->setWindowFlags(Qt::FramelessWindowHint);
+   f->move(10+ui->tableView->x()-f->width()-10,QCursor::pos().y());
+
+
+   f->show();
+}
 
 

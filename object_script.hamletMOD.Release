@@ -49,6 +49,8 @@ INPUT(
 ./release/hcomposizionelotto.o
 ./release/hgraphicprint.o
 ./release/nouse.o
+./release/haddlotinproduction.o
+./release/hdatatopass.o
 ./release/qrc_icons.o
 ./release/moc_mainwindow.o
 ./release/moc_huser.o
@@ -98,4 +100,6 @@ INPUT(
 ./release/moc_hcomposizionelotto.o
 ./release/moc_hgraphicprint.o
 ./release/moc_nouse.o
+./release/moc_haddlotinproduction.o
+./release/moc_hdatatopass.o
 );

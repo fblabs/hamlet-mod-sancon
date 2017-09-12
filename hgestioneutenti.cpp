@@ -150,7 +150,7 @@ void HGestioneUtenti::getIdUtente()
 void HGestioneUtenti::on_pushButton_2_clicked()
 {
    // int i=ui->comboBox->findText(ui->comboBox->findText());
-    int i=ui->comboBox->currentIndex();
+    //int i=ui->comboBox->currentIndex();
 
     //------------------
 

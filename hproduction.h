@@ -102,6 +102,9 @@ private slots:
 
   //  void on_leQuaRic_textChanged(const QString &arg1);
 
+    void on_tableView_doubleClicked(const QModelIndex &index);
+
+
 };
 
 #endif // HPRODUCTION_H

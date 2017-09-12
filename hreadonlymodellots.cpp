@@ -102,4 +102,5 @@ QVariant HReadOnlyModelLots::data( const QModelIndex & item, int role /*= Qt::Di
 bool HReadOnlyModelLots::setData(const QModelIndex &index, const QVariant &value, int role)
 {
      QSqlRelationalTableModel::setData(index,value,role);
+     return true;
 }

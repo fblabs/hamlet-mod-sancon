@@ -98,6 +98,7 @@ public:
         if (HProduction->objectName().isEmpty())
             HProduction->setObjectName(QStringLiteral("HProduction"));
         HProduction->setWindowModality(Qt::NonModal);
+        HProduction->setEnabled(true);
         HProduction->resize(1025, 697);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Gears.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -327,7 +328,7 @@ public:
 
         tableView = new QTableView(HProduction);
         tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setEnabled(true);
+        tableView->setEnabled(false);
         tableView->setFont(font1);
         tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
