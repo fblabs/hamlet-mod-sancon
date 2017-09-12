@@ -93,7 +93,7 @@ void HAddLotInProduction::addLot()
 
    mod->setData(mod->index(nrow,0),data->productId);
    mod->setData(mod->index(nrow,1),data->description);
-   mod->setData(mod->index(nrow,2),data->quantity);
+ //  mod->setData(mod->index(nrow,2),data->quantity);
    mod->setData(mod->index(nrow,3),lotid);
    mod->setData(mod->index(nrow,4),lot);
    mod->setData(mod->index(nrow,5),ui->dsbQt->value());
