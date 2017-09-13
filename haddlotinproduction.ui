@@ -28,7 +28,22 @@
     <widget class="QComboBox" name="cbLastLots"/>
    </item>
    <item>
-    <widget class="QListView" name="lvLastLots"/>
+    <widget class="QListView" name="lvLastLots">
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

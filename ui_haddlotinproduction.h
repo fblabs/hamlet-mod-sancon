@@ -61,6 +61,12 @@ public:
 
         lvLastLots = new QListView(HAddLotInProduction);
         lvLastLots->setObjectName(QStringLiteral("lvLastLots"));
+        QFont font;
+        font.setPointSize(11);
+        lvLastLots->setFont(font);
+        lvLastLots->setFrameShape(QFrame::Box);
+        lvLastLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        lvLastLots->setAlternatingRowColors(true);
 
         verticalLayout->addWidget(lvLastLots);
 

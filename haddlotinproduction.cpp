@@ -117,3 +117,10 @@ void HAddLotInProduction::on_pbAdd_clicked()
     addLot();
     close();
 }
+
+void HAddLotInProduction::on_lvLastLots_doubleClicked(const QModelIndex &index)
+{
+    addLot();
+    close();
+
+}

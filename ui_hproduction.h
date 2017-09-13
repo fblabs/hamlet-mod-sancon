@@ -47,9 +47,6 @@ public:
     QComboBox *cbTipoLotto;
     QListView *lvRicette;
     QHBoxLayout *horizontalLayout_8;
-    QLabel *label;
-    QComboBox *cbQuanti;
-    QListView *lvLastLots;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pushButton;
     QPushButton *pushButton_7;
@@ -169,26 +166,8 @@ public:
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
-        label = new QLabel(HProduction);
-        label->setObjectName(QStringLiteral("label"));
-        label->setMaximumSize(QSize(40, 16777215));
-
-        horizontalLayout_8->addWidget(label);
-
-        cbQuanti = new QComboBox(HProduction);
-        cbQuanti->setObjectName(QStringLiteral("cbQuanti"));
-        cbQuanti->setFont(font);
-
-        horizontalLayout_8->addWidget(cbQuanti);
-
 
         verticalLayout->addLayout(horizontalLayout_8);
-
-        lvLastLots = new QListView(HProduction);
-        lvLastLots->setObjectName(QStringLiteral("lvLastLots"));
-        lvLastLots->setFont(font);
-
-        verticalLayout->addWidget(lvLastLots);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
@@ -481,7 +460,6 @@ public:
         label_8->setText(QApplication::translate("HProduction", "Clienti", 0));
         checkBox->setText(QApplication::translate("HProduction", "mostra subclienti", 0));
         label_6->setText(QApplication::translate("HProduction", "tipo di lotto:", 0));
-        label->setText(QApplication::translate("HProduction", "mostra", 0));
         pushButton->setText(QApplication::translate("HProduction", "Aggiungi", 0));
         pushButton_7->setText(QApplication::translate("HProduction", "Aggiungi lotto fuori ricetta", 0));
         pushButton_2->setText(QApplication::translate("HProduction", "Rimuovi", 0));

@@ -35,6 +35,7 @@ private slots:
     void addLot();
     void on_pdClose_clicked();
     void on_pbAdd_clicked();
+    void on_lvLastLots_doubleClicked(const QModelIndex &index);
 };
 
 #endif // HADDLOTINPRODUCTION_H

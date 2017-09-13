@@ -19,7 +19,7 @@ public:
 signals:
 
 public slots:
-    void setData(QObject *parent=0,QStandardItemModel *pmod=0,int prow=-1, int pprodid=-1,int plotid=0, bool pallergene=false, QString pdescription=QString(), double pquantity=0.0);
+    void setData(QObject *parent=0, QStandardItemModel *pmod=0, int prow=-1, int pprodid=-1, bool pallergene=false, QString pdescription=QString(), double pquantity=0.0);
 
 };
 

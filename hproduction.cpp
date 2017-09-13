@@ -115,11 +115,11 @@ void HProduction::init(QString conn, QString userid)
    //  ui->leQtyTotal->setReadOnly(true);
      ui->lvSubclienti->setVisible(false);
 
-     ui->cbQuanti->addItem("Tutti",100000);
+ /*    ui->cbQuanti->addItem("Tutti",100000);
      ui->cbQuanti->addItem("Ultimi 5 lotti",5);
      ui->cbQuanti->addItem("Ultimi 10 lotti",10);
      ui->cbQuanti->addItem("Ultimi 50 lotti",50);
-     ui->cbQuanti->setCurrentIndex(1);
+     ui->cbQuanti->setCurrentIndex(1);*/
 
      ui->leQtyTotal->setEnabled(true);
      ui->pushButton_5->setVisible(true);
@@ -127,9 +127,9 @@ void HProduction::init(QString conn, QString userid)
      ui->pushButton->setEnabled(false);
      ui->pushButton_2->setEnabled(false);
      ui->pushButton_7->setEnabled(false);
-     ui->label->setVisible(false);
-     ui->cbQuanti->setVisible(false);
-     ui->lvLastLots->setVisible(false);
+  //   ui->label->setVisible(false);
+  //   ui->cbQuanti->setVisible(false);
+   //  ui->lvLastLots->setVisible(false);
      ui->leNuovoLot->setText("");
      ui->label_4->setVisible(false);
      ui->label_6->setVisible(true);
@@ -148,7 +148,7 @@ void HProduction::init(QString conn, QString userid)
      setAddProductFuoriRicettaUI(false);
 
 
-     connect(ui->cbQuanti,SIGNAL(currentIndexChanged(int)),this,SLOT(lastFiveLots()));
+   //  connect(ui->cbQuanti,SIGNAL(currentIndexChanged(int)),this,SLOT(lastFiveLots()));
      connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
      ui->tableView->setModel(0);
 
@@ -264,12 +264,12 @@ void HProduction::updateTotals()
 
 void HProduction::lastFiveLots()
 {
-    QSqlQuery qlots(db);
+  /*  QSqlQuery qlots(db);
     QSqlQueryModel *qmLots =new QSqlQueryModel();
   //  int prd =ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0)).toInt();
     int prd =model->index(ui->tableView->currentIndex().row(),0).data(0).toInt();
 
-    int quanti=ui->cbQuanti->currentData().toInt();
+    //int quanti=ui->cbQuanti->currentData().toInt();
 
     QString sql="select ID,lot from lotdef where prodotto=:prd and attivo>0 ORDER by data DESC LIMIT :quanti";
     qlots.prepare(sql);
@@ -285,10 +285,10 @@ void HProduction::lastFiveLots()
 
    // disconnect(ui->lvLastLots->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),this,SLOT(lotSelected()));
 
-    ui->lvLastLots->clearSelection();
+ /*   ui->lvLastLots->clearSelection();
     ui->lvLastLots->setModel(qmLots);
     ui->lvLastLots->setModelColumn(1);
-     ui->lvLastLots->setCurrentIndex(ui->lvLastLots->model()->index(-1,0));
+     ui->lvLastLots->setCurrentIndex(ui->lvLastLots->model()->index(-1,0));*/
 
 
  // ui->lvLastLots->setCurrentIndex();
@@ -298,7 +298,7 @@ void HProduction::lastFiveLots()
  // qmLots->insertColumns(cols,2);
 
 
-   connect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(lotSelected()));
+  // connect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(lotSelected()));
  //connect(ui->lvLastLots->model(),SIGNAL(dataChanged(QModelIndex,QModelIndex)),this,SLOT(lotSelected()));
 
 }
@@ -338,9 +338,9 @@ void HProduction::getLotToModify(QString lot)
     ui->pushButton->setEnabled(true);
     ui->pushButton_2->setEnabled(true);
     ui->pushButton_7->setEnabled(true);
-    ui->label->setVisible(true);
-    ui->cbQuanti->setVisible(true);
-    ui->lvLastLots->setVisible(true);
+    //ui->label->setVisible(true);
+    //ui->cbQuanti->setVisible(true);
+    //ui->lvLastLots->setVisible(true);
     ui->leQtyTotal->setReadOnly(false);
     ui->leQtyTotal->setEnabled(true);
     ui->cbTipoLotto->setEnabled(false);
@@ -833,7 +833,7 @@ void HProduction::productSelected()
 
 void HProduction::lotSelected()
 {
-    QString lottoadd=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
+  /*  //QString lottoadd=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
 
     double quag;
     double quric;
@@ -849,7 +849,7 @@ void HProduction::lotSelected()
     ui->leLotToadd->setText(lottoadd);
     ui->leqtytoAdd->setText(quantita);
 
-
+*/
 }
 
 
@@ -902,8 +902,8 @@ void HProduction::addLotProd()
         return;
     }
 
-    model->setData(idlotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),0).data(0).toString());
-    model->setData(lotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString());
+  /*  model->setData(idlotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),0).data(0).toString());
+    model->setData(lotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString());*/
   //  model->setData(quanteff,model->index(row,2).data(0).toString());
     model->setData(allergene,model->index(row,6).data(0).toString());
 
@@ -1040,9 +1040,9 @@ void HProduction::on_pushButton_5_clicked()
     ui->pushButton->setEnabled(true);
     ui->pushButton_2->setEnabled(true);
     ui->pushButton_7->setEnabled(true);
-    ui->label->setVisible(true);
-    ui->cbQuanti->setVisible(true);
-    ui->lvLastLots->setVisible(true);
+    //ui->label->setVisible(true);
+   // ui->cbQuanti->setVisible(true);
+   // ui->lvLastLots->setVisible(true);
     ui->leQtyTotal->setReadOnly(false);
     ui->leQtyTotal->setEnabled(true);
     ui->cbTipoLotto->setEnabled(false);
@@ -1072,9 +1072,9 @@ void HProduction::on_pushButton_6_clicked()
     ui->pushButton_2->setEnabled(false);
     ui->pushButton_7->setEnabled(false);
 
-    ui->label->setVisible(false);
-    ui->cbQuanti->setVisible(false);
-    ui->lvLastLots->setVisible(false);
+    //ui->label->setVisible(false);
+   // ui->cbQuanti->setVisible(false);
+   // ui->lvLastLots->setVisible(false);
     ui->leNuovoLot->setText("");
     ui->leQtyTotal->setReadOnly(false);
     ui->cbTipoLotto->setEnabled(true);
@@ -1409,18 +1409,18 @@ void HProduction::on_pushButton_3_clicked()
    ui->pushButton->setEnabled(false);
    ui->pushButton_2->setEnabled(false);
    ui->pushButton_7->setEnabled(false);
-   ui->label->setVisible(false);
+  /* ui->label->setVisible(false);
    ui->cbQuanti->setVisible(false);
-   ui->lvLastLots->setVisible(false);
+   ui->lvLastLots->setVisible(false);*/
    ui->leNuovoLot->setText("");
    ui->leQtyTotal->setReadOnly(false);
    ui->cbTipoLotto->setEnabled(true);
    ui->checkBox->setEnabled(true);
        ui->cbClienti->setEnabled(true);
-   getRecipe();
-   updateTotals();
+//   getRecipe();
+ //  updateTotals();
    modifyLot=false;
-   ui->tableView->setModel(0);
+  // ui->tableView->setModel(0);
 
 }
 
@@ -1436,12 +1436,12 @@ void HProduction::on_leQtyTotal_returnPressed()
 
 void HProduction::on_pushButton_7_clicked()
 {
-    if (ui->lvLastLots->model()==0)
+    /*if (ui->lvLastLots->model()==0)
     {
         return;
-    }
+    }*/
 
-  ui->leLotToadd->setText(ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString());
+//  ui->leLotToadd->setText(ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString());
 }
 
 void HProduction::on_pushButton_4_clicked()
