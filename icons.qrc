@@ -104,7 +104,6 @@
         <file>Resources/Monitoring64.png</file>
         <file>Resources/Note64.png</file>
         <file>Resources/palet-02-icon.png</file>
-        <file alias="://Resources/palet-03-icon.png">Resources/palet-03-icon.png</file>
         <file>Resources/Pause64.png</file>
         <file>Resources/Pie-chart64.png</file>
         <file>Resources/Play64.png</file>

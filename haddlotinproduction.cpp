@@ -44,16 +44,13 @@ HAddLotInProduction::~HAddLotInProduction()
 
 void HAddLotInProduction::lastLots()
 {
-     // int prd =ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0)).toInt();
-    // int prd =model->index(ui->tableView->currentIndex().row(),0).data(0).toInt();
-
     qDebug()<<"lastLots()";
     QSqlQuery qlots(db);
     QSqlQueryModel *qmLots=new QSqlQueryModel(0);
 
     int quanti=ui->cbLastLots->currentData().toInt();
 
-    QString sql="select ID,lot,prodotto from lotdef where prodotto=:prd and attivo>0 ORDER by data DESC LIMIT :quanti";
+    QString sql="select lotdef.ID,lotdef.lot,lotdef.prodotto,prodotti.allergenico from lotdef,prodotti where prodotti.ID=lotdef.prodotto and lotdef.prodotto=:prd and lotdef.attivo>0 ORDER by lotdef.data DESC LIMIT :quanti";
     qlots.prepare(sql);
     qlots.bindValue(":prd",QVariant(data->productId));
     qlots.bindValue(":quanti",QVariant(quanti));
@@ -80,24 +77,23 @@ void HAddLotInProduction::addLot()
     int lotid=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),0).data(0).toInt();
     QString lot=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
 
-  /*  if(ballergene)
-    {
-        ID_prodotto->setForeground(Qt::red);
-        ID_prodotto->setIcon(QIcon(":/Resources/Flag-red64.png"));
-
-    }*/
-
-
-
 
 
    mod->setData(mod->index(nrow,0),data->productId);
    mod->setData(mod->index(nrow,1),data->description);
+
  //  mod->setData(mod->index(nrow,2),data->quantity);
    mod->setData(mod->index(nrow,3),lotid);
    mod->setData(mod->index(nrow,4),lot);
-   mod->setData(mod->index(nrow,5),ui->dsbQt->value());
-   mod->setData(mod->index(nrow,6),QString("true"));
+   QString val=QString::number(ui->dsbQt->value(),'f',3);
+   mod->setData(mod->index(nrow,5),val);
+   if (ballergene){
+   mod->setData(mod->index(nrow,6),QString("1"));
+   }
+   else
+   {
+       mod->setData(mod->index(nrow,6),QString("0"));
+   }
 
 
 

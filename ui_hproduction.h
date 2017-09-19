@@ -17,6 +17,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFormLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -49,39 +50,33 @@ public:
     QHBoxLayout *horizontalLayout_8;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pushButton;
-    QPushButton *pushButton_7;
-    QPushButton *pushButton_2;
     QVBoxLayout *verticalLayout_2;
     QFormLayout *formLayout_2;
-    QLabel *label_2;
-    QLineEdit *leLotToadd;
-    QLabel *label_4;
-    QLineEdit *leqtytoAdd;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pbAddLottoFuoriRicetta;
     QPushButton *pbAnnulla;
     QHBoxLayout *horizontalLayout_5;
     QPushButton *pushButton_5;
     QPushButton *pushButton_6;
-    QLineEdit *leLotToEdit;
-    QPushButton *pushButton_9;
     QVBoxLayout *verticalLayout_3;
     QLabel *lbRicetta;
     QTextBrowser *textBrowser;
     QTableView *tableView;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_7;
     QLabel *label_10;
     QPlainTextEdit *tNote;
-    QFormLayout *formLayout;
+    QGridLayout *gridLayout;
+    QLabel *label_3;
     QLabel *label_5;
     QLineEdit *leNuovoLot;
+    QLineEdit *leQuaRic;
     QLabel *label_9;
     QDateEdit *dateEdit;
     QLabel *label_7;
     QComboBox *cbUm;
-    QLabel *label_3;
-    QLineEdit *leQtyTotal;
     QLabel *label_11;
-    QLineEdit *leQuaRic;
+    QLineEdit *leQtyTotal;
     QPushButton *pushButton_11;
     QPushButton *pushButton_8;
     QCheckBox *checkBox_2;
@@ -173,32 +168,13 @@ public:
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         pushButton = new QPushButton(HProduction);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setEnabled(true);
+        pushButton->setEnabled(false);
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon1);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout_3->addWidget(pushButton);
-
-        pushButton_7 = new QPushButton(HProduction);
-        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Download.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_7->setIcon(icon2);
-        pushButton_7->setIconSize(QSize(32, 32));
-        pushButton_7->setCheckable(true);
-
-        horizontalLayout_3->addWidget(pushButton_7);
-
-        pushButton_2 = new QPushButton(HProduction);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon3);
-        pushButton_2->setIconSize(QSize(32, 32));
-
-        horizontalLayout_3->addWidget(pushButton_2);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
@@ -207,28 +183,6 @@ public:
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         formLayout_2 = new QFormLayout();
         formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
-        label_2 = new QLabel(HProduction);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        formLayout_2->setWidget(0, QFormLayout::LabelRole, label_2);
-
-        leLotToadd = new QLineEdit(HProduction);
-        leLotToadd->setObjectName(QStringLiteral("leLotToadd"));
-        leLotToadd->setClearButtonEnabled(true);
-
-        formLayout_2->setWidget(0, QFormLayout::FieldRole, leLotToadd);
-
-        label_4 = new QLabel(HProduction);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        formLayout_2->setWidget(1, QFormLayout::LabelRole, label_4);
-
-        leqtytoAdd = new QLineEdit(HProduction);
-        leqtytoAdd->setObjectName(QStringLiteral("leqtytoAdd"));
-        leqtytoAdd->setClearButtonEnabled(true);
-
-        formLayout_2->setWidget(1, QFormLayout::FieldRole, leqtytoAdd);
-
 
         verticalLayout_2->addLayout(formLayout_2);
 
@@ -255,9 +209,9 @@ public:
         pushButton_5 = new QPushButton(HProduction);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setMinimumSize(QSize(130, 0));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/Flag.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon4);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Flag.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon2);
         pushButton_5->setIconSize(QSize(32, 32));
 
         horizontalLayout_5->addWidget(pushButton_5);
@@ -265,22 +219,12 @@ public:
         pushButton_6 = new QPushButton(HProduction);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
         pushButton_6->setMinimumSize(QSize(130, 0));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_6->setIcon(icon5);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_6->setIcon(icon3);
         pushButton_6->setIconSize(QSize(32, 32));
 
         horizontalLayout_5->addWidget(pushButton_6);
-
-        leLotToEdit = new QLineEdit(HProduction);
-        leLotToEdit->setObjectName(QStringLiteral("leLotToEdit"));
-
-        horizontalLayout_5->addWidget(leLotToEdit);
-
-        pushButton_9 = new QPushButton(HProduction);
-        pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
-
-        horizontalLayout_5->addWidget(pushButton_9);
 
 
         verticalLayout->addLayout(horizontalLayout_5);
@@ -316,6 +260,25 @@ public:
 
         verticalLayout_3->addWidget(tableView);
 
+        pushButton_2 = new QPushButton(HProduction);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon4);
+        pushButton_2->setIconSize(QSize(32, 32));
+
+        verticalLayout_3->addWidget(pushButton_2);
+
+        pushButton_7 = new QPushButton(HProduction);
+        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Download.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_7->setIcon(icon5);
+        pushButton_7->setIconSize(QSize(32, 32));
+        pushButton_7->setCheckable(false);
+
+        verticalLayout_3->addWidget(pushButton_7);
+
         label_10 = new QLabel(HProduction);
         label_10->setObjectName(QStringLiteral("label_10"));
 
@@ -328,56 +291,24 @@ public:
 
         verticalLayout_3->addWidget(tNote);
 
-        formLayout = new QFormLayout();
-        formLayout->setObjectName(QStringLiteral("formLayout"));
-        formLayout->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        label_3 = new QLabel(HProduction);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        gridLayout->addWidget(label_3, 4, 0, 1, 1);
+
         label_5 = new QLabel(HProduction);
         label_5->setObjectName(QStringLiteral("label_5"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label_5);
+        gridLayout->addWidget(label_5, 0, 0, 1, 1);
 
         leNuovoLot = new QLineEdit(HProduction);
         leNuovoLot->setObjectName(QStringLiteral("leNuovoLot"));
         leNuovoLot->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
         leNuovoLot->setReadOnly(true);
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, leNuovoLot);
-
-        label_9 = new QLabel(HProduction);
-        label_9->setObjectName(QStringLiteral("label_9"));
-
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_9);
-
-        dateEdit = new QDateEdit(HProduction);
-        dateEdit->setObjectName(QStringLiteral("dateEdit"));
-
-        formLayout->setWidget(1, QFormLayout::FieldRole, dateEdit);
-
-        label_7 = new QLabel(HProduction);
-        label_7->setObjectName(QStringLiteral("label_7"));
-
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_7);
-
-        cbUm = new QComboBox(HProduction);
-        cbUm->setObjectName(QStringLiteral("cbUm"));
-
-        formLayout->setWidget(2, QFormLayout::FieldRole, cbUm);
-
-        label_3 = new QLabel(HProduction);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        formLayout->setWidget(4, QFormLayout::LabelRole, label_3);
-
-        leQtyTotal = new QLineEdit(HProduction);
-        leQtyTotal->setObjectName(QStringLiteral("leQtyTotal"));
-        leQtyTotal->setReadOnly(false);
-
-        formLayout->setWidget(4, QFormLayout::FieldRole, leQtyTotal);
-
-        label_11 = new QLabel(HProduction);
-        label_11->setObjectName(QStringLiteral("label_11"));
-
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_11);
+        gridLayout->addWidget(leNuovoLot, 0, 1, 1, 1);
 
         leQuaRic = new QLineEdit(HProduction);
         leQuaRic->setObjectName(QStringLiteral("leQuaRic"));
@@ -385,10 +316,40 @@ public:
         leQuaRic->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
         leQuaRic->setReadOnly(true);
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, leQuaRic);
+        gridLayout->addWidget(leQuaRic, 3, 1, 1, 1);
+
+        label_9 = new QLabel(HProduction);
+        label_9->setObjectName(QStringLiteral("label_9"));
+
+        gridLayout->addWidget(label_9, 1, 0, 1, 1);
+
+        dateEdit = new QDateEdit(HProduction);
+        dateEdit->setObjectName(QStringLiteral("dateEdit"));
+
+        gridLayout->addWidget(dateEdit, 1, 1, 1, 1);
+
+        label_7 = new QLabel(HProduction);
+        label_7->setObjectName(QStringLiteral("label_7"));
+
+        gridLayout->addWidget(label_7, 2, 0, 1, 1);
+
+        cbUm = new QComboBox(HProduction);
+        cbUm->setObjectName(QStringLiteral("cbUm"));
+
+        gridLayout->addWidget(cbUm, 2, 1, 1, 1);
+
+        label_11 = new QLabel(HProduction);
+        label_11->setObjectName(QStringLiteral("label_11"));
+
+        gridLayout->addWidget(label_11, 3, 0, 1, 1);
+
+        leQtyTotal = new QLineEdit(HProduction);
+        leQtyTotal->setObjectName(QStringLiteral("leQtyTotal"));
+
+        gridLayout->addWidget(leQtyTotal, 4, 1, 1, 1);
 
 
-        verticalLayout_3->addLayout(formLayout);
+        verticalLayout_3->addLayout(gridLayout);
 
         pushButton_11 = new QPushButton(HProduction);
         pushButton_11->setObjectName(QStringLiteral("pushButton_11"));
@@ -461,21 +422,18 @@ public:
         checkBox->setText(QApplication::translate("HProduction", "mostra subclienti", 0));
         label_6->setText(QApplication::translate("HProduction", "tipo di lotto:", 0));
         pushButton->setText(QApplication::translate("HProduction", "Aggiungi", 0));
-        pushButton_7->setText(QApplication::translate("HProduction", "Aggiungi lotto fuori ricetta", 0));
-        pushButton_2->setText(QApplication::translate("HProduction", "Rimuovi", 0));
-        label_2->setText(QApplication::translate("HProduction", "Lotto da aggiungere:", 0));
-        label_4->setText(QApplication::translate("HProduction", "Quantit\303\240 da aggiungere:", 0));
         pbAddLottoFuoriRicetta->setText(QApplication::translate("HProduction", "Aggiungi", 0));
         pbAnnulla->setText(QApplication::translate("HProduction", "Annulla", 0));
         pushButton_5->setText(QApplication::translate("HProduction", "inizia", 0));
         pushButton_6->setText(QApplication::translate("HProduction", "Annulla", 0));
-        pushButton_9->setText(QApplication::translate("HProduction", "Modifica Lotto", 0));
         lbRicetta->setText(QString());
+        pushButton_2->setText(QApplication::translate("HProduction", "Rimuovi", 0));
+        pushButton_7->setText(QApplication::translate("HProduction", "Aggiungi lotto fuori ricetta", 0));
         label_10->setText(QApplication::translate("HProduction", "Note:", 0));
+        label_3->setText(QApplication::translate("HProduction", "Quantit\303\240 totale", 0));
         label_5->setText(QApplication::translate("HProduction", "Nuovo lotto:", 0));
         label_9->setText(QApplication::translate("HProduction", "Scadenza:", 0));
         label_7->setText(QApplication::translate("HProduction", "Unit\303\240 di misura:", 0));
-        label_3->setText(QApplication::translate("HProduction", "Quantit\303\240 totale", 0));
         label_11->setText(QApplication::translate("HProduction", "Quantit\303\240 ricetta:", 0));
         pushButton_11->setText(QApplication::translate("HProduction", "Reset", 0));
         pushButton_8->setText(QApplication::translate("HProduction", "Stampa Ricetta", 0));

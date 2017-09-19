@@ -22,6 +22,7 @@
 #include <QDebug>
 #include <QStandardItemModel>
 #include "hdatatopass.h"
+#include "hlastlots.h"
 
 
 HProduction::HProduction(QWidget *parent) :
@@ -34,6 +35,7 @@ HProduction::HProduction(QWidget *parent) :
     ui->label_9->setVisible(false);
     ui->pushButton_8->setVisible(false);
     ui->pushButton_10->setEnabled(false);
+    ui->pushButton->setVisible(false);
    // ui->label_11->setVisible(false);
    // ui->leQuaRic->setVisible(false);
 
@@ -131,11 +133,11 @@ void HProduction::init(QString conn, QString userid)
   //   ui->cbQuanti->setVisible(false);
    //  ui->lvLastLots->setVisible(false);
      ui->leNuovoLot->setText("");
-     ui->label_4->setVisible(false);
+    // ui->label_4->setVisible(false);
      ui->label_6->setVisible(true);
-     ui->label_2->setVisible(false);
-     ui->leqtytoAdd->setVisible(false);
-     ui->leLotToadd->setVisible(false);
+   //  ui->label_2->setVisible(false);
+   //  ui->leqtytoAdd->setVisible(false);
+   //  ui->leLotToadd->setVisible(false);
     // ui->cbTipoLotto->setVisible(true);
      ui->pbAddLottoFuoriRicetta->setVisible(false);
      ui->pushButton_10->setEnabled(false);
@@ -150,7 +152,7 @@ void HProduction::init(QString conn, QString userid)
 
    //  connect(ui->cbQuanti,SIGNAL(currentIndexChanged(int)),this,SLOT(lastFiveLots()));
      connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
-     ui->tableView->setModel(0);
+
 
 
 
@@ -163,12 +165,12 @@ void HProduction::getLotModel()
 {
     QSqlTableModel *lm=new QSqlTableModel(0,db);
     lm->setTable("lotdef");
-    QCompleter *comp=new QCompleter(lm);
-    comp->setCompletionMode(QCompleter::PopupCompletion);
-    comp->setCompletionColumn(1);
+  //  QCompleter *comp=new QCompleter(lm);
+  //  comp->setCompletionMode(QCompleter::PopupCompletion);
+  //  comp->setCompletionColumn(1);
     lm->setSort(3,Qt::DescendingOrder);
     lm->select();
-    ui->leLotToEdit->setCompleter(comp);
+ //   ui->leLotToEdit->setCompleter(comp);
 
 }
 
@@ -184,7 +186,7 @@ void HProduction::recalculateTotal()
     }
 
     QString qua=QString::number(quantita,'f',3);
-    ui->leQtyTotal->setText(qua);
+ //   ui->leQtyTotal->setText(qua);
 
 
 
@@ -210,7 +212,7 @@ void HProduction::calculateActualTotal()
     QString qta =QString::number(quantita,'f',3);
 
 
-    ui->leQtyTotal->setText(qta);
+    //ui->leQtyTotal->setText(qta);
    // ui->leQuaRic->setText(QString::number(quantita,'f',3));
 
 
@@ -415,7 +417,7 @@ void HProduction::getLotToModify(QString lot)
     }
     QString qta=QString::number(quantitatotale,'f',3);
 
-    ui->leQtyTotal->setText(qta);
+ //   ui->leQtyTotal->setText(qta);
 
    // qmrighe->setQuery(q);
     ui->tableView->setModel(model);
@@ -603,9 +605,9 @@ void HProduction::getRecipe()
     QString qta=QString::number(quantitatot,'f',3);
 
 
-   // ui->leQtyTotal->setText(qta);
-    ui->leQuaRic->setText(qta);
     ui->leQtyTotal->setText(qta);
+    ui->leQuaRic->setText(qta);
+
 
 
    // qmrighe->setQuery(q);
@@ -614,8 +616,6 @@ void HProduction::getRecipe()
    // ui->tableView->resizeColumnsToContents();
      ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-  //  ui->tableView->setColumnHidden(0,true);
- //   ui->tableView->setColumnHidden(3,true);
 
 
     connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(calculateActualTotal()));
@@ -630,6 +630,12 @@ void HProduction::getRecipe()
 
 
 
+}
+
+void HProduction::getNewRow(QList<QStandardItem*>list)
+{
+    QStandardItemModel* mod=static_cast<QStandardItemModel*>(ui->tableView->model());
+    mod->appendRow(list);
 }
 
 
@@ -855,7 +861,10 @@ void HProduction::lotSelected()
 
 void HProduction::on_pushButton_clicked()
 {
-    addLotProd();
+   // addLotProd();
+
+ //   HLastLots *f=new HLastLots(0,db);
+ //   f->show();
 }
 
 /* QList<QStandardItem*> HProduction::addTableRow()
@@ -879,7 +888,7 @@ void HProduction::addLotProd()
 
   //  QStandardItemModel *qm=static_cast<QStandardItemModel*>(ui->tableView->model());
 
-    lotToadd=ui->leLotToadd->text();
+    //lotToadd=ui->leLotToadd->text();
 
  //   QModelIndex idProdotto =qm->index(ui->tableView->currentIndex().row(),0);
   //  QModelIndex prodotto =qm->index(ui->tableView->currentIndex().row(),1);
@@ -909,8 +918,8 @@ void HProduction::addLotProd()
 
 
 
-    ui->leLotToadd->setText("");
-    ui->leqtytoAdd->setText("");
+ //   ui->leLotToadd->setText("");
+ //   ui->leqtytoAdd->setText("");
   //   qmLots->appendRow(createRecipeRow(prod));
 
 
@@ -934,7 +943,7 @@ void HProduction::addLotFuoriRicetta()
 
    // disconnect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(lotSelected()));
     //disconnect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
-    lotToadd=ui->leLotToadd->text();
+  //  lotToadd=ui->leLotToadd->text();
 
 
 
@@ -957,8 +966,8 @@ void HProduction::addLotFuoriRicetta()
         alle=p.value(1).toBool();
     }
 
-    peso=ui->leqtytoAdd->text();
-    qty=ui->leqtytoAdd->text().toDouble();
+  //  peso=ui->leqtytoAdd->text();
+  //  qty=ui->leqtytoAdd->text().toDouble();
 
     qps="SELECT ID from lotdef WHERE lot=:lot";
     p.prepare(qps);
@@ -973,7 +982,7 @@ void HProduction::addLotFuoriRicetta()
         return;
     }
    // qty=QString::number(ui->leqtytoAdd->text(),'g',2);
-    qty=fabs(ui->leqtytoAdd->text().toDouble());
+  //  qty=fabs(ui->leqtytoAdd->text().toDouble());
 
     QStandardItem *idprodotto=new QStandardItem(QString::number(prod));
     QStandardItem *prodotto=new QStandardItem(descprod);
@@ -1005,8 +1014,8 @@ void HProduction::addLotFuoriRicetta()
    // connect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
     ui->tableView->setCurrentIndex(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0));
 
-    ui->leLotToadd->setText("");
-    ui->leqtytoAdd->setText("");
+  //  ui->leLotToadd->setText("");
+ //   ui->leqtytoAdd->setText("");
     recalculateTotal();
 
 }
@@ -1026,6 +1035,12 @@ QString HProduction::getNewLot(int prod)
     return ret;
 }
 
+void HProduction::addLotFuoriRicettaN(QList<QStandardItem*> row)
+{
+   QStandardItemModel* mod =static_cast<QStandardItemModel*>(ui->tableView->model());
+   mod->appendRow(row);
+}
+
 
 void HProduction::on_pushButton_5_clicked()
 {
@@ -1043,13 +1058,17 @@ void HProduction::on_pushButton_5_clicked()
     //ui->label->setVisible(true);
    // ui->cbQuanti->setVisible(true);
    // ui->lvLastLots->setVisible(true);
-    ui->leQtyTotal->setReadOnly(false);
+   // ui->leQtyTotal->setReadOnly(true);
     ui->leQtyTotal->setEnabled(true);
     ui->cbTipoLotto->setEnabled(false);
     ui->checkBox->setEnabled(false);
     ui->cbClienti->setEnabled(false);
 
-   // getRecipe();
+   // getRecipe()
+
+    updateTotals();
+
+
 
     if(ui->leQtyTotal->text().toDouble()==0.0)
     {
@@ -1067,6 +1086,7 @@ void HProduction::on_pushButton_6_clicked()
     //ui->tableView->setEnabled(false);
     ui->lvRicette->setEnabled(true);
     ui->pushButton_5->setVisible(true);
+
     ui->pushButton_6->setVisible(false);
     ui->pushButton->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
@@ -1081,7 +1101,7 @@ void HProduction::on_pushButton_6_clicked()
     ui->checkBox->setEnabled(true);
     ui->cbClienti->setEnabled(true);
    // ui->leQtyTotal->setText("0.0");
-    ui->leQtyTotal->setReadOnly(true);
+//ui->leQtyTotal->setReadOnly(true);
  //   getRecipe();
  //   updateTotals();
 
@@ -1090,6 +1110,7 @@ void HProduction::on_pushButton_6_clicked()
 
     modifyLot=false;
     ui->tableView->setModel(0);
+    getRecipe();
     ui->pushButton_10->setEnabled(false);
 
 }
@@ -1359,7 +1380,8 @@ bool HProduction::saveProduction()
 
        db.commit();
        QMessageBox::information(this,QApplication::applicationName(),"Produzione salvata",QMessageBox::Ok);
-       ui->tableView->setModel(0);
+      // ui->tableView->setModel(0);
+       ui->tableView->setEnabled(false);
 
 
 
@@ -1436,12 +1458,14 @@ void HProduction::on_leQtyTotal_returnPressed()
 
 void HProduction::on_pushButton_7_clicked()
 {
-    /*if (ui->lvLastLots->model()==0)
-    {
-        return;
-    }*/
 
-//  ui->leLotToadd->setText(ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString());
+
+
+
+    HLastLots *f=new HLastLots(0,db);
+   // connect(f,SIGNAL(rowAdded(QList<QStandardItem*> row)),this,SLOT(addLotFuoriRicettaN(QList<QStandardItem*> row)));
+    connect (f,SIGNAL(rowAdded(QList<QStandardItem*>)),this,SLOT(addLotFuoriRicettaN(QList<QStandardItem*>)));
+    f->show();
 }
 
 void HProduction::on_pushButton_4_clicked()
@@ -1476,10 +1500,10 @@ void HProduction::on_pushButton_7_toggled(bool checked)
 void HProduction::setAddProductFuoriRicettaUI(bool visible)
 {
     ui->label_6->setVisible(visible);
-    ui->label_2->setVisible(visible);
+   /* ui->label_2->setVisible(visible);
     ui->label_4->setVisible(visible);
     ui->leqtytoAdd->setVisible(visible);
-    ui->leLotToadd->setVisible(visible);
+    ui->leLotToadd->setVisible(visible);*/
   //  ui->cbTipoLotto->setVisible(visible);
     ui->pbAddLottoFuoriRicetta->setVisible(visible);
     ui->pbAnnulla->setVisible(visible);
@@ -1504,8 +1528,8 @@ void HProduction::on_pushButton_8_clicked()
 
 void HProduction::on_pushButton_9_clicked()
 {
-    modifyLot=true;
-    getLotToModify(ui->leLotToEdit->text());
+    //modifyLot=true;
+    //getLotToModify(ui->leLotToEdit->text());
 }
 
 void HProduction::updateComposition()
@@ -1665,7 +1689,6 @@ void HProduction::on_pushButton_11_clicked()
 void HProduction::on_tableView_doubleClicked(const QModelIndex &index)
 {
 
-
     HDataToPass *data=new HDataToPass(0);
 
 
@@ -1681,11 +1704,18 @@ void HProduction::on_tableView_doubleClicked(const QModelIndex &index)
    f->setWindowModality(Qt::ApplicationModal);
 
 
-   f->setWindowFlags(Qt::FramelessWindowHint);
+  // f->setWindowFlags(Qt::FramelessWindowHint);
    f->move(10+ui->tableView->x()-f->width()-10,QCursor::pos().y());
 
 
    f->show();
+
 }
 
+
+
+void HProduction::on_tableView_clicked(const QModelIndex &index)
+{
+
+}
 

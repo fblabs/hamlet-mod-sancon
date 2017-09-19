@@ -47,6 +47,7 @@ private:
     int lottomodifica;
 
 private slots:
+    void getNewRow(QList<QStandardItem *> list);
     void getClients();
     void getSubclients();
     void getRecipesForClient();
@@ -57,6 +58,7 @@ private slots:
     void getLotModel();
     void lotSelected();
     void addLotProd();
+    void addLotFuoriRicettaN(QList<QStandardItem *> row);
     void addLotFuoriRicetta();
     bool saveProduction();
     void recalculateTotal();
@@ -104,6 +106,8 @@ private slots:
 
     void on_tableView_doubleClicked(const QModelIndex &index);
 
+
+    void on_tableView_clicked(const QModelIndex &index);
 
 };
 

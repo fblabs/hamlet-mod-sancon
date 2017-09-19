@@ -67,6 +67,7 @@ public:
         lvLastLots->setFrameShape(QFrame::Box);
         lvLastLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
         lvLastLots->setAlternatingRowColors(true);
+        lvLastLots->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         verticalLayout->addWidget(lvLastLots);
 
@@ -99,11 +100,17 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pbAdd = new QPushButton(HAddLotInProduction);
         pbAdd->setObjectName(QStringLiteral("pbAdd"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/Resources/Accept64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbAdd->setIcon(icon);
 
         horizontalLayout_2->addWidget(pbAdd);
 
         pdClose = new QPushButton(HAddLotInProduction);
         pdClose->setObjectName(QStringLiteral("pdClose"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pdClose->setIcon(icon1);
 
         horizontalLayout_2->addWidget(pdClose);
 

@@ -51,6 +51,7 @@ INPUT(
 ./release/nouse.o
 ./release/haddlotinproduction.o
 ./release/hdatatopass.o
+./release/hlastlots.o
 ./release/qrc_icons.o
 ./release/moc_mainwindow.o
 ./release/moc_huser.o
@@ -102,4 +103,5 @@ INPUT(
 ./release/moc_nouse.o
 ./release/moc_haddlotinproduction.o
 ./release/moc_hdatatopass.o
+./release/moc_hlastlots.o
 );
