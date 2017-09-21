@@ -841,7 +841,7 @@ void HPackages::on_rbProdottiFiniti_toggled(bool checked)
 
 void HPackages::on_rbVasi_toggled(bool checked)
 {
-    QString flt=basefilter + " and prodotto in (SELECT ID from prodotti where tipo=5)";
+    QString flt=basefilter + " and lotdef.tipo=1 and prodotto in (SELECT ID from prodotti where tipo=5)";
     if (checked)
     {
         tmLots->setFilter(flt);
@@ -853,7 +853,7 @@ void HPackages::on_rbVasi_toggled(bool checked)
 
 void HPackages::on_rbTappi_toggled(bool checked)
 {
-    QString flt=basefilter + " and prodotto in (SELECT ID from prodotti where tipo=4)";
+    QString flt=basefilter + " and lotdef.tipo and prodotto in (SELECT ID from prodotti where tipo=4)";
     if (checked)
     {
         tmLots->setFilter(flt);
@@ -884,3 +884,5 @@ void HPackages::on_leSearch_textChanged(const QString &arg1)
     tmLots->setFilter(filterinit);
    // // qDebug()<<tmLots->filter();
 }
+
+

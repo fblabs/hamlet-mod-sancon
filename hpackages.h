@@ -85,6 +85,7 @@ private slots:
     void on_rbVasi_toggled(bool checked);
     void on_rbTappi_toggled(bool checked);
     void on_leSearch_textChanged(const QString &arg1);
+
 };
 
 #endif // HPACKAGES_H
