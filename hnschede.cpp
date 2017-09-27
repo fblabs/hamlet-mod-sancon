@@ -50,8 +50,11 @@ HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
         ui->pbsave->setEnabled(upd);
         ui->pbInit->setEnabled(upd);
 
-
     }
+
+    ui->textEdit->setReadOnly(!ui->pushButton_8->isChecked());
+    //ui->textEdit->setReadOnly(!ui->pbsave->isEnabled());
+
 
     QShortcut *shortcut =new QShortcut(QKeySequence("Ctrl+I"),this);
     QShortcut *modimg=new QShortcut(QKeySequence("Ctrl+alt+I"),this);
@@ -715,5 +718,7 @@ void HNSChede::copyCard(int cliente, int prodotto, QString newHead)
 
 
 }
+
+
 
 

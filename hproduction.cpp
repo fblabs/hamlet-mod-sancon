@@ -140,7 +140,7 @@ void HProduction::init(QString conn, QString userid)
    //  ui->leLotToadd->setVisible(false);
     // ui->cbTipoLotto->setVisible(true);
      ui->pbAddLottoFuoriRicetta->setVisible(false);
-     ui->pushButton_10->setEnabled(false);
+   //  ui->pushButton_10->setEnabled(false);
 
     // ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(ui->lvRicette->model()->rowCount()-1,0));
     // ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,0));
@@ -692,6 +692,7 @@ void HProduction::printProduction(bool actual=false)
               col1=model->index(i,1).data(0).toString();
               col2=model->index(i,2).data(0).toString();
            //   col3=QString::number(model->index(i,3).data(0).toDouble(),'f',3);
+              col3="                                                           ";
 
           }
           else

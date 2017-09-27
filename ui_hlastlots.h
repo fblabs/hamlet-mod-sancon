@@ -48,7 +48,7 @@ public:
     {
         if (HLastLots->objectName().isEmpty())
             HLastLots->setObjectName(QStringLiteral("HLastLots"));
-        HLastLots->resize(277, 268);
+        HLastLots->resize(296, 293);
         verticalLayout = new QVBoxLayout(HLastLots);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
@@ -145,7 +145,7 @@ public:
 
     void retranslateUi(QWidget *HLastLots)
     {
-        HLastLots->setWindowTitle(QApplication::translate("HLastLots", "Aggiungi lotto", 0));
+        HLastLots->setWindowTitle(QApplication::translate("HLastLots", "Aggiungi lotto fuori ricettta", 0));
         label_2->setText(QApplication::translate("HLastLots", "Prodotto:", 0));
         label->setText(QApplication::translate("HLastLots", "Quanti:", 0));
         label_3->setText(QApplication::translate("HLastLots", "Quantit\303\240", 0));

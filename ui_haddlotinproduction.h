@@ -45,7 +45,7 @@ public:
     {
         if (HAddLotInProduction->objectName().isEmpty())
             HAddLotInProduction->setObjectName(QStringLiteral("HAddLotInProduction"));
-        HAddLotInProduction->resize(272, 329);
+        HAddLotInProduction->resize(275, 329);
         verticalLayout = new QVBoxLayout(HAddLotInProduction);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         lbDesc = new QLabel(HAddLotInProduction);
@@ -125,7 +125,7 @@ public:
 
     void retranslateUi(QWidget *HAddLotInProduction)
     {
-        HAddLotInProduction->setWindowTitle(QApplication::translate("HAddLotInProduction", "Form", 0));
+        HAddLotInProduction->setWindowTitle(QApplication::translate("HAddLotInProduction", "Aggiungi componente", 0));
         lbDesc->setText(QApplication::translate("HAddLotInProduction", "TextLabel", 0));
         label->setText(QApplication::translate("HAddLotInProduction", "Quantit\303\240:", 0));
         dsbQt->setSpecialValueText(QString());

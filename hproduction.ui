@@ -446,7 +446,7 @@
        <item>
         <widget class="QPushButton" name="pushButton_10">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="text">
           <string>Stampa</string>

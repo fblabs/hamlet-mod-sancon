@@ -375,7 +375,7 @@ public:
 
         pushButton_10 = new QPushButton(HProduction);
         pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
-        pushButton_10->setEnabled(false);
+        pushButton_10->setEnabled(true);
         pushButton_10->setIcon(icon7);
 
         verticalLayout_3->addWidget(pushButton_10);
