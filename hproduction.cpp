@@ -1463,7 +1463,7 @@ void HProduction::on_pushButton_7_clicked()
 
 
 
-    HLastLots *f=new HLastLots(0,db);
+    HLastLots *f=new HLastLots(0,db,ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toDouble());
    // connect(f,SIGNAL(rowAdded(QList<QStandardItem*> row)),this,SLOT(addLotFuoriRicettaN(QList<QStandardItem*> row)));
     connect (f,SIGNAL(rowAdded(QList<QStandardItem*>)),this,SLOT(addLotFuoriRicettaN(QList<QStandardItem*>)));
     f->show();

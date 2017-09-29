@@ -140,6 +140,7 @@ void HLotti::setupForm()
    // connect(ui->cbProdotti,SIGNAL(currentIndexChanged(QString)),this,SLOT(setFilter()));
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
     connect(det,SIGNAL(activated()),this,SLOT(getDetails()));
+
    // connect(this,SIGNAL(actionCopia),this,SLOT(showContextMenu(QPoint));
 
 }

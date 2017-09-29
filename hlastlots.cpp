@@ -9,11 +9,12 @@
 #include <QSqlError>
 #include <QMessageBox>
 
-HLastLots::HLastLots(QWidget *parent,QSqlDatabase pdb,bool allergene) :
+HLastLots::HLastLots(QWidget *parent, QSqlDatabase pdb, double qrecipe) :
     QWidget(parent),
     ui(new Ui::HLastLots)
 {
     ui->setupUi(this);
+    ui->leQua->setText(QString::number(qrecipe,'f',3));
 
     db=pdb;
 
@@ -48,7 +49,7 @@ HLastLots::HLastLots(QWidget *parent,QSqlDatabase pdb,bool allergene) :
     lastLots();
 
     connect(ui->cbProducts,SIGNAL(currentIndexChanged(int)),this,SLOT(lastLots()));
-    connect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(lastLots()));
+    connect(ui->cbLastLots,SIGNAL(currentIndexChanged(int)),this,SLOT(lastLots()));
 }
 
 void HLastLots::lastLots()
@@ -56,22 +57,23 @@ void HLastLots::lastLots()
 
 
         int prd =ui->cbProducts->model()->index(ui->cbProducts->currentIndex(),0).data(0).toInt();
+        int quanti=ui->cbLastLots->currentData().toInt();
 
-        qDebug()<<"lastLots"<<prd;
+        qDebug()<<"quanti"<<quanti;
 
 
         QSqlQuery qlots(db);
         QSqlQueryModel *qmLots=new QSqlQueryModel(0);
 
-        int quanti=ui->cbLastLots->currentData().toInt();
+
 
         QString sql="select lotdef.ID,lotdef.lot,lotdef.prodotto,prodotti.descrizione,prodotti.allergenico from lotdef,prodotti where lotdef.prodotto=:prd and prodotti.ID=lotdef.prodotto and lotdef.attivo>0 ORDER by data DESC LIMIT :quanti";
         qlots.prepare(sql);
         qlots.bindValue(":prd",prd);
-        qlots.bindValue(":quanti",QVariant(quanti));
+        qlots.bindValue(":quanti",quanti);
         qlots.exec();
 
-        qDebug()<<qlots.lastError().text();
+        qDebug()<<qlots.lastError().text()<<"quanti"<<quanti;
         qmLots->setQuery(qlots);
 
 

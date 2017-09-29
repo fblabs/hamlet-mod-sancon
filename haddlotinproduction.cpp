@@ -24,6 +24,7 @@ HAddLotInProduction::HAddLotInProduction(QWidget *parent, HDataToPass *datapass,
     ui->lbDesc->setText((data->description));
 
 
+
     ui->cbLastLots->addItem("Tutti",100000);
     ui->cbLastLots->addItem("Ultimi 5 lotti",5);
     ui->cbLastLots->addItem("Ultimi 10 lotti",10);

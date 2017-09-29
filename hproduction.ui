@@ -268,7 +268,7 @@
           </font>
          </property>
          <property name="editTriggers">
-          <set>QAbstractItemView::DoubleClicked</set>
+          <set>QAbstractItemView::EditKeyPressed</set>
          </property>
          <property name="selectionMode">
           <enum>QAbstractItemView::SingleSelection</enum>
