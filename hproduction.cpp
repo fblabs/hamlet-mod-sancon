@@ -1045,7 +1045,7 @@ void HProduction::addLotFuoriRicettaN(QList<QStandardItem*> row)
 
 void HProduction::on_pushButton_5_clicked()
 {
-    ui->tableView->setEnabled(true);
+    //ui->tableView->setEnabled(true);
     ui->lvRicette->setEnabled(false);
 
     QString nlot=getNewLot(ui->lvRicette->model()->index(ui->lvRicette->currentIndex().row(),1).data(0).toInt());
@@ -1068,6 +1068,9 @@ void HProduction::on_pushButton_5_clicked()
    // getRecipe()
 
     updateTotals();
+
+    //QModelIndex tindex=ui->tableView->selectionModel()->currentIndex();
+    connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
 
 
 
@@ -1113,6 +1116,7 @@ void HProduction::on_pushButton_6_clicked()
     ui->tableView->setModel(0);
     getRecipe();
     ui->pushButton_10->setEnabled(false);
+    disconnect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
 
 }
 
@@ -1687,9 +1691,10 @@ void HProduction::on_pushButton_11_clicked()
 
 
 
-void HProduction::on_tableView_doubleClicked(const QModelIndex &index)
-{
 
+
+void HProduction::addLot(QModelIndex index)
+{
     HDataToPass *data=new HDataToPass(0);
 
 
@@ -1710,13 +1715,8 @@ void HProduction::on_tableView_doubleClicked(const QModelIndex &index)
 
 
    f->show();
-
 }
 
 
 
-void HProduction::on_tableView_clicked(const QModelIndex &index)
-{
-
-}
 

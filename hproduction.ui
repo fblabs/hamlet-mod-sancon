@@ -260,12 +260,15 @@
        <item>
         <widget class="QTableView" name="tableView">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="font">
           <font>
            <pointsize>10</pointsize>
           </font>
+         </property>
+         <property name="autoScroll">
+          <bool>false</bool>
          </property>
          <property name="editTriggers">
           <set>QAbstractItemView::EditKeyPressed</set>

@@ -47,6 +47,7 @@ private:
     int lottomodifica;
 
 private slots:
+    void addLot(QModelIndex index);
     void getNewRow(QList<QStandardItem *> list);
     void getClients();
     void getSubclients();
@@ -104,10 +105,11 @@ private slots:
 
   //  void on_leQuaRic_textChanged(const QString &arg1);
 
-    void on_tableView_doubleClicked(const QModelIndex &index);
+  //  void on_tableView_doubleClicked(const QModelIndex &index);
 
 
-    void on_tableView_clicked(const QModelIndex &index);
+  //  void on_tableView_clicked(const QModelIndex &index);
+
 
 };
 

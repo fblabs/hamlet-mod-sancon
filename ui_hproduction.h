@@ -251,8 +251,9 @@ public:
 
         tableView = new QTableView(HProduction);
         tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setEnabled(false);
+        tableView->setEnabled(true);
         tableView->setFont(font1);
+        tableView->setAutoScroll(false);
         tableView->setEditTriggers(QAbstractItemView::EditKeyPressed);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
