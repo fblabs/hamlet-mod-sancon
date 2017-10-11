@@ -16,6 +16,7 @@
 #include "hrecipeaddrow.h"
 #include "hclientiassociati.h"
 #include <QShortcut>
+#include <QDebug>
 
 HModRicette::HModRicette(QWidget *parent) :
     QWidget(parent),
@@ -227,6 +228,8 @@ void HModRicette::addRiga(QList<QStandardItem*>list)
   QStandardItemModel* model = static_cast<QStandardItemModel*>(ui->tableView->model());
 
   model->appendRow(list);
+
+  loadRicetta();
 
 
 
@@ -493,7 +496,7 @@ void HModRicette::removeItem()
   //  q.bindValue(":idprodotto",ui->tableView->model()->index(ui->tableView->currentIndex().row(),1).data(0));
     q.bindValue(":idriga",QVariant(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0).data(0)));
     q.exec();
-    //// qDebug()<<q.lastError()<<q.lastQuery()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
+    qDebug()<<q.lastError()<<q.lastQuery()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
     loadRicetta();
 }
 
@@ -638,6 +641,7 @@ void HModRicette::on_pbAddRow_clicked()
     f->init(sConn,ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt());
     f->show();
     connect(f,SIGNAL(rowadded(QList<QStandardItem*>)),this,SLOT(addRiga( QList<QStandardItem*>)));
+
 }
 
 void HModRicette::on_pbDeleteRow_clicked()

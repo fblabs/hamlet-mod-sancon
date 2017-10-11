@@ -7,6 +7,8 @@
 #include <QStandardItem>
 #include <QMessageBox>
 #include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
 
 
 HRecipeAddRow::HRecipeAddRow(QWidget *parent) :
@@ -53,6 +55,7 @@ void HRecipeAddRow::addRecipeRow()
 {
   //  bool ok;
     QList<QStandardItem*> list;
+    double quant=0.0;
     /*
     q.bindValue(":idricetta",ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0));
     q.bindValue(":idprodotto",ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0));
@@ -63,7 +66,15 @@ void HRecipeAddRow::addRecipeRow()
     QStandardItem* ricetta= new QStandardItem(QString::number(idricettatarget));
     QStandardItem* prodotto=new QStandardItem  (QString::number(ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toInt()));
     QStandardItem* descrizione=new QStandardItem(ui->comboBox->currentText());
-    QStandardItem* quantita=new QStandardItem(ui->lineEdit->text());
+    bool ok;
+    QString sQuan=QString::number(ui->lineEdit->text().toDouble(&ok),'f',4);
+    QStandardItem* quantita=new QStandardItem(sQuan);
+    qDebug()<<sQuan;
+    if(!ok)
+    {
+        QMessageBox::warning(0,QApplication::applicationName(),"errore nella quantità",QMessageBox::Ok);
+        return;
+    }
     QString show;
     ui->checkBox->isChecked()? show="1" : show="0";
     QStandardItem* showprod=new QStandardItem(show);
@@ -80,24 +91,29 @@ void HRecipeAddRow::addRecipeRow()
 
   //  emit rowadded(list);
 
-    bool quack;
+
 
     QSqlQuery q(db);
-    QString sql="INSERT INTO righe_ricette`(`ID_ricetta`,`ID_prodotto`,`quantita`,`show_prod`)VALUES(:idricetta,:idprodotto,:qua,:show)";
+    QString sql="INSERT INTO righe_ricette(`ID_ricetta`,`ID_prodotto`,`quantita`,`show_prod`)VALUES(:idricetta,:idprodotto,:qua,:show)";
     //double qua=ui->lineEdit->text().toDouble(&quack);
-    if(!quack)
-    {
-        QMessageBox::warning(this,QApplication::applicationName(),"Errore di formato(quantità)",QMessageBox::Ok);
-        return;
-    }
+
 
     q.prepare(sql);
     q.bindValue(":idricetta",QVariant(idricettatarget));
     q.bindValue(":idprodotto",QVariant(ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toInt()));
-    q.bindValue(":qua",QVariant(ui->lineEdit->text()));
+    q.bindValue(":qua",QVariant(sQuan));
     q.bindValue(":show",QVariant(ui->checkBox->isChecked()));
-    q.exec();
-        emit rowadded(list);
+    if(q.exec())
+    {
+    emit rowadded(list);
+     }
+    else
+    {
+
+            QMessageBox::warning(this,QApplication::applicationName(),q.lastError().text(),QMessageBox::Ok);
+            return;
+
+    }
 
 
 
