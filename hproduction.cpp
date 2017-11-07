@@ -1423,6 +1423,9 @@ void HProduction::on_pushButton_3_clicked()
 {
    if (!modifyLot){
        saveProduction();
+    //   ui->pushButton_11->click();
+       ui->pushButton_6->click();
+       ui->tableView->setEnabled(true);
        ui->pushButton_10->setEnabled(true);
    }
    else
