@@ -1064,6 +1064,7 @@ void HProduction::on_pushButton_5_clicked()
     ui->cbTipoLotto->setEnabled(false);
     ui->checkBox->setEnabled(false);
     ui->cbClienti->setEnabled(false);
+    ui->leQtyTotal->setFocus();
 
    // getRecipe()
 
@@ -1468,9 +1469,10 @@ void HProduction::on_pushButton_7_clicked()
 {
 
 
+    QString product=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data(0).toString();
+    qDebug()<<"PFR:"<<product;
 
-
-    HLastLots *f=new HLastLots(0,db,ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toDouble());
+    HLastLots *f=new HLastLots(0,db,ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toDouble(),product);
    // connect(f,SIGNAL(rowAdded(QList<QStandardItem*> row)),this,SLOT(addLotFuoriRicettaN(QList<QStandardItem*> row)));
     connect (f,SIGNAL(rowAdded(QList<QStandardItem*>)),this,SLOT(addLotFuoriRicettaN(QList<QStandardItem*>)));
     f->show();
@@ -1719,6 +1721,8 @@ void HProduction::addLot(QModelIndex index)
 
    f->show();
 }
+
+
 
 
 

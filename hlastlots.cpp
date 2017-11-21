@@ -9,7 +9,7 @@
 #include <QSqlError>
 #include <QMessageBox>
 
-HLastLots::HLastLots(QWidget *parent, QSqlDatabase pdb, double qrecipe) :
+HLastLots::HLastLots(QWidget *parent, QSqlDatabase pdb, double qrecipe, QString product) :
     QWidget(parent),
     ui(new Ui::HLastLots)
 {
@@ -38,6 +38,8 @@ HLastLots::HLastLots(QWidget *parent, QSqlDatabase pdb, double qrecipe) :
     prodModel->select();
     ui->cbProducts->setModel(prodModel);
     ui->cbProducts->setModelColumn(1);
+    int row=ui->cbProducts->findText(product);
+    ui->cbProducts->setCurrentIndex(row);
     QCompleter *compprods=new QCompleter();
     compprods->setCompletionColumn(1);
     compprods->setModel(prodModel);

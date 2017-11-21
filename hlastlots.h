@@ -16,7 +16,7 @@ class HLastLots : public QWidget
     Q_OBJECT
 
 public:
-    explicit HLastLots(QWidget *parent = 0, QSqlDatabase pdb=QSqlDatabase(), double qrecipe=0.0);
+    explicit HLastLots(QWidget *parent = 0, QSqlDatabase pdb=QSqlDatabase(), double qrecipe=0.0, QString product="");
     ~HLastLots();
 
 private slots:

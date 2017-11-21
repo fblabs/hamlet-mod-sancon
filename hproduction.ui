@@ -193,7 +193,7 @@
            </property>
            <property name="icon">
             <iconset resource="icons.qrc">
-             <normaloff>:/Resources/Flag.PNG</normaloff>:/Resources/Flag.PNG</iconset>
+             <normaloff>:/Resources/Play64.png</normaloff>:/Resources/Play64.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -410,7 +410,11 @@
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QLineEdit" name="leQtyTotal"/>
+          <widget class="QLineEdit" name="leQtyTotal">
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>

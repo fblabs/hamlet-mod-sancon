@@ -210,7 +210,7 @@ public:
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setMinimumSize(QSize(130, 0));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Flag.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/Resources/Play64.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_5->setIcon(icon2);
         pushButton_5->setIconSize(QSize(32, 32));
 
@@ -346,6 +346,7 @@ public:
 
         leQtyTotal = new QLineEdit(HProduction);
         leQtyTotal->setObjectName(QStringLiteral("leQtyTotal"));
+        leQtyTotal->setClearButtonEnabled(true);
 
         gridLayout->addWidget(leQtyTotal, 4, 1, 1, 1);
 
