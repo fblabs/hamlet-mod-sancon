@@ -89,11 +89,13 @@ void HRecipeAddRow::addRecipeRow()
     list.append(showprod);
 
 
-  //  emit rowadded(list);
+    emit rowadded(list);
+
+    close();
 
 
 
-    QSqlQuery q(db);
+  /*  QSqlQuery q(db);
     QString sql="INSERT INTO righe_ricette(`ID_ricetta`,`ID_prodotto`,`quantita`,`show_prod`)VALUES(:idricetta,:idprodotto,:qua,:show)";
     //double qua=ui->lineEdit->text().toDouble(&quack);
 
@@ -113,7 +115,7 @@ void HRecipeAddRow::addRecipeRow()
             QMessageBox::warning(this,QApplication::applicationName(),q.lastError().text(),QMessageBox::Ok);
             return;
 
-    }
+    }*/
 
 
 

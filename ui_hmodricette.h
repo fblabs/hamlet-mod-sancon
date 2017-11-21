@@ -48,6 +48,7 @@ public:
     QLineEdit *leTotal;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
+    QPushButton *pushButton_6;
     QPushButton *pushButton_5;
     QPushButton *pushButton_2;
 
@@ -56,7 +57,7 @@ public:
         if (HModRicette->objectName().isEmpty())
             HModRicette->setObjectName(QStringLiteral("HModRicette"));
         HModRicette->setWindowModality(Qt::NonModal);
-        HModRicette->resize(1248, 700);
+        HModRicette->resize(890, 700);
         HModRicette->setContextMenuPolicy(Qt::CustomContextMenu);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Sheet-Of-Paper.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -175,20 +176,29 @@ public:
 
         horizontalLayout->addWidget(pushButton);
 
+        pushButton_6 = new QPushButton(HModRicette);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_6->setIcon(icon6);
+        pushButton_6->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pushButton_6);
+
         pushButton_5 = new QPushButton(HModRicette);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon6);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon7);
         pushButton_5->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_5);
 
         pushButton_2 = new QPushButton(HModRicette);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon7;
-        icon7.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon7);
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon8);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_2);
@@ -214,6 +224,7 @@ public:
         pbDeleteRow->setText(QApplication::translate("HModRicette", "Rimuovi ingrediente", 0));
         lbQtot->setText(QApplication::translate("HModRicette", "Quantit\303\240 totale:", 0));
         pushButton->setText(QApplication::translate("HModRicette", "Salva", 0));
+        pushButton_6->setText(QApplication::translate("HModRicette", "Annnula", 0));
         pushButton_5->setText(QApplication::translate("HModRicette", "Stampa", 0));
         pushButton_2->setText(QApplication::translate("HModRicette", "Chiudi", 0));
     } // retranslateUi

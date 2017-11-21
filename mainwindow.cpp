@@ -370,7 +370,7 @@ void MainWindow::on_tbRicette_clicked()
    // connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
    // f->SetDB();
 
-    f->showMaximized();
+    f->show();
 }
 
 void MainWindow::on_tbAnag_clicked()

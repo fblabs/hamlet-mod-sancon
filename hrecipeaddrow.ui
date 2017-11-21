@@ -14,7 +14,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Aggiungi ingrediente</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/Resources/Plus.PNG</normaloff>:/Resources/Plus.PNG</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
@@ -31,7 +35,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox"/>
+          <widget class="QComboBox" name="comboBox">
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QCheckBox" name="checkBox">
@@ -90,6 +98,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

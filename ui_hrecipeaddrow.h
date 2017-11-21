@@ -49,6 +49,9 @@ public:
             HRecipeAddRow->setObjectName(QStringLiteral("HRecipeAddRow"));
         HRecipeAddRow->setWindowModality(Qt::WindowModal);
         HRecipeAddRow->resize(332, 166);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        HRecipeAddRow->setWindowIcon(icon);
         verticalLayout_5 = new QVBoxLayout(HRecipeAddRow);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         verticalLayout_4 = new QVBoxLayout();
@@ -64,6 +67,7 @@ public:
 
         comboBox = new QComboBox(HRecipeAddRow);
         comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setEditable(true);
 
         verticalLayout_2->addWidget(comboBox);
 
@@ -128,7 +132,7 @@ public:
 
     void retranslateUi(QWidget *HRecipeAddRow)
     {
-        HRecipeAddRow->setWindowTitle(QApplication::translate("HRecipeAddRow", "Form", 0));
+        HRecipeAddRow->setWindowTitle(QApplication::translate("HRecipeAddRow", "Aggiungi ingrediente", 0));
         label->setText(QApplication::translate("HRecipeAddRow", "Ingrediente:", 0));
         checkBox->setText(QApplication::translate("HRecipeAddRow", "Mostra in produzione", 0));
         label_2->setText(QApplication::translate("HRecipeAddRow", "Quantit\303\240:", 0));

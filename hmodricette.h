@@ -62,6 +62,8 @@ private slots:
 
     void on_leTotal_textChanged(const QString &arg1);
 
+    void on_pushButton_6_clicked();
+
 private:
     Ui::HModRicette *ui;
     bool update;

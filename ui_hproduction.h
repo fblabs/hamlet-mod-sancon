@@ -155,6 +155,7 @@ public:
 
         lvRicette = new QListView(HProduction);
         lvRicette->setObjectName(QStringLiteral("lvRicette"));
+        lvRicette->setMaximumSize(QSize(16777215, 16777215));
         lvRicette->setFont(font);
 
         verticalLayout->addWidget(lvRicette);
