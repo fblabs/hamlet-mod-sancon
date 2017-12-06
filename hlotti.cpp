@@ -13,7 +13,7 @@
 #include "hnuovaoperazione.h"
 #include <QMenu>
 #include <QClipboard>
-#include <hprint.h>
+#include "hprint.h"
 #include <QThread>
 #include "huser.h"
 #include "hpackagesunload.h"

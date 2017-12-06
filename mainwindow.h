@@ -73,6 +73,8 @@ private slots:
 
     void on_pbOldCards_clicked();
 
+    void on_pbExpirations_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *ke);
 

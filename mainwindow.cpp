@@ -39,6 +39,7 @@
 //#include "hschede.h"
 #include "hnschede.h"
 #include "hgraphicprint.h"
+#include  "hexpirations.h"
 
 
 
@@ -154,6 +155,7 @@ void MainWindow::disableUI()
     ui->pbCkeckNotifications->setEnabled(false);
     ui->pbVerifyLabels->setEnabled(false);
     ui->pbOldCards->setEnabled(false);
+    ui->pbExpirations->setEnabled(false);
 }
 
 void MainWindow::enableButtonsForRole()
@@ -203,6 +205,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbNotifiche->setEnabled(false);
         ui->pbContacts->setEnabled(false);
         ui->pbCkeckNotifications->setEnabled(true);
+        ui->pbExpirations->setEnabled(true);
 
 
         break;
@@ -236,6 +239,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbContacts->setEnabled(false);
         ui->pbNotifiche->setEnabled(false);
         ui->pbCkeckNotifications->setEnabled(true);
+        ui->pbExpirations->setEnabled(true);
 
 
         break;
@@ -258,6 +262,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbContacts->setEnabled(true);
         ui->pbNotifiche->setEnabled(true);
         ui->pbCkeckNotifications->setEnabled(true);
+        ui->pbExpirations->setEnabled(true);
 
         break;
     case 4://simone
@@ -278,6 +283,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbContacts->setEnabled(false);
         ui->pbNotifiche->setEnabled(false);
         ui->pbCkeckNotifications->setEnabled(true);
+        ui->pbExpirations->setEnabled(true);
 
         break;
      case 5://amministrativo
@@ -303,6 +309,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbContacts->setEnabled(true);
         ui->pbNotifiche->setEnabled(true);
         ui->pbCkeckNotifications->setEnabled(true);
+        ui->pbExpirations->setEnabled(true);
 
         break;
      case 6:
@@ -331,6 +338,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbNotifiche->setEnabled(false);
         ui->pbNotifiche->setEnabled(false);
         ui->pbCkeckNotifications->setEnabled(false);
+        ui->pbExpirations->setEnabled(true);
 
 
 
@@ -621,4 +629,10 @@ void MainWindow::on_pbOldCards_clicked()
      HSchedeClienti *f = new HSchedeClienti();
      f->init(sConn,user);
      f->showMaximized();
+}
+
+void MainWindow::on_pbExpirations_clicked()
+{
+    HExpirations *f = new HExpirations(db,user);
+    f->show();
 }

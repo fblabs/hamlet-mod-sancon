@@ -17,6 +17,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
@@ -36,6 +37,7 @@ public:
     QSpinBox *sbW;
     QLabel *label_2;
     QSpinBox *sbH;
+    QSpacerItem *horizontalSpacer;
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbant;
@@ -110,6 +112,10 @@ public:
         sbH->setValue(100);
 
         horizontalLayout_2->addWidget(sbH);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer);
 
 
         verticalLayout->addLayout(horizontalLayout_2);

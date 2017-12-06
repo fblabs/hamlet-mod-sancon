@@ -52,6 +52,7 @@ INPUT(
 ./debug/haddlotinproduction.o
 ./debug/hdatatopass.o
 ./debug/hlastlots.o
+./debug/hexpirations.o
 ./debug/qrc_icons.o
 ./debug/moc_mainwindow.o
 ./debug/moc_huser.o
@@ -104,4 +105,5 @@ INPUT(
 ./debug/moc_haddlotinproduction.o
 ./debug/moc_hdatatopass.o
 ./debug/moc_hlastlots.o
+./debug/moc_hexpirations.o
 );
