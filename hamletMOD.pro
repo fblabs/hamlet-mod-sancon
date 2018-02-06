@@ -65,7 +65,8 @@ SOURCES += main.cpp\
     haddlotinproduction.cpp \
     hdatatopass.cpp \
     hlastlots.cpp \
-    hexpirations.cpp
+    hexpirations.cpp \
+    hcalcost.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -119,7 +120,8 @@ HEADERS  += mainwindow.h \
     haddlotinproduction.h \
     hdatatopass.h \
     hlastlots.h \
-    hexpirations.h
+    hexpirations.h \
+    hcalcost.h
 
 
 
@@ -171,7 +173,8 @@ FORMS    += mainwindow.ui \
     nouse.ui \
     haddlotinproduction.ui \
     hlastlots.ui \
-    hexpirations.ui
+    hexpirations.ui \
+    hcalcost.ui
 
 RESOURCES += \
     icons.qrc

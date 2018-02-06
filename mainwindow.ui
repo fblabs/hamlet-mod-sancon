@@ -432,7 +432,7 @@
    <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>Hamlet MOD 2.0</string>
+   <string>Hamlet MOD 2.1</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
@@ -539,7 +539,7 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Hamlet Mod 2.0&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Versione: &lt;/span&gt;&lt;span style=&quot; font-size:16pt; font-weight:600; color:#060606;&quot;&gt;2.0.7&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza:LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.5.1 - MinGW 4.9.2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;© FBLABS 2015-2017&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://www.github.com/fblabs/hamlet-mod-sancon&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Sorgenti (github)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Hamlet Mod 2.1&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Versione: &lt;/span&gt;&lt;span style=&quot; font-size:16pt; font-weight:600; color:#060606;&quot;&gt;2.1.0&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza:LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.5.1 - MinGW 4.9.2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;© FBLABS 2015-2017&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://www.github.com/fblabs/hamlet-mod-sancon&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Sorgenti (github)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -669,7 +669,7 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>80</width>
+            <width>140</width>
             <height>0</height>
            </size>
           </property>
@@ -1352,6 +1352,29 @@
             <width>32</width>
             <height>32</height>
            </size>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="8">
+         <widget class="QPushButton" name="pbCalcoloCosti">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Calcolo costi (F10)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Cash-register-icon.png</normaloff>:/Resources/Cash-register-icon.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="shortcut">
+           <string>F10</string>
           </property>
          </widget>
         </item>

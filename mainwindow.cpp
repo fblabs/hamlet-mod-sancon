@@ -40,6 +40,7 @@
 #include "hnschede.h"
 #include "hgraphicprint.h"
 #include  "hexpirations.h"
+#include "hcalcost.h"
 
 
 
@@ -156,6 +157,7 @@ void MainWindow::disableUI()
     ui->pbVerifyLabels->setEnabled(false);
     ui->pbOldCards->setEnabled(false);
     ui->pbExpirations->setEnabled(false);
+    ui->pbCalcoloCosti->setEnabled(false);
 }
 
 void MainWindow::enableButtonsForRole()
@@ -310,6 +312,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbNotifiche->setEnabled(true);
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
+        ui->pbCalcoloCosti->setEnabled(true);
 
         break;
      case 6:
@@ -634,5 +637,11 @@ void MainWindow::on_pbOldCards_clicked()
 void MainWindow::on_pbExpirations_clicked()
 {
     HExpirations *f = new HExpirations(db,user);
+    f->show();
+}
+
+void MainWindow::on_pbCalcoloCosti_clicked()
+{
+    HCalcost *f= new HCalcost(db,user);
     f->show();
 }

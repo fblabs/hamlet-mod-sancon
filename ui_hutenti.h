@@ -76,7 +76,7 @@ public:
         if (HUtenti->objectName().isEmpty())
             HUtenti->setObjectName(QStringLiteral("HUtenti"));
         HUtenti->setWindowModality(Qt::NonModal);
-        HUtenti->resize(862, 508);
+        HUtenti->resize(862, 544);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/User-Black.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HUtenti->setWindowIcon(icon);
@@ -90,6 +90,7 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         lvUtenti = new QListView(HUtenti);
         lvUtenti->setObjectName(QStringLiteral("lvUtenti"));
+        lvUtenti->setEditTriggers(QAbstractItemView::NoEditTriggers);
         lvUtenti->setSelectionBehavior(QAbstractItemView::SelectRows);
         lvUtenti->setSelectionRectVisible(true);
 

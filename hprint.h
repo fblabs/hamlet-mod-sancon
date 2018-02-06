@@ -24,7 +24,7 @@ public:
     ~HPrint();
 
    void setText(QString text);
-   void append (QString text, bool bold);
+   void append (QString text, bool bold=false);
    void setConnection(QString conn);
    QTextTable *addTable(int rows,int columns);
    QTextTable *writeTableContent(QTextTable *table, int row, int column, QString text);

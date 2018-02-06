@@ -53,6 +53,7 @@ INPUT(
 ./release/hdatatopass.o
 ./release/hlastlots.o
 ./release/hexpirations.o
+./release/hcalcost.o
 ./release/qrc_icons.o
 ./release/moc_mainwindow.o
 ./release/moc_huser.o
@@ -106,4 +107,5 @@ INPUT(
 ./release/moc_hdatatopass.o
 ./release/moc_hlastlots.o
 ./release/moc_hexpirations.o
+./release/moc_hcalcost.o
 );

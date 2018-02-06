@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>862</width>
-    <height>508</height>
+    <height>544</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,6 +29,9 @@
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
           <widget class="QListView" name="lvUtenti">
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
            <property name="selectionBehavior">
             <enum>QAbstractItemView::SelectRows</enum>
            </property>

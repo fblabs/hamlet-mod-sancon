@@ -129,5 +129,6 @@
         <file>Resources/Users64.png</file>
         <file>Resources/User-yellow64.png</file>
         <file>Resources/light-bulb-icon.png</file>
+        <file>Resources/Cash-register-icon.png</file>
     </qresource>
 </RCC>

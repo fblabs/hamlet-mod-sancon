@@ -65,6 +65,7 @@ public:
     QPushButton *pbVerifyLabels;
     QPushButton *pbOldCards;
     QPushButton *pbExpirations;
+    QPushButton *pbCalcoloCosti;
     QLabel *label_6;
 
     void setupUi(QMainWindow *MainWindow)
@@ -247,7 +248,7 @@ public:
         tbAnalisi->setEnabled(false);
         sizePolicy.setHeightForWidth(tbAnalisi->sizePolicy().hasHeightForWidth());
         tbAnalisi->setSizePolicy(sizePolicy);
-        tbAnalisi->setMinimumSize(QSize(80, 0));
+        tbAnalisi->setMinimumSize(QSize(140, 0));
         tbAnalisi->setMaximumSize(QSize(120, 16777215));
         tbAnalisi->setAutoFillBackground(false);
         QIcon icon3;
@@ -512,6 +513,16 @@ public:
 
         gridLayout->addWidget(pbExpirations, 9, 2, 1, 1);
 
+        pbCalcoloCosti = new QPushButton(centralWidget);
+        pbCalcoloCosti->setObjectName(QStringLiteral("pbCalcoloCosti"));
+        pbCalcoloCosti->setEnabled(false);
+        QIcon icon23;
+        icon23.addFile(QStringLiteral(":/Resources/Cash-register-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbCalcoloCosti->setIcon(icon23);
+        pbCalcoloCosti->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(pbCalcoloCosti, 3, 8, 1, 1);
+
 
         verticalLayout_4->addLayout(gridLayout);
 
@@ -535,11 +546,11 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 2.0", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 2.1", 0));
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.0</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: </span><span style=\" font-size:16pt; font-weight:600; color:#060606;\">2.0.7</span><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2017</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti (github)</span></a></p></body></html>", 0));
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.1</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: </span><span style=\" font-size:16pt; font-weight:600; color:#060606;\">2.1.0</span><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2017</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti (github)</span></a></p></body></html>", 0));
         pbPackages->setText(QApplication::translate("MainWindow", "Packages (F9)", 0));
         pbPackages->setShortcut(QApplication::translate("MainWindow", "F9", 0));
         tbLotti->setText(QApplication::translate("MainWindow", "Lotti (F5)", 0));
@@ -576,6 +587,8 @@ public:
         pbVerifyLabels->setText(QApplication::translate("MainWindow", "Verifica etichette", 0));
         pbOldCards->setText(QApplication::translate("MainWindow", "Schede (legacy)", 0));
         pbExpirations->setText(QApplication::translate("MainWindow", "Scadenze", 0));
+        pbCalcoloCosti->setText(QApplication::translate("MainWindow", "Calcolo costi (F10)", 0));
+        pbCalcoloCosti->setShortcut(QApplication::translate("MainWindow", "F10", 0));
         label_6->setText(QString());
     } // retranslateUi
 

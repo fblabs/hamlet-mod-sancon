@@ -105,6 +105,7 @@ public:
 
         tvProdotti = new QTableView(HProdottiNew);
         tvProdotti->setObjectName(QStringLiteral("tvProdotti"));
+        tvProdotti->setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked);
         tvProdotti->setAlternatingRowColors(true);
         tvProdotti->setSelectionMode(QAbstractItemView::SingleSelection);
         tvProdotti->setSelectionBehavior(QAbstractItemView::SelectRows);
