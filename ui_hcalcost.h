@@ -50,10 +50,10 @@ public:
     QLineEdit *leCostoProdotto;
     QLabel *label_11;
     QLineEdit *leDaprodurre;
+    QLabel *label_16;
+    QLineEdit *leCostoFisso;
     QLabel *label_12;
     QLineEdit *leCostoProduzione;
-    QLineEdit *leCostoFisso;
-    QLabel *label_16;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_3;
     QGridLayout *gridLayout;
@@ -188,25 +188,26 @@ public:
 
         formLayout->setWidget(3, QFormLayout::FieldRole, leDaprodurre);
 
-        label_12 = new QLabel(HCalcost);
-        label_12->setObjectName(QStringLiteral("label_12"));
+        label_16 = new QLabel(HCalcost);
+        label_16->setObjectName(QStringLiteral("label_16"));
 
-        formLayout->setWidget(6, QFormLayout::LabelRole, label_12);
-
-        leCostoProduzione = new QLineEdit(HCalcost);
-        leCostoProduzione->setObjectName(QStringLiteral("leCostoProduzione"));
-
-        formLayout->setWidget(6, QFormLayout::FieldRole, leCostoProduzione);
+        formLayout->setWidget(6, QFormLayout::LabelRole, label_16);
 
         leCostoFisso = new QLineEdit(HCalcost);
         leCostoFisso->setObjectName(QStringLiteral("leCostoFisso"));
 
-        formLayout->setWidget(4, QFormLayout::FieldRole, leCostoFisso);
+        formLayout->setWidget(6, QFormLayout::FieldRole, leCostoFisso);
 
-        label_16 = new QLabel(HCalcost);
-        label_16->setObjectName(QStringLiteral("label_16"));
+        label_12 = new QLabel(HCalcost);
+        label_12->setObjectName(QStringLiteral("label_12"));
 
-        formLayout->setWidget(4, QFormLayout::LabelRole, label_16);
+        formLayout->setWidget(4, QFormLayout::LabelRole, label_12);
+
+        leCostoProduzione = new QLineEdit(HCalcost);
+        leCostoProduzione->setObjectName(QStringLiteral("leCostoProduzione"));
+        leCostoProduzione->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+
+        formLayout->setWidget(4, QFormLayout::FieldRole, leCostoProduzione);
 
 
         verticalLayout_3->addLayout(formLayout);
@@ -379,8 +380,8 @@ public:
         label_10->setText(QApplication::translate("HCalcost", "Quantit\303\240 ricetta", 0));
         label_2->setText(QApplication::translate("HCalcost", "Costo Ricetta", 0));
         label_11->setText(QApplication::translate("HCalcost", "Da produrre:", 0));
-        label_12->setText(QApplication::translate("HCalcost", "Costo prodotto", 0));
         label_16->setText(QApplication::translate("HCalcost", "Costo fisso", 0));
+        label_12->setText(QApplication::translate("HCalcost", "Costo prodotto", 0));
         label_3->setText(QApplication::translate("HCalcost", "Costo confezionamento (vasi - tappi)", 0));
         label_7->setText(QApplication::translate("HCalcost", "Costo vasi", 0));
         label_5->setText(QApplication::translate("HCalcost", "Tappi:", 0));

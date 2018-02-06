@@ -28,7 +28,6 @@ private:
     QSqlQueryModel *cmod;
     QSqlQueryModel *ricmod;
 private slots:
-   void initialize();
    void getClients();
    void getProducts();
    void getRecipe();

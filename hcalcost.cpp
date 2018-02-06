@@ -51,12 +51,7 @@ void HCalcost::getClients()
     completer->setModel(clientsmod);
 }
 
-void HCalcost::initialize()
-{
 
-
-
-}
 
 void HCalcost::getProducts()
 {
@@ -66,7 +61,7 @@ void HCalcost::getProducts()
    q.prepare(sql);
    q.bindValue(":idc",idcliente);
    q.exec();
-   QMessageBox::information(this,"TEST",q.lastQuery()+"  " +q.lastError().text(),QMessageBox::Ok);
+
    cmod= new QSqlQueryModel();
    cmod->setQuery(q);
    ui->lvProdotti->setModel(cmod);
