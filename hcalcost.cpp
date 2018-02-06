@@ -62,11 +62,11 @@ void HCalcost::getProducts()
 {
    int idcliente=ui->cbClients->model()->index(ui->cbClients->currentIndex(),0).data(0).toInt();
    QSqlQuery q(db);
-   QString sql="select prodotti.ID,prodotti.descrizione from prodotti,ricette,associazioni WHERE prodotti.ID=ricette.ID_prodotto AND ricette.ID in (SELECT associazioni.ID_ricetta WHERE associazioni.ID_cliente=:idc)";
+   QString sql="select prodotti.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto AND ricette.ID IN (SELECT associazioni.ID_ricetta FROM associazioni WHERE associazioni.ID_cliente=:idc)";
    q.prepare(sql);
    q.bindValue(":idc",idcliente);
    q.exec();
-   qDebug()<<idcliente<<q.lastError().text();
+   QMessageBox::information(this,"TEST",q.lastQuery()+"  " +q.lastError().text(),QMessageBox::Ok);
    cmod= new QSqlQueryModel();
    cmod->setQuery(q);
    ui->lvProdotti->setModel(cmod);
