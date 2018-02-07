@@ -14,7 +14,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -40,38 +39,35 @@ public:
     QListView *lvProdotti;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_15;
-    QVBoxLayout *verticalLayout_3;
     QTableView *tvComponenti;
+    QVBoxLayout *verticalLayout_2;
     QLabel *label_14;
-    QFormLayout *formLayout;
+    QGridLayout *gridLayout_2;
     QLabel *label_10;
     QLineEdit *leQuantitaProdotto;
     QLabel *label_2;
     QLineEdit *leCostoProdotto;
     QLabel *label_11;
     QLineEdit *leDaprodurre;
-    QLabel *label_16;
-    QLineEdit *leCostoFisso;
     QLabel *label_12;
     QLineEdit *leCostoProduzione;
-    QVBoxLayout *verticalLayout_2;
+    QLabel *label_16;
+    QLineEdit *leCostoFisso;
+    QVBoxLayout *verticalLayout_3;
     QLabel *label_3;
     QGridLayout *gridLayout;
     QLabel *label_7;
-    QLabel *label_5;
     QComboBox *cbTappi;
     QLineEdit *leQtTappi;
     QLabel *label_8;
-    QLineEdit *leCostoTappi;
     QLabel *label_6;
-    QComboBox *cbCartoni;
-    QLineEdit *leQtCartoni;
-    QLabel *label_9;
-    QLineEdit *leCostoCartoni;
-    QLineEdit *leCostoVasi;
-    QLabel *label_4;
     QComboBox *cbVasi;
     QLineEdit *leQtVasi;
+    QLineEdit *leCostoCartoni;
+    QLabel *label_9;
+    QLineEdit *leCostoVasi;
+    QLineEdit *leCostoTappi;
+    QLineEdit *leCostoEtichette;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_13;
     QLineEdit *leCostoTotale;
@@ -126,11 +122,13 @@ public:
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         label_15 = new QLabel(HCalcost);
         label_15->setObjectName(QStringLiteral("label_15"));
+        QFont font;
+        font.setBold(true);
+        font.setWeight(75);
+        label_15->setFont(font);
 
         verticalLayout_4->addWidget(label_15);
 
-        verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         tvComponenti = new QTableView(HCalcost);
         tvComponenti->setObjectName(QStringLiteral("tvComponenti"));
         tvComponenti->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -141,99 +139,93 @@ public:
         tvComponenti->verticalHeader()->setVisible(false);
         tvComponenti->verticalHeader()->setStretchLastSection(false);
 
-        verticalLayout_3->addWidget(tvComponenti);
+        verticalLayout_4->addWidget(tvComponenti);
 
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         label_14 = new QLabel(HCalcost);
         label_14->setObjectName(QStringLiteral("label_14"));
-        QFont font;
-        font.setBold(true);
-        font.setWeight(75);
         label_14->setFont(font);
 
-        verticalLayout_3->addWidget(label_14);
+        verticalLayout_2->addWidget(label_14);
 
-        formLayout = new QFormLayout();
-        formLayout->setObjectName(QStringLiteral("formLayout"));
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         label_10 = new QLabel(HCalcost);
         label_10->setObjectName(QStringLiteral("label_10"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label_10);
+        gridLayout_2->addWidget(label_10, 0, 0, 1, 1);
 
         leQuantitaProdotto = new QLineEdit(HCalcost);
         leQuantitaProdotto->setObjectName(QStringLiteral("leQuantitaProdotto"));
         leQuantitaProdotto->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
         leQuantitaProdotto->setReadOnly(true);
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, leQuantitaProdotto);
+        gridLayout_2->addWidget(leQuantitaProdotto, 0, 1, 1, 1);
 
         label_2 = new QLabel(HCalcost);
         label_2->setObjectName(QStringLiteral("label_2"));
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
+        gridLayout_2->addWidget(label_2, 1, 0, 1, 1);
 
         leCostoProdotto = new QLineEdit(HCalcost);
         leCostoProdotto->setObjectName(QStringLiteral("leCostoProdotto"));
         leCostoProdotto->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
         leCostoProdotto->setReadOnly(true);
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, leCostoProdotto);
+        gridLayout_2->addWidget(leCostoProdotto, 1, 1, 1, 1);
 
         label_11 = new QLabel(HCalcost);
         label_11->setObjectName(QStringLiteral("label_11"));
 
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_11);
+        gridLayout_2->addWidget(label_11, 2, 0, 1, 1);
 
         leDaprodurre = new QLineEdit(HCalcost);
         leDaprodurre->setObjectName(QStringLiteral("leDaprodurre"));
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, leDaprodurre);
-
-        label_16 = new QLabel(HCalcost);
-        label_16->setObjectName(QStringLiteral("label_16"));
-
-        formLayout->setWidget(6, QFormLayout::LabelRole, label_16);
-
-        leCostoFisso = new QLineEdit(HCalcost);
-        leCostoFisso->setObjectName(QStringLiteral("leCostoFisso"));
-
-        formLayout->setWidget(6, QFormLayout::FieldRole, leCostoFisso);
+        gridLayout_2->addWidget(leDaprodurre, 2, 1, 1, 1);
 
         label_12 = new QLabel(HCalcost);
         label_12->setObjectName(QStringLiteral("label_12"));
 
-        formLayout->setWidget(4, QFormLayout::LabelRole, label_12);
+        gridLayout_2->addWidget(label_12, 3, 0, 1, 1);
 
         leCostoProduzione = new QLineEdit(HCalcost);
         leCostoProduzione->setObjectName(QStringLiteral("leCostoProduzione"));
         leCostoProduzione->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
 
-        formLayout->setWidget(4, QFormLayout::FieldRole, leCostoProduzione);
+        gridLayout_2->addWidget(leCostoProduzione, 3, 1, 1, 1);
+
+        label_16 = new QLabel(HCalcost);
+        label_16->setObjectName(QStringLiteral("label_16"));
+
+        gridLayout_2->addWidget(label_16, 4, 0, 1, 1);
+
+        leCostoFisso = new QLineEdit(HCalcost);
+        leCostoFisso->setObjectName(QStringLiteral("leCostoFisso"));
+
+        gridLayout_2->addWidget(leCostoFisso, 4, 1, 1, 1);
 
 
-        verticalLayout_3->addLayout(formLayout);
+        verticalLayout_2->addLayout(gridLayout_2);
 
 
-        verticalLayout_4->addLayout(verticalLayout_3);
+        verticalLayout_4->addLayout(verticalLayout_2);
 
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         label_3 = new QLabel(HCalcost);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setFont(font);
 
-        verticalLayout_2->addWidget(label_3);
+        verticalLayout_3->addWidget(label_3);
 
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         label_7 = new QLabel(HCalcost);
         label_7->setObjectName(QStringLiteral("label_7"));
 
-        gridLayout->addWidget(label_7, 0, 3, 1, 1);
-
-        label_5 = new QLabel(HCalcost);
-        label_5->setObjectName(QStringLiteral("label_5"));
-
-        gridLayout->addWidget(label_5, 1, 0, 1, 1);
+        gridLayout->addWidget(label_7, 0, 0, 1, 1);
 
         cbTappi = new QComboBox(HCalcost);
         cbTappi->setObjectName(QStringLiteral("cbTappi"));
@@ -248,47 +240,12 @@ public:
         label_8 = new QLabel(HCalcost);
         label_8->setObjectName(QStringLiteral("label_8"));
 
-        gridLayout->addWidget(label_8, 1, 3, 1, 1);
-
-        leCostoTappi = new QLineEdit(HCalcost);
-        leCostoTappi->setObjectName(QStringLiteral("leCostoTappi"));
-
-        gridLayout->addWidget(leCostoTappi, 1, 4, 1, 1);
+        gridLayout->addWidget(label_8, 1, 0, 1, 1);
 
         label_6 = new QLabel(HCalcost);
         label_6->setObjectName(QStringLiteral("label_6"));
 
         gridLayout->addWidget(label_6, 2, 0, 1, 1);
-
-        cbCartoni = new QComboBox(HCalcost);
-        cbCartoni->setObjectName(QStringLiteral("cbCartoni"));
-
-        gridLayout->addWidget(cbCartoni, 2, 1, 1, 1);
-
-        leQtCartoni = new QLineEdit(HCalcost);
-        leQtCartoni->setObjectName(QStringLiteral("leQtCartoni"));
-
-        gridLayout->addWidget(leQtCartoni, 2, 2, 1, 1);
-
-        label_9 = new QLabel(HCalcost);
-        label_9->setObjectName(QStringLiteral("label_9"));
-
-        gridLayout->addWidget(label_9, 2, 3, 1, 1);
-
-        leCostoCartoni = new QLineEdit(HCalcost);
-        leCostoCartoni->setObjectName(QStringLiteral("leCostoCartoni"));
-
-        gridLayout->addWidget(leCostoCartoni, 2, 4, 1, 1);
-
-        leCostoVasi = new QLineEdit(HCalcost);
-        leCostoVasi->setObjectName(QStringLiteral("leCostoVasi"));
-
-        gridLayout->addWidget(leCostoVasi, 0, 4, 1, 1);
-
-        label_4 = new QLabel(HCalcost);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        gridLayout->addWidget(label_4, 0, 0, 1, 1);
 
         cbVasi = new QComboBox(HCalcost);
         cbVasi->setObjectName(QStringLiteral("cbVasi"));
@@ -300,8 +257,36 @@ public:
 
         gridLayout->addWidget(leQtVasi, 0, 2, 1, 1);
 
+        leCostoCartoni = new QLineEdit(HCalcost);
+        leCostoCartoni->setObjectName(QStringLiteral("leCostoCartoni"));
 
-        verticalLayout_2->addLayout(gridLayout);
+        gridLayout->addWidget(leCostoCartoni, 2, 1, 1, 1);
+
+        label_9 = new QLabel(HCalcost);
+        label_9->setObjectName(QStringLiteral("label_9"));
+
+        gridLayout->addWidget(label_9, 2, 2, 1, 1);
+
+        leCostoVasi = new QLineEdit(HCalcost);
+        leCostoVasi->setObjectName(QStringLiteral("leCostoVasi"));
+
+        gridLayout->addWidget(leCostoVasi, 0, 3, 1, 1);
+
+        leCostoTappi = new QLineEdit(HCalcost);
+        leCostoTappi->setObjectName(QStringLiteral("leCostoTappi"));
+
+        gridLayout->addWidget(leCostoTappi, 1, 3, 1, 1);
+
+        leCostoEtichette = new QLineEdit(HCalcost);
+        leCostoEtichette->setObjectName(QStringLiteral("leCostoEtichette"));
+
+        gridLayout->addWidget(leCostoEtichette, 2, 3, 1, 1);
+
+
+        verticalLayout_3->addLayout(gridLayout);
+
+
+        verticalLayout_4->addLayout(verticalLayout_3);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
@@ -322,10 +307,7 @@ public:
         horizontalLayout_3->addWidget(pbCalcola);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_3);
-
-
-        verticalLayout_4->addLayout(verticalLayout_2);
+        verticalLayout_4->addLayout(horizontalLayout_3);
 
 
         horizontalLayout_4->addLayout(verticalLayout_4);
@@ -377,21 +359,21 @@ public:
         label->setText(QApplication::translate("HCalcost", "Clienti:", 0));
         label_15->setText(QApplication::translate("HCalcost", "Componenti prodotto ", 0));
         label_14->setText(QApplication::translate("HCalcost", "Costo prodotto finito", 0));
-        label_10->setText(QApplication::translate("HCalcost", "Quantit\303\240 ricetta", 0));
-        label_2->setText(QApplication::translate("HCalcost", "Costo Ricetta", 0));
-        label_11->setText(QApplication::translate("HCalcost", "Da produrre:", 0));
-        label_16->setText(QApplication::translate("HCalcost", "Costo fisso", 0));
-        label_12->setText(QApplication::translate("HCalcost", "Costo prodotto", 0));
+        label_10->setText(QApplication::translate("HCalcost", "Quantit\303\240 ricetta (Kg)", 0));
+        label_2->setText(QApplication::translate("HCalcost", "Costo Ricetta (\342\202\254)", 0));
+        label_11->setText(QApplication::translate("HCalcost", "Da produrre: (Kg)", 0));
+        label_12->setText(QApplication::translate("HCalcost", "Costo prodotto (\342\202\254)", 0));
+        label_16->setText(QApplication::translate("HCalcost", "Costo fisso(\342\202\254)", 0));
         label_3->setText(QApplication::translate("HCalcost", "Costo confezionamento (vasi - tappi)", 0));
-        label_7->setText(QApplication::translate("HCalcost", "Costo vasi", 0));
-        label_5->setText(QApplication::translate("HCalcost", "Tappi:", 0));
+        label_7->setText(QApplication::translate("HCalcost", "Costo vasi (\342\202\254)", 0));
+        leQtTappi->setText(QApplication::translate("HCalcost", "1", 0));
         leQtTappi->setPlaceholderText(QApplication::translate("HCalcost", "numero tappi", 0));
-        label_8->setText(QApplication::translate("HCalcost", "Costo tappi", 0));
-        label_6->setText(QApplication::translate("HCalcost", "Cartoni:", 0));
-        leQtCartoni->setPlaceholderText(QApplication::translate("HCalcost", "numero cartoni", 0));
-        label_9->setText(QApplication::translate("HCalcost", "Costo cartoni", 0));
-        label_4->setText(QApplication::translate("HCalcost", "Vasi:", 0));
+        label_8->setText(QApplication::translate("HCalcost", "Costo tappi (\342\202\254)", 0));
+        label_6->setText(QApplication::translate("HCalcost", "Costo Cartoni (\342\202\254)", 0));
+        leQtVasi->setText(QApplication::translate("HCalcost", "1", 0));
         leQtVasi->setPlaceholderText(QApplication::translate("HCalcost", "numero vasi", 0));
+        leCostoCartoni->setPlaceholderText(QString());
+        label_9->setText(QApplication::translate("HCalcost", "Costo Etichette (\342\202\254)", 0));
         label_13->setText(QApplication::translate("HCalcost", "Costo totale produzione", 0));
         pbCalcola->setText(QApplication::translate("HCalcost", "Calcola", 0));
         pbPrint->setText(QApplication::translate("HCalcost", "Stampa", 0));

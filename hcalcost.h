@@ -17,7 +17,7 @@ class HCalcost : public QWidget
     Q_OBJECT
 
 public:
-    explicit HCalcost(QSqlDatabase pdb=QSqlDatabase(),HUser* puser=0,QWidget *parent = 0);
+    explicit HCalcost(QSqlDatabase pdb=QSqlDatabase(), HUser* puser=0, QWidget *parent = 0);
     ~HCalcost();
 
 private:
@@ -27,26 +27,24 @@ private:
     QSqlTableModel *mod;
     QSqlQueryModel *cmod;
     QSqlQueryModel *ricmod;
-private slots:
+   private slots:
    void getClients();
    void getProducts();
    void getRecipe();
    void on_pbClose_clicked();
    void on_lvProdotti_clicked(const QModelIndex &index);
-   void on_lineEdit_returnPressed();
    void on_cbClients_currentIndexChanged(int index);
    void getConfezionamenti(int tipo);
    void on_cbVasi_currentIndexChanged(int index);
    void on_cbTappi_currentIndexChanged(int index);
-   void on_cbCartoni_currentIndexChanged(int index);
    void on_leQtVasi_returnPressed();
    void on_leQtTappi_returnPressed();
-   void on_leQtCartoni_returnPressed();
    void on_leQuantitaProdotto_returnPressed();
    void on_leDaprodurre_returnPressed();
    void on_leCostoTotale_returnPressed();
    void on_pbCalcola_clicked();
    void on_pbPrint_clicked();
+   void on_pushButton_clicked();
 };
 
 #endif // HCALCOST_H

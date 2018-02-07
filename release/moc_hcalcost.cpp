@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HCalcost_t {
-    QByteArrayData data[23];
-    char stringdata0[486];
+    QByteArrayData data[21];
+    char stringdata0[420];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,39 +37,35 @@ QT_MOC_LITERAL(4, 33, 9), // "getRecipe"
 QT_MOC_LITERAL(5, 43, 18), // "on_pbClose_clicked"
 QT_MOC_LITERAL(6, 62, 21), // "on_lvProdotti_clicked"
 QT_MOC_LITERAL(7, 84, 5), // "index"
-QT_MOC_LITERAL(8, 90, 25), // "on_lineEdit_returnPressed"
-QT_MOC_LITERAL(9, 116, 32), // "on_cbClients_currentIndexChanged"
-QT_MOC_LITERAL(10, 149, 18), // "getConfezionamenti"
-QT_MOC_LITERAL(11, 168, 4), // "tipo"
-QT_MOC_LITERAL(12, 173, 29), // "on_cbVasi_currentIndexChanged"
-QT_MOC_LITERAL(13, 203, 30), // "on_cbTappi_currentIndexChanged"
-QT_MOC_LITERAL(14, 234, 32), // "on_cbCartoni_currentIndexChanged"
-QT_MOC_LITERAL(15, 267, 25), // "on_leQtVasi_returnPressed"
-QT_MOC_LITERAL(16, 293, 26), // "on_leQtTappi_returnPressed"
-QT_MOC_LITERAL(17, 320, 28), // "on_leQtCartoni_returnPressed"
-QT_MOC_LITERAL(18, 349, 35), // "on_leQuantitaProdotto_returnP..."
-QT_MOC_LITERAL(19, 385, 29), // "on_leDaprodurre_returnPressed"
-QT_MOC_LITERAL(20, 415, 30), // "on_leCostoTotale_returnPressed"
-QT_MOC_LITERAL(21, 446, 20), // "on_pbCalcola_clicked"
-QT_MOC_LITERAL(22, 467, 18) // "on_pbPrint_clicked"
+QT_MOC_LITERAL(8, 90, 32), // "on_cbClients_currentIndexChanged"
+QT_MOC_LITERAL(9, 123, 18), // "getConfezionamenti"
+QT_MOC_LITERAL(10, 142, 4), // "tipo"
+QT_MOC_LITERAL(11, 147, 29), // "on_cbVasi_currentIndexChanged"
+QT_MOC_LITERAL(12, 177, 30), // "on_cbTappi_currentIndexChanged"
+QT_MOC_LITERAL(13, 208, 25), // "on_leQtVasi_returnPressed"
+QT_MOC_LITERAL(14, 234, 26), // "on_leQtTappi_returnPressed"
+QT_MOC_LITERAL(15, 261, 35), // "on_leQuantitaProdotto_returnP..."
+QT_MOC_LITERAL(16, 297, 29), // "on_leDaprodurre_returnPressed"
+QT_MOC_LITERAL(17, 327, 30), // "on_leCostoTotale_returnPressed"
+QT_MOC_LITERAL(18, 358, 20), // "on_pbCalcola_clicked"
+QT_MOC_LITERAL(19, 379, 18), // "on_pbPrint_clicked"
+QT_MOC_LITERAL(20, 398, 21) // "on_pushButton_clicked"
 
     },
     "HCalcost\0getClients\0\0getProducts\0"
     "getRecipe\0on_pbClose_clicked\0"
     "on_lvProdotti_clicked\0index\0"
-    "on_lineEdit_returnPressed\0"
     "on_cbClients_currentIndexChanged\0"
     "getConfezionamenti\0tipo\0"
     "on_cbVasi_currentIndexChanged\0"
     "on_cbTappi_currentIndexChanged\0"
-    "on_cbCartoni_currentIndexChanged\0"
     "on_leQtVasi_returnPressed\0"
     "on_leQtTappi_returnPressed\0"
-    "on_leQtCartoni_returnPressed\0"
     "on_leQuantitaProdotto_returnPressed\0"
     "on_leDaprodurre_returnPressed\0"
     "on_leCostoTotale_returnPressed\0"
-    "on_pbCalcola_clicked\0on_pbPrint_clicked"
+    "on_pbCalcola_clicked\0on_pbPrint_clicked\0"
+    "on_pushButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -79,7 +75,7 @@ static const uint qt_meta_data_HCalcost[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      19,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -87,25 +83,23 @@ static const uint qt_meta_data_HCalcost[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  109,    2, 0x08 /* Private */,
-       3,    0,  110,    2, 0x08 /* Private */,
-       4,    0,  111,    2, 0x08 /* Private */,
-       5,    0,  112,    2, 0x08 /* Private */,
-       6,    1,  113,    2, 0x08 /* Private */,
-       8,    0,  116,    2, 0x08 /* Private */,
-       9,    1,  117,    2, 0x08 /* Private */,
-      10,    1,  120,    2, 0x08 /* Private */,
-      12,    1,  123,    2, 0x08 /* Private */,
-      13,    1,  126,    2, 0x08 /* Private */,
-      14,    1,  129,    2, 0x08 /* Private */,
-      15,    0,  132,    2, 0x08 /* Private */,
-      16,    0,  133,    2, 0x08 /* Private */,
-      17,    0,  134,    2, 0x08 /* Private */,
-      18,    0,  135,    2, 0x08 /* Private */,
-      19,    0,  136,    2, 0x08 /* Private */,
-      20,    0,  137,    2, 0x08 /* Private */,
-      21,    0,  138,    2, 0x08 /* Private */,
-      22,    0,  139,    2, 0x08 /* Private */,
+       1,    0,   99,    2, 0x08 /* Private */,
+       3,    0,  100,    2, 0x08 /* Private */,
+       4,    0,  101,    2, 0x08 /* Private */,
+       5,    0,  102,    2, 0x08 /* Private */,
+       6,    1,  103,    2, 0x08 /* Private */,
+       8,    1,  106,    2, 0x08 /* Private */,
+       9,    1,  109,    2, 0x08 /* Private */,
+      11,    1,  112,    2, 0x08 /* Private */,
+      12,    1,  115,    2, 0x08 /* Private */,
+      13,    0,  118,    2, 0x08 /* Private */,
+      14,    0,  119,    2, 0x08 /* Private */,
+      15,    0,  120,    2, 0x08 /* Private */,
+      16,    0,  121,    2, 0x08 /* Private */,
+      17,    0,  122,    2, 0x08 /* Private */,
+      18,    0,  123,    2, 0x08 /* Private */,
+      19,    0,  124,    2, 0x08 /* Private */,
+      20,    0,  125,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -113,10 +107,8 @@ static const uint qt_meta_data_HCalcost[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QModelIndex,    7,
-    QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    7,
-    QMetaType::Void, QMetaType::Int,   11,
-    QMetaType::Void, QMetaType::Int,    7,
+    QMetaType::Void, QMetaType::Int,   10,
     QMetaType::Void, QMetaType::Int,    7,
     QMetaType::Void, QMetaType::Int,    7,
     QMetaType::Void,
@@ -142,20 +134,18 @@ void HCalcost::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 2: _t->getRecipe(); break;
         case 3: _t->on_pbClose_clicked(); break;
         case 4: _t->on_lvProdotti_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 5: _t->on_lineEdit_returnPressed(); break;
-        case 6: _t->on_cbClients_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 7: _t->getConfezionamenti((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 8: _t->on_cbVasi_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 9: _t->on_cbTappi_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 10: _t->on_cbCartoni_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 11: _t->on_leQtVasi_returnPressed(); break;
-        case 12: _t->on_leQtTappi_returnPressed(); break;
-        case 13: _t->on_leQtCartoni_returnPressed(); break;
-        case 14: _t->on_leQuantitaProdotto_returnPressed(); break;
-        case 15: _t->on_leDaprodurre_returnPressed(); break;
-        case 16: _t->on_leCostoTotale_returnPressed(); break;
-        case 17: _t->on_pbCalcola_clicked(); break;
-        case 18: _t->on_pbPrint_clicked(); break;
+        case 5: _t->on_cbClients_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 6: _t->getConfezionamenti((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 7: _t->on_cbVasi_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 8: _t->on_cbTappi_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 9: _t->on_leQtVasi_returnPressed(); break;
+        case 10: _t->on_leQtTappi_returnPressed(); break;
+        case 11: _t->on_leQuantitaProdotto_returnPressed(); break;
+        case 12: _t->on_leDaprodurre_returnPressed(); break;
+        case 13: _t->on_leCostoTotale_returnPressed(); break;
+        case 14: _t->on_pbCalcola_clicked(); break;
+        case 15: _t->on_pbPrint_clicked(); break;
+        case 16: _t->on_pushButton_clicked(); break;
         default: ;
         }
     }
@@ -186,13 +176,13 @@ int HCalcost::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 19)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 19)
+        if (_id < 17)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 19;
+        _id -= 17;
     }
     return _id;
 }

@@ -20,7 +20,7 @@ class HProdottiNew : public QWidget
 public:
     explicit HProdottiNew(QWidget *parent = 0);
     ~HProdottiNew();
-    void init(QString conn,HUser * curuser);
+    void init(QSqlDatabase pdb=QSqlDatabase(), HUser * curuser=0);
 
 private slots:
     void on_radioButton_toggled(bool checked);

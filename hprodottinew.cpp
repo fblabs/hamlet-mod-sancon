@@ -22,7 +22,7 @@ HProdottiNew::~HProdottiNew()
     delete ui;
 }
 
-void HProdottiNew::init(QString conn, HUser *curuser)
+void HProdottiNew::init(QSqlDatabase pdb, HUser *curuser)
 {
     user=curuser;
 
@@ -31,11 +31,11 @@ void HProdottiNew::init(QString conn, HUser *curuser)
        ui->tvProdotti->setEditTriggers(QAbstractItemView::NoEditTriggers);
     }
 
-    sConn=conn;
+
 
    // setWindowModality(Qt::ApplicationModal);
 
-    db=QSqlDatabase::database(sConn);
+    db=pdb;
 
     tmProdotti=new QSqlRelationalTableModel(0,db);
     tmTipi=new QSqlRelationalTableModel(0,db);

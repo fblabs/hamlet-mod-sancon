@@ -8,6 +8,7 @@
 #include <QDebug>
 #include "huser.h"
 #include <QCompleter>
+#include "hprodottinew.h"
 
 #include <QSqlQueryModel>
 HCalcost::HCalcost(QSqlDatabase pdb, HUser* puser,QWidget *parent) :
@@ -17,6 +18,7 @@ HCalcost::HCalcost(QSqlDatabase pdb, HUser* puser,QWidget *parent) :
     ui->setupUi(this);
     user=puser;
     db=pdb;
+
     getClients();
 
     getProducts();
@@ -113,15 +115,14 @@ void HCalcost::getConfezionamenti(int tipo)
     switch (tipo)
     {
         case 3:
-        cbtarget=ui->cbCartoni;
+         return;
 
-            break;
         case 4:
         cbtarget=ui->cbTappi;
 
-            break;
+           break;
         case 5:
-        cbtarget=ui->cbVasi;
+         cbtarget=ui->cbVasi;
 
     }
 
@@ -157,10 +158,6 @@ void HCalcost::on_lvProdotti_clicked(const QModelIndex &index)
 
 }
 
-void HCalcost::on_lineEdit_returnPressed()
-{
-  //  mod->setFilter("descrizione LIKE '%"+ ui->lineEdit->text()+"%'");
-}
 
 void HCalcost::on_cbClients_currentIndexChanged(int index)
 {
@@ -183,13 +180,6 @@ void HCalcost::on_cbTappi_currentIndexChanged(int index)
     ui->leCostoTappi->setText(price);
 }
 
-void HCalcost::on_cbCartoni_currentIndexChanged(int index)
-{
-    double prezzo = ui->cbCartoni->model()->index(ui->cbCartoni->currentIndex(),2).data(0).toDouble();
-    int n=ui->leQtCartoni->text().toInt();
-    QString price=QString::number(prezzo*n,'f',2);
-    ui->leCostoCartoni->setText(price);
-}
 
 void HCalcost::on_leQtVasi_returnPressed()
 {
@@ -207,13 +197,13 @@ void HCalcost::on_leQtTappi_returnPressed()
     ui->leCostoTappi->setText(price);
 }
 
-void HCalcost::on_leQtCartoni_returnPressed()
+/*void HCalcost::on_leQtCartoni_returnPressed()
 {
     double prezzo = ui->cbCartoni->model()->index(ui->cbCartoni->currentIndex(),2).data(0).toDouble();
     int n=ui->leQtCartoni->text().toInt();
     QString price=QString::number(prezzo*n,'f',2);
     ui->leCostoCartoni->setText(price);
-}
+}*/
 
 
 
@@ -256,15 +246,17 @@ void HCalcost::on_pbCalcola_clicked()
     double costovasi=0.0;
     double costotappi=0.0;
     double costocartoni=0.0;
+    double costoetichette=0.0;
     double costofisso=0.0;
 
     costoprodotto=ui->leCostoProduzione->text().toDouble();
     costovasi=ui->leCostoVasi->text().toDouble();
     costotappi=ui->leCostoTappi->text().toDouble();
     costocartoni=ui->leCostoCartoni->text().toDouble();
+    costoetichette=ui->leCostoEtichette->text().toDouble();
     costofisso=ui->leCostoFisso->text().toDouble();
 
-    costototale=costoprodotto + costovasi + costotappi + costocartoni +costofisso;
+    costototale=costoprodotto + costovasi + costotappi + costocartoni +costoetichette +costofisso;
 
     ui->leCostoTotale->setText(QString::number(costototale,'f',2));
 
@@ -278,8 +270,25 @@ void HCalcost::on_pbPrint_clicked()
     f->toggleImageUI(false);
     f->show();
 
-    f->append("COSTO PRODOTTO");
+    f->append("COSTO PRODOTTO "+ui->lvProdotti->currentIndex().data(0).toString());
+    f->append("\nda produrre: \tKg "+ ui->leDaprodurre->text());
+    f->append("Costo fisso: \t€ "+ ui->leCostoFisso->text());
+    f->append("Costo vasi: \t€ "+ui->leCostoVasi->text());
+    f->append("Costo tappi: \t€ "+ui->leCostoTappi->text());
+    f->append("Costo cartoni: \t€ "+ui->leCostoCartoni->text());
+    f->append("Costo etichette: \t€ "+ui->leCostoEtichette->text());
+    f->append("====================================================");
+    f->append("Costo prodotto: \t€ "+ui->leCostoTotale->text());
+    f->append("====================================================");
 
 
 
+}
+
+void HCalcost::on_pushButton_clicked()
+{
+    HProdottiNew* f = new HProdottiNew();
+
+    f->init(db,user);
+    f->show();
 }

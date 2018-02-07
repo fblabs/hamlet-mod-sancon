@@ -424,7 +424,7 @@ void MainWindow::on_tbProdotti_clicked()
 {
     HProdottiNew* f = new HProdottiNew();
 
-    f->init(sConn,user);
+    f->init(db,user);
     f->show();
  //  f->setConnection(sConn);
 
