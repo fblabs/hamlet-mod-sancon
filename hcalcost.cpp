@@ -46,11 +46,14 @@ void HCalcost::getClients()
     ui->cbClients->setModel(clientsmod);
     ui->cbClients->setModelColumn(1);
 
-    QCompleter *completer=new QCompleter(clientsmod);
+    QCompleter *completer=new QCompleter();
+    completer->setModel(clientsmod);
     completer->setCompletionColumn(1);
     completer->setCompletionMode(QCompleter::PopupCompletion);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
-    completer->setModel(clientsmod);
+
+    ui->cbClients->setCompleter(completer);
+
 }
 
 
@@ -110,33 +113,55 @@ void HCalcost::on_leQuantitaProdotto_returnPressed()
 
 void HCalcost::getConfezionamenti(int tipo)
 {
-    QComboBox* cbtarget;
-
-    switch (tipo)
-    {
-        case 3:
-         return;
-
-        case 4:
-        cbtarget=ui->cbTappi;
-
-           break;
-        case 5:
-         cbtarget=ui->cbVasi;
-
-    }
+    QSqlQueryModel *modtappi=new QSqlQueryModel();
+    QSqlQueryModel *modvasi=new QSqlQueryModel();
+    QCompleter *tappicomp=new QCompleter();
+    QCompleter *vasicomp=new QCompleter();
 
     QSqlQuery q(db);
     QString sql = "SELECT id, descrizione,prezzo from prodotti WHERE tipo=:tipo order by descrizione asc";
-    QSqlQueryModel *modobj=new QSqlQueryModel();
+
     q.prepare(sql);
     q.bindValue(":tipo",tipo);
 
     q.exec();
-    modobj->setQuery(q);
-    cbtarget->setModel(modobj);
-    cbtarget->setModelColumn(1);
-    qDebug()<<"getConfezionamenti"<<q.lastError().text()<<tipo<<modobj->rowCount();
+
+
+    switch (tipo)
+    {
+        case 4:
+
+        modtappi->setQuery(q);
+        ui->cbTappi->setModel(modtappi);
+        ui->cbTappi->setModelColumn(1);
+
+        tappicomp->setModel(modtappi);
+        tappicomp->setCompletionColumn(1);
+        tappicomp->setCompletionMode(QCompleter::PopupCompletion);
+        tappicomp->setCaseSensitivity(Qt::CaseInsensitive);
+        ui->cbTappi->setCompleter(tappicomp);
+        break;
+
+        case 5:
+
+        modvasi->setQuery(q);
+        ui->cbVasi->setModel(modvasi);
+        ui->cbVasi->setModelColumn(1);
+
+        vasicomp->setModel(modvasi);
+        vasicomp->setCompletionColumn(1);
+        vasicomp->setCompletionMode(QCompleter::PopupCompletion);
+        vasicomp->setCaseSensitivity(Qt::CaseInsensitive);
+
+        ui->cbVasi->setCompleter(vasicomp);
+
+    default:
+        return;
+
+    }
+
+
+
 }
 
 

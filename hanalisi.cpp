@@ -55,8 +55,7 @@ void HAnalisi::init(QString conn )
     comp->setCaseSensitivity(Qt::CaseInsensitive);
 
     ui->tvNarrow->setVisible(false);
- //  ui->lvAnagrafica->setModel(tmClienti);
- //  ui->lvAnagrafica->setModelColumn(1);
+
 
     ui->cbClienti->setModel(tmClienti);
 

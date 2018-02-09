@@ -104,6 +104,7 @@ public:
         cbClients->setObjectName(QStringLiteral("cbClients"));
         cbClients->setMinimumSize(QSize(300, 0));
         cbClients->setEditable(true);
+        cbClients->setInsertPolicy(QComboBox::NoInsert);
 
         horizontalLayout_2->addWidget(cbClients);
 
@@ -229,6 +230,8 @@ public:
 
         cbTappi = new QComboBox(HCalcost);
         cbTappi->setObjectName(QStringLiteral("cbTappi"));
+        cbTappi->setEditable(true);
+        cbTappi->setInsertPolicy(QComboBox::NoInsert);
 
         gridLayout->addWidget(cbTappi, 1, 1, 1, 1);
 
@@ -249,6 +252,8 @@ public:
 
         cbVasi = new QComboBox(HCalcost);
         cbVasi->setObjectName(QStringLiteral("cbVasi"));
+        cbVasi->setEditable(true);
+        cbVasi->setInsertPolicy(QComboBox::NoInsert);
 
         gridLayout->addWidget(cbVasi, 0, 1, 1, 1);
 

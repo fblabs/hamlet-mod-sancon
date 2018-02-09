@@ -51,6 +51,9 @@
            <property name="editable">
             <bool>true</bool>
            </property>
+           <property name="insertPolicy">
+            <enum>QComboBox::NoInsert</enum>
+           </property>
           </widget>
          </item>
         </layout>
@@ -214,7 +217,14 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="cbTappi"/>
+            <widget class="QComboBox" name="cbTappi">
+             <property name="editable">
+              <bool>true</bool>
+             </property>
+             <property name="insertPolicy">
+              <enum>QComboBox::NoInsert</enum>
+             </property>
+            </widget>
            </item>
            <item row="1" column="2">
             <widget class="QLineEdit" name="leQtTappi">
@@ -241,7 +251,14 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QComboBox" name="cbVasi"/>
+            <widget class="QComboBox" name="cbVasi">
+             <property name="editable">
+              <bool>true</bool>
+             </property>
+             <property name="insertPolicy">
+              <enum>QComboBox::NoInsert</enum>
+             </property>
+            </widget>
            </item>
            <item row="0" column="2">
             <widget class="QLineEdit" name="leQtVasi">
