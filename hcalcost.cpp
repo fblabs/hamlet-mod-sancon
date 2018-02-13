@@ -101,7 +101,7 @@ void HCalcost::getRecipe()
 
     ui->leQuantitaProdotto->setText(QString::number(quant,'f',3));
 
-    ui->leCostoProdotto->setText(QString::number(cost,'f',2));
+    ui->leCostoProdotto->setText(QString::number(cost,'f',4));
 
 
 }
@@ -193,7 +193,7 @@ void HCalcost::on_cbVasi_currentIndexChanged(int index)
 {
     double prezzo = ui->cbVasi->model()->index(ui->cbVasi->currentIndex(),2).data(0).toDouble();
     int n=ui->leQtVasi->text().toInt();
-    QString price=QString::number(prezzo*n,'f',2);
+    QString price=QString::number(prezzo*n,'f',4);
     ui->leCostoVasi->setText(price);
 }
 
@@ -201,7 +201,7 @@ void HCalcost::on_cbTappi_currentIndexChanged(int index)
 {
     double prezzo = ui->cbTappi->model()->index(ui->cbTappi->currentIndex(),2).data(0).toDouble();
     int n=ui->leQtTappi->text().toInt();
-    QString price=QString::number(prezzo*n,'f',2);
+    QString price=QString::number(prezzo*n,'f',4);
     ui->leCostoTappi->setText(price);
 }
 
@@ -210,7 +210,7 @@ void HCalcost::on_leQtVasi_returnPressed()
 {
     double prezzo = ui->cbVasi->model()->index(ui->cbVasi->currentIndex(),2).data(0).toDouble();
     int n=ui->leQtVasi->text().toInt();
-    QString price=QString::number(prezzo*n,'f',2);
+    QString price=QString::number(prezzo*n,'f',4);
     ui->leCostoVasi->setText(price);
 }
 
@@ -218,19 +218,9 @@ void HCalcost::on_leQtTappi_returnPressed()
 {
     double prezzo = ui->cbTappi->model()->index(ui->cbTappi->currentIndex(),2).data(0).toDouble();
     int n=ui->leQtTappi->text().toInt();
-    QString price=QString::number(prezzo*n,'f',2);
+    QString price=QString::number(prezzo*n,'f',4);
     ui->leCostoTappi->setText(price);
 }
-
-/*void HCalcost::on_leQtCartoni_returnPressed()
-{
-    double prezzo = ui->cbCartoni->model()->index(ui->cbCartoni->currentIndex(),2).data(0).toDouble();
-    int n=ui->leQtCartoni->text().toInt();
-    QString price=QString::number(prezzo*n,'f',2);
-    ui->leCostoCartoni->setText(price);
-}*/
-
-
 
 void HCalcost::on_leDaprodurre_returnPressed()
 {
