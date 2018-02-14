@@ -43,16 +43,18 @@ public:
     QVBoxLayout *verticalLayout_2;
     QLabel *label_14;
     QGridLayout *gridLayout_2;
+    QLabel *label_2;
+    QLineEdit *leDaprodurre;
     QLabel *label_10;
     QLineEdit *leQuantitaProdotto;
-    QLabel *label_2;
     QLineEdit *leCostoProdotto;
+    QLineEdit *leCostoFisso;
     QLabel *label_11;
-    QLineEdit *leDaprodurre;
+    QLabel *label_16;
     QLabel *label_12;
     QLineEdit *leCostoProduzione;
-    QLabel *label_16;
-    QLineEdit *leCostoFisso;
+    QLineEdit *leCostounitaricetta;
+    QLabel *label_4;
     QVBoxLayout *verticalLayout_3;
     QLabel *label_3;
     QGridLayout *gridLayout;
@@ -152,6 +154,16 @@ public:
 
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        label_2 = new QLabel(HCalcost);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        gridLayout_2->addWidget(label_2, 1, 0, 1, 1);
+
+        leDaprodurre = new QLineEdit(HCalcost);
+        leDaprodurre->setObjectName(QStringLiteral("leDaprodurre"));
+
+        gridLayout_2->addWidget(leDaprodurre, 3, 1, 1, 1);
+
         label_10 = new QLabel(HCalcost);
         label_10->setObjectName(QStringLiteral("label_10"));
 
@@ -164,11 +176,6 @@ public:
 
         gridLayout_2->addWidget(leQuantitaProdotto, 0, 1, 1, 1);
 
-        label_2 = new QLabel(HCalcost);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        gridLayout_2->addWidget(label_2, 1, 0, 1, 1);
-
         leCostoProdotto = new QLineEdit(HCalcost);
         leCostoProdotto->setObjectName(QStringLiteral("leCostoProdotto"));
         leCostoProdotto->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
@@ -176,36 +183,43 @@ public:
 
         gridLayout_2->addWidget(leCostoProdotto, 1, 1, 1, 1);
 
+        leCostoFisso = new QLineEdit(HCalcost);
+        leCostoFisso->setObjectName(QStringLiteral("leCostoFisso"));
+
+        gridLayout_2->addWidget(leCostoFisso, 5, 1, 1, 1);
+
         label_11 = new QLabel(HCalcost);
         label_11->setObjectName(QStringLiteral("label_11"));
 
-        gridLayout_2->addWidget(label_11, 2, 0, 1, 1);
+        gridLayout_2->addWidget(label_11, 3, 0, 1, 1);
 
-        leDaprodurre = new QLineEdit(HCalcost);
-        leDaprodurre->setObjectName(QStringLiteral("leDaprodurre"));
+        label_16 = new QLabel(HCalcost);
+        label_16->setObjectName(QStringLiteral("label_16"));
 
-        gridLayout_2->addWidget(leDaprodurre, 2, 1, 1, 1);
+        gridLayout_2->addWidget(label_16, 5, 0, 1, 1);
 
         label_12 = new QLabel(HCalcost);
         label_12->setObjectName(QStringLiteral("label_12"));
 
-        gridLayout_2->addWidget(label_12, 3, 0, 1, 1);
+        gridLayout_2->addWidget(label_12, 4, 0, 1, 1);
 
         leCostoProduzione = new QLineEdit(HCalcost);
         leCostoProduzione->setObjectName(QStringLiteral("leCostoProduzione"));
         leCostoProduzione->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
 
-        gridLayout_2->addWidget(leCostoProduzione, 3, 1, 1, 1);
+        gridLayout_2->addWidget(leCostoProduzione, 4, 1, 1, 1);
 
-        label_16 = new QLabel(HCalcost);
-        label_16->setObjectName(QStringLiteral("label_16"));
+        leCostounitaricetta = new QLineEdit(HCalcost);
+        leCostounitaricetta->setObjectName(QStringLiteral("leCostounitaricetta"));
+        leCostounitaricetta->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leCostounitaricetta->setReadOnly(true);
 
-        gridLayout_2->addWidget(label_16, 4, 0, 1, 1);
+        gridLayout_2->addWidget(leCostounitaricetta, 2, 1, 1, 1);
 
-        leCostoFisso = new QLineEdit(HCalcost);
-        leCostoFisso->setObjectName(QStringLiteral("leCostoFisso"));
+        label_4 = new QLabel(HCalcost);
+        label_4->setObjectName(QStringLiteral("label_4"));
 
-        gridLayout_2->addWidget(leCostoFisso, 4, 1, 1, 1);
+        gridLayout_2->addWidget(label_4, 2, 0, 1, 1);
 
 
         verticalLayout_2->addLayout(gridLayout_2);
@@ -364,11 +378,12 @@ public:
         label->setText(QApplication::translate("HCalcost", "Clienti:", 0));
         label_15->setText(QApplication::translate("HCalcost", "Componenti prodotto ", 0));
         label_14->setText(QApplication::translate("HCalcost", "Costo prodotto finito", 0));
-        label_10->setText(QApplication::translate("HCalcost", "Quantit\303\240 ricetta (Kg)", 0));
         label_2->setText(QApplication::translate("HCalcost", "Costo Ricetta (\342\202\254)", 0));
+        label_10->setText(QApplication::translate("HCalcost", "Quantit\303\240 ricetta (Kg)", 0));
         label_11->setText(QApplication::translate("HCalcost", "Da produrre: (Kg)", 0));
-        label_12->setText(QApplication::translate("HCalcost", "Costo prodotto (\342\202\254)", 0));
         label_16->setText(QApplication::translate("HCalcost", "Costo fisso(\342\202\254)", 0));
+        label_12->setText(QApplication::translate("HCalcost", "Costo prodotto(\342\202\254)", 0));
+        label_4->setText(QApplication::translate("HCalcost", "Costo per kg. (\342\202\254)", 0));
         label_3->setText(QApplication::translate("HCalcost", "Costo confezionamento (vasi - tappi)", 0));
         label_7->setText(QApplication::translate("HCalcost", "Costo vasi (\342\202\254)", 0));
         leQtTappi->setText(QApplication::translate("HCalcost", "1", 0));

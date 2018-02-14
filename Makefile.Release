@@ -16852,7 +16852,10 @@ release/hcalcost.o: hcalcost.cpp hcalcost.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QCompleter \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qcompleter.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel
+		hprodottinew.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRelationalTableModel \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hcalcost.o hcalcost.cpp
 
 release/qrc_icons.o: release/qrc_icons.cpp 

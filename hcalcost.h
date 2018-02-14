@@ -45,6 +45,8 @@ private:
    void on_pbCalcola_clicked();
    void on_pbPrint_clicked();
    void on_pushButton_clicked();
+   void resetUI();
+   void performCalculation();
 };
 
 #endif // HCALCOST_H

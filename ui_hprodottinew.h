@@ -105,10 +105,10 @@ public:
 
         tvProdotti = new QTableView(HProdottiNew);
         tvProdotti->setObjectName(QStringLiteral("tvProdotti"));
-        tvProdotti->setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked);
+        tvProdotti->setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed);
         tvProdotti->setAlternatingRowColors(true);
         tvProdotti->setSelectionMode(QAbstractItemView::SingleSelection);
-        tvProdotti->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvProdotti->setSelectionBehavior(QAbstractItemView::SelectItems);
         tvProdotti->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
         tvProdotti->horizontalHeader()->setStretchLastSection(true);
         tvProdotti->verticalHeader()->setVisible(false);

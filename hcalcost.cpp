@@ -19,6 +19,9 @@ HCalcost::HCalcost(QSqlDatabase pdb, HUser* puser,QWidget *parent) :
     user=puser;
     db=pdb;
 
+    ui->label_2->setVisible(false);
+    ui->leCostoProdotto->setVisible(false);
+
     getClients();
 
     getProducts();
@@ -79,7 +82,7 @@ void HCalcost::getRecipe()
 {
     int idp=cmod->index(ui->lvProdotti->selectionModel()->currentIndex().row(),0).data(0).toInt();
     QSqlQuery q(db);
-    QString sql="SELECT prodotti.descrizione,righe_ricette.quantita,righe_ricette.quantita*prodotti.prezzo as 'costo',prodotti.prezzo as 'Costo unitario ingrediente' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.ID";
+    QString sql="SELECT prodotti.descrizione as 'PRODOTTO',righe_ricette.quantita as 'QUANTITA',prodotti.prezzo as 'Costo unitario ingrediente',righe_ricette.quantita*prodotti.prezzo as 'COSTO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.ID";
     q.prepare(sql);
     q.bindValue(":idp",idp);
     q.exec();
@@ -92,14 +95,18 @@ void HCalcost::getRecipe()
     int r=ricmod->rowCount();
     double cost=0.0;
     double quant=0.0;
+    double costoperunita=0.0;
 
     for (int x=0; x<r; x++)
     {
-        cost +=ricmod->index(x,2).data(0).toDouble();
+        cost +=ricmod->index(x,3).data(0).toDouble();
         quant +=ricmod->index(x,1).data(0).toDouble();
     }
 
+    costoperunita=cost/quant;
+
     ui->leQuantitaProdotto->setText(QString::number(quant,'f',3));
+    ui->leCostounitaricetta->setText(QString::number(costoperunita,'f',4));
 
     ui->leCostoProdotto->setText(QString::number(cost,'f',4));
 
@@ -176,11 +183,27 @@ void HCalcost::on_pbClose_clicked()
 
 void HCalcost::on_lvProdotti_clicked(const QModelIndex &index)
 {
+    if(QMessageBox::question(this,QApplication::applicationName(),"Resettare la finestra?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        resetUI();
+    }
 
-  //  QModelIndex id = QModelIndex(ui->lvProdotti->currentIndex().row(),0);
-   // int idp=id.data(0).toInt();
      getRecipe();
 
+}
+
+void HCalcost::resetUI()
+{
+    ui->leDaprodurre->setText("");
+    ui->leCostoFisso->setText("");
+    ui->leCostoProduzione->setText("");
+    ui->leCostoProdotto->setText("");
+    ui->leCostoCartoni->setText("");
+    ui->leCostoEtichette->setText("");
+    ui->leCostoTappi->setText("");
+    ui->leCostoEtichette->setText("");
+    ui->leCostounitaricetta->setText("");
+    ui->leCostoVasi->setText("");
 }
 
 
@@ -224,29 +247,11 @@ void HCalcost::on_leQtTappi_returnPressed()
 
 void HCalcost::on_leDaprodurre_returnPressed()
 {
-    int r=ricmod->rowCount();
-    double cost=0.0;
-    double quant=0.0;
-    double daprodurre=0.0;
-    double costoprod=0.0;
+    double costokg=ui->leCostounitaricetta->text().toDouble();
+    double quantita = ui->leDaprodurre->text().toDouble();
 
-    for (int x=0; x<r; x++)
-    {
-        cost +=ricmod->index(x,2).data(0).toDouble();
-        quant +=ricmod->index(x,1).data(0).toDouble();
-    }
-
-    ui->leQuantitaProdotto->setText(QString::number(quant,'f',3));
-
-    ui->leCostoProdotto->setText(QString::number(cost,'f',2));
-
-    daprodurre=ui->leDaprodurre->text().toDouble();
-
-    costoprod=(cost / quant)* daprodurre;
-
-    qDebug()<<cost<<quant<<daprodurre<<costoprod;
-
-    ui->leCostoProduzione->setText(QString::number(costoprod,'f',2));
+    double prezzo= costokg*quantita;
+    ui->leCostoProduzione->setText(QString::number(prezzo,'f',4));
 }
 
 void HCalcost::on_leCostoTotale_returnPressed()
@@ -256,25 +261,8 @@ void HCalcost::on_leCostoTotale_returnPressed()
 
 void HCalcost::on_pbCalcola_clicked()
 {
-    double costototale=0.0;
-    double costoprodotto=0.0;
-    double costovasi=0.0;
-    double costotappi=0.0;
-    double costocartoni=0.0;
-    double costoetichette=0.0;
-    double costofisso=0.0;
 
-    costoprodotto=ui->leCostoProduzione->text().toDouble();
-    costovasi=ui->leCostoVasi->text().toDouble();
-    costotappi=ui->leCostoTappi->text().toDouble();
-    costocartoni=ui->leCostoCartoni->text().toDouble();
-    costoetichette=ui->leCostoEtichette->text().toDouble();
-    costofisso=ui->leCostoFisso->text().toDouble();
-
-    costototale=costoprodotto + costovasi + costotappi + costocartoni +costoetichette +costofisso;
-
-    ui->leCostoTotale->setText(QString::number(costototale,'f',2));
-
+    performCalculation();
 
 
 }
@@ -306,4 +294,26 @@ void HCalcost::on_pushButton_clicked()
 
     f->init(db,user);
     f->show();
+}
+
+void HCalcost::performCalculation()
+{
+    double costototale=0.0;
+    double costoprodotto=0.0;
+    double costovasi=0.0;
+    double costotappi=0.0;
+    double costocartoni=0.0;
+    double costoetichette=0.0;
+    double costofisso=0.0;
+
+    costoprodotto=ui->leCostoProduzione->text().toDouble();
+    costovasi=ui->leCostoVasi->text().toDouble();
+    costotappi=ui->leCostoTappi->text().toDouble();
+    costocartoni=ui->leCostoCartoni->text().toDouble();
+    costoetichette=ui->leCostoEtichette->text().toDouble();
+    costofisso=ui->leCostoFisso->text().toDouble();
+
+    costototale=costoprodotto + costovasi + costotappi + costocartoni +costoetichette +costofisso;
+
+    ui->leCostoTotale->setText(QString::number(costototale,'f',4));
 }
