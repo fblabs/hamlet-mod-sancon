@@ -80,6 +80,7 @@ void HCalcost::getProducts()
 
 void HCalcost::getRecipe()
 {
+    resetUI();
     int idp=cmod->index(ui->lvProdotti->selectionModel()->currentIndex().row(),0).data(0).toInt();
     QSqlQuery q(db);
     QString sql="SELECT prodotti.descrizione as 'PRODOTTO',righe_ricette.quantita as 'QUANTITA',prodotti.prezzo as 'Costo unitario ingrediente',righe_ricette.quantita*prodotti.prezzo as 'COSTO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.ID";
@@ -183,12 +184,9 @@ void HCalcost::on_pbClose_clicked()
 
 void HCalcost::on_lvProdotti_clicked(const QModelIndex &index)
 {
-    if(QMessageBox::question(this,QApplication::applicationName(),"Resettare la finestra?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
-    {
-        resetUI();
-    }
 
-     getRecipe();
+
+        getRecipe();
 
 }
 

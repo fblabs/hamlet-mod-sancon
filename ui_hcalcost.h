@@ -77,6 +77,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *pbPrint;
     QPushButton *pushButton;
+    QPushButton *pushButton_2;
     QPushButton *pbClose;
 
     void setupUi(QWidget *HCalcost)
@@ -354,11 +355,20 @@ public:
 
         horizontalLayout->addWidget(pushButton);
 
+        pushButton_2 = new QPushButton(HCalcost);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Notepad.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon3);
+        pushButton_2->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pushButton_2);
+
         pbClose = new QPushButton(HCalcost);
         pbClose->setObjectName(QStringLiteral("pbClose"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon4);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbClose);
@@ -398,6 +408,7 @@ public:
         pbCalcola->setText(QApplication::translate("HCalcost", "Calcola", 0));
         pbPrint->setText(QApplication::translate("HCalcost", "Stampa", 0));
         pushButton->setText(QApplication::translate("HCalcost", "Prodotti", 0));
+        pushButton_2->setText(QApplication::translate("HCalcost", "Ricette", 0));
         pbClose->setText(QApplication::translate("HCalcost", "Chiudi", 0));
     } // retranslateUi
 
