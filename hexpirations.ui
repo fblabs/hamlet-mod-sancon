@@ -29,26 +29,14 @@
         </size>
        </property>
        <property name="text">
-        <string>Scadenze nei</string>
+        <string>Scadenze dal</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="sbDays">
-       <property name="maximumSize">
-        <size>
-         <width>35</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="minimum">
-        <number>0</number>
-       </property>
-       <property name="maximum">
-        <number>31</number>
-       </property>
-       <property name="value">
-        <number>0</number>
+      <widget class="QDateEdit" name="deFrom">
+       <property name="calendarPopup">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -56,18 +44,18 @@
       <widget class="QLabel" name="label_2">
        <property name="minimumSize">
         <size>
-         <width>90</width>
+         <width>15</width>
          <height>0</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>90</width>
+         <width>20</width>
          <height>16777215</height>
         </size>
        </property>
        <property name="text">
-        <string>giorni successivi al</string>
+        <string>al</string>
        </property>
       </widget>
      </item>
@@ -85,12 +73,18 @@
          <height>16777215</height>
         </size>
        </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
-        <string>(0 = data corrente)</string>
+        <string>Cerca</string>
        </property>
       </widget>
      </item>
@@ -111,6 +105,9 @@
    </item>
    <item>
     <widget class="QTableView" name="tableView">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
      <property name="alternatingRowColors">
       <bool>true</bool>
      </property>
@@ -120,6 +117,9 @@
      <property name="selectionBehavior">
       <enum>QAbstractItemView::SelectRows</enum>
      </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
     </widget>
    </item>
    <item>

@@ -21,6 +21,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -48,14 +49,16 @@ public:
     QDateEdit *datadal;
     QLabel *label_2;
     QDateEdit *dataal;
-    QPushButton *pushButton_5;
+    QSpacerItem *horizontalSpacer_2;
     QTableView *twLots;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_7;
     QPushButton *pushButton_4;
     QPushButton *pushButton;
+    QPushButton *pbScadenze;
     QPushButton *pushButton_6;
     QPushButton *pushButton_3;
+    QSpacerItem *horizontalSpacer;
 
     void setupUi(QWidget *HLotti)
     {
@@ -139,6 +142,7 @@ public:
 
         datadal = new QDateEdit(HLotti);
         datadal->setObjectName(QStringLiteral("datadal"));
+        datadal->setCalendarPopup(true);
 
         horizontalLayout_3->addWidget(datadal);
 
@@ -150,16 +154,13 @@ public:
 
         dataal = new QDateEdit(HLotti);
         dataal->setObjectName(QStringLiteral("dataal"));
+        dataal->setCalendarPopup(true);
 
         horizontalLayout_3->addWidget(dataal);
 
-        pushButton_5 = new QPushButton(HLotti);
-        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Search.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon1);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_3->addWidget(pushButton_5);
+        horizontalLayout_3->addItem(horizontalSpacer_2);
 
 
         horizontalLayout_4->addLayout(horizontalLayout_3);
@@ -186,30 +187,39 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pushButton_7 = new QPushButton(HLotti);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_7->setIcon(icon2);
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_7->setIcon(icon1);
         pushButton_7->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_7);
 
         pushButton_4 = new QPushButton(HLotti);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Actions-configure-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon3);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Actions-configure-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon2);
         pushButton_4->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_4);
 
         pushButton = new QPushButton(HLotti);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon4);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon3);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton);
+
+        pbScadenze = new QPushButton(HLotti);
+        pbScadenze->setObjectName(QStringLiteral("pbScadenze"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Calendar.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbScadenze->setIcon(icon4);
+        pbScadenze->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pbScadenze);
 
         pushButton_6 = new QPushButton(HLotti);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
@@ -235,6 +245,10 @@ public:
 
         verticalLayout_3->addLayout(verticalLayout_2);
 
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_3->addItem(horizontalSpacer);
+
 
         retranslateUi(HLotti);
 
@@ -250,10 +264,10 @@ public:
         chbP->setText(QApplication::translate("HLotti", "Prodotto:", 0));
         label->setText(QApplication::translate("HLotti", "Dal:", 0));
         label_2->setText(QApplication::translate("HLotti", "Al:", 0));
-        pushButton_5->setText(QApplication::translate("HLotti", "Cerca", 0));
         pushButton_7->setText(QApplication::translate("HLotti", "Modifica", 0));
         pushButton_4->setText(QApplication::translate("HLotti", "Nuova operazione", 0));
         pushButton->setText(QApplication::translate("HLotti", "Scarico Packages", 0));
+        pbScadenze->setText(QApplication::translate("HLotti", "Scadenze", 0));
         pushButton_6->setText(QApplication::translate("HLotti", "Stampa", 0));
         pushButton_3->setText(QApplication::translate("HLotti", "Chiudi", 0));
     } // retranslateUi

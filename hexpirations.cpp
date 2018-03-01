@@ -15,6 +15,10 @@ HExpirations::HExpirations(QSqlDatabase pdb,HUser *puser,QWidget *parent) :
     ui->setupUi(this);
     user=puser;
     db=pdb;
+
+    ui->pushButton_3->setVisible(false);
+
+    ui->deFrom->setDate(QDate::currentDate());
     ui->deLimit->setDate(QDate::currentDate());
 
     getExpirations();
@@ -33,23 +37,25 @@ HExpirations::~HExpirations()
 
 void HExpirations::getExpirations()
 {
-    QDate date=ui->deLimit->date();
-    int range=ui->sbDays->value();
+    QDate datefrom=ui->deFrom->date();
+    QDate dateto=ui->deLimit->date();
+
     QSqlQueryModel *mod=new QSqlQueryModel();
     QSqlQuery q(db);
 
 
-    QString sql="SELECT lotdef.ID AS 'ID LOTTO',tipi_lot.Id AS 'ID tipi_lot',tipi_lot.descrizione AS 'TIPO LOTTO',lotdef.lot as 'LOTTO',prodotti.ID AS 'ID prodotto',prodotti.descrizione as 'PRODOTTO',lotdef.scadenza as 'SCADENZA',lotdef.giacenza AS 'GIACENZA' FROM fbgmdb260.lotdef,prodotti,tipi_lot WHERE tipi_lot.ID=lotdef.tipo AND prodotti.ID=lotdef.prodotto AND lotdef.scadenza <= DATE_ADD(:date, INTERVAL :next DAY) AND lotdef.attivo = 1 AND lotdef.data > DATE_SUB(CURDATE(), INTERVAL 2 YEAR) AND prodotti.tipo IN (1 , 2) order by lotdef.scadenza asc";
+    QString sql="SELECT lotdef.ID AS 'ID LOTTO',tipi_lot.Id AS 'ID tipi_lot',tipi_lot.descrizione AS 'TIPO LOTTO',lotdef.lot as 'LOTTO',prodotti.ID AS 'ID prodotto',prodotti.descrizione as 'PRODOTTO',lotdef.scadenza as 'SCADENZA',lotdef.giacenza AS 'GIACENZA' FROM fbgmdb260.lotdef,prodotti,tipi_lot WHERE tipi_lot.ID=lotdef.tipo AND prodotti.ID=lotdef.prodotto AND lotdef.scadenza  BETWEEN '"+ datefrom.toString("yyyy-MM-dd") +"'  AND '"+ dateto.toString("yyyy-MM-dd")+"'  AND lotdef.tipo =1 order by lotdef.scadenza desc";
 
     q.prepare(sql);
-    q.bindValue(":date",date.toString("yyyy-MM-dd"));
-    q.bindValue(":next",range);
+    q.bindValue(":da",datefrom.toString("yyyy-MM-dd"));
+    q.bindValue(":a",dateto.toString("yyyy-MM-dd"));
 
     q.exec();
-    qDebug()<<q.lastError().text();
+
     mod->setQuery(q);
 
     ui->tableView->setModel(mod);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void HExpirations::print()
@@ -60,14 +66,10 @@ void HExpirations::print()
     int cols=ui->tableView->model()->columnCount();
     
 
-    if(ui->sbDays->value()==0)
-    {
-        f->append("LOTTI IN SCADENZA IL " + ui->deLimit->text().toUpper(),false);
-    }
-    else
-    {
-        f->append("LOTTI IN SCADENZA ENTRO "+ ui->sbDays->text() + " GIORNI DAL " + ui->deLimit->text().toUpper(),false);
-    }
+
+        f->append("LOTTI IN SCADENZA TRA IL " + ui->deFrom->text().toUpper()+ " E IL "+ ui->deLimit->text().toUpper(),false);
+
+
 
     f->append("",false);
 
@@ -88,7 +90,7 @@ void HExpirations::print()
 
     f->showMaximized();
 
-    for (r=2;r<rows;r++)
+    for (r=0;r<rows;r++)
     {
 
 
@@ -114,18 +116,24 @@ void HExpirations::on_pushButton_clicked()
     close();
 }
 
-void HExpirations::on_sbDays_valueChanged(int arg1)
-{
-    getExpirations();
-}
+
 
 void HExpirations::on_deLimit_dateChanged(const QDate &date)
 {
     getExpirations();
-    qDebug()<<"data cambiata";
+
 }
+void HExpirations::on_deFrom_dateChanged(const QDate &date)
+{
+    getExpirations();
+}
+
 
 void HExpirations::on_pushButton_2_clicked()
 {
    print();
+}
+void HExpirations::on_pushButton_3_clicked()
+{
+   getExpirations();
 }

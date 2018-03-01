@@ -19,6 +19,7 @@
 #include "hpackagesunload.h"
 #include "hcomposizionelotto.h"
 #include <QCompleter>
+#include "hexpirations.h"
 
 
 HLotti::HLotti(QWidget *parent,HUser *puser,QString pcon) :
@@ -131,6 +132,7 @@ void HLotti::setupForm()
     tbm->setSort(3,Qt::DescendingOrder);
     setFilter();
     ui->twLots->setColumnWidth(11,10);
+
     ui->twLots->setColumnHidden(0,true);
     ui->twLots->setCurrentIndex(ui->twLots->model()->index(0,0));
 
@@ -250,13 +252,15 @@ void HLotti::on_pushButton_4_clicked()
 
 void HLotti::on_pushButton_5_clicked()
 {
-   setFilter();
+   //setFilter();
 }
 
 
 void HLotti::setFilter()
 {
     QString tipo,prodotto,filter;
+
+    if(tbm==0)return;
     filter="";
  //   QString datafilter="lotdef.data between '" + ui->datadal->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' and '" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"'";
     QString datafilter="lotdef.data between cast('" + ui->datadal->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' as date) and cast('" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"' as date)";
@@ -293,6 +297,7 @@ void HLotti::setFilter()
 
 
     filter=filter += datafilter;
+
 
     tbm->setFilter(filter);
   // // // qDebug()<<prodotto<<tipo<<filter<<tbm->lastError().text()<<tbm->query().lastQuery();
@@ -529,4 +534,20 @@ void HLotti::on_twLots_doubleClicked(const QModelIndex &index)
     f->init(ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt(),sConnection);
     f->show();
 
+}
+
+void HLotti::on_datadal_dateChanged(const QDate &date)
+{
+    setFilter();
+}
+
+void HLotti::on_dataal_dateChanged(const QDate &date)
+{
+    setFilter();
+}
+
+void HLotti::on_pbScadenze_clicked()
+{
+    HExpirations *f = new HExpirations(db,user);
+    f->show();
 }

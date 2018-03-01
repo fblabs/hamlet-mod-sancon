@@ -19,7 +19,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -32,10 +31,10 @@ public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
-    QSpinBox *sbDays;
+    QDateEdit *deFrom;
     QLabel *label_2;
     QDateEdit *deLimit;
-    QLabel *label_3;
+    QPushButton *pushButton_3;
     QSpacerItem *horizontalSpacer;
     QTableView *tableView;
     QHBoxLayout *horizontalLayout;
@@ -60,19 +59,16 @@ public:
 
         horizontalLayout_2->addWidget(label);
 
-        sbDays = new QSpinBox(HExpirations);
-        sbDays->setObjectName(QStringLiteral("sbDays"));
-        sbDays->setMaximumSize(QSize(35, 16777215));
-        sbDays->setMinimum(0);
-        sbDays->setMaximum(31);
-        sbDays->setValue(0);
+        deFrom = new QDateEdit(HExpirations);
+        deFrom->setObjectName(QStringLiteral("deFrom"));
+        deFrom->setCalendarPopup(true);
 
-        horizontalLayout_2->addWidget(sbDays);
+        horizontalLayout_2->addWidget(deFrom);
 
         label_2 = new QLabel(HExpirations);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setMinimumSize(QSize(90, 0));
-        label_2->setMaximumSize(QSize(90, 16777215));
+        label_2->setMinimumSize(QSize(15, 0));
+        label_2->setMaximumSize(QSize(20, 16777215));
 
         horizontalLayout_2->addWidget(label_2);
 
@@ -80,13 +76,15 @@ public:
         deLimit->setObjectName(QStringLiteral("deLimit"));
         deLimit->setMinimumSize(QSize(100, 0));
         deLimit->setMaximumSize(QSize(100, 16777215));
+        deLimit->setCalendarPopup(true);
 
         horizontalLayout_2->addWidget(deLimit);
 
-        label_3 = new QLabel(HExpirations);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        pushButton_3 = new QPushButton(HExpirations);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setEnabled(false);
 
-        horizontalLayout_2->addWidget(label_3);
+        horizontalLayout_2->addWidget(pushButton_3);
 
         horizontalSpacer = new QSpacerItem(688, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -97,9 +95,11 @@ public:
 
         tableView = new QTableView(HExpirations);
         tableView->setObjectName(QStringLiteral("tableView"));
+        tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tableView->setAlternatingRowColors(true);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tableView->verticalHeader()->setVisible(false);
 
         verticalLayout->addWidget(tableView);
 
@@ -135,9 +135,9 @@ public:
     void retranslateUi(QWidget *HExpirations)
     {
         HExpirations->setWindowTitle(QApplication::translate("HExpirations", "Scadenza lotti", 0));
-        label->setText(QApplication::translate("HExpirations", "Scadenze nei", 0));
-        label_2->setText(QApplication::translate("HExpirations", "giorni successivi al", 0));
-        label_3->setText(QApplication::translate("HExpirations", "(0 = data corrente)", 0));
+        label->setText(QApplication::translate("HExpirations", "Scadenze dal", 0));
+        label_2->setText(QApplication::translate("HExpirations", "al", 0));
+        pushButton_3->setText(QApplication::translate("HExpirations", "Cerca", 0));
         pushButton_2->setText(QApplication::translate("HExpirations", "Stampa", 0));
         pushButton->setText(QApplication::translate("HExpirations", "Chiudi", 0));
     } // retranslateUi

@@ -26,12 +26,16 @@ private slots:
     void getExpirations();
     void on_pushButton_clicked();
     void on_deLimit_dateChanged(const QDate &date);
-    void on_sbDays_valueChanged(int arg1);
     void on_pushButton_2_clicked();
     void print();
+    void on_pushButton_3_clicked();
+    void on_deFrom_dateChanged(const QDate &date);
 };
 
 #endif // HEXPIRATIONS_H
+
+
+
 
 
 

@@ -67,6 +67,12 @@ private slots:
 
     void on_twLots_doubleClicked(const QModelIndex &index);
 
+    void on_datadal_dateChanged(const QDate &date);
+
+    void on_dataal_dateChanged(const QDate &date);
+
+    void on_pbScadenze_clicked();
+
 private:
 
     Ui::HLotti *ui;
