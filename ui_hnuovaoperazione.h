@@ -220,6 +220,7 @@ public:
 
         deScadenza = new QDateEdit(HnuovaOperazione);
         deScadenza->setObjectName(QStringLiteral("deScadenza"));
+        deScadenza->setCalendarPopup(true);
 
         gridLayout->addWidget(deScadenza, 1, 1, 1, 1);
 
