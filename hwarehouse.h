@@ -58,6 +58,7 @@ private slots:
    void updateDataSlt();
 
    void on_pushButton_5_clicked();
+   void on_tableView_doubleClicked(const QModelIndex &index);
 };
 
 #endif // HWAREHOUSE_H

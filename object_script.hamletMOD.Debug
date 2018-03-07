@@ -54,6 +54,7 @@ INPUT(
 ./debug/hlastlots.o
 ./debug/hexpirations.o
 ./debug/hcalcost.o
+./debug/hwarehousedetails.o
 ./debug/qrc_icons.o
 ./debug/moc_mainwindow.o
 ./debug/moc_huser.o
@@ -108,4 +109,5 @@ INPUT(
 ./debug/moc_hlastlots.o
 ./debug/moc_hexpirations.o
 ./debug/moc_hcalcost.o
+./debug/moc_hwarehousedetails.o
 );

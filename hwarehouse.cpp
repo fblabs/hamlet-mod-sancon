@@ -14,8 +14,11 @@
 #include <hlotti.h>
 
 #include "hreadonlymodel.h"
+#include "hwarehousedetails.h"
 #include "hnuovaoperazione.h"
 #include "hpackagesunload.h"
+
+#include <QDebug>
 
 HWarehouse::HWarehouse(QWidget *parent) :
     QWidget(parent),
@@ -72,7 +75,7 @@ void HWarehouse::init(QString conn, HUser *utente)
     tmOperazioni->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
 
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableView->setColumnHidden(0,1);
+    //ui->tableView->setColumnHidden(0,1);
 
     tmProdotti=new QSqlTableModel(0,db);
     tmProdotti->setTable("prodotti");
@@ -344,4 +347,13 @@ void HWarehouse::on_pushButton_5_clicked()
     f->show();
     connect(f,SIGNAL(update()),this,SLOT(update()));
 
+}
+
+void HWarehouse::on_tableView_doubleClicked(const QModelIndex &index)
+{
+     int id=tmOperazioni->index(index.row(),0).data(0).toInt();
+    qDebug()<<id;
+
+    HWarehouseDetails *f=new HWarehouseDetails(db,id);
+    f->show();
 }
