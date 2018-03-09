@@ -41,6 +41,7 @@
 #include "hgraphicprint.h"
 #include  "hexpirations.h"
 #include "hcalcost.h"
+#include "hrecipesforclient.h"
 
 
 
@@ -54,6 +55,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     ui->setupUi(this);
     ui->pushButton->setVisible(false);
+    ui->pbVerifyLabels->setVisible(false);
 
     //enableDB();
     setFocusPolicy(Qt::StrongFocus);
@@ -208,6 +210,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbContacts->setEnabled(false);
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
+        ui->pbC4R->setEnabled(true);
 
 
         break;
@@ -242,6 +245,8 @@ void MainWindow::enableButtonsForRole()
         ui->pbNotifiche->setEnabled(false);
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
+        ui->pbC4R->setEnabled(true);
+
 
 
         break;
@@ -265,6 +270,8 @@ void MainWindow::enableButtonsForRole()
         ui->pbNotifiche->setEnabled(true);
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
+        ui->pbC4R->setEnabled(true);
+
 
         break;
     case 4://simone
@@ -286,6 +293,8 @@ void MainWindow::enableButtonsForRole()
         ui->pbNotifiche->setEnabled(false);
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
+        ui->pbC4R->setEnabled(true);
+
 
         break;
      case 5://amministrativo
@@ -313,6 +322,8 @@ void MainWindow::enableButtonsForRole()
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
         ui->pbCalcoloCosti->setEnabled(true);
+        ui->pbC4R->setEnabled(true);
+
 
         break;
      case 6:
@@ -342,6 +353,8 @@ void MainWindow::enableButtonsForRole()
         ui->pbNotifiche->setEnabled(false);
         ui->pbCkeckNotifications->setEnabled(false);
         ui->pbExpirations->setEnabled(true);
+        ui->pbC4R->setEnabled(true);
+
 
 
 
@@ -494,9 +507,9 @@ void MainWindow::on_tbLogout_clicked()
 
 void MainWindow::on_tbAssociazioni_clicked()
 {
-    HAssociazioni* f = new HAssociazioni();
+    HAssociazioni* f = new HAssociazioni(user,db);
  //   connect(this,SIGNAL(onConnectionName()),f,SLOT(setConnectionName(QString)));
-    f->init(sConn);
+    f->init();
     f->show();
 }
 
@@ -511,7 +524,7 @@ void MainWindow::on_pbSchede_clicked()
    /* HSchede *f =new HSchede(0,db);
     f->show();**/
 
-    HNSChede *f= new HNSChede(0,user,db);
+    HNSChede *f= new HNSChede("","",db,user);
     f->showMaximized();
 
 }
@@ -643,5 +656,12 @@ void MainWindow::on_pbExpirations_clicked()
 void MainWindow::on_pbCalcoloCosti_clicked()
 {
     HCalcost *f= new HCalcost(db,user);
+    f->show();
+}
+
+
+void MainWindow::on_pbC4R_clicked()
+{
+    HRecipesForClient *f=new HRecipesForClient(db,-1);
     f->show();
 }

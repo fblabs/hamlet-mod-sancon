@@ -136,10 +136,26 @@ void HSchede::on_pbMod_clicked()
    // loadScheda();
 }
 
-void HSchede::loadScheda()
+void HSchede::loadScheda(int pcl, int ppr)
 {
-    int cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
-    int prodotto = ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
+    int cliente;
+    int prodotto;
+
+    if (pcl>0){
+
+        cliente=pcl;
+    }
+    else
+    {
+        cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
+    }
+    if(ppr>0){
+        prodotto=ppr;
+    }else{
+        prodotto = ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
+    }
+
+
     int ids;
     QString olio,vaso,tappo,etichette,scatole,note;
     qreal fontsize;

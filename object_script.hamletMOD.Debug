@@ -55,6 +55,7 @@ INPUT(
 ./debug/hexpirations.o
 ./debug/hcalcost.o
 ./debug/hwarehousedetails.o
+./debug/hrecipesforclient.o
 ./debug/qrc_icons.o
 ./debug/moc_mainwindow.o
 ./debug/moc_huser.o
@@ -110,4 +111,5 @@ INPUT(
 ./debug/moc_hexpirations.o
 ./debug/moc_hcalcost.o
 ./debug/moc_hwarehousedetails.o
+./debug/moc_hrecipesforclient.o
 );

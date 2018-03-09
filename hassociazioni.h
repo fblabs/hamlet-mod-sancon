@@ -7,6 +7,7 @@
 #include <QSqlTableModel>
 #include <QCompleter>
 #include <QItemDelegate>
+#include "huser.h"
 
 
 namespace Ui {
@@ -18,9 +19,9 @@ class HAssociazioni : public QWidget
     Q_OBJECT
 
 public:
-    explicit HAssociazioni(QWidget *parent = 0);
+    explicit HAssociazioni(HUser *puser,QSqlDatabase pdb,QWidget *parent = 0);
     ~HAssociazioni();
-    void init(QString conn);
+    void init();
     void setVisibility(bool visible);
 
 private:
@@ -33,6 +34,7 @@ private:
     QSqlQueryModel *qm;
     QSqlQueryModel *tvqm;
     QItemDelegate *delegate;
+    HUser *user;
 private slots:
     void getRecipes();
     void getRecipesForTable();
@@ -44,7 +46,7 @@ private slots:
     void on_pushButton_4_clicked();
     void on_pushButton_5_clicked();
     void on_pushButton_6_clicked();
-    void on_leCliente_textChanged(const QString &arg1);
+   // void on_leCliente_textChanged(const QString &arg1);
 };
 
 #endif // HASSOCIAZIONI_H

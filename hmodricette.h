@@ -64,6 +64,10 @@ private slots:
 
     void on_pushButton_6_clicked();
 
+
+
+    void on_pbC4R_clicked();
+
 private:
     Ui::HModRicette *ui;
     bool update;

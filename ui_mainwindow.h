@@ -66,6 +66,7 @@ public:
     QPushButton *pbOldCards;
     QPushButton *pbExpirations;
     QPushButton *pbCalcoloCosti;
+    QPushButton *pbC4R;
     QLabel *label_6;
 
     void setupUi(QMainWindow *MainWindow)
@@ -523,6 +524,16 @@ public:
 
         gridLayout->addWidget(pbCalcoloCosti, 3, 8, 1, 1);
 
+        pbC4R = new QPushButton(centralWidget);
+        pbC4R->setObjectName(QStringLiteral("pbC4R"));
+        pbC4R->setEnabled(false);
+        QIcon icon24;
+        icon24.addFile(QStringLiteral(":/Resources/Link64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbC4R->setIcon(icon24);
+        pbC4R->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(pbC4R, 8, 6, 1, 1);
+
 
         verticalLayout_4->addLayout(gridLayout);
 
@@ -550,7 +561,7 @@ public:
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.1</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: </span><span style=\" font-size:16pt; font-weight:600; color:#060606;\">2.1.5</span><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2018</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti (github)</span></a></p></body></html>", 0));
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.2</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: </span><span style=\" font-size:16pt; font-weight:600; color:#060606;\">2.2.0</span><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2018</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti (github)</span></a></p></body></html>", 0));
         pbPackages->setText(QApplication::translate("MainWindow", "Packages (F9)", 0));
         pbPackages->setShortcut(QApplication::translate("MainWindow", "F9", 0));
         tbLotti->setText(QApplication::translate("MainWindow", "Lotti (F5)", 0));
@@ -578,7 +589,7 @@ public:
 #ifndef QT_NO_TOOLTIP
         tbMagaz->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>Operazioni legate al Magazzino,movimentazione di carico e scarico, correzione errori,ecc.</p></body></html>", 0));
 #endif // QT_NO_TOOLTIP
-        tbMagaz->setText(QApplication::translate("MainWindow", " Magazzino (F2)", 0));
+        tbMagaz->setText(QApplication::translate("MainWindow", " Movimenti (F2)", 0));
         tbMagaz->setShortcut(QApplication::translate("MainWindow", "F2", 0));
         pushButton->setText(QApplication::translate("MainWindow", "Aggiorna", 0));
         tbUtenti->setText(QApplication::translate("MainWindow", "Utenti", 0));
@@ -589,6 +600,7 @@ public:
         pbExpirations->setText(QApplication::translate("MainWindow", "Scadenze", 0));
         pbCalcoloCosti->setText(QApplication::translate("MainWindow", "Calcolo costi (F10)", 0));
         pbCalcoloCosti->setShortcut(QApplication::translate("MainWindow", "F10", 0));
+        pbC4R->setText(QApplication::translate("MainWindow", "Clienti per ricetta", 0));
         label_6->setText(QString());
     } // retranslateUi
 

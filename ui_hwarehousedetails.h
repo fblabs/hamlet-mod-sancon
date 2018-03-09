@@ -32,6 +32,8 @@ public:
     QLineEdit *leFornitore;
     QLabel *label_2;
     QLineEdit *leScadenza;
+    QLabel *label_3;
+    QLineEdit *leLotFornitore;
     QPushButton *pushButton;
 
     void setupUi(QWidget *HWarehouseDetails)
@@ -39,7 +41,7 @@ public:
         if (HWarehouseDetails->objectName().isEmpty())
             HWarehouseDetails->setObjectName(QStringLiteral("HWarehouseDetails"));
         HWarehouseDetails->setWindowModality(Qt::ApplicationModal);
-        HWarehouseDetails->resize(400, 109);
+        HWarehouseDetails->resize(400, 138);
         verticalLayout = new QVBoxLayout(HWarehouseDetails);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         formLayout = new QFormLayout();
@@ -59,20 +61,36 @@ public:
         label_2 = new QLabel(HWarehouseDetails);
         label_2->setObjectName(QStringLiteral("label_2"));
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_2);
 
         leScadenza = new QLineEdit(HWarehouseDetails);
         leScadenza->setObjectName(QStringLiteral("leScadenza"));
         leScadenza->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
         leScadenza->setReadOnly(true);
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, leScadenza);
+        formLayout->setWidget(2, QFormLayout::FieldRole, leScadenza);
+
+        label_3 = new QLabel(HWarehouseDetails);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_3);
+
+        leLotFornitore = new QLineEdit(HWarehouseDetails);
+        leLotFornitore->setObjectName(QStringLiteral("leLotFornitore"));
+        leLotFornitore->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leLotFornitore->setReadOnly(true);
+
+        formLayout->setWidget(1, QFormLayout::FieldRole, leLotFornitore);
 
 
         verticalLayout->addLayout(formLayout);
 
         pushButton = new QPushButton(HWarehouseDetails);
         pushButton->setObjectName(QStringLiteral("pushButton"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon);
+        pushButton->setIconSize(QSize(32, 32));
 
         verticalLayout->addWidget(pushButton);
 
@@ -87,6 +105,7 @@ public:
         HWarehouseDetails->setWindowTitle(QString());
         label->setText(QApplication::translate("HWarehouseDetails", "Fornitore:", 0));
         label_2->setText(QApplication::translate("HWarehouseDetails", "Scadenza:", 0));
+        label_3->setText(QApplication::translate("HWarehouseDetails", "Lotto Fornitore:", 0));
         pushButton->setText(QApplication::translate("HWarehouseDetails", "Chiudi", 0));
     } // retranslateUi
 

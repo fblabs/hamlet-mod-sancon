@@ -36,6 +36,7 @@ public:
     QComboBox *cbRicette;
     QPushButton *pushButton_3;
     QPushButton *pbduplica;
+    QPushButton *pbC4R;
     QPushButton *pushButton_4;
     QTextBrowser *tbnote;
     QTableView *tableView;
@@ -94,11 +95,19 @@ public:
 
         horizontalLayout_4->addWidget(pbduplica);
 
+        pbC4R = new QPushButton(HModRicette);
+        pbC4R->setObjectName(QStringLiteral("pbC4R"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Link64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbC4R->setIcon(icon3);
+
+        horizontalLayout_4->addWidget(pbC4R);
+
         pushButton_4 = new QPushButton(HModRicette);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Map.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Map.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon4);
 
         horizontalLayout_4->addWidget(pushButton_4);
 
@@ -140,9 +149,9 @@ public:
 
         pbDeleteRow = new QPushButton(HModRicette);
         pbDeleteRow->setObjectName(QStringLiteral("pbDeleteRow"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbDeleteRow->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDeleteRow->setIcon(icon5);
 
         horizontalLayout_3->addWidget(pbDeleteRow);
 
@@ -169,36 +178,36 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pushButton = new QPushButton(HModRicette);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon6);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton);
 
         pushButton_6 = new QPushButton(HModRicette);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_6->setIcon(icon6);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_6->setIcon(icon7);
         pushButton_6->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_6);
 
         pushButton_5 = new QPushButton(HModRicette);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        QIcon icon7;
-        icon7.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon7);
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon8);
         pushButton_5->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_5);
 
         pushButton_2 = new QPushButton(HModRicette);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon8;
-        icon8.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon8);
+        QIcon icon9;
+        icon9.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon9);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_2);
@@ -218,6 +227,7 @@ public:
         label_2->setText(QApplication::translate("HModRicette", "Ricette:", 0));
         pushButton_3->setText(QApplication::translate("HModRicette", "Nuova Ricetta", 0));
         pbduplica->setText(QApplication::translate("HModRicette", "Duplica Ricetta", 0));
+        pbC4R->setText(QApplication::translate("HModRicette", "Clienti associati", 0));
         pushButton_4->setText(QApplication::translate("HModRicette", "Associazioni ricette-clienti", 0));
         checkBox->setText(QApplication::translate("HModRicette", "Mostra in produzione", 0));
         pbAddRow->setText(QApplication::translate("HModRicette", "Aggiungi ingrediente", 0));

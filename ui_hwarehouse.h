@@ -194,7 +194,7 @@ public:
 
     void retranslateUi(QWidget *HWarehouse)
     {
-        HWarehouse->setWindowTitle(QApplication::translate("HWarehouse", "Magazzino", 0));
+        HWarehouse->setWindowTitle(QApplication::translate("HWarehouse", "Movimenti", 0));
         label->setText(QApplication::translate("HWarehouse", "Dal:", 0));
         label_2->setText(QApplication::translate("HWarehouse", "Al:", 0));
         rbProdFilter->setText(QApplication::translate("HWarehouse", "Filtra per prodotto", 0));

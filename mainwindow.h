@@ -77,6 +77,10 @@ private slots:
 
     void on_pbCalcoloCosti_clicked();
 
+
+
+    void on_pbC4R_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *ke);
 

@@ -15,7 +15,7 @@ class HNSChede : public QWidget
     Q_OBJECT
 
 public:
-    explicit HNSChede(QWidget *parent = 0, HUser* pusr=0,QSqlDatabase pdb=QSqlDatabase());
+    explicit HNSChede(QString spcliente,QString spprodotto,QSqlDatabase pdb=QSqlDatabase(),HUser* pusr=0,QWidget *parent = 0);
     ~HNSChede();
 
 private slots:

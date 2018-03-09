@@ -17,8 +17,6 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
@@ -29,19 +27,17 @@ QT_BEGIN_NAMESPACE
 class Ui_HAssociazioni
 {
 public:
-    QVBoxLayout *verticalLayout_3;
-    QVBoxLayout *verticalLayout_2;
-    QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout;
-    QComboBox *cbClienti;
-    QListView *listView;
-    QHBoxLayout *horizontalLayout;
-    QLabel *label;
-    QLineEdit *leCliente;
-    QTableView *tableView;
     QHBoxLayout *horizontalLayout_2;
+    QLabel *label_2;
+    QComboBox *cbClienti;
+    QTableView *tableView;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label_3;
+    QComboBox *cbRicette;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
+    QHBoxLayout *horizontalLayout_3;
     QPushButton *pushButton_5;
     QPushButton *pushButton_6;
     QPushButton *pushButton_4;
@@ -52,60 +48,52 @@ public:
         if (HAssociazioni->objectName().isEmpty())
             HAssociazioni->setObjectName(QStringLiteral("HAssociazioni"));
         HAssociazioni->setWindowModality(Qt::NonModal);
-        HAssociazioni->resize(726, 469);
+        HAssociazioni->resize(726, 633);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Map.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HAssociazioni->setWindowIcon(icon);
-        verticalLayout_3 = new QVBoxLayout(HAssociazioni);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        verticalLayout = new QVBoxLayout();
+        verticalLayout = new QVBoxLayout(HAssociazioni);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        label_2 = new QLabel(HAssociazioni);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setMaximumSize(QSize(35, 16777215));
+
+        horizontalLayout_2->addWidget(label_2);
+
         cbClienti = new QComboBox(HAssociazioni);
         cbClienti->setObjectName(QStringLiteral("cbClienti"));
         cbClienti->setEditable(true);
         cbClienti->setInsertPolicy(QComboBox::NoInsert);
 
-        verticalLayout->addWidget(cbClienti);
-
-        listView = new QListView(HAssociazioni);
-        listView->setObjectName(QStringLiteral("listView"));
-
-        verticalLayout->addWidget(listView);
-
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label = new QLabel(HAssociazioni);
-        label->setObjectName(QStringLiteral("label"));
-
-        horizontalLayout->addWidget(label);
-
-        leCliente = new QLineEdit(HAssociazioni);
-        leCliente->setObjectName(QStringLiteral("leCliente"));
-
-        horizontalLayout->addWidget(leCliente);
+        horizontalLayout_2->addWidget(cbClienti);
 
 
-        verticalLayout->addLayout(horizontalLayout);
-
-
-        horizontalLayout_3->addLayout(verticalLayout);
+        verticalLayout->addLayout(horizontalLayout_2);
 
         tableView = new QTableView(HAssociazioni);
         tableView->setObjectName(QStringLiteral("tableView"));
+        tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tableView->setAlternatingRowColors(true);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
         tableView->horizontalHeader()->setStretchLastSection(true);
 
-        horizontalLayout_3->addWidget(tableView);
+        verticalLayout->addWidget(tableView);
 
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        label_3 = new QLabel(HAssociazioni);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setMaximumSize(QSize(40, 16777215));
 
-        verticalLayout_2->addLayout(horizontalLayout_3);
+        horizontalLayout_4->addWidget(label_3);
 
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        cbRicette = new QComboBox(HAssociazioni);
+        cbRicette->setObjectName(QStringLiteral("cbRicette"));
+
+        horizontalLayout_4->addWidget(cbRicette);
+
         pushButton_2 = new QPushButton(HAssociazioni);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         QIcon icon1;
@@ -113,7 +101,7 @@ public:
         pushButton_2->setIcon(icon1);
         pushButton_2->setIconSize(QSize(32, 32));
 
-        horizontalLayout_2->addWidget(pushButton_2);
+        horizontalLayout_4->addWidget(pushButton_2);
 
         pushButton_3 = new QPushButton(HAssociazioni);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
@@ -122,8 +110,13 @@ public:
         pushButton_3->setIcon(icon2);
         pushButton_3->setIconSize(QSize(32, 32));
 
-        horizontalLayout_2->addWidget(pushButton_3);
+        horizontalLayout_4->addWidget(pushButton_3);
 
+
+        verticalLayout->addLayout(horizontalLayout_4);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         pushButton_5 = new QPushButton(HAssociazioni);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         QIcon icon3;
@@ -131,7 +124,7 @@ public:
         pushButton_5->setIcon(icon3);
         pushButton_5->setIconSize(QSize(32, 32));
 
-        horizontalLayout_2->addWidget(pushButton_5);
+        horizontalLayout_3->addWidget(pushButton_5);
 
         pushButton_6 = new QPushButton(HAssociazioni);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
@@ -140,7 +133,7 @@ public:
         pushButton_6->setIcon(icon4);
         pushButton_6->setIconSize(QSize(32, 32));
 
-        horizontalLayout_2->addWidget(pushButton_6);
+        horizontalLayout_3->addWidget(pushButton_6);
 
         pushButton_4 = new QPushButton(HAssociazioni);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
@@ -149,7 +142,10 @@ public:
         pushButton_4->setIcon(icon5);
         pushButton_4->setIconSize(QSize(32, 32));
 
-        horizontalLayout_2->addWidget(pushButton_4);
+        horizontalLayout_3->addWidget(pushButton_4);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
 
         pushButton = new QPushButton(HAssociazioni);
         pushButton->setObjectName(QStringLiteral("pushButton"));
@@ -158,13 +154,7 @@ public:
         pushButton->setIcon(icon6);
         pushButton->setIconSize(QSize(32, 32));
 
-        horizontalLayout_2->addWidget(pushButton);
-
-
-        verticalLayout_2->addLayout(horizontalLayout_2);
-
-
-        verticalLayout_3->addLayout(verticalLayout_2);
+        verticalLayout->addWidget(pushButton);
 
 
         retranslateUi(HAssociazioni);
@@ -175,7 +165,8 @@ public:
     void retranslateUi(QWidget *HAssociazioni)
     {
         HAssociazioni->setWindowTitle(QApplication::translate("HAssociazioni", "Associazioni prodotti-ricette", 0));
-        label->setText(QApplication::translate("HAssociazioni", "Cerca:", 0));
+        label_2->setText(QApplication::translate("HAssociazioni", "Clienti:", 0));
+        label_3->setText(QApplication::translate("HAssociazioni", "Ricette:", 0));
         pushButton_2->setText(QApplication::translate("HAssociazioni", "Aggiungi associazione", 0));
         pushButton_3->setText(QApplication::translate("HAssociazioni", "rimuovi associazione", 0));
         pushButton_5->setText(QApplication::translate("HAssociazioni", "Rendi visibile", 0));

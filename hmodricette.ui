@@ -69,6 +69,17 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pbC4R">
+       <property name="text">
+        <string>Clienti associati</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Link64.png</normaloff>:/Resources/Link64.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_4">
        <property name="text">
         <string>Associazioni ricette-clienti</string>

@@ -1,19 +1,23 @@
 #include "hassociazioni.h"
 #include "ui_hassociazioni.h"
-#include "hmodificascheda.h"
+#include "hnschede.h"
 #include <QSqlTableModel>
 #include <QSqlQuery>
 #include <QMessageBox>
+#include "huser.h"
 
 #include <QSqlError>
 // #include <QDebug>
 #include <QItemDelegate>
 
-HAssociazioni::HAssociazioni(QWidget *parent) :
+HAssociazioni::HAssociazioni(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HAssociazioni)
 {
     ui->setupUi(this);
+
+    user=puser;
+    db=pdb;
 }
 
 HAssociazioni::~HAssociazioni()
@@ -21,12 +25,10 @@ HAssociazioni::~HAssociazioni()
     delete ui;
 }
 
-void HAssociazioni::init(QString conn)
+void HAssociazioni::init()
 {
 
-    sConn=conn;
 
-    db=QSqlDatabase::database(sConn);
 
     tmClienti= new QSqlTableModel(0,db);
     tmClienti->setTable("anagrafica");
@@ -58,7 +60,7 @@ void HAssociazioni::init(QString conn)
 
 void HAssociazioni::getRecipes()
 {
-    QString qs="SELECT ricette.ID,prodotti.ID,prodotti.descrizione from prodotti,ricette where prodotti.ID=ricette.ID_prodotto and prodotti.tipo=2 order by prodotti.descrizione ASC";
+    QString qs="SELECT ricette.ID,prodotti.descrizione from prodotti,ricette where prodotti.ID=ricette.ID_prodotto and prodotti.tipo=2 order by prodotti.descrizione ASC";
     QSqlQuery q(db);
     qm=new QSqlQueryModel();
 
@@ -67,8 +69,8 @@ void HAssociazioni::getRecipes()
 
     qm->setQuery(q);
 
-    ui->listView->setModel(qm);
-    ui->listView->setModelColumn(2);
+    ui->cbRicette->setModel(qm);
+    ui->cbRicette->setModelColumn(1);
 
 
 
@@ -108,7 +110,7 @@ void HAssociazioni::saveAssociation()
     QString sQuery;
 
      idCliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toString();
-     idRicetta=ui->listView->model()->index(ui->listView->selectionModel()->currentIndex().row(),0).data(0).toString();
+     idRicetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toString();
 
     QSqlQuery q(db);
 
@@ -219,13 +221,16 @@ void HAssociazioni::on_pushButton_clicked()
 
 void HAssociazioni::on_pushButton_4_clicked()
 {
-    HModificaScheda *f = new HModificaScheda();
-
-    int idCliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
-    int idRicetta=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data(0).toInt();
+    QString sCliente=ui->cbClienti->currentText();
+    QString sRicetta=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toString();
 
 
-    f->init(sConn,idCliente,idRicetta,ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toString(),100,100,10);
+
+    HNSChede *f = new HNSChede(sCliente,sRicetta,db,user);
+
+
+
+  //  f->loadCard();
     f->show();
 }
 
@@ -241,7 +246,7 @@ void HAssociazioni::on_pushButton_6_clicked()
 
 
 
-void HAssociazioni::on_leCliente_textChanged(const QString &arg1)
+/*void HAssociazioni::on_leCliente_textChanged(const QString &arg1)
 {
     QString sql;
 
@@ -258,9 +263,9 @@ void HAssociazioni::on_leCliente_textChanged(const QString &arg1)
 
     qm->setQuery(q);
 
-    ui->listView->setModel(qm);
-    ui->listView->setModelColumn(2);
+    ui->cbRicette->setModel(qm);
+    ui->cbRicette->setModelColumn(1);
 
 
 
-}
+}*/

@@ -17,6 +17,7 @@
 #include "hclientiassociati.h"
 #include <QShortcut>
 #include <QDebug>
+#include <hrecipesforclient.h>
 
 HModRicette::HModRicette(QWidget *parent) :
     QWidget(parent),
@@ -134,7 +135,7 @@ void HModRicette::getRicette()
     QCompleter *comp=new QCompleter();
     qmric=new  QSqlQueryModel();
     QSqlQuery q(db);
-    q.exec("SELECT ricette.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto and prodotti.tipo=2 ORDER BY prodotti.descrizione ASC");
+    q.exec("SELECT ricette.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto ORDER BY prodotti.descrizione ASC");
     qmric->setQuery(q);
 
     ui->cbRicette->setModel(qmric);
@@ -337,7 +338,7 @@ void HModRicette::loadRicetta()
 
     int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
     QSqlQuery q(db);
-    QString sql = "SELECT DISTINCT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta ORDER BY righe_ricette.quantita DESC";
+    QString sql = "SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta ORDER BY righe_ricette.quantita DESC";
     q.prepare(sql);
     q.bindValue(":idricetta",QVariant(idricetta));
     q.exec();
@@ -699,9 +700,9 @@ void HModRicette::on_pushButton_5_clicked()
 
 void HModRicette::on_pushButton_4_clicked()
 {
-    HAssociazioni* f = new HAssociazioni();
+    HAssociazioni* f = new HAssociazioni(0,db);
     //   connect(this,SIGNAL(onConnectionName()),f,SLOT(setConnectionName(QString)));
-    f->init(sConn);
+    f->init();
     f->show();
 }
 
@@ -730,4 +731,15 @@ void HModRicette::on_leTotal_textChanged(const QString &arg1)
 void HModRicette::on_pushButton_6_clicked()
 {
     loadRicetta();
+}
+
+
+
+void HModRicette::on_pbC4R_clicked()
+{
+    int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
+    qDebug()<<"idricetta:"<<idricetta;
+
+    HRecipesForClient *f=new HRecipesForClient(db,idricetta);
+    f->show();
 }

@@ -27,7 +27,7 @@
 
 
 
-HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
+HNSChede::HNSChede(QString spcliente, QString spprodotto, QSqlDatabase pdb, HUser *pusr, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HNSChede)
 {
@@ -106,7 +106,17 @@ HNSChede::HNSChede(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
     connect(ui->textEdit->document(),SIGNAL(contentsChanged()),this,SLOT(documentChanged()));
 
+    if(spcliente != QString())
+    {
+    int cix=ui->cbClienti->findText(spcliente);
+    ui->cbClienti->setCurrentIndex(cix);
+    }
 
+    if(spprodotto != QString())
+    {
+    int pix=ui->cbProdotti->findText(spprodotto);
+    ui->cbProdotti->setCurrentIndex(pix);
+    }
 
 }
 
