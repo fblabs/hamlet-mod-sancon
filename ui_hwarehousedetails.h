@@ -30,10 +30,12 @@ public:
     QFormLayout *formLayout;
     QLabel *label;
     QLineEdit *leFornitore;
-    QLabel *label_2;
-    QLineEdit *leScadenza;
     QLabel *label_3;
     QLineEdit *leLotFornitore;
+    QLabel *label_2;
+    QLineEdit *leScadenza;
+    QLabel *label_4;
+    QLineEdit *leLotInt;
     QPushButton *pushButton;
 
     void setupUi(QWidget *HWarehouseDetails)
@@ -41,7 +43,7 @@ public:
         if (HWarehouseDetails->objectName().isEmpty())
             HWarehouseDetails->setObjectName(QStringLiteral("HWarehouseDetails"));
         HWarehouseDetails->setWindowModality(Qt::ApplicationModal);
-        HWarehouseDetails->resize(400, 138);
+        HWarehouseDetails->resize(400, 196);
         verticalLayout = new QVBoxLayout(HWarehouseDetails);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         formLayout = new QFormLayout();
@@ -58,29 +60,41 @@ public:
 
         formLayout->setWidget(0, QFormLayout::FieldRole, leFornitore);
 
-        label_2 = new QLabel(HWarehouseDetails);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_2);
-
-        leScadenza = new QLineEdit(HWarehouseDetails);
-        leScadenza->setObjectName(QStringLiteral("leScadenza"));
-        leScadenza->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
-        leScadenza->setReadOnly(true);
-
-        formLayout->setWidget(2, QFormLayout::FieldRole, leScadenza);
-
         label_3 = new QLabel(HWarehouseDetails);
         label_3->setObjectName(QStringLiteral("label_3"));
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_3);
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
 
         leLotFornitore = new QLineEdit(HWarehouseDetails);
         leLotFornitore->setObjectName(QStringLiteral("leLotFornitore"));
         leLotFornitore->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
         leLotFornitore->setReadOnly(true);
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, leLotFornitore);
+        formLayout->setWidget(2, QFormLayout::FieldRole, leLotFornitore);
+
+        label_2 = new QLabel(HWarehouseDetails);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_2);
+
+        leScadenza = new QLineEdit(HWarehouseDetails);
+        leScadenza->setObjectName(QStringLiteral("leScadenza"));
+        leScadenza->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leScadenza->setReadOnly(true);
+
+        formLayout->setWidget(3, QFormLayout::FieldRole, leScadenza);
+
+        label_4 = new QLabel(HWarehouseDetails);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_4);
+
+        leLotInt = new QLineEdit(HWarehouseDetails);
+        leLotInt->setObjectName(QStringLiteral("leLotInt"));
+        leLotInt->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leLotInt->setReadOnly(true);
+
+        formLayout->setWidget(1, QFormLayout::FieldRole, leLotInt);
 
 
         verticalLayout->addLayout(formLayout);
@@ -104,8 +118,9 @@ public:
     {
         HWarehouseDetails->setWindowTitle(QString());
         label->setText(QApplication::translate("HWarehouseDetails", "Fornitore:", 0));
-        label_2->setText(QApplication::translate("HWarehouseDetails", "Scadenza:", 0));
         label_3->setText(QApplication::translate("HWarehouseDetails", "Lotto Fornitore:", 0));
+        label_2->setText(QApplication::translate("HWarehouseDetails", "Scadenza:", 0));
+        label_4->setText(QApplication::translate("HWarehouseDetails", "Lotto interno:", 0));
         pushButton->setText(QApplication::translate("HWarehouseDetails", "Chiudi", 0));
     } // retranslateUi
 

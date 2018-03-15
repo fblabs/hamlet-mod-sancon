@@ -46,19 +46,21 @@ public slots:
 
 private slots:
    void on_rbNoFilter_toggled(bool checked);
-   void on_rbLotfilter_toggled(bool checked);
+
    void on_rbProdFilter_toggled(bool checked);
    void setOperazioniFilter(int tipo);
-//   void on_pbFilterByDate_clicked();
-
+   void updateFilter();
    void on_pushButton_clicked();
    void on_pushButton_4_clicked();
    void on_pushButton_2_clicked();
-   void on_pushButton_3_clicked();
    void updateDataSlt();
 
    void on_pushButton_5_clicked();
    void on_tableView_doubleClicked(const QModelIndex &index);
+   void on_deDateFrom_dateChanged(const QDate &date);
+   void on_deDateTo_dateChanged(const QDate &date);
+   void on_cbFilter_currentIndexChanged(int index);
+
 };
 
 #endif // HWAREHOUSE_H
