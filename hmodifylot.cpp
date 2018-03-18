@@ -129,11 +129,11 @@ HModifyLot::~HModifyLot()
 
 void HModifyLot::on_pushButton_2_clicked()
 {
-    if (QMessageBox::Ok==QMessageBox::information(this,QApplication::applicationName(),"Chiudere? Tutte le modifiche non salvate andranno perdute",QMessageBox::Ok|QMessageBox::Cancel))
-    {
+   // if (QMessageBox::Ok==QMessageBox::information(this,QApplication::applicationName(),"Chiudere? Tutte le modifiche non salvate andranno perdute",QMessageBox::Ok|QMessageBox::Cancel))
+   // {
 
-        close();
-    }
+        this->close();
+    //}
 }
 
 void HModifyLot::on_cbScad_toggled(bool checked)
@@ -148,7 +148,7 @@ void HModifyLot::on_cbScad_toggled(bool checked)
     }
 }
 
-bool HModifyLot::updateLot()
+void HModifyLot::updateLot()
 {
     QSqlQuery q(db);
     QString sql;
@@ -193,15 +193,15 @@ bool HModifyLot::updateLot()
     {
         db.commit();
         QMessageBox::information(this,QApplication::applicationName(),"modifiche salvate",QMessageBox::Ok);
-        emit update();
-        return b;
+        emit updatedLot();
+
     }
     else
     {
 
         QMessageBox::warning(this,QApplication::applicationName(),"modifiche salvate",QMessageBox::Ok);
         db.rollback();
-        return b;
+        QMessageBox::information(this,QApplication::applicationName(),"Errore salvando le modifiche",QMessageBox::Ok);
 
 
     }

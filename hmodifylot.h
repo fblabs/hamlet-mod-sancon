@@ -20,7 +20,7 @@ public:
 
 private slots:
 
-    bool updateLot();
+    void updateLot();
 
     void on_pushButton_2_clicked();
 
@@ -37,7 +37,7 @@ private:
     int tipo;
 
 signals:
-    void update();
+    void updatedLot();
 };
 
 #endif // HMODIFYLOT_H

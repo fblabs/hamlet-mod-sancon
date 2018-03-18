@@ -336,6 +336,7 @@ void HLotti::modifySelected(int pidlotto)
 {
 
    HModifyLot *f=new HModifyLot(pidlotto,db);
+   connect(f,SIGNAL(updatedLot()),this,SLOT(updateTableView()));
    f->show();
 
 }
@@ -345,6 +346,7 @@ void HLotti::on_pushButton_7_clicked()
     int idlotto=ui->twLots->model()->index(ui->twLots->currentIndex().row(),0).data(0).toInt();
 
     modifySelected(idlotto);
+
 }
 
 void HLotti::on_leLottoRaw_textChanged(const QString &arg1)
