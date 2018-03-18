@@ -380,7 +380,7 @@ void MainWindow::on_tbMagaz_clicked()
 void MainWindow::on_tbLotti_clicked()
 {
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-    HLotti *f = new HLotti(0,user,sConn);
+    HLotti *f = new HLotti(db,user);
     f->showMaximized();
 }
 
@@ -399,12 +399,11 @@ void MainWindow::on_tbRicette_clicked()
 
 void MainWindow::on_tbAnag_clicked()
 {
-    HUtenti* f = new HUtenti();
+    HUtenti* f = new HUtenti(db);
 
-    f->setConnectionName(sConn,user);
 
-    connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
-    emit onConnectionName();
+    //connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
+    //emit onConnectionName();
 
    // f->setWindowModality(Qt::ApplicationModal);
     f->showMaximized();
@@ -475,7 +474,8 @@ void MainWindow::on_toolButton_clicked()
 
 void MainWindow::on_pBNewOperation_clicked()
 {
-   HnuovaOperazione *f = new HnuovaOperazione(0,user,sConn);
+   HnuovaOperazione *f = new HnuovaOperazione(user,db);
+
    f->showMaximized();
 }
 
@@ -575,7 +575,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pbUnload_clicked()
 {
-  HPackagesUnload *f=new HPackagesUnload(0,user,sConn);
+  HPackagesUnload *f=new HPackagesUnload(user,db);
   f->show();
 }
 

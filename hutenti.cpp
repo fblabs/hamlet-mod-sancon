@@ -21,41 +21,13 @@
 #include <QMessageBox>
 #include "halarm.h"
 
-HUtenti::HUtenti(QWidget *parent) :
+HUtenti::HUtenti(QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HUtenti)
 {
     ui->setupUi(this);
+    db=pdb;
 
-   hidesubclienti();
-
-
-
-}
-
-HUtenti::~HUtenti()
-{
-    delete ui;
-}
-
-void HUtenti::setConnectionName(QString conn, HUser *usr)
-{
-    sConn=conn;
-    user=usr;
-
-}
-
-void HUtenti::onConnectionNameSet()
-{
-    //// qDebug()<<"onconnectionnameset";
-
-  db =QSqlDatabase::database(sConn);
-  initForm();
-
-}
-
-void HUtenti::initForm()
-{
     bool upd=user->getCanUpdateAnag();
 
    //notifiche
@@ -122,33 +94,34 @@ void HUtenti::initForm()
     dwMapper->addMapping(ui->cbtra,11);
     dwMapper->addMapping(ui->tnote,12);
     dwMapper->addMapping(ui->cbsub,13);
-   // dwMapper->addMapping(ui->cbxMasterCli,tm->fieldIndex("IDCliente"),"currentIndex");
-  /*  QSqlQuery q(db);
-    QString sql="SELECT ID,descrizione from anagrafica where subcliente=1 and ID=:id";*/
-    //int id=tm->index(ui->lvUtenti->currentIndex().row(),14).data(0).toInt();
-   /* q.prepare(sql);
 
-    q.bindValue(":id",QVariant(id));
-    q.exec();
-    q.first();
 
-    int x=ui->cbxMasterCli->findText(q.value(0).toString());
-
-    ui->cbxMasterCli->setCurrentIndex(x);*/
-     //// qDebug()<<QString::number(id);
 
 
     dwMapper->toFirst();
 
- //  map->setModel(cm);
- //  map
+
      connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), dwMapper, SLOT(setCurrentModelIndex(QModelIndex)));
-  //   connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), map, SLOT(setCurrentModelIndex(QModelIndex)));
      connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectMasterClient()));
      connect(ui->lsearch,SIGNAL(textChanged(QString)) , this, SLOT(productSearch()));
-     //connect(ui->lvUtenti->selectionModel(),SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(caricaNomi()));
      connect(ui->cbsub,SIGNAL(stateChanged(int)),this,SLOT(hidesubclienti()));
      connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(addreset()));
+
+
+   hidesubclienti();
+
+
+
+}
+
+HUtenti::~HUtenti()
+{
+    delete ui;
+}
+
+void HUtenti::initForm()
+{
+
 }
 
 void HUtenti::selectMasterClient()

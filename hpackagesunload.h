@@ -16,14 +16,13 @@ class HPackagesUnload : public QWidget
     Q_OBJECT
 
 public:
-    explicit HPackagesUnload(QWidget *parent = 0,HUser *puser=0,QString cnn="DEFAULT");
+    explicit HPackagesUnload(HUser* puser=0, QSqlDatabase pdb=QSqlDatabase(),QWidget *parent = 0);
     ~HPackagesUnload();
 
 private:
     Ui::HPackagesUnload *ui;
     QSqlDatabase db;
     HUser* user;
-    QString conn;
     QString baseFilter;
     QSqlTableModel *modClienti;
     QSqlQueryModel *modProdotti;

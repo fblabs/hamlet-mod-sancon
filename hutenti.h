@@ -17,7 +17,7 @@ class HUtenti : public QWidget
     Q_OBJECT
 
 public:
-    explicit HUtenti(QWidget *parent = 0);
+    explicit HUtenti(QSqlDatabase pdb, QWidget *parent = 0);
     ~HUtenti();
      QSqlDatabase db;
      void setConnectionName(QString conn,HUser *usr);
@@ -43,8 +43,6 @@ private slots:
     void on_pushButton_3_clicked();
     void addreset();
     void on_pushButton_2_clicked();
-    //viod getMasteClient();
-    void onConnectionNameSet();
     void selectMasterClient();
     void updateSubclient();
     bool save();

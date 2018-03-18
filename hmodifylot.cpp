@@ -10,23 +10,14 @@
 #include <QSqlError>
 
 
-HModifyLot::HModifyLot(QWidget *parent) :
+HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HModifyLot)
 {
     ui->setupUi(this);
-}
 
-HModifyLot::~HModifyLot()
-{
-    delete ui;
-}
-
-void HModifyLot::init(int idlotto, QString conn)
-{
-    db = QSqlDatabase::database(conn);
-    lot=idlotto;
-
+    db=pdb;
+    lot=pidlotto;
     QSqlTableModel *mum=new QSqlTableModel(0,db);
     QSqlTableModel *mang=new QSqlTableModel(0,db);
     QSqlTableModel *mtipi=new QSqlTableModel(0,db);
@@ -126,14 +117,15 @@ void HModifyLot::init(int idlotto, QString conn)
     q.exec();
     q.first();
 
-    int ium=ui->cbUm->findText(q.value(0).toString());
-    ui->cbUm->setCurrentIndex(ium);
-
-
-
-
-
+   // int ium=ui->cbUm->findText(q.value(0).toString());
+   // ui->cbUm->setCurrentIndex(ium);
 }
+
+HModifyLot::~HModifyLot()
+{
+    delete ui;
+}
+
 
 void HModifyLot::on_pushButton_2_clicked()
 {
@@ -178,12 +170,12 @@ bool HModifyLot::updateLot()
     }
     if(ui->cbAttivo->isChecked())
     {
-        q.bindValue(":att",QVariant(2));
+        q.bindValue(":att",true);
     }
     else
     {
 
-       q.bindValue(":att",QVariant(0));
+       q.bindValue(":att",false);
     }
 
 
@@ -202,16 +194,17 @@ bool HModifyLot::updateLot()
         db.commit();
         QMessageBox::information(this,QApplication::applicationName(),"modifiche salvate",QMessageBox::Ok);
         emit update();
+        return b;
     }
     else
     {
 
         QMessageBox::warning(this,QApplication::applicationName(),"modifiche salvate",QMessageBox::Ok);
         db.rollback();
-       // // qDebug()<<q.lastError().text();
-    }
+        return b;
 
-    return b;
+
+    }
 
 }
 
@@ -232,3 +225,4 @@ void HModifyLot::on_pbComposizione_clicked()
 
 
 }
+

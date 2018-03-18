@@ -22,58 +22,36 @@
 #include "hexpirations.h"
 
 
-HLotti::HLotti(QWidget *parent,HUser *puser,QString pcon) :
+HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HLotti)
 {
-    user=puser;
-    sConnection=pcon;
+
     ui->setupUi(this);
-    //setWindowModality(Qt::ApplicationModal);
-    this->setContextMenuPolicy(Qt::CustomContextMenu);
-    setupForm();
-}
 
-/*void HLotti::setConnectionName(QString conn)
-{
-   // sConnection = conn;
-}*/
-
-HLotti::~HLotti()
-{
-    delete ui;
-}
-
-/*void HLotti::onConnectionNameSet()
-{
-   setupForm();
-}*/
-
-void HLotti::setupForm()
-{
-    db = QSqlDatabase::database(sConnection);
+    user=puser;
+    db=pdb;
 
     ui->datadal->setDate(QDate::currentDate().addMonths(-3));
     ui->dataal->setDate(QDate::currentDate());
 
-
     tbm = new HReadOnlyModelLots(0,db);
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
 
     tbm->setTable("lotdef");
     tbm->setFilter("lotdef.attivo=2");
-
     tbm->setRelation(2,QSqlRelation("prodotti","ID","descrizione"));
     tbm->setRelation(5,QSqlRelation("unita_di_misura","ID","descrizione"));
     tbm->setRelation(7,QSqlRelation("anagrafica","ID","ragione_sociale"));
     tbm->setRelation(10,QSqlRelation("tipi_lot","ID","descrizione"));
 
+
     ui->twLots->setItemDelegate(new QSqlRelationalDelegate(tbm));
+    tbm->select();
     ui->twLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     tbm->setEditStrategy(QSqlRelationalTableModel::OnFieldChange);
 
-
-////// qDebug()<<tbm->lastError().text()<<tbm->relation(7).indexColumn();
 
     tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
     tbm->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
@@ -86,7 +64,7 @@ void HLotti::setupForm()
     tbm->setHeaderData(8,Qt::Horizontal,QObject::tr("Lotto Fornitore"));
     tbm->setHeaderData(9,Qt::Horizontal,QObject::tr("Lotto di Uscita"));
     tbm->setHeaderData(10,Qt::Horizontal,QObject::tr("Tipologia Lotto"));
- /*   tbm->setHeaderData(9,Qt::Horizontal,QObject::tr("Attivo"));*/
+
     tbm->setSort(3,Qt::AscendingOrder);
 
     QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
@@ -98,7 +76,7 @@ void HLotti::setupForm()
     tbm->select();
     ui->twLots->setModel(tbm);
 
-    //// qDebug()<<tbm->query().lastError().text();
+
 
     mTipi=new QSqlTableModel(0,db);
     mTipi->setTable("tipi_lot");
@@ -130,7 +108,7 @@ void HLotti::setupForm()
 
 
     tbm->setSort(3,Qt::DescendingOrder);
-    setFilter();
+
     ui->twLots->setColumnWidth(11,10);
 
     ui->twLots->setColumnHidden(0,true);
@@ -138,30 +116,35 @@ void HLotti::setupForm()
 
     det=new QShortcut(QKeySequence("F5"),this);
 
-   // connect(ui->cbTipiLot,SIGNAL(currentIndexChanged(QString)),this,SLOT(setFilter()));
-   // connect(ui->cbProdotti,SIGNAL(currentIndexChanged(QString)),this,SLOT(setFilter()));
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
     connect(det,SIGNAL(activated()),this,SLOT(getDetails()));
-
-   // connect(this,SIGNAL(actionCopia),this,SLOT(showContextMenu(QPoint));
-
 }
+
+
+
+HLotti::~HLotti()
+{
+    delete ui;
+}
+
+/*void HLotti::onConnectionNameSet()
+{
+   setupForm();
+}*/
+
+
 
 void HLotti::editLot()
 {
-    HModifyLot *f=new HModifyLot();
-    connect(f,SIGNAL(update()),this,SLOT(updateData()));
+    int idlotto=ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt();
+    HModifyLot *f=new HModifyLot(idlotto,db);
+    connect(f,SIGNAL(update()),this,SLOT(updateTableView()));
     f->show();
-    f->init(ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt(),sConnection);
+
 }
 
 void HLotti::getDetails()
 {
-   /* HModifyLot *f=new HModifyLot();
-    connect(f,SIGNAL(update()),this,SLOT(updateData()));
-    f->setWindowModality(Qt::ApplicationModal);
-    f->init(ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt(),sConnection);
-    f->show();*/
     int lot=ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt();
     QString desc=ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),1).data(0).toString();
     desc+= " - ";
@@ -201,16 +184,10 @@ void HLotti::copyField()
 
 void HLotti::on_pushButton_clicked()
 {
- /*  if(QMessageBox::question(this,QApplication::applicationName(),"salvare le modifiche?",QMessageBox::Ok | QMessageBox::Cancel )==QMessageBox::Ok)
-   {
-       tbm->submitAll();
-       tbm->select();
 
-   }*/
-
-   HPackagesUnload *f=new HPackagesUnload(0,user,sConnection);
+   HPackagesUnload *f=new HPackagesUnload(user,db);
    f->show();
-   connect(f,SIGNAL(update()),this,SLOT(updateData()));
+   connect(f,SIGNAL(update()),this,SLOT(updateTableView()));
 
 
 }
@@ -241,19 +218,12 @@ void HLotti::resetData()
 void HLotti::on_pushButton_4_clicked()
 {
 
-    HnuovaOperazione *f = new HnuovaOperazione(0,user,sConnection);
-  //  f->setConnectionName(sConnection,user);
-    f->show();
+   HnuovaOperazione *f = new HnuovaOperazione(user,db);
+   connect(f,SIGNAL(trigger()),this,SLOT(updateTableView()));
+   f->show();
 
-
-    tbm->select();
-    ui->twLots->reset();
 }
 
-void HLotti::on_pushButton_5_clicked()
-{
-   //setFilter();
-}
 
 
 void HLotti::setFilter()
@@ -262,10 +232,8 @@ void HLotti::setFilter()
 
     if(tbm==0)return;
     filter="";
- //   QString datafilter="lotdef.data between '" + ui->datadal->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' and '" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"'";
-    QString datafilter="lotdef.data between cast('" + ui->datadal->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' as date) and cast('" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"' as date)";
 
-    qDebug()<<datafilter;
+    QString datafilter="lotdef.data between cast('" + ui->datadal->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' as date) and cast('" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"' as date)";
 
     if (ui->chbT->isChecked() && !ui->chbP->isChecked())
     {
@@ -357,21 +325,26 @@ void HLotti::print()
 
 }
 
-void HLotti::updateData()
+void HLotti::updateTableView()
 {
     tbm->select();
-   // // qDebug()<<"update";
+    ui->twLots->reset();
+    qDebug()<<"update";
+}
+
+void HLotti::modifySelected(int pidlotto)
+{
+
+   HModifyLot *f=new HModifyLot(pidlotto,db);
+   f->show();
+
 }
 
 void HLotti::on_pushButton_7_clicked()
 {
-    //modifica lotto  selezionato
-    HModifyLot *f=new HModifyLot();
-    connect(f,SIGNAL(update()),this,SLOT(updateData()));
-    f->setWindowModality(Qt::ApplicationModal);
-    f->init(ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt(),sConnection);
-    f->show();
+    int idlotto=ui->twLots->model()->index(ui->twLots->currentIndex().row(),0).data(0).toInt();
 
+    modifySelected(idlotto);
 }
 
 void HLotti::on_leLottoRaw_textChanged(const QString &arg1)
@@ -403,18 +376,17 @@ void HLotti::on_chTipoProdotti_toggled(bool checked)
     }
     else
     {
-        //  ui->chTipoProdotti->setEnabled(true); //check tipo prodotti
-         // ui->chTipoProdotti->setChecked(true);
+
           ui->cbTipoProd->setEnabled(checked); //combo tipo prodotti
 
           ui->chbT->setEnabled(true);//check tipo lotti
-        //  ui->chbT->setChecked(false);
           ui->cbTipiLot->setEnabled(false);
 
           ui->chbP->setEnabled(true);
           ui->chbP->setChecked(false);
           ui->cbProdotti->setEnabled(false);
     }
+
     ui->cbTipoProd->setEnabled(checked); //combo tipo prodotti
 
 
@@ -443,14 +415,10 @@ void HLotti::on_chbT_toggled(bool checked)
         ui->chTipoProdotti->setEnabled(false); //check tipo prodotti
         ui->chTipoProdotti->setChecked(false);
         ui->cbTipoProd->setEnabled(false); //combo tipo prodotti
-
-      //  ui->chbT->setEnabled(false);//check tipo lotti
-      //  ui->chbT->setChecked(false);
         ui->cbTipiLot->setEnabled(true);
-
         ui->chbP->setEnabled(true);
         ui->chbP->setChecked(false);
-     //   ui->cbProdotti->setEnabled(false);
+
 
 
     }
@@ -458,15 +426,8 @@ void HLotti::on_chbT_toggled(bool checked)
     {
           ui->chTipoProdotti->setEnabled(true); //check tipo prodotti
           ui->chTipoProdotti->setChecked(false);
-        //  ui->cbTipoProd->setEnabled(false); //combo tipo prodotti
-
-       //   ui->chbT->setEnabled(true);//check tipo lotti
-       //   ui->chbT->setChecked(false);
-       //   ui->cbTipiLot->setEnabled(false);
-
           ui->chbP->setEnabled(true);
-       //   ui->chbP->setChecked(false);
-       //   ui->cbProdotti->setEnabled(false);
+
     }
 
     setFilter();
@@ -489,28 +450,13 @@ void HLotti::on_chbP_toggled(bool checked)
 
         ui->chTipoProdotti->setEnabled(false); //check tipo prodotti
         ui->chTipoProdotti->setChecked(false);
-       // ui->cbTipoProd->setEnabled(false); //combo tipo prodotti
-
-      //  ui->chbT->setEnabled(true);//check tipo lotti
-      //  ui->chbT->setChecked(false);
-      //  ui->cbTipiLot->setEnabled(false);
-
-     //   ui->chbP->setEnabled(true);
-      //  ui->chbP->setChecked(false);
         ui->cbProdotti->setEnabled(true);
 
 
     }
     else
     {
-          ui->chTipoProdotti->setEnabled(true); //check tipo prodotti
-       //   ui->chTipoProdotti->setChecked(false);
-       //   ui->cbTipoProd->setEnabled(false); //combo tipo prodotti
-
-       //  ui->chbT->setEnabled(true);//check tipo lotti
-       //   ui->chbT->setChecked(false);
-       //   ui->cbTipiLot->setEnabled(false);
-
+          ui->chTipoProdotti->setEnabled(true);
           ui->chbP->setEnabled(true);
           ui->chbP->setChecked(false);
           ui->cbProdotti->setEnabled(false);
@@ -527,12 +473,18 @@ void HLotti::on_cbProdotti_currentIndexChanged(int index)
 
 void HLotti::on_twLots_doubleClicked(const QModelIndex &index)
 {
-    //modifica lotto  selezionato
-    HModifyLot *f=new HModifyLot();
-    connect(f,SIGNAL(update()),this,SLOT(updateData()));
+    int row=ui->twLots->selectionModel()->currentIndex().row();
+
+    int idlotto=ui->twLots->model()->index(row,0).data(0).toInt();
+    qDebug()<<idlotto;
+
+    HModifyLot *f=new HModifyLot(idlotto,db);
+    connect(f,SIGNAL(update()),this,SLOT(resetData()));
     f->setWindowModality(Qt::ApplicationModal);
-    f->init(ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt(),sConnection);
     f->show();
+
+    modifySelected(idlotto);
+    tbm->select();
 
 }
 

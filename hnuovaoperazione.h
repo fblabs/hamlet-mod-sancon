@@ -17,13 +17,12 @@ class HnuovaOperazione : public QWidget
     Q_OBJECT
 
 public:
-    explicit HnuovaOperazione(QWidget *parent = 0, HUser *puser=0,QString conn="");
+    explicit HnuovaOperazione(HUser *puser=0, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = 0);
     ~HnuovaOperazione();
 public slots:
 //    void setConnectionName(QString conn, HUser *pusr);
 private:
     Ui::HnuovaOperazione *ui;
-    QString sConn;
     QSqlDatabase db;
     QString sNuovoLot;
     void setupForm();
@@ -76,8 +75,7 @@ private slots:
     void on_cbtipo_currentIndexChanged(int index);
 
 signals:
-    void trigger();
-    void updateData();
+   void trigger();
 };
 
 #endif // HNUOVAOPERAZIONE_H

@@ -14,9 +14,9 @@ class HModifyLot : public QWidget
     Q_OBJECT
 
 public:
-    explicit HModifyLot(QWidget *parent = 0);
+    explicit HModifyLot( int pidlotto, QSqlDatabase pdb,QWidget *parent = 0);
     ~HModifyLot();
-    void init(int idlotto, QString conn);
+
 
 private slots:
 

@@ -13,14 +13,13 @@
 #include <QMessageBox>
 
 
-HPackagesUnload::HPackagesUnload(QWidget *parent, HUser* puser, QString cnn) :
+HPackagesUnload::HPackagesUnload(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HPackagesUnload)
 {
     ui->setupUi(this);
     user=puser;
-    conn=cnn;
-    db=QSqlDatabase::database(conn);
+    db=pdb;
     baseFilter="attivo > 0 and year(data)>year(data)-3 and tipo=4";
     getClients();
 

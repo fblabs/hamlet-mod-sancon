@@ -20,7 +20,8 @@ class HLotti : public QWidget
     Q_OBJECT
 
 public:
-    explicit HLotti(QWidget *parent = 0, HUser *puser = 0, QString pcon="");
+  //  explicit HLotti(QWidget *parent = 0, HUser *puser = 0, QString pcon="");
+    explicit HLotti(QSqlDatabase pdb,HUser *puser,QWidget *parent = 0);
     ~HLotti();
 
  //   void setConnectionName(QString conn);
@@ -39,17 +40,18 @@ private slots:
 
     void on_pushButton_4_clicked();
 
-    void on_pushButton_5_clicked();
+   // void on_pushButton_5_clicked();
 
     void setFilter();
     void showContextMenu(const QPoint& pos);
     void copyField();
     void editLot();
     void print();
-    void updateData();
+    void updateTableView();
     void on_pushButton_6_clicked();
     void on_pushButton_7_clicked();
     void getDetails();
+    void modifySelected(int pidlotto=-1 );
 
     void on_leLottoRaw_textChanged(const QString &arg1);
 
@@ -78,7 +80,7 @@ private:
     Ui::HLotti *ui;
     QSqlDatabase db;
     QSqlRelationalTableModel *model;
-    QString sConnection;
+  //  QString sConnection;
     HUser *user;
     HReadOnlyModelLots*tbm;
     QSqlTableModel *mTipi;

@@ -233,7 +233,7 @@ void HWarehouse::on_pushButton_4_clicked()
 
 void HWarehouse::on_pushButton_2_clicked()
 {
-    HnuovaOperazione *f = new HnuovaOperazione(0,user,sConn);
+    HnuovaOperazione *f = new HnuovaOperazione(user,db);
     f->show();
 
     connect(f,SIGNAL(trigger()),this,SLOT(update()));
@@ -251,7 +251,7 @@ void HWarehouse::update()
 
 void HWarehouse::on_pushButton_5_clicked()
 {
-    HPackagesUnload *f=new HPackagesUnload(0,user,sConn);
+    HPackagesUnload *f=new HPackagesUnload(user,db);
     connect(f,SIGNAL(update()),this,SLOT(update()));
 
 }
