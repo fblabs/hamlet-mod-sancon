@@ -138,7 +138,7 @@ void HLotti::editLot()
 {
     int idlotto=ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt();
     HModifyLot *f=new HModifyLot(idlotto,db);
-    connect(f,SIGNAL(update()),this,SLOT(updateTableView()));
+    connect(f,SIGNAL(updateLot()),this,SLOT(updateTableView()));
     f->show();
 
 }
@@ -399,6 +399,7 @@ void HLotti::on_chTipoProdotti_toggled(bool checked)
 
 void HLotti::on_cbTipoProd_currentIndexChanged(int index)
 {
+    Q_UNUSED(index);
     if(ui->cbTipoProd->isEnabled())
     {
     setFilter();
@@ -437,6 +438,7 @@ void HLotti::on_chbT_toggled(bool checked)
 
 void HLotti::on_cbTipiLot_currentIndexChanged(int index)
 {
+    Q_UNUSED(index);
     if(ui->cbTipiLot->isEnabled())
     {
         setFilter();
@@ -470,20 +472,24 @@ void HLotti::on_chbP_toggled(bool checked)
 
 void HLotti::on_cbProdotti_currentIndexChanged(int index)
 {
+    Q_UNUSED(index);
+
     setFilter();
 }
 
 void HLotti::on_twLots_doubleClicked(const QModelIndex &index)
 {
+    Q_UNUSED(index);
+
     int row=ui->twLots->selectionModel()->currentIndex().row();
 
     int idlotto=ui->twLots->model()->index(row,0).data(0).toInt();
     qDebug()<<idlotto;
 
-    HModifyLot *f=new HModifyLot(idlotto,db);
-    connect(f,SIGNAL(update()),this,SLOT(resetData()));
+    /*HModifyLot *f=new HModifyLot(idlotto,db);
+    connect(f,SIGNAL(updateLot()),this,SLOT(resetData()));
     f->setWindowModality(Qt::ApplicationModal);
-    f->show();
+    f->show();*/
 
     modifySelected(idlotto);
     tbm->select();
@@ -492,11 +498,13 @@ void HLotti::on_twLots_doubleClicked(const QModelIndex &index)
 
 void HLotti::on_datadal_dateChanged(const QDate &date)
 {
+    Q_UNUSED(date);
     setFilter();
 }
 
 void HLotti::on_dataal_dateChanged(const QDate &date)
 {
+    Q_UNUSED(date);
     setFilter();
 }
 

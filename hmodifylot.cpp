@@ -5,7 +5,7 @@
 #include <QSqlRecord>
 #include <QMessageBox>
 #include <QSqlTableModel>
-// #include <QDebug>
+ #include <QDebug>
 #include "hcomposizionelotto.h"
 #include <QSqlError>
 
@@ -117,8 +117,8 @@ HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb, QWidget *parent) :
     q.exec();
     q.first();
 
-   // int ium=ui->cbUm->findText(q.value(0).toString());
-   // ui->cbUm->setCurrentIndex(ium);
+    int ium=ui->cbUm->findText(q.value(0).toString());
+    ui->cbUm->setCurrentIndex(ium);
 }
 
 HModifyLot::~HModifyLot()
@@ -127,14 +127,6 @@ HModifyLot::~HModifyLot()
 }
 
 
-void HModifyLot::on_pushButton_2_clicked()
-{
-   // if (QMessageBox::Ok==QMessageBox::information(this,QApplication::applicationName(),"Chiudere? Tutte le modifiche non salvate andranno perdute",QMessageBox::Ok|QMessageBox::Cancel))
-   // {
-
-        this->close();
-    //}
-}
 
 void HModifyLot::on_cbScad_toggled(bool checked)
 {
@@ -192,8 +184,9 @@ void HModifyLot::updateLot()
     if(b)
     {
         db.commit();
-        QMessageBox::information(this,QApplication::applicationName(),"modifiche salvate",QMessageBox::Ok);
         emit updatedLot();
+        QMessageBox::information(this,QApplication::applicationName(),"modifiche salvate",QMessageBox::Ok);
+
 
     }
     else
@@ -226,3 +219,12 @@ void HModifyLot::on_pbComposizione_clicked()
 
 }
 
+
+void HModifyLot::on_pbClose_clicked()
+{
+   if(QMessageBox::question(this,QApplication::applicationName(),"Chiudere? ATTENZIONE le modifiche verranno perse",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+       
+        close();
+    }
+}

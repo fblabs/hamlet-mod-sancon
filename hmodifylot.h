@@ -14,7 +14,7 @@ class HModifyLot : public QWidget
     Q_OBJECT
 
 public:
-    explicit HModifyLot( int pidlotto, QSqlDatabase pdb,QWidget *parent = 0);
+    explicit HModifyLot( int pidlotto=1, QSqlDatabase pdb=QSqlDatabase(),QWidget *parent = 0);
     ~HModifyLot();
 
 
@@ -22,13 +22,13 @@ private slots:
 
     void updateLot();
 
-    void on_pushButton_2_clicked();
-
     void on_cbScad_toggled(bool checked);
 
     void on_pushButton_clicked();
 
     void on_pbComposizione_clicked();
+
+    void on_pbClose_clicked();
 
 private:
     Ui::HModifyLot *ui;

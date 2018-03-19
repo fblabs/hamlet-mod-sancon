@@ -1390,7 +1390,7 @@ bool HProduction::saveProduction()
        ui->tableView->setEnabled(false);
 
 
-
+return true;
 
 }
 

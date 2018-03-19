@@ -59,7 +59,7 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QPushButton *pbComposizione;
-    QPushButton *pushButton_2;
+    QPushButton *pbClose;
 
     void setupUi(QWidget *HModifyLot)
     {
@@ -224,14 +224,14 @@ public:
 
         horizontalLayout_2->addWidget(pbComposizione);
 
-        pushButton_2 = new QPushButton(HModifyLot);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pbClose = new QPushButton(HModifyLot);
+        pbClose->setObjectName(QStringLiteral("pbClose"));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon2);
-        pushButton_2->setIconSize(QSize(32, 32));
+        pbClose->setIcon(icon2);
+        pbClose->setIconSize(QSize(32, 32));
 
-        horizontalLayout_2->addWidget(pushButton_2);
+        horizontalLayout_2->addWidget(pbClose);
 
 
         verticalLayout->addLayout(horizontalLayout_2);
@@ -259,7 +259,7 @@ public:
         cbAttivo->setText(QApplication::translate("HModifyLot", "Attivo", 0));
         pushButton->setText(QApplication::translate("HModifyLot", "Salva", 0));
         pbComposizione->setText(QApplication::translate("HModifyLot", "Dettagli", 0));
-        pushButton_2->setText(QApplication::translate("HModifyLot", "Chiudi", 0));
+        pbClose->setText(QApplication::translate("HModifyLot", "Chiudi", 0));
     } // retranslateUi
 
 };

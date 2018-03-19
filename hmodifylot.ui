@@ -249,7 +249,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pbClose">
        <property name="text">
         <string>Chiudi</string>
        </property>

@@ -13609,6 +13609,7 @@ release/hmodifylot.o: hmodifylot.cpp hmodifylot.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlTableModel \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
 		hcomposizionelotto.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
