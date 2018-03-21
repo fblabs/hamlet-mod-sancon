@@ -474,7 +474,8 @@ void MainWindow::on_toolButton_clicked()
 
 void MainWindow::on_pBNewOperation_clicked()
 {
-   HnuovaOperazione *f = new HnuovaOperazione(user,db);
+  // HnuovaOperazione *f = new HnuovaOperazione(user,db);
+  HnuovaOperazione *f = new HnuovaOperazione(user,db);
 
    f->showMaximized();
 }

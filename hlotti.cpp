@@ -1,6 +1,7 @@
 #include "hlotti.h"
 #include "ui_hlotti.h"
  #include <QDebug>
+#include <QDate>
 #include <QSqlError>
 #include <QSqlquery>
 #include <QSqlRelationalDelegate>
@@ -31,25 +32,26 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
 
     user=puser;
     db=pdb;
-
-    ui->datadal->setDate(QDate::currentDate().addMonths(-3));
+    ui->datadal->setDate(QDate::currentDate().addMonths(-1));
     ui->dataal->setDate(QDate::currentDate());
 
-    tbm = new HReadOnlyModelLots(0,db);
-    this->setContextMenuPolicy(Qt::CustomContextMenu);
+     tbm = new HReadOnlyModelLots(0,db);
+     this->setContextMenuPolicy(Qt::CustomContextMenu);
 
-    tbm->setTable("lotdef");
-    tbm->setFilter("lotdef.attivo=2");
-    tbm->setRelation(2,QSqlRelation("prodotti","ID","descrizione"));
-    tbm->setRelation(5,QSqlRelation("unita_di_misura","ID","descrizione"));
-    tbm->setRelation(7,QSqlRelation("anagrafica","ID","ragione_sociale"));
-    tbm->setRelation(10,QSqlRelation("tipi_lot","ID","descrizione"));
+     tbm->setTable("lotdef");
+     tbm->setFilter("lotdef.attivo>0");
+     tbm->setRelation(2,QSqlRelation("prodotti","ID","descrizione"));
+     tbm->setRelation(5,QSqlRelation("unita_di_misura","ID","descrizione"));
+     tbm->setRelation(7,QSqlRelation("anagrafica","ID","ragione_sociale"));
+     tbm->setRelation(10,QSqlRelation("tipi_lot","ID","descrizione"));
 
 
-    ui->twLots->setItemDelegate(new QSqlRelationalDelegate(tbm));
-    tbm->select();
+     ui->twLots->setItemDelegate(new QSqlRelationalDelegate(tbm));
+
     ui->twLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tbm->select();
 
+   qDebug()<< tbm->query().lastError();
     tbm->setEditStrategy(QSqlRelationalTableModel::OnFieldChange);
 
 
@@ -73,10 +75,8 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
 
 
 
-    tbm->select();
+
     ui->twLots->setModel(tbm);
-
-
 
     mTipi=new QSqlTableModel(0,db);
     mTipi->setTable("tipi_lot");
@@ -126,13 +126,6 @@ HLotti::~HLotti()
 {
     delete ui;
 }
-
-/*void HLotti::onConnectionNameSet()
-{
-   setupForm();
-}*/
-
-
 
 void HLotti::editLot()
 {
@@ -230,45 +223,44 @@ void HLotti::setFilter()
 {
     QString tipo,prodotto,filter;
 
-    if(tbm==0)return;
-    filter="";
+       if(tbm==0)return;
+       filter="";
 
-    QString datafilter="lotdef.data between cast('" + ui->datadal->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' as date) and cast('" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"' as date)";
+       QString datafilter="lotdef.data between cast('" + ui->datadal->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' as date) and cast('" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"' as date)";
 
-    if (ui->chbT->isChecked() && !ui->chbP->isChecked())
-    {
-        //filtra solo per tipo
-       tipo=ui->cbTipiLot->model()->index(ui->cbTipiLot->currentIndex(),0).data(0).toString();
-       filter="lotdef.tipo="+tipo+" and ";
+       if (ui->chbT->isChecked() && !ui->chbP->isChecked())
+       {
+           //filtra solo per tipo
+          tipo=ui->cbTipiLot->model()->index(ui->cbTipiLot->currentIndex(),0).data(0).toString();
+          filter="lotdef.tipo="+tipo+" and ";
 
-    }
-    else if (ui->chbP->isChecked() &&  ! ui->chbT->isChecked())
-    {
-        //filtra per prodotto
-        prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
-        filter="lotdef.prodotto="+prodotto+" and ";
-    }
-    else if(ui->chbP->isChecked() && ui->chbT->isChecked())
-    {
-        //filtra  per entrambi
-        tipo=ui->cbTipiLot->model()->index(ui->cbTipiLot->currentIndex(),0).data(0).toString();
-        prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
-        filter="lotdef.tipo="+ tipo + " and lotdef.prodotto=" + prodotto + " and ";
-    }
-    else if(ui->chTipoProdotti->isChecked() /*&& ui->chbT->isChecked()*/)
-    {
-        //filtra  per entrambi
-        tipo=ui->cbTipoProd->model()->index(ui->cbTipoProd->currentIndex(),0).data(0).toString();
-       // prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
-        filter="prodotto in (SELECT ID from prodotti where tipo=" + tipo + ") and ";
-    }
-
-
-    filter=filter += datafilter;
+       }
+       else if (ui->chbP->isChecked() &&  ! ui->chbT->isChecked())
+       {
+           //filtra per prodotto
+           prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
+           filter="lotdef.prodotto="+prodotto+" and ";
+       }
+       else if(ui->chbP->isChecked() && ui->chbT->isChecked())
+       {
+           //filtra  per entrambi
+           tipo=ui->cbTipiLot->model()->index(ui->cbTipiLot->currentIndex(),0).data(0).toString();
+           prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
+           filter="lotdef.tipo="+ tipo + " and lotdef.prodotto=" + prodotto + " and ";
+       }
+       else if(ui->chTipoProdotti->isChecked() /*&& ui->chbT->isChecked()*/)
+       {
+           //filtra  per entrambi
+           tipo=ui->cbTipoProd->model()->index(ui->cbTipoProd->currentIndex(),0).data(0).toString();
+          // prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
+           filter="prodotto in (SELECT ID from prodotti where tipo=" + tipo + ") and ";
+       }
 
 
-    tbm->setFilter(filter);
-  // // // qDebug()<<prodotto<<tipo<<filter<<tbm->lastError().text()<<tbm->query().lastQuery();
+       filter=filter += datafilter;
+
+
+   tbm->setFilter(filter);
 
 
 }
@@ -484,32 +476,30 @@ void HLotti::on_twLots_doubleClicked(const QModelIndex &index)
     int row=ui->twLots->selectionModel()->currentIndex().row();
 
     int idlotto=ui->twLots->model()->index(row,0).data(0).toInt();
-    qDebug()<<idlotto;
 
-    /*HModifyLot *f=new HModifyLot(idlotto,db);
-    connect(f,SIGNAL(updateLot()),this,SLOT(resetData()));
-    f->setWindowModality(Qt::ApplicationModal);
-    f->show();*/
 
     modifySelected(idlotto);
     tbm->select();
 
 }
 
-void HLotti::on_datadal_dateChanged(const QDate &date)
-{
-    Q_UNUSED(date);
-    setFilter();
-}
-
-void HLotti::on_dataal_dateChanged(const QDate &date)
-{
-    Q_UNUSED(date);
-    setFilter();
-}
 
 void HLotti::on_pbScadenze_clicked()
 {
     HExpirations *f = new HExpirations(db,user);
     f->show();
+}
+
+void HLotti::on_datadal_dateChanged(const QDate &date)
+{
+    dal=date;
+    qDebug()<<dal.toString();
+
+}
+
+void HLotti::on_dataal_dateChanged(const QDate &date)
+{
+     al=date;
+     qDebug()<<al.toString();
+
 }

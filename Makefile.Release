@@ -4028,6 +4028,8 @@ release/moc_hlotti.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		huser.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
+		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		hlotti.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hlotti.h -o release/moc_hlotti.cpp
 
@@ -7438,14 +7440,14 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QModelIndex \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
+		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		hsettings.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QSettings \
 		../../Qt/5.5/mingw492_32/include/QtCore/qsettings.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
 		hanalisi.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
-		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		hnewop.h \
 		hassociations.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QCompleter \
@@ -11995,6 +11997,7 @@ release/hwarehouse.o: hwarehouse.cpp hwarehouse.h \
 		hreadonlymodellots.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
 		hwarehousedetails.h \
 		hnuovaoperazione.h \
 		hreadonlymodelnew.h \
@@ -12909,6 +12912,8 @@ release/hlotti.o: hlotti.cpp hlotti.h \
 		huser.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
+		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		ui_hlotti.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -12943,7 +12948,6 @@ release/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QDateEdit \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qdatetimeedit.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
@@ -13027,8 +13031,7 @@ release/hlotti.o: hlotti.cpp hlotti.h \
 		hcomposizionelotto.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QCompleter \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qcompleter.h \
-		hexpirations.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/QDate
+		hexpirations.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hlotti.o hlotti.cpp
 
 release/htextedit.o: htextedit.cpp htextedit.h \

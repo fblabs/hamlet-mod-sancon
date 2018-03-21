@@ -16,9 +16,9 @@ public:
     QVariant data( const QModelIndex & item, int role /*= Qt::DisplayRole */ ) const;
     bool setData( const QModelIndex &index, const QVariant &value, int role = Qt::EditRole );
 
-signals:
+//signals:
 
-public slots:
+//public slots:
 
 };
 

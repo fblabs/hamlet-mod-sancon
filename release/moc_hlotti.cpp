@@ -59,10 +59,10 @@ QT_MOC_LITERAL(26, 376, 32), // "on_cbTipiLot_currentIndexChanged"
 QT_MOC_LITERAL(27, 409, 15), // "on_chbP_toggled"
 QT_MOC_LITERAL(28, 425, 33), // "on_cbProdotti_currentIndexCha..."
 QT_MOC_LITERAL(29, 459, 23), // "on_twLots_doubleClicked"
-QT_MOC_LITERAL(30, 483, 22), // "on_datadal_dateChanged"
-QT_MOC_LITERAL(31, 506, 4), // "date"
-QT_MOC_LITERAL(32, 511, 21), // "on_dataal_dateChanged"
-QT_MOC_LITERAL(33, 533, 21) // "on_pbScadenze_clicked"
+QT_MOC_LITERAL(30, 483, 21), // "on_pbScadenze_clicked"
+QT_MOC_LITERAL(31, 505, 22), // "on_datadal_dateChanged"
+QT_MOC_LITERAL(32, 528, 4), // "date"
+QT_MOC_LITERAL(33, 533, 21) // "on_dataal_dateChanged"
 
     },
     "HLotti\0on_pushButton_clicked\0\0"
@@ -78,9 +78,9 @@ QT_MOC_LITERAL(33, 533, 21) // "on_pbScadenze_clicked"
     "index\0on_chbT_toggled\0"
     "on_cbTipiLot_currentIndexChanged\0"
     "on_chbP_toggled\0on_cbProdotti_currentIndexChanged\0"
-    "on_twLots_doubleClicked\0on_datadal_dateChanged\0"
-    "date\0on_dataal_dateChanged\0"
-    "on_pbScadenze_clicked"
+    "on_twLots_doubleClicked\0on_pbScadenze_clicked\0"
+    "on_datadal_dateChanged\0date\0"
+    "on_dataal_dateChanged"
 };
 #undef QT_MOC_LITERAL
 
@@ -122,9 +122,9 @@ static const uint qt_meta_data_HLotti[] = {
       27,    1,  184,    2, 0x08 /* Private */,
       28,    1,  187,    2, 0x08 /* Private */,
       29,    1,  190,    2, 0x08 /* Private */,
-      30,    1,  193,    2, 0x08 /* Private */,
-      32,    1,  196,    2, 0x08 /* Private */,
-      33,    0,  199,    2, 0x08 /* Private */,
+      30,    0,  193,    2, 0x08 /* Private */,
+      31,    1,  194,    2, 0x08 /* Private */,
+      33,    1,  197,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -151,9 +151,9 @@ static const uint qt_meta_data_HLotti[] = {
     QMetaType::Void, QMetaType::Bool,   22,
     QMetaType::Void, QMetaType::Int,   24,
     QMetaType::Void, QMetaType::QModelIndex,   24,
-    QMetaType::Void, QMetaType::QDate,   31,
-    QMetaType::Void, QMetaType::QDate,   31,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QDate,   32,
+    QMetaType::Void, QMetaType::QDate,   32,
 
        0        // eod
 };
@@ -188,9 +188,9 @@ void HLotti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 21: _t->on_chbP_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 22: _t->on_cbProdotti_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 23: _t->on_twLots_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 24: _t->on_datadal_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
-        case 25: _t->on_dataal_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
-        case 26: _t->on_pbScadenze_clicked(); break;
+        case 24: _t->on_pbScadenze_clicked(); break;
+        case 25: _t->on_datadal_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
+        case 26: _t->on_dataal_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
         default: ;
         }
     }

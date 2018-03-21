@@ -10,6 +10,7 @@
 #include "hreadonlymodellots.h"
 #include "huser.h"
 #include <QShortcut>
+#include <QDate>
 
 namespace Ui {
 class HLotti;
@@ -20,7 +21,7 @@ class HLotti : public QWidget
     Q_OBJECT
 
 public:
-  //  explicit HLotti(QWidget *parent = 0, HUser *puser = 0, QString pcon="");
+
     explicit HLotti(QSqlDatabase pdb,HUser *puser,QWidget *parent = 0);
     ~HLotti();
 
@@ -69,27 +70,34 @@ private slots:
 
     void on_twLots_doubleClicked(const QModelIndex &index);
 
-    void on_datadal_dateChanged(const QDate &date);
+ //   void on_datadal_dateChanged(const QDate &date);
 
-    void on_dataal_dateChanged(const QDate &date);
+   // void on_dataal_dateChanged(const QDate &date);
 
-    void on_pbScadenze_clicked();
+   void on_pbScadenze_clicked();
+
+   void on_datadal_dateChanged(const QDate &date);
+
+   void on_dataal_dateChanged(const QDate &date);
 
 private:
 
     Ui::HLotti *ui;
     QSqlDatabase db;
     QSqlRelationalTableModel *model;
-  //  QString sConnection;
+
     HUser *user;
     HReadOnlyModelLots*tbm;
     QSqlTableModel *mTipi;
     QSqlTableModel *mProdotti;
     QSqlTableModel *mTipiProdotto;
     QShortcut *det;
+    QString filter;
+    QDate dal;
+    QDate al;
 
 
-    void setupForm();
+
 };
 
 #endif // HLOTTI
