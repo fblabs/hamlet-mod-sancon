@@ -493,13 +493,15 @@ void HLotti::on_pbScadenze_clicked()
 void HLotti::on_datadal_dateChanged(const QDate &date)
 {
     dal=date;
-    qDebug()<<dal.toString();
+    setFilter();
+
 
 }
 
 void HLotti::on_dataal_dateChanged(const QDate &date)
 {
      al=date;
-     qDebug()<<al.toString();
+     setFilter();
+
 
 }
