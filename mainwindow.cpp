@@ -369,19 +369,19 @@ void MainWindow::enableButtonsForRole()
 void MainWindow::on_tbMagaz_clicked()
 {
 
-    QApplication::setOverrideCursor(QCursor(Qt::BusyCursor));
-    HWarehouse *f=new HWarehouse();
-    f->init(sConn,user);
-    f->showMaximized();
+  //  QApplication::setOverrideCursor(QCursor(Qt::BusyCursor));
+    HWarehouse *f=new HWarehouse(user,db);
+
+    f->show();
 
     
 }
 
 void MainWindow::on_tbLotti_clicked()
 {
-    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
     HLotti *f = new HLotti(db,user);
-    f->showMaximized();
+    f->show();
 }
 
 void MainWindow::on_tbRicette_clicked()
@@ -474,10 +474,11 @@ void MainWindow::on_toolButton_clicked()
 
 void MainWindow::on_pBNewOperation_clicked()
 {
-  // HnuovaOperazione *f = new HnuovaOperazione(user,db);
+  
   HnuovaOperazione *f = new HnuovaOperazione(user,db);
+  f->show();
 
-   f->showMaximized();
+
 }
 
 void MainWindow::login()

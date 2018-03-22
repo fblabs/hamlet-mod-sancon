@@ -19,13 +19,13 @@ class HWarehouse : public QWidget
     Q_OBJECT
 
 public:
-    explicit HWarehouse(QWidget *parent = 0);
+    explicit HWarehouse(HUser* puser, QSqlDatabase pdb, QWidget *parent = 0);
     ~HWarehouse();
 
 private:
     Ui::HWarehouse *ui;
     QSqlDatabase db;
-    QString sConn;
+
     HUser *user;
 
     QSqlTableModel *tmLotti;
@@ -41,7 +41,7 @@ private:
     QString filter;
 
 public slots:
-   void init(QString conn,HUser *utente);
+
    void update();
 
 private slots:

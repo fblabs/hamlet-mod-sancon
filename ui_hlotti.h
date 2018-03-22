@@ -65,7 +65,7 @@ public:
         if (HLotti->objectName().isEmpty())
             HLotti->setObjectName(QStringLiteral("HLotti"));
         HLotti->setWindowModality(Qt::NonModal);
-        HLotti->resize(948, 539);
+        HLotti->resize(1232, 664);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HLotti->setWindowIcon(icon);

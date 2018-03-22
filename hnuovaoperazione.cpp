@@ -21,7 +21,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     ui->setupUi(this);
     user=puser;
     db=pdb;
-
+    QApplication::setOverrideCursor(Qt::WaitCursor);
     ui->cbShowPackages->setVisible(false);
 
 
@@ -75,6 +75,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     ui->cbAnagrafica->setModel(listaFornitori);
      ui->cbAnagrafica->setModelColumn(1);
 
+
      ui->lvProdotti->setModel(listaProdotti);
      ui->lvProdotti->setModelColumn(1);
      listaProdotti->select();
@@ -93,7 +94,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     tbm = new HReadOnlyModelNew(this, db);
     tbm->setTable("operazioni");
 
-    tbm->setEditStrategy(QSqlRelationalTableModel::OnFieldChange);
+    //tbm->setEditStrategy(QSqlRelationalTableModel::OnFieldChange);
 
 
     tbm->setRelation(1,QSqlRelation("lotdef","ID","lot"));
@@ -107,11 +108,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
 
 
 
-   // QString filt=QDate::currentDate().toString("yyyy-MM-dd");
 
-    //tbm->setFilter("operazioni.data='"+filt+"'");
-
-// //// qDebug()<<filt;
 
     tbm->setSort(0,Qt::DescendingOrder);
     //tbm->setFilter("operazioni.data = '"+QDate::currentDate().toString("yyyy-MM-dd")+"' order by data desc");
@@ -151,14 +148,21 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     ui->cbtipo->setCurrentIndex(2);
 
 
+    QCompleter *comforn=new QCompleter(listaFornitori);
+    comforn->setCaseSensitivity(Qt::CaseInsensitive);
+    comforn->setCompletionColumn(1);
+    comforn->setCompletionMode(QCompleter::PopupCompletion);
+
+    ui->cbAnagrafica->setCompleter(comforn);
+
 
     connect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setProdottoText()));
 
 
-    setUiForScarico();
+   // setUiForScarico();
     setUiforCarico();
 
-
+    QApplication::setOverrideCursor(Qt::ArrowCursor);
 
 }
 
@@ -366,8 +370,8 @@ void HnuovaOperazione::setLotsFilter()
 
 void HnuovaOperazione::on_pushButton_4_clicked()
 {
-
-    this->close();
+    emit trigger();
+    this->deleteLater();
 }
 
 bool HnuovaOperazione::saveNewLot(QString nl)
@@ -457,7 +461,7 @@ bool HnuovaOperazione::saveOperation(bool isCarico)
     if(b)
     {
         db.commit();
-        emit trigger();
+
         tbm->select();
 
 

@@ -20,11 +20,82 @@
 
 #include <QDebug>
 
-HWarehouse::HWarehouse(QWidget *parent) :
+HWarehouse::HWarehouse(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HWarehouse)
 {
     ui->setupUi(this);
+    db=pdb;
+    user=puser;
+
+
+
+     delegate = new QSqlRelationalDelegate();
+
+     lotFilter="";
+     prodfilter="";
+
+     tmOperazioni=new hReadonlyModel(0,db);
+     tmOperazioni->setTable("operazioni");
+     tmOperazioni->setRelation(1,QSqlRelation("lotdef","ID","lot"));
+     tmOperazioni->setRelation(3,QSqlRelation("utenti","ID","nome"));
+     tmOperazioni->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
+     tmOperazioni->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
+     tmOperazioni->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
+ //    tmOperazioni->setRelation(9,QSqlRelation("lotdef","ID","giacenza"));
+     tmOperazioni->setSort(2,Qt::DescendingOrder);
+     tmOperazioni->setEditStrategy(QSqlTableModel::OnFieldChange);
+
+
+
+     ui->tableView->setModel(tmOperazioni);
+     ui->tableView->setItemDelegate(delegate);
+
+     tmOperazioni->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+     tmOperazioni->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
+     tmOperazioni->setHeaderData(2,Qt::Horizontal,QObject::tr("Data"));
+     tmOperazioni->setHeaderData(3,Qt::Horizontal,QObject::tr("Operatore"));
+     tmOperazioni->setHeaderData(4,Qt::Horizontal,QObject::tr("Prodotto"));
+     tmOperazioni->setHeaderData(5,Qt::Horizontal,QObject::tr("Azione"));
+     tmOperazioni->setHeaderData(6,Qt::Horizontal,QObject::tr("Quantità"));
+     tmOperazioni->setHeaderData(7,Qt::Horizontal,QObject::tr("Unità di misura"));
+     tmOperazioni->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
+
+     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+     //ui->tableView->setColumnHidden(0,1);
+
+     tmProdotti=new QSqlTableModel(0,db);
+     tmProdotti->setTable("prodotti");
+     tmProdotti->setSort(1,Qt::AscendingOrder);
+     tmProdotti->select();
+
+
+     ui->cbFilter->setModel(tmProdotti);
+     ui->cbFilter->setModelColumn(1);
+
+     ui->deDateTo->setDate(QDate::currentDate());
+     ui->deDateFrom->setDate(QDate::currentDate().addMonths(-1));
+
+
+     datefilter="operazioni.data between '"+ui->deDateFrom->date().toString("yyyy-MM-dd") + "' and '"+ui->deDateTo->date().toString("yyyy-MM-dd")+"'";
+     filter = datefilter;
+
+
+     tmOperazioni->setFilter(datefilter);
+     tmOperazioni->setSort(2,Qt::DescendingOrder);
+
+     tmOperazioni->select();
+     comp=new QCompleter();
+     comp->setModel(tmProdotti);
+     comp->setCompletionMode(QCompleter::PopupCompletion);
+     comp->setCompletionColumn(1);
+     comp->setCaseSensitivity(Qt::CaseInsensitive);
+     ui->cbFilter->setCompleter(comp);
+
+     ui->cbFilter->setVisible(false);
+
+     QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+
 }
 
 HWarehouse::~HWarehouse()
@@ -32,85 +103,6 @@ HWarehouse::~HWarehouse()
     delete ui;
 }
 
-void HWarehouse::init(QString conn, HUser *utente)
-{
-    db=QSqlDatabase::database(conn);
-
-
-
-    user=utente;
-    sConn=conn;
-    delegate = new QSqlRelationalDelegate();
-
-
-    lotFilter="";
-    prodfilter="";
-
-
-
-    tmOperazioni=new hReadonlyModel(0,db);
-    tmOperazioni->setTable("operazioni");
-    tmOperazioni->setRelation(1,QSqlRelation("lotdef","ID","lot"));
-    tmOperazioni->setRelation(3,QSqlRelation("utenti","ID","nome"));
-    tmOperazioni->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
-    tmOperazioni->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
-    tmOperazioni->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
-//    tmOperazioni->setRelation(9,QSqlRelation("lotdef","ID","giacenza"));
-    tmOperazioni->setSort(2,Qt::DescendingOrder);
-    tmOperazioni->setEditStrategy(QSqlTableModel::OnFieldChange);
-
-
-
-    ui->tableView->setModel(tmOperazioni);
-    ui->tableView->setItemDelegate(delegate);
-
-    tmOperazioni->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
-    tmOperazioni->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
-    tmOperazioni->setHeaderData(2,Qt::Horizontal,QObject::tr("Data"));
-    tmOperazioni->setHeaderData(3,Qt::Horizontal,QObject::tr("Operatore"));
-    tmOperazioni->setHeaderData(4,Qt::Horizontal,QObject::tr("Prodotto"));
-    tmOperazioni->setHeaderData(5,Qt::Horizontal,QObject::tr("Azione"));
-    tmOperazioni->setHeaderData(6,Qt::Horizontal,QObject::tr("Quantità"));
-    tmOperazioni->setHeaderData(7,Qt::Horizontal,QObject::tr("Unità di misura"));
-    tmOperazioni->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
-
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    //ui->tableView->setColumnHidden(0,1);
-
-    tmProdotti=new QSqlTableModel(0,db);
-    tmProdotti->setTable("prodotti");
-    tmProdotti->setSort(1,Qt::AscendingOrder);
-    tmProdotti->select();
-
-
-    ui->cbFilter->setModel(tmProdotti);
-    ui->cbFilter->setModelColumn(1);
-
-    ui->deDateTo->setDateTime(QDateTime::currentDateTime());
-    ui->deDateFrom->setDateTime(QDateTime::currentDateTime().addMonths(-1));
-
-
-    datefilter="operazioni.data between '"+ui->deDateFrom->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' and '"+ui->deDateTo->dateTime().toString("yyyy-MM-dd HH:mm:ss")+"'";
-    filter = datefilter;
-
-
-    tmOperazioni->setFilter(datefilter);
-    tmOperazioni->setSort(2,Qt::DescendingOrder);
-
-    tmOperazioni->select();
-    comp=new QCompleter();
-    comp->setModel(tmProdotti);
-    comp->setCompletionMode(QCompleter::PopupCompletion);
-    comp->setCompletionColumn(1);
-    comp->setCaseSensitivity(Qt::CaseInsensitive);
-    ui->cbFilter->setCompleter(comp);
-
-    ui->cbFilter->setVisible(false);
-
-    QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-
-
-}
 
 void HWarehouse::updateDataSlt()
 {
@@ -170,9 +162,9 @@ void HWarehouse::setOperazioniFilter(int tipo)
 {
    QApplication::setOverrideCursor(Qt::WaitCursor);
    QString param;
-   datefilter="operazioni.data between '"+ui->deDateFrom->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' and '"+ui->deDateTo->dateTime().toString("yyyy-MM-dd HH:mm:ss")+"'";
+   datefilter="operazioni.data between '"+ui->deDateFrom->date().toString("yyyy-MM-dd") + "' and '"+ui->deDateTo->date().toString("yyyy-MM-dd")+"'";
 
-
+  qDebug()<<datefilter;
     switch(tipo)
     {
     case 0:

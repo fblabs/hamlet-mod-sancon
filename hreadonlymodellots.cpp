@@ -94,7 +94,7 @@ QVariant HReadOnlyModelLots::data( const QModelIndex & item, int role /*= Qt::Di
            return QVariant();
 
 
-   }  
+   }
 
   return QSqlRelationalTableModel::data(item,role);
 }
