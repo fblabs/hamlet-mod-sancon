@@ -3,7 +3,7 @@
  <class>HnuovaOperazione</class>
  <widget class="QWidget" name="HnuovaOperazione">
   <property name="windowModality">
-   <enum>Qt::NonModal</enum>
+   <enum>Qt::ApplicationModal</enum>
   </property>
   <property name="geometry">
    <rect>

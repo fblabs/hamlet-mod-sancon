@@ -33,74 +33,82 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
     user=puser;
     db=pdb;
 
-    ui->datadal->setDate(QDate::currentDate().addMonths(-1));
-    ui->dataal->setDate(QDate::currentDate());
-
-   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-
-
-
 
     mTipi=new QSqlTableModel(0,db);
     mTipi->setTable("tipi_lot");
     mTipi->select();
     mTipi->setSort(1,Qt::AscendingOrder);
-    ui->cbTipiLot->setModel(mTipi);
-    ui->cbTipiLot->setModelColumn(1);
-    ui->cbTipiLot->setCurrentIndex(0);
 
     mTipiProdotto=new QSqlTableModel(0,db);
     mTipiProdotto->setTable("tipi_prodotto");
     mTipiProdotto->select();
     mTipiProdotto->setSort(1,Qt::AscendingOrder);
-    ui->cbTipoProd->setModel(mTipiProdotto);
-    ui->cbTipoProd->setModelColumn(1);
-    ui->cbTipoProd->setCurrentIndex(0);
-
 
     mProdotti=new QSqlTableModel(0,db);
     mProdotti->setTable("prodotti");
     mProdotti->select();
     mProdotti->setSort(1,Qt::AscendingOrder);
+
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
+   tbm = new HReadOnlyModelLots(0,db);
+
+   tbm->setTable("lotdef");
+
+   tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+   tbm->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
+   tbm->setHeaderData(2,Qt::Horizontal,QObject::tr("Prodotto"));
+   tbm->setHeaderData(3,Qt::Horizontal,QObject::tr("Data"));
+   tbm->setHeaderData(4,Qt::Horizontal,QObject::tr("Giacenza"));
+   tbm->setHeaderData(5,Qt::Horizontal,QObject::tr("Unità di misura"));
+   tbm->setHeaderData(6,Qt::Horizontal,QObject::tr("Scadenza"));
+   tbm->setHeaderData(7,Qt::Horizontal,QObject::tr("Cliente(U) - Fornitore(E)"));
+   tbm->setHeaderData(8,Qt::Horizontal,QObject::tr("Lotto Fornitore"));
+   tbm->setHeaderData(9,Qt::Horizontal,QObject::tr("Lotto di Uscita"));
+   tbm->setHeaderData(10,Qt::Horizontal,QObject::tr("Tipologia Lotto"));
+
+   tbm->setRelation(2,QSqlRelation("prodotti","ID","descrizione"));
+   tbm->setRelation(5,QSqlRelation("unita_di_misura","ID","descrizione"));
+   tbm->setRelation(7,QSqlRelation("anagrafica","ID","ragione_sociale"));
+   tbm->setRelation(10,QSqlRelation("tipi_lot","ID","descrizione"));
+   tbm->setSort(3,Qt::DescendingOrder);
+   tbm->select();
+   tbm->setFilter("lotdef.attivo>0");
+
+   ui->twLots->setModel(tbm);
+   ui->twLots->setItemDelegate(new QSqlRelationalDelegate(tbm));
+   ui->twLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+   ui->twLots->setColumnWidth(11,10);
+   ui->twLots->setColumnHidden(0,true);
+   ui->twLots->setCurrentIndex(ui->twLots->model()->index(0,0));
+
+
+
+
+    ui->cbTipiLot->setModel(mTipi);
+    ui->cbTipiLot->setModelColumn(1);
+    ui->cbTipiLot->setCurrentIndex(0);
+
+
+    ui->cbTipoProd->setModel(mTipiProdotto);
+    ui->cbTipoProd->setModelColumn(1);
+    ui->cbTipoProd->setCurrentIndex(0);
+
+
+
     ui->cbProdotti->setModel(mProdotti);
     ui->cbProdotti->setModelColumn(1);
     ui->cbProdotti->completer()->setCompletionMode(QCompleter::PopupCompletion);
     ui->cbProdotti->setCurrentIndex(0);
 
-    tbm = new HReadOnlyModelLots(0,db);
 
-    tbm->setTable("lotdef");
-
-    tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
-    tbm->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
-    tbm->setHeaderData(2,Qt::Horizontal,QObject::tr("Prodotto"));
-    tbm->setHeaderData(3,Qt::Horizontal,QObject::tr("Data"));
-    tbm->setHeaderData(4,Qt::Horizontal,QObject::tr("Giacenza"));
-    tbm->setHeaderData(5,Qt::Horizontal,QObject::tr("Unità di misura"));
-    tbm->setHeaderData(6,Qt::Horizontal,QObject::tr("Scadenza"));
-    tbm->setHeaderData(7,Qt::Horizontal,QObject::tr("Cliente(U) - Fornitore(E)"));
-    tbm->setHeaderData(8,Qt::Horizontal,QObject::tr("Lotto Fornitore"));
-    tbm->setHeaderData(9,Qt::Horizontal,QObject::tr("Lotto di Uscita"));
-    tbm->setHeaderData(10,Qt::Horizontal,QObject::tr("Tipologia Lotto"));
-
-    tbm->setRelation(2,QSqlRelation("prodotti","ID","descrizione"));
-    tbm->setRelation(5,QSqlRelation("unita_di_misura","ID","descrizione"));
-    tbm->setRelation(7,QSqlRelation("anagrafica","ID","ragione_sociale"));
-    tbm->setRelation(10,QSqlRelation("tipi_lot","ID","descrizione"));
-    tbm->setSort(3,Qt::DescendingOrder);
-    tbm->select();
-    tbm->setFilter("lotdef.attivo>0");
-
-    ui->twLots->setModel(tbm);
-    ui->twLots->setItemDelegate(new QSqlRelationalDelegate(tbm));
-    ui->twLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->twLots->setColumnWidth(11,10);
-    ui->twLots->setColumnHidden(0,true);
-    ui->twLots->setCurrentIndex(ui->twLots->model()->index(0,0));
     det=new QShortcut(QKeySequence("F5"),this);
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
     connect(det,SIGNAL(activated()),this,SLOT(getDetails()));
+
+    ui->datadal->setDate(QDate::currentDate().addMonths(-1));
+    ui->dataal->setDate(QDate::currentDate());
 
     QApplication::setOverrideCursor(Qt::ArrowCursor);
 }
@@ -177,8 +185,8 @@ void HLotti::on_pushButton_3_clicked()
     if( QMessageBox::Ok == QMessageBox::question(this, QApplication::applicationName(), "Chiudere la finestra?", QMessageBox::Ok |QMessageBox::Cancel))
       {
 
-        //this->close();
-        this->deleteLater();
+        this->close();
+       // this->deleteLater();
       }
 }
 
@@ -201,9 +209,9 @@ void HLotti::on_pushButton_4_clicked()
 {
 
    HnuovaOperazione *f = new HnuovaOperazione(user,db);
-   connect(f,SIGNAL(trigger()),this,SLOT(updateTableView()));
 
    f->show();
+   connect(f,SIGNAL(trigger()),this,SLOT(updateTableView()));
 
 }
 
@@ -213,7 +221,12 @@ void HLotti::setFilter()
 {
     QString tipo,prodotto,filter;
 
-       if(tbm==0)return;
+       if(!tbm) qDebug()<<"no tbm";
+       if(!mTipi)qDebug()<<"noprodotti";
+
+       if(!mProdotti)qDebug()<<"noprodotti";
+
+
        filter="";
 
        QString datafilter="lotdef.data between cast('" + ui->datadal->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' as date) and cast('" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"' as date)";
@@ -221,27 +234,27 @@ void HLotti::setFilter()
        if (ui->chbT->isChecked() && !ui->chbP->isChecked())
        {
            //filtra solo per tipo
-          tipo=ui->cbTipiLot->model()->index(ui->cbTipiLot->currentIndex(),0).data(0).toString();
+          tipo=mTipi->index(ui->cbTipiLot->currentIndex(),0).data(0).toString();
           filter="lotdef.tipo="+tipo+" and ";
 
        }
        else if (ui->chbP->isChecked() &&  ! ui->chbT->isChecked())
        {
            //filtra per prodotto
-           prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
+           prodotto=mProdotti->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
            filter="lotdef.prodotto="+prodotto+" and ";
        }
        else if(ui->chbP->isChecked() && ui->chbT->isChecked())
        {
            //filtra  per entrambi
-           tipo=ui->cbTipiLot->model()->index(ui->cbTipiLot->currentIndex(),0).data(0).toString();
-           prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
+           tipo=mTipi->index(ui->cbTipiLot->currentIndex(),0).data(0).toString();
+           prodotto=mProdotti->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
            filter="lotdef.tipo="+ tipo + " and lotdef.prodotto=" + prodotto + " and ";
        }
        else if(ui->chTipoProdotti->isChecked() /*&& ui->chbT->isChecked()*/)
        {
            //filtra  per entrambi
-           tipo=ui->cbTipoProd->model()->index(ui->cbTipoProd->currentIndex(),0).data(0).toString();
+           tipo=mTipiProdotto->index(ui->cbTipoProd->currentIndex(),0).data(0).toString();
           // prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
            filter="prodotto in (SELECT ID from prodotti where tipo=" + tipo + ") and ";
        }
@@ -494,3 +507,4 @@ void HLotti::on_dataal_dateChanged(const QDate &date)
 
 
 }
+

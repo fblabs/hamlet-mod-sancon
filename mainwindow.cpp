@@ -381,7 +381,7 @@ void MainWindow::on_tbLotti_clicked()
 {
 
     HLotti *f = new HLotti(db,user);
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_tbRicette_clicked()

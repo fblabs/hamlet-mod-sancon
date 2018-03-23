@@ -11,6 +11,7 @@
 #include "huser.h"
 #include <QShortcut>
 #include <QDate>
+#include "hnuovaoperazione.h"
 
 namespace Ui {
 class HLotti;
@@ -95,6 +96,8 @@ private:
     QString filter;
     QDate dal;
     QDate al;
+
+
 
 
 

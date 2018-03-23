@@ -17,11 +17,12 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     QWidget(parent),
     ui(new Ui::HnuovaOperazione)
 {
+    QApplication::setOverrideCursor(Qt::WaitCursor);
 
     ui->setupUi(this);
     user=puser;
     db=pdb;
-    QApplication::setOverrideCursor(Qt::WaitCursor);
+
     ui->cbShowPackages->setVisible(false);
 
 
@@ -190,6 +191,7 @@ void HnuovaOperazione::setupForm()
 void HnuovaOperazione::setUiforCarico()
 {
 
+
     ui->label->setText("Fornitore:");
 
 
@@ -240,11 +242,16 @@ void HnuovaOperazione::setUiforCarico()
 
 
 
+
+
 }
 
 void HnuovaOperazione::setUiForScarico()
 {
-   // ui->label->setVisible(false);
+
+
+
+    // ui->label->setVisible(false);
     ui->label->setText("Destinazione:");
    // ui->cbAnagrafica->setVisible(false);
    // ui->lvProdotti->setVisible(false);
@@ -294,6 +301,8 @@ void HnuovaOperazione::setUiForScarico()
     connect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setProdottoText()));
     connect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setLotsFilter()));
     connect(ui->cbAnagrafica,SIGNAL(currentIndexChanged(int)),this,SLOT(setAnagFilter()));
+
+
 
 
 

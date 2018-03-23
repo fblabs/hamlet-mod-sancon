@@ -4030,6 +4030,8 @@ debug/moc_hlotti.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
 		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
+		hnuovaoperazione.h \
+		hreadonlymodelnew.h \
 		hlotti.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hlotti.h -o debug/moc_hlotti.cpp
 
@@ -7442,6 +7444,8 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
 		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
+		hnuovaoperazione.h \
+		hreadonlymodelnew.h \
 		hsettings.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QSettings \
 		../../Qt/5.5/mingw492_32/include/QtCore/qsettings.h \
@@ -7455,8 +7459,6 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		hclientfiles.h \
 		hanalyze_a.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlTablemodel \
-		hnuovaoperazione.h \
-		hreadonlymodelnew.h \
 		hgestioneutenti.h \
 		hgroups.h \
 		hnewuser.h \
@@ -11998,9 +12000,9 @@ debug/hwarehouse.o: hwarehouse.cpp hwarehouse.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
-		hwarehousedetails.h \
 		hnuovaoperazione.h \
 		hreadonlymodelnew.h \
+		hwarehousedetails.h \
 		hpackagesunload.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDebug
@@ -12914,6 +12916,8 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
 		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
+		hnuovaoperazione.h \
+		hreadonlymodelnew.h \
 		ui_hlotti.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -12998,8 +13002,6 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		hlogin2.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		hmodifylot.h \
-		hnuovaoperazione.h \
-		hreadonlymodelnew.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qmenu.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/QClipboard \

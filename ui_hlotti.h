@@ -58,13 +58,12 @@ public:
     QPushButton *pbScadenze;
     QPushButton *pushButton_6;
     QPushButton *pushButton_3;
-    QSpacerItem *horizontalSpacer;
 
     void setupUi(QWidget *HLotti)
     {
         if (HLotti->objectName().isEmpty())
             HLotti->setObjectName(QStringLiteral("HLotti"));
-        HLotti->setWindowModality(Qt::NonModal);
+        HLotti->setWindowModality(Qt::ApplicationModal);
         HLotti->resize(1232, 664);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -244,10 +243,6 @@ public:
 
 
         verticalLayout_3->addLayout(verticalLayout_2);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        verticalLayout_3->addItem(horizontalSpacer);
 
 
         retranslateUi(HLotti);
