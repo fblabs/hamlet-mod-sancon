@@ -81,6 +81,8 @@ private slots:
 
    void on_dataal_dateChanged(const QDate &date);
 
+   void getDataLots();
+
 private:
 
     Ui::HLotti *ui;

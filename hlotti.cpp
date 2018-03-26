@@ -34,20 +34,6 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
     db=pdb;
 
 
-    mTipi=new QSqlTableModel(0,db);
-    mTipi->setTable("tipi_lot");
-    mTipi->select();
-    mTipi->setSort(1,Qt::AscendingOrder);
-
-    mTipiProdotto=new QSqlTableModel(0,db);
-    mTipiProdotto->setTable("tipi_prodotto");
-    mTipiProdotto->select();
-    mTipiProdotto->setSort(1,Qt::AscendingOrder);
-
-    mProdotti=new QSqlTableModel(0,db);
-    mProdotti->setTable("prodotti");
-    mProdotti->select();
-    mProdotti->setSort(1,Qt::AscendingOrder);
 
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 
@@ -85,6 +71,50 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
 
 
 
+
+
+
+    det=new QShortcut(QKeySequence("F5"),this);
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+    connect(det,SIGNAL(activated()),this,SLOT(getDetails()));
+
+    ui->datadal->setDate(QDate::currentDate().addMonths(-1));
+    ui->dataal->setDate(QDate::currentDate());
+
+    getDataLots();
+
+    QApplication::setOverrideCursor(Qt::ArrowCursor);
+}
+
+
+
+HLotti::~HLotti()
+{
+
+    delete ui;
+
+}
+
+void HLotti::getDataLots()
+{
+    mTipi=new QSqlTableModel(0,db);
+    mTipi->setTable("tipi_lot");
+    mTipi->select();
+    mTipi->setSort(1,Qt::AscendingOrder);
+
+    mTipiProdotto=new QSqlTableModel(0,db);
+    mTipiProdotto->setTable("tipi_prodotto");
+    mTipiProdotto->select();
+    mTipiProdotto->setSort(1,Qt::AscendingOrder);
+
+    mProdotti=new QSqlTableModel(0,db);
+    mProdotti->setTable("prodotti");
+    mProdotti->setSort(1,Qt::AscendingOrder);
+    mProdotti->select();
+
+
+
     ui->cbTipiLot->setModel(mTipi);
     ui->cbTipiLot->setModelColumn(1);
     ui->cbTipiLot->setCurrentIndex(0);
@@ -100,25 +130,6 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
     ui->cbProdotti->setModelColumn(1);
     ui->cbProdotti->completer()->setCompletionMode(QCompleter::PopupCompletion);
     ui->cbProdotti->setCurrentIndex(0);
-
-
-    det=new QShortcut(QKeySequence("F5"),this);
-    this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
-    connect(det,SIGNAL(activated()),this,SLOT(getDetails()));
-
-    ui->datadal->setDate(QDate::currentDate().addMonths(-1));
-    ui->dataal->setDate(QDate::currentDate());
-
-    QApplication::setOverrideCursor(Qt::ArrowCursor);
-}
-
-
-
-HLotti::~HLotti()
-{
-
-    delete ui;
 
 }
 
@@ -449,6 +460,7 @@ void HLotti::on_chbP_toggled(bool checked)
         ui->chTipoProdotti->setEnabled(false); //check tipo prodotti
         ui->chTipoProdotti->setChecked(false);
         ui->cbProdotti->setEnabled(true);
+
 
 
     }
