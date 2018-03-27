@@ -3,7 +3,7 @@
  <class>HLotti</class>
  <widget class="QWidget" name="HLotti">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -175,6 +175,17 @@
             </spacer>
            </item>
           </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbRefresh">
+           <property name="text">
+            <string>Aggiorna</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/Resources/Counterclockwise-arrow64.png</normaloff>:/Resources/Counterclockwise-arrow64.png</iconset>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>

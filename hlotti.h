@@ -83,6 +83,8 @@ private slots:
 
    void getDataLots();
 
+   void on_pbRefresh_clicked();
+
 private:
 
     Ui::HLotti *ui;

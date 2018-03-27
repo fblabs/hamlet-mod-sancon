@@ -520,3 +520,8 @@ void HLotti::on_dataal_dateChanged(const QDate &date)
 
 }
 
+
+void HLotti::on_pbRefresh_clicked()
+{
+    updateTableView();
+}

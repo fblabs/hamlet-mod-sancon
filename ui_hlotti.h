@@ -50,6 +50,7 @@ public:
     QLabel *label_2;
     QDateEdit *dataal;
     QSpacerItem *horizontalSpacer_2;
+    QPushButton *pbRefresh;
     QTableView *twLots;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_7;
@@ -63,7 +64,7 @@ public:
     {
         if (HLotti->objectName().isEmpty())
             HLotti->setObjectName(QStringLiteral("HLotti"));
-        HLotti->setWindowModality(Qt::ApplicationModal);
+        HLotti->setWindowModality(Qt::WindowModal);
         HLotti->resize(1232, 664);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -164,6 +165,14 @@ public:
 
         horizontalLayout_4->addLayout(horizontalLayout_3);
 
+        pbRefresh = new QPushButton(HLotti);
+        pbRefresh->setObjectName(QStringLiteral("pbRefresh"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Counterclockwise-arrow64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbRefresh->setIcon(icon1);
+
+        horizontalLayout_4->addWidget(pbRefresh);
+
 
         verticalLayout->addLayout(horizontalLayout_4);
 
@@ -186,54 +195,54 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pushButton_7 = new QPushButton(HLotti);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_7->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_7->setIcon(icon2);
         pushButton_7->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_7);
 
         pushButton_4 = new QPushButton(HLotti);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Actions-configure-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Actions-configure-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon3);
         pushButton_4->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_4);
 
         pushButton = new QPushButton(HLotti);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon4);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton);
 
         pbScadenze = new QPushButton(HLotti);
         pbScadenze->setObjectName(QStringLiteral("pbScadenze"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/Calendar.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbScadenze->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Calendar.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbScadenze->setIcon(icon5);
         pbScadenze->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbScadenze);
 
         pushButton_6 = new QPushButton(HLotti);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_6->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_6->setIcon(icon6);
         pushButton_6->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_6);
 
         pushButton_3 = new QPushButton(HLotti);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon6);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon7);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_3);
@@ -259,6 +268,7 @@ public:
         chbP->setText(QApplication::translate("HLotti", "Prodotto:", 0));
         label->setText(QApplication::translate("HLotti", "Dal:", 0));
         label_2->setText(QApplication::translate("HLotti", "Al:", 0));
+        pbRefresh->setText(QApplication::translate("HLotti", "Aggiorna", 0));
         pushButton_7->setText(QApplication::translate("HLotti", "Modifica", 0));
         pushButton_4->setText(QApplication::translate("HLotti", "Nuova operazione", 0));
         pushButton->setText(QApplication::translate("HLotti", "Scarico Packages", 0));
