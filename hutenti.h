@@ -41,7 +41,6 @@ private slots:
     void productSearch();
     void hidesubclienti();
     void on_pushButton_3_clicked();
-    void addreset();
     void on_pushButton_2_clicked();
     void selectMasterClient();
     void updateSubclient();

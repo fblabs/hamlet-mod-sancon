@@ -203,6 +203,7 @@ void HUtenti::on_pushButton_3_clicked()
    if(save())
    {
        QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
+
    }
    else
    {
@@ -212,6 +213,11 @@ void HUtenti::on_pushButton_3_clicked()
 
 bool HUtenti::save()
 {
+    if(!db.isOpen())
+    {
+        QMessageBox::information(0,"PIPPO","il database è chiuso...perchè mai?",QMessageBox::Ok);
+    }
+
     db.transaction();
 
        updateSubclient();
@@ -220,7 +226,7 @@ bool HUtenti::save()
 
     db.commit();
 
-   // // qDebug()<<tm->query().lastQuery()<<tm->lastError().text();
+    qDebug()<<tm->query().lastQuery()<<tm->lastError().text();
 
     tm->select();
 
@@ -228,15 +234,6 @@ bool HUtenti::save()
 
 }
 
-void HUtenti::addreset()
-{
-
-  HNewAnagrafica *f=new HNewAnagrafica();
-  f->init(sConn);
-  f->show();
-  tm->select();
-
-}
 
 
 
@@ -250,7 +247,10 @@ void HUtenti::on_pushButton_2_clicked()
 
 void HUtenti::on_pushButton_clicked()
 {
+    HNewAnagrafica *f=new HNewAnagrafica(db);
 
+    f->show();
+    tm->select();
 }
 
 

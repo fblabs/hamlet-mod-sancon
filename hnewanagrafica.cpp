@@ -6,11 +6,13 @@
 // #include <QDebug>
 #include <QSqlError>
 
-HNewAnagrafica::HNewAnagrafica(QWidget *parent) :
+HNewAnagrafica::HNewAnagrafica(QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HNewAnagrafica)
 {
     ui->setupUi(this);
+
+    db=pdb;
 }
 
 HNewAnagrafica::~HNewAnagrafica()
@@ -18,11 +20,6 @@ HNewAnagrafica::~HNewAnagrafica()
     delete ui;
 }
 
-void HNewAnagrafica::init(QString conn)
-{
-    sConn=conn;
-    db=QSqlDatabase::database(sConn);
-}
 
 void HNewAnagrafica::on_pushButton_clicked()
 {

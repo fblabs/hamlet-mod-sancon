@@ -13,9 +13,8 @@ class HNewAnagrafica : public QWidget
     Q_OBJECT
 
 public:
-    explicit HNewAnagrafica(QWidget *parent = 0);
+    explicit HNewAnagrafica(QSqlDatabase pdb, QWidget *parent = 0);
     ~HNewAnagrafica();
-    void init(QString conn);
 
 private slots:
     void on_pushButton_clicked();
@@ -24,7 +23,6 @@ private slots:
 
 private:
     Ui::HNewAnagrafica *ui;
-    QString sConn;
     QSqlDatabase db;
 };
 
