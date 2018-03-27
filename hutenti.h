@@ -17,7 +17,7 @@ class HUtenti : public QWidget
     Q_OBJECT
 
 public:
-    explicit HUtenti(QSqlDatabase pdb, QWidget *parent = 0);
+    explicit HUtenti(HUser *pusr=0, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = 0);
     ~HUtenti();
      QSqlDatabase db;
      void setConnectionName(QString conn,HUser *usr);

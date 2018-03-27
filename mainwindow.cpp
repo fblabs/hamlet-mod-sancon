@@ -399,7 +399,7 @@ void MainWindow::on_tbRicette_clicked()
 
 void MainWindow::on_tbAnag_clicked()
 {
-    HUtenti* f = new HUtenti(db);
+    HUtenti* f = new HUtenti(user,db);
 
 
     //connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));

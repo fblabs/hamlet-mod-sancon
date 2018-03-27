@@ -21,12 +21,13 @@
 #include <QMessageBox>
 #include "halarm.h"
 
-HUtenti::HUtenti(QSqlDatabase pdb, QWidget *parent) :
+HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HUtenti)
 {
     ui->setupUi(this);
     db=pdb;
+    user=pusr;
 
     bool upd=user->getCanUpdateAnag();
 
