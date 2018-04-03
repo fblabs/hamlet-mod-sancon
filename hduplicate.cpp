@@ -8,40 +8,33 @@
 // #include <QDebug>
 #include <QSqlError>
 
-HDuplicate::HDuplicate(QWidget *parent) :
+HDuplicate::HDuplicate(int ocliente, int oprodotto,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HDuplicate)
 {
     ui->setupUi(this);
+
+    db=pdb;
+    QSqlTableModel *modclients=new QSqlTableModel(0,db);
+
+    cliente=ocliente;
+    prodotto=oprodotto;
+
+   // // qDebug()<<QString::number(cliente)<<QString::number(prodotto);
+
+    modclients->setTable("anagrafica");
+    modclients->setSort(1,Qt::AscendingOrder);
+    modclients->setFilter("cliente=1 or subcliente=1");
+    modclients->select();
+    ui->cbClienti->setModel(modclients);
+    ui->cbClienti->setModelColumn(1);
+
+    connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getRecipes()));
 }
 
 HDuplicate::~HDuplicate()
 {
     delete ui;
-}
-
-void HDuplicate::init(QString conn, int ocliente, int oprodotto)
-{
-    db=QSqlDatabase::database(conn);
-
-   QSqlTableModel *modclients=new QSqlTableModel(0,db);
-
-   cliente=ocliente;
-   prodotto=oprodotto;
-
-  // // qDebug()<<QString::number(cliente)<<QString::number(prodotto);
-
-   modclients->setTable("anagrafica");
-   modclients->setSort(1,Qt::AscendingOrder);
-   modclients->setFilter("cliente=1 or subcliente=1");
-   modclients->select();
-   ui->cbClienti->setModel(modclients);
-   ui->cbClienti->setModelColumn(1);
-
-   connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getRecipes()));
-
-
-
 }
 
 void HDuplicate::getRecipes()

@@ -11,21 +11,12 @@
 #include <QDebug>
 
 
-HRecipeAddRow::HRecipeAddRow(QWidget *parent) :
+HRecipeAddRow::HRecipeAddRow(int pidricetta, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HRecipeAddRow)
 {
     ui->setupUi(this);
-}
-
-HRecipeAddRow::~HRecipeAddRow()
-{
-    delete ui;
-}
-
-void HRecipeAddRow::init(QString conn,int idricetta)
-{
-    db=QSqlDatabase::database(conn);
+    db=pdb;
 
     QSqlTableModel *mod= new QSqlTableModel(0,db);
     mod->setTable("prodotti");
@@ -38,8 +29,14 @@ void HRecipeAddRow::init(QString conn,int idricetta)
     ui->comboBox->setModel(mod);
     ui->comboBox->setModelColumn(1);
 
-    idricettatarget=idricetta;
+    idricettatarget=pidricetta;
 }
+
+HRecipeAddRow::~HRecipeAddRow()
+{
+    delete ui;
+}
+
 void HRecipeAddRow::on_pushButton_2_clicked()
 {
     close();

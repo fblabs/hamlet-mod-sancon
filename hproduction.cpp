@@ -23,23 +23,75 @@
 #include <QStandardItemModel>
 #include "hdatatopass.h"
 #include "hlastlots.h"
+#include "huser.h"
 
 
-HProduction::HProduction(QWidget *parent) :
+HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HProduction)
 {
     ui->setupUi(this);
+
+    user=puser;
+    db=pdb;
 
     ui->dateEdit->setVisible(false);
     ui->label_9->setVisible(false);
     ui->pushButton_8->setVisible(false);
     ui->pushButton_10->setEnabled(false);
     ui->pushButton->setVisible(false);
-   // ui->label_11->setVisible(false);
-   // ui->leQuaRic->setVisible(false);
+
+    modifyLot=false;
+
+
+
+
+    tmTipiLotti=new QSqlTableModel(0,db);
+    tmTipiLotti->setTable("tipi_lot");
+    tmTipiLotti->select();
+    tmTipiLotti->setFilter("ID=3");
+    tmTipiLotti->setSort(1,Qt::AscendingOrder);
+
+    ui->cbTipoLotto->setModel(tmTipiLotti);
+    ui->cbTipoLotto->setModelColumn(1);
+    ui->cbTipoLotto->setEnabled(true);
+
+    tmUm=new QSqlTableModel(0,db);
+    tmUm->setTable("unita_di_misura");
+    tmUm->select();
+    tmUm->setSort(1,Qt::AscendingOrder);
+
+    ui->cbUm->setModel(tmUm);
+    ui->cbUm->setModelColumn(1);
+
+
+
+    getClients();
+    ui->cbClienti->setCurrentIndex(ui->cbClienti->model()->rowCount());
+    ui->cbClienti->setCurrentIndex(0);
+
+    ui->lvRicette->setEnabled(true);
+    ui->lvSubclienti->setVisible(false);
+
+    ui->leQtyTotal->setEnabled(true);
+    ui->pushButton_5->setVisible(true);
+    ui->pushButton_6->setVisible(false);
+    ui->pushButton->setEnabled(false);
+    ui->pushButton_2->setEnabled(false);
+    ui->pushButton_7->setEnabled(false);
+    ui->leNuovoLot->setText("");
+    ui->label_6->setVisible(true);
+    ui->dateEdit->setDate(QDate::currentDate().addYears(2));
+
+    setAddProductFuoriRicettaUI(false);
+
+    connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
+
+
+
 
 }
+
 
 HProduction::~HProduction()
 {
@@ -76,90 +128,7 @@ void HProduction::getSubclients()
 
 
 }
-void HProduction::init(QString conn, QString userid)
-{
 
-    sConn=conn;
-    userID=userid;
-    modifyLot=false;
-
-
-     db=QSqlDatabase::database(sConn);
-
-     tmTipiLotti=new QSqlTableModel(0,db);
-     tmTipiLotti->setTable("tipi_lot");
-     tmTipiLotti->select();
-     tmTipiLotti->setFilter("ID=3");
-     tmTipiLotti->setSort(1,Qt::AscendingOrder);
-
-     ui->cbTipoLotto->setModel(tmTipiLotti);
-     ui->cbTipoLotto->setModelColumn(1);
-     ui->cbTipoLotto->setEnabled(true);
-
-     tmUm=new QSqlTableModel(0,db);
-     tmUm->setTable("unita_di_misura");
-     tmUm->select();
-     tmUm->setSort(1,Qt::AscendingOrder);
-
-     ui->cbUm->setModel(tmUm);
-     ui->cbUm->setModelColumn(1);
-
-
-
-     getClients();
-     ui->cbClienti->setCurrentIndex(ui->cbClienti->model()->rowCount());
-     ui->cbClienti->setCurrentIndex(0);
-
-
-
-   //  ui->tableView->setEnabled(false);
-     ui->lvRicette->setEnabled(true);
-   //  ui->leQtyTotal->setReadOnly(true);
-     ui->lvSubclienti->setVisible(false);
-
- /*    ui->cbQuanti->addItem("Tutti",100000);
-     ui->cbQuanti->addItem("Ultimi 5 lotti",5);
-     ui->cbQuanti->addItem("Ultimi 10 lotti",10);
-     ui->cbQuanti->addItem("Ultimi 50 lotti",50);
-     ui->cbQuanti->setCurrentIndex(1);*/
-
-     ui->leQtyTotal->setEnabled(true);
-     ui->pushButton_5->setVisible(true);
-     ui->pushButton_6->setVisible(false);
-     ui->pushButton->setEnabled(false);
-     ui->pushButton_2->setEnabled(false);
-     ui->pushButton_7->setEnabled(false);
-  //   ui->label->setVisible(false);
-  //   ui->cbQuanti->setVisible(false);
-   //  ui->lvLastLots->setVisible(false);
-     ui->leNuovoLot->setText("");
-    // ui->label_4->setVisible(false);
-     ui->label_6->setVisible(true);
-   //  ui->label_2->setVisible(false);
-   //  ui->leqtytoAdd->setVisible(false);
-   //  ui->leLotToadd->setVisible(false);
-    // ui->cbTipoLotto->setVisible(true);
-     ui->pbAddLottoFuoriRicetta->setVisible(false);
-   //  ui->pushButton_10->setEnabled(false);
-
-    // ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(ui->lvRicette->model()->rowCount()-1,0));
-    // ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,0));
-
-     ui->dateEdit->setDate(QDate::currentDate().addYears(2));
-
-     setAddProductFuoriRicettaUI(false);
-
-
-   //  connect(ui->cbQuanti,SIGNAL(currentIndexChanged(int)),this,SLOT(lastFiveLots()));
-     connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
-
-
-
-
-
-
-
-}
 
 void HProduction::getLotModel()
 {
@@ -262,49 +231,6 @@ void HProduction::updateTotals()
 
 }
 
-
-
-void HProduction::lastFiveLots()
-{
-  /*  QSqlQuery qlots(db);
-    QSqlQueryModel *qmLots =new QSqlQueryModel();
-  //  int prd =ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0)).toInt();
-    int prd =model->index(ui->tableView->currentIndex().row(),0).data(0).toInt();
-
-    //int quanti=ui->cbQuanti->currentData().toInt();
-
-    QString sql="select ID,lot from lotdef where prodotto=:prd and attivo>0 ORDER by data DESC LIMIT :quanti";
-    qlots.prepare(sql);
-    qlots.bindValue(":prd",QVariant(prd));
-    qlots.bindValue(":quanti",QVariant(quanti));
-    qlots.exec();
-    qmLots->clear();
-    qmLots->setQuery(qlots);
-
-    // qDebug()<<"lastfivelots"<<qlots.lastError().text();
-
-
-
-   // disconnect(ui->lvLastLots->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),this,SLOT(lotSelected()));
-
- /*   ui->lvLastLots->clearSelection();
-    ui->lvLastLots->setModel(qmLots);
-    ui->lvLastLots->setModelColumn(1);
-     ui->lvLastLots->setCurrentIndex(ui->lvLastLots->model()->index(-1,0));*/
-
-
- // ui->lvLastLots->setCurrentIndex();
- // ui->lvLastLots->setCurrentIndex(ui->lvLastLots->model()->index(-1,0));
-
- // int cols=qmLots->columnCount();
- // qmLots->insertColumns(cols,2);
-
-
-  // connect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(lotSelected()));
- //connect(ui->lvLastLots->model(),SIGNAL(dataChanged(QModelIndex,QModelIndex)),this,SLOT(lotSelected()));
-
-}
-
 void HProduction::getClients()
 {
     QSqlQuery q(db);
@@ -355,7 +281,7 @@ void HProduction::getLotToModify(QString lot)
    // QString lot;
     //ricavo lo id del lotto
     QSqlQuery k(db);
-    int idlotto;
+
     QString sqlot="SELECT ID from lotdef where lot=:lot";
     k.prepare(sqlot);
     k.bindValue(":lot",QVariant(lot));
@@ -640,7 +566,7 @@ void HProduction::getNewRow(QList<QStandardItem*>list)
 
 
 
-void HProduction::printProduction(bool actual=false)
+void HProduction::printProduction()
 {
     HPrint *f=new HPrint();
     f->toggleImageUI(false);
@@ -832,7 +758,7 @@ void HProduction::printRecipe()
 void HProduction::productSelected()
 {
 
-       lastFiveLots();
+      // lastFiveLots();
      //  connect (ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
 
 
@@ -894,8 +820,8 @@ void HProduction::addLotProd()
  //   QModelIndex idProdotto =qm->index(ui->tableView->currentIndex().row(),0);
   //  QModelIndex prodotto =qm->index(ui->tableView->currentIndex().row(),1);
  //   QModelIndex quantita =qm->index(ui->tableView->currentIndex().row(),2);
-    QModelIndex idlotto =model->index(ui->tableView->currentIndex().row(),3);
-    QModelIndex lotto =model->index(ui->tableView->currentIndex().row(),4);
+  //  QModelIndex idlotto =model->index(ui->tableView->currentIndex().row(),3);
+ //   QModelIndex lotto =model->index(ui->tableView->currentIndex().row(),4);
   //  QModelIndex quanteff =model->index(ui->tableView->currentIndex().row(),5);
     QModelIndex allergene=model->index(ui->tableView->currentIndex().row(),6);
 
@@ -1180,7 +1106,7 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
 
 bool HProduction::saveLotLoad(int idlotto, int prodotto)
 {
-// qDebug()<<"SaveLotLoad()"<<QString::number(idlotto)<<QString::number(prodotto);
+
 
     QSqlQuery q(db);
 
@@ -1194,7 +1120,7 @@ bool HProduction::saveLotLoad(int idlotto, int prodotto)
     q.prepare(sql);
     q.bindValue(":idl",QVariant(idlotto));
     q.bindValue(":data",QVariant(data));
-    q.bindValue(":utente",QVariant(userID));
+    q.bindValue(":utente",QVariant(user->getID()));
     q.bindValue(":prodotto",QVariant(prodotto));
     q.bindValue(":azione",QVariant(1));
     q.bindValue(":quantita",QVariant(giacenza));
@@ -1230,7 +1156,7 @@ int HProduction::lastInsertId()
 
      int idlotto=ui->tableView->model()->index(row,3).data(0).toInt();
      int idprodotto=ui->tableView->model()->index(row,0).data(0).toInt();
-     int utente=userID.toInt();
+     int utente=user->getID();
      double quant= ui->tableView->model()->index(row,5).data(0).toDouble();
      int um=ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0).toInt();
 
@@ -1271,8 +1197,7 @@ int HProduction::lastInsertId()
 
  bool HProduction::saveComposizione(int lottotarget,int operazione)
  {
-     lottotarget;
-     bool b=false;
+    bool b=false;
 
      QSqlQuery q(db);
      QString sql;
@@ -1617,7 +1542,7 @@ bool HProduction::saveUpdatedOperazione(int row)
 
         int idlotto=ui->tableView->model()->index(row,3).data(0).toInt();
         int idprodotto=ui->tableView->model()->index(row,0).data(0).toInt();
-        int utente=userID.toInt();
+        int utente=user->getID();
         double quant= ui->tableView->model()->index(row,5).data(0).toDouble();
         int um=ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0).toInt();
 
@@ -1655,9 +1580,7 @@ bool HProduction::saveUpdatedOperazione(int row)
 
 void HProduction::on_pushButton_10_clicked()
 {
-   // printModel =new QStandardItemModel();
-   // printModel=static_cast<QStandardItemModel*>(ui->tableView->model());
-    printProduction(true);
+   printProduction();
 }
 
 void HProduction::on_checkBox_toggled(bool checked)

@@ -35,7 +35,6 @@ SOURCES += main.cpp\
     hassociazioni.cpp \
     hmodificascheda.cpp \
     hproduction.cpp \
-    hfindlotuse.cpp \
     hprodottinew.cpp \
     hwarehouse.cpp \
     hmodifyprod.cpp \
@@ -92,7 +91,6 @@ HEADERS  += mainwindow.h \
     hassociazioni.h \
     hmodificascheda.h \
     hproduction.h \
-    hfindlotuse.h \
     hprodottinew.h \
     hwarehouse.h \
     hmodifyprod.h \
@@ -149,7 +147,6 @@ FORMS    += mainwindow.ui \
     hassociazioni.ui \
     hmodificascheda.ui \
     hproduction.ui \
-    hfindlotuse.ui \
     hprodottinew.ui \
     hwarehouse.ui \
     hmodifyprod.ui \

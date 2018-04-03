@@ -10,30 +10,13 @@
 // #include <QDebug>
 #include <QSqlError>
 
-HGestioneUtenti::HGestioneUtenti(QWidget *parent) :
+HGestioneUtenti::HGestioneUtenti(QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HGestioneUtenti)
 {
     ui->setupUi(this);
 
-
-
-
-  //  connect(ui->lvUtenti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,slot(loadDetails()));
-}
-
-HGestioneUtenti::~HGestioneUtenti()
-{
-    delete ui;
-}
-
-void HGestioneUtenti::init(QString conn)
-{
-
-
-    sConn=conn;
-
-    db=QSqlDatabase::database(sConn);
+    db=pdb;
 
     utm=new QSqlRelationalTableModel(0,db);
     gtm=new QSqlTableModel(0,db);
@@ -86,7 +69,16 @@ void HGestioneUtenti::init(QString conn)
     ui->lvUtenti->setCurrentIndex(utm->index(0,0));
 
 
+
+
+  //  connect(ui->lvUtenti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,slot(loadDetails()));
 }
+
+HGestioneUtenti::~HGestioneUtenti()
+{
+    delete ui;
+}
+
 
 void HGestioneUtenti::on_pushButton_3_clicked()
 {
@@ -95,10 +87,9 @@ void HGestioneUtenti::on_pushButton_3_clicked()
 
 void HGestioneUtenti::on_pushButton_clicked()
 {
-    HNewUser *d = new HNewUser();
+    HNewUser *d = new HNewUser(db);
 
-    d->init(sConn);
-    d->show();
+     d->show();
 
     utm->select();
 }
@@ -221,6 +212,6 @@ void HGestioneUtenti::on_comboBox_currentIndexChanged(int index)
 
 void HGestioneUtenti::on_pushButton_4_clicked()
 {
-    HGroups *f=new HGroups(0,sConn);
+    HGroups *f=new HGroups(0,"toremove");
     f->show();
 }

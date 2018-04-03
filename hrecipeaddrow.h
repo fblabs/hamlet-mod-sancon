@@ -16,9 +16,9 @@ class HRecipeAddRow : public QWidget
     Q_OBJECT
 
 public:
-    explicit HRecipeAddRow(QWidget *parent = 0);
+    explicit HRecipeAddRow(int pidricetta=-1, QSqlDatabase pdb=QSqlDatabase(),QWidget *parent=0);
     ~HRecipeAddRow();
-    void init(QString conn, int idricetta);
+
 
 private slots:
     void on_pushButton_2_clicked();

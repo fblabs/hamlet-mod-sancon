@@ -66,7 +66,6 @@ SOURCES       = main.cpp \
 		hassociazioni.cpp \
 		hmodificascheda.cpp \
 		hproduction.cpp \
-		hfindlotuse.cpp \
 		hprodottinew.cpp \
 		hwarehouse.cpp \
 		hmodifyprod.cpp \
@@ -122,7 +121,6 @@ SOURCES       = main.cpp \
 		release/moc_hassociazioni.cpp \
 		release/moc_hmodificascheda.cpp \
 		release/moc_hproduction.cpp \
-		release/moc_hfindlotuse.cpp \
 		release/moc_hprodottinew.cpp \
 		release/moc_hwarehouse.cpp \
 		release/moc_hmodifyprod.cpp \
@@ -178,7 +176,6 @@ OBJECTS       = release/main.o \
 		release/hassociazioni.o \
 		release/hmodificascheda.o \
 		release/hproduction.o \
-		release/hfindlotuse.o \
 		release/hprodottinew.o \
 		release/hwarehouse.o \
 		release/hmodifyprod.o \
@@ -235,7 +232,6 @@ OBJECTS       = release/main.o \
 		release/moc_hassociazioni.o \
 		release/moc_hmodificascheda.o \
 		release/moc_hproduction.o \
-		release/moc_hfindlotuse.o \
 		release/moc_hprodottinew.o \
 		release/moc_hwarehouse.o \
 		release/moc_hmodifyprod.o \
@@ -291,7 +287,6 @@ DIST          = Resources/hamlet.PNG mainwindow.h \
 		hassociazioni.h \
 		hmodificascheda.h \
 		hproduction.h \
-		hfindlotuse.h \
 		hprodottinew.h \
 		hwarehouse.h \
 		hmodifyprod.h \
@@ -347,7 +342,6 @@ DIST          = Resources/hamlet.PNG mainwindow.h \
 		hassociazioni.cpp \
 		hmodificascheda.cpp \
 		hproduction.cpp \
-		hfindlotuse.cpp \
 		hprodottinew.cpp \
 		hwarehouse.cpp \
 		hmodifyprod.cpp \
@@ -407,7 +401,7 @@ DESTDIR_TARGET = release/hamletMOD.exe
 first: all
 all: Makefile.Release  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h ui_hcopycard.h ui_hcomposizionelotto.h ui_hgraphicprint.h ui_nouse.h ui_haddlotinproduction.h ui_hlastlots.h ui_hexpirations.h ui_hcalcost.h ui_hwarehousedetails.h ui_hrecipesforclient.h $(OBJECTS) release/hamletMOD_resource_res.o
+$(DESTDIR_TARGET): ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h ui_hcopycard.h ui_hcomposizionelotto.h ui_hgraphicprint.h ui_nouse.h ui_haddlotinproduction.h ui_hlastlots.h ui_hexpirations.h ui_hcalcost.h ui_hwarehousedetails.h ui_hrecipesforclient.h $(OBJECTS) release/hamletMOD_resource_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.hamletMOD.Release  $(LIBS)
 
 release/hamletMOD_resource_res.o: hamletMOD_resource.rc
@@ -422,8 +416,8 @@ dist:
 	$(ZIP) hamletMOD.zip $(SOURCES) $(DIST) hamletMOD.pro ../../Qt/5.5/mingw492_32/mkspecs/features/spec_pre.prf ../../Qt/5.5/mingw492_32/mkspecs/qdevice.pri ../../Qt/5.5/mingw492_32/mkspecs/features/device_config.prf ../../Qt/5.5/mingw492_32/mkspecs/qconfig.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axbase.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axbase_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axcontainer.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axcontainer_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axserver.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_axserver_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_bluetooth.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_bluetooth_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_bootstrap_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_clucene_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_concurrent.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_concurrent_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_core.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_core_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_dbus.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_dbus_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_designer.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_designer_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_designercomponents_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_enginio.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_enginio_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_gui.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_gui_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_help.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_help_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_multimedia.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_multimedia_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_multimediawidgets.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_network.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_network_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_nfc.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_nfc_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_opengl.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_opengl_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_openglextensions.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_openglextensions_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_platformsupport_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_positioning.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_positioning_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_printsupport.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_printsupport_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qml.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qml_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qmldevtools_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qmltest.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qmltest_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_quick.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_quick_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_quickparticles_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_quickwidgets.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_quickwidgets_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_sensors.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_sensors_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_serialport.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_serialport_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_sql.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_sql_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_svg.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_svg_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_testlib.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_testlib_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_uiplugin.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_uitools.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_uitools_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webchannel.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webchannel_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webkit.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webkit_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webkitwidgets.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_webkitwidgets_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_websockets.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_websockets_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_widgets.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_widgets_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_winextras.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_winextras_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_xml.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_xml_private.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_xmlpatterns.pri ../../Qt/5.5/mingw492_32/mkspecs/modules/qt_lib_xmlpatterns_private.pri ../../Qt/5.5/mingw492_32/mkspecs/features/qt_functions.prf ../../Qt/5.5/mingw492_32/mkspecs/features/qt_config.prf ../../Qt/5.5/mingw492_32/mkspecs/features/win32/qt_config.prf ../../Qt/5.5/mingw492_32/mkspecs/win32-g++/qmake.conf ../../Qt/5.5/mingw492_32/mkspecs/features/spec_post.prf ../../Qt/5.5/mingw492_32/mkspecs/features/exclusive_builds.prf ../../Qt/5.5/mingw492_32/mkspecs/features/default_pre.prf ../../Qt/5.5/mingw492_32/mkspecs/features/win32/default_pre.prf ../../Qt/5.5/mingw492_32/mkspecs/features/resolve_config.prf ../../Qt/5.5/mingw492_32/mkspecs/features/exclusive_builds_post.prf ../../Qt/5.5/mingw492_32/mkspecs/features/default_post.prf ../../Qt/5.5/mingw492_32/mkspecs/features/build_pass.prf ../../Qt/5.5/mingw492_32/mkspecs/features/win32/rtti.prf ../../Qt/5.5/mingw492_32/mkspecs/features/precompile_header.prf ../../Qt/5.5/mingw492_32/mkspecs/features/warn_on.prf ../../Qt/5.5/mingw492_32/mkspecs/features/qt.prf ../../Qt/5.5/mingw492_32/mkspecs/features/resources.prf ../../Qt/5.5/mingw492_32/mkspecs/features/moc.prf ../../Qt/5.5/mingw492_32/mkspecs/features/win32/opengl.prf ../../Qt/5.5/mingw492_32/mkspecs/features/uic.prf ../../Qt/5.5/mingw492_32/mkspecs/features/win32/windows.prf ../../Qt/5.5/mingw492_32/mkspecs/features/testcase_targets.prf ../../Qt/5.5/mingw492_32/mkspecs/features/exceptions.prf ../../Qt/5.5/mingw492_32/mkspecs/features/yacc.prf ../../Qt/5.5/mingw492_32/mkspecs/features/lex.prf hamletMOD.pro icons.qrc C:/Qt/5.5/mingw492_32/lib/qtmain.prl C:/Qt/5.5/mingw492_32/lib/Qt5PrintSupport.prl C:/Qt/5.5/mingw492_32/lib/Qt5Widgets.prl C:/Qt/5.5/mingw492_32/lib/Qt5Gui.prl C:/Qt/5.5/mingw492_32/lib/Qt5Sql.prl C:/Qt/5.5/mingw492_32/lib/Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) release/main.o release/mainwindow.o release/huser.o release/hprodotti.o release/hutenti.o release/hnewop.o release/hsettings.o release/hreadonlymodel.o release/hprint.o release/hanalisi.o release/hnewproduct.o release/hlogin2.o release/hreadonlymodellots.o release/hanalyze_a.o release/hnuovaoperazione.o release/hoverview.o release/hgestioneutenti.o release/hnewuser.o release/hnewanagrafica.o release/hschedeclienti.o release/hassociazioni.o release/hmodificascheda.o release/hproduction.o release/hfindlotuse.o release/hprodottinew.o release/hwarehouse.o release/hmodifyprod.o release/hpackages.o release/hmodricette.o release/hrecipeaddrow.o release/hlotti.o release/htextedit.o release/hreadonlymodelnew.o release/hduplicate.o release/hmodifylot.o release/hpackagesunload.o release/hgroups.o release/hcontacts.o release/hnewcontact.o release/halarm.o release/hnotifica.o release/hverifylabels.o release/hclientiassociati.o release/hschede.o release/hnschede.o release/hmodimage.o release/hcopycard.o release/hcomposizionelotto.o release/hgraphicprint.o release/nouse.o release/haddlotinproduction.o release/hdatatopass.o release/hlastlots.o release/hexpirations.o release/hcalcost.o release/hwarehousedetails.o release/hrecipesforclient.o release/qrc_icons.o release/moc_mainwindow.o release/moc_huser.o release/moc_hprodotti.o release/moc_hutenti.o release/moc_hnewop.o release/moc_hsettings.o release/moc_hreadonlymodel.o release/moc_hprint.o release/moc_hanalisi.o release/moc_hnewproduct.o release/moc_hlogin2.o release/moc_hreadonlymodellots.o release/moc_hanalyze_a.o release/moc_hnuovaoperazione.o release/moc_hoverview.o release/moc_hgestioneutenti.o release/moc_hnewuser.o release/moc_hnewanagrafica.o release/moc_hschedeclienti.o release/moc_hassociazioni.o release/moc_hmodificascheda.o release/moc_hproduction.o release/moc_hfindlotuse.o release/moc_hprodottinew.o release/moc_hwarehouse.o release/moc_hmodifyprod.o release/moc_hpackages.o release/moc_hmodricette.o release/moc_hrecipeaddrow.o release/moc_hlotti.o
-	-$(DEL_FILE) release/moc_hreadonlymodelnew.o release/moc_hduplicate.o release/moc_hmodifylot.o release/moc_hpackagesunload.o release/moc_hgroups.o release/moc_hcontacts.o release/moc_hnewcontact.o release/moc_halarm.o release/moc_hnotifica.o release/moc_hverifylabels.o release/moc_hclientiassociati.o release/moc_hschede.o release/moc_hnschede.o release/moc_hmodimage.o release/moc_hcopycard.o release/moc_hcomposizionelotto.o release/moc_hgraphicprint.o release/moc_nouse.o release/moc_haddlotinproduction.o release/moc_hdatatopass.o release/moc_hlastlots.o release/moc_hexpirations.o release/moc_hcalcost.o release/moc_hwarehousedetails.o release/moc_hrecipesforclient.o
+	-$(DEL_FILE) release/main.o release/mainwindow.o release/huser.o release/hprodotti.o release/hutenti.o release/hnewop.o release/hsettings.o release/hreadonlymodel.o release/hprint.o release/hanalisi.o release/hnewproduct.o release/hlogin2.o release/hreadonlymodellots.o release/hanalyze_a.o release/hnuovaoperazione.o release/hoverview.o release/hgestioneutenti.o release/hnewuser.o release/hnewanagrafica.o release/hschedeclienti.o release/hassociazioni.o release/hmodificascheda.o release/hproduction.o release/hprodottinew.o release/hwarehouse.o release/hmodifyprod.o release/hpackages.o release/hmodricette.o release/hrecipeaddrow.o release/hlotti.o release/htextedit.o release/hreadonlymodelnew.o release/hduplicate.o release/hmodifylot.o release/hpackagesunload.o release/hgroups.o release/hcontacts.o release/hnewcontact.o release/halarm.o release/hnotifica.o release/hverifylabels.o release/hclientiassociati.o release/hschede.o release/hnschede.o release/hmodimage.o release/hcopycard.o release/hcomposizionelotto.o release/hgraphicprint.o release/nouse.o release/haddlotinproduction.o release/hdatatopass.o release/hlastlots.o release/hexpirations.o release/hcalcost.o release/hwarehousedetails.o release/hrecipesforclient.o release/qrc_icons.o release/moc_mainwindow.o release/moc_huser.o release/moc_hprodotti.o release/moc_hutenti.o release/moc_hnewop.o release/moc_hsettings.o release/moc_hreadonlymodel.o release/moc_hprint.o release/moc_hanalisi.o release/moc_hnewproduct.o release/moc_hlogin2.o release/moc_hreadonlymodellots.o release/moc_hanalyze_a.o release/moc_hnuovaoperazione.o release/moc_hoverview.o release/moc_hgestioneutenti.o release/moc_hnewuser.o release/moc_hnewanagrafica.o release/moc_hschedeclienti.o release/moc_hassociazioni.o release/moc_hmodificascheda.o release/moc_hproduction.o release/moc_hprodottinew.o release/moc_hwarehouse.o release/moc_hmodifyprod.o release/moc_hpackages.o release/moc_hmodricette.o release/moc_hrecipeaddrow.o release/moc_hlotti.o release/moc_hreadonlymodelnew.o
+	-$(DEL_FILE) release/moc_hduplicate.o release/moc_hmodifylot.o release/moc_hpackagesunload.o release/moc_hgroups.o release/moc_hcontacts.o release/moc_hnewcontact.o release/moc_halarm.o release/moc_hnotifica.o release/moc_hverifylabels.o release/moc_hclientiassociati.o release/moc_hschede.o release/moc_hnschede.o release/moc_hmodimage.o release/moc_hcopycard.o release/moc_hcomposizionelotto.o release/moc_hgraphicprint.o release/moc_nouse.o release/moc_haddlotinproduction.o release/moc_hdatatopass.o release/moc_hlastlots.o release/moc_hexpirations.o release/moc_hcalcost.o release/moc_hwarehousedetails.o release/moc_hrecipesforclient.o
 	-$(DEL_FILE) release/hamletMOD_resource_res.o
 
 distclean: clean 
@@ -572,9 +566,9 @@ release/qrc_icons.cpp: icons.qrc \
 		Resources/Center64.png
 	'C:\Qt\5.5\mingw492_32\bin\rcc.exe' -name icons icons.qrc -o release/qrc_icons.cpp
 
-compiler_moc_header_make_all: release/moc_mainwindow.cpp release/moc_huser.cpp release/moc_hprodotti.cpp release/moc_hutenti.cpp release/moc_hnewop.cpp release/moc_hsettings.cpp release/moc_hreadonlymodel.cpp release/moc_hprint.cpp release/moc_hanalisi.cpp release/moc_hnewproduct.cpp release/moc_hlogin2.cpp release/moc_hreadonlymodellots.cpp release/moc_hanalyze_a.cpp release/moc_hnuovaoperazione.cpp release/moc_hoverview.cpp release/moc_hgestioneutenti.cpp release/moc_hnewuser.cpp release/moc_hnewanagrafica.cpp release/moc_hschedeclienti.cpp release/moc_hassociazioni.cpp release/moc_hmodificascheda.cpp release/moc_hproduction.cpp release/moc_hfindlotuse.cpp release/moc_hprodottinew.cpp release/moc_hwarehouse.cpp release/moc_hmodifyprod.cpp release/moc_hpackages.cpp release/moc_hmodricette.cpp release/moc_hrecipeaddrow.cpp release/moc_hlotti.cpp release/moc_hreadonlymodelnew.cpp release/moc_hduplicate.cpp release/moc_hmodifylot.cpp release/moc_hpackagesunload.cpp release/moc_hgroups.cpp release/moc_hcontacts.cpp release/moc_hnewcontact.cpp release/moc_halarm.cpp release/moc_hnotifica.cpp release/moc_hverifylabels.cpp release/moc_hclientiassociati.cpp release/moc_hschede.cpp release/moc_hnschede.cpp release/moc_hmodimage.cpp release/moc_hcopycard.cpp release/moc_hcomposizionelotto.cpp release/moc_hgraphicprint.cpp release/moc_nouse.cpp release/moc_haddlotinproduction.cpp release/moc_hdatatopass.cpp release/moc_hlastlots.cpp release/moc_hexpirations.cpp release/moc_hcalcost.cpp release/moc_hwarehousedetails.cpp release/moc_hrecipesforclient.cpp
+compiler_moc_header_make_all: release/moc_mainwindow.cpp release/moc_huser.cpp release/moc_hprodotti.cpp release/moc_hutenti.cpp release/moc_hnewop.cpp release/moc_hsettings.cpp release/moc_hreadonlymodel.cpp release/moc_hprint.cpp release/moc_hanalisi.cpp release/moc_hnewproduct.cpp release/moc_hlogin2.cpp release/moc_hreadonlymodellots.cpp release/moc_hanalyze_a.cpp release/moc_hnuovaoperazione.cpp release/moc_hoverview.cpp release/moc_hgestioneutenti.cpp release/moc_hnewuser.cpp release/moc_hnewanagrafica.cpp release/moc_hschedeclienti.cpp release/moc_hassociazioni.cpp release/moc_hmodificascheda.cpp release/moc_hproduction.cpp release/moc_hprodottinew.cpp release/moc_hwarehouse.cpp release/moc_hmodifyprod.cpp release/moc_hpackages.cpp release/moc_hmodricette.cpp release/moc_hrecipeaddrow.cpp release/moc_hlotti.cpp release/moc_hreadonlymodelnew.cpp release/moc_hduplicate.cpp release/moc_hmodifylot.cpp release/moc_hpackagesunload.cpp release/moc_hgroups.cpp release/moc_hcontacts.cpp release/moc_hnewcontact.cpp release/moc_halarm.cpp release/moc_hnotifica.cpp release/moc_hverifylabels.cpp release/moc_hclientiassociati.cpp release/moc_hschede.cpp release/moc_hnschede.cpp release/moc_hmodimage.cpp release/moc_hcopycard.cpp release/moc_hcomposizionelotto.cpp release/moc_hgraphicprint.cpp release/moc_nouse.cpp release/moc_haddlotinproduction.cpp release/moc_hdatatopass.cpp release/moc_hlastlots.cpp release/moc_hexpirations.cpp release/moc_hcalcost.cpp release/moc_hwarehousedetails.cpp release/moc_hrecipesforclient.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release/moc_mainwindow.cpp release/moc_huser.cpp release/moc_hprodotti.cpp release/moc_hutenti.cpp release/moc_hnewop.cpp release/moc_hsettings.cpp release/moc_hreadonlymodel.cpp release/moc_hprint.cpp release/moc_hanalisi.cpp release/moc_hnewproduct.cpp release/moc_hlogin2.cpp release/moc_hreadonlymodellots.cpp release/moc_hanalyze_a.cpp release/moc_hnuovaoperazione.cpp release/moc_hoverview.cpp release/moc_hgestioneutenti.cpp release/moc_hnewuser.cpp release/moc_hnewanagrafica.cpp release/moc_hschedeclienti.cpp release/moc_hassociazioni.cpp release/moc_hmodificascheda.cpp release/moc_hproduction.cpp release/moc_hfindlotuse.cpp release/moc_hprodottinew.cpp release/moc_hwarehouse.cpp release/moc_hmodifyprod.cpp release/moc_hpackages.cpp release/moc_hmodricette.cpp release/moc_hrecipeaddrow.cpp release/moc_hlotti.cpp release/moc_hreadonlymodelnew.cpp release/moc_hduplicate.cpp release/moc_hmodifylot.cpp release/moc_hpackagesunload.cpp release/moc_hgroups.cpp release/moc_hcontacts.cpp release/moc_hnewcontact.cpp release/moc_halarm.cpp release/moc_hnotifica.cpp release/moc_hverifylabels.cpp release/moc_hclientiassociati.cpp release/moc_hschede.cpp release/moc_hnschede.cpp release/moc_hmodimage.cpp release/moc_hcopycard.cpp release/moc_hcomposizionelotto.cpp release/moc_hgraphicprint.cpp release/moc_nouse.cpp release/moc_haddlotinproduction.cpp release/moc_hdatatopass.cpp release/moc_hlastlots.cpp release/moc_hexpirations.cpp release/moc_hcalcost.cpp release/moc_hwarehousedetails.cpp release/moc_hrecipesforclient.cpp
+	-$(DEL_FILE) release/moc_mainwindow.cpp release/moc_huser.cpp release/moc_hprodotti.cpp release/moc_hutenti.cpp release/moc_hnewop.cpp release/moc_hsettings.cpp release/moc_hreadonlymodel.cpp release/moc_hprint.cpp release/moc_hanalisi.cpp release/moc_hnewproduct.cpp release/moc_hlogin2.cpp release/moc_hreadonlymodellots.cpp release/moc_hanalyze_a.cpp release/moc_hnuovaoperazione.cpp release/moc_hoverview.cpp release/moc_hgestioneutenti.cpp release/moc_hnewuser.cpp release/moc_hnewanagrafica.cpp release/moc_hschedeclienti.cpp release/moc_hassociazioni.cpp release/moc_hmodificascheda.cpp release/moc_hproduction.cpp release/moc_hprodottinew.cpp release/moc_hwarehouse.cpp release/moc_hmodifyprod.cpp release/moc_hpackages.cpp release/moc_hmodricette.cpp release/moc_hrecipeaddrow.cpp release/moc_hlotti.cpp release/moc_hreadonlymodelnew.cpp release/moc_hduplicate.cpp release/moc_hmodifylot.cpp release/moc_hpackagesunload.cpp release/moc_hgroups.cpp release/moc_hcontacts.cpp release/moc_hnewcontact.cpp release/moc_halarm.cpp release/moc_hnotifica.cpp release/moc_hverifylabels.cpp release/moc_hclientiassociati.cpp release/moc_hschede.cpp release/moc_hnschede.cpp release/moc_hmodimage.cpp release/moc_hcopycard.cpp release/moc_hcomposizionelotto.cpp release/moc_hgraphicprint.cpp release/moc_nouse.cpp release/moc_haddlotinproduction.cpp release/moc_hdatatopass.cpp release/moc_hlastlots.cpp release/moc_hexpirations.cpp release/moc_hcalcost.cpp release/moc_hwarehousedetails.cpp release/moc_hrecipesforclient.cpp
 release/moc_mainwindow.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qmainwindow.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
@@ -1693,6 +1687,8 @@ release/moc_hnewproduct.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget 
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		hnewproduct.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hnewproduct.h -o release/moc_hnewproduct.cpp
 
@@ -3067,119 +3063,6 @@ release/moc_hproduction.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget 
 		hproduction.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hproduction.h -o release/moc_hproduction.cpp
 
-release/moc_hfindlotuse.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qglobal.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qconfig.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qfeatures.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qsystemdetection.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qprocessordetection.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qcompilerdetection.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qtypeinfo.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qtypetraits.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qsysinfo.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qlogging.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qflags.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qbasicatomic.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_bootstrap.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qgenericatomic.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_cxx11.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_gcc.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_msvc.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv7.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv6.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv5.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_ia64.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_mips.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_x86.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_unix.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qmutex.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qnumeric.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qobject.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qstring.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qchar.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qbytearray.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qrefcount.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qarraydata.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qlist.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qcoreevent.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qmetatype.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qmargins.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qrect.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qsize.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qcolor.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qrgb.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qbrush.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qpair.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qvector.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qmatrix.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpolygon.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qregion.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qline.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtransform.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpainterpath.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qimage.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpixelformat.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpixmap.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qhash.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qfont.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qfontinfo.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qkeysequence.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qevent.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qmap.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qset.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qurl.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qurlquery.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qfile.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQuery \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
-		hfindlotuse.h
-	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hfindlotuse.h -o release/moc_hfindlotuse.cpp
-
 release/moc_hprodottinew.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
@@ -3542,18 +3425,18 @@ release/moc_hmodifyprod.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget 
 		../../Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRelationalTableModel \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QCompleter \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qcompleter.h \
 		huser.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
 		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		hmodifyprod.h
@@ -3676,6 +3559,8 @@ release/moc_hpackages.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../../Qt/5.5/mingw492_32/include/QtGui/qstandarditemmodel.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/QStandardItemModel \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		hpackages.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hpackages.h -o release/moc_hpackages.cpp
 
@@ -6791,9 +6676,9 @@ release/moc_hrecipesforclient.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QW
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h ui_hcopycard.h ui_hcomposizionelotto.h ui_hgraphicprint.h ui_nouse.h ui_haddlotinproduction.h ui_hlastlots.h ui_hexpirations.h ui_hcalcost.h ui_hwarehousedetails.h ui_hrecipesforclient.h
+compiler_uic_make_all: ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h ui_hcopycard.h ui_hcomposizionelotto.h ui_hgraphicprint.h ui_nouse.h ui_haddlotinproduction.h ui_hlastlots.h ui_hexpirations.h ui_hcalcost.h ui_hwarehousedetails.h ui_hrecipesforclient.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hfindlotuse.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h ui_hcopycard.h ui_hcomposizionelotto.h ui_hgraphicprint.h ui_nouse.h ui_haddlotinproduction.h ui_hlastlots.h ui_hexpirations.h ui_hcalcost.h ui_hwarehousedetails.h ui_hrecipesforclient.h
+	-$(DEL_FILE) ui_mainwindow.h ui_hprodotti.h ui_hutenti.h ui_hnewop.h ui_hsettings.h ui_hprint.h ui_hnewproduct.h ui_lognew.h ui_hclientfiles.h ui_hlogin2.h ui_hnewfile.h ui_hnuovaoperazione.h ui_hoverview.h ui_hgestioneutenti.h ui_hnewuser.h ui_hnewanagrafica.h ui_hschedeclienti.h ui_hassociazioni.h ui_hmodificascheda.h ui_hproduction.h ui_hprodottinew.h ui_hwarehouse.h ui_hmodifyprod.h ui_hanalisi.h ui_hpackages.h ui_hmodricette.h ui_hrecipeaddrow.h ui_hduplicate.h ui_hmodifylot.h ui_hlotti.h ui_hpackagesunload.h ui_hgroups.h ui_hcontacts.h ui_hnewcontact.h ui_halarm.h ui_hnotifica.h ui_hverifylabels.h ui_hclientiassociati.h ui_hschede.h ui_hnschede.h ui_hmodimage.h ui_hcopycard.h ui_hcomposizionelotto.h ui_hgraphicprint.h ui_nouse.h ui_haddlotinproduction.h ui_hlastlots.h ui_hexpirations.h ui_hcalcost.h ui_hwarehousedetails.h ui_hrecipesforclient.h
 ui_mainwindow.h: mainwindow.ui
 	'C:\Qt\5.5\mingw492_32\bin\uic.exe' mainwindow.ui -o ui_mainwindow.h
 
@@ -6984,9 +6869,6 @@ ui_hmodificascheda.h: hmodificascheda.ui
 
 ui_hproduction.h: hproduction.ui
 	'C:\Qt\5.5\mingw492_32\bin\uic.exe' hproduction.ui -o ui_hproduction.h
-
-ui_hfindlotuse.h: hfindlotuse.ui
-	'C:\Qt\5.5\mingw492_32\bin\uic.exe' hfindlotuse.ui -o ui_hfindlotuse.h
 
 ui_hprodottinew.h: hprodottinew.ui
 	'C:\Qt\5.5\mingw492_32\bin\uic.exe' hprodottinew.ui -o ui_hprodottinew.h
@@ -9209,6 +9091,8 @@ release/hnewproduct.o: hnewproduct.cpp hnewproduct.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		ui_hnewproduct.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -11454,172 +11338,6 @@ release/hproduction.o: hproduction.cpp hproduction.h \
 		hlastlots.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hproduction.o hproduction.cpp
 
-release/hfindlotuse.o: hfindlotuse.cpp hfindlotuse.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qglobal.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qconfig.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qfeatures.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qsystemdetection.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qprocessordetection.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qcompilerdetection.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qtypeinfo.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qtypetraits.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qsysinfo.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qlogging.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qflags.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qbasicatomic.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_bootstrap.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qgenericatomic.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_cxx11.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_gcc.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_msvc.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv7.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv6.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_armv5.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_ia64.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_mips.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_x86.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qatomic_unix.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qmutex.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qnumeric.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qobject.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qstring.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qchar.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qbytearray.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qrefcount.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qarraydata.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qlist.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qcoreevent.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qmetatype.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qmargins.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qrect.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qsize.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qcolor.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qrgb.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qbrush.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qpair.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qvector.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qmatrix.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpolygon.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qregion.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qline.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtransform.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpainterpath.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qimage.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpixelformat.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpixmap.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qhash.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qfont.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qfontinfo.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qkeysequence.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qevent.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qmap.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qset.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qurl.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qurlquery.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qfile.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQuery \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
-		ui_hfindlotuse.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qicon.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qeventloop.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QLineEdit \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtextcursor.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpen.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QRadioButton \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qradiobutton.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QTableView \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qtableview.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hfindlotuse.o hfindlotuse.cpp
-
 release/hprodottinew.o: hprodottinew.cpp hprodottinew.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
@@ -12111,18 +11829,18 @@ release/hmodifyprod.o: hmodifyprod.cpp hmodifyprod.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRelationalTableModel \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QCompleter \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qcompleter.h \
 		huser.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
 		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		ui_hmodifyprod.h \
@@ -12323,6 +12041,8 @@ release/hpackages.o: hpackages.cpp hpackages.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qstandarditemmodel.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/QStandardItemModel \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		ui_hpackages.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -17503,9 +17223,6 @@ release/moc_hmodificascheda.o: release/moc_hmodificascheda.cpp
 
 release/moc_hproduction.o: release/moc_hproduction.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/moc_hproduction.o release/moc_hproduction.cpp
-
-release/moc_hfindlotuse.o: release/moc_hfindlotuse.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/moc_hfindlotuse.o release/moc_hfindlotuse.cpp
 
 release/moc_hprodottinew.o: release/moc_hprodottinew.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/moc_hprodottinew.o release/moc_hprodottinew.cpp

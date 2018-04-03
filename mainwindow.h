@@ -28,7 +28,7 @@ public:
 private slots:
 
   //  void enableButtonsForRole(bool role);
-    void init();
+
     void login();
     void enableButtonsForRole();
     void on_tbMagaz_clicked();
@@ -44,7 +44,6 @@ private slots:
     void on_pBNewOperation_clicked();
     void on_tbLogout_clicked();
     void disableUI();
-    void enableUI();
     void on_tbAssociazioni_clicked();
     void on_pbSchede_clicked();
     void on_pushButton_clicked();
@@ -80,6 +79,8 @@ private slots:
 
 
     void on_pbC4R_clicked();
+
+
 
 protected:
     void keyPressEvent(QKeyEvent *ke);

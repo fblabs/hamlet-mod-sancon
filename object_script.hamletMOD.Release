@@ -22,7 +22,6 @@ INPUT(
 ./release/hassociazioni.o
 ./release/hmodificascheda.o
 ./release/hproduction.o
-./release/hfindlotuse.o
 ./release/hprodottinew.o
 ./release/hwarehouse.o
 ./release/hmodifyprod.o
@@ -79,7 +78,6 @@ INPUT(
 ./release/moc_hassociazioni.o
 ./release/moc_hmodificascheda.o
 ./release/moc_hproduction.o
-./release/moc_hfindlotuse.o
 ./release/moc_hprodottinew.o
 ./release/moc_hwarehouse.o
 ./release/moc_hmodifyprod.o

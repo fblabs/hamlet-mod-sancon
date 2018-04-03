@@ -52,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
   QSettings settings("hamletmod");
+ // user=new HUser(0);
 
     ui->setupUi(this);
     ui->pushButton->setVisible(false);
@@ -89,12 +90,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::init()
-{
-    user=new HUser(0);
-
-
-}
 
 
 void MainWindow::userLogged(HUser* usr,QSqlDatabase pdb)
@@ -113,22 +108,7 @@ void MainWindow::userLogged(HUser* usr,QSqlDatabase pdb)
     }
 }
 
-void MainWindow::enableUI()
-{
 
- /*   ui->toolButton->setEnabled(false);
-    ui->tbMagaz->setEnabled(true);
-    ui->tbLotti->setEnabled(true);
-    ui->tbAnag->setEnabled(true);
-    ui->tbClose->setEnabled(true);
-    ui->tbProdotti->setEnabled(true);
-    ui->tbRicette->setEnabled(true);
-    //ui->pbNuovaRicetta->setEnabled(true);
-    ui->tbSettings->setEnabled(true);
-    ui->tnProduzione->setEnabled(true);
-    ui->tbAnalisi->setEnabled(true);
-    ui->pBNewOperation->setEnabled(true);*/
-}
 
 
 void MainWindow::disableUI()
@@ -160,6 +140,7 @@ void MainWindow::disableUI()
     ui->pbOldCards->setEnabled(false);
     ui->pbExpirations->setEnabled(false);
     ui->pbCalcoloCosti->setEnabled(false);
+    ui->pbC4R->setEnabled(false);
 }
 
 void MainWindow::enableButtonsForRole()
@@ -372,7 +353,7 @@ void MainWindow::on_tbMagaz_clicked()
   //  QApplication::setOverrideCursor(QCursor(Qt::BusyCursor));
     HWarehouse *f=new HWarehouse(user,db);
 
-    f->show();
+    f->showMaximized();
 
     
 }
@@ -386,14 +367,7 @@ void MainWindow::on_tbLotti_clicked()
 
 void MainWindow::on_tbRicette_clicked()
 {
-    HModRicette*f = new HModRicette();
-    f->init(sConn,user);
-
-
-
-   // connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
-   // f->SetDB();
-
+    HModRicette*f = new HModRicette(user,db);
     f->show();
 }
 
@@ -411,38 +385,21 @@ void MainWindow::on_tbAnag_clicked()
 
 void MainWindow::on_tnProduzione_clicked()
 {
-
-  //  HProduzione *f = new HProduzione();
-   // f->init(sConn,QString::number(currentUsr->getID()));
-  //  f->setConnection(sConn);
- //   connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
- //   emit onConnectionName();
-
-    HProduction *f=new HProduction();
-    f->init(sConn,QString::number(user->getID()));
-
-  //  f->setUserId(currentUsr->getID());
+    HProduction *f=new HProduction(user,db);
     f->showMaximized();
 }
 
 void MainWindow::on_tbSettings_clicked()
 {
     HSettings *f = new HSettings();
-  //  f->setWindowModality(Qt::ApplicationModal);
     f->show();
 }
 
 void MainWindow::on_tbProdotti_clicked()
 {
-    HProdottiNew* f = new HProdottiNew();
-
-    f->init(db,user);
+    HProdottiNew* f = new HProdottiNew(user,db);
     f->show();
- //  f->setConnection(sConn);
 
- //   f->setWindowModality(Qt::ApplicationModal);
-  //  f->setMain(this);
-//   f->show();
 }
 
 
@@ -459,8 +416,8 @@ void MainWindow::on_tbClose_clicked()
 
 void MainWindow::on_tbAnalisi_clicked()
 {
-    HAnalisi *f=new HAnalisi();
-    f->init(sConn);
+    HAnalisi *f=new HAnalisi(db);
+
 
     f->showMaximized();
 }
@@ -488,8 +445,6 @@ void MainWindow::login()
   //  f->setDatabase(sConn);
     connect(f,SIGNAL(userLogged(HUser*,QSqlDatabase)),this,SLOT(userLogged(HUser*,QSqlDatabase)));
 
-   // QMessageBox::information(this,QApplication::applicationName(),QString::number(db.isOpen()? 1:0),QMessageBox::Ok);
-
     f->show();
 
 
@@ -511,7 +466,6 @@ void MainWindow::on_tbAssociazioni_clicked()
 {
     HAssociazioni* f = new HAssociazioni(user,db);
  //   connect(this,SIGNAL(onConnectionName()),f,SLOT(setConnectionName(QString)));
-    f->init();
     f->show();
 }
 
@@ -534,8 +488,7 @@ void MainWindow::on_pbSchede_clicked()
 void MainWindow::on_tbUtenti_clicked()
 {
    // int i=1;
-    HGestioneUtenti *f=new HGestioneUtenti();
-    f->init(sConn);
+    HGestioneUtenti *f=new HGestioneUtenti(db);
     f->show();
 }
 
@@ -546,15 +499,15 @@ void MainWindow::on_tbUtenti_clicked()
 
 void MainWindow::on_tbModificaLotti_clicked()
 {
-    HModifyProd *h = new HModifyProd();
-    h->init(sConn,user);
+    HModifyProd *h = new HModifyProd(user,db);
+
     h->showMaximized();
 }
 
 void MainWindow::on_pbPackages_clicked()
 {
-    HPackages *f =new HPackages();
-    f->init(sConn,QString::number(user->getID()));
+    HPackages *f =new HPackages(user,db);
+  //  f->init(sConn,QString::number(user->getID()));
     f->show();
 }
 
@@ -667,3 +620,4 @@ void MainWindow::on_pbC4R_clicked()
     HRecipesForClient *f=new HRecipesForClient(db,-1);
     f->show();
 }
+

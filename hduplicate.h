@@ -14,9 +14,8 @@ class HDuplicate : public QWidget
     Q_OBJECT
 
 public:
-    explicit HDuplicate(QWidget *parent = 0);
+    explicit HDuplicate(int ocliente=-1, int oprodotto=-1, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent=0);
     ~HDuplicate();
-    void init(QString conn, int ocliente, int oprodotto);
 
 private:
     Ui::HDuplicate *ui;

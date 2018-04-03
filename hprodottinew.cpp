@@ -10,32 +10,25 @@
 // #include <QDebug>
 #include <QSqlError>
 
-HProdottiNew::HProdottiNew(QWidget *parent) :
+HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HProdottiNew)
 {
     ui->setupUi(this);
-}
 
-HProdottiNew::~HProdottiNew()
-{
-    delete ui;
-}
+    db=pdb;
+    user=puser;
 
-void HProdottiNew::init(QSqlDatabase pdb, HUser *curuser)
-{
-    user=curuser;
-
-    if(!curuser->getCanUpdate())
+    if(!user->getCanUpdate())
     {
        ui->tvProdotti->setEditTriggers(QAbstractItemView::NoEditTriggers);
     }
 
 
 
-   // setWindowModality(Qt::ApplicationModal);
 
-    db=pdb;
+
+
 
     tmProdotti=new QSqlRelationalTableModel(0,db);
     tmTipi=new QSqlRelationalTableModel(0,db);
@@ -76,7 +69,11 @@ void HProdottiNew::init(QSqlDatabase pdb, HUser *curuser)
     tmProdotti->setHeaderData(2,Qt::Horizontal,"Tipo");
     tmProdotti->setHeaderData(3,Qt::Horizontal,"Allergene");
     tmProdotti->setHeaderData(4,Qt::Horizontal,"Attivo");
+}
 
+HProdottiNew::~HProdottiNew()
+{
+    delete ui;
 }
 
 void HProdottiNew::on_radioButton_toggled(bool checked)
@@ -154,8 +151,8 @@ void HProdottiNew::on_pushButton_2_clicked()
 
 void HProdottiNew::on_pushButton_clicked()
 {
-    HNewProduct *f=new HNewProduct();
-    f->init(sConn);
+    HNewProduct *f=new HNewProduct(user,db);
+
     f->show();
 }
 

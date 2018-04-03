@@ -18,17 +18,6 @@ HAssociazioni::HAssociazioni(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
 
     user=puser;
     db=pdb;
-}
-
-HAssociazioni::~HAssociazioni()
-{
-    delete ui;
-}
-
-void HAssociazioni::init()
-{
-
-
 
     tmClienti= new QSqlTableModel(0,db);
     tmClienti->setTable("anagrafica");
@@ -55,7 +44,11 @@ void HAssociazioni::init()
 
 
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(QString)),this,SLOT(getRecipesForTable()));
+}
 
+HAssociazioni::~HAssociazioni()
+{
+    delete ui;
 }
 
 void HAssociazioni::getRecipes()

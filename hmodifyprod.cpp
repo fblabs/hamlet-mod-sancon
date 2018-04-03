@@ -19,22 +19,13 @@
 
 
 
-HModifyProd::HModifyProd(QWidget *parent) :
+HModifyProd::HModifyProd(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HModifyProd)
 {
     ui->setupUi(this);
-}
-
-HModifyProd::~HModifyProd()
-{
-    delete ui;
-}
-
-void HModifyProd::init(QString conn,HUser *usr)
-{
-    sConn=conn;
-    user=usr;
+    db=pdb;
+    user=puser;
     action=0;
 
     ui->deDal->setDate(QDate::currentDate().addYears(-2));
@@ -45,7 +36,7 @@ void HModifyProd::init(QString conn,HUser *usr)
 
 
 
-    db=QSqlDatabase::database(sConn);
+
     tmLots=new HReadOnlyModelLots(0,db);
     tmLots->setTable("lotdef");
     tmLots->setSort(3,Qt::DescendingOrder);
@@ -91,7 +82,7 @@ void HModifyProd::init(QString conn,HUser *usr)
 
 
    ui->tvLots->setColumnHidden(0,true);
- //  ui->tvLots->setColumnHidden(4,true);
+
    ui->tvLots->setColumnHidden(5,true);
    ui->tvLots->setColumnHidden(6,true);
    ui->tvLots->setColumnHidden(7,true);
@@ -104,44 +95,19 @@ void HModifyProd::init(QString conn,HUser *usr)
    tmLots->setHeaderData(9,Qt::Horizontal,QObject::tr("Lot. Uscita"));
    tmLots->setHeaderData(10,Qt::Horizontal,QObject::tr("Tipo"));
 
-
-   //  ui->tvLots->setColumnHidden(9,true);
-//   ui->tvLots->setColumnHidden(10,true);
- //  ui->tvLots->setColumnHidden(11,true);
    ui->tvLots->setColumnHidden(11,true);
    ui->tvLots->setColumnHidden(12,true);
 
-   /* tmProdotti=new QSqlTableModel(0,db);
-    tmProdotti->setTable("prodotti");
-    tmProdotti->setSort(1,Qt::AscendingOrder);
-    tmProdotti->setFilter("tipo = 2");
-    tmProdotti->select();*/
-
-   /* QSqlTableModel *mprods=new QSqlTableModel(0,db);
-    mprods->setTable("prodotti");
-    mprods->setFilter("tipo = 2");
-    mprods->setSort(1,Qt::AscendingOrder);
-    mprods->select();*/
-
-
-
-   // prodcomp=new QCompleter(mprods,this);
-   // prodcomp->setCaseSensitivity(Qt::CaseInsensitive);
-   // prodcomp->setCompletionColumn(1);
-  //  prodcomp->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
-  //  prodcomp->setModelSorting(QCompleter::UnfilteredPopupCompletion);
-  //  ui->leSearch->setCompleter(prodcomp);
-  //  connect(prodcomp,SIGNAL(activated(QModelIndex)),this,SLOT(on_leSearch_returnPressed()));
-
-
    ui->tvDetails->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-   // ui->comboBox->setModel(tmLots);
-   // ui->comboBox->setModelColumn(1);
+
 
 
     connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getIDLot()));
+}
 
-
+HModifyProd::~HModifyProd()
+{
+    delete ui;
 }
 
 void HModifyProd::getComponetsLot()

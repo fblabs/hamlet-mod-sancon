@@ -24,11 +24,6 @@ HLogin2::HLogin2(QWidget *parent) :
 
 }
 
-//void HLogin2::init(QString conn)
-//{
-//   // sConnec=conn;
-//   // db=QSqlDatabase::database(sConnec);
-//}
 
 HLogin2::~HLogin2()
 {

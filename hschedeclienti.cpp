@@ -431,8 +431,7 @@ void HSchedeClienti::on_cbSelectCriteria_toggled(bool checked)
 
 
 void HSchedeClienti::on_btnDup_clicked()
-{
-    HDuplicate *f=new HDuplicate();
+{    
     int cliente;
     if (ui->cbSelectCriteria->isChecked())
     {
@@ -445,11 +444,12 @@ void HSchedeClienti::on_btnDup_clicked()
 
 
     int prodotto=ui->listView->model()->index(ui->listView->currentIndex().row(),0).data(0).toInt();
+
+    HDuplicate *f= new HDuplicate(cliente,prodotto,db);
     connect(f,SIGNAL(update()),this,SLOT(loadScheda()));
-    f->init(sConn,cliente,prodotto);
+
 
     f->show();
-
 
 }
 

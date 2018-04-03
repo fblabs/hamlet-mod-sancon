@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QSqlDatabase>
 #include <QSqlTableModel>
+#include "huser.h"
 
 
 namespace Ui {
@@ -15,9 +16,8 @@ class HNewProduct : public QWidget
     Q_OBJECT
 
 public:
-    explicit HNewProduct(QWidget *parent = 0);
+    explicit HNewProduct(HUser *pusr=0, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = 0);
     ~HNewProduct();
-    void init(QString conn);
 
 private slots:
     void on_pushButton_2_clicked();
@@ -28,7 +28,7 @@ private slots:
 private:
     Ui::HNewProduct *ui;
     QSqlDatabase db;
-    QString sConn;
+
 
     QSqlTableModel *tmTipo;
 };

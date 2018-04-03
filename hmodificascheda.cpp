@@ -298,9 +298,7 @@ void HModificaScheda::on_pushButton_4_clicked()
 
 void HModificaScheda::on_pushButton_5_clicked()
 {
-    HDuplicate *f=new HDuplicate();
-
-    f->init(sConn,idCliente,idProdotto);
+    HDuplicate *f=new HDuplicate(idCliente,idProdotto,db);
     connect(f,SIGNAL(update()),this,SLOT(update()));
     f->show();
 }

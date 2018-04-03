@@ -2,6 +2,7 @@
 #define HMODIFYPROD_H
 
 #include <QWidget>
+#include <QSqlDatabase>
 #include <QSqlRelationalTableModel>
 #include <QCompleter>
 #include "huser.h"
@@ -16,16 +17,12 @@ class HModifyProd : public QWidget
     Q_OBJECT
 
 public:
-    explicit HModifyProd(QWidget *parent = 0);
+    explicit HModifyProd(HUser *pusr, QSqlDatabase pdb=QSqlDatabase(),QWidget *parent = 0);
     ~HModifyProd();
-public slots:
-    void init(QString conn, HUser *usr);
-
 
 private:
     Ui::HModifyProd *ui;
     QSqlDatabase db;
-    QString sConn;
     QSqlRelationalTableModel *tmLots;
     QSqlTableModel *tmProdotti;
     QCompleter *comp;

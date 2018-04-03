@@ -6,22 +6,12 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 
-HNewUser::HNewUser(QWidget *parent) :
+HNewUser::HNewUser(QSqlDatabase pdb, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::HNewUser)
 {
     ui->setupUi(this);
-}
-
-HNewUser::~HNewUser()
-{
-    delete ui;
-}
-
-void HNewUser::init(QString conn)
-{
-    sConn=conn;
-    db =QSqlDatabase::database(sConn);
+    db=pdb;
 
     tmRole=new QSqlTableModel(0,db);
     tmRole->setTable("gruppi");
@@ -30,6 +20,12 @@ void HNewUser::init(QString conn)
     ui->cbxRoles->setModelColumn(1);
     tmRole->setSort(1,Qt::AscendingOrder);
 }
+
+HNewUser::~HNewUser()
+{
+    delete ui;
+}
+
 
 void HNewUser::on_cbShow_toggled(bool checked)
 {

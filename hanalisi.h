@@ -15,16 +15,15 @@ class HAnalisi : public QWidget
     Q_OBJECT
 
 public:
-    explicit HAnalisi(QWidget *parent = 0);
+    explicit HAnalisi(QSqlDatabase pdb, QWidget *parent = 0);
     ~HAnalisi();
 public slots:
-    void init(QString conn);
+
 
 private:
     Ui::HAnalisi *ui;
     QSqlDatabase db;
     QSqlTableModel *tmClienti;
-    QString sConn;
     QDate datedal;
     QDate dateal;
 

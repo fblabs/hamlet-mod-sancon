@@ -74,7 +74,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->setWindowModality(Qt::NonModal);
-        MainWindow->resize(979, 780);
+        MainWindow->resize(1112, 780);
         QPalette palette;
         QBrush brush(QColor(0, 0, 0, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -470,7 +470,7 @@ public:
         tbSettings->setObjectName(QStringLiteral("tbSettings"));
         tbSettings->setEnabled(true);
         tbSettings->setMinimumSize(QSize(80, 0));
-        tbSettings->setMaximumSize(QSize(120, 16777215));
+        tbSettings->setMaximumSize(QSize(125, 16777215));
         tbSettings->setStyleSheet(QStringLiteral("color:rgb(0, 0, 0)"));
         QIcon icon20;
         icon20.addFile(QStringLiteral(":/Resources/Computer.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -561,7 +561,7 @@ public:
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.2</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: </span><span style=\" font-size:16pt; font-weight:600; color:#060606;\">2.2.5</span><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2018</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti (github)</span></a></p></body></html>", 0));
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.3</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: </span><span style=\" font-size:16pt; font-weight:600; color:#060606;\">2.3.1</span><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2018</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti (github)</span></a></p></body></html>", 0));
         pbPackages->setText(QApplication::translate("MainWindow", "Packages (F9)", 0));
         pbPackages->setShortcut(QApplication::translate("MainWindow", "F9", 0));
         tbLotti->setText(QApplication::translate("MainWindow", "Lotti (F5)", 0));
@@ -580,7 +580,8 @@ public:
         tbAnag->setText(QApplication::translate("MainWindow", "Anagrafica      ", 0));
         pbNotifiche->setText(QApplication::translate("MainWindow", "Notifiche", 0));
         pbUnload->setText(QApplication::translate("MainWindow", "Scarico Packages", 0));
-        pBNewOperation->setText(QApplication::translate("MainWindow", "Operazioni (F6)", 0));
+        pBNewOperation->setText(QApplication::translate("MainWindow", "Nuova Operazione \n"
+"(F6)", 0));
         pBNewOperation->setShortcut(QApplication::translate("MainWindow", "F6", 0));
         tbRicette->setText(QApplication::translate("MainWindow", "Ricette (F7)", 0));
         tbRicette->setShortcut(QApplication::translate("MainWindow", "F7", 0));

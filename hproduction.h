@@ -9,6 +9,7 @@
 #include <QSqlTableModel>
 #include <QSqlRecord>
 #include <QList>
+#include "huser.h"
 
 
 
@@ -24,16 +25,15 @@ class HProduction : public QWidget
     Q_OBJECT
 
 public:
-    explicit HProduction(QWidget *parent = 0);
+    explicit HProduction(HUser *puser=0, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = 0);
     ~HProduction();
-    void init(QString conn,QString userid);
 
 private:
     Ui::HProduction *ui;
     QSqlDatabase db;
-    QString sConn;
+    HUser *user;
+
     QSqlQueryModel *qmClienti;
-    QString  userID;
     QSqlQueryModel *qmRicette;
     QStandardItemModel *model;
     QSqlTableModel *tmTipiLotti;
@@ -53,9 +53,7 @@ private slots:
     void getSubclients();
     void getRecipesForClient();
     void getRecipe();
-    void lastFiveLots();
     void productSelected();
-  //  QList<QStandardItem*> addTableRow();
     void getLotModel();
     void lotSelected();
     void addLotProd();
@@ -72,45 +70,28 @@ private slots:
     bool saveComposizione(int lottotarget, int operazione);
     void updateComposition();
     void printRecipe();
-    void printProduction(bool actual);
+    void printProduction();
     int lastInsertId();
     void getLotToModify(QString lot);
     QString getNewLot(int prod);
     bool saveUpdatedComposizione();
     bool saveUpdatedOperazione(int row);
-
-   // QList<QStandardItem*>createRecipeRow(int iProd, QString, QString, QString, QString);
-  //  QList<QStandardItem*>createRecipeRow(int iProd, QString sDescProdotto, QString sPeso);
-
-
     void on_pushButton_clicked();
-    //void on_lvLastLots_clicked(const QModelIndex &index);
     void on_pushButton_5_clicked();
     void on_pushButton_6_clicked();
     void on_pushButton_3_clicked();
- //   void on_leQtyTotal_textChanged(const QString &arg1);
     void on_leQtyTotal_returnPressed();
     void on_pushButton_7_clicked();
     void on_pushButton_4_clicked();
     void on_pushButton_2_clicked();
     void on_pushButton_7_toggled(bool checked);
     void on_pbAddLottoFuoriRicetta_clicked();
-
     void on_pushButton_8_clicked();
     void on_pushButton_9_clicked();
     void on_pushButton_10_clicked();
     void on_checkBox_toggled(bool checked);
     void on_pbAnnulla_clicked();
     void on_pushButton_11_clicked();
-
-  //  void on_leQuaRic_textChanged(const QString &arg1);
-
-  //  void on_tableView_doubleClicked(const QModelIndex &index);
-
-
-  //  void on_tableView_clicked(const QModelIndex &index);
-
-
 
 };
 

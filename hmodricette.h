@@ -17,10 +17,8 @@ class HModRicette : public QWidget
     Q_OBJECT
 
 public:
-    explicit HModRicette(QWidget *parent = 0);
+    explicit HModRicette(HUser *pusr=0,QSqlDatabase pdb=QSqlDatabase(),QWidget *parent=0);
     ~HModRicette();
-   // void init(QString, int id);
-    void init (QString, HUser *usr);
 
 private slots:
     void on_pushButton_2_clicked();
@@ -72,10 +70,10 @@ private:
     Ui::HModRicette *ui;
     bool update;
     QSqlDatabase db;
-    QString sConn;
     QSqlTableModel *tric;
     QSqlQueryModel *qmric;
     QList<int> *writeRed;
+    HUser *user;
 
 };
 

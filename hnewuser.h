@@ -14,9 +14,9 @@ class HNewUser : public QDialog
     Q_OBJECT
 
 public:
-    explicit HNewUser(QWidget *parent = 0);
+    explicit HNewUser(QSqlDatabase pdb=QSqlDatabase(),QWidget *parent = 0);
     ~HNewUser();
-    void init(QString conn);
+
 
 private slots:
 

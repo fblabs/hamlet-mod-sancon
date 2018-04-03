@@ -19,68 +19,15 @@
 #include <QDebug>
 #include <hrecipesforclient.h>
 
-HModRicette::HModRicette(QWidget *parent) :
+HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HModRicette)
 {
     ui->setupUi(this);
-    ui->checkBox->setVisible(false);
-    QShortcut *shortcut =new QShortcut(QKeySequence("F5"),this);
-    connect(shortcut,SIGNAL(activated()),this,SLOT(showAssociatedCustomers()));
+    db=pdb;
+    user=pusr;
 
-}
-
-void HModRicette::showContextMenu(const QPoint &pos)
-{
-    QPoint globalPos =mapToGlobal(pos);
-    QMenu *menu=new QMenu(0);
-    QAction *addIngredient=menu->addAction("Aggiungi Ingrediente");
-    QAction *removeIngredient=menu->addAction("Rimuovi Ingrediente");
-    QAction *mostraAssociazioni=menu->addAction("Associata a...");
-
-
-
-    connect(addIngredient,SIGNAL(triggered(bool)),this,SLOT(showaddRow()));
-    connect(removeIngredient,SIGNAL(triggered(bool)),this,SLOT(removeItem()));
-    connect(mostraAssociazioni,SIGNAL(triggered(bool)),this,SLOT(showAssociatedCustomers()));
-
-
-    menu->popup(globalPos);
-}
-
-HModRicette::~HModRicette()
-{
-    delete ui;
-}
-
-void HModRicette::showaddRow()
-{
-    HRecipeAddRow *f=new HRecipeAddRow();
-    f->init(sConn,ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt());
-    f->show();
-    connect(f,SIGNAL(rowadded(QList<QStandardItem*>)),this,SLOT(addRiga( QList<QStandardItem*>)));
-}
-
-void HModRicette::showAssociatedCustomers()
-{
-    int id =ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
-    HClientiAssociati *f=new HClientiAssociati(0,id,db);
-    f->show();
-}
-
-void HModRicette::on_pushButton_2_clicked()
-{
-    if (QMessageBox::question(this,QApplication::applicationName(),"Sicur* di chiudere?",QMessageBox::Ok|QMessageBox::Cancel))
-    {
-    this->close();
-    }
-}
-
-void HModRicette::init(QString conn,HUser *usr)
-{
-    sConn=conn;
-    db=QSqlDatabase::database(sConn);
-    update=usr->getCanUpdate();
+    update=user->getCanUpdate();
     if (!update)
     {
         ui->pushButton->setEnabled(false);
@@ -126,7 +73,63 @@ void HModRicette::init(QString conn,HUser *usr)
     ui->tableView->resizeColumnsToContents();
    // ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
 
+
+
+    ui->checkBox->setVisible(false);
+    QShortcut *shortcut =new QShortcut(QKeySequence("F5"),this);
+    connect(shortcut,SIGNAL(activated()),this,SLOT(showAssociatedCustomers()));
+
 }
+
+
+
+void HModRicette::showContextMenu(const QPoint &pos)
+{
+    QPoint globalPos =mapToGlobal(pos);
+    QMenu *menu=new QMenu(0);
+    QAction *addIngredient=menu->addAction("Aggiungi Ingrediente");
+    QAction *removeIngredient=menu->addAction("Rimuovi Ingrediente");
+    QAction *mostraAssociazioni=menu->addAction("Associata a...");
+
+
+
+    connect(addIngredient,SIGNAL(triggered(bool)),this,SLOT(showaddRow()));
+    connect(removeIngredient,SIGNAL(triggered(bool)),this,SLOT(removeItem()));
+    connect(mostraAssociazioni,SIGNAL(triggered(bool)),this,SLOT(showAssociatedCustomers()));
+
+
+    menu->popup(globalPos);
+}
+
+HModRicette::~HModRicette()
+{
+    delete ui;
+}
+
+void HModRicette::showaddRow()
+{
+    int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
+    HRecipeAddRow *f=new HRecipeAddRow(idricetta,db);
+
+    f->show();
+    connect(f,SIGNAL(rowadded(QList<QStandardItem*>)),this,SLOT(addRiga( QList<QStandardItem*>)));
+}
+
+void HModRicette::showAssociatedCustomers()
+{
+    int id =ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
+    HClientiAssociati *f=new HClientiAssociati(0,id,db);
+    f->show();
+}
+
+void HModRicette::on_pushButton_2_clicked()
+{
+    if (QMessageBox::question(this,QApplication::applicationName(),"Sicur* di chiudere?",QMessageBox::Ok|QMessageBox::Cancel))
+    {
+    this->close();
+    }
+}
+
 
 
 
@@ -664,11 +667,10 @@ void HModRicette::saveNote()
 
 void HModRicette::on_pbAddRow_clicked()
 {
-    HRecipeAddRow *f=new HRecipeAddRow();
-    f->init(sConn,ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt());
-    f->show();
+    int idr=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
+    HRecipeAddRow *f=new HRecipeAddRow(idr,db);
     connect(f,SIGNAL(rowadded(QList<QStandardItem*>)),this,SLOT(addRiga( QList<QStandardItem*>)));
-
+    f->show();
 }
 
 void HModRicette::on_pbDeleteRow_clicked()
@@ -702,7 +704,7 @@ void HModRicette::on_pushButton_4_clicked()
 {
     HAssociazioni* f = new HAssociazioni(0,db);
     //   connect(this,SIGNAL(onConnectionName()),f,SLOT(setConnectionName(QString)));
-    f->init();
+
     f->show();
 }
 

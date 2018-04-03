@@ -22,7 +22,6 @@ INPUT(
 ./debug/hassociazioni.o
 ./debug/hmodificascheda.o
 ./debug/hproduction.o
-./debug/hfindlotuse.o
 ./debug/hprodottinew.o
 ./debug/hwarehouse.o
 ./debug/hmodifyprod.o
@@ -79,7 +78,6 @@ INPUT(
 ./debug/moc_hassociazioni.o
 ./debug/moc_hmodificascheda.o
 ./debug/moc_hproduction.o
-./debug/moc_hfindlotuse.o
 ./debug/moc_hprodottinew.o
 ./debug/moc_hwarehouse.o
 ./debug/moc_hmodifyprod.o

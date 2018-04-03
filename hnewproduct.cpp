@@ -6,29 +6,18 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QMessageBox>
+#include "huser.h"
 
-HNewProduct::HNewProduct(QWidget *parent) :
+HNewProduct::HNewProduct(HUser *pusr, QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HNewProduct)
 {
+
     ui->setupUi(this);
-}
-
-HNewProduct::~HNewProduct()
-{
-    delete ui;
-}
+    Q_UNUSED(pusr);
 
 
-void HNewProduct::on_pushButton_2_clicked()
-{
-    this->close();
-}
-
-void HNewProduct::init(QString conn)
-{
-    sConn=conn;
-    db=QSqlDatabase::database(sConn);
+    db=pdb;
 
     tmTipo=new QSqlTableModel(0,db);
     tmTipo->setTable("tipi_prodotto");
@@ -41,8 +30,17 @@ void HNewProduct::init(QString conn)
     connect(ui->comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(tipoSelected()));
 
 
+}
+
+HNewProduct::~HNewProduct()
+{
+    delete ui;
+}
 
 
+void HNewProduct::on_pushButton_2_clicked()
+{
+    this->close();
 }
 
 void HNewProduct::tipoSelected()

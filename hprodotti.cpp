@@ -253,9 +253,8 @@ void HProdotti::on_pushButton_3_clicked()
 void HProdotti::on_pushButton_4_clicked()
 {
   
-    HNewProduct *f=new HNewProduct();
+    HNewProduct *f=new HNewProduct(user,db);
     f->show();
-    f->init(sConn);
 
 
 //  ui->lid->setText("");

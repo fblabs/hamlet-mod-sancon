@@ -12,26 +12,15 @@
 #include <QMenu>
 #include <QAction>
 
-HAnalisi::HAnalisi(QWidget *parent) :
+HAnalisi::HAnalisi(QSqlDatabase pdb=QSqlDatabase(),QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HAnalisi)
 {
     ui->setupUi(this);
-    //
-}
 
-HAnalisi::~HAnalisi()
-{
-    delete ui;
-}
+    db=pdb;
 
-void HAnalisi::init(QString conn )
-{
-    sConn=conn;
     ui->pushButton->setVisible(false);
-    db=QSqlDatabase::database(sConn);
-
-
 
     QDate to=QDate::currentDate().addDays(1);
     QDate from=to.addMonths(-12);
@@ -66,11 +55,6 @@ void HAnalisi::init(QString conn )
     ui->tvNarrow->setColumnHidden(0,true);
 
 
-
-
-
-
-  // connect(ui->cbClienti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(QString)),this,SLOT(getProductsForClient()));
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(QString)),this,SLOT(getYearlyProduction()));
     connect(ui->tvLots->selectionModel(),SIGNAL(currentIndexChanged(QString)),this,SLOT(getLotComponents()));
@@ -80,7 +64,11 @@ void HAnalisi::init(QString conn )
     ui->cbClienti->setCurrentIndex(1);
     ui->cbClienti->setCurrentIndex(0);
     ui->checkBox->setChecked(true);
+}
 
+HAnalisi::~HAnalisi()
+{
+    delete ui;
 }
 
 void HAnalisi::getYearlyProduction()
@@ -268,32 +256,7 @@ void HAnalisi::findLotUse()
 
  }
 
-/*void HAnalisi::findLotComposition()
-{
-    QSqlQuery q(db);
-    QString sql;
-    QSqlQueryModel *mod;
 
-    ui->tvNarrow->setModel(0);
-
-    mod=new QSqlQueryModel();
-
-    QString lotid= this->ui->leLot->text();
-
-//    sql="SELECT distinct operazioni.ID,lotdef.ID,operazioni.lot,prodotti.descrizione,operazioni.quantita from operazioni,prodotti,lotdef,composizione_lot WHERE prodotti.ID=operazioni.IDprodotto and composizione_lot.ID_lotto=lotdef.ID and lotdef.lot=operazioni.lot and lotdef.lot='"+lotid+"'";
-
-    sql="SELECT operazione,lot FROM composizione_lot where lot=:id";
-    q.bindValue(":id",QVariant(lotid));
-
-    q.exec(sql);
-
-
-    mod->setQuery(q);
-
-    //// qDebug()<<q.lastError().text();
-
-
-}*/
 
 void HAnalisi::narrow()
 {

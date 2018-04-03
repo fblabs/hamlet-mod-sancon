@@ -21,9 +21,9 @@ class HGestioneUtenti : public QWidget
     Q_OBJECT
 
 public:
-    explicit HGestioneUtenti(QWidget *parent = 0);
+    explicit HGestioneUtenti(QSqlDatabase pdb=QSqlDatabase(),QWidget *parent = 0);
     ~HGestioneUtenti();
-    void init(QString conn);
+
 
 private slots:
     bool updatePassword();
@@ -41,7 +41,7 @@ private slots:
 
 private:
     Ui::HGestioneUtenti *ui;
-    QString sConn;
+
     QDataWidgetMapper *mapper;
     QSqlDatabase db;
     QSqlRelationalTableModel *utm;

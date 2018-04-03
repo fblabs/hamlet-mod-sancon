@@ -8,6 +8,7 @@
 #include <QCompleter>
 #include <QStandardItem>
 #include <QStandardItemModel>
+#include "huser.h"
 
 
 namespace Ui {
@@ -19,12 +20,13 @@ class HPackages : public QWidget
     Q_OBJECT
 
 public:
-    explicit HPackages(QWidget *parent = 0);
+    explicit HPackages(HUser *puser=0, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = 0);
     ~HPackages();
 
     void init(QString conn,QString user);
 
 private:
+    HUser *user;
     Ui::HPackages *ui;
     QSqlDatabase db;
     QString sConn;
@@ -37,7 +39,6 @@ private:
     QCompleter *clots;
     QList<QStandardItem*>addRow(QString idprod, QString sDescProdotto, QString idlotto, QString sLotto, QString sQuantita, QString sum);
     QStandardItemModel *mod;
-    QString userid;
     int newlotid;
     QString basefilter;
 

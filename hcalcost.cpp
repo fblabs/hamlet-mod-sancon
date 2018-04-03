@@ -288,9 +288,7 @@ void HCalcost::on_pbPrint_clicked()
 
 void HCalcost::on_pushButton_clicked()
 {
-    HProdottiNew* f = new HProdottiNew();
-
-    f->init(db,user);
+    HProdottiNew* f = new HProdottiNew(user,db);
     f->show();
 }
 

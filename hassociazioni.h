@@ -21,7 +21,6 @@ class HAssociazioni : public QWidget
 public:
     explicit HAssociazioni(HUser *puser,QSqlDatabase pdb,QWidget *parent = 0);
     ~HAssociazioni();
-    void init();
     void setVisibility(bool visible);
 
 private:
