@@ -134,6 +134,8 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
 
      qDebug()<< "nuovaoperazione:"<< tbm->query().lastQuery()<< tbm->query().lastError().text();
 
+    QMessageBox::information(0,"EDDAJE",tbm->query().lastError().text(),QMessageBox::Ok);
+
 
 
     ui->pushButton->setEnabled(false);
