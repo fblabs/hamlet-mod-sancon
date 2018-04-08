@@ -530,5 +530,6 @@ void HLotti::on_pbRefresh_clicked()
 
 void HLotti::on_twLots_clicked(const QModelIndex &index)
 {
-     ui->pushButton_7->setEnabled(true);
+    Q_UNUSED(index);
+    ui->pushButton_7->setEnabled(true);
 }

@@ -28,7 +28,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
         db.open();
     }
 
-    tbm = new QSqlRelationalTableModel(0,db);
+    tbm = new HReadOnlyModelNew(0,db);
     tbm->setTable("operazioni");
     tbm->setRelation(1,QSqlRelation("lotdef","ID","lot"));
     tbm->setRelation(3,QSqlRelation("utenti","ID","nome"));
@@ -57,11 +57,9 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
      qDebug()<<"selecting"<<tbm->query().lastError().text()<<tbm->lastError().text();
 
     tbm->setSort(0,Qt::DescendingOrder);
-    //tbm->setFilter("operazioni.data = '"+QDate::currentDate().toString("yyyy-MM-dd")+"' order by data desc");
     tbm->setFilter("operazioni.data >=DATE(CURDATE())");
 
-     qDebug()<<"filtering"<<tbm->query().lastError()<<tbm->lastError().text();
-     QMessageBox::information(0,"EDDAJE",tbm->query().lastError().text()+" "+tbm->lastError().text(),QMessageBox::Ok);
+
 
 
     ui->tableView->setColumnHidden(0,true);
@@ -114,7 +112,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
 
     lots->setTable("lotdef");
     lots->select();
-     qDebug()<<"lotdef select"<<lots->query().lastError();
+
 
     basefilter="attivo=2 and year(data)>year(data)-3";
     lots->setFilter(basefilter);
@@ -139,16 +137,6 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     ui->cbUM->setModelColumn(1);
 
 
-
-
-
-
-     qDebug()<< "nuovaoperazione:"<< tbm->query().lastQuery()<< tbm->query().lastError().text();
-
-    //QMessageBox::information(0,"EDDAJE",tbm->query().lastError().text(),QMessageBox::Ok);
-
-
-
     ui->pushButton->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
     ui->lvProdotti->setEnabled(false);
@@ -170,7 +158,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     connect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setProdottoText()));
 
 
-   // setUiForScarico();
+
     setUiforCarico();
 
     QApplication::setOverrideCursor(Qt::ArrowCursor);
@@ -192,11 +180,7 @@ void HnuovaOperazione::setFilterProdotti()
 }
 
 
-void HnuovaOperazione::setupForm()
-{
 
-
-}
 
 void HnuovaOperazione::setUiforCarico()
 {
@@ -566,7 +550,7 @@ bool HnuovaOperazione::saveOperationCarico()
     q.first();
     nuovolot=q.value(0).toString();
 
-     QMessageBox::information(this,"DEBUG","newlot: "+nuovolot,QMessageBox::Ok);
+
 
     b=saveNewLot(nuovolot);
 
@@ -579,7 +563,7 @@ bool HnuovaOperazione::saveOperationCarico()
 
     }
 
-    //// qDebug()<<"lotto salvato";
+
 
 //salvo l'operazione
     int idlotto=lastInsertID();
@@ -605,7 +589,7 @@ bool HnuovaOperazione::saveOperationCarico()
     op.bindValue(":note",QVariant(note));
 
     b=op.exec();
-    QMessageBox::information(this,"DEBUG",op.lastError().text(),QMessageBox::Ok);
+
 
     if(b)
     {
@@ -631,7 +615,7 @@ bool HnuovaOperazione::saveOperationCarico()
       quantitaope=op.value(0).toDouble();
     }
 
-    QMessageBox::information(this,"DEBUG",op.lastError().text(),QMessageBox::Ok);
+
 
     ui->leQuantita->setText(QString::number(quantitaope,'f',4));
 
@@ -748,9 +732,6 @@ void HnuovaOperazione::on_leProdotti_textChanged(const QString &arg1)
     filter="descrizione LIKE '%";
     filter.append(ui->leProdotti->text());
     filter.append("%'");
-    listaProdotti->setFilter(filter);
-
-   //// // qDebug()<<listaProdotti->lastError().text()<<filter;
 }
 
 void HnuovaOperazione::on_leLotto_textChanged(const QString &arg1)

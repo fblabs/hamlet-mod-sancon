@@ -25,16 +25,14 @@ private:
     Ui::HnuovaOperazione *ui;
     QSqlDatabase db;
     QString sNuovoLot;
-    void setupForm();
-    HUser *user;
+     HUser *user;
     QSqlTableModel *listaFornitori;
     QSqlTableModel *listaProdotti;
     QSqlTableModel *listaUnitaDiMisura;
     QSqlTableModel *listaTipologie;
     QSqlTableModel *listaTipilot;
     QSqlTableModel *lots;
- //   HReadOnlyModelNew *tbm;
-    QSqlRelationalTableModel *tbm;
+    HReadOnlyModelNew *tbm;
     QString basefilter;
 
 private slots:
