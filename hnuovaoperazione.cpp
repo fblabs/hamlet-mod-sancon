@@ -605,6 +605,7 @@ bool HnuovaOperazione::saveOperationCarico()
     op.bindValue(":note",QVariant(note));
 
     b=op.exec();
+    QMessageBox::information(this,"DEBUG",op.lastError().text(),QMessageBox::Ok);
 
     if(b)
     {
@@ -615,6 +616,8 @@ bool HnuovaOperazione::saveOperationCarico()
 
        // op.clear();
 
+    }else{
+        QMessageBox::information(this,"DEBUG",op.lastError().text(),QMessageBox::Ok);
     }
 
     double quantitaope=0.0;
@@ -627,6 +630,8 @@ bool HnuovaOperazione::saveOperationCarico()
       op.first();
       quantitaope=op.value(0).toDouble();
     }
+
+    QMessageBox::information(this,"DEBUG",op.lastError().text(),QMessageBox::Ok);
 
     ui->leQuantita->setText(QString::number(quantitaope,'f',4));
 
