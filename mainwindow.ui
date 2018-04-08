@@ -432,7 +432,7 @@
    <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>Hamlet MOD 2.2</string>
+   <string>Hamlet MOD 2.4</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">

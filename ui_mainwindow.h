@@ -557,7 +557,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 2.2", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hamlet MOD 2.4", 0));
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());

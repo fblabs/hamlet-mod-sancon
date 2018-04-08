@@ -33,7 +33,8 @@ private:
     QSqlTableModel *listaTipologie;
     QSqlTableModel *listaTipilot;
     QSqlTableModel *lots;
-    HReadOnlyModelNew *tbm;
+ //   HReadOnlyModelNew *tbm;
+    QSqlRelationalTableModel *tbm;
     QString basefilter;
 
 private slots:

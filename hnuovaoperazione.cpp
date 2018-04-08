@@ -28,7 +28,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
         db.open();
     }
 
-    tbm = new HReadOnlyModelNew(0,db);
+    tbm = new QSqlRelationalTableModel(0,db);
     tbm->setTable("operazioni");
     tbm->setRelation(1,QSqlRelation("lotdef","ID","lot"));
     tbm->setRelation(3,QSqlRelation("utenti","ID","nome"));
