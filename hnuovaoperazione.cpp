@@ -36,6 +36,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     tbm->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
     tbm->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->setModel(tbm);
     ui->tableView->setItemDelegate(new QSqlRelationalDelegate(tbm));
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
@@ -53,15 +54,16 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     tbm->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
 
     tbm->select();
-    // qDebug()<<"selecting"<<tbm->query().lastError();
+     qDebug()<<"selecting"<<tbm->query().lastError().text()<<tbm->lastError().text();
 
     tbm->setSort(0,Qt::DescendingOrder);
     //tbm->setFilter("operazioni.data = '"+QDate::currentDate().toString("yyyy-MM-dd")+"' order by data desc");
     tbm->setFilter("operazioni.data >=DATE(CURDATE())");
 
      qDebug()<<"filtering"<<tbm->query().lastError()<<tbm->lastError().text();
+     QMessageBox::information(0,"EDDAJE",tbm->query().lastError().text()+" "+tbm->lastError().text(),QMessageBox::Ok);
 
-    ui->tableView->setModel(tbm);
+
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
 
