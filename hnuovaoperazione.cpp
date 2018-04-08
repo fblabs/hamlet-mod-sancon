@@ -35,6 +35,37 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     tbm->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
     tbm->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
     tbm->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->setItemDelegate(new QSqlRelationalDelegate(tbm));
+    ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setColumnHidden(3,true);
+
+
+
+    tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+    tbm->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));// 1 lotdef.lot
+    tbm->setHeaderData(2,Qt::Horizontal,QObject::tr("Data"));
+    tbm->setHeaderData(3,Qt::Horizontal,QObject::tr("Operatore"));//3 utenti.ID
+    tbm->setHeaderData(4,Qt::Horizontal,QObject::tr("Prodotto"));//4 prodotti.ID
+    tbm->setHeaderData(5,Qt::Horizontal,QObject::tr("Azione"));//5 azioni.ID
+    tbm->setHeaderData(6,Qt::Horizontal,QObject::tr("Quantità"));
+    tbm->setHeaderData(7,Qt::Horizontal,QObject::tr("Unità di misura"));
+    tbm->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
+
+    tbm->select();
+    // qDebug()<<"selecting"<<tbm->query().lastError();
+
+    tbm->setSort(0,Qt::DescendingOrder);
+    //tbm->setFilter("operazioni.data = '"+QDate::currentDate().toString("yyyy-MM-dd")+"' order by data desc");
+    tbm->setFilter("operazioni.data >=DATE(CURDATE())");
+
+     qDebug()<<"filtering"<<tbm->query().lastError()<<tbm->lastError().text();
+
+    ui->tableView->setModel(tbm);
+    ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setColumnHidden(3,true);
+
+
 
 
 
@@ -105,36 +136,14 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     ui->cbUM->setModel(listaUnitaDiMisura);
     ui->cbUM->setModelColumn(1);
 
-    tbm->select();
-    // qDebug()<<"selecting"<<tbm->query().lastError();
-
-    tbm->setSort(0,Qt::DescendingOrder);
-    //tbm->setFilter("operazioni.data = '"+QDate::currentDate().toString("yyyy-MM-dd")+"' order by data desc");
-    tbm->setFilter("operazioni.data >=DATE(CURDATE())");
-
-    ui->tableView->setModel(tbm);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableView->setItemDelegate(new QSqlRelationalDelegate(tbm));
-    ui->tableView->setColumnHidden(0,true);
-    ui->tableView->setColumnHidden(3,true);
 
 
-
-    tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
-    tbm->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));// 1 lotdef.lot
-    tbm->setHeaderData(2,Qt::Horizontal,QObject::tr("Data"));
-    tbm->setHeaderData(3,Qt::Horizontal,QObject::tr("Operatore"));//3 utenti.ID
-    tbm->setHeaderData(4,Qt::Horizontal,QObject::tr("Prodotto"));//4 prodotti.ID
-    tbm->setHeaderData(5,Qt::Horizontal,QObject::tr("Azione"));//5 azioni.ID
-    tbm->setHeaderData(6,Qt::Horizontal,QObject::tr("Quantità"));
-    tbm->setHeaderData(7,Qt::Horizontal,QObject::tr("Unità di misura"));
-    tbm->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
 
 
 
      qDebug()<< "nuovaoperazione:"<< tbm->query().lastQuery()<< tbm->query().lastError().text();
 
-    QMessageBox::information(0,"EDDAJE",tbm->query().lastError().text(),QMessageBox::Ok);
+    //QMessageBox::information(0,"EDDAJE",tbm->query().lastError().text(),QMessageBox::Ok);
 
 
 
@@ -237,7 +246,7 @@ void HnuovaOperazione::setUiforCarico()
 
  //   ui->cbtipo->setCurrentIndex(2);
     disconnect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setLotsFilter()));
-    disconnect(ui->cbAnagrafica,SIGNAL(currentIndexChanged(int)),this,SLOT(setAnagFilter()));
+ //   disconnect(ui->cbAnagrafica,SIGNAL(currentIndexChanged(int)),this,SLOT(setAnagFilter()));
 
 
 
@@ -299,7 +308,7 @@ void HnuovaOperazione::setUiForScarico()
 
     connect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setProdottoText()));
     connect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setLotsFilter()));
-    connect(ui->cbAnagrafica,SIGNAL(currentIndexChanged(int)),this,SLOT(setAnagFilter()));
+  //  connect(ui->cbAnagrafica,SIGNAL(currentIndexChanged(int)),this,SLOT(setAnagFilter()));
 
 
 
@@ -464,7 +473,9 @@ bool HnuovaOperazione::saveOperation(bool isCarico)
 
     if(b)
     {
+        qDebug()<<"seveOperaton: niente da segnalare";
         db.commit();
+
 
         tbm->select();
 
@@ -548,12 +559,12 @@ bool HnuovaOperazione::saveOperationCarico()
     QSqlQuery q(db);
     QString query ="SELECT createID(:id)";
     q.prepare(query);
-    q.bindValue(":id",QVariant(idprodotto));
+    q.bindValue(":id",idprodotto);
     q.exec();
     q.first();
     nuovolot=q.value(0).toString();
 
-
+     QMessageBox::information(this,"DEBUG","newlot: "+nuovolot,QMessageBox::Ok);
 
     b=saveNewLot(nuovolot);
 
@@ -561,7 +572,7 @@ bool HnuovaOperazione::saveOperationCarico()
 
     if (!b)
     {
-
+       QMessageBox::information(this,"DEBUG","newlot: "+nuovolot+"salvataggio fallito",QMessageBox::Ok);
        return b;
 
     }
@@ -600,7 +611,7 @@ bool HnuovaOperazione::saveOperationCarico()
         ui->leLotfornitore->setText("");
         ui->tNote->clear();
 
-        op.clear();
+       // op.clear();
 
     }
 
