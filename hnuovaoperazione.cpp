@@ -110,7 +110,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
 
     tbm->setSort(0,Qt::DescendingOrder);
     //tbm->setFilter("operazioni.data = '"+QDate::currentDate().toString("yyyy-MM-dd")+"' order by data desc");
-    tbm->setFilter("operazioni.data >= CURDATE()");
+    tbm->setFilter("operazioni.data >=DATE(CURDATE())");
 
     ui->tableView->setModel(tbm);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
