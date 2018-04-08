@@ -179,6 +179,7 @@ public:
         twLots = new QTableView(HLotti);
         twLots->setObjectName(QStringLiteral("twLots"));
         twLots->setEnabled(true);
+        twLots->setFrameShape(QFrame::StyledPanel);
         twLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
         twLots->setAlternatingRowColors(true);
         twLots->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -196,7 +197,7 @@ public:
         pushButton_7 = new QPushButton(HLotti);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/Resources/Wood-4-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_7->setIcon(icon2);
         pushButton_7->setIconSize(QSize(32, 32));
 
@@ -269,7 +270,7 @@ public:
         label->setText(QApplication::translate("HLotti", "Dal:", 0));
         label_2->setText(QApplication::translate("HLotti", "Al:", 0));
         pbRefresh->setText(QApplication::translate("HLotti", "Aggiorna", 0));
-        pushButton_7->setText(QApplication::translate("HLotti", "Modifica", 0));
+        pushButton_7->setText(QApplication::translate("HLotti", "Informazioni su lotto", 0));
         pushButton_4->setText(QApplication::translate("HLotti", "Nuova operazione", 0));
         pushButton->setText(QApplication::translate("HLotti", "Scarico Packages", 0));
         pbScadenze->setText(QApplication::translate("HLotti", "Scadenze", 0));

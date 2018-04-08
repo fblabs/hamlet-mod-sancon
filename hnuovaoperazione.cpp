@@ -682,6 +682,8 @@ void HnuovaOperazione::on_pushButton_clicked()
         ui->cbtipo->setEnabled(false);
         ui->cbAnagrafica->setEnabled(false);
 
+        db.commit();
+
         emit trigger();
         QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
 
@@ -689,7 +691,7 @@ void HnuovaOperazione::on_pushButton_clicked()
    }
    else
    {
-
+       db.rollback();
        QMessageBox::warning(this,QApplication::applicationName(),"Errore!",QMessageBox::Ok);
 
    }

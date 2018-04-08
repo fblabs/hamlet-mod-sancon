@@ -77,14 +77,15 @@ HWarehouse::HWarehouse(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
      ui->deDateFrom->setDate(QDate::currentDate().addMonths(-1));
 
 
-     datefilter="operazioni.data between '"+ui->deDateFrom->date().toString("yyyy-MM-dd") + "' and '"+ui->deDateTo->date().toString("yyyy-MM-dd")+"'";
-     filter = datefilter;
+     //datefilter="operazioni.data between CAST('"+ui->deDateFrom->date().toString("yyyy-MM-dd") + "' AS DATE) and CAST('"+ui->deDateTo->date().toString("yyyy-MM-dd")+"' AS DATE)";
 
+     //filter = datefilter;
+     setOperazioniFilter(0);
 
+     tmOperazioni->select();
      tmOperazioni->setFilter(datefilter);
      tmOperazioni->setSort(2,Qt::DescendingOrder);
 
-     tmOperazioni->select();
      comp=new QCompleter();
      comp->setModel(tmProdotti);
      comp->setCompletionMode(QCompleter::PopupCompletion);
@@ -162,7 +163,7 @@ void HWarehouse::setOperazioniFilter(int tipo)
 {
    QApplication::setOverrideCursor(Qt::WaitCursor);
    QString param;
-   datefilter="operazioni.data between '"+ui->deDateFrom->date().toString("yyyy-MM-dd") + "' and '"+ui->deDateTo->date().toString("yyyy-MM-dd")+"'";
+   datefilter="operazioni.data between CAST('"+ui->deDateFrom->date().toString("yyyy-MM-dd") + "' AS DATE) and CAST('"+ui->deDateTo->date().addDays(1).toString("yyyy-MM-dd")+"' AS DATE)";
 
   qDebug()<<datefilter;
     switch(tipo)

@@ -32,6 +32,7 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
 
     user=puser;
     db=pdb;
+    ui->pbRefresh->setVisible(false);
 
 
 
@@ -66,7 +67,8 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
    ui->twLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
    ui->twLots->setColumnWidth(11,10);
    ui->twLots->setColumnHidden(0,true);
-   ui->twLots->setCurrentIndex(ui->twLots->model()->index(0,0));
+   ui->twLots->setCurrentIndex(ui->twLots->model()->index(-1,0));
+   ui->pushButton_7->setEnabled(false);
 
 
 
@@ -524,4 +526,9 @@ void HLotti::on_dataal_dateChanged(const QDate &date)
 void HLotti::on_pbRefresh_clicked()
 {
     updateTableView();
+}
+
+void HLotti::on_twLots_clicked(const QModelIndex &index)
+{
+     ui->pushButton_7->setEnabled(true);
 }

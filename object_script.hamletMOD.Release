@@ -55,6 +55,7 @@ INPUT(
 ./release/hcalcost.o
 ./release/hwarehousedetails.o
 ./release/hrecipesforclient.o
+./release/hlotmovements.o
 ./release/qrc_icons.o
 ./release/moc_mainwindow.o
 ./release/moc_huser.o
@@ -110,4 +111,5 @@ INPUT(
 ./release/moc_hcalcost.o
 ./release/moc_hwarehousedetails.o
 ./release/moc_hrecipesforclient.o
+./release/moc_hlotmovements.o
 );

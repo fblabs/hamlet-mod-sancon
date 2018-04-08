@@ -40,6 +40,7 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_2;
+    QPushButton *pushButton_3;
     QRadioButton *radioButton;
     QRadioButton *radioButton_2;
     QLabel *label;
@@ -83,7 +84,6 @@ public:
     QPlainTextEdit *tNote;
     QTableView *tableView;
     QHBoxLayout *horizontalLayout_3;
-    QPushButton *pushButton_3;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QPushButton *pushButton_4;
@@ -110,6 +110,13 @@ public:
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        pushButton_3 = new QPushButton(HnuovaOperazione);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setIcon(icon);
+        pushButton_3->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pushButton_3);
+
         radioButton = new QRadioButton(HnuovaOperazione);
         radioButton->setObjectName(QStringLiteral("radioButton"));
         radioButton->setChecked(true);
@@ -350,13 +357,6 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        pushButton_3 = new QPushButton(HnuovaOperazione);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setIcon(icon);
-        pushButton_3->setIconSize(QSize(32, 32));
-
-        horizontalLayout_3->addWidget(pushButton_3);
-
         pushButton = new QPushButton(HnuovaOperazione);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         QIcon icon1;
@@ -387,8 +387,7 @@ public:
 
         verticalLayout_3->addLayout(horizontalLayout_3);
 
-        QWidget::setTabOrder(tableView, pushButton_3);
-        QWidget::setTabOrder(pushButton_3, pushButton);
+        QWidget::setTabOrder(tableView, pushButton);
         QWidget::setTabOrder(pushButton, pushButton_2);
         QWidget::setTabOrder(pushButton_2, pushButton_4);
 
@@ -400,6 +399,7 @@ public:
     void retranslateUi(QWidget *HnuovaOperazione)
     {
         HnuovaOperazione->setWindowTitle(QApplication::translate("HnuovaOperazione", "Nuova operazione", 0));
+        pushButton_3->setText(QApplication::translate("HnuovaOperazione", "Nuova", 0));
         radioButton->setText(QApplication::translate("HnuovaOperazione", "Carico", 0));
         radioButton_2->setText(QApplication::translate("HnuovaOperazione", "Scarico", 0));
         label->setText(QApplication::translate("HnuovaOperazione", "Fornitore", 0));
@@ -418,7 +418,6 @@ public:
         label_13->setText(QApplication::translate("HnuovaOperazione", "Lotto Fornitore:", 0));
         label_8->setText(QApplication::translate("HnuovaOperazione", "Scadenza:", 0));
         label_4->setText(QApplication::translate("HnuovaOperazione", "Note:", 0));
-        pushButton_3->setText(QApplication::translate("HnuovaOperazione", "Nuova", 0));
         pushButton->setText(QApplication::translate("HnuovaOperazione", "Salva", 0));
         pushButton_2->setText(QApplication::translate("HnuovaOperazione", "Annulla", 0));
         pushButton_4->setText(QApplication::translate("HnuovaOperazione", "Chiudi", 0));

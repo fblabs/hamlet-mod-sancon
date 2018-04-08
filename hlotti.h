@@ -85,6 +85,8 @@ private slots:
 
    void on_pbRefresh_clicked();
 
+   void on_twLots_clicked(const QModelIndex &index);
+
 private:
 
     Ui::HLotti *ui;

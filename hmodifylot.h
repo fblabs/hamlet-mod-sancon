@@ -31,6 +31,8 @@ private slots:
 
     void on_pbClose_clicked();
 
+    void on_pbLotOperations_clicked();
+
 private:
     Ui::HModifyLot *ui;
     QSqlDatabase db;

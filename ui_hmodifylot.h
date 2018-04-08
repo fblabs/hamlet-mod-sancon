@@ -59,6 +59,7 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QPushButton *pbComposizione;
+    QPushButton *pbLotOperations;
     QPushButton *pbClose;
 
     void setupUi(QWidget *HModifyLot)
@@ -67,6 +68,9 @@ public:
             HModifyLot->setObjectName(QStringLiteral("HModifyLot"));
         HModifyLot->setWindowModality(Qt::ApplicationModal);
         HModifyLot->resize(914, 467);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/Resources/Wood-4-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        HModifyLot->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(HModifyLot);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         gridLayout = new QGridLayout();
@@ -74,6 +78,8 @@ public:
         leGiac = new QLineEdit(HModifyLot);
         leGiac->setObjectName(QStringLiteral("leGiac"));
         leGiac->setMaximumSize(QSize(80, 16777215));
+        leGiac->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leGiac->setReadOnly(true);
 
         gridLayout->addWidget(leGiac, 0, 6, 1, 1);
 
@@ -208,27 +214,34 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pushButton = new QPushButton(HModifyLot);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon);
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon1);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton);
 
         pbComposizione = new QPushButton(HModifyLot);
         pbComposizione->setObjectName(QStringLiteral("pbComposizione"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbComposizione->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbComposizione->setIcon(icon2);
         pbComposizione->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbComposizione);
 
+        pbLotOperations = new QPushButton(HModifyLot);
+        pbLotOperations->setObjectName(QStringLiteral("pbLotOperations"));
+        pbLotOperations->setIcon(icon);
+        pbLotOperations->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pbLotOperations);
+
         pbClose = new QPushButton(HModifyLot);
         pbClose->setObjectName(QStringLiteral("pbClose"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon3);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbClose);
@@ -244,7 +257,7 @@ public:
 
     void retranslateUi(QWidget *HModifyLot)
     {
-        HModifyLot->setWindowTitle(QApplication::translate("HModifyLot", "Modifica Lotto", 0));
+        HModifyLot->setWindowTitle(QApplication::translate("HModifyLot", "Informazioni su lotto", 0));
         label_5->setText(QApplication::translate("HModifyLot", "Giacenza:", 0));
         label_3->setText(QApplication::translate("HModifyLot", "Prodotto:", 0));
         label->setText(QApplication::translate("HModifyLot", "Lotto:", 0));
@@ -259,6 +272,7 @@ public:
         cbAttivo->setText(QApplication::translate("HModifyLot", "Attivo", 0));
         pushButton->setText(QApplication::translate("HModifyLot", "Salva", 0));
         pbComposizione->setText(QApplication::translate("HModifyLot", "Dettagli", 0));
+        pbLotOperations->setText(QApplication::translate("HModifyLot", "Movimenti Lotto", 0));
         pbClose->setText(QApplication::translate("HModifyLot", "Chiudi", 0));
     } // retranslateUi
 

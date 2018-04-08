@@ -8,6 +8,7 @@
  #include <QDebug>
 #include "hcomposizionelotto.h"
 #include <QSqlError>
+#include "hlotmovements.h"
 
 
 HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb, QWidget *parent) :
@@ -228,4 +229,10 @@ void HModifyLot::on_pbClose_clicked()
 
         close();
     }
+}
+
+void HModifyLot::on_pbLotOperations_clicked()
+{
+    HLotMovements *f =new HLotMovements(lot,db);
+    f->show();
 }
