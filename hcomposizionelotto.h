@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QShortcut>
+#include <QList>
 
 namespace Ui {
 class HComposizioneLotto;
@@ -16,7 +17,7 @@ class HComposizioneLotto : public QWidget
     Q_OBJECT
 
 public:
-    explicit HComposizioneLotto(QWidget *parent = 0, QSqlDatabase pdb=QSqlDatabase(), int idLotto=-1, QString descrizione="");
+    explicit HComposizioneLotto(QWidget *parent = 0, QSqlDatabase pdb=QSqlDatabase(), int idLotto=-1, QString descrizione="",HComposizioneLotto *parentf=0);
     ~HComposizioneLotto();
 
 private:
@@ -29,6 +30,7 @@ private:
     QSqlQueryModel *mod;
     HComposizioneLotto *parf;
     QShortcut *det;
+
 private slots:
     void getLotComposition();
     void getLotUse();
@@ -42,6 +44,7 @@ private slots:
     void printComposition();
     int getTipo(int idl);
     void getDetails();
+
 };
 
 #endif // HCOMPOSIZIONELOTTO_H

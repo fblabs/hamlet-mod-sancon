@@ -436,6 +436,7 @@ compiler_rcc_make_all: release/qrc_icons.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) release/qrc_icons.cpp
 release/qrc_icons.cpp: icons.qrc \
+		hamlet.ico \
 		Resources/fork-1-icon.png \
 		Resources/light-bulb-icon.png \
 		Resources/Wood-4-icon.png \
@@ -492,7 +493,6 @@ release/qrc_icons.cpp: icons.qrc \
 		Resources/Flag-blue64.png \
 		Resources/Text-bold64.png \
 		Resources/Actions-window-close-icon.png \
-		Resources/Thumbs.db \
 		Resources/User-blue64.png \
 		Resources/png3.256.png \
 		Resources/Eye64.png \
@@ -559,7 +559,6 @@ release/qrc_icons.cpp: icons.qrc \
 		Resources/Banned-Sign.PNG \
 		Resources/Flag.PNG \
 		Resources/addimage2.png \
-		Resources/hamlet_1.ico \
 		Resources/Theme64.png \
 		Resources/Clock.PNG \
 		Resources/Mail.PNG \
@@ -3060,6 +3059,8 @@ release/moc_hproduction.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget 
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRecord \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlrecord.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QList \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		hproduction.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hproduction.h -o release/moc_hproduction.cpp
 
@@ -4211,6 +4212,15 @@ release/moc_hmodifylot.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
+		hcomposizionelotto.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQuery \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		hmodifylot.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hmodifylot.h -o release/moc_hmodifylot.cpp
 
@@ -5655,6 +5665,7 @@ release/moc_hcomposizionelotto.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/Q
 		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		hcomposizionelotto.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hcomposizionelotto.h -o release/moc_hcomposizionelotto.cpp
 
@@ -7378,7 +7389,12 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		hexpirations.h \
 		hcalcost.h \
 		hrecipesforclient.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/QDebug
+		../../Qt/5.5/mingw492_32/include/QtCore/QCryptographicHash \
+		../../Qt/5.5/mingw492_32/include/QtCore/qcryptographichash.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QInputDialog \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qinputdialog.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlineedit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/mainwindow.o mainwindow.cpp
 
 release/huser.o: huser.cpp huser.h \
@@ -11232,6 +11248,8 @@ release/hproduction.o: hproduction.cpp hproduction.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRecord \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlrecord.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QList \
+		huser.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		ui_hproduction.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -11331,8 +11349,6 @@ release/hproduction.o: hproduction.cpp hproduction.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
 		haddlotinproduction.h \
-		huser.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		hdatatopass.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
 		hlastlots.h
@@ -12722,6 +12738,9 @@ release/hlotti.o: hlotti.cpp hlotti.h \
 		hlogin2.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		hmodifylot.h \
+		hcomposizionelotto.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qmenu.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/QClipboard \
@@ -12745,12 +12764,9 @@ release/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		../../Qt/5.5/mingw492_32/include/QtCore/QThread \
 		../../Qt/5.5/mingw492_32/include/QtCore/qthread.h \
 		hpackagesunload.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
-		hcomposizionelotto.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QCompleter \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qcompleter.h \
 		hexpirations.h
@@ -13257,6 +13273,15 @@ release/hmodifylot.o: hmodifylot.cpp hmodifylot.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
+		hcomposizionelotto.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQuery \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		ui_hmodifylot.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -13289,7 +13314,6 @@ release/hmodifylot.o: hmodifylot.cpp hmodifylot.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QDateEdit \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qdatetimeedit.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
@@ -13324,8 +13348,6 @@ release/hmodifylot.o: hmodifylot.cpp hmodifylot.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQuery \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRecord \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlrecord.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
@@ -13333,12 +13355,7 @@ release/hmodifylot.o: hmodifylot.cpp hmodifylot.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlTableModel \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
-		hcomposizionelotto.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlError \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hmodifylot.o hmodifylot.cpp
@@ -15598,6 +15615,7 @@ release/hcomposizionelotto.o: hcomposizionelotto.cpp hcomposizionelotto.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QShortcut \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qshortcut.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		ui_hcomposizionelotto.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -15672,7 +15690,6 @@ release/hcomposizionelotto.o: hcomposizionelotto.cpp hcomposizionelotto.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		../../Qt/5.5/mingw492_32/include/QtGui/QCursor \
 		nouse.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hcomposizionelotto.o hcomposizionelotto.cpp

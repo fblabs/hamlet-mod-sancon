@@ -25,6 +25,10 @@ HSettings::~HSettings()
 
 void HSettings::on_pushButton_clicked()
 {
+
+
+
+
    QSettings settings ("hamletmod");
    QString sUser = ui->leUser->text();
    QString sAddress = ui->leAddress->text();

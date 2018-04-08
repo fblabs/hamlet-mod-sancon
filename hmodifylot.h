@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QSqlDatabase>
+#include "hcomposizionelotto.h"
 
 
 namespace Ui {
@@ -35,6 +36,7 @@ private:
     QSqlDatabase db;
     int lot;
     int tipo;
+
 
 signals:
     void updatedLot();

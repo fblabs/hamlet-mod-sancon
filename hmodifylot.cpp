@@ -214,6 +214,7 @@ void HModifyLot::on_pbComposizione_clicked()
 
 
     HComposizioneLotto *f=new HComposizioneLotto(0,db,lot,ui->leLot->text() + " - " + ui->leProd->text());
+
     f->show();
 
 
@@ -224,7 +225,7 @@ void HModifyLot::on_pbClose_clicked()
 {
    if(QMessageBox::question(this,QApplication::applicationName(),"Chiudere? ATTENZIONE le modifiche verranno perse",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
-       
+
         close();
     }
 }

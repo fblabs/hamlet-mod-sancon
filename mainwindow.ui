@@ -28,45 +28,45 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>161</red>
-        <green>148</green>
-        <blue>191</blue>
+        <red>146</red>
+        <green>155</green>
+        <blue>156</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Light">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>237</red>
-        <green>229</green>
-        <blue>255</blue>
+        <red>219</red>
+        <green>233</green>
+        <blue>234</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Midlight">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>199</red>
-        <green>188</green>
-        <blue>223</blue>
+        <red>182</red>
+        <green>194</green>
+        <blue>195</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>80</red>
-        <green>74</green>
-        <blue>95</blue>
+        <red>73</red>
+        <green>77</green>
+        <blue>78</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>107</red>
-        <green>99</green>
-        <blue>127</blue>
+        <red>97</red>
+        <green>103</green>
+        <blue>104</blue>
        </color>
       </brush>
      </colorrole>
@@ -109,9 +109,9 @@
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>161</red>
-        <green>148</green>
-        <blue>191</blue>
+        <red>146</red>
+        <green>155</green>
+        <blue>156</blue>
        </color>
       </brush>
      </colorrole>
@@ -127,9 +127,9 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>208</red>
-        <green>201</green>
-        <blue>223</blue>
+        <red>200</red>
+        <green>205</green>
+        <blue>205</blue>
        </color>
       </brush>
      </colorrole>
@@ -165,45 +165,45 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>161</red>
-        <green>148</green>
-        <blue>191</blue>
+        <red>146</red>
+        <green>155</green>
+        <blue>156</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Light">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>237</red>
-        <green>229</green>
-        <blue>255</blue>
+        <red>219</red>
+        <green>233</green>
+        <blue>234</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Midlight">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>199</red>
-        <green>188</green>
-        <blue>223</blue>
+        <red>182</red>
+        <green>194</green>
+        <blue>195</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>80</red>
-        <green>74</green>
-        <blue>95</blue>
+        <red>73</red>
+        <green>77</green>
+        <blue>78</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>107</red>
-        <green>99</green>
-        <blue>127</blue>
+        <red>97</red>
+        <green>103</green>
+        <blue>104</blue>
        </color>
       </brush>
      </colorrole>
@@ -246,9 +246,9 @@
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>161</red>
-        <green>148</green>
-        <blue>191</blue>
+        <red>146</red>
+        <green>155</green>
+        <blue>156</blue>
        </color>
       </brush>
      </colorrole>
@@ -264,9 +264,9 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>208</red>
-        <green>201</green>
-        <blue>223</blue>
+        <red>200</red>
+        <green>205</green>
+        <blue>205</blue>
        </color>
       </brush>
      </colorrole>
@@ -293,63 +293,63 @@
      <colorrole role="WindowText">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>80</red>
-        <green>74</green>
-        <blue>95</blue>
+        <red>73</red>
+        <green>77</green>
+        <blue>78</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>161</red>
-        <green>148</green>
-        <blue>191</blue>
+        <red>146</red>
+        <green>155</green>
+        <blue>156</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Light">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>237</red>
-        <green>229</green>
-        <blue>255</blue>
+        <red>219</red>
+        <green>233</green>
+        <blue>234</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Midlight">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>199</red>
-        <green>188</green>
-        <blue>223</blue>
+        <red>182</red>
+        <green>194</green>
+        <blue>195</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>80</red>
-        <green>74</green>
-        <blue>95</blue>
+        <red>73</red>
+        <green>77</green>
+        <blue>78</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>107</red>
-        <green>99</green>
-        <blue>127</blue>
+        <red>97</red>
+        <green>103</green>
+        <blue>104</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Text">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>80</red>
-        <green>74</green>
-        <blue>95</blue>
+        <red>73</red>
+        <green>77</green>
+        <blue>78</blue>
        </color>
       </brush>
      </colorrole>
@@ -365,27 +365,27 @@
      <colorrole role="ButtonText">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>80</red>
-        <green>74</green>
-        <blue>95</blue>
+        <red>73</red>
+        <green>77</green>
+        <blue>78</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>161</red>
-        <green>148</green>
-        <blue>191</blue>
+        <red>146</red>
+        <green>155</green>
+        <blue>156</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>161</red>
-        <green>148</green>
-        <blue>191</blue>
+        <red>146</red>
+        <green>155</green>
+        <blue>156</blue>
        </color>
       </brush>
      </colorrole>
@@ -401,9 +401,9 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>161</red>
-        <green>148</green>
-        <blue>191</blue>
+        <red>146</red>
+        <green>155</green>
+        <blue>156</blue>
        </color>
       </brush>
      </colorrole>
@@ -496,6 +496,31 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
+       <widget class="QLabel" name="label">
+        <property name="minimumSize">
+         <size>
+          <width>256</width>
+          <height>256</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>350</width>
+          <height>350</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="icons.qrc">:/Resources/hamlet.PNG</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -512,34 +537,9 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLabel" name="label">
-        <property name="minimumSize">
-         <size>
-          <width>326</width>
-          <height>256</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>256</width>
-          <height>256</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="icons.qrc">:/Resources/hamlet.PNG</pixmap>
-        </property>
-        <property name="scaledContents">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Hamlet Mod 2.3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Versione: &lt;/span&gt;&lt;span style=&quot; font-size:16pt; font-weight:600; color:#060606;&quot;&gt;2.3.1&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza:LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.5.1 - MinGW 4.9.2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;© FBLABS 2015-2018&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://www.github.com/fblabs/hamlet-mod-sancon&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Sorgenti (github)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Hamlet Mod 2.4&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Versione: &lt;/span&gt;&lt;span style=&quot; font-size:16pt; font-weight:600; color:#060606;&quot;&gt;2.4.0&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza:LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.5.1 - MinGW 4.9.2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;© FBLABS 2015-2018&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://www.github.com/fblabs/hamlet-mod-sancon&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Sorgenti (github)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -574,7 +574,147 @@
         <property name="spacing">
          <number>2</number>
         </property>
-        <item row="6" column="7">
+        <item row="7" column="2">
+         <widget class="QToolButton" name="pBNewOperation">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>138</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Nuova Operazione 
+(F6)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Actions-configure-icon.png</normaloff>:/Resources/Actions-configure-icon.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="shortcut">
+           <string>F6</string>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+          <property name="arrowType">
+           <enum>Qt::NoArrow</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="pbNotifiche">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Notifiche</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Chat.PNG</normaloff>:/Resources/Chat.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QPushButton" name="pbContacts">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Contatti</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/user-group-icon.png</normaloff>:/Resources/user-group-icon.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QToolButton" name="tbProdotti">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>138</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Prodotti</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Wood-4-icon.png</normaloff>:/Resources/Wood-4-icon.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="4">
+         <widget class="QToolButton" name="tbModificaLotti">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Modifica lotti</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="7">
          <widget class="QPushButton" name="pbPackages">
           <property name="enabled">
            <bool>false</bool>
@@ -615,48 +755,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="4">
-         <widget class="QToolButton" name="tbLotti">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>80</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Lotti (F5)</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Cube.PNG</normaloff>:/Resources/Cube.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="shortcut">
-           <string>F5</string>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-          <property name="autoRaise">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="8">
+        <item row="5" column="8">
          <widget class="QToolButton" name="tbAnalisi">
           <property name="enabled">
            <bool>false</bool>
@@ -706,199 +805,7 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="2">
-         <widget class="QToolButton" name="tbProdotti">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>138</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Prodotti</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Wood-4-icon.png</normaloff>:/Resources/Wood-4-icon.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="6">
-         <widget class="QPushButton" name="pbSchede">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>80</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Schede Clienti (F3)</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Folder.PNG</normaloff>:/Resources/Folder.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="shortcut">
-           <string>F3</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="10">
-         <widget class="QToolButton" name="tbClose">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>80</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Chiudi</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Actions-window-close-icon.png</normaloff>:/Resources/Actions-window-close-icon.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="4">
-         <widget class="QToolButton" name="tbModificaLotti">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>80</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Modifica lotti</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="pbContacts">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Contatti</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/user-group-icon.png</normaloff>:/Resources/user-group-icon.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="7">
-         <widget class="QToolButton" name="tnProduzione">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>130</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Produzione (F4)</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Gears.PNG</normaloff>:/Resources/Gears.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="shortcut">
-           <string>F4</string>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="6">
+        <item row="7" column="6">
          <widget class="QToolButton" name="tbAssociazioni">
           <property name="enabled">
            <bool>false</bool>
@@ -933,7 +840,42 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
+        <item row="4" column="6">
+         <widget class="QPushButton" name="pbSchede">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Schede Clienti (F3)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Folder.PNG</normaloff>:/Resources/Folder.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="shortcut">
+           <string>F3</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
          <widget class="QToolButton" name="tbAnag">
           <property name="enabled">
            <bool>false</bool>
@@ -971,17 +913,29 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="pbNotifiche">
+        <item row="5" column="7">
+         <widget class="QToolButton" name="tnProduzione">
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="minimumSize">
+           <size>
+            <width>130</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
-           <string>Notifiche</string>
+           <string>Produzione (F4)</string>
           </property>
           <property name="icon">
            <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Chat.PNG</normaloff>:/Resources/Chat.PNG</iconset>
+            <normaloff>:/Resources/Gears.PNG</normaloff>:/Resources/Gears.PNG</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -989,9 +943,91 @@
             <height>32</height>
            </size>
           </property>
+          <property name="shortcut">
+           <string>F4</string>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
          </widget>
         </item>
-        <item row="8" column="2">
+        <item row="5" column="10">
+         <widget class="QToolButton" name="tbClose">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Chiudi</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Actions-window-close-icon.png</normaloff>:/Resources/Actions-window-close-icon.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="4">
+         <widget class="QToolButton" name="tbLotti">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Lotti (F5)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Cube.PNG</normaloff>:/Resources/Cube.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="shortcut">
+           <string>F5</string>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+          <property name="autoRaise">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="2">
          <widget class="QPushButton" name="pbUnload">
           <property name="enabled">
            <bool>false</bool>
@@ -1011,24 +1047,67 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="2">
-         <widget class="QToolButton" name="pBNewOperation">
+        <item row="9" column="7">
+         <widget class="QPushButton" name="pbVerifyLabels">
           <property name="enabled">
            <bool>false</bool>
           </property>
-          <property name="minimumSize">
-           <size>
-            <width>138</width>
-            <height>0</height>
-           </size>
-          </property>
           <property name="text">
-           <string>Nuova Operazione 
-(F6)</string>
+           <string>Verifica etichette</string>
           </property>
           <property name="icon">
            <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Actions-configure-icon.png</normaloff>:/Resources/Actions-configure-icon.png</iconset>
+            <normaloff>:/Resources/Map.PNG</normaloff>:/Resources/Map.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="6">
+         <widget class="QPushButton" name="pbOldCards">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Schede (legacy)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="2">
+         <widget class="QPushButton" name="pbExpirations">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Scadenze</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Calendar.PNG</normaloff>:/Resources/Calendar.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="8">
+         <widget class="QPushButton" name="pbCalcoloCosti">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Calcolo costi (F10)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Cash-register-icon.png</normaloff>:/Resources/Cash-register-icon.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -1037,17 +1116,31 @@
            </size>
           </property>
           <property name="shortcut">
-           <string>F6</string>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-          <property name="arrowType">
-           <enum>Qt::NoArrow</enum>
+           <string>F10</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="6">
+        <item row="9" column="6">
+         <widget class="QPushButton" name="pbC4R">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Clienti per ricetta</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Link64.png</normaloff>:/Resources/Link64.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="6">
          <widget class="QToolButton" name="tbRicette">
           <property name="enabled">
            <bool>false</bool>
@@ -1091,7 +1184,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
+        <item row="5" column="0">
          <widget class="QPushButton" name="toolButton">
           <property name="maximumSize">
            <size>
@@ -1120,7 +1213,7 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="10">
+        <item row="7" column="10">
          <widget class="QToolButton" name="tbLogout">
           <property name="enabled">
            <bool>false</bool>
@@ -1155,7 +1248,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="2">
+        <item row="5" column="2">
          <widget class="QToolButton" name="tbMagaz">
           <property name="enabled">
            <bool>false</bool>
@@ -1193,7 +1286,7 @@
           </property>
          </widget>
         </item>
-        <item row="9" column="0">
+        <item row="10" column="0">
          <widget class="QPushButton" name="pushButton">
           <property name="text">
            <string>Aggiorna</string>
@@ -1210,7 +1303,7 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
+        <item row="7" column="1">
          <widget class="QToolButton" name="tbUtenti">
           <property name="enabled">
            <bool>false</bool>
@@ -1248,7 +1341,27 @@
           </property>
          </widget>
         </item>
-        <item row="8" column="0">
+        <item row="3" column="1">
+         <widget class="QPushButton" name="pbCkeckNotifications">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Verifica notifiche</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Search.PNG</normaloff>:/Resources/Search.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
          <widget class="QToolButton" name="tbSettings">
           <property name="enabled">
            <bool>true</bool>
@@ -1283,119 +1396,6 @@
           </property>
           <property name="toolButtonStyle">
            <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QPushButton" name="pbCkeckNotifications">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Verifica notifiche</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Search.PNG</normaloff>:/Resources/Search.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="7">
-         <widget class="QPushButton" name="pbVerifyLabels">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Verifica etichette</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Map.PNG</normaloff>:/Resources/Map.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="6">
-         <widget class="QPushButton" name="pbOldCards">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Schede (legacy)</string>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="2">
-         <widget class="QPushButton" name="pbExpirations">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Scadenze</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Calendar.PNG</normaloff>:/Resources/Calendar.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="8">
-         <widget class="QPushButton" name="pbCalcoloCosti">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Calcolo costi (F10)</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Cash-register-icon.png</normaloff>:/Resources/Cash-register-icon.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="shortcut">
-           <string>F10</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="6">
-         <widget class="QPushButton" name="pbC4R">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Clienti per ricetta</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Link64.png</normaloff>:/Resources/Link64.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
           </property>
          </widget>
         </item>

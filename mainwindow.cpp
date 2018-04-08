@@ -42,10 +42,13 @@
 #include  "hexpirations.h"
 #include "hcalcost.h"
 #include "hrecipesforclient.h"
+#include <QCryptographicHash>
 
 
 
 #include <QDebug>
+#include <QInputDialog>
+#include <QMessageBox>
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
@@ -63,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     sConn=settings.value("conn").toString();
 
     ui->pbOldCards->setVisible(false);
+    ui->toolButton->click();
 
   //  installEventFilter(this);
 
@@ -104,7 +108,8 @@ void MainWindow::userLogged(HUser* usr,QSqlDatabase pdb)
         bool b=db.isOpen();
         qDebug()<<"userLogged Main"<<QString::number(b);
         enableButtonsForRole();
-        checkNotifications();
+       // ui->toolButton->click();
+       // checkNotifications();
     }
 }
 
@@ -211,7 +216,7 @@ void MainWindow::enableButtonsForRole()
         ui->tbProdotti->setEnabled(true);
         ui->tbRicette->setEnabled(true);
         ui->tbModificaLotti->setEnabled(true);
-        ui->tbSettings->setEnabled(true);
+        ui->tbSettings->setEnabled(false);
         ui->tnProduzione->setEnabled(true);
         ui->tbAnalisi->setEnabled(true);
         ui->pBNewOperation->setEnabled(true);
@@ -252,6 +257,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
+        ui->tbSettings->setEnabled(false);
 
 
         break;
@@ -275,6 +281,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
+        ui->tbSettings->setEnabled(false);
 
 
         break;
@@ -304,6 +311,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbExpirations->setEnabled(true);
         ui->pbCalcoloCosti->setEnabled(true);
         ui->pbC4R->setEnabled(true);
+        ui->tbSettings->setEnabled(false);
 
 
         break;
@@ -335,6 +343,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbCkeckNotifications->setEnabled(false);
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
+        ui->tbSettings->setEnabled(false);
 
 
 
@@ -391,8 +400,54 @@ void MainWindow::on_tnProduzione_clicked()
 
 void MainWindow::on_tbSettings_clicked()
 {
-    HSettings *f = new HSettings();
-    f->show();
+    //QString licensefile=QDir::currentPath()+"/LICENSEKEY";
+    QFile license(QDir::currentPath()+"/LICENSEKEY");
+
+    if (!license.exists())
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"E' necessario il file di licenza\nRivolgersi all'amministrazione",QMessageBox::Ok);
+        return;
+    }
+        license.open(QFile::ReadOnly);
+        QString readCodeFromLicense =license.readLine();
+        license.close();
+
+    bool ok;
+    QString input_pass_azienda=QInputDialog::getText(this,"AUTENTICAZIONE","Codice Azienda",QLineEdit::Normal,"codice azienda",&ok);
+    if(ok)
+    {
+    QByteArray passHash=input_pass_azienda.toLatin1().toHex();
+    QCryptographicHash passHashCrypt(QCryptographicHash::Sha1);
+  //  passHashCrypt.hash(passHash,QCryptographicHash::Sha1);
+    QString input_pass_hash=QString(passHashCrypt.hash(passHash,QCryptographicHash::Sha1).toHex());
+
+  //  qDebug()<<"license :"+readCodeFromLicense.replace("\n","").replace("\r","")<<"input:"+input_pass_hash;
+
+   // QString hash = QString("%1").arg(QString(QCryptographicHash::hash(str.toUtf8(),QCryptographicHash::Sha1).toHex()))
+
+
+
+    if (input_pass_hash==readCodeFromLicense.replace("\n","").replace("\r",""))
+    {
+        HSettings *f = new HSettings();
+        f->show();
+
+    }
+    else
+    {
+
+        QMessageBox::warning(this,QApplication::applicationName(),"Attenzione:codice di sblocco errato\nRivolgersi all'amministrazione",QMessageBox::Ok);
+        //QApplication::quit();
+        disableUI();
+    }
+    }
+    else
+    {
+        return;
+    }
+
+
+
 }
 
 void MainWindow::on_tbProdotti_clicked()
@@ -426,6 +481,7 @@ void MainWindow::on_toolButton_clicked()
 {
 
     login();
+
 
 }
 

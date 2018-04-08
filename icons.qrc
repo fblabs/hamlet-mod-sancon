@@ -53,7 +53,6 @@
         <file>Resources/Sheet-Of-Paper.PNG</file>
         <file>Resources/Stardock DesktopX.png</file>
         <file>Resources/Strings.qrc</file>
-        <file>Resources/Thumbs.db</file>
         <file>Resources/Touch-Phone.PNG</file>
         <file>Resources/Truck.PNG</file>
         <file>Resources/Upload.PNG</file>
@@ -94,7 +93,6 @@
         <file>Resources/Flag-red64.png</file>
         <file>Resources/Gas-pump64.png</file>
         <file>Resources/graphical.qrc</file>
-        <file>Resources/hamlet_1.ico</file>
         <file>Resources/Handtool64.png</file>
         <file>Resources/Insert-hyperlink64.png</file>
         <file>Resources/Insert-image64.png</file>
@@ -130,5 +128,6 @@
         <file>Resources/User-yellow64.png</file>
         <file>Resources/light-bulb-icon.png</file>
         <file>Resources/Cash-register-icon.png</file>
+        <file>hamlet.ico</file>
     </qresource>
 </RCC>

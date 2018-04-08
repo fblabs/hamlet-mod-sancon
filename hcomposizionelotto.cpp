@@ -9,7 +9,7 @@
 #include <QShortcut>
 #include "nouse.h"
 
-HComposizioneLotto::HComposizioneLotto(QWidget *parent, QSqlDatabase pdb, int idLotto, QString descrizione) :
+HComposizioneLotto::HComposizioneLotto(QWidget *parent, QSqlDatabase pdb, int idLotto, QString descrizione, HComposizioneLotto *parentf) :
     QWidget(parent),
     ui(new Ui::HComposizioneLotto)
 {
@@ -20,6 +20,7 @@ HComposizioneLotto::HComposizioneLotto(QWidget *parent, QSqlDatabase pdb, int id
     //ui->checkBox->setVisible(false);
     db=pdb;
     id=idLotto;
+    parf=parentf;
 
     det=new QShortcut(QKeySequence("F5"),this);
 
@@ -60,7 +61,7 @@ HComposizioneLotto::~HComposizioneLotto()
 
 void HComposizioneLotto::getDetails()
 {
-        HComposizioneLotto *f;
+      //  HComposizioneLotto *f;
 
         int lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
         lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
@@ -84,8 +85,11 @@ void HComposizioneLotto::getDetails()
         QString desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
 
 
-        f=new HComposizioneLotto(0,db,lotid,desc);
-        f->show();
+        parf=new HComposizioneLotto(0,db,lotid,desc);
+
+      //  parf=f;
+
+        parf->show();
 
 }
 
@@ -201,27 +205,8 @@ void HComposizioneLotto::getLotUse()
 
 void HComposizioneLotto::on_tableView_doubleClicked(const QModelIndex &index)
 {
-   /* int idlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
-    QModelIndex ixlot;
-    QModelIndex ixpro;
-    if(tipo > 1)
-    {
-     ixlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),2);
-     ixpro=mod->index(ui->tableView->selectionModel()->currentIndex().row(),3);
-    }
-    else
-    {
-        ixlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),2);
-        ixpro=mod->index(ui->tableView->selectionModel()->currentIndex().row(),4);
-    }
 
-    QString desc=ixlot.data(0).toString()+" - "+ ixpro.data(0).toString();
-
-    HComposizioneLotto *f;
-
-
-      f=new HComposizioneLotto(0,db,idlot,desc);
-      f->show();*/
+    Q_UNUSED(index);
 
     getDetails();
 
@@ -230,7 +215,6 @@ void HComposizioneLotto::on_tableView_doubleClicked(const QModelIndex &index)
 
 void HComposizioneLotto::on_pushButton_3_clicked()
 {
-
     close();
 }
 
@@ -427,6 +411,9 @@ void HComposizioneLotto::on_pbUse_clicked()
 {
   getDetails();
 }
+
+
+
 
 
 
