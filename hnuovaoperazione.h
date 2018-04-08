@@ -50,10 +50,6 @@ private slots:
     int lastInsertID();
     void setProdottoText();
     void setLotsFilter();
-    void setAnagFilter();
-
- //   void setListaLots(bool onlyPackages);
-
 
 
     void on_radioButton_2_toggled(bool checked);

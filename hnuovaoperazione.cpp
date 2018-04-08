@@ -23,6 +23,21 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     user=puser;
     db=pdb;
 
+    if (!db.isOpen())
+    {
+        db.open();
+    }
+
+    tbm = new HReadOnlyModelNew(0,db);
+    tbm->setTable("operazioni");
+    tbm->setRelation(1,QSqlRelation("lotdef","ID","lot"));
+    tbm->setRelation(3,QSqlRelation("utenti","ID","nome"));
+    tbm->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
+    tbm->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
+    tbm->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
+
+
+
     ui->cbShowPackages->setVisible(false);
 
 
@@ -66,6 +81,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
 
     lots->setTable("lotdef");
     lots->select();
+     qDebug()<<"lotdef select"<<lots->query().lastError();
 
     basefilter="attivo=2 and year(data)>year(data)-3";
     lots->setFilter(basefilter);
@@ -89,27 +105,8 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     ui->cbUM->setModel(listaUnitaDiMisura);
     ui->cbUM->setModelColumn(1);
 
- //   connect(ui->cbtipo,SIGNAL(currentIndexChanged(int)),this,SLOT(setFilterProdotti()));
- //   ui->cbtipo->setCurrentIndex(2);
-
-    tbm = new HReadOnlyModelNew(this, db);
-    tbm->setTable("operazioni");
-
-    //tbm->setEditStrategy(QSqlRelationalTableModel::OnFieldChange);
-
-
-    tbm->setRelation(1,QSqlRelation("lotdef","ID","lot"));
-    tbm->setRelation(3,QSqlRelation("utenti","ID","username"));
-    tbm->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
-    tbm->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
-    tbm->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
-
-
-
-
-
-
-
+    tbm->select();
+    // qDebug()<<"selecting"<<tbm->query().lastError();
 
     tbm->setSort(0,Qt::DescendingOrder);
     //tbm->setFilter("operazioni.data = '"+QDate::currentDate().toString("yyyy-MM-dd")+"' order by data desc");
@@ -120,7 +117,7 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     ui->tableView->setItemDelegate(new QSqlRelationalDelegate(tbm));
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
-    tbm->select();
+
 
 
     tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
@@ -309,11 +306,7 @@ void HnuovaOperazione::setUiForScarico()
 
 }
 
-void HnuovaOperazione::setAnagFilter()
-{ //  QString anag=ui->cbAnagrafica->model()->index(ui->cbAnagrafica->currentIndex(),0).data(0).toString();
-  //  this->listaProdotti->setFilter("ID in (select ricette.ID_prodotto from ricette,associazioni where ricette.ID=associazioni.ID_ricetta and associazioni.ID_cliente="+anag+")");
-    //// qDebug()<<listaProdotti->lastError().text()<<listaProdotti->query().lastQuery();
-}
+
 
 void HnuovaOperazione::setProdottoText()
 {
@@ -655,13 +648,12 @@ QString HnuovaOperazione::getNewLot(QString prodotto)
 void HnuovaOperazione::on_pushButton_clicked()
 {
    bool b;
-   db.transaction();
+
 
    b=saveOperation(ui->radioButton->isChecked());
 
    if (b)
    {
-        tbm->select();
 
 
 
@@ -682,10 +674,11 @@ void HnuovaOperazione::on_pushButton_clicked()
         ui->cbtipo->setEnabled(false);
         ui->cbAnagrafica->setEnabled(false);
 
-        db.commit();
+
 
         emit trigger();
         QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
+
 
 
    }
@@ -695,6 +688,7 @@ void HnuovaOperazione::on_pushButton_clicked()
        QMessageBox::warning(this,QApplication::applicationName(),"Errore!",QMessageBox::Ok);
 
    }
+
 
 
 

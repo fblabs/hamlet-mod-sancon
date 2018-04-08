@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HnuovaOperazione_t {
-    QByteArrayData data[31];
-    char stringdata0[508];
+    QByteArrayData data[30];
+    char stringdata0[494];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -47,19 +47,18 @@ QT_MOC_LITERAL(14, 187, 21), // "on_pushButton_clicked"
 QT_MOC_LITERAL(15, 209, 12), // "lastInsertID"
 QT_MOC_LITERAL(16, 222, 15), // "setProdottoText"
 QT_MOC_LITERAL(17, 238, 13), // "setLotsFilter"
-QT_MOC_LITERAL(18, 252, 13), // "setAnagFilter"
-QT_MOC_LITERAL(19, 266, 24), // "on_radioButton_2_toggled"
-QT_MOC_LITERAL(20, 291, 7), // "checked"
-QT_MOC_LITERAL(21, 299, 22), // "on_radioButton_toggled"
-QT_MOC_LITERAL(22, 322, 21), // "on_cbScadenza_toggled"
-QT_MOC_LITERAL(23, 344, 25), // "on_leProdotti_textChanged"
-QT_MOC_LITERAL(24, 370, 4), // "arg1"
-QT_MOC_LITERAL(25, 375, 22), // "on_leLotto_textChanged"
-QT_MOC_LITERAL(26, 398, 23), // "on_pushButton_2_clicked"
-QT_MOC_LITERAL(27, 422, 23), // "on_pushButton_3_clicked"
-QT_MOC_LITERAL(28, 446, 25), // "on_cbShowPackages_toggled"
-QT_MOC_LITERAL(29, 472, 29), // "on_cbtipo_currentIndexChanged"
-QT_MOC_LITERAL(30, 502, 5) // "index"
+QT_MOC_LITERAL(18, 252, 24), // "on_radioButton_2_toggled"
+QT_MOC_LITERAL(19, 277, 7), // "checked"
+QT_MOC_LITERAL(20, 285, 22), // "on_radioButton_toggled"
+QT_MOC_LITERAL(21, 308, 21), // "on_cbScadenza_toggled"
+QT_MOC_LITERAL(22, 330, 25), // "on_leProdotti_textChanged"
+QT_MOC_LITERAL(23, 356, 4), // "arg1"
+QT_MOC_LITERAL(24, 361, 22), // "on_leLotto_textChanged"
+QT_MOC_LITERAL(25, 384, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(26, 408, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(27, 432, 25), // "on_cbShowPackages_toggled"
+QT_MOC_LITERAL(28, 458, 29), // "on_cbtipo_currentIndexChanged"
+QT_MOC_LITERAL(29, 488, 5) // "index"
 
     },
     "HnuovaOperazione\0trigger\0\0setFilterProdotti\0"
@@ -69,11 +68,11 @@ QT_MOC_LITERAL(30, 502, 5) // "index"
     "nl\0on_pushButton_4_clicked\0"
     "on_pushButton_clicked\0lastInsertID\0"
     "setProdottoText\0setLotsFilter\0"
-    "setAnagFilter\0on_radioButton_2_toggled\0"
-    "checked\0on_radioButton_toggled\0"
-    "on_cbScadenza_toggled\0on_leProdotti_textChanged\0"
-    "arg1\0on_leLotto_textChanged\0"
-    "on_pushButton_2_clicked\0on_pushButton_3_clicked\0"
+    "on_radioButton_2_toggled\0checked\0"
+    "on_radioButton_toggled\0on_cbScadenza_toggled\0"
+    "on_leProdotti_textChanged\0arg1\0"
+    "on_leLotto_textChanged\0on_pushButton_2_clicked\0"
+    "on_pushButton_3_clicked\0"
     "on_cbShowPackages_toggled\0"
     "on_cbtipo_currentIndexChanged\0index"
 };
@@ -85,7 +84,7 @@ static const uint qt_meta_data_HnuovaOperazione[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
+      23,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -93,32 +92,31 @@ static const uint qt_meta_data_HnuovaOperazione[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,  134,    2, 0x06 /* Public */,
+       1,    0,  129,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,  135,    2, 0x08 /* Private */,
-       4,    1,  136,    2, 0x08 /* Private */,
-       6,    0,  139,    2, 0x08 /* Private */,
-       7,    0,  140,    2, 0x08 /* Private */,
-       8,    0,  141,    2, 0x08 /* Private */,
-       9,    0,  142,    2, 0x08 /* Private */,
-      10,    1,  143,    2, 0x08 /* Private */,
-      11,    1,  146,    2, 0x08 /* Private */,
-      13,    0,  149,    2, 0x08 /* Private */,
-      14,    0,  150,    2, 0x08 /* Private */,
-      15,    0,  151,    2, 0x08 /* Private */,
-      16,    0,  152,    2, 0x08 /* Private */,
-      17,    0,  153,    2, 0x08 /* Private */,
-      18,    0,  154,    2, 0x08 /* Private */,
-      19,    1,  155,    2, 0x08 /* Private */,
-      21,    1,  158,    2, 0x08 /* Private */,
-      22,    1,  161,    2, 0x08 /* Private */,
-      23,    1,  164,    2, 0x08 /* Private */,
-      25,    1,  167,    2, 0x08 /* Private */,
-      26,    0,  170,    2, 0x08 /* Private */,
-      27,    0,  171,    2, 0x08 /* Private */,
-      28,    1,  172,    2, 0x08 /* Private */,
-      29,    1,  175,    2, 0x08 /* Private */,
+       3,    0,  130,    2, 0x08 /* Private */,
+       4,    1,  131,    2, 0x08 /* Private */,
+       6,    0,  134,    2, 0x08 /* Private */,
+       7,    0,  135,    2, 0x08 /* Private */,
+       8,    0,  136,    2, 0x08 /* Private */,
+       9,    0,  137,    2, 0x08 /* Private */,
+      10,    1,  138,    2, 0x08 /* Private */,
+      11,    1,  141,    2, 0x08 /* Private */,
+      13,    0,  144,    2, 0x08 /* Private */,
+      14,    0,  145,    2, 0x08 /* Private */,
+      15,    0,  146,    2, 0x08 /* Private */,
+      16,    0,  147,    2, 0x08 /* Private */,
+      17,    0,  148,    2, 0x08 /* Private */,
+      18,    1,  149,    2, 0x08 /* Private */,
+      20,    1,  152,    2, 0x08 /* Private */,
+      21,    1,  155,    2, 0x08 /* Private */,
+      22,    1,  158,    2, 0x08 /* Private */,
+      24,    1,  161,    2, 0x08 /* Private */,
+      25,    0,  164,    2, 0x08 /* Private */,
+      26,    0,  165,    2, 0x08 /* Private */,
+      27,    1,  166,    2, 0x08 /* Private */,
+      28,    1,  169,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -137,16 +135,15 @@ static const uint qt_meta_data_HnuovaOperazione[] = {
     QMetaType::Int,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   19,
+    QMetaType::Void, QMetaType::Bool,   19,
+    QMetaType::Void, QMetaType::Bool,   19,
+    QMetaType::Void, QMetaType::QString,   23,
+    QMetaType::Void, QMetaType::QString,   23,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   20,
-    QMetaType::Void, QMetaType::Bool,   20,
-    QMetaType::Void, QMetaType::Bool,   20,
-    QMetaType::Void, QMetaType::QString,   24,
-    QMetaType::Void, QMetaType::QString,   24,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   20,
-    QMetaType::Void, QMetaType::Int,   30,
+    QMetaType::Void, QMetaType::Bool,   19,
+    QMetaType::Void, QMetaType::Int,   29,
 
        0        // eod
 };
@@ -177,16 +174,15 @@ void HnuovaOperazione::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         case 12: _t->setProdottoText(); break;
         case 13: _t->setLotsFilter(); break;
-        case 14: _t->setAnagFilter(); break;
-        case 15: _t->on_radioButton_2_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 16: _t->on_radioButton_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 17: _t->on_cbScadenza_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 18: _t->on_leProdotti_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 19: _t->on_leLotto_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 20: _t->on_pushButton_2_clicked(); break;
-        case 21: _t->on_pushButton_3_clicked(); break;
-        case 22: _t->on_cbShowPackages_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 23: _t->on_cbtipo_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 14: _t->on_radioButton_2_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 15: _t->on_radioButton_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 16: _t->on_cbScadenza_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 17: _t->on_leProdotti_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 18: _t->on_leLotto_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 19: _t->on_pushButton_2_clicked(); break;
+        case 20: _t->on_pushButton_3_clicked(); break;
+        case 21: _t->on_cbShowPackages_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 22: _t->on_cbtipo_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -226,13 +222,13 @@ int HnuovaOperazione::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 23)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 23;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 23)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 24;
+        _id -= 23;
     }
     return _id;
 }

@@ -40,9 +40,9 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_2;
-    QPushButton *pushButton_3;
     QRadioButton *radioButton;
     QRadioButton *radioButton_2;
+    QPushButton *pushButton_3;
     QLabel *label;
     QComboBox *cbAnagrafica;
     QListView *lvProdotti;
@@ -110,13 +110,6 @@ public:
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        pushButton_3 = new QPushButton(HnuovaOperazione);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setIcon(icon);
-        pushButton_3->setIconSize(QSize(32, 32));
-
-        horizontalLayout_2->addWidget(pushButton_3);
-
         radioButton = new QRadioButton(HnuovaOperazione);
         radioButton->setObjectName(QStringLiteral("radioButton"));
         radioButton->setChecked(true);
@@ -127,6 +120,13 @@ public:
         radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
 
         horizontalLayout_2->addWidget(radioButton_2);
+
+        pushButton_3 = new QPushButton(HnuovaOperazione);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setIcon(icon);
+        pushButton_3->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pushButton_3);
 
 
         verticalLayout_2->addLayout(horizontalLayout_2);
@@ -399,9 +399,9 @@ public:
     void retranslateUi(QWidget *HnuovaOperazione)
     {
         HnuovaOperazione->setWindowTitle(QApplication::translate("HnuovaOperazione", "Nuova operazione", 0));
-        pushButton_3->setText(QApplication::translate("HnuovaOperazione", "Nuova", 0));
         radioButton->setText(QApplication::translate("HnuovaOperazione", "Carico", 0));
         radioButton_2->setText(QApplication::translate("HnuovaOperazione", "Scarico", 0));
+        pushButton_3->setText(QApplication::translate("HnuovaOperazione", "Nuova", 0));
         label->setText(QApplication::translate("HnuovaOperazione", "Fornitore", 0));
         label_12->setText(QApplication::translate("HnuovaOperazione", "Cerca prodotto:", 0));
         label_2->setText(QApplication::translate("HnuovaOperazione", "Ricerca per tipologia prodotti:", 0));
