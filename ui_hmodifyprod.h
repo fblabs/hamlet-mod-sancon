@@ -115,6 +115,7 @@ public:
 
         deDal = new QDateEdit(HModifyProd);
         deDal->setObjectName(QStringLiteral("deDal"));
+        deDal->setCalendarPopup(true);
 
         gridLayout_2->addWidget(deDal, 0, 2, 1, 1);
 
@@ -125,6 +126,7 @@ public:
 
         deAl = new QDateEdit(HModifyProd);
         deAl->setObjectName(QStringLiteral("deAl"));
+        deAl->setCalendarPopup(true);
 
         gridLayout_2->addWidget(deAl, 0, 4, 1, 1);
 

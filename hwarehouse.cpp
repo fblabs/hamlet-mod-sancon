@@ -246,6 +246,7 @@ void HWarehouse::on_pushButton_5_clicked()
 {
     HPackagesUnload *f=new HPackagesUnload(user,db);
     connect(f,SIGNAL(update()),this,SLOT(update()));
+    f->show();
 
 }
 
