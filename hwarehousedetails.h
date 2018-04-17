@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QSqlDatabase>
+#include <QSqlRelationalTableModel>
+#include <QDataWidgetMapper>
 
 
 namespace Ui {
@@ -18,11 +20,21 @@ public:
     ~HWarehouseDetails();
 
 private slots:
-    void on_pushButton_clicked();
+    void getUnitaDiMisura();
+    void getActions();
+    void on_pbUndo_clicked();
+    void on_pbSave_clicked();
+    void on_pbClose_clicked();
+    bool saveOperation();
 
 private:
     Ui::HWarehouseDetails *ui;
     QSqlDatabase db;
+    QSqlRelationalTableModel *mod;
+    QDataWidgetMapper *mapper;
+    int opid;
+signals:
+    confirm();
 };
 
 #endif // HWAREHOUSEDETAILS_H

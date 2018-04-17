@@ -44,7 +44,7 @@ HWarehouse::HWarehouse(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
      tmOperazioni->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
  //    tmOperazioni->setRelation(9,QSqlRelation("lotdef","ID","giacenza"));
      tmOperazioni->setSort(2,Qt::DescendingOrder);
-     tmOperazioni->setEditStrategy(QSqlTableModel::OnFieldChange);
+     tmOperazioni->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
 
 
@@ -85,6 +85,7 @@ HWarehouse::HWarehouse(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
      tmOperazioni->select();
      tmOperazioni->setFilter(datefilter);
      tmOperazioni->setSort(2,Qt::DescendingOrder);
+     ui->tableView->setCurrentIndex(tmOperazioni->index(0,0));
 
      comp=new QCompleter();
      comp->setModel(tmProdotti);
@@ -102,6 +103,17 @@ HWarehouse::HWarehouse(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
 HWarehouse::~HWarehouse()
 {
     delete ui;
+}
+
+void HWarehouse::on_Confirmed()
+{
+    tmOperazioni->submitAll();
+
+
+    tmOperazioni->select();
+    tmOperazioni->setFilter(datefilter);
+    tmOperazioni->setSort(2,Qt::DescendingOrder);
+
 }
 
 
@@ -256,6 +268,7 @@ void HWarehouse::on_tableView_doubleClicked(const QModelIndex &index)
     qDebug()<<id;
 
     HWarehouseDetails *f=new HWarehouseDetails(db,id);
+    connect(f,SIGNAL(confirm()),this,SLOT(on_Confirmed()));
     f->show();
 }
 
@@ -278,3 +291,11 @@ void HWarehouse::on_cbFilter_currentIndexChanged(int index)
 }
 
 
+
+void HWarehouse::on_pbMod_clicked()
+{
+   int id=tmOperazioni->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
+   HWarehouseDetails *f=new HWarehouseDetails(db,id);
+   connect(f,SIGNAL(confirm()),this,SLOT(on_Confirmed()));
+   f->show();
+}

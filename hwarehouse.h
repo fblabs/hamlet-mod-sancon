@@ -40,6 +40,7 @@ private:
     QString prodfilter;
     QString filter;
 
+
 public slots:
 
    void update();
@@ -60,7 +61,9 @@ private slots:
    void on_deDateFrom_dateChanged(const QDate &date);
    void on_deDateTo_dateChanged(const QDate &date);
    void on_cbFilter_currentIndexChanged(int index);
+   void on_Confirmed();
 
+   void on_pbMod_clicked();
 };
 
 #endif // HWAREHOUSE_H

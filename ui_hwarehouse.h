@@ -48,6 +48,7 @@ public:
     QFrame *line;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_2;
+    QPushButton *pbMod;
     QPushButton *pushButton_5;
     QPushButton *pushButton_4;
 
@@ -154,20 +155,29 @@ public:
 
         horizontalLayout->addWidget(pushButton_2);
 
+        pbMod = new QPushButton(HWarehouse);
+        pbMod->setObjectName(QStringLiteral("pbMod"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Monitoring64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbMod->setIcon(icon2);
+        pbMod->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pbMod);
+
         pushButton_5 = new QPushButton(HWarehouse);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon3);
         pushButton_5->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_5);
 
         pushButton_4 = new QPushButton(HWarehouse);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon4);
         pushButton_4->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_4);
@@ -189,6 +199,7 @@ public:
         rbNoFilter->setText(QApplication::translate("HWarehouse", "Non filtrare", 0));
         rbProdFilter->setText(QApplication::translate("HWarehouse", "Filtra per prodotto", 0));
         pushButton_2->setText(QApplication::translate("HWarehouse", "Nuova operazione", 0));
+        pbMod->setText(QApplication::translate("HWarehouse", "Modifica operazione selezionata", 0));
         pushButton_5->setText(QApplication::translate("HWarehouse", "Scarico Packages", 0));
         pushButton_4->setText(QApplication::translate("HWarehouse", "Chiudi", 0));
     } // retranslateUi

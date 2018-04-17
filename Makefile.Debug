@@ -6577,6 +6577,13 @@ debug/moc_hwarehousedetails.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWid
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRelationalTableModel \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QDataWidgetMapper \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qdatawidgetmapper.h \
 		hwarehousedetails.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hwarehousedetails.h -o debug/moc_hwarehousedetails.cpp
 
@@ -11854,6 +11861,8 @@ debug/hwarehouse.o: hwarehouse.cpp hwarehouse.h \
 		hnuovaoperazione.h \
 		hreadonlymodelnew.h \
 		hwarehousedetails.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QDataWidgetMapper \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qdatawidgetmapper.h \
 		hpackagesunload.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDebug
@@ -17068,6 +17077,13 @@ debug/hwarehousedetails.o: hwarehousedetails.cpp hwarehousedetails.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlDatabase \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRelationalTableModel \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QDataWidgetMapper \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qdatawidgetmapper.h \
 		ui_hwarehousedetails.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -17083,20 +17099,8 @@ debug/hwarehousedetails.o: hwarehousedetails.cpp hwarehousedetails.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QFormLayout \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qformlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QLayout \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QComboBox \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
@@ -17108,6 +17112,20 @@ debug/hwarehousedetails.o: hwarehousedetails.cpp hwarehousedetails.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QDateTimeEdit \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qdatetimeedit.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QLineEdit \
@@ -17116,17 +17134,36 @@ debug/hwarehousedetails.o: hwarehousedetails.cpp hwarehousedetails.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qpen.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QPlainTextEdit \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qplaintextedit.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qtextedit.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextdocument.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qabstracttextdocumentlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qglyphrun.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qrawfont.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qfontdatabase.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QSpacerItem \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QSplitter \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qsplitter.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQuery \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRelationalDelegate \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaldelegate.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qitemdelegate.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlistview.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
-		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlError \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlerror.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/QDebug
+		../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRelation \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hwarehousedetails.o hwarehousedetails.cpp
 
 debug/hrecipesforclient.o: hrecipesforclient.cpp hrecipesforclient.h \
@@ -17397,10 +17434,70 @@ debug/hlotmovements.o: hlotmovements.cpp hlotmovements.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqldatabase.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsql.h \
 		ui_hlotmovements.h \
-		../../Qt/5.5/mingw492_32/include/QtSql/QSqlTableModel \
+		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qaction.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qicon.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qeventloop.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QLineEdit \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextcursor.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpen.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QSpacerItem \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QTableView \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qtableview.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRelationalTableModel \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquerymodel.h \
-		../../Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRelation \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRelationalDelegate \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaldelegate.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qitemdelegate.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlistview.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQuery \
+		../../Qt/5.5/mingw492_32/include/QtSql/qsqlquery.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hlotmovements.o hlotmovements.cpp
 
 debug/qrc_icons.o: debug/qrc_icons.cpp 
