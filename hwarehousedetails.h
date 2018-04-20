@@ -20,8 +20,8 @@ public:
     ~HWarehouseDetails();
 
 private slots:
-    void getUnitaDiMisura();
-    void getActions();
+
+    void getLotdefData();
     void on_pbUndo_clicked();
     void on_pbSave_clicked();
     void on_pbClose_clicked();

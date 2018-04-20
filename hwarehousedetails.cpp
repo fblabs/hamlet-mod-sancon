@@ -51,10 +51,13 @@ HWarehouseDetails::HWarehouseDetails(QSqlDatabase pdb, int id, QWidget *parent) 
     mapper->addMapping(ui->leQuantita,6);
     mapper->addMapping(ui->cbUM,7);
     mapper->addMapping(ui->ptNote,8);
+
+
     mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
 
     mapper->toLast();
     qDebug()<<mod->lastError().text();
+    getLotdefData();
 }
 
 HWarehouseDetails::~HWarehouseDetails()
@@ -62,25 +65,25 @@ HWarehouseDetails::~HWarehouseDetails()
     delete ui;
 }
 
-void HWarehouseDetails::getUnitaDiMisura()
+void HWarehouseDetails::getLotdefData()
 {
-   /* QSqlTableModel *umod=new QSqlTableModel(0,db);
-    umod->setTable("unita_di_misura");
-    umod->setSort(1,Qt::AscendingOrder);
-    umod->select();
-    ui->cbUM->setModel(umod);
-    ui->cbUM->setModelColumn(1);*/
+
+  QSqlQueryModel *qmdl=new QSqlQueryModel();
+  QSqlQuery q(db);
+  QString sql= "SELECT lot_fornitore,giacenza,EAN FROM lotdef,operazioni WHERE lotdef.ID=operazioni.IDlotto AND operazioni.ID=:idop";
+  q.prepare(sql);
+  q.bindValue(":idop",opid);
+  q.exec();
+  qmdl->setQuery(q);
+
+
+  ui->leLotFornitore->setText(qmdl->index(0,0).data(0).toString());
+  ui->leGiacenza->setText(QString::number(qmdl->index(0,1).data(0).toDouble())+ " "+ui->cbUM->currentText());
+  ui->leEAN->setText(qmdl->index(0,2).data(0).toString());
+
 }
 
-void HWarehouseDetails::getActions()
-{
-   /* QSqlTableModel *actmod=new QSqlTableModel(0,db);
-    actmod->setTable("azioni");
-    actmod->setSort(1,Qt::AscendingOrder);
-    actmod->select();
-    ui->cbAzione->setModel(actmod);
-    ui->cbAzione->setModelColumn(1);*/
-}
+
 
 
 void HWarehouseDetails::on_pbUndo_clicked()
@@ -100,6 +103,7 @@ void HWarehouseDetails::on_pbSave_clicked()
    if(saveOperation())
     {
      emit confirm();
+     getLotdefData();
     }else{
        QMessageBox::warning(this,QApplication::applicationName(),"Errore salvandolemodifiche",QMessageBox::Ok);
    }

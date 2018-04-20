@@ -12,6 +12,7 @@
 #include <QCompleter>
 #include <QMessageBox>
 #include <hlotti.h>
+#include <QCompleter>
 
 #include "hreadonlymodel.h"
 #include "hwarehousedetails.h"
@@ -28,12 +29,15 @@ HWarehouse::HWarehouse(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
     db=pdb;
     user=puser;
 
+    ui->lineEdit->setVisible(false);
+
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
+
 
 
      delegate = new QSqlRelationalDelegate();
 
-     lotFilter="";
-     prodfilter="";
 
      tmOperazioni=new hReadonlyModel(0,db);
      tmOperazioni->setTable("operazioni");
@@ -42,14 +46,7 @@ HWarehouse::HWarehouse(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
      tmOperazioni->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
      tmOperazioni->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
      tmOperazioni->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
- //    tmOperazioni->setRelation(9,QSqlRelation("lotdef","ID","giacenza"));
-     tmOperazioni->setSort(2,Qt::DescendingOrder);
-     tmOperazioni->setEditStrategy(QSqlTableModel::OnManualSubmit);
-
-
-
-     ui->tableView->setModel(tmOperazioni);
-     ui->tableView->setItemDelegate(delegate);
+     //tmOperazioni->setSort(2,Qt::DescendingOrder);
 
      tmOperazioni->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
      tmOperazioni->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
@@ -60,42 +57,34 @@ HWarehouse::HWarehouse(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
      tmOperazioni->setHeaderData(6,Qt::Horizontal,QObject::tr("Quantità"));
      tmOperazioni->setHeaderData(7,Qt::Horizontal,QObject::tr("Unità di misura"));
      tmOperazioni->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
+     tmOperazioni->select();
 
-     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-     //ui->tableView->setColumnHidden(0,1);
-
-     tmProdotti=new QSqlTableModel(0,db);
-     tmProdotti->setTable("prodotti");
-     tmProdotti->setSort(1,Qt::AscendingOrder);
-     tmProdotti->select();
-
-
-     ui->cbFilter->setModel(tmProdotti);
-     ui->cbFilter->setModelColumn(1);
-
+     qDebug()<<"INIT "<<tmOperazioni->query().lastQuery()<<tmOperazioni->query().lastError().text();
      ui->deDateTo->setDate(QDate::currentDate());
      ui->deDateFrom->setDate(QDate::currentDate().addMonths(-1));
 
+     ui->tableView->setModel(tmOperazioni);
+     ui->tableView->setItemDelegate(delegate);
 
-     //datefilter="operazioni.data between CAST('"+ui->deDateFrom->date().toString("yyyy-MM-dd") + "' AS DATE) and CAST('"+ui->deDateTo->date().toString("yyyy-MM-dd")+"' AS DATE)";
-
-     //filter = datefilter;
-     setOperazioniFilter(0);
-
-     tmOperazioni->select();
-     tmOperazioni->setFilter(datefilter);
-     tmOperazioni->setSort(2,Qt::DescendingOrder);
+   //  tmOperazioni->setSort(2,Qt::DescendingOrder);
      ui->tableView->setCurrentIndex(tmOperazioni->index(0,0));
 
-     comp=new QCompleter();
-     comp->setModel(tmProdotti);
-     comp->setCompletionMode(QCompleter::PopupCompletion);
-     comp->setCompletionColumn(1);
-     comp->setCaseSensitivity(Qt::CaseInsensitive);
-     ui->cbFilter->setCompleter(comp);
+     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-     ui->cbFilter->setVisible(false);
+    comp=new QCompleter();
+    comp->setCaseSensitivity(Qt::CaseInsensitive);
+    comp->setModel(tmOperazioni);
+    comp->setCompletionColumn(1);
+    comp->setCompletionMode(QCompleter::PopupCompletion);
 
+    comp2=new QCompleter();
+    comp2->setCaseSensitivity(Qt::CaseInsensitive);
+    comp2->setModel(tmOperazioni);
+    comp2->setCompletionColumn(4);
+    comp2->setCompletionMode(QCompleter::InlineCompletion);
+
+
+    nfilter=0;
      QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
 
 }
@@ -111,125 +100,54 @@ void HWarehouse::on_Confirmed()
 
 
     tmOperazioni->select();
-    tmOperazioni->setFilter(datefilter);
-    tmOperazioni->setSort(2,Qt::DescendingOrder);
+    setOperazioniFilter(nfilter);
+
 
 }
 
-
-void HWarehouse::updateDataSlt()
-{
-   // db=QSqlDatabase::database(conn);
-    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-
-    prodfilter="";
-
-
-
-  //  tmOperazioni=new hReadonlyModel(0,db);
-    tmOperazioni->setTable("operazioni");
-    tmOperazioni->setRelation(1,QSqlRelation("lotdef","ID","lot"));
-    tmOperazioni->setRelation(3,QSqlRelation("utenti","ID","nome"));
-    tmOperazioni->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
-    tmOperazioni->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
-    tmOperazioni->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
-    tmOperazioni->setSort(2,Qt::DescendingOrder);
-    tmOperazioni->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    tmProdotti->select();
-
-
-    QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-}
-
-
-
-
-void HWarehouse::on_rbNoFilter_toggled(bool checked)
-{
-    if (checked)
-    {
-
-       filter=datefilter;
-
-
-       updateFilter();
-
-    }
-}
-
-
-
-
-
-void HWarehouse::on_rbProdFilter_toggled(bool checked)
-{
-  if (checked)
-  {
-    updateFilter();
-  }
-
-}
 
 
 void HWarehouse::setOperazioniFilter(int tipo)
 {
-   QApplication::setOverrideCursor(Qt::WaitCursor);
-   QString param;
-   datefilter="operazioni.data between CAST('"+ui->deDateFrom->date().toString("yyyy-MM-dd") + "' AS DATE) and CAST('"+ui->deDateTo->date().addDays(1).toString("yyyy-MM-dd")+"' AS DATE)";
 
-  qDebug()<<datefilter;
-    switch(tipo)
-    {
-    case 0:
-        filter=datefilter;
-        break;
-    case 1:
-        param=ui->cbFilter->model()->index(ui->cbFilter->currentIndex(),0).data(0).toString();
-        filter= "operazioni.lot='" + param+"' and "+datefilter;
-        break;
+  datefilter="operazioni.data between CAST('"+ui->deDateFrom->date().toString("yyyy-MM-dd") + "' AS DATE) and CAST('"+ui->deDateTo->date().toString("yyyy-MM-dd")+"' AS DATE)";
+
+
+  switch(tipo)
+   {
+
+  case 0:
+      filter=datefilter;
+      break;
+
+  case 1:
+
+      ui->lineEdit->setCompleter(comp);
+      filter="relTblAl_1.lot LIKE '%" + ui->lineEdit->text() + "%' AND " + datefilter;
+      break;
     case 2:
-        param=ui->cbFilter->model()->index(ui->cbFilter->currentIndex(),0).data(0).toString();
-        filter="operazioni.IDprodotto=" + param + " and "+datefilter;
-    }
+      ui->lineEdit->setCompleter(comp2);
+      filter="relTblAl_4.descrizione LIKE '%" + ui->lineEdit->text() + "%' AND " + datefilter;
+      break;
 
-
-    tmOperazioni->setFilter(filter);
-    QApplication::setOverrideCursor(Qt::ArrowCursor);
-
-
-
-}
-
-
-void HWarehouse::updateFilter()
-{
-    int tipofiltro=0;
-
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-
-   if(ui->rbNoFilter->isChecked())
-   {
-       tipofiltro=0;
-   }
-   else if (ui->rbProdFilter->isChecked())
-   {
-       tipofiltro=2;
    }
 
-   ui->cbFilter->setVisible(!ui->rbNoFilter->isChecked());
+   tmOperazioni->setFilter(filter);
+   tmOperazioni->setSort(2,Qt::DescendingOrder);
 
-   QApplication::setOverrideCursor(Qt::ArrowCursor);
 
-   setOperazioniFilter(tipofiltro);
+   qDebug()<<tmOperazioni->query().lastError().text();
+
+
+
 
 }
 
 
 
-void HWarehouse::on_pushButton_clicked()
-{
-   updateFilter();
-}
+
+
+
 
 void HWarehouse::on_pushButton_4_clicked()
 {
@@ -250,7 +168,7 @@ void HWarehouse::update()
 {
 
     tmOperazioni->select();
-    //// qDebug()<<"apdeit";
+
 }
 
 
@@ -264,7 +182,7 @@ void HWarehouse::on_pushButton_5_clicked()
 
 void HWarehouse::on_tableView_doubleClicked(const QModelIndex &index)
 {
-     int id=tmOperazioni->index(index.row(),0).data(0).toInt();
+    int id=tmOperazioni->index(index.row(),0).data(0).toInt();
     qDebug()<<id;
 
     HWarehouseDetails *f=new HWarehouseDetails(db,id);
@@ -275,20 +193,20 @@ void HWarehouse::on_tableView_doubleClicked(const QModelIndex &index)
 void HWarehouse::on_deDateFrom_dateChanged(const QDate &date)
 {
     Q_UNUSED(date);
-    updateFilter();
+    setOperazioniFilter(nfilter);
+
+
+
 }
 
 void HWarehouse::on_deDateTo_dateChanged(const QDate &date)
 {
     Q_UNUSED(date);
-    updateFilter();
+    setOperazioniFilter(nfilter);
+
 }
 
-void HWarehouse::on_cbFilter_currentIndexChanged(int index)
-{
-    Q_UNUSED(index);
-    updateFilter();
-}
+
 
 
 
@@ -299,3 +217,53 @@ void HWarehouse::on_pbMod_clicked()
    connect(f,SIGNAL(confirm()),this,SLOT(on_Confirmed()));
    f->show();
 }
+
+
+
+
+
+void HWarehouse::on_lineEdit_returnPressed()
+{
+   setOperazioniFilter(nfilter);
+}
+
+void HWarehouse::on_lineEdit_textChanged(const QString &arg1)
+{
+    if (arg1.length()==0)
+    {
+
+        setOperazioniFilter(nfilter);
+    }
+}
+
+void HWarehouse::on_radioButton_toggled(bool checked)
+{
+    if(checked){
+    nfilter=1;
+    setOperazioniFilter(nfilter);
+    ui->lineEdit->setText(QString());
+    ui->lineEdit->setVisible(true);
+    }
+}
+
+void HWarehouse::on_radioButtonProd_toggled(bool checked)
+{
+    if(checked){
+    nfilter=2;
+    setOperazioniFilter(nfilter);
+    ui->lineEdit->setText(QString());
+    ui->lineEdit->setVisible(true);
+    }
+}
+
+void HWarehouse::on_radioButton_2_toggled(bool checked)
+{
+    if(checked){
+    nfilter=0;
+    setOperazioniFilter(nfilter);
+    ui->lineEdit->setText(QString());
+    ui->lineEdit->setVisible(false);
+    }
+}
+
+

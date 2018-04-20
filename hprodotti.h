@@ -13,6 +13,7 @@
 #include <QGraphicsScene>
 #include <QImage>
 #include <huser.h>
+#include <QSqlDatabase>
 
 
 namespace Ui {
@@ -24,7 +25,7 @@ class HProdotti : public QWidget
     Q_OBJECT
 
 public:
-    explicit HProdotti(QWidget *parent = 0);
+    explicit HProdotti(HUser *puser=0, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = 0);
     ~HProdotti();
 
 
@@ -33,7 +34,7 @@ public slots:
 
   //  void caricaRicetta();
     void setMain(MainWindow *w);
-    void setConnection(QString conn, HUser *puser);
+
 
 private:
     Ui::HProdotti *ui;
@@ -66,12 +67,7 @@ private:
 private slots:
     void productSearch();
     void showType();
-    void setForm();
-
-
     void setImage();
-
-
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();

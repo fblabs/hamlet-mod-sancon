@@ -11820,11 +11820,9 @@ release/hwarehouse.o: hwarehouse.cpp hwarehouse.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QComboBox \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QDateEdit \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qdatetimeedit.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QFrame \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QGridLayout \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
@@ -11835,12 +11833,18 @@ release/hwarehouse.o: hwarehouse.cpp hwarehouse.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QLineEdit \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextcursor.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpen.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/QRadioButton \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qradiobutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QSpacerItem \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QSplitter \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qsplitter.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QTableView \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtableview.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
@@ -17163,7 +17167,8 @@ release/hwarehousedetails.o: hwarehousedetails.cpp hwarehousedetails.h \
 		../../Qt/5.5/mingw492_32/include/QtSql/QSqlRelation \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h \
+		../../Qt/5.5/mingw492_32/include/QtSql/QSqlQueryModel
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hwarehousedetails.o hwarehousedetails.cpp
 
 release/hrecipesforclient.o: hrecipesforclient.cpp hrecipesforclient.h \

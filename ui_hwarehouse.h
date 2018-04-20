@@ -13,16 +13,16 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -40,12 +40,15 @@ public:
     QDateEdit *deDateTo;
     QLabel *label_2;
     QTableView *tableView;
-    QGridLayout *gridLayout_2;
-    QRadioButton *rbNoFilter;
-    QRadioButton *rbProdFilter;
-    QComboBox *cbFilter;
+    QSplitter *splitter;
+    QWidget *layoutWidget;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_4;
+    QRadioButton *radioButton_2;
+    QRadioButton *radioButton;
+    QRadioButton *radioButtonProd;
+    QLineEdit *lineEdit;
     QSpacerItem *horizontalSpacer_2;
-    QFrame *line;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_2;
     QPushButton *pbMod;
@@ -57,7 +60,7 @@ public:
         if (HWarehouse->objectName().isEmpty())
             HWarehouse->setObjectName(QStringLiteral("HWarehouse"));
         HWarehouse->setWindowModality(Qt::NonModal);
-        HWarehouse->resize(964, 741);
+        HWarehouse->resize(1282, 741);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/modlots.png"), QSize(), QIcon::Normal, QIcon::Off);
         HWarehouse->setWindowIcon(icon);
@@ -107,42 +110,49 @@ public:
 
         verticalLayout->addWidget(tableView);
 
-        gridLayout_2 = new QGridLayout();
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        rbNoFilter = new QRadioButton(HWarehouse);
-        rbNoFilter->setObjectName(QStringLiteral("rbNoFilter"));
-        rbNoFilter->setMaximumSize(QSize(120, 16777215));
-        rbNoFilter->setChecked(true);
+        splitter = new QSplitter(HWarehouse);
+        splitter->setObjectName(QStringLiteral("splitter"));
+        splitter->setOrientation(Qt::Horizontal);
+        layoutWidget = new QWidget(splitter);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        label_4 = new QLabel(layoutWidget);
+        label_4->setObjectName(QStringLiteral("label_4"));
 
-        gridLayout_2->addWidget(rbNoFilter, 0, 0, 1, 1);
+        horizontalLayout_3->addWidget(label_4);
 
-        rbProdFilter = new QRadioButton(HWarehouse);
-        rbProdFilter->setObjectName(QStringLiteral("rbProdFilter"));
-        rbProdFilter->setMaximumSize(QSize(120, 16777215));
+        radioButton_2 = new QRadioButton(layoutWidget);
+        radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
+        radioButton_2->setChecked(true);
 
-        gridLayout_2->addWidget(rbProdFilter, 0, 1, 1, 1);
+        horizontalLayout_3->addWidget(radioButton_2);
 
-        cbFilter = new QComboBox(HWarehouse);
-        cbFilter->setObjectName(QStringLiteral("cbFilter"));
-        cbFilter->setMinimumSize(QSize(400, 0));
-        cbFilter->setEditable(true);
-        cbFilter->setInsertPolicy(QComboBox::NoInsert);
+        radioButton = new QRadioButton(layoutWidget);
+        radioButton->setObjectName(QStringLiteral("radioButton"));
 
-        gridLayout_2->addWidget(cbFilter, 0, 3, 1, 1);
+        horizontalLayout_3->addWidget(radioButton);
+
+        radioButtonProd = new QRadioButton(layoutWidget);
+        radioButtonProd->setObjectName(QStringLiteral("radioButtonProd"));
+
+        horizontalLayout_3->addWidget(radioButtonProd);
+
+        lineEdit = new QLineEdit(layoutWidget);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setMinimumSize(QSize(120, 0));
+        lineEdit->setClearButtonEnabled(true);
+
+        horizontalLayout_3->addWidget(lineEdit);
 
         horizontalSpacer_2 = new QSpacerItem(688, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_2->addItem(horizontalSpacer_2, 0, 4, 1, 1);
+        horizontalLayout_3->addItem(horizontalSpacer_2);
 
+        splitter->addWidget(layoutWidget);
 
-        verticalLayout->addLayout(gridLayout_2);
-
-        line = new QFrame(HWarehouse);
-        line->setObjectName(QStringLiteral("line"));
-        line->setFrameShape(QFrame::HLine);
-        line->setFrameShadow(QFrame::Sunken);
-
-        verticalLayout->addWidget(line);
+        verticalLayout->addWidget(splitter);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -196,8 +206,10 @@ public:
         HWarehouse->setWindowTitle(QApplication::translate("HWarehouse", "Movimenti", 0));
         label->setText(QApplication::translate("HWarehouse", "Dal:", 0));
         label_2->setText(QApplication::translate("HWarehouse", "Al:", 0));
-        rbNoFilter->setText(QApplication::translate("HWarehouse", "Non filtrare", 0));
-        rbProdFilter->setText(QApplication::translate("HWarehouse", "Filtra per prodotto", 0));
+        label_4->setText(QApplication::translate("HWarehouse", "Cerca:", 0));
+        radioButton_2->setText(QApplication::translate("HWarehouse", "Tutto", 0));
+        radioButton->setText(QApplication::translate("HWarehouse", "Lotto", 0));
+        radioButtonProd->setText(QApplication::translate("HWarehouse", "Prodotto", 0));
         pushButton_2->setText(QApplication::translate("HWarehouse", "Nuova operazione", 0));
         pbMod->setText(QApplication::translate("HWarehouse", "Modifica operazione selezionata", 0));
         pushButton_5->setText(QApplication::translate("HWarehouse", "Scarico Packages", 0));

@@ -45,17 +45,30 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_4;
     QLineEdit *leOperatore;
-    QSplitter *splitter_3;
-    QWidget *widget;
+    QSplitter *splitter_4;
+    QWidget *layoutWidget3;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
     QLineEdit *leProdotto;
-    QWidget *widget1;
+    QWidget *widget;
     QHBoxLayout *horizontalLayout_7;
     QLabel *label_6;
     QLineEdit *leLotto;
+    QWidget *widget1;
+    QHBoxLayout *horizontalLayout_8;
+    QLabel *label_10;
+    QLineEdit *leGiacenza;
+    QSplitter *splitter_3;
+    QWidget *widget2;
+    QHBoxLayout *horizontalLayout_9;
+    QLabel *label_9;
+    QLineEdit *leLotFornitore;
+    QWidget *widget3;
+    QHBoxLayout *horizontalLayout_10;
+    QLabel *label_8;
+    QLineEdit *leEAN;
     QSplitter *splitter_2;
-    QWidget *layoutWidget3;
+    QWidget *layoutWidget4;
     QHBoxLayout *horizontalLayout_6;
     QLabel *label_5;
     QComboBox *cbAzione;
@@ -65,6 +78,7 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *label_7;
     QPlainTextEdit *ptNote;
+    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_5;
     QPushButton *pbSave;
     QPushButton *pbUndo;
@@ -142,71 +156,130 @@ public:
 
         verticalLayout_2->addWidget(splitter);
 
-        splitter_3 = new QSplitter(HWarehouseDetails);
-        splitter_3->setObjectName(QStringLiteral("splitter_3"));
-        splitter_3->setOrientation(Qt::Horizontal);
-        widget = new QWidget(splitter_3);
-        widget->setObjectName(QStringLiteral("widget"));
-        horizontalLayout_2 = new QHBoxLayout(widget);
+        splitter_4 = new QSplitter(HWarehouseDetails);
+        splitter_4->setObjectName(QStringLiteral("splitter_4"));
+        splitter_4->setOrientation(Qt::Horizontal);
+        layoutWidget3 = new QWidget(splitter_4);
+        layoutWidget3->setObjectName(QStringLiteral("layoutWidget3"));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget3);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget3);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         horizontalLayout_2->addWidget(label_2);
 
-        leProdotto = new QLineEdit(widget);
+        leProdotto = new QLineEdit(layoutWidget3);
         leProdotto->setObjectName(QStringLiteral("leProdotto"));
         leProdotto->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
 
         horizontalLayout_2->addWidget(leProdotto);
 
-        splitter_3->addWidget(widget);
-        widget1 = new QWidget(splitter_3);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        horizontalLayout_7 = new QHBoxLayout(widget1);
+        splitter_4->addWidget(layoutWidget3);
+        widget = new QWidget(splitter_4);
+        widget->setObjectName(QStringLiteral("widget"));
+        horizontalLayout_7 = new QHBoxLayout(widget);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
         horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
-        label_6 = new QLabel(widget1);
+        label_6 = new QLabel(widget);
         label_6->setObjectName(QStringLiteral("label_6"));
 
         horizontalLayout_7->addWidget(label_6);
 
-        leLotto = new QLineEdit(widget1);
+        leLotto = new QLineEdit(widget);
         leLotto->setObjectName(QStringLiteral("leLotto"));
         leLotto->setAcceptDrops(false);
         leLotto->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
 
         horizontalLayout_7->addWidget(leLotto);
 
-        splitter_3->addWidget(widget1);
+        splitter_4->addWidget(widget);
+        widget1 = new QWidget(splitter_4);
+        widget1->setObjectName(QStringLiteral("widget1"));
+        horizontalLayout_8 = new QHBoxLayout(widget1);
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
+        label_10 = new QLabel(widget1);
+        label_10->setObjectName(QStringLiteral("label_10"));
+
+        horizontalLayout_8->addWidget(label_10);
+
+        leGiacenza = new QLineEdit(widget1);
+        leGiacenza->setObjectName(QStringLiteral("leGiacenza"));
+        leGiacenza->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leGiacenza->setReadOnly(true);
+
+        horizontalLayout_8->addWidget(leGiacenza);
+
+        splitter_4->addWidget(widget1);
+
+        verticalLayout_2->addWidget(splitter_4);
+
+        splitter_3 = new QSplitter(HWarehouseDetails);
+        splitter_3->setObjectName(QStringLiteral("splitter_3"));
+        splitter_3->setOrientation(Qt::Horizontal);
+        widget2 = new QWidget(splitter_3);
+        widget2->setObjectName(QStringLiteral("widget2"));
+        horizontalLayout_9 = new QHBoxLayout(widget2);
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
+        label_9 = new QLabel(widget2);
+        label_9->setObjectName(QStringLiteral("label_9"));
+
+        horizontalLayout_9->addWidget(label_9);
+
+        leLotFornitore = new QLineEdit(widget2);
+        leLotFornitore->setObjectName(QStringLiteral("leLotFornitore"));
+        leLotFornitore->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+        leLotFornitore->setReadOnly(true);
+
+        horizontalLayout_9->addWidget(leLotFornitore);
+
+        splitter_3->addWidget(widget2);
+        widget3 = new QWidget(splitter_3);
+        widget3->setObjectName(QStringLiteral("widget3"));
+        horizontalLayout_10 = new QHBoxLayout(widget3);
+        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
+        horizontalLayout_10->setContentsMargins(0, 0, 0, 0);
+        label_8 = new QLabel(widget3);
+        label_8->setObjectName(QStringLiteral("label_8"));
+
+        horizontalLayout_10->addWidget(label_8);
+
+        leEAN = new QLineEdit(widget3);
+        leEAN->setObjectName(QStringLiteral("leEAN"));
+        leEAN->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 127);"));
+
+        horizontalLayout_10->addWidget(leEAN);
+
+        splitter_3->addWidget(widget3);
 
         verticalLayout_2->addWidget(splitter_3);
 
         splitter_2 = new QSplitter(HWarehouseDetails);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
         splitter_2->setOrientation(Qt::Horizontal);
-        layoutWidget3 = new QWidget(splitter_2);
-        layoutWidget3->setObjectName(QStringLiteral("layoutWidget3"));
-        horizontalLayout_6 = new QHBoxLayout(layoutWidget3);
+        layoutWidget4 = new QWidget(splitter_2);
+        layoutWidget4->setObjectName(QStringLiteral("layoutWidget4"));
+        horizontalLayout_6 = new QHBoxLayout(layoutWidget4);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
-        label_5 = new QLabel(layoutWidget3);
+        label_5 = new QLabel(layoutWidget4);
         label_5->setObjectName(QStringLiteral("label_5"));
 
         horizontalLayout_6->addWidget(label_5);
 
-        cbAzione = new QComboBox(layoutWidget3);
+        cbAzione = new QComboBox(layoutWidget4);
         cbAzione->setObjectName(QStringLiteral("cbAzione"));
 
         horizontalLayout_6->addWidget(cbAzione);
 
-        leQuantita = new QLineEdit(layoutWidget3);
+        leQuantita = new QLineEdit(layoutWidget4);
         leQuantita->setObjectName(QStringLiteral("leQuantita"));
 
         horizontalLayout_6->addWidget(leQuantita);
 
-        cbUM = new QComboBox(layoutWidget3);
+        cbUM = new QComboBox(layoutWidget4);
         cbUM->setObjectName(QStringLiteral("cbUM"));
 
         horizontalLayout_6->addWidget(cbUM);
@@ -215,7 +288,7 @@ public:
 
         horizontalLayout_6->addItem(horizontalSpacer);
 
-        splitter_2->addWidget(layoutWidget3);
+        splitter_2->addWidget(layoutWidget4);
 
         verticalLayout_2->addWidget(splitter_2);
 
@@ -228,11 +301,16 @@ public:
 
         ptNote = new QPlainTextEdit(HWarehouseDetails);
         ptNote->setObjectName(QStringLiteral("ptNote"));
+        ptNote->setMaximumSize(QSize(16777215, 100));
 
         verticalLayout->addWidget(ptNote);
 
 
         verticalLayout_2->addLayout(verticalLayout);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_2->addItem(verticalSpacer);
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
@@ -281,6 +359,9 @@ public:
         label_4->setText(QApplication::translate("HWarehouseDetails", "Operatore:", 0));
         label_2->setText(QApplication::translate("HWarehouseDetails", "Prodotto:", 0));
         label_6->setText(QApplication::translate("HWarehouseDetails", "Lotto:", 0));
+        label_10->setText(QApplication::translate("HWarehouseDetails", "Giacenza:", 0));
+        label_9->setText(QApplication::translate("HWarehouseDetails", "Lotto Fornitore", 0));
+        label_8->setText(QApplication::translate("HWarehouseDetails", "Lotto Esterno", 0));
         label_5->setText(QApplication::translate("HWarehouseDetails", "Azione:", 0));
         label_7->setText(QApplication::translate("HWarehouseDetails", "Note:", 0));
         pbSave->setText(QApplication::translate("HWarehouseDetails", "Salva", 0));

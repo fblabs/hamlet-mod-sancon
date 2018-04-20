@@ -27,44 +27,32 @@
 #include <QBitArray>
 #include <QSettings>
 #include <QMessageBox>
+#include <QSqlDatabase>
 #include "hnewproduct.h"
+#include "huser.h"
 
-HProdotti::HProdotti(QWidget *parent) :
+HProdotti::HProdotti(HUser *puser,QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HProdotti)
 {
+   ui->setupUi(this);
+
+   user=puser;
+   db=pdb;
 
 
+   this->showMaximized();
+   fillTipi();
+   setupForm();
 
 
 }
 
-void HProdotti::setForm()
-{
-   // QSettings settings("DB");
-    ui->setupUi(this);
-    db =QSqlDatabase::database(sConn);
-    this->showMaximized();
-    fillTipi();
-    setupForm();
-
-}
 
 
-/*void HProdotti::setConnection(QString conn)
-{
 
-    sConn=conn;
-    setForm();
-}*/
 
-void HProdotti::setConnection(QString conn,HUser *puser)
-{
 
-    sConn=conn;
-    setForm();
-    user=puser;
-}
 
 
 
