@@ -98,9 +98,11 @@ void HWarehouse::on_Confirmed()
 {
     tmOperazioni->submitAll();
 
-
-    tmOperazioni->select();
     setOperazioniFilter(nfilter);
+    tmOperazioni->select();
+
+
+    qDebug()<<"on_confirmed "<<tmOperazioni->query().lastError().text();
 
 
 }
@@ -110,7 +112,7 @@ void HWarehouse::on_Confirmed()
 void HWarehouse::setOperazioniFilter(int tipo)
 {
 
-  datefilter="operazioni.data between CAST('"+ui->deDateFrom->date().toString("yyyy-MM-dd") + "' AS DATE) and CAST('"+ui->deDateTo->date().toString("yyyy-MM-dd")+"' AS DATE)";
+  datefilter="operazioni.data between CAST('"+ui->deDateFrom->date().toString("yyyy-MM-dd") + "' AS DATE) and CAST('"+ui->deDateTo->date().addDays(1).toString("yyyy-MM-dd")+"' AS DATE)";
 
 
   switch(tipo)

@@ -76,6 +76,8 @@ void HWarehouseDetails::getLotdefData()
   q.exec();
   qmdl->setQuery(q);
 
+  qDebug()<<"getLotdefdata"<<q.lastError().text();
+
 
   ui->leLotFornitore->setText(qmdl->index(0,0).data(0).toString());
   ui->leGiacenza->setText(QString::number(qmdl->index(0,1).data(0).toDouble())+ " "+ui->cbUM->currentText());
@@ -102,10 +104,12 @@ void HWarehouseDetails::on_pbSave_clicked()
 {
    if(saveOperation())
     {
-     emit confirm();
      getLotdefData();
+     emit confirm();
+     QMessageBox::information(this,QApplication::applicationName(),"Modifiche all'operazione salvate correttamente",QMessageBox::Ok);
+
     }else{
-       QMessageBox::warning(this,QApplication::applicationName(),"Errore salvandolemodifiche",QMessageBox::Ok);
+       QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando le modifiche",QMessageBox::Ok);
    }
 
 
@@ -121,7 +125,7 @@ bool HWarehouseDetails::saveOperation()
     t.exec();
     t.first();
 
-    qDebug()<<t.boundValue(0)<<t.lastError().text();
+
 
     int act=t.value(0).toInt();
 
@@ -133,20 +137,11 @@ bool HWarehouseDetails::saveOperation()
     t.exec();
     t.next();
 
-     qDebug()<<t.lastError().text();
 
     int umi=t.value(0).toInt();
 
-    qDebug()<<"action:"<<act<<"umi: "<<umi;
-
-
-
-
-
-
-
     QSqlQuery q(db);
-    QString sql="UPDATE operazioni SET azione=:azione,quantita=:quant,um=:um,note=:note WHERE ID=:id";
+    QString sql="UPDATE operazioni SET operazioni.azione=:azione,operazioni.quantita=:quant,operazioni.um=:um,operazioni.note=:note WHERE operazioni.ID=:id";
     q.prepare(sql);
 
     q.bindValue(":azione",act);
@@ -156,9 +151,23 @@ bool HWarehouseDetails::saveOperation()
     q.bindValue(":id",opid);
 
     bool b=q.exec();
-    qDebug()<<q.lastQuery()<<q.lastError().text();
+
+
+    if(!b){
+        return b;
+    }
+
+
+    sql="UPDATE lotdef SET lot_fornitore=:lof WHERE lotdef.ID=(SELECT operazioni.idLotto FROM operazioni where operazioni.ID=:id)";
+    q.prepare(sql);
+    q.bindValue(":lof",ui->leLotFornitore->text());
+    q.bindValue(":id",opid);
+
+    b=q.exec();
+
 
     return b;
+
 }
 
 void HWarehouseDetails::on_pbClose_clicked()
@@ -169,3 +178,6 @@ void HWarehouseDetails::on_pbClose_clicked()
 
     }
 }
+
+
+
