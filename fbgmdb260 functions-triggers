@@ -1,0 +1,58 @@
+=====================================================CREATEID==================
+
+CREATE DEFINER=`root`@`%` FUNCTION `createID`(idprod TEXT) RETURNS varchar(25) CHARSET latin1
+BEGIN
+DECLARE num TEXT;
+DECLARE datepart TEXT;
+DECLARE lot TEXT;
+declare mysqldate TEXT;
+select DATE_FORMAT(NOW(),'%Y-%m-%d')into mysqldate;
+select DATE_FORMAT(NOW(),'%d%m%Y') into datepart;
+select 1+count(lotdef.lot) from lotdef where year(data)=DATE_FORMAT(NOW(),'%Y') and month(data)=DATE_FORMAT(NOW(),'%m') and day(data)=DATE_FORMAT(NOW(),'%d') and prodotto=idprod into num;
+select concat(num,"-",IDprod,"-",datepart) into lot;
+RETURN lot;
+END
+
+==============================================================================
+
+=====GETGIACENZA=========================================================
+
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `getgiacenza`(id integer(10) unsigned) RETURNS decimal(10,4)
+BEGIN
+declare r decimal(10,4);
+set @c =(select sum(quantita)from operazioni where IDlotto=id and azione=1);
+set @s =(select sum(quantita)from operazioni where IDlotto=id and azione=2);
+if @s is null then
+set @s=0;
+end if;
+
+set r=@c-@s;
+
+RETURN r;
+END
+
+======TRIGGERS========================================================
+
+USE `fbgmdb260`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` TRIGGER `operazioni_AINS` AFTER INSERT ON `operazioni` FOR EACH ROW
+begin
+update lotdef set giacenza=getgiacenza(new.IDLotto) where ID=new.IDlotto;
+end
+
+===============================================================================
+
+USE `fbgmdb260`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` TRIGGER `operazioni_AUPD` AFTER UPDATE ON `operazioni` FOR EACH ROW
+begin
+update lotdef set giacenza=getgiacenza(new.IDLotto) where ID=new.IDlotto;
+end
+
+==============================================================================
+
+
+
+
