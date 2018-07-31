@@ -47,6 +47,8 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
 
     ui->cbClienti->setModel(tmClienti);
     ui->cbClienti->setModelColumn(1);
+    ui->cbClienti->setCurrentIndex(0);
+    getSubclients();
 
     tmProdotti->setTable("prodotti");
     tmProdotti->setFilter("tipo=2");
@@ -155,6 +157,8 @@ void HPackages::init(QString conn,QString user)
 
     ui->cbClienti->setModel(tmClienti);
     ui->cbClienti->setModelColumn(1);
+    ui->cbClienti->setCurrentIndex(0);
+    getSubclients();
 
     tmProdotti->setTable("prodotti");
     tmProdotti->setFilter("tipo=2");
@@ -185,6 +189,7 @@ void HPackages::init(QString conn,QString user)
     ui->cbClienti->setCompleter(compClienti);
     ui->cbProdotti->setCompleter(compProdotti);
     ui->dateEdit->setDate(QDate::currentDate().addYears(2));
+
     showSubclients=ui->checkBox->isChecked();
     filterBySubclients=ui->checkBox_2->isChecked();
 
@@ -328,15 +333,15 @@ void HPackages::getSubclients()
    q.exec();
 
 
-   //se cliente ha subclienti
-   subclients->setQuery(q); //assegno il resultset al modello
+
+   subclients->setQuery(q);
    ui->lvSubclienti->setModel(subclients);
    ui->lvSubclienti->setModelColumn(1);
 
    connect(ui->lvSubclienti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(filterProducts()));
 
 
-        filterProducts();
+       // filterProducts();
 
        //disconnect(ui->lvSubclienti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(filterProducts()));
 
