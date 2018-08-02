@@ -60,7 +60,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     ui->setupUi(this);
     ui->pushButton->setVisible(false);
-    ui->pushButton_2->setVisible(false);
+
     ui->pbVerifyLabels->setVisible(false);
 
     //enableDB();
@@ -676,10 +676,4 @@ void MainWindow::on_pbC4R_clicked()
 }
 
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    QApplication::setOverrideCursor(QCursor(Qt::BusyCursor));
-    HWarehouse *f=new HWarehouse(user,db);
-    f->showMaximized();
 
-}

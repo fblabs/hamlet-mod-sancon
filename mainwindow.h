@@ -80,10 +80,6 @@ private slots:
 
     void on_pbC4R_clicked();
 
-
-
-    void on_pushButton_2_clicked();
-
 protected:
     void keyPressEvent(QKeyEvent *ke);
 

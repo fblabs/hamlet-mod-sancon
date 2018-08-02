@@ -1461,11 +1461,6 @@ void HProduction::on_pushButton_8_clicked()
     printRecipe();
 }
 
-void HProduction::on_pushButton_9_clicked()
-{
-    //modifyLot=true;
-    //getLotToModify(ui->leLotToEdit->text());
-}
 
 void HProduction::updateComposition()
 {

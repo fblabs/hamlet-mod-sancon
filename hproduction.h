@@ -87,7 +87,6 @@ private slots:
     void on_pushButton_7_toggled(bool checked);
     void on_pbAddLottoFuoriRicetta_clicked();
     void on_pushButton_8_clicked();
-    void on_pushButton_9_clicked();
     void on_pushButton_10_clicked();
     void on_checkBox_toggled(bool checked);
     void on_pbAnnulla_clicked();
