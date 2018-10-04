@@ -47,7 +47,7 @@ public:
             HLogin2->setObjectName(QStringLiteral("HLogin2"));
         HLogin2->resize(342, 134);
         QIcon icon;
-        icon.addFile(QStringLiteral(":/Resources/User-Male.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/Resources/fblabs.png"), QSize(), QIcon::Normal, QIcon::Off);
         HLogin2->setWindowIcon(icon);
         HLogin2->setModal(true);
         verticalLayout_2 = new QVBoxLayout(HLogin2);

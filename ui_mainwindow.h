@@ -143,7 +143,7 @@ public:
         MainWindow->setPalette(palette);
         MainWindow->setCursor(QCursor(Qt::ArrowCursor));
         QIcon icon;
-        icon.addFile(QStringLiteral(":/Resources/hamlet_graphics.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/Resources/fblabs.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setWindowOpacity(1);
         MainWindow->setAutoFillBackground(false);
@@ -567,7 +567,7 @@ public:
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.5</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: </span><span style=\" font-size:16pt; font-weight:600; color:#060606;\">2.5.7</span><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2018</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti (github)</span></a></p></body></html>", 0));
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.5</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: </span><span style=\" font-size:16pt; font-weight:600; color:#060606;\">2.5.8</span><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.5.1 - MinGW 4.9.2</span></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2018</span></p><p><a href=\"https://www.github.com/fblabs/hamlet-mod-sancon\"><span style=\" text-decoration: underline; color:#0000ff;\">Sorgenti (github)</span></a></p></body></html>", 0));
         pBNewOperation->setText(QApplication::translate("MainWindow", "Nuova Operazione \n"
 "(F6)", 0));
         pBNewOperation->setShortcut(QApplication::translate("MainWindow", "F6", 0));

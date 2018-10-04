@@ -127,5 +127,6 @@
         <file>Resources/Cash-register-icon.png</file>
         <file>Resources/hamlet_graphics.png</file>
         <file>hamlet.ico</file>
+        <file>Resources/fblabs.png</file>
     </qresource>
 </RCC>

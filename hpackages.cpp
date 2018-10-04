@@ -116,6 +116,9 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->cbProdotti->setCurrentIndex(0);
  //   ui->checkBox_2->setVisible(false);
     ui->tvLots->setEnabled(false);
+    filterProducts();
+    getEanList();
+
 }
 
 HPackages::~HPackages()
@@ -123,112 +126,6 @@ HPackages::~HPackages()
     delete ui;
 }
 
-void HPackages::init(QString conn,QString user)
-{
-    db=QSqlDatabase::database(conn);
-    sConn=conn;
-
-    basefilter="lotdef.attivo=2 and year(lotdef.data) > " +QString::number(QDate::currentDate().addYears(-3).year());
-   // // qDebug()<<basefilter;
-
-    ui->checkBox->setVisible(false);
-    tmClienti=new QSqlTableModel(0,db);
-    tmProdotti = new QSqlTableModel(0,db);
-    tmUnitaMisura = new QSqlTableModel(0,db);
-
-    tmClienti->setTable("anagrafica");
-    tmClienti->setFilter("cliente=1 or subcliente=1");
-    tmClienti->setSort(1,Qt::AscendingOrder);
-    tmClienti->select();
-
-    tmLots=new QSqlRelationalTableModel(0,db);
-    tmLots->setTable("lotdef");
-    tmLots->setFilter(basefilter);
-    tmLots->setSort(3,Qt::DescendingOrder);
-    tmLots->setRelation(2,QSqlRelation("prodotti","ID","descrizione"));
-    tmLots->setRelation(5,QSqlRelation("unita_di_misura","ID","descrizione"));
-    tmLots->select();
-
-  /*  clots=new QCompleter(tmLots);
-    clots->setCompletionColumn(1);
-    clots->setCaseSensitivity(Qt::CaseInsensitive);
-    clots->setCompletionMode(QCompleter::PopupCompletion);
-    ui->leComponente->setCompleter(clots);*/
-
-    ui->cbClienti->setModel(tmClienti);
-    ui->cbClienti->setModelColumn(1);
-    ui->cbClienti->setCurrentIndex(0);
-    getSubclients();
-
-    tmProdotti->setTable("prodotti");
-    tmProdotti->setFilter("tipo=2");
-    tmProdotti->setSort(1,Qt::AscendingOrder);
-    tmProdotti->select();
-
-    tmUnitaMisura->setTable("unita_di_misura");
-    tmUnitaMisura->setSort(1,Qt::AscendingOrder);
-    tmUnitaMisura->select();
-    ui->cbProdotti->setModel(tmProdotti);
-    ui->cbProdotti->setModelColumn(1);
-    ui->cbQua->setModel(tmUnitaMisura);
-    ui->cbQua->setModelColumn(1);
-    ui->cbQua->setCurrentIndex(1);
-
-    compClienti=new QCompleter();
-    compProdotti=new QCompleter();
-
-    compClienti->setModel(tmClienti);
-    compProdotti->setModel(tmProdotti);
-    compClienti->setCaseSensitivity(Qt::CaseInsensitive);
-    compProdotti->setCaseSensitivity(Qt::CaseInsensitive);
-    compClienti->setCompletionColumn(1);
-    compProdotti->setCompletionColumn(1);
-    compClienti->setCompletionMode(QCompleter::PopupCompletion);
-    compProdotti->setCompletionMode(QCompleter::PopupCompletion);
-
-    ui->cbClienti->setCompleter(compClienti);
-    ui->cbProdotti->setCompleter(compProdotti);
-    ui->dateEdit->setDate(QDate::currentDate().addYears(2));
-
-    showSubclients=ui->checkBox->isChecked();
-    filterBySubclients=ui->checkBox_2->isChecked();
-
-
-    ui->tvLots->setModel(tmLots);
-   // // qDebug()<<tmLots->lastError().text();
-
-//    ui->tvLots->setModelColumn(1);
-
-
-    ui->tvLots->setColumnHidden(0,true);
-    ui->tvLots->setColumnHidden(6,true);
-    ui->tvLots->setColumnHidden(7,true);
-    ui->tvLots->setColumnHidden(8,true);
-    ui->tvLots->setColumnHidden(9,true);
-    ui->tvLots->setColumnHidden(10,true);
-    ui->tvLots->setColumnHidden(11,true);
-    ui->tvLots->setColumnHidden(12,true);
-    ui->tvLots->setEditTriggers(QTableView::NoEditTriggers);
-
-   // ui->lvSubclienti->setVisible(false);
-    connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
-    connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(filterProducts()));
-  //  filterProducts();
-    connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(createNewLot()));
-    connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(getEanList()));
-    connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setLotText()));
-
-    ui->pbAnnulla->setEnabled(false);
-    ui->pbCrea->setEnabled(true);//
-    ui->leComponente->setEnabled(false);
-    ui->leQuantita->setEnabled(false);
-    ui->pbAddRow->setEnabled(false);
-    ui->pbRemoveRow->setEnabled(false);
-    ui->cbProdotti->setCurrentIndex(0);
- //   ui->checkBox_2->setVisible(false);
-    ui->tvLots->setEnabled(false);
-
-}
 
 void HPackages::setLotText()
 {
@@ -272,7 +169,7 @@ void HPackages::getEanList()
      QSqlQuery q(db);
      QString sql;
      QSqlQueryModel *mod = new QSqlQueryModel();
-     sql="SELECT EAN FROM lotdef where prodotto=:idp and anagrafica=:idc and year(data)=year(now()) order by data desc";
+     sql="SELECT EAN FROM lotdef where prodotto=:idp and anagrafica=:idc and year(data)=year(now()) and EAN like 'L%' order by data desc";
      q.prepare(sql);
      q.bindValue(":idc",QVariant(idcliente));
      q.bindValue(":idp",QVariant(idprodotto));

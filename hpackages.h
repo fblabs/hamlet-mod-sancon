@@ -23,7 +23,7 @@ public:
     explicit HPackages(HUser *puser=0, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = 0);
     ~HPackages();
 
-    void init(QString conn,QString user);
+
 
 private:
     HUser *user;
