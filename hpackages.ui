@@ -226,19 +226,12 @@
               </widget>
              </item>
              <item>
-              <widget class="QRadioButton" name="rbTutti">
-               <property name="text">
-                <string>Tutti</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
               <widget class="QRadioButton" name="rbProdottiFiniti">
                <property name="text">
                 <string>Prodotti finiti</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -256,10 +249,26 @@
                </property>
               </widget>
              </item>
+             <item>
+              <widget class="QRadioButton" name="rbTutti">
+               <property name="text">
+                <string>Tutti</string>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
             </layout>
            </item>
            <item>
             <widget class="QTableView" name="tvLots">
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
              <property name="selectionBehavior">
               <enum>QAbstractItemView::SelectRows</enum>
              </property>
@@ -409,6 +418,9 @@
        </item>
        <item>
         <widget class="QTableView" name="tvPack">
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
          <property name="selectionMode">
           <enum>QAbstractItemView::SingleSelection</enum>
          </property>

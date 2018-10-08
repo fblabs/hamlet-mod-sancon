@@ -22,7 +22,6 @@ public:
 private slots:
 
     void getLotdefData();
-    void on_pbUndo_clicked();
     void on_pbSave_clicked();
     void on_pbClose_clicked();
     bool saveOperation();

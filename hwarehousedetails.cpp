@@ -17,7 +17,6 @@ HWarehouseDetails::HWarehouseDetails(QSqlDatabase pdb, int id, QWidget *parent) 
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
     ui->setupUi(this);
-    ui->pbUndo->setVisible(false);
     db=pdb;
     opid=id;
     mod=new QSqlRelationalTableModel(0,db);
@@ -110,17 +109,7 @@ void HWarehouseDetails::getLotdefData()
 
 
 
-void HWarehouseDetails::on_pbUndo_clicked()
-{
-    if(QMessageBox::Ok == QMessageBox::question(this,QApplication::applicationName(),"Annullare le modifiche?",QMessageBox::Ok|QMessageBox::Cancel))
-    {
-        mod->revertAll();
-    }
 
-
-    emit confirm();
-    mod->select();
-}
 
 void HWarehouseDetails::on_pbSave_clicked()
 {

@@ -44,6 +44,13 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     tmLots->setRelation(5,QSqlRelation("unita_di_misura","ID","descrizione"));
     tmLots->select();
 
+    tmLots->setHeaderData(1,Qt::Horizontal,"Lotto");
+    tmLots->setHeaderData(2,Qt::Horizontal,"Prodotto");
+    tmLots->setHeaderData(3,Qt::Horizontal,"Data");
+    tmLots->setHeaderData(4,Qt::Horizontal,"Giacenza");
+    tmLots->setHeaderData(5,Qt::Horizontal,"Unità di misura");
+
+
 
     ui->cbClienti->setModel(tmClienti);
     ui->cbClienti->setModelColumn(1);
@@ -99,6 +106,8 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->tvLots->setColumnHidden(12,true);
     ui->tvLots->setEditTriggers(QTableView::NoEditTriggers);
 
+
+
    // ui->lvSubclienti->setVisible(false);
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(filterProducts()));
@@ -116,6 +125,7 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->cbProdotti->setCurrentIndex(0);
  //   ui->checkBox_2->setVisible(false);
     ui->tvLots->setEnabled(false);
+    on_rbProdottiFiniti_toggled(true);
     filterProducts();
     getEanList();
 

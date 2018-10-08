@@ -19,7 +19,7 @@ HLogin2::HLogin2(QWidget *parent) :
     ok->setKey(Qt::Key_Enter);
 
     connect(ok,SIGNAL(activated()),this,SLOT(on_pushButton_clicked()));
-    this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+  //  this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 
 
 }

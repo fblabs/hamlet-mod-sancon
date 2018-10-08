@@ -78,7 +78,6 @@ public:
     QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_5;
     QPushButton *pbSave;
-    QPushButton *pbUndo;
     QPushButton *pbClose;
 
     void setupUi(QWidget *HWarehouseDetails)
@@ -313,20 +312,11 @@ public:
 
         horizontalLayout_5->addWidget(pbSave);
 
-        pbUndo = new QPushButton(HWarehouseDetails);
-        pbUndo->setObjectName(QStringLiteral("pbUndo"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Counterclockwise-arrow64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbUndo->setIcon(icon2);
-        pbUndo->setIconSize(QSize(32, 32));
-
-        horizontalLayout_5->addWidget(pbUndo);
-
         pbClose = new QPushButton(HWarehouseDetails);
         pbClose->setObjectName(QStringLiteral("pbClose"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon3);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon2);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout_5->addWidget(pbClose);
@@ -356,7 +346,6 @@ public:
         label_5->setText(QApplication::translate("HWarehouseDetails", "Azione:", 0));
         label_7->setText(QApplication::translate("HWarehouseDetails", "Note:", 0));
         pbSave->setText(QApplication::translate("HWarehouseDetails", "Salva", 0));
-        pbUndo->setText(QApplication::translate("HWarehouseDetails", "Annulla", 0));
         pbClose->setText(QApplication::translate("HWarehouseDetails", "Chiudi", 0));
     } // retranslateUi
 

@@ -68,10 +68,10 @@ public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_3;
-    QRadioButton *rbTutti;
     QRadioButton *rbProdottiFiniti;
     QRadioButton *rbVasi;
     QRadioButton *rbTappi;
+    QRadioButton *rbTutti;
     QTableView *tvLots;
     QLabel *label_10;
     QLineEdit *leSearch;
@@ -269,14 +269,9 @@ public:
 
         horizontalLayout_3->addWidget(label_3);
 
-        rbTutti = new QRadioButton(HPackages);
-        rbTutti->setObjectName(QStringLiteral("rbTutti"));
-        rbTutti->setChecked(true);
-
-        horizontalLayout_3->addWidget(rbTutti);
-
         rbProdottiFiniti = new QRadioButton(HPackages);
         rbProdottiFiniti->setObjectName(QStringLiteral("rbProdottiFiniti"));
+        rbProdottiFiniti->setChecked(true);
 
         horizontalLayout_3->addWidget(rbProdottiFiniti);
 
@@ -290,11 +285,19 @@ public:
 
         horizontalLayout_3->addWidget(rbTappi);
 
+        rbTutti = new QRadioButton(HPackages);
+        rbTutti->setObjectName(QStringLiteral("rbTutti"));
+        rbTutti->setChecked(false);
+
+        horizontalLayout_3->addWidget(rbTutti);
+
 
         verticalLayout->addLayout(horizontalLayout_3);
 
         tvLots = new QTableView(HPackages);
         tvLots->setObjectName(QStringLiteral("tvLots"));
+        tvLots->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        tvLots->setAlternatingRowColors(true);
         tvLots->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvLots->setSortingEnabled(true);
         tvLots->horizontalHeader()->setStretchLastSection(true);
@@ -395,6 +398,7 @@ public:
 
         tvPack = new QTableView(HPackages);
         tvPack->setObjectName(QStringLiteral("tvPack"));
+        tvPack->setAlternatingRowColors(true);
         tvPack->setSelectionMode(QAbstractItemView::SingleSelection);
         tvPack->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvPack->horizontalHeader()->setVisible(false);
@@ -451,10 +455,10 @@ public:
         pbCrea->setText(QApplication::translate("HPackages", "Inizia", 0));
         pbAnnulla->setText(QApplication::translate("HPackages", "Annulla", 0));
         label_3->setText(QApplication::translate("HPackages", "Componenti:", 0));
-        rbTutti->setText(QApplication::translate("HPackages", "Tutti", 0));
         rbProdottiFiniti->setText(QApplication::translate("HPackages", "Prodotti finiti", 0));
         rbVasi->setText(QApplication::translate("HPackages", "Vasi", 0));
         rbTappi->setText(QApplication::translate("HPackages", "Tappi", 0));
+        rbTutti->setText(QApplication::translate("HPackages", "Tutti", 0));
         label_10->setText(QApplication::translate("HPackages", "Cerca:", 0));
         label_8->setText(QApplication::translate("HPackages", "Lotto:", 0));
         label_4->setText(QApplication::translate("HPackages", "Quantit\303\240:", 0));
