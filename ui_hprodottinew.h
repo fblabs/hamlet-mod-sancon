@@ -108,11 +108,12 @@ public:
         tvProdotti->setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed);
         tvProdotti->setAlternatingRowColors(true);
         tvProdotti->setSelectionMode(QAbstractItemView::SingleSelection);
-        tvProdotti->setSelectionBehavior(QAbstractItemView::SelectItems);
+        tvProdotti->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvProdotti->setSortingEnabled(true);
         tvProdotti->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
         tvProdotti->horizontalHeader()->setStretchLastSection(true);
         tvProdotti->verticalHeader()->setVisible(false);
-        tvProdotti->verticalHeader()->setStretchLastSection(false);
+        tvProdotti->verticalHeader()->setStretchLastSection(true);
 
         verticalLayout->addWidget(tvProdotti);
 

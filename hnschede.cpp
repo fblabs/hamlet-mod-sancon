@@ -103,7 +103,7 @@ HNSChede::HNSChede(QString spcliente, QString spprodotto, QSqlDatabase pdb, HUse
     connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(loadCard()));
     ui->cbClienti->setCurrentIndex(0);
 
-    connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+ //   connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
     connect(ui->textEdit->document(),SIGNAL(contentsChanged()),this,SLOT(documentChanged()));
 
     if(spcliente != QString())
@@ -322,45 +322,56 @@ void HNSChede::loadCard()
 
 void HNSChede::on_pbsave_clicked()
 {
-    bool b=saveCard();
+    QMessageBox msg;
+    msg.setWindowTitle(QApplication::applicationName());
+    msg.setText("Salvare le modifiche?");
+    msg.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
+    msg.setDefaultButton(QMessageBox::Ok);
 
-    if (!b)
-    {
-        QMessageBox::warning(this,QApplication::applicationName(),"Errore",QMessageBox::Ok);
-    }
-    else
-    {
+   int result=msg.exec();
+   bool b=false;
+
+   switch(result)
+   {
+      case QMessageBox::Ok:
+        qDebug()<<"Save";
+
+      b=saveCard();
+
+      if (!b)
+      {
+          QMessageBox::warning(this,QApplication::applicationName(),"Errore",QMessageBox::Ok);
+      }
+      else
+      {
+         changed=false;
+         QMessageBox::information(this,QApplication::applicationName(),"Scheda salvata",QMessageBox::Ok);
+      }
+
+       break;
+
+   case QMessageBox::Cancel:
+
+       loadCard();
        changed=false;
-       QMessageBox::information(this,QApplication::applicationName(),"Scheda salvata",QMessageBox::Ok);
-       ui->pushButton_8->toggle();
-    }
+       break;
+   default: break;
+   }
 }
 
 void HNSChede::on_pbClose_clicked()
 {
-    if(changed)
+    QString text;
+    if(!changed)
     {
-    if (QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Salvare le modifiche?",QMessageBox::Ok|QMessageBox::Cancel))
-    {
-       bool b=saveCard();
-
-       if (!b)
-       {
-           QMessageBox::warning(this,QApplication::applicationName(),"Errore",QMessageBox::Ok);
-       }
-       else
-       {
-          changed=false;
-          QMessageBox::information(this,QApplication::applicationName(),"Scheda salvata",QMessageBox::Ok);
-       }
-
+        text="Chiudere la finestra?";
     }
     else
     {
-        close();
+        text="Attenzione, le modifiche non sono state salvate. Ok per chiudere comunque,Cancel per continuare,o salvare";
     }
-    }
-    else
+
+    if(QMessageBox::question(this,QApplication::applicationName(),text,QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         close();
     }
@@ -669,6 +680,15 @@ void HNSChede::on_pushButton_8_toggled(bool checked)
     ui->pushButton_6->setEnabled(checked);
     ui->pushButton_9->setEnabled(checked);
     ui->lblLed->setVisible(checked);
+
+    if (checked)
+    {
+        connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+    }
+    else
+    {
+        disconnect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+    }
 
  //   ui->pushButton_9->setEnabled(checked);
 }

@@ -22,5 +22,11 @@ private slots:
     void doResize();
 
     void on_pushButton_clicked();
+
+    void on_hSlider_valueChanged(int value);
+    void on_spWidth_valueChanged(int arg1);
+    void on_vSlider_valueChanged(int value);
+    void on_spHeight_valueChanged(int arg1);
+
 };
 #endif // HMODIMAGE_H

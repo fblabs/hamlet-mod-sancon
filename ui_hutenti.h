@@ -78,7 +78,7 @@ public:
         HUtenti->setWindowModality(Qt::NonModal);
         HUtenti->resize(862, 544);
         QIcon icon;
-        icon.addFile(QStringLiteral(":/Resources/User-Black.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/Resources/Users64.png"), QSize(), QIcon::Normal, QIcon::Off);
         HUtenti->setWindowIcon(icon);
         verticalLayout_3 = new QVBoxLayout(HUtenti);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));

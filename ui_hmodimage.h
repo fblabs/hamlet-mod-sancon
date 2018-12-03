@@ -17,6 +17,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -29,9 +30,11 @@ public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
+    QSlider *hSlider;
     QSpinBox *spWidth;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
+    QSlider *vSlider;
     QSpinBox *spHeight;
     QPushButton *pushButton;
 
@@ -40,7 +43,7 @@ public:
         if (HModImage->objectName().isEmpty())
             HModImage->setObjectName(QStringLiteral("HModImage"));
         HModImage->setWindowModality(Qt::ApplicationModal);
-        HModImage->resize(233, 116);
+        HModImage->resize(334, 99);
         verticalLayout = new QVBoxLayout(HModImage);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
@@ -50,6 +53,18 @@ public:
         label->setMaximumSize(QSize(50, 16777215));
 
         horizontalLayout->addWidget(label);
+
+        hSlider = new QSlider(HModImage);
+        hSlider->setObjectName(QStringLiteral("hSlider"));
+        hSlider->setMinimum(50);
+        hSlider->setMaximum(1020);
+        hSlider->setSingleStep(10);
+        hSlider->setSliderPosition(200);
+        hSlider->setOrientation(Qt::Horizontal);
+        hSlider->setInvertedControls(false);
+        hSlider->setTickPosition(QSlider::NoTicks);
+
+        horizontalLayout->addWidget(hSlider);
 
         spWidth = new QSpinBox(HModImage);
         spWidth->setObjectName(QStringLiteral("spWidth"));
@@ -70,10 +85,23 @@ public:
 
         horizontalLayout_2->addWidget(label_2);
 
+        vSlider = new QSlider(HModImage);
+        vSlider->setObjectName(QStringLiteral("vSlider"));
+        vSlider->setMinimum(50);
+        vSlider->setMaximum(1020);
+        vSlider->setSingleStep(10);
+        vSlider->setValue(200);
+        vSlider->setSliderPosition(200);
+        vSlider->setTracking(true);
+        vSlider->setOrientation(Qt::Horizontal);
+
+        horizontalLayout_2->addWidget(vSlider);
+
         spHeight = new QSpinBox(HModImage);
         spHeight->setObjectName(QStringLiteral("spHeight"));
-        spHeight->setMinimum(10);
+        spHeight->setMinimum(50);
         spHeight->setMaximum(2000);
+        spHeight->setValue(50);
 
         horizontalLayout_2->addWidget(spHeight);
 

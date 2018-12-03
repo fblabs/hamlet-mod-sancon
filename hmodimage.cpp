@@ -1,5 +1,6 @@
 #include "hmodimage.h"
 #include "ui_hmodimage.h"
+#include <QDebug>
 
 
 HModImage::HModImage(QWidget *parent, int ow, int oh) :
@@ -31,3 +32,26 @@ void HModImage::on_pushButton_clicked()
 {
     close();
 }
+
+
+void HModImage::on_hSlider_valueChanged(int value)
+{
+    ui->spWidth->setValue(value);
+}
+
+void HModImage::on_spWidth_valueChanged(int arg1)
+{
+    ui->hSlider->setValue(arg1);
+}
+
+void HModImage::on_vSlider_valueChanged(int value)
+{
+    ui->spHeight->setValue(value);
+}
+
+void HModImage::on_spHeight_valueChanged(int arg1)
+{
+    ui->vSlider->setValue(arg1);
+}
+
+
