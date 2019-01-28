@@ -40,6 +40,7 @@ public:
     QRadioButton *radioButton_4;
     QRadioButton *radioButton_5;
     QRadioButton *radioButton_6;
+    QRadioButton *rbBio;
     QCheckBox *checkBox;
     QTableView *tvProdotti;
     QFormLayout *formLayout;
@@ -95,6 +96,11 @@ public:
 
         horizontalLayout->addWidget(radioButton_6);
 
+        rbBio = new QRadioButton(HProdottiNew);
+        rbBio->setObjectName(QStringLiteral("rbBio"));
+
+        horizontalLayout->addWidget(rbBio);
+
         checkBox = new QCheckBox(HProdottiNew);
         checkBox->setObjectName(QStringLiteral("checkBox"));
 
@@ -105,6 +111,11 @@ public:
 
         tvProdotti = new QTableView(HProdottiNew);
         tvProdotti->setObjectName(QStringLiteral("tvProdotti"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(tvProdotti->sizePolicy().hasHeightForWidth());
+        tvProdotti->setSizePolicy(sizePolicy);
         tvProdotti->setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed);
         tvProdotti->setAlternatingRowColors(true);
         tvProdotti->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -113,7 +124,7 @@ public:
         tvProdotti->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
         tvProdotti->horizontalHeader()->setStretchLastSection(true);
         tvProdotti->verticalHeader()->setVisible(false);
-        tvProdotti->verticalHeader()->setStretchLastSection(true);
+        tvProdotti->verticalHeader()->setStretchLastSection(false);
 
         verticalLayout->addWidget(tvProdotti);
 
@@ -174,6 +185,7 @@ public:
         radioButton_4->setText(QApplication::translate("HProdottiNew", "Conteniitori", 0));
         radioButton_5->setText(QApplication::translate("HProdottiNew", "Capsule e tappi", 0));
         radioButton_6->setText(QApplication::translate("HProdottiNew", "Vasi", 0));
+        rbBio->setText(QApplication::translate("HProdottiNew", "Bio", 0));
         checkBox->setText(QApplication::translate("HProdottiNew", "Solo prodotti attivi", 0));
         label->setText(QApplication::translate("HProdottiNew", "Cerca prodotto", 0));
         pushButton_2->setText(QApplication::translate("HProdottiNew", "Chiudi", 0));

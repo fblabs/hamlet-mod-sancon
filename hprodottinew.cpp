@@ -7,7 +7,7 @@
 #include <QSqlRelationalDelegate>
 #include <QCompleter>
 #include "hnewproduct.h"
-// #include <QDebug>
+#include <QDebug>
 #include <QSqlError>
 
 HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
@@ -196,4 +196,16 @@ void HProdottiNew::on_lineEdit_textChanged(const QString &arg1)
     filter ="prodotti.descrizione LIKE '%"+ ui->lineEdit->text()+"%'";
 
     tmProdotti->setFilter(filter);
+}
+
+
+
+
+
+void HProdottiNew::on_rbBio_toggled(bool checked)
+{
+    if (checked)
+    {
+        tmProdotti->setFilter("bio>0");
+    }
 }

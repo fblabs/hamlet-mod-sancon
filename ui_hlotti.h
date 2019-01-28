@@ -44,6 +44,7 @@ public:
     QComboBox *cbTipiLot;
     QCheckBox *chbP;
     QComboBox *cbProdotti;
+    QCheckBox *chBio;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label;
     QDateEdit *datadal;
@@ -99,6 +100,7 @@ public:
 
         cbTipoProd = new QComboBox(HLotti);
         cbTipoProd->setObjectName(QStringLiteral("cbTipoProd"));
+        cbTipoProd->setEnabled(false);
 
         horizontalLayout_2->addWidget(cbTipoProd);
 
@@ -131,6 +133,11 @@ public:
 
 
         horizontalLayout_4->addLayout(horizontalLayout_2);
+
+        chBio = new QCheckBox(HLotti);
+        chBio->setObjectName(QStringLiteral("chBio"));
+
+        horizontalLayout_4->addWidget(chBio);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
@@ -267,6 +274,7 @@ public:
         chTipoProdotti->setText(QApplication::translate("HLotti", "Tipo prodotto:", 0));
         chbT->setText(QApplication::translate("HLotti", "Tipo lotto:", 0));
         chbP->setText(QApplication::translate("HLotti", "Prodotto:", 0));
+        chBio->setText(QApplication::translate("HLotti", "Bio", 0));
         label->setText(QApplication::translate("HLotti", "Dal:", 0));
         label_2->setText(QApplication::translate("HLotti", "Al:", 0));
         pbRefresh->setText(QApplication::translate("HLotti", "Aggiorna", 0));

@@ -87,6 +87,9 @@ private slots:
 
    void on_twLots_clicked(const QModelIndex &index);
 
+
+   void on_chBio_toggled(bool checked);
+
 private:
 
     Ui::HLotti *ui;
@@ -102,6 +105,7 @@ private:
     QString filter;
     QDate dal;
     QDate al;
+    bool dateset;
 
 
 

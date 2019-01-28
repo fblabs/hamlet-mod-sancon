@@ -45,6 +45,11 @@ private slots:
 
     void on_lineEdit_textChanged(const QString &arg1);
 
+
+
+
+    void on_rbBio_toggled(bool checked);
+
 private:
     Ui::HProdottiNew *ui;
     QString sConn;

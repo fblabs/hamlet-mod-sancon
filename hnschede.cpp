@@ -346,6 +346,9 @@ void HNSChede::on_pbsave_clicked()
       {
          changed=false;
          QMessageBox::information(this,QApplication::applicationName(),"Scheda salvata",QMessageBox::Ok);
+         ui->cbClienti->setEnabled(true);
+         ui->cbProdotti->setEnabled(true);
+         ui->pushButton_8->setChecked(false);
       }
 
        break;
@@ -742,6 +745,7 @@ void HNSChede::copyCard(int cliente, int prodotto, QString newHead)
 
 
     ui->textEdit->setHtml(newCard);
+
 
 
 

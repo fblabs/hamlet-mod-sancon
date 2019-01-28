@@ -33,6 +33,8 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
     user=puser;
     db=pdb;
     ui->pbRefresh->setVisible(false);
+    dateset=false;
+
 
 
 
@@ -71,6 +73,10 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
    ui->pushButton_7->setEnabled(false);
 
 
+   ui->datadal->setDate(QDate::currentDate().addMonths(-1));
+   ui->dataal->setDate(QDate::currentDate());
+
+
 
 
 
@@ -81,12 +87,13 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
     connect(det,SIGNAL(activated()),this,SLOT(getDetails()));
 
-    ui->datadal->setDate(QDate::currentDate().addMonths(-1));
-    ui->dataal->setDate(QDate::currentDate());
 
     getDataLots();
+    dateset=true;
 
+    setFilter();
     QApplication::setOverrideCursor(Qt::ArrowCursor);
+
 }
 
 
@@ -242,41 +249,57 @@ void HLotti::setFilter()
 
        filter="";
 
-       QString datafilter="lotdef.data between cast('" + ui->datadal->dateTime().toString("yyyy-MM-dd HH:mm:ss") + "' as date) and cast('" + ui->dataal->dateTime().addDays(1).toString("yyyy-MM-dd HH:mm:ss")+"' as date)";
 
+       QString datafilter="lotdef.data between cast('" + ui->datadal->date().toString("yyyy-MM-dd") + "' as date) and cast('" + ui->dataal->date().addDays(1).toString("yyyy-MM-dd")+"' as date)";
+       qDebug()<<datafilter<<ui->dataal->date().toString("yyyy-MM-dd");
        if (ui->chbT->isChecked() && !ui->chbP->isChecked())
        {
            //filtra solo per tipo
           tipo=mTipi->index(ui->cbTipiLot->currentIndex(),0).data(0).toString();
-          filter="lotdef.tipo="+tipo+" and ";
+          filter="lotdef.tipo="+tipo+ " and "+datafilter;
 
        }
        else if (ui->chbP->isChecked() &&  ! ui->chbT->isChecked())
        {
            //filtra per prodotto
            prodotto=mProdotti->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
-           filter="lotdef.prodotto="+prodotto+" and ";
+           filter="lotdef.prodotto="+prodotto+" and "+datafilter;
        }
        else if(ui->chbP->isChecked() && ui->chbT->isChecked())
        {
            //filtra  per entrambi
            tipo=mTipi->index(ui->cbTipiLot->currentIndex(),0).data(0).toString();
            prodotto=mProdotti->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
-           filter="lotdef.tipo="+ tipo + " and lotdef.prodotto=" + prodotto + " and ";
+           filter="lotdef.tipo="+ tipo + " and lotdef.prodotto=" + prodotto+" and "+datafilter;
        }
        else if(ui->chTipoProdotti->isChecked() /*&& ui->chbT->isChecked()*/)
        {
            //filtra  per entrambi
            tipo=mTipiProdotto->index(ui->cbTipoProd->currentIndex(),0).data(0).toString();
-          // prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
-           filter="prodotto in (SELECT ID from prodotti where tipo=" + tipo + ") and ";
+           filter="prodotto in (SELECT ID from prodotti where tipo=" + tipo + ") and "+datafilter;
+       }
+
+       if(ui->chBio->isChecked())
+       {
+           if (ui->chbP->isChecked() || ui->chbT->isChecked()|| ui->chTipoProdotti->isChecked())
+           {
+               filter += " and prodotto in (SELECT ID from prodotti where bio>0) and "+datafilter;
+           }
+           else
+           {
+               filter="prodotto in (SELECT ID from prodotti where bio>0) and "+datafilter;
+           }
+
+
        }
 
 
-       filter += datafilter;
+
 
 
    tbm->setFilter(filter);
+
+   qDebug()<<tbm->filter()<<tbm->lastError().text()<<tbm->query().lastQuery();
 
 
 }
@@ -508,6 +531,7 @@ void HLotti::on_pbScadenze_clicked()
 
 void HLotti::on_datadal_dateChanged(const QDate &date)
 {
+    if(!dateset)return;
     dal=date;
     setFilter();
 
@@ -516,6 +540,7 @@ void HLotti::on_datadal_dateChanged(const QDate &date)
 
 void HLotti::on_dataal_dateChanged(const QDate &date)
 {
+    if(!dateset)return;
      al=date;
      setFilter();
 
@@ -532,4 +557,10 @@ void HLotti::on_twLots_clicked(const QModelIndex &index)
 {
     Q_UNUSED(index);
     ui->pushButton_7->setEnabled(true);
+}
+
+
+void HLotti::on_chBio_toggled(bool checked)
+{
+    setFilter();
 }
