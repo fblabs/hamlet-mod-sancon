@@ -57,6 +57,12 @@ INPUT(
 ./debug/hrecipesforclient.o
 ./debug/hlotmovements.o
 ./debug/hmagazzino.o
+./debug/hproductsmodel.o
+./debug/hmodproduct.o
+./debug/hworkprogram.o
+./debug/hwpmanager.o
+./debug/hworkprogressmodel.o
+./debug/hmodifyrow.o
 ./debug/qrc_icons.o
 ./debug/moc_mainwindow.o
 ./debug/moc_huser.o
@@ -114,4 +120,9 @@ INPUT(
 ./debug/moc_hrecipesforclient.o
 ./debug/moc_hlotmovements.o
 ./debug/moc_hmagazzino.o
+./debug/moc_hmodproduct.o
+./debug/moc_hworkprogram.o
+./debug/moc_hwpmanager.o
+./debug/moc_hworkprogressmodel.o
+./debug/moc_hmodifyrow.o
 );

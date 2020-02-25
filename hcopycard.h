@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QSqlDatabase>
+#include <QObject>
 
 namespace Ui {
 class HCopyCard;
@@ -25,8 +26,12 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_lvC_clicked(const QModelIndex &index);
+
+    void on_lineEdit_textChanged(const QString &arg1);
+
 signals:
-    void copyRecipe(int cliente,int prodotto,QString newHead);
+    void doCopy(int cliente,int prodotto,QString nC,QString nP,QString schedadacopiare);
 };
 
 #endif // HCOPYCARD_H

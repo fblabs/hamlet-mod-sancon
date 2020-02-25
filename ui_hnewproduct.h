@@ -36,19 +36,17 @@ public:
     QLabel *label_2;
     QComboBox *comboBox;
     QCheckBox *cbAllergenico;
-    QCheckBox *cbAttivo;
-    QCheckBox *cbCreaRicetta;
+    QCheckBox *cbBio;
     QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton;
-    QPushButton *pbSaveAndCreate;
-    QPushButton *pushButton_2;
+    QPushButton *pbSave;
+    QPushButton *pbCancel;
 
     void setupUi(QWidget *HNewProduct)
     {
         if (HNewProduct->objectName().isEmpty())
             HNewProduct->setObjectName(QStringLiteral("HNewProduct"));
         HNewProduct->setWindowModality(Qt::ApplicationModal);
-        HNewProduct->resize(488, 208);
+        HNewProduct->resize(547, 170);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HNewProduct->setWindowIcon(icon);
@@ -59,76 +57,62 @@ public:
         label = new QLabel(HNewProduct);
         label->setObjectName(QStringLiteral("label"));
 
-        formLayout->setWidget(0, QFormLayout::SpanningRole, label);
+        formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
         leDescrizione = new QLineEdit(HNewProduct);
         leDescrizione->setObjectName(QStringLiteral("leDescrizione"));
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, leDescrizione);
+        formLayout->setWidget(0, QFormLayout::FieldRole, leDescrizione);
 
         label_2 = new QLabel(HNewProduct);
         label_2->setObjectName(QStringLiteral("label_2"));
 
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_2);
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
 
         comboBox = new QComboBox(HNewProduct);
         comboBox->setObjectName(QStringLiteral("comboBox"));
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, comboBox);
+        formLayout->setWidget(1, QFormLayout::FieldRole, comboBox);
 
         cbAllergenico = new QCheckBox(HNewProduct);
         cbAllergenico->setObjectName(QStringLiteral("cbAllergenico"));
 
-        formLayout->setWidget(4, QFormLayout::FieldRole, cbAllergenico);
+        formLayout->setWidget(2, QFormLayout::FieldRole, cbAllergenico);
 
-        cbAttivo = new QCheckBox(HNewProduct);
-        cbAttivo->setObjectName(QStringLiteral("cbAttivo"));
+        cbBio = new QCheckBox(HNewProduct);
+        cbBio->setObjectName(QStringLiteral("cbBio"));
 
-        formLayout->setWidget(5, QFormLayout::FieldRole, cbAttivo);
-
-        cbCreaRicetta = new QCheckBox(HNewProduct);
-        cbCreaRicetta->setObjectName(QStringLiteral("cbCreaRicetta"));
-
-        formLayout->setWidget(6, QFormLayout::FieldRole, cbCreaRicetta);
+        formLayout->setWidget(3, QFormLayout::FieldRole, cbBio);
 
 
         verticalLayout->addLayout(formLayout);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        pushButton = new QPushButton(HNewProduct);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pbSave = new QPushButton(HNewProduct);
+        pbSave->setObjectName(QStringLiteral("pbSave"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon1);
-        pushButton->setIconSize(QSize(32, 32));
+        pbSave->setIcon(icon1);
+        pbSave->setIconSize(QSize(32, 32));
 
-        horizontalLayout->addWidget(pushButton);
+        horizontalLayout->addWidget(pbSave);
 
-        pbSaveAndCreate = new QPushButton(HNewProduct);
-        pbSaveAndCreate->setObjectName(QStringLiteral("pbSaveAndCreate"));
+        pbCancel = new QPushButton(HNewProduct);
+        pbCancel->setObjectName(QStringLiteral("pbCancel"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Sheet-Of-Paper.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSaveAndCreate->setIcon(icon2);
-        pbSaveAndCreate->setIconSize(QSize(32, 32));
+        icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbCancel->setIcon(icon2);
+        pbCancel->setIconSize(QSize(32, 32));
 
-        horizontalLayout->addWidget(pbSaveAndCreate);
-
-        pushButton_2 = new QPushButton(HNewProduct);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon3);
-        pushButton_2->setIconSize(QSize(32, 32));
-
-        horizontalLayout->addWidget(pushButton_2);
+        horizontalLayout->addWidget(pbCancel);
 
 
         verticalLayout->addLayout(horizontalLayout);
 
         QWidget::setTabOrder(leDescrizione, comboBox);
-        QWidget::setTabOrder(comboBox, pushButton);
-        QWidget::setTabOrder(pushButton, pushButton_2);
+        QWidget::setTabOrder(comboBox, pbSave);
+        QWidget::setTabOrder(pbSave, pbCancel);
 
         retranslateUi(HNewProduct);
 
@@ -137,15 +121,13 @@ public:
 
     void retranslateUi(QWidget *HNewProduct)
     {
-        HNewProduct->setWindowTitle(QApplication::translate("HNewProduct", "Form", 0));
-        label->setText(QApplication::translate("HNewProduct", "Dascrizione", 0));
+        HNewProduct->setWindowTitle(QApplication::translate("HNewProduct", "Nuovo Prodotto", 0));
+        label->setText(QApplication::translate("HNewProduct", "Descrizione", 0));
         label_2->setText(QApplication::translate("HNewProduct", "Tipo", 0));
-        cbAllergenico->setText(QApplication::translate("HNewProduct", "Allergenico", 0));
-        cbAttivo->setText(QApplication::translate("HNewProduct", "Attivo", 0));
-        cbCreaRicetta->setText(QApplication::translate("HNewProduct", "Crea ricetta", 0));
-        pushButton->setText(QApplication::translate("HNewProduct", "Salva", 0));
-        pbSaveAndCreate->setText(QApplication::translate("HNewProduct", "Salva e crea ricetta", 0));
-        pushButton_2->setText(QApplication::translate("HNewProduct", "Chiudi", 0));
+        cbAllergenico->setText(QApplication::translate("HNewProduct", "Allergene", 0));
+        cbBio->setText(QApplication::translate("HNewProduct", "Bio", 0));
+        pbSave->setText(QApplication::translate("HNewProduct", "Salva", 0));
+        pbCancel->setText(QApplication::translate("HNewProduct", "Annulla", 0));
     } // retranslateUi
 
 };

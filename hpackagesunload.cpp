@@ -209,16 +209,19 @@ void HPackagesUnload::on_cbClienti_currentIndexChanged(int index)
 
 void HPackagesUnload::on_pushButton_clicked()
 {
-  if ( scarica())
+  if (QMessageBox::question(this,QApplication::applicationName(),"Confermi lo scarico?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
   {
-      QMessageBox::information(this,QApplication::applicationName(),"Scarico effettuato",QMessageBox::Ok);
-      ui->leQuantita->setText("");
-      ui->leNote->setText("");
-      emit update();
-      loadPackages();
-  }
-  else
-  {
-      QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando lo scarico",QMessageBox::Ok);
+      if ( scarica())
+      {
+          QMessageBox::information(this,QApplication::applicationName(),"Scarico effettuato",QMessageBox::Ok);
+          ui->leQuantita->setText("");
+          ui->leNote->setText("");
+          emit update();
+          loadPackages();
+      }
+      else
+      {
+          QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando lo scarico",QMessageBox::Ok);
+      }
   }
 }

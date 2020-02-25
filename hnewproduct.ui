@@ -9,12 +9,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>488</width>
-    <height>208</height>
+    <width>547</width>
+    <height>170</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Nuovo Prodotto</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
@@ -23,44 +23,37 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0" colspan="2">
+     <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Dascrizione</string>
+        <string>Descrizione</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
+     <item row="0" column="1">
       <widget class="QLineEdit" name="leDescrizione"/>
      </item>
-     <item row="2" column="0">
+     <item row="1" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Tipo</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="1" column="1">
       <widget class="QComboBox" name="comboBox"/>
      </item>
-     <item row="4" column="1">
+     <item row="2" column="1">
       <widget class="QCheckBox" name="cbAllergenico">
        <property name="text">
-        <string>Allergenico</string>
+        <string>Allergene</string>
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
-      <widget class="QCheckBox" name="cbAttivo">
+     <item row="3" column="1">
+      <widget class="QCheckBox" name="cbBio">
        <property name="text">
-        <string>Attivo</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QCheckBox" name="cbCreaRicetta">
-       <property name="text">
-        <string>Crea ricetta</string>
+        <string>Bio</string>
        </property>
       </widget>
      </item>
@@ -69,7 +62,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pbSave">
        <property name="text">
         <string>Salva</string>
        </property>
@@ -86,26 +79,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbSaveAndCreate">
+      <widget class="QPushButton" name="pbCancel">
        <property name="text">
-        <string>Salva e crea ricetta</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Sheet-Of-Paper.PNG</normaloff>:/Resources/Sheet-Of-Paper.PNG</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="text">
-        <string>Chiudi</string>
+        <string>Annulla</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -126,8 +102,8 @@
  <tabstops>
   <tabstop>leDescrizione</tabstop>
   <tabstop>comboBox</tabstop>
-  <tabstop>pushButton</tabstop>
-  <tabstop>pushButton_2</tabstop>
+  <tabstop>pbSave</tabstop>
+  <tabstop>pbCancel</tabstop>
  </tabstops>
  <resources>
   <include location="icons.qrc"/>

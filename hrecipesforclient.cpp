@@ -5,6 +5,7 @@
 
 #include <QSqlError>
 #include <QDebug>
+#include "hprint.h"
 
 
 HRecipesForClient::HRecipesForClient(QSqlDatabase pdb, int idRecipe, QWidget *parent) :
@@ -13,7 +14,7 @@ HRecipesForClient::HRecipesForClient(QSqlDatabase pdb, int idRecipe, QWidget *pa
 {
     ui->setupUi(this);
 
-    ui->pbPrint->setVisible(false);
+   // ui->pbPrint->setVisible(false);
     db=pdb;
 
 
@@ -89,4 +90,44 @@ void HRecipesForClient::getRecipes()
 
     ui->cbRecipes->setModel(modrecipes);
     ui->cbRecipes->setModelColumn(1);
+}
+
+void HRecipesForClient::print()
+{
+    HPrint *f =new HPrint();
+
+    int rows=ui->tvClients->model()->rowCount();
+
+
+
+
+    f->append("RICETTA: "+ ui->cbRecipes->currentText(),false);
+    f->append("CLIENTI:");
+    f->append("");
+    f->toggleImageUI(false);
+    f->showMaximized();
+    QTextTable *tb=f->addTable(rows,1);
+    QString txt;
+
+   int r,c;
+   c=0;
+
+
+    f->showMaximized();
+
+    for (r=0;r<rows;r++)
+    {
+
+            txt=ui->tvClients->model()->index(r,c).data(0).toString();
+            f->writeTableContent(tb,r,0,txt);
+            QApplication::processEvents();
+
+    }
+
+    QApplication::processEvents();
+}
+
+void HRecipesForClient::on_pbPrint_clicked()
+{
+    print();
 }

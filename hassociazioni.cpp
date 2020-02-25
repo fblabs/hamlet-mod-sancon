@@ -9,6 +9,7 @@
 #include <QSqlError>
 // #include <QDebug>
 #include <QItemDelegate>
+#include "hprint.h"
 
 HAssociazioni::HAssociazioni(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
@@ -262,3 +263,48 @@ void HAssociazioni::on_pushButton_6_clicked()
 
 
 }*/
+
+void HAssociazioni::print()
+    {
+
+
+        HPrint *f =new HPrint();
+
+        int rows=ui->tableView->model()->rowCount();
+        int cols=ui->tableView->model()->columnCount();
+
+
+
+        f->append("RICETTE PER IL CLIENTE: "+ ui->cbClienti->currentText(),false);
+        f->append("");
+        f->toggleImageUI(false);
+        f->showMaximized();
+        QTextTable *tb=f->addTable(rows,1);
+        QString txt;
+
+       int r,c;
+       c=2;
+
+
+        f->showMaximized();
+
+        for (r=0;r<rows;r++)
+        {
+
+                txt=ui->tableView->model()->index(r,c).data(0).toString();
+                f->writeTableContent(tb,r,0,txt);
+                QApplication::processEvents();
+
+        }
+
+        QApplication::processEvents();
+
+
+ }
+
+
+
+void HAssociazioni::on_pbPrint_clicked()
+{
+    print();
+}

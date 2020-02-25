@@ -236,13 +236,13 @@ void HProduction::getClients()
     QSqlQuery q(db);
     qmClienti=new QSqlQueryModel();
 
-    QString sql="SELECT ID,ragione_sociale from anagrafica where cliente=1 or subcliente=1 order by ragione_sociale ASC";
+    QString sql="SELECT ID,ragione_sociale from anagrafica where (cliente=1 or subcliente=1) and visibile>0 order by ragione_sociale ASC";
 
     q.exec(sql);
 
     qmClienti->setQuery(q);
 
-    // qDebug()<<q.lastError().text();
+     qDebug()<<q.lastError().text();
 
     ui->cbClienti->setModel(qmClienti);
     ui->cbClienti->setModelColumn(1);
@@ -958,7 +958,7 @@ QString HProduction::getNewLot(int prod)
     qLotQr.first();
     ret = qLotQr.value(0).toString();
 
-    // qDebug()<<ret;
+    qDebug()<<ret;
     return ret;
 }
 
@@ -976,6 +976,8 @@ void HProduction::on_pushButton_5_clicked()
 
     QString nlot=getNewLot(ui->lvRicette->model()->index(ui->lvRicette->currentIndex().row(),1).data(0).toInt());
     ui->leNuovoLot->setText(nlot);
+
+
 
     ui->pushButton_5->setVisible(false);
     ui->pushButton_6->setVisible(true);
@@ -1639,6 +1641,8 @@ void HProduction::addLot(QModelIndex index)
 
    f->show();
 }
+
+
 
 
 

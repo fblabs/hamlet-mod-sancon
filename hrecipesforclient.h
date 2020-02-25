@@ -23,6 +23,9 @@ private slots:
     void getClientsForRecipe(int idrecipe=-1);
     void getRecipes();
 
+    void on_pbPrint_clicked();
+    void print();
+
 private:
     Ui::HRecipesForClient *ui;
     QSqlDatabase db;

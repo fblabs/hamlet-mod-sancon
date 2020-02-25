@@ -3,7 +3,7 @@
 #include "ui_hutenti.h"
 #include <QtGui>
 #include <QtCore>
-// // #include <QDebug>ug>
+#include <QDebug>
 #include <QItemSelectionModel>
 #include <QItemDelegate>
 #include <QSqlRelationalTableModel>
@@ -54,7 +54,7 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
    QSqlTableModel *cmod=new QSqlTableModel(0,db);
    cmod->setTable("anagrafica");
    cmod->setSort(1,Qt::AscendingOrder);
-   cmod->setFilter("cliente=1");
+  // cmod->setFilter("cliente=1");
    cmod->select();
 
    tm = new QSqlRelationalTableModel(0,db);
@@ -95,6 +95,7 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
     dwMapper->addMapping(ui->cbtra,11);
     dwMapper->addMapping(ui->tnote,12);
     dwMapper->addMapping(ui->cbsub,13);
+    dwMapper->addMapping(ui->cbVisible,15);
 
 
 
@@ -104,11 +105,11 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
 
      connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), dwMapper, SLOT(setCurrentModelIndex(QModelIndex)));
      connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectMasterClient()));
-     connect(ui->lsearch,SIGNAL(textChanged(QString)) , this, SLOT(productSearch()));
+    // connect(ui->lsearch,SIGNAL(textChanged(QString)) , this, SLOT(productSearch()));
      connect(ui->cbsub,SIGNAL(stateChanged(int)),this,SLOT(hidesubclienti()));
-     connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(addreset()));
+     //connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(addreset()));
 
-
+   setFilter();
    hidesubclienti();
 
 
@@ -120,16 +121,13 @@ HUtenti::~HUtenti()
     delete ui;
 }
 
-void HUtenti::initForm()
-{
 
-}
 
 void HUtenti::selectMasterClient()
 {
      int id=tm->index(ui->lvUtenti->selectionModel()->currentIndex().row(),0).data(0).toInt();
      int i;
-//// qDebug()<<QString::number(id);
+// qDebug()<<QString::number(id);
 
      QSqlQuery q(db);
      QString sql ="SELECT IDCliente from anagrafica where ID=:id";
@@ -151,7 +149,6 @@ void HUtenti::selectMasterClient()
      rsc=f.value(1).toString();
      i= ui->cbxMasterCli->findText(rsc);
      ui->cbxMasterCli->setCurrentIndex(i);
-     //// qDebug()<<f.value(1).toString()<<q.lastError().text()<<q.lastQuery()<<q.boundValue(0).toString();
 
 }
 
@@ -215,7 +212,7 @@ bool HUtenti::save()
 {
     if(!db.isOpen())
     {
-        QMessageBox::information(0,"PIPPO","il database è chiuso...perchè mai?",QMessageBox::Ok);
+        QMessageBox::information(0,"ERRORE","il database è chiuso...perchè mai?",QMessageBox::Ok);
     }
 
     db.transaction();
@@ -224,13 +221,13 @@ bool HUtenti::save()
 
        tm->submitAll();
 
-    db.commit();
+   bool b=db.commit();
 
     qDebug()<<tm->query().lastQuery()<<tm->lastError().text();
 
     tm->select();
 
-    return true;
+    return b;
 
 }
 
@@ -267,4 +264,151 @@ void HUtenti::on_pushButton_5_clicked()
     HAlarm *f=new HAlarm(0,db,user);
 
     f->show();
+}
+
+
+
+void HUtenti::on_rbAll_toggled(bool checked)
+{
+    if(checked)
+    {
+        setFilter();
+    }
+}
+
+void HUtenti::on_rbClients_toggled(bool checked)
+{
+    if(checked)
+    {
+        // tm->setFilter("cliente>0 and fornitore <1");
+        setFilter();
+
+    }
+}
+
+void HUtenti::on_rbSuppliers_toggled(bool checked)
+{
+    if(checked)
+    {
+
+        // tm->setFilter("cliente<1 and fornitore>0");
+        setFilter();
+
+    }
+}
+
+
+
+
+void HUtenti::on_rbTrasports_toggled(bool checked)
+{
+    if(checked)
+    {
+        //tm->setFilter("trasportatore>0");
+        setFilter();
+    }
+}
+
+void HUtenti::on_cbVisible_2_toggled(bool checked)
+{
+
+    setFilter();
+
+}
+
+void HUtenti::setFilter()
+{
+    QString filter="";
+    QString visible="";
+
+    if(ui->cbVisible_2->isChecked())
+    {
+        visible="visibile>0";
+    }
+    else
+    {
+        visible="visibile<1";
+    }
+
+
+    if(ui->rbAll->isChecked())
+    {
+        filter=visible;
+    }
+    else if (ui->rbClients->isChecked())
+    {
+       filter="cliente>0 and fornitore <1 and " + visible;
+    }
+    else if (ui->rbSuppliers->isChecked())
+    {
+        filter="cliente<1 and fornitore>0 and " + visible;
+    }
+    else if (ui->rbTrasports->isChecked())
+    {
+        filter="trasportatore>0 and " + visible;
+    }
+    tm->setFilter(filter);
+    qDebug()<<tm->filter()<<tm->lastError().text()<<filter;
+
+
+
+}
+
+void HUtenti::print()
+{
+    HPrint *f =new HPrint();
+
+    int rows=tm->rowCount();
+    int cols=1;
+
+
+
+    f->append("       ANAGRAFICA ");
+    f->append("");
+    f->toggleImageUI(false);
+    f->showMaximized();
+    QTextTable *tb=f->addTable(rows,1);
+    QString txt;
+
+   int r,c;
+
+
+    f->showMaximized();
+
+    for (r=0;r<rows;r++)
+    {
+
+
+
+            txt=tm->index(r,1).data(0).toString();
+            f->writeTableContent(tb,r,0,"   "+txt+"   ");
+            QApplication::processEvents();
+
+
+
+
+
+    }
+    QApplication::processEvents();
+
+
+}
+
+void HUtenti::on_pbPrint_clicked()
+{
+  print();
+}
+
+
+
+void HUtenti::on_lsearch_returnPressed()
+{
+    productSearch();
+
+}
+
+void HUtenti::on_pushButton_6_clicked()
+{
+    ui->lsearch->setText("");
+    productSearch();
 }

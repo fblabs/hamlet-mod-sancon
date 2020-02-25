@@ -10,7 +10,7 @@
 #include <QCompleter>
 #include <QSqlError>
 #include <QMessageBox>
-// #include <QDebug>
+#include <QDebug>
 #include <QDate>
 #include <QSqlRelation>
 #include "huser.h"
@@ -32,9 +32,10 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     tmUnitaMisura = new QSqlTableModel(0,db);
 
     tmClienti->setTable("anagrafica");
-    tmClienti->setFilter("cliente=1 or subcliente=1");
+    tmClienti->setFilter("(cliente=1 or subcliente=1) and visibile=1");
     tmClienti->setSort(1,Qt::AscendingOrder);
     tmClienti->select();
+
 
     tmLots=new QSqlRelationalTableModel(0,db);
     tmLots->setTable("lotdef");
@@ -125,6 +126,7 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->cbProdotti->setCurrentIndex(0);
  //   ui->checkBox_2->setVisible(false);
     ui->tvLots->setEnabled(false);
+    ui->pushButton_3->setEnabled(false);
     on_rbProdottiFiniti_toggled(true);
     filterProducts();
     getEanList();
@@ -136,6 +138,13 @@ HPackages::~HPackages()
     delete ui;
 }
 
+void HPackages::enableUI(bool e)
+{
+    ui->cbClienti->setEnabled(e);
+    ui->cbProdotti->setEnabled(e);
+    ui->pbAnnulla->setEnabled(!e);
+    ui->pushButton_3->setEnabled(!e);
+}
 
 void HPackages::setLotText()
 {
@@ -346,6 +355,8 @@ void HPackages::createNewLot()
 void HPackages::on_pbCrea_clicked()
 {
     bool ok;
+
+    enableUI(false);
 
     ok=ui->leQuantLot->text().toDouble(&ok);
     if(!ok)
@@ -796,6 +807,7 @@ bool b;
         {
             db.rollback();
             QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando il nuovo lotto",QMessageBox::Ok);
+            enableUI(true);
 
         }
 
@@ -809,6 +821,7 @@ bool b;
 
 void HPackages::on_pbAnnulla_clicked()
 {
+    enableUI(true);
     resetForm();
 }
 

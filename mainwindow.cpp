@@ -44,6 +44,7 @@
 #include "hrecipesforclient.h"
 #include <QCryptographicHash>
 #include "hmagazzino.h"
+#include "hworkprogram.h"
 
 
 
@@ -199,6 +200,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
+        ui->pbProgrammazione->setEnabled(true);
 
 
         break;
@@ -234,6 +236,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
+        ui->pbProgrammazione->setEnabled(true);
 
 
 
@@ -260,6 +263,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
         ui->tbSettings->setEnabled(false);
+        ui->pbProgrammazione->setEnabled(true);
 
 
         break;
@@ -284,6 +288,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
         ui->tbSettings->setEnabled(false);
+        ui->pbProgrammazione->setEnabled(true);
 
 
         break;
@@ -314,6 +319,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbCalcoloCosti->setEnabled(true);
         ui->pbC4R->setEnabled(true);
         ui->tbSettings->setEnabled(false);
+        ui->pbProgrammazione->setEnabled(true);
 
 
         break;
@@ -346,6 +352,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
         ui->tbSettings->setEnabled(false);
+        ui->pbProgrammazione->setEnabled(false);
 
 
 
@@ -462,7 +469,9 @@ void MainWindow::on_tbClose_clicked()
     if(QMessageBox::question(this,QApplication::applicationName(),"Uscire dall'applicazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         db.close();
+       // db.removeDatabase(sConn);
         this->close();
+
         QApplication::quit();
     }
 }
@@ -496,13 +505,10 @@ void MainWindow::login()
 {
 
     HLogin2 *f = new HLogin2();
-  //  f->setDatabase(sConn);
+
     connect(f,SIGNAL(userLogged(HUser*,QSqlDatabase)),this,SLOT(userLogged(HUser*,QSqlDatabase)));
 
     f->show();
-
-
-
 
 }
 
@@ -511,6 +517,7 @@ void MainWindow::on_tbLogout_clicked()
 
     user=0;
     db.close();
+    //db.removeDatabase(sConn);
     disableUI();
 }
 
@@ -677,3 +684,9 @@ void MainWindow::on_pbC4R_clicked()
 
 
 
+
+void MainWindow::on_pbProgrammazione_clicked()
+{
+    HWorkProgram *f=new HWorkProgram(user,db);
+    f->showMaximized();
+}

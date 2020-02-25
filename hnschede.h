@@ -18,6 +18,8 @@ public:
     explicit HNSChede(QString spcliente,QString spprodotto,QSqlDatabase pdb=QSqlDatabase(),HUser* pusr=0,QWidget *parent = 0);
     ~HNSChede();
 
+
+
 private slots:
 
     void insertImage();
@@ -40,7 +42,7 @@ private slots:
     void setEvidence();
     void initCard(int idProdotto, int idCliente);
     void documentChanged();
-    void copyCard(int cliente, int prodotto, QString newHead);
+    void copyCard(int,int,QString,QString,QString);
 
 
 
@@ -65,6 +67,12 @@ private slots:
 
 
     void on_pushButton_9_clicked();
+
+
+
+    void on_pbCopy_clicked();
+
+    void on_pbReset_clicked();
 
 
 

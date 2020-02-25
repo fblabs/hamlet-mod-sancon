@@ -349,13 +349,13 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_7">
+      <widget class="QPushButton" name="pbCopy">
        <property name="text">
-        <string>Annulla modifiche</string>
+        <string>Copia da...</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Clockwise-arrow64.png</normaloff>:/Resources/Clockwise-arrow64.png</iconset>
+         <normaloff>:/Resources/Sheet-Of-Paper.PNG</normaloff>:/Resources/Sheet-Of-Paper.PNG</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -373,6 +373,40 @@
        <property name="icon">
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/Printer-icon.png</normaloff>:/Resources/Printer-icon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_7">
+       <property name="text">
+        <string>Annulla modifiche</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Clockwise-arrow64.png</normaloff>:/Resources/Clockwise-arrow64.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbReset">
+       <property name="text">
+        <string>Resetta scheda</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Arrow-turn-left64.png</normaloff>:/Resources/Arrow-turn-left64.png</iconset>
        </property>
        <property name="iconSize">
         <size>

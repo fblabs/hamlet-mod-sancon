@@ -49,8 +49,10 @@ public:
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pbsave;
-    QPushButton *pushButton_7;
+    QPushButton *pbCopy;
     QPushButton *pushButton_2;
+    QPushButton *pushButton_7;
+    QPushButton *pbReset;
     QPushButton *pbClose;
 
     void setupUi(QWidget *HNSChede)
@@ -222,29 +224,45 @@ public:
 
         horizontalLayout_2->addWidget(pbsave);
 
-        pushButton_7 = new QPushButton(HNSChede);
-        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        QIcon icon11;
-        icon11.addFile(QStringLiteral(":/Resources/Clockwise-arrow64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_7->setIcon(icon11);
-        pushButton_7->setIconSize(QSize(32, 32));
+        pbCopy = new QPushButton(HNSChede);
+        pbCopy->setObjectName(QStringLiteral("pbCopy"));
+        pbCopy->setIcon(icon3);
+        pbCopy->setIconSize(QSize(32, 32));
 
-        horizontalLayout_2->addWidget(pushButton_7);
+        horizontalLayout_2->addWidget(pbCopy);
 
         pushButton_2 = new QPushButton(HNSChede);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon12;
-        icon12.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon12);
+        QIcon icon11;
+        icon11.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon11);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
 
+        pushButton_7 = new QPushButton(HNSChede);
+        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
+        QIcon icon12;
+        icon12.addFile(QStringLiteral(":/Resources/Clockwise-arrow64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_7->setIcon(icon12);
+        pushButton_7->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pushButton_7);
+
+        pbReset = new QPushButton(HNSChede);
+        pbReset->setObjectName(QStringLiteral("pbReset"));
+        QIcon icon13;
+        icon13.addFile(QStringLiteral(":/Resources/Arrow-turn-left64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbReset->setIcon(icon13);
+        pbReset->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pbReset);
+
         pbClose = new QPushButton(HNSChede);
         pbClose->setObjectName(QStringLiteral("pbClose"));
-        QIcon icon13;
-        icon13.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon13);
+        QIcon icon14;
+        icon14.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon14);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbClose);
@@ -306,8 +324,10 @@ public:
         pushButton_4->setShortcut(QApplication::translate("HNSChede", "Ctrl+Alt+P", 0));
         textEdit->setPlaceholderText(QString());
         pbsave->setText(QApplication::translate("HNSChede", "Salva", 0));
-        pushButton_7->setText(QApplication::translate("HNSChede", "Annulla modifiche", 0));
+        pbCopy->setText(QApplication::translate("HNSChede", "Copia da...", 0));
         pushButton_2->setText(QApplication::translate("HNSChede", "Stampa...", 0));
+        pushButton_7->setText(QApplication::translate("HNSChede", "Annulla modifiche", 0));
+        pbReset->setText(QApplication::translate("HNSChede", "Resetta scheda", 0));
         pbClose->setText(QApplication::translate("HNSChede", "Chiudi", 0));
     } // retranslateUi
 

@@ -33,9 +33,6 @@ HPrint::HPrint(QWidget *parent) :
     ui->textEdit->installEventFilter(this);
 
 
-
-
-
 }
 
 bool HPrint::eventFilter(QObject *target, QEvent *event)

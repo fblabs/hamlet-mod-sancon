@@ -90,6 +90,8 @@ private slots:
 
    void on_chBio_toggled(bool checked);
 
+
+
 private:
 
     Ui::HLotti *ui;

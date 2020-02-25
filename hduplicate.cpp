@@ -5,7 +5,7 @@
 #include <QSqlQuery>
 #include <QSqlTableModel>
 #include <QSqlQueryModel>
-// #include <QDebug>
+#include <QDebug>
 #include <QSqlError>
 
 HDuplicate::HDuplicate(int ocliente, int oprodotto,QSqlDatabase pdb,QWidget *parent) :
@@ -110,7 +110,7 @@ void HDuplicate::duplicate()
 
     if (!b)
     {
-       // // qDebug()<<q.lastQuery()<<q.lastError().text();
+       qDebug()<<q.lastQuery()<<q.lastError().text();
     }
     else
     {

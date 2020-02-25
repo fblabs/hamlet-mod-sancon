@@ -22,8 +22,9 @@ public:
 private slots:
     void on_pushButton_2_clicked();
     void addNewProduct();
-    void on_pushButton_clicked();
-    void tipoSelected();
+    void on_pbSave_clicked();
+
+    void on_pbCancel_clicked();
 
 private:
     Ui::HNewProduct *ui;
@@ -31,6 +32,8 @@ private:
 
 
     QSqlTableModel *tmTipo;
+signals:
+    void done();
 };
 
 #endif // HNEWPRODUCT_H

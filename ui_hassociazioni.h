@@ -41,6 +41,7 @@ public:
     QPushButton *pushButton_5;
     QPushButton *pushButton_6;
     QPushButton *pushButton_4;
+    QPushButton *pbPrint;
     QPushButton *pushButton;
 
     void setupUi(QWidget *HAssociazioni)
@@ -144,14 +145,23 @@ public:
 
         horizontalLayout_3->addWidget(pushButton_4);
 
+        pbPrint = new QPushButton(HAssociazioni);
+        pbPrint->setObjectName(QStringLiteral("pbPrint"));
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon6);
+        pbPrint->setIconSize(QSize(32, 32));
+
+        horizontalLayout_3->addWidget(pbPrint);
+
 
         verticalLayout->addLayout(horizontalLayout_3);
 
         pushButton = new QPushButton(HAssociazioni);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon6);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon7);
         pushButton->setIconSize(QSize(32, 32));
 
         verticalLayout->addWidget(pushButton);
@@ -172,6 +182,7 @@ public:
         pushButton_5->setText(QApplication::translate("HAssociazioni", "Rendi visibile", 0));
         pushButton_6->setText(QApplication::translate("HAssociazioni", "Rendi non visibile", 0));
         pushButton_4->setText(QApplication::translate("HAssociazioni", "Scheda", 0));
+        pbPrint->setText(QApplication::translate("HAssociazioni", "Stampa", 0));
         pushButton->setText(QApplication::translate("HAssociazioni", "Chiudi", 0));
     } // retranslateUi
 

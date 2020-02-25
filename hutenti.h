@@ -7,6 +7,7 @@
 #include <QItemSelectionModel>
 #include <QDataWidgetMapper>
 #include "huser.h"
+#include "hprint.h"
 
 namespace Ui {
 class HUtenti;
@@ -27,11 +28,9 @@ public:
 
 private:
     Ui::HUtenti *ui;
-    void initForm();
     QSqlRelationalTableModel* tm;
     QDataWidgetMapper* dwMapper;
     QDataWidgetMapper* scmodel;
-   // QSqlRelationalTableModel* cm;
     QItemSelectionModel* selm;
     QString sConn;
     HUser *user;
@@ -44,6 +43,8 @@ private slots:
     void on_pushButton_2_clicked();
     void selectMasterClient();
     void updateSubclient();
+    void setFilter();
+    void print();
     bool save();
 
 
@@ -52,6 +53,20 @@ private slots:
 
     void on_cbxMasterCli_currentIndexChanged(int index);
     void on_pushButton_5_clicked();
+
+    void on_rbAll_toggled(bool checked);
+    void on_rbClients_toggled(bool checked);
+    void on_rbSuppliers_toggled(bool checked);
+
+
+    void on_rbTrasports_toggled(bool checked);
+    void on_cbVisible_2_toggled(bool checked);
+    void on_pbPrint_clicked();
+
+
+
+    void on_lsearch_returnPressed();
+    void on_pushButton_6_clicked();
 };
 
 

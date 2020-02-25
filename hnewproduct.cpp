@@ -43,26 +43,11 @@ void HNewProduct::on_pushButton_2_clicked()
     this->close();
 }
 
-void HNewProduct::tipoSelected()
-{
-    int tipo=ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toInt();
-
-    if (tipo==1)
-    {
-        ui->pbSaveAndCreate->setVisible(true);
-    }
-    else
-    {
-         ui->pbSaveAndCreate->setVisible(false);
-    }
-
-}
-
 void HNewProduct::addNewProduct()
 {
     QSqlQuery q(db);
     QString query;
-    QVariant descrizione,tipo,allergenico,attivo;
+    QVariant descrizione,tipo,allergenico,attivo,bio;
 
     descrizione=ui->leDescrizione->text().toUpper();
     tipo=ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toString();
@@ -74,21 +59,33 @@ void HNewProduct::addNewProduct()
     {
         allergenico="0";
     }
+    if (ui->cbBio->isChecked())
+    {
+       bio="1";
+    }
+    else
+    {
+        bio="0";
+    }
+
 
     attivo="1";
 
 
-    query="INSERT INTO prodotti (descrizione,tipo,allergenico,attivo) VALUES(:desc,:tipo,:allerg,:attivo)";
+    query="INSERT INTO prodotti (descrizione,tipo,allergenico,attivo,bio) VALUES(:desc,:tipo,:allerg,:attivo,:bio)";
     q.prepare(query);
     q.bindValue(":desc",QVariant(descrizione));
     q.bindValue(":tipo",QVariant(tipo));
     q.bindValue(":allerg",QVariant(allergenico));
     q.bindValue(":attivo",QVariant(attivo));
+    q.bindValue(":bio",QVariant(bio));
 
-
-    if(q.exec())
+    bool s=q.exec();
+    if(s)
     {
-        ui->leDescrizione->setText("");
+        QMessageBox::warning(this, QApplication::applicationName(),"Prodotto salvato",QMessageBox::Ok);
+        emit done();
+        close();
 
     }
     else
@@ -99,7 +96,13 @@ void HNewProduct::addNewProduct()
 
 
 
-void HNewProduct::on_pushButton_clicked()
+void HNewProduct::on_pbSave_clicked()
 {
     addNewProduct();
+}
+
+
+void HNewProduct::on_pbCancel_clicked()
+{
+    close();
 }

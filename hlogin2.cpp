@@ -46,7 +46,6 @@ void HLogin2::login()
     conname=settings.value("conn").toString();
 
 
-
     db = QSqlDatabase::addDatabase("QMYSQL",conname);
     db.setHostName(host);
     db.setDatabaseName(database);

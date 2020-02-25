@@ -76,6 +76,7 @@ private slots:
     int getumid(int idlotto);
     QString getumdesc(int umid);
     int getumidfromdesc(QString pdesc);
+    void enableUI(bool e);
 
 
 

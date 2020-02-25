@@ -69,7 +69,13 @@ SOURCES += main.cpp\
     hwarehousedetails.cpp \
     hrecipesforclient.cpp \
     hlotmovements.cpp \
-    hmagazzino.cpp
+    hmagazzino.cpp \
+    hproductsmodel.cpp \
+    hmodproduct.cpp \
+    hworkprogram.cpp \
+    hwpmanager.cpp \
+    hworkprogressmodel.cpp \
+    hmodifyrow.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -127,7 +133,13 @@ HEADERS  += mainwindow.h \
     hwarehousedetails.h \
     hrecipesforclient.h \
     hlotmovements.h \
-    hmagazzino.h
+    hmagazzino.h \
+    hproductsmodel.h \
+    hmodproduct.h \
+    hworkprogram.h \
+    hwpmanager.h \
+    hworkprogressmodel.h \
+    hmodifyrow.h
 
 
 
@@ -183,7 +195,11 @@ FORMS    += mainwindow.ui \
     hwarehousedetails.ui \
     hrecipesforclient.ui \
     hlotmovements.ui \
-    hmagazzino.ui
+    hmagazzino.ui \
+    hmodproduct.ui \
+    hworkprogram.ui \
+    hwpmanager.ui \
+    hmodifyrow.ui
 
 RESOURCES += \
     icons.qrc

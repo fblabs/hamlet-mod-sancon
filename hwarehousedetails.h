@@ -35,7 +35,7 @@ private:
     QDataWidgetMapper *mapper;
     int opid;
 signals:
-    confirm();
+    void confirm();
 };
 
 #endif // HWAREHOUSEDETAILS_H

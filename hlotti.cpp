@@ -75,6 +75,8 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
 
    ui->datadal->setDate(QDate::currentDate().addMonths(-1));
    ui->dataal->setDate(QDate::currentDate());
+   dal=ui->datadal->date();
+   al=ui->dataal->date();
 
 
 
@@ -250,8 +252,10 @@ void HLotti::setFilter()
        filter="";
 
 
-       QString datafilter="lotdef.data between cast('" + ui->datadal->date().toString("yyyy-MM-dd") + "' as date) and cast('" + ui->dataal->date().addDays(1).toString("yyyy-MM-dd")+"' as date)";
-       qDebug()<<datafilter<<ui->dataal->date().toString("yyyy-MM-dd");
+       QString datafilter="lotdef.data between cast('" + dal.toString("yyyy-MM-dd") + "' as date) and cast('" + al.addDays(1).toString("yyyy-MM-dd")+"' as date)";
+
+       filter=datafilter;
+
        if (ui->chbT->isChecked() && !ui->chbP->isChecked())
        {
            //filtra solo per tipo
@@ -295,11 +299,11 @@ void HLotti::setFilter()
 
 
 
-
+   qDebug()<<"DATAFILTER: "<<filter;
 
    tbm->setFilter(filter);
 
-   qDebug()<<tbm->filter()<<tbm->lastError().text()<<tbm->query().lastQuery();
+   //qDebug()<<tbm->filter()<<tbm->lastError().text()<<tbm->query().lastQuery();
 
 
 }
@@ -350,7 +354,7 @@ void HLotti::print()
         QApplication::processEvents();
 
     }
-    QApplication::processEvents();
+  //  QApplication::processEvents();
 
 
 

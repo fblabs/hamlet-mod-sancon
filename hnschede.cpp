@@ -101,7 +101,7 @@ HNSChede::HNSChede(QString spcliente, QString spprodotto, QSqlDatabase pdb, HUse
 
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(QString)),this,SLOT(getProducts()));
     connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(loadCard()));
-    ui->cbClienti->setCurrentIndex(0);
+    ui->cbClienti->setCurrentIndex(-1);
 
  //   connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
     connect(ui->textEdit->document(),SIGNAL(contentsChanged()),this,SLOT(documentChanged()));
@@ -224,7 +224,7 @@ bool HNSChede::saveCard()
     cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
     prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
 
-    qDebug()<<"savecard: "<<prodotto<<cliente<<QString::number(update);
+   // qDebug()<<"savecard: "<<prodotto<<cliente<<QString::number(update);
 
     db.transaction();
 
@@ -253,7 +253,7 @@ bool HNSChede::saveCard()
     }
     else {
         db.rollback();
-        qDebug()<<"savecard: "<<q.lastError().text()<<cliente<<prodotto<<QString::number(update);
+        //qDebug()<<"savecard: "<<q.lastError().text()<<cliente<<prodotto<<QString::number(update);
     }
 
 
@@ -280,7 +280,7 @@ void HNSChede::loadCard()
 
 
 
-     qDebug()<<"loadCard: "<<cliente<<prodotto;
+
 
 
     QSqlQuery q(db);
@@ -334,7 +334,7 @@ void HNSChede::on_pbsave_clicked()
    switch(result)
    {
       case QMessageBox::Ok:
-        qDebug()<<"Save";
+        //qDebug()<<"Save";
 
       b=saveCard();
 
@@ -398,7 +398,7 @@ void HNSChede::resizeImage(int nw, int nh)
                      {
                           QTextImageFormat newImageFormat = fragment.charFormat().toImageFormat();
 
-                          qDebug()<<newImageFormat.name();
+                          //qDebug()<<newImageFormat.name();
 
 
 
@@ -438,7 +438,7 @@ int HNSChede::getImageWidth()
 
                  if (fragment.isValid())
                  {
-                                   qDebug()<< fragment.charFormat().ImageObject;
+                                   //qDebug()<< fragment.charFormat().ImageObject;
                      if(fragment.charFormat().isImageFormat ())
                      {
                           QTextImageFormat newImageFormat = fragment.charFormat().toImageFormat();
@@ -538,13 +538,13 @@ void HNSChede::setBold()
 
     if(!cursor.charFormat().font().bold())
     {
-        qDebug()<<"not bold";
+        //qDebug()<<"not bold";
         currentFormat.setFontWeight(QFont::Bold);
        // cursor.charFormat().setFontWeight(QFont::Bold);
 
     }else
     {
-        qDebug()<<"bold";
+       // qDebug()<<"bold";
         currentFormat.setFontWeight(QFont::Normal);
 
 
@@ -563,11 +563,11 @@ void HNSChede::setEvidence()
     QTextCursor cursor=ui->textEdit->textCursor();
     QTextCharFormat currentFormat=cursor.charFormat();
 
-    qDebug()<<currentFormat.background().color().name();
+    //qDebug()<<currentFormat.background().color().name();
 
     if(currentFormat.background().color().name()=="#ffffff")
     {
-qDebug()<<currentFormat.background().color().name();
+//qDebug()<<currentFormat.background().color().name();
         currentFormat.setBackground(QBrush(QColor(Qt::yellow)));
     }
     else
@@ -643,12 +643,13 @@ void HNSChede::initCard(int idProdotto, int idCliente)
 
    if(b)
    {
-       loadCard();
+       ui->textEdit->setHtml(scheda);
    }
    else
    {
-       ui->textEdit->clear();
-       qDebug()<<q.lastError().text();
+      QMessageBox::information(this,QApplication::applicationName(),"Errore inizializzando la scheda: <br>"+q.lastError().text(),QMessageBox::Ok);
+      ui->textEdit->clear();
+
    }
 
    ui->pushButton_9->setEnabled(true);
@@ -702,51 +703,50 @@ void HNSChede::on_pushButton_9_clicked()
 {
     HCopyCard *f=new HCopyCard(0,db);
     f->setWindowModality(Qt::ApplicationModal);
-    connect(f,SIGNAL(copyRecipe(int,int,QString)),this,SLOT(copyCard(int,int,QString)));
+    QObject::connect(f,SIGNAL(copyTheCard(int,int,QString,QString,QString)),this,SLOT(copyCard(int,int,QString,QString,QString)));
     f->show();
 
 }
 
-void HNSChede::copyCard(int cliente, int prodotto, QString newHead)
+void HNSChede::copyCard(int cliente, int prodotto, QString nC, QString nP, QString schedadacopiare)
 {
+    ui->textEdit->clear();
+    initCard(prodotto,cliente);
+
+    QString schedainizializzata=ui->textEdit->toHtml();
+    qDebug()<<schedainizializzata;
+
+    int from=schedadacopiare.indexOf(QString("SCHEDA"),Qt::CaseSensitive);
+    int to=schedadacopiare.indexOf(QString("<br"),from,Qt::CaseSensitive);
+    int lnt=to-from;
+    qDebug()<<from<<to<<lnt;
+    QString oldHeader=schedadacopiare.mid(from,lnt);
+    QString newHeader ="SCHEDA: "+ui->cbClienti->currentText()+" - "+ui->cbProdotti->currentText();
+    qDebug()<<"oldHeader: "<<oldHeader;
+    qDebug()<<"newHeader: "<<newHeader;
+    qDebug()<<lnt;
+
+  //  QString oC=ui->cbClienti->currentText();
+ //   QString oP=ui->cbProdotti->currentText();
+
+    qDebug()<<schedadacopiare.indexOf(oldHeader);
+
+ /*   if(schedadacopiare.indexOf(oldHeader)>=0)// && schedainizializzata.toStdString().find(nP.toStdString())>=0)
+
+{*/
+         /*schedadacopiare.replace(oC,nC,Qt::CaseSensitive);
+          schedadacopiare.replace(oP,nP,Qt::CaseSensitive);
+          qDebug()<<oC<<nP<<oC<<nP;*/
+
+      //  schedadacopiare.replace(oldHeader,Qt::CaseSensitive);
+        schedadacopiare.replace(from,lnt,newHeader);
 
 
-    qDebug()<<"CC"<<cliente<<prodotto<<newHead;
-    QString scheda,sql;
-    QSqlQuery q(db);
-    bool b;
+/*}*/
 
+     QString scheda(schedadacopiare);
 
-
-    q.prepare("select scheda from schede_n where cliente=:cli and prodotto=:prod" );
-    q.bindValue(":cli",cliente);
-    q.bindValue(":prod",prodotto);
-    b=q.exec();
-    if (!b)
-    {
-        qDebug()<<"SELECT: "<<q.lastError().text();
-
-    }
-
-    q.first();
-    scheda=q.value(0).toString();
-   // qDebug()<<scheda<<"orcli:" <<cliente<<prodotto;
-    q.clear();
-
-    QString current="SCHEDA: "+ui->cbClienti->currentText()+" - "+ ui->cbProdotti->currentText();
-
-    int from=scheda.indexOf(newHead,0,Qt::CaseSensitive);
-    int len=newHead.length();
-
-   // qDebug()<<"copycard old:"<<from<<len<<"newhewader:"<<newHead<<"current: "<<current;
-
-    QString newCard =scheda.replace(from,len,current);
-
-
-
-    ui->textEdit->setHtml(newCard);
-
-
+     ui->textEdit->setHtml(scheda);
 
 
 
@@ -754,5 +754,38 @@ void HNSChede::copyCard(int cliente, int prodotto, QString newHead)
 }
 
 
+
+
+
+void HNSChede::on_pbCopy_clicked()
+{
+    HCopyCard *f=new HCopyCard(0,db);
+    f->setWindowModality(Qt::ApplicationModal);
+    //connect(f,SIGNAL(copyCard(int cliente,int prodotto,QString produttore,QString product)),this,SLOT(copyCard(int cliente, int prodotto, QString produttore,QString product)));
+    connect(f,SIGNAL(doCopy(int,int,QString,QString,QString)),this,SLOT(copyCard(int,int,QString,QString,QString)));
+    f->show();
+
+}
+
+void HNSChede::on_pbReset_clicked()
+{
+    int cliente,prodotto;
+
+    cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
+    prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toInt();
+
+    QSqlQuery q(db);
+    QString sql="delete from schede_n where cliente=:c and prodotto=:p";
+    q.prepare(sql);
+    q.bindValue(":c",QVariant(cliente));
+    q.bindValue(":p",QVariant(prodotto));
+
+    if (QMessageBox::question(this,QApplication::applicationName(),"Cancellare la scheda?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        q.exec();
+    }
+
+    loadCard();
+}
 
 

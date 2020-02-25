@@ -8,6 +8,7 @@
 #include <QSqlQueryModel>
 #include <QSqlRelationalTableModel>
 #include "huser.h"
+#include "hproductsmodel.h"
 
 namespace Ui {
 class HProdottiNew;
@@ -35,6 +36,8 @@ private slots:
 
     void save();
 
+    void reloadProduct();
+
 
 
     void on_pushButton_2_clicked();
@@ -50,13 +53,18 @@ private slots:
 
     void on_rbBio_toggled(bool checked);
 
+    void on_tvProdotti_doubleClicked(const QModelIndex &index);
+
+    void on_pbMod_clicked();
+
 private:
     Ui::HProdottiNew *ui;
     QString sConn;
     QSqlDatabase db;
-    QSqlRelationalTableModel *tmProdotti;
+    HProductsModel *tmProdotti;
     QSqlRelationalTableModel *tmTipi;
     HUser *user;
+
 
 };
 

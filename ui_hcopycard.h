@@ -17,6 +17,8 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -29,8 +31,8 @@ public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
-    QComboBox *cbC;
-    QHBoxLayout *horizontalLayout_2;
+    QLineEdit *lineEdit;
+    QListView *lvC;
     QLabel *label_2;
     QComboBox *cbP;
     QHBoxLayout *horizontalLayout_3;
@@ -41,7 +43,7 @@ public:
     {
         if (HCopyCard->objectName().isEmpty())
             HCopyCard->setObjectName(QStringLiteral("HCopyCard"));
-        HCopyCard->resize(474, 179);
+        HCopyCard->resize(685, 461);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Sheet-Of-Paper.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HCopyCard->setWindowIcon(icon);
@@ -55,33 +57,31 @@ public:
 
         horizontalLayout->addWidget(label);
 
-        cbC = new QComboBox(HCopyCard);
-        cbC->setObjectName(QStringLiteral("cbC"));
-        cbC->setEditable(true);
-        cbC->setInsertPolicy(QComboBox::NoInsert);
+        lineEdit = new QLineEdit(HCopyCard);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
 
-        horizontalLayout->addWidget(cbC);
+        horizontalLayout->addWidget(lineEdit);
 
 
         verticalLayout->addLayout(horizontalLayout);
 
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        lvC = new QListView(HCopyCard);
+        lvC->setObjectName(QStringLiteral("lvC"));
+        lvC->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+        verticalLayout->addWidget(lvC);
+
         label_2 = new QLabel(HCopyCard);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setMaximumSize(QSize(50, 16777215));
 
-        horizontalLayout_2->addWidget(label_2);
+        verticalLayout->addWidget(label_2);
 
         cbP = new QComboBox(HCopyCard);
         cbP->setObjectName(QStringLiteral("cbP"));
         cbP->setEditable(true);
-        cbP->setInsertPolicy(QComboBox::NoInsert);
 
-        horizontalLayout_2->addWidget(cbP);
-
-
-        verticalLayout->addLayout(horizontalLayout_2);
+        verticalLayout->addWidget(cbP);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));

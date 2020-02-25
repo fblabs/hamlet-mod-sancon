@@ -92,6 +92,7 @@ private slots:
     void on_pbAnnulla_clicked();
     void on_pushButton_11_clicked();
 
+
 };
 
 #endif // HPRODUCTION_H
