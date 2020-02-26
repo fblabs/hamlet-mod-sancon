@@ -78,7 +78,7 @@ public:
         HWpManager->setWindowModality(Qt::ApplicationModal);
         HWpManager->resize(747, 414);
         QIcon icon;
-        icon.addFile(QStringLiteral(":/Resources/modlots.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HWpManager->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(HWpManager);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -290,7 +290,7 @@ public:
 
     void retranslateUi(QWidget *HWpManager)
     {
-        HWpManager->setWindowTitle(QApplication::translate("HWpManager", "Dettagli programmazione", 0));
+        HWpManager->setWindowTitle(QApplication::translate("HWpManager", "Aggiungi riga programmazione", 0));
         label_2->setText(QApplication::translate("HWpManager", "Cliente:", 0));
         label_3->setText(QApplication::translate("HWpManager", "Prodotto:", 0));
         label_9->setText(QApplication::translate("HWpManager", "N.Ordine:", 0));

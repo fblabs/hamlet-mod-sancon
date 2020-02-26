@@ -14,11 +14,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dettagli programmazione</string>
+   <string>Aggiungi riga programmazione</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
-    <normaloff>:/Resources/modlots.png</normaloff>:/Resources/modlots.png</iconset>
+    <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

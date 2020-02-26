@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Programmazione Lavorazione</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/Resources/3D_Icons_Icon_256.png</normaloff>:/Resources/3D_Icons_Icon_256.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QGridLayout" name="gridLayout">
@@ -186,6 +190,10 @@
        <property name="text">
         <string>Aggiungi</string>
        </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Plus.PNG</normaloff>:/Resources/Plus.PNG</iconset>
+       </property>
       </widget>
      </item>
      <item>
@@ -193,12 +201,20 @@
        <property name="text">
         <string>Modifica riga</string>
        </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pbRemove">
        <property name="text">
         <string>Rimuovi</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Minus.PNG</normaloff>:/Resources/Minus.PNG</iconset>
        </property>
       </widget>
      </item>
@@ -225,6 +241,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pbPrint">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Stampa</string>
        </property>

@@ -77,6 +77,9 @@ public:
             HModifyRow->setObjectName(QStringLiteral("HModifyRow"));
         HModifyRow->setWindowModality(Qt::ApplicationModal);
         HModifyRow->resize(747, 414);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        HModifyRow->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(HModifyRow);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout_4 = new QHBoxLayout();
@@ -260,18 +263,18 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pbSave = new QPushButton(HModifyRow);
         pbSave->setObjectName(QStringLiteral("pbSave"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSave->setIcon(icon);
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSave->setIcon(icon1);
         pbSave->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbSave);
 
         pbClose = new QPushButton(HModifyRow);
         pbClose->setObjectName(QStringLiteral("pbClose"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon2);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbClose);
@@ -279,7 +282,6 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        leQuant->raise();
 
         retranslateUi(HModifyRow);
 

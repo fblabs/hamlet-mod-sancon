@@ -27,6 +27,7 @@ private slots:
     void on_pbNewSheet_clicked();
     void refreshSheet();
     void updateSheet(int lix, int oldix, int newix);
+    void setHeaders();
 
 
     void on_pbSave_clicked();

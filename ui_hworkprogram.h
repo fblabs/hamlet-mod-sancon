@@ -62,6 +62,9 @@ public:
             HWorkProgram->setObjectName(QStringLiteral("HWorkProgram"));
         HWorkProgram->setWindowModality(Qt::ApplicationModal);
         HWorkProgram->resize(1062, 638);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/Resources/3D_Icons_Icon_256.png"), QSize(), QIcon::Normal, QIcon::Off);
+        HWorkProgram->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(HWorkProgram);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         gridLayout = new QGridLayout();
@@ -101,9 +104,9 @@ public:
 
         pbNewSheet = new QPushButton(HWorkProgram);
         pbNewSheet->setObjectName(QStringLiteral("pbNewSheet"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbNewSheet->setIcon(icon);
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbNewSheet->setIcon(icon1);
         pbNewSheet->setIconSize(QSize(32, 32));
 
         gridLayout->addWidget(pbNewSheet, 0, 6, 1, 1);
@@ -167,16 +170,23 @@ public:
 
         pbAdd = new QPushButton(HWorkProgram);
         pbAdd->setObjectName(QStringLiteral("pbAdd"));
+        pbAdd->setIcon(icon1);
 
         horizontalLayout_2->addWidget(pbAdd);
 
         pbModify = new QPushButton(HWorkProgram);
         pbModify->setObjectName(QStringLiteral("pbModify"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbModify->setIcon(icon2);
 
         horizontalLayout_2->addWidget(pbModify);
 
         pbRemove = new QPushButton(HWorkProgram);
         pbRemove->setObjectName(QStringLiteral("pbRemove"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbRemove->setIcon(icon3);
 
         horizontalLayout_2->addWidget(pbRemove);
 
@@ -187,27 +197,28 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pbSave = new QPushButton(HWorkProgram);
         pbSave->setObjectName(QStringLiteral("pbSave"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSave->setIcon(icon1);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSave->setIcon(icon4);
         pbSave->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbSave);
 
         pbPrint = new QPushButton(HWorkProgram);
         pbPrint->setObjectName(QStringLiteral("pbPrint"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon2);
+        pbPrint->setEnabled(false);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon5);
         pbPrint->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbPrint);
 
         pbClose = new QPushButton(HWorkProgram);
         pbClose->setObjectName(QStringLiteral("pbClose"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon3);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon6);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbClose);

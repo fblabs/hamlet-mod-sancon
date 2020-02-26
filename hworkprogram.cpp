@@ -12,7 +12,7 @@
 #include "hprint.h"
 #include "hworkprogressmodel.h"
 #include "hmodifyrow.h"
-
+#include <QHeaderView>
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
@@ -23,9 +23,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     db=p_db;
     ui->deDal->setDate(QDate::currentDate());
     ui->deAl->setDate(QDate::currentDate().addDays(7));
-    wpmod = new HWorkProgressModel(0,db);
-    wpmod->setEditStrategy(HWorkProgressModel::OnFieldChange);
-    ui->tvGeneral->setModel(wpmod);
+
 
 
     getSheets();
@@ -67,6 +65,7 @@ bool HWorkProgram::createSheet()
         qDebug()<<datedal<<dateal<<q.lastQuery();
     }
     getSheets();
+
     return b;
 }
 
@@ -78,7 +77,9 @@ void HWorkProgram::getSheets()
     ui->tvStorico->setModel(mod);
     ui->tvStorico->setColumnHidden(0,true);
     ui->tvStorico->setColumnHidden(3,true);
+    ui->tvStorico->horizontalHeader()->setStretchLastSection(true);
     ui->tvGeneral->verticalHeader()->setSectionsMovable(true);
+
 
 
 
@@ -94,6 +95,19 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
     ui->deAl->setDate(ui->tvStorico->model()->index(index.row(),2).data(0).toDate());
        /*HWpManager *f=new HWpManager(id,user,db);
        f->show();*/
+    refreshSheet();
+
+
+    //connect(ui->tvGeneral->verticalHeader(),SIGNAL(sectionMoved(int,int,int)),this,SLOT(updateSheet(int,int,int)));
+
+}
+
+void HWorkProgram::refreshSheet()
+{
+    wpmod=0;
+    wpmod = new HWorkProgressModel(0,db);
+    wpmod->setEditStrategy(HWorkProgressModel::OnFieldChange);
+    ui->tvGeneral->setModel(wpmod);
     QSqlRelationalDelegate *rdel=new QSqlRelationalDelegate();
     wpmod->setTable("righe_produzione");
     wpmod->setFilter("idproduzione="+QString::number(id));
@@ -108,28 +122,14 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
     ui->tvGeneral->setColumnHidden(1,true);
     ui->tvGeneral->setColumnHidden(2,true);
     ui->tvGeneral->setItemDelegate(rdel);
-    connect(ui->tvGeneral->verticalHeader(),SIGNAL(sectionMoved(int,int,int)),this,SLOT(updateSheet(int,int,int)));
-
-}
-
-void HWorkProgram::refreshSheet()
-{
-    wpmod->setTable("righe_produzione");
-    wpmod->setFilter("idproduzione="+QString::number(id));
-    wpmod->setRelation(1,QSqlRelation("produzione","ID","ID"));
-    wpmod->setRelation(3,QSqlRelation("anagrafica","ID","ragione_sociale"));
-    wpmod->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
-    wpmod->setRelation(9,QSqlRelation("prodotti","ID","descrizione"));
-    wpmod->setSort(2,Qt::AscendingOrder);
-    wpmod->select();
-    ui->tvGeneral->setModel(wpmod);
+    setHeaders();
 
 }
 
 
 void HWorkProgram::on_pbNewSheet_clicked()
 {
-    if(QMessageBox::question(this,QApplication::applicationName(),"Creare un nuovo foglio produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    if(QMessageBox::question(this,QApplication::applicationName(),"Creare un nuovo foglio produzione (dal "+ui->deDal->date().toString("dd-MM-yyyy")+ " al "+ ui->deAl->date().toString("dd-MM-yyyy")+"?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         createSheet();
     }
@@ -176,6 +176,7 @@ void HWorkProgram::updateSheet(int lix,int oldix, int newix)
 
 void HWorkProgram::on_pbSave_clicked()
 {
+    wpmod->submitAll();
     refreshSheet();
     ui->cbshowrows->setChecked(false);
 
@@ -203,7 +204,7 @@ void HWorkProgram::on_pbRemove_clicked()
 
 void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
 {
-   showModRow();
+  if (!ui->cbshowrows->isChecked()) showModRow();
 }
 
 void HWorkProgram::on_pbModify_clicked()
@@ -223,5 +224,23 @@ void HWorkProgram::showModRow()
 
 void HWorkProgram::on_deDal_dateChanged(const QDate &date)
 {
-    ui->deAl->setDate(date.addDays(7));
+   // ui->deAl->setDate(date.addDays(7));
+}
+
+void HWorkProgram::setHeaders()
+{
+    wpmod->setHeaderData(2,Qt::Horizontal,QObject::tr("Num. Riga"));
+    wpmod->setHeaderData(3,Qt::Horizontal,QObject::tr("Cliente"));
+    wpmod->setHeaderData(4,Qt::Horizontal,QObject::tr("Prodotto"));
+    wpmod->setHeaderData(5,Qt::Horizontal,QObject::tr("Ordine"));
+    wpmod->setHeaderData(6,Qt::Horizontal,QObject::tr("Grammi vaso"));
+    wpmod->setHeaderData(7,Qt::Horizontal,QObject::tr("Quantità vasi"));
+    wpmod->setHeaderData(8,Qt::Horizontal,QObject::tr("Olio"));
+    wpmod->setHeaderData(9,Qt::Horizontal,QObject::tr("Tappo"));
+    wpmod->setHeaderData(10,Qt::Horizontal,QObject::tr("Sanificazione"));
+    wpmod->setHeaderData(11,Qt::Horizontal,QObject::tr("Allergeni"));
+    wpmod->setHeaderData(12,Qt::Horizontal,QObject::tr("Fresco"));
+    wpmod->setHeaderData(13,Qt::Horizontal,QObject::tr("Pastorizzato"));
+    wpmod->setHeaderData(14,Qt::Horizontal,QObject::tr("Note"));
+    wpmod->setHeaderData(15,Qt::Horizontal,QObject::tr("Totale (gr.)"));
 }
