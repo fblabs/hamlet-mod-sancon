@@ -304,7 +304,7 @@ public:
         rbPastorized->setText(QApplication::translate("HModifyRow", "Pastorizzato", 0));
         rbNone->setText(QApplication::translate("HModifyRow", "Nessuna", 0));
         label_11->setText(QApplication::translate("HModifyRow", "Note:", 0));
-        label_7->setText(QApplication::translate("HModifyRow", "Totale(gr):", 0));
+        label_7->setText(QApplication::translate("HModifyRow", "Totale Kg:", 0));
         pbSave->setText(QApplication::translate("HModifyRow", "Salva", 0));
         pbClose->setText(QApplication::translate("HModifyRow", "Chiudi", 0));
     } // retranslateUi

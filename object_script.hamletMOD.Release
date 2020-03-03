@@ -63,6 +63,7 @@ INPUT(
 ./release/hwpmanager.o
 ./release/hworkprogressmodel.o
 ./release/hmodifyrow.o
+./release/hlotmod.o
 ./release/qrc_icons.o
 ./release/moc_mainwindow.o
 ./release/moc_huser.o
@@ -125,4 +126,5 @@ INPUT(
 ./release/moc_hwpmanager.o
 ./release/moc_hworkprogressmodel.o
 ./release/moc_hmodifyrow.o
+./release/moc_hlotmod.o
 );

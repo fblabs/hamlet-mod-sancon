@@ -95,7 +95,7 @@ void HModifyRow::loadRow()
     qDebug()<<rows_model->rowCount();
 //setup controls
    QSqlTableModel *clientimod=static_cast<QSqlTableModel*>(ui->cbCliente->model());
-   clientimod->setFilter("ID="+rows_model->index(0,3).data(0).toString());
+   clientimod->setFilter("ID="+rows_model->index(0,8).data(0).toString());
    ui->cbCliente->setCurrentIndex(0);
    QString texttofind=ui->cbCliente->currentText();
    clientimod->setFilter("cliente >0");
@@ -103,27 +103,30 @@ void HModifyRow::loadRow()
    ui->cbCliente->setCurrentIndex(ixc);
 
    QSqlQueryModel *productsmod=static_cast<QSqlQueryModel*>(ui->cbProdotto->model());
-   int r=rows_model->index(0,4).data(0).toInt();
+   int r=rows_model->index(0,2).data(0).toInt();
    QString sxp=productsmod->record(r).value(2).toString();
+   qDebug()<<"prodotto"<<sxp;
    ui->cbProdotto->setCurrentText(sxp);
 
    QSqlTableModel *tappimod=static_cast<QSqlTableModel*>(ui->cbTappo->model());
-   tappimod->setFilter("ID="+rows_model->index(0,9).data(0).toString());
-   qDebug()<<"TAPPI"<<rows_model->index(0,9).data(0).toString();
+   tappimod->setFilter("ID="+rows_model->index(0,7).data(0).toString());
+   qDebug()<<"TAPPI"<<rows_model->index(0,7).data(0).toString();
    ui->cbTappo->setCurrentIndex(0);
    QString tappotofind=ui->cbTappo->currentText();
    tappimod->setFilter("tipo=4");
    int txc=ui->cbTappo->findText(tappotofind);
    ui->cbTappo->setCurrentIndex(txc);
 
-   ui->leNumOrd->setText(rows_model->index(0,5).data(0).toString());
-   ui->leVaso->setText(rows_model->index(0,6).data(0).toString());
-   ui->leQuant->setText(rows_model->index(0,7).data(0).toString());
-   ui->leOlio->setText(rows_model->index(0,8).data(0).toString());
+   ui->leNumOrd->setText(rows_model->index(0,11).data(0).toString());
+   ui->leVaso->setText(rows_model->index(0,3).data(0).toString());
+   ui->leQuant->setText(rows_model->index(0,4).data(0).toString());
+   ui->leOlio->setText(rows_model->index(0,6).data(0).toString());
    ui->cbSanty->setCurrentText(rows_model->index(0,10).data(0).toString());
-   ui->leAllergeni->setText(rows_model->index(0,11).data(0).toString());
+   ui->leAllergeni->setText(rows_model->index(0,14).data(0).toString());
    int fresco=rows_model->index(0,12).data(0).toInt();
    int pastorizzato=rows_model->index(0,13).data(0).toInt();
+
+   qDebug()<<fresco<<pastorizzato;
    if(fresco>0)
    {
        ui->rbFresh->setChecked(true);
@@ -136,11 +139,12 @@ void HModifyRow::loadRow()
    {
        ui->rbNone->setChecked(true);
    }
-   QString note=rows_model->index(0,14).data(0).toString();
+   QString note=rows_model->index(0,15).data(0).toString();
+   ui->ptNote->setPlainText(note);
 
    bool vok=false;
    bool qok=false;
-   double tot=rows_model->index(0,6).data(0).toDouble(&vok) * rows_model->index(0,7).data(0).toDouble(&qok);
+   double tot=rows_model->index(0,9).data(0).toDouble(&vok);
    ui->leTotal->setText(QString::number(tot,'f',3));
 
 
@@ -160,6 +164,8 @@ void HModifyRow::on_pbClose_clicked()
 
 void HModifyRow::on_pbSave_clicked()
 {
+    double totale=calcTotale();
+    ui->leTotal->setText(QString::number(totale,'f',3));
     if(QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Salvare le modifiche?",QMessageBox::Ok|QMessageBox::Cancel))
     {
 
@@ -181,6 +187,7 @@ void HModifyRow::on_pbSave_clicked()
         {
             pastorizzato=1;
         }
+        calcTotale();
 
         QSqlQuery q(db);
         QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,totale=:tot where IDproduzione=:idproduzione and num_riga=:num";
@@ -236,7 +243,7 @@ void HModifyRow::on_pbSave_clicked()
            return -1;
         }
 
-        double totale=quant*vaso;
+        double totale=(quant*vaso)/1000;
         return totale;
     }
 
@@ -245,10 +252,9 @@ void HModifyRow::on_leTotal_returnPressed()
 {
     double totale=calcTotale();
 
-    if(totale>0)
-    {
-        ui->leTotal->setText(QString::number(totale,'f',3));
-    }
+
+    ui->leTotal->setText(QString::number(totale,'f',3));
+
 
 }
 

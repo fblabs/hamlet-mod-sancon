@@ -75,7 +75,8 @@ SOURCES += main.cpp\
     hworkprogram.cpp \
     hwpmanager.cpp \
     hworkprogressmodel.cpp \
-    hmodifyrow.cpp
+    hmodifyrow.cpp \
+    hlotmod.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -139,7 +140,8 @@ HEADERS  += mainwindow.h \
     hworkprogram.h \
     hwpmanager.h \
     hworkprogressmodel.h \
-    hmodifyrow.h
+    hmodifyrow.h \
+    hlotmod.h
 
 
 
@@ -199,7 +201,8 @@ FORMS    += mainwindow.ui \
     hmodproduct.ui \
     hworkprogram.ui \
     hwpmanager.ui \
-    hmodifyrow.ui
+    hmodifyrow.ui \
+    hlotmod.ui
 
 RESOURCES += \
     icons.qrc

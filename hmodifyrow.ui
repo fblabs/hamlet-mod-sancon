@@ -206,7 +206,7 @@
      <item>
       <widget class="QLabel" name="label_7">
        <property name="text">
-        <string>Totale(gr):</string>
+        <string>Totale Kg:</string>
        </property>
       </widget>
      </item>

@@ -21,6 +21,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -32,13 +33,15 @@ class Ui_HWorkProgram
 public:
     QVBoxLayout *verticalLayout;
     QGridLayout *gridLayout;
-    QLabel *label;
-    QDateEdit *deDal;
+    QPushButton *pbNewSheet;
     QDateEdit *deAl;
     QLabel *label_4;
-    QSpacerItem *horizontalSpacer_3;
     QLabel *label_5;
-    QPushButton *pbNewSheet;
+    QSpacerItem *horizontalSpacer_3;
+    QLabel *label;
+    QDateEdit *deDal;
+    QSpinBox *spLinea;
+    QLabel *label_3;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_2;
     QLabel *lbSheet;
@@ -69,6 +72,34 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        pbNewSheet = new QPushButton(HWorkProgram);
+        pbNewSheet->setObjectName(QStringLiteral("pbNewSheet"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbNewSheet->setIcon(icon1);
+        pbNewSheet->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(pbNewSheet, 0, 8, 1, 1);
+
+        deAl = new QDateEdit(HWorkProgram);
+        deAl->setObjectName(QStringLiteral("deAl"));
+
+        gridLayout->addWidget(deAl, 0, 5, 1, 1);
+
+        label_4 = new QLabel(HWorkProgram);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        gridLayout->addWidget(label_4, 0, 2, 1, 1);
+
+        label_5 = new QLabel(HWorkProgram);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        gridLayout->addWidget(label_5, 0, 4, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_3, 0, 9, 1, 1);
+
         label = new QLabel(HWorkProgram);
         label->setObjectName(QStringLiteral("label"));
         QFont font;
@@ -83,33 +114,17 @@ public:
 
         gridLayout->addWidget(deDal, 0, 3, 1, 1);
 
-        deAl = new QDateEdit(HWorkProgram);
-        deAl->setObjectName(QStringLiteral("deAl"));
+        spLinea = new QSpinBox(HWorkProgram);
+        spLinea->setObjectName(QStringLiteral("spLinea"));
+        spLinea->setMinimum(1);
+        spLinea->setMaximum(2);
 
-        gridLayout->addWidget(deAl, 0, 5, 1, 1);
+        gridLayout->addWidget(spLinea, 0, 7, 1, 1);
 
-        label_4 = new QLabel(HWorkProgram);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        label_3 = new QLabel(HWorkProgram);
+        label_3->setObjectName(QStringLiteral("label_3"));
 
-        gridLayout->addWidget(label_4, 0, 2, 1, 1);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_3, 0, 7, 1, 1);
-
-        label_5 = new QLabel(HWorkProgram);
-        label_5->setObjectName(QStringLiteral("label_5"));
-
-        gridLayout->addWidget(label_5, 0, 4, 1, 1);
-
-        pbNewSheet = new QPushButton(HWorkProgram);
-        pbNewSheet->setObjectName(QStringLiteral("pbNewSheet"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbNewSheet->setIcon(icon1);
-        pbNewSheet->setIconSize(QSize(32, 32));
-
-        gridLayout->addWidget(pbNewSheet, 0, 6, 1, 1);
+        gridLayout->addWidget(label_3, 0, 6, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout);
@@ -206,7 +221,7 @@ public:
 
         pbPrint = new QPushButton(HWorkProgram);
         pbPrint->setObjectName(QStringLiteral("pbPrint"));
-        pbPrint->setEnabled(false);
+        pbPrint->setEnabled(true);
         QIcon icon5;
         icon5.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pbPrint->setIcon(icon5);
@@ -235,10 +250,11 @@ public:
     void retranslateUi(QWidget *HWorkProgram)
     {
         HWorkProgram->setWindowTitle(QApplication::translate("HWorkProgram", "Programmazione Lavorazione", 0));
-        label->setText(QApplication::translate("HWorkProgram", "PROGRAMMA DI LAVORO", 0));
+        pbNewSheet->setText(QApplication::translate("HWorkProgram", "Nuovo", 0));
         label_4->setText(QApplication::translate("HWorkProgram", "Dal", 0));
         label_5->setText(QApplication::translate("HWorkProgram", "Al:", 0));
-        pbNewSheet->setText(QApplication::translate("HWorkProgram", "Nuovo", 0));
+        label->setText(QApplication::translate("HWorkProgram", "PROGRAMMA DI LAVORO", 0));
+        label_3->setText(QApplication::translate("HWorkProgram", "Linea", 0));
         label_2->setText(QApplication::translate("HWorkProgram", "Storico:", 0));
         lbSheet->setText(QApplication::translate("HWorkProgram", "Foglio produzione", 0));
         cbshowrows->setText(QApplication::translate("HWorkProgram", "Mostra i numeri di riga", 0));

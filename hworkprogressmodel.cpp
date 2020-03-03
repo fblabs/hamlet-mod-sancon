@@ -1,6 +1,7 @@
 #include "hworkprogressmodel.h"
 #include <QSqlRelationalTableModel>
 #include <QDebug>
+#include <QColor>
 
 
 
@@ -34,7 +35,7 @@ Qt::ItemFlags flags=QSqlRelationalTableModel::flags(item);
 
        return flags;
    }
-   else
+      else
    {
       return QSqlRelationalTableModel::flags(item)  ;
    }
@@ -50,7 +51,7 @@ QVariant HWorkProgressModel::data( const QModelIndex & item, int role /*= Qt::Di
 
     int row=item.row();
 
-
+    QVariant value=QSqlRelationalTableModel::data(item);
 
 
 
@@ -61,7 +62,7 @@ QVariant HWorkProgressModel::data( const QModelIndex & item, int role /*= Qt::Di
 
 
 
-      //     QVariant value=QSqlRelationalTableModel::data(item);
+
            if (role==Qt::CheckStateRole)
                return (QSqlRelationalTableModel::data(item).toInt() != 0) ? Qt::Checked :Qt::Unchecked;
            else
@@ -71,6 +72,13 @@ QVariant HWorkProgressModel::data( const QModelIndex & item, int role /*= Qt::Di
 
 
    }
+   else if (role==Qt::TextColorRole && item.column()==14)
+   {
+      return QVariant(QColor(Qt::red));
+   }
+
+
+
 
   return QSqlRelationalTableModel::data(item,role);
 
@@ -83,7 +91,7 @@ bool HWorkProgressModel::setData(const QModelIndex &index, const QVariant &value
     {
 
 
-   //     QVariant value=QSqlRelationalTableModel::data(item);
+
         if (role==Qt::CheckStateRole )
             return (QSqlRelationalTableModel::data(index).toInt() != 0) ? Qt::Checked :Qt::Unchecked;
         else

@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HWorkProgram_t {
-    QByteArrayData data[24];
-    char stringdata0[325];
+    QByteArrayData data[26];
+    char stringdata0[350];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -43,27 +43,29 @@ QT_MOC_LITERAL(10, 127, 3), // "lix"
 QT_MOC_LITERAL(11, 131, 5), // "oldix"
 QT_MOC_LITERAL(12, 137, 5), // "newix"
 QT_MOC_LITERAL(13, 143, 10), // "setHeaders"
-QT_MOC_LITERAL(14, 154, 17), // "on_pbSave_clicked"
-QT_MOC_LITERAL(15, 172, 18), // "on_pbClose_clicked"
-QT_MOC_LITERAL(16, 191, 21), // "on_cbshowrows_toggled"
-QT_MOC_LITERAL(17, 213, 7), // "checked"
-QT_MOC_LITERAL(18, 221, 19), // "on_pbRemove_clicked"
-QT_MOC_LITERAL(19, 241, 26), // "on_tvGeneral_doubleClicked"
-QT_MOC_LITERAL(20, 268, 19), // "on_pbModify_clicked"
-QT_MOC_LITERAL(21, 288, 10), // "showModRow"
-QT_MOC_LITERAL(22, 299, 20), // "on_deDal_dateChanged"
-QT_MOC_LITERAL(23, 320, 4) // "date"
+QT_MOC_LITERAL(14, 154, 5), // "print"
+QT_MOC_LITERAL(15, 160, 17), // "on_pbSave_clicked"
+QT_MOC_LITERAL(16, 178, 18), // "on_pbClose_clicked"
+QT_MOC_LITERAL(17, 197, 21), // "on_cbshowrows_toggled"
+QT_MOC_LITERAL(18, 219, 7), // "checked"
+QT_MOC_LITERAL(19, 227, 19), // "on_pbRemove_clicked"
+QT_MOC_LITERAL(20, 247, 26), // "on_tvGeneral_doubleClicked"
+QT_MOC_LITERAL(21, 274, 19), // "on_pbModify_clicked"
+QT_MOC_LITERAL(22, 294, 10), // "showModRow"
+QT_MOC_LITERAL(23, 305, 20), // "on_deDal_dateChanged"
+QT_MOC_LITERAL(24, 326, 4), // "date"
+QT_MOC_LITERAL(25, 331, 18) // "on_pbPrint_clicked"
 
     },
     "HWorkProgram\0on_pbAdd_clicked\0\0"
     "createSheet\0getSheets\0on_tvStorico_clicked\0"
     "index\0on_pbNewSheet_clicked\0refreshSheet\0"
     "updateSheet\0lix\0oldix\0newix\0setHeaders\0"
-    "on_pbSave_clicked\0on_pbClose_clicked\0"
+    "print\0on_pbSave_clicked\0on_pbClose_clicked\0"
     "on_cbshowrows_toggled\0checked\0"
     "on_pbRemove_clicked\0on_tvGeneral_doubleClicked\0"
     "on_pbModify_clicked\0showModRow\0"
-    "on_deDal_dateChanged\0date"
+    "on_deDal_dateChanged\0date\0on_pbPrint_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -73,7 +75,7 @@ static const uint qt_meta_data_HWorkProgram[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      18,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -81,22 +83,24 @@ static const uint qt_meta_data_HWorkProgram[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   94,    2, 0x08 /* Private */,
-       3,    0,   95,    2, 0x08 /* Private */,
-       4,    0,   96,    2, 0x08 /* Private */,
-       5,    1,   97,    2, 0x08 /* Private */,
-       7,    0,  100,    2, 0x08 /* Private */,
-       8,    0,  101,    2, 0x08 /* Private */,
-       9,    3,  102,    2, 0x08 /* Private */,
-      13,    0,  109,    2, 0x08 /* Private */,
-      14,    0,  110,    2, 0x08 /* Private */,
-      15,    0,  111,    2, 0x08 /* Private */,
-      16,    1,  112,    2, 0x08 /* Private */,
-      18,    0,  115,    2, 0x08 /* Private */,
-      19,    1,  116,    2, 0x08 /* Private */,
-      20,    0,  119,    2, 0x08 /* Private */,
-      21,    0,  120,    2, 0x08 /* Private */,
-      22,    1,  121,    2, 0x08 /* Private */,
+       1,    0,  104,    2, 0x08 /* Private */,
+       3,    0,  105,    2, 0x08 /* Private */,
+       4,    0,  106,    2, 0x08 /* Private */,
+       5,    1,  107,    2, 0x08 /* Private */,
+       7,    0,  110,    2, 0x08 /* Private */,
+       8,    0,  111,    2, 0x08 /* Private */,
+       9,    3,  112,    2, 0x08 /* Private */,
+      13,    0,  119,    2, 0x08 /* Private */,
+      14,    0,  120,    2, 0x08 /* Private */,
+      15,    0,  121,    2, 0x08 /* Private */,
+      16,    0,  122,    2, 0x08 /* Private */,
+      17,    1,  123,    2, 0x08 /* Private */,
+      19,    0,  126,    2, 0x08 /* Private */,
+      20,    1,  127,    2, 0x08 /* Private */,
+      21,    0,  130,    2, 0x08 /* Private */,
+      22,    0,  131,    2, 0x08 /* Private */,
+      23,    1,  132,    2, 0x08 /* Private */,
+      25,    0,  135,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -109,12 +113,14 @@ static const uint qt_meta_data_HWorkProgram[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   17,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   18,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QModelIndex,    6,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QDate,   23,
+    QMetaType::Void, QMetaType::QDate,   24,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -134,14 +140,16 @@ void HWorkProgram::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 5: _t->refreshSheet(); break;
         case 6: _t->updateSheet((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
         case 7: _t->setHeaders(); break;
-        case 8: _t->on_pbSave_clicked(); break;
-        case 9: _t->on_pbClose_clicked(); break;
-        case 10: _t->on_cbshowrows_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 11: _t->on_pbRemove_clicked(); break;
-        case 12: _t->on_tvGeneral_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 13: _t->on_pbModify_clicked(); break;
-        case 14: _t->showModRow(); break;
-        case 15: _t->on_deDal_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
+        case 8: _t->print(); break;
+        case 9: _t->on_pbSave_clicked(); break;
+        case 10: _t->on_pbClose_clicked(); break;
+        case 11: _t->on_cbshowrows_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 12: _t->on_pbRemove_clicked(); break;
+        case 13: _t->on_tvGeneral_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 14: _t->on_pbModify_clicked(); break;
+        case 15: _t->showModRow(); break;
+        case 16: _t->on_deDal_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
+        case 17: _t->on_pbPrint_clicked(); break;
         default: ;
         }
     }
@@ -172,13 +180,13 @@ int HWorkProgram::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 18)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 18;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 18)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 16;
+        _id -= 18;
     }
     return _id;
 }

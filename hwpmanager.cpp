@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QStringListModel>
+#include "hprint.h"
 
 HWpManager::HWpManager(int p_id,HUser* p_user, QSqlDatabase p_db, QWidget *parent) :
     QWidget(parent),
@@ -117,6 +118,7 @@ void HWpManager::addSheetRow()
        QMessageBox::warning(this,QApplication::applicationName(),"Errore di formato della cifra per quantità vaso",QMessageBox::Ok);
        return;
     }
+    calcTotale();
     QString olio=ui->leOlio->text();
     int tappo=ui->cbTappo->model()->index(ui->cbTappo->currentIndex(),0).data(0).toInt();
 
@@ -137,7 +139,7 @@ void HWpManager::addSheetRow()
         return;
     }
     QString note=ui->ptNote->toPlainText();
-    double totale=quant*vaso;
+    double totale=(quant*vaso)/1000;
     ui->leTotal->setText(QString::number(totale,'f',3));
 
 
@@ -163,7 +165,10 @@ void HWpManager::addSheetRow()
     bool b=q.exec();
 
     if(b)
-    {emit rowAdded();}
+    {
+        emit rowAdded();
+        close();
+    }
     else
     {
         QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando la riga\n"+q.lastError().text(),QMessageBox::Ok);
@@ -214,7 +219,7 @@ double HWpManager::calcTotale()
        return -1;
     }
 
-    double totale=quant*vaso;
+    double totale=quant*vaso/1000;
     return totale;
 }
 

@@ -28,6 +28,7 @@ private slots:
     void refreshSheet();
     void updateSheet(int lix, int oldix, int newix);
     void setHeaders();
+    void print();
 
 
     void on_pbSave_clicked();
@@ -45,6 +46,8 @@ private slots:
     void showModRow();
 
     void on_deDal_dateChanged(const QDate &date);
+
+    void on_pbPrint_clicked();
 
 private:
     Ui::HWorkProgram *ui;
