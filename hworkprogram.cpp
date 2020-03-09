@@ -87,11 +87,15 @@ void HWorkProgram::getSheets()
     QSqlTableModel *mod=new QSqlTableModel(0,db);
     mod->setTable("produzione");
     mod->select();
+    QModelIndex ix=mod->index(0,0);
+    ui->tvStorico->setCurrentIndex(ix);
     ui->tvStorico->setModel(mod);
     if(mod->rowCount()>0)
     {
-        ui->tvStorico->clicked(ui->tvStorico->model()->index(0,0));
+        ui->tvStorico->clicked(ui->tvStorico->model()->index(ix.row(),ix.column()));
+
     }
+    ui->tvStorico->selectRow(0);
     ui->tvStorico->setColumnHidden(0,true);
     ui->tvStorico->setColumnHidden(2,true);
     ui->tvStorico->setColumnHidden(4,true);
@@ -262,6 +266,7 @@ void HWorkProgram::on_pbRemove_clicked()
 {
     wpmod->removeRow(ui->tvGeneral->currentIndex().row());
     refreshSheet();
+
 }
 
 
@@ -438,6 +443,8 @@ void HWorkProgram::on_checkBox_toggled(bool checked)
 void HWorkProgram::on_pbDeleteSheet_clicked()
 {
     deleteSheet();
+    getSheets();
+    refreshSheet();
 }
 
 

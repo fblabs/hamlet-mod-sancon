@@ -160,7 +160,9 @@ public:
         tvStorico->setMaximumSize(QSize(300, 16777215));
         tvStorico->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvStorico->setSelectionBehavior(QAbstractItemView::SelectRows);
-        tvStorico->verticalHeader()->setProperty("showSortIndicator", QVariant(true));
+        tvStorico->setSortingEnabled(true);
+        tvStorico->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
+        tvStorico->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
 
         horizontalLayout_3->addWidget(tvStorico);
 
