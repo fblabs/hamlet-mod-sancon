@@ -5,6 +5,7 @@
 #include "huser.h"
 #include <QSqlDatabase>
 #include "hworkprogressmodel.h"
+#include <QDate>
 
 namespace Ui {
 class HWorkProgram;
@@ -20,7 +21,7 @@ public:
 
 private slots:
     void on_pbAdd_clicked();
-    bool createSheet();
+    bool createSheet(int p_line, QDate p_date);
     void getSheets();
 
     void on_tvStorico_clicked(const QModelIndex &index);
@@ -48,6 +49,18 @@ private slots:
     void on_deDal_dateChanged(const QDate &date);
 
     void on_pbPrint_clicked();
+
+    void on_checkBox_toggled(bool checked);
+
+    void deleteSheet();
+
+    void on_pbDeleteSheet_clicked();
+
+    void on_pbSearch_clicked();
+
+    void search();
+
+    void on_pbReset_clicked();
 
 private:
     Ui::HWorkProgram *ui;

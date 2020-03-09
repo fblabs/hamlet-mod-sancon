@@ -9,6 +9,7 @@
 #include <QSqlError>
 #include <QDebug>
 #include <QMessageBox>
+#include <QCompleter>
 #include <QStringListModel>
 
 HModifyRow::HModifyRow(int p_id, int p_row, HUser *p_user, QSqlDatabase p_db, QWidget *parent) :
@@ -42,8 +43,14 @@ void HModifyRow::getClients()
     cmod->setSort(1,Qt::AscendingOrder);
     cmod->select();
 
+    QCompleter *comp=new QCompleter(cmod);
+    comp->setCompletionColumn(1);
+    comp->setCaseSensitivity(Qt::CaseInsensitive);
+    comp->setCompletionMode(QCompleter::PopupCompletion);
+
     ui->cbCliente->setModel(cmod);
     ui->cbCliente->setModelColumn(1);
+    ui->cbCliente->setCompleter(comp);
 }
 
 void HModifyRow::getProducts()
@@ -95,7 +102,7 @@ void HModifyRow::loadRow()
     qDebug()<<rows_model->rowCount();
 //setup controls
    QSqlTableModel *clientimod=static_cast<QSqlTableModel*>(ui->cbCliente->model());
-   clientimod->setFilter("ID="+rows_model->index(0,8).data(0).toString());
+   clientimod->setFilter("ID="+rows_model->index(0,9).data(0).toString());
    ui->cbCliente->setCurrentIndex(0);
    QString texttofind=ui->cbCliente->currentText();
    clientimod->setFilter("cliente >0");
@@ -109,22 +116,23 @@ void HModifyRow::loadRow()
    ui->cbProdotto->setCurrentText(sxp);
 
    QSqlTableModel *tappimod=static_cast<QSqlTableModel*>(ui->cbTappo->model());
-   tappimod->setFilter("ID="+rows_model->index(0,7).data(0).toString());
-   qDebug()<<"TAPPI"<<rows_model->index(0,7).data(0).toString();
+   tappimod->setFilter("ID="+rows_model->index(0,8).data(0).toString());
+   qDebug()<<"TAPPI"<<rows_model->index(0,8).data(0).toString();
    ui->cbTappo->setCurrentIndex(0);
    QString tappotofind=ui->cbTappo->currentText();
    tappimod->setFilter("tipo=4");
    int txc=ui->cbTappo->findText(tappotofind);
    ui->cbTappo->setCurrentIndex(txc);
 
-   ui->leNumOrd->setText(rows_model->index(0,11).data(0).toString());
+   ui->leNumOrd->setText(rows_model->index(0,12).data(0).toString());
    ui->leVaso->setText(rows_model->index(0,3).data(0).toString());
    ui->leQuant->setText(rows_model->index(0,4).data(0).toString());
-   ui->leOlio->setText(rows_model->index(0,6).data(0).toString());
-   ui->cbSanty->setCurrentText(rows_model->index(0,10).data(0).toString());
-   ui->leAllergeni->setText(rows_model->index(0,14).data(0).toString());
-   int fresco=rows_model->index(0,12).data(0).toInt();
-   int pastorizzato=rows_model->index(0,13).data(0).toInt();
+   ui->leOlio->setText(rows_model->index(0,7).data(0).toString());
+   ui->leSpecificaOlio->setText(rows_model->index(0,5).data(0).toString());
+   ui->cbSanty->setCurrentText(rows_model->index(0,11).data(0).toString());
+   ui->leAllergeni->setText(rows_model->index(0,15).data(0).toString());
+   int fresco=rows_model->index(0,13).data(0).toInt();
+   int pastorizzato=rows_model->index(0,14).data(0).toInt();
 
    qDebug()<<fresco<<pastorizzato;
    if(fresco>0)
@@ -139,12 +147,12 @@ void HModifyRow::loadRow()
    {
        ui->rbNone->setChecked(true);
    }
-   QString note=rows_model->index(0,15).data(0).toString();
+   QString note=rows_model->index(0,16).data(0).toString();
    ui->ptNote->setPlainText(note);
 
    bool vok=false;
    bool qok=false;
-   double tot=rows_model->index(0,9).data(0).toDouble(&vok);
+   double tot=rows_model->index(0,10).data(0).toDouble(&vok);
    ui->leTotal->setText(QString::number(tot,'f',3));
 
 
@@ -164,8 +172,7 @@ void HModifyRow::on_pbClose_clicked()
 
 void HModifyRow::on_pbSave_clicked()
 {
-    double totale=calcTotale();
-    ui->leTotal->setText(QString::number(totale,'f',3));
+
     if(QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Salvare le modifiche?",QMessageBox::Ok|QMessageBox::Cancel))
     {
 
@@ -175,6 +182,7 @@ void HModifyRow::on_pbSave_clicked()
         QString vaso=ui->leVaso->text();
         QString qua=ui->leQuant->text();
         QString olio=ui->leOlio->text();
+        QString specOlio=ui->leSpecificaOlio->text();
         int idtappo=static_cast<QSqlQueryModel*>(ui->cbTappo->model())->record(ui->cbTappo->currentIndex()).value(0).toInt();
         QString san=ui->cbSanty->currentText();
         QString allerg=ui->leAllergeni->text();
@@ -187,10 +195,9 @@ void HModifyRow::on_pbSave_clicked()
         {
             pastorizzato=1;
         }
-        calcTotale();
 
         QSqlQuery q(db);
-        QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,totale=:tot where IDproduzione=:idproduzione and num_riga=:num";
+        QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,totale=:tot where IDproduzione=:idproduzione and num_riga=:num";
         db.transaction();
         q.prepare(sql);
         q.bindValue(":idcliente",idcliente);
@@ -198,6 +205,7 @@ void HModifyRow::on_pbSave_clicked()
         q.bindValue(":nord",numord);
         q.bindValue(":vasog",vaso);
         q.bindValue(":quan",qua);
+        q.bindValue(":spolio",specOlio);
         q.bindValue(":olio",olio);
         q.bindValue(":tappo",idtappo);
         q.bindValue(":sanif",san);
@@ -205,16 +213,23 @@ void HModifyRow::on_pbSave_clicked()
         q.bindValue(":fresco",fresco);
         q.bindValue(":pasto",pastorizzato);
         q.bindValue(":note",ui->ptNote->toPlainText());
-        q.bindValue(":tot",ui->leTotal->text());
+        bool ok=false;
+        q.bindValue(":tot",ui->leTotal->text().toDouble(&ok));
+        if(!ok)
+        {
+            QMessageBox::warning(this,QApplication::applicationName(),"Errore nel formato del totale"+q.lastError().text(),QMessageBox::Ok);
+        }
         q.bindValue(":idproduzione",idp);
         q.bindValue(":num",row);
 
         if (!q.exec())
         {
+            db.rollback();
             QMessageBox::warning(this,QApplication::applicationName(),"Errore aggiornando i dati\n"+q.lastError().text(),QMessageBox::Ok);
         }
         else
         {
+            db.commit();
             emit done();
             QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
 
@@ -223,6 +238,7 @@ void HModifyRow::on_pbSave_clicked()
 
 
     }
+
 }
 
   double  HModifyRow::calcTotale()
@@ -258,12 +274,3 @@ void HModifyRow::on_leTotal_returnPressed()
 
 }
 
-void HModifyRow::on_leQuant_returnPressed()
-{
-    double totale=calcTotale();
-
-    if(totale>0)
-    {
-        ui->leTotal->setText(QString::number(totale,'f',3));
-    }
-}

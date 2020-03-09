@@ -74,7 +74,7 @@ HModifyProd::HModifyProd(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
 
     comp=new QCompleter();
     comp->setCaseSensitivity(Qt::CaseInsensitive);
-    comp->setCompletionColumn(2);
+    comp->setCompletionColumn(1);
     comp->setCompletionMode(QCompleter::PopupCompletion);
     comp->setModel(tmLots);
 

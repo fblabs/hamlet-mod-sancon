@@ -200,7 +200,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
-        ui->pbProgrammazione->setEnabled(true);
+        ui->pbProgrammazione->setEnabled(false);
 
 
         break;
@@ -236,7 +236,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
-        ui->pbProgrammazione->setEnabled(true);
+        ui->pbProgrammazione->setEnabled(false);
 
 
 
@@ -263,7 +263,8 @@ void MainWindow::enableButtonsForRole()
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
         ui->tbSettings->setEnabled(false);
-        ui->pbProgrammazione->setEnabled(true);
+        ui->pbProgrammazione->setEnabled(false);
+
 
 
         break;
@@ -288,7 +289,8 @@ void MainWindow::enableButtonsForRole()
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
         ui->tbSettings->setEnabled(false);
-        ui->pbProgrammazione->setEnabled(true);
+        ui->pbProgrammazione->setEnabled(false);
+
 
 
         break;

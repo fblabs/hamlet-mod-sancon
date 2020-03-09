@@ -568,3 +568,5 @@ void HLotti::on_chBio_toggled(bool checked)
 {
     setFilter();
 }
+
+

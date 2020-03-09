@@ -64,6 +64,7 @@ INPUT(
 ./release/hworkprogressmodel.o
 ./release/hmodifyrow.o
 ./release/hlotmod.o
+./release/hnewsheet.o
 ./release/qrc_icons.o
 ./release/moc_mainwindow.o
 ./release/moc_huser.o
@@ -127,4 +128,5 @@ INPUT(
 ./release/moc_hworkprogressmodel.o
 ./release/moc_hmodifyrow.o
 ./release/moc_hlotmod.o
+./release/moc_hnewsheet.o
 );

@@ -20,15 +20,12 @@ class HPrint : public QWidget
     Q_OBJECT
 
 public:
-    explicit HPrint(QWidget *parent = 0);
+    explicit HPrint(QWidget *parent = 0,bool altColors=false);
     ~HPrint();
 
    void setText(QString text);
    void append (QString text, bool bold=false);
    void setConnection(QString conn);
-   QTextTable *addTable(int rows,int columns);
-   QTextTable *writeTableContent(QTextTable *table, int row, int column, QString text);
-   QTextTable* writeTableContentRed(QTextTable *table,int row, int column, QString text);
 
    void hideClose();
    void resetText();
@@ -65,6 +62,10 @@ private slots:
 
    void on_textEdit_cursorPositionChanged();
 
+   void on_rbPortrait_toggled(bool checked);
+
+   void on_rbLandscape_toggled(bool checked);
+
 public slots:
    void setsbWValue(int val);
    void setsbHValue(int val);
@@ -80,6 +81,10 @@ public slots:
    void addImage(QByteArray bytes, QString name, int width, int height);
    void cursorToEnd();
    void cursorToStart();
+   QTextTable *addTable(int rows, int columns, QColor background=QColor("white"), QColor alternateBackground=QColor(230,230,230));
+   QTextTable *writeTableContent(QTextTable *table, int row, int column, QString text="");
+   QTextTable* writeTableContentRed(QTextTable *table, int row, int column, QString text="");
+
 
 private:
     Ui::HPrint *ui;
@@ -91,6 +96,7 @@ private:
     QImage *imgobj;
     QPixmap img;
     int imgw,imgh,imgcw,imgch;
+    bool alternateBackgroundColor;
 
 
 

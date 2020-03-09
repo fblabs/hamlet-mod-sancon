@@ -16,11 +16,12 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 
-HPrint::HPrint(QWidget *parent) :
+HPrint::HPrint(QWidget *parent, bool altColors) :
     QWidget(parent),
     ui(new Ui::HPrint)
 {
     ui->setupUi(this);
+
     printer=new QPrinter();
     ui->spCharSize->setValue(10);
 
@@ -31,6 +32,7 @@ HPrint::HPrint(QWidget *parent) :
     doc=ui->textEdit->document();
     ui->textEdit->setDocument(doc);
     ui->textEdit->installEventFilter(this);
+    alternateBackgroundColor=altColors;
 
 
 }
@@ -248,11 +250,13 @@ void HPrint::on_pushButton_clicked()
     this->close();
 }
 
-QTextTable* HPrint::addTable(int rows, int columns)
+QTextTable* HPrint::addTable(int rows, int columns,QColor background,QColor alternateBackground)
 {
     QTextTableFormat tbf;
 
-    QTextTable *table;
+
+
+    QTextTable *table=new QTextTable(doc);
    // QPen p(Qt::black,1,Qt::SolidLine)
     QBrush black(Qt::SolidPattern);
     tbf.setBorderStyle(QTextFrameFormat::BorderStyle_Solid);
@@ -265,7 +269,32 @@ QTextTable* HPrint::addTable(int rows, int columns)
     ui->textEdit->setTextCursor(cur);
 
 
+
+
     table = cur.insertTable(rows,columns,tbf);
+if(alternateBackgroundColor)
+{
+    for (int r=0; r<rows;r++){
+            for (int c=0; c<columns;c++)
+            {
+                QTextTableCell cell=table->cellAt(r,c);
+                QTextCharFormat format =cell.format();
+                if (r>=2){
+                    if(r%2)
+                    {
+                        format.setBackground(background);
+                    }
+                    else
+                    {
+                        format.setBackground(alternateBackground);
+                    }
+                }
+
+                cell.setFormat(format);
+
+            }
+        }
+}
 
     cur.movePosition(QTextCursor::End);
 
@@ -275,17 +304,20 @@ QTextTable* HPrint::addTable(int rows, int columns)
 
 }
 
-QTextTable* HPrint::writeTableContent(QTextTable *table,int row, int column, QString text)
-{
-   QTextCursor c=table->cellAt(row,column).firstCursorPosition();
+QTextTable* HPrint::writeTableContent(QTextTable *table, int row, int column,QString text)
+{   
+    QTextCharFormat format;
+    format.setForeground(QColor("black"));
+    QTextCursor c=table->cellAt(row,column).firstCursorPosition();
 
+   c.setCharFormat(format);
    c.insertText(text);
    QApplication::processEvents();
 
    return table;
 }
 
-QTextTable* HPrint::writeTableContentRed(QTextTable *table,int row, int column,QString text)
+QTextTable* HPrint::writeTableContentRed(QTextTable *table, int row, int column, QString text)
 {
   QTextCharFormat format;
   format.setForeground(QColor("red"));
@@ -296,6 +328,9 @@ QTextTable* HPrint::writeTableContentRed(QTextTable *table,int row, int column,Q
 
    return table;
 }
+
+
+
 
 void HPrint::cursorToEnd()
 {
@@ -323,6 +358,14 @@ void HPrint::on_pbant_clicked()
     QPrinter lprinter(QPrinter::HighResolution);
     lprinter.setPaperSize(QPrinter::A4);
     QPrintPreviewDialog *dlg=new QPrintPreviewDialog(&lprinter);
+    if(ui->rbLandscape->isChecked())
+    {
+        dlg->printer()->setPageOrientation(QPageLayout::Landscape);
+    }
+    else
+    {
+        dlg->printer()->setPageOrientation(QPageLayout::Portrait);
+    }
     connect(dlg,SIGNAL(paintRequested(QPrinter*)),this,SLOT(printPreview(QPrinter*)));
     dlg->exec();
 }
@@ -498,3 +541,18 @@ int HPrint::getsbWValue()
     return ui->sbW->value();
 }
 
+
+void HPrint::on_rbPortrait_toggled(bool checked)
+{
+    if(checked)
+    {
+    printer->setPageSize(QPrinter::A4);
+    printer->setOrientation(QPrinter::Portrait);
+    }
+}
+
+void HPrint::on_rbLandscape_toggled(bool checked)
+{
+    printer->setPageSize(QPrinter::A4);
+    printer->setOrientation(QPrinter::Landscape);
+}

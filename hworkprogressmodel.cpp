@@ -18,26 +18,27 @@ Qt::ItemFlags flags=QSqlRelationalTableModel::flags(item);
 
 
 
-   if (item.column() == 3 || item.column() == 4 || item.column ()==13 || item.column()==15)
+   if (item.column ()==2)
    {
-
-      return QSqlRelationalTableModel::flags(item) & ~Qt::ItemIsEditable;
+      flags |= Qt::ItemIsEditable;
+      return flags;
 
    }
-   else if (item.column()==12 || item.column() ==13)
+   else if (item.column()==13 || item.column() ==14)
    {
 
        flags |= Qt::ItemIsUserCheckable;
        flags |= Qt::ItemIsEnabled;
-       flags |= Qt::ItemIsEditable;
+
 
 
 
        return flags;
    }
-      else
+   else
    {
-      return QSqlRelationalTableModel::flags(item)  ;
+      flags=QSqlRelationalTableModel::flags(item) & ~Qt::ItemIsEditable;
+      return flags;
    }
 
 
@@ -56,7 +57,7 @@ QVariant HWorkProgressModel::data( const QModelIndex & item, int role /*= Qt::Di
 
 
 
-   if (item.column()==12  || item.column()==13)
+   if (item.column()==13  || item.column()==14)
    {
 
 
@@ -72,9 +73,18 @@ QVariant HWorkProgressModel::data( const QModelIndex & item, int role /*= Qt::Di
 
 
    }
-   else if (role==Qt::TextColorRole && item.column()==14)
+   else if (role==Qt::TextColorRole && item.column()==15)
    {
       return QVariant(QColor(Qt::red));
+   }
+   else if (role==Qt::BackgroundColorRole)
+   {
+       QColor backcolor(230,230,230);
+       if(item.row()%2)
+       {
+           return backcolor;
+       }
+
    }
 
 
@@ -87,7 +97,7 @@ QVariant HWorkProgressModel::data( const QModelIndex & item, int role /*= Qt::Di
 
 bool HWorkProgressModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if (index.column()==12 || index.column()==13)
+    if (index.column()==13 || index.column()==14)
     {
 
 

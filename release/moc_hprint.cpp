@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HPrint_t {
-    QByteArrayData data[39];
-    char stringdata0[474];
+    QByteArrayData data[54];
+    char stringdata0[653];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -48,26 +48,41 @@ QT_MOC_LITERAL(15, 189, 5), // "event"
 QT_MOC_LITERAL(16, 195, 19), // "on_sbW_valueChanged"
 QT_MOC_LITERAL(17, 215, 19), // "on_sbH_valueChanged"
 QT_MOC_LITERAL(18, 235, 33), // "on_textEdit_cursorPositionCha..."
-QT_MOC_LITERAL(19, 269, 11), // "setsbWValue"
-QT_MOC_LITERAL(20, 281, 3), // "val"
-QT_MOC_LITERAL(21, 285, 11), // "setsbHValue"
-QT_MOC_LITERAL(22, 297, 12), // "getImageName"
-QT_MOC_LITERAL(23, 310, 11), // "getsbWValue"
-QT_MOC_LITERAL(24, 322, 11), // "getsbHValue"
-QT_MOC_LITERAL(25, 334, 12), // "getWidthImg0"
-QT_MOC_LITERAL(26, 347, 13), // "getHeightImg0"
-QT_MOC_LITERAL(27, 361, 12), // "getWidthImg1"
-QT_MOC_LITERAL(28, 374, 13), // "getHeightImg1"
-QT_MOC_LITERAL(29, 388, 11), // "setFontSize"
-QT_MOC_LITERAL(30, 400, 2), // "sz"
-QT_MOC_LITERAL(31, 403, 11), // "getFontSize"
-QT_MOC_LITERAL(32, 415, 8), // "addImage"
-QT_MOC_LITERAL(33, 424, 5), // "bytes"
-QT_MOC_LITERAL(34, 430, 4), // "name"
-QT_MOC_LITERAL(35, 435, 5), // "width"
-QT_MOC_LITERAL(36, 441, 6), // "height"
-QT_MOC_LITERAL(37, 448, 11), // "cursorToEnd"
-QT_MOC_LITERAL(38, 460, 13) // "cursorToStart"
+QT_MOC_LITERAL(19, 269, 21), // "on_rbPortrait_toggled"
+QT_MOC_LITERAL(20, 291, 7), // "checked"
+QT_MOC_LITERAL(21, 299, 22), // "on_rbLandscape_toggled"
+QT_MOC_LITERAL(22, 322, 11), // "setsbWValue"
+QT_MOC_LITERAL(23, 334, 3), // "val"
+QT_MOC_LITERAL(24, 338, 11), // "setsbHValue"
+QT_MOC_LITERAL(25, 350, 12), // "getImageName"
+QT_MOC_LITERAL(26, 363, 11), // "getsbWValue"
+QT_MOC_LITERAL(27, 375, 11), // "getsbHValue"
+QT_MOC_LITERAL(28, 387, 12), // "getWidthImg0"
+QT_MOC_LITERAL(29, 400, 13), // "getHeightImg0"
+QT_MOC_LITERAL(30, 414, 12), // "getWidthImg1"
+QT_MOC_LITERAL(31, 427, 13), // "getHeightImg1"
+QT_MOC_LITERAL(32, 441, 11), // "setFontSize"
+QT_MOC_LITERAL(33, 453, 2), // "sz"
+QT_MOC_LITERAL(34, 456, 11), // "getFontSize"
+QT_MOC_LITERAL(35, 468, 8), // "addImage"
+QT_MOC_LITERAL(36, 477, 5), // "bytes"
+QT_MOC_LITERAL(37, 483, 4), // "name"
+QT_MOC_LITERAL(38, 488, 5), // "width"
+QT_MOC_LITERAL(39, 494, 6), // "height"
+QT_MOC_LITERAL(40, 501, 11), // "cursorToEnd"
+QT_MOC_LITERAL(41, 513, 13), // "cursorToStart"
+QT_MOC_LITERAL(42, 527, 8), // "addTable"
+QT_MOC_LITERAL(43, 536, 11), // "QTextTable*"
+QT_MOC_LITERAL(44, 548, 4), // "rows"
+QT_MOC_LITERAL(45, 553, 7), // "columns"
+QT_MOC_LITERAL(46, 561, 10), // "background"
+QT_MOC_LITERAL(47, 572, 19), // "alternateBackground"
+QT_MOC_LITERAL(48, 592, 17), // "writeTableContent"
+QT_MOC_LITERAL(49, 610, 5), // "table"
+QT_MOC_LITERAL(50, 616, 3), // "row"
+QT_MOC_LITERAL(51, 620, 6), // "column"
+QT_MOC_LITERAL(52, 627, 4), // "text"
+QT_MOC_LITERAL(53, 632, 20) // "writeTableContentRed"
 
     },
     "HPrint\0on_pushButton_2_clicked\0\0"
@@ -78,12 +93,17 @@ QT_MOC_LITERAL(38, 460, 13) // "cursorToStart"
     "QEvent*\0event\0on_sbW_valueChanged\0"
     "on_sbH_valueChanged\0"
     "on_textEdit_cursorPositionChanged\0"
-    "setsbWValue\0val\0setsbHValue\0getImageName\0"
-    "getsbWValue\0getsbHValue\0getWidthImg0\0"
-    "getHeightImg0\0getWidthImg1\0getHeightImg1\0"
-    "setFontSize\0sz\0getFontSize\0addImage\0"
-    "bytes\0name\0width\0height\0cursorToEnd\0"
-    "cursorToStart"
+    "on_rbPortrait_toggled\0checked\0"
+    "on_rbLandscape_toggled\0setsbWValue\0"
+    "val\0setsbHValue\0getImageName\0getsbWValue\0"
+    "getsbHValue\0getWidthImg0\0getHeightImg0\0"
+    "getWidthImg1\0getHeightImg1\0setFontSize\0"
+    "sz\0getFontSize\0addImage\0bytes\0name\0"
+    "width\0height\0cursorToEnd\0cursorToStart\0"
+    "addTable\0QTextTable*\0rows\0columns\0"
+    "background\0alternateBackground\0"
+    "writeTableContent\0table\0row\0column\0"
+    "text\0writeTableContentRed"
 };
 #undef QT_MOC_LITERAL
 
@@ -93,7 +113,7 @@ static const uint qt_meta_data_HPrint[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      25,   14, // methods
+      34,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -101,31 +121,40 @@ static const uint qt_meta_data_HPrint[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  139,    2, 0x08 /* Private */,
-       3,    0,  140,    2, 0x08 /* Private */,
-       4,    0,  141,    2, 0x08 /* Private */,
-       5,    1,  142,    2, 0x08 /* Private */,
-       8,    0,  145,    2, 0x08 /* Private */,
-       9,    1,  146,    2, 0x08 /* Private */,
-      11,    0,  149,    2, 0x08 /* Private */,
-      12,    2,  150,    2, 0x08 /* Private */,
-      16,    1,  155,    2, 0x08 /* Private */,
-      17,    1,  158,    2, 0x08 /* Private */,
-      18,    0,  161,    2, 0x08 /* Private */,
-      19,    1,  162,    2, 0x0a /* Public */,
-      21,    1,  165,    2, 0x0a /* Public */,
-      22,    0,  168,    2, 0x0a /* Public */,
-      23,    0,  169,    2, 0x0a /* Public */,
-      24,    0,  170,    2, 0x0a /* Public */,
-      25,    0,  171,    2, 0x0a /* Public */,
-      26,    0,  172,    2, 0x0a /* Public */,
-      27,    0,  173,    2, 0x0a /* Public */,
-      28,    0,  174,    2, 0x0a /* Public */,
-      29,    1,  175,    2, 0x0a /* Public */,
-      31,    0,  178,    2, 0x0a /* Public */,
-      32,    4,  179,    2, 0x0a /* Public */,
-      37,    0,  188,    2, 0x0a /* Public */,
-      38,    0,  189,    2, 0x0a /* Public */,
+       1,    0,  184,    2, 0x08 /* Private */,
+       3,    0,  185,    2, 0x08 /* Private */,
+       4,    0,  186,    2, 0x08 /* Private */,
+       5,    1,  187,    2, 0x08 /* Private */,
+       8,    0,  190,    2, 0x08 /* Private */,
+       9,    1,  191,    2, 0x08 /* Private */,
+      11,    0,  194,    2, 0x08 /* Private */,
+      12,    2,  195,    2, 0x08 /* Private */,
+      16,    1,  200,    2, 0x08 /* Private */,
+      17,    1,  203,    2, 0x08 /* Private */,
+      18,    0,  206,    2, 0x08 /* Private */,
+      19,    1,  207,    2, 0x08 /* Private */,
+      21,    1,  210,    2, 0x08 /* Private */,
+      22,    1,  213,    2, 0x0a /* Public */,
+      24,    1,  216,    2, 0x0a /* Public */,
+      25,    0,  219,    2, 0x0a /* Public */,
+      26,    0,  220,    2, 0x0a /* Public */,
+      27,    0,  221,    2, 0x0a /* Public */,
+      28,    0,  222,    2, 0x0a /* Public */,
+      29,    0,  223,    2, 0x0a /* Public */,
+      30,    0,  224,    2, 0x0a /* Public */,
+      31,    0,  225,    2, 0x0a /* Public */,
+      32,    1,  226,    2, 0x0a /* Public */,
+      34,    0,  229,    2, 0x0a /* Public */,
+      35,    4,  230,    2, 0x0a /* Public */,
+      40,    0,  239,    2, 0x0a /* Public */,
+      41,    0,  240,    2, 0x0a /* Public */,
+      42,    4,  241,    2, 0x0a /* Public */,
+      42,    3,  250,    2, 0x2a /* Public | MethodCloned */,
+      42,    2,  257,    2, 0x2a /* Public | MethodCloned */,
+      48,    4,  262,    2, 0x0a /* Public */,
+      48,    3,  271,    2, 0x2a /* Public | MethodCloned */,
+      53,    4,  278,    2, 0x0a /* Public */,
+      53,    3,  287,    2, 0x2a /* Public | MethodCloned */,
 
  // slots: parameters
     QMetaType::Void,
@@ -139,8 +168,10 @@ static const uint qt_meta_data_HPrint[] = {
     QMetaType::Void, QMetaType::Int,   10,
     QMetaType::Void, QMetaType::Int,   10,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   20,
-    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::Bool,   20,
+    QMetaType::Void, QMetaType::Bool,   20,
+    QMetaType::Void, QMetaType::Int,   23,
+    QMetaType::Void, QMetaType::Int,   23,
     QMetaType::QString,
     QMetaType::Int,
     QMetaType::Int,
@@ -148,11 +179,18 @@ static const uint qt_meta_data_HPrint[] = {
     QMetaType::Int,
     QMetaType::Int,
     QMetaType::Int,
-    QMetaType::Void, QMetaType::Int,   30,
+    QMetaType::Void, QMetaType::Int,   33,
     QMetaType::Int,
-    QMetaType::Void, QMetaType::QByteArray, QMetaType::QString, QMetaType::Int, QMetaType::Int,   33,   34,   35,   36,
+    QMetaType::Void, QMetaType::QByteArray, QMetaType::QString, QMetaType::Int, QMetaType::Int,   36,   37,   38,   39,
     QMetaType::Void,
     QMetaType::Void,
+    0x80000000 | 43, QMetaType::Int, QMetaType::Int, QMetaType::QColor, QMetaType::QColor,   44,   45,   46,   47,
+    0x80000000 | 43, QMetaType::Int, QMetaType::Int, QMetaType::QColor,   44,   45,   46,
+    0x80000000 | 43, QMetaType::Int, QMetaType::Int,   44,   45,
+    0x80000000 | 43, 0x80000000 | 43, QMetaType::Int, QMetaType::Int, QMetaType::QString,   49,   50,   51,   52,
+    0x80000000 | 43, 0x80000000 | 43, QMetaType::Int, QMetaType::Int,   49,   50,   51,
+    0x80000000 | 43, 0x80000000 | 43, QMetaType::Int, QMetaType::Int, QMetaType::QString,   49,   50,   51,   52,
+    0x80000000 | 43, 0x80000000 | 43, QMetaType::Int, QMetaType::Int,   49,   50,   51,
 
        0        // eod
 };
@@ -175,29 +213,77 @@ void HPrint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 8: _t->on_sbW_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 9: _t->on_sbH_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 10: _t->on_textEdit_cursorPositionChanged(); break;
-        case 11: _t->setsbWValue((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 12: _t->setsbHValue((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 13: { QString _r = _t->getImageName();
+        case 11: _t->on_rbPortrait_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 12: _t->on_rbLandscape_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 13: _t->setsbWValue((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 14: _t->setsbHValue((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 15: { QString _r = _t->getImageName();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 14: { int _r = _t->getsbWValue();
+        case 16: { int _r = _t->getsbWValue();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 15: { int _r = _t->getsbHValue();
+        case 17: { int _r = _t->getsbHValue();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 16: { int _r = _t->getWidthImg0();
+        case 18: { int _r = _t->getWidthImg0();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 17: { int _r = _t->getHeightImg0();
+        case 19: { int _r = _t->getHeightImg0();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 18: { int _r = _t->getWidthImg1();
+        case 20: { int _r = _t->getWidthImg1();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 19: { int _r = _t->getHeightImg1();
+        case 21: { int _r = _t->getHeightImg1();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 20: _t->setFontSize((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 21: { int _r = _t->getFontSize();
+        case 22: _t->setFontSize((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 23: { int _r = _t->getFontSize();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 22: _t->addImage((*reinterpret_cast< QByteArray(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
-        case 23: _t->cursorToEnd(); break;
-        case 24: _t->cursorToStart(); break;
+        case 24: _t->addImage((*reinterpret_cast< QByteArray(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
+        case 25: _t->cursorToEnd(); break;
+        case 26: _t->cursorToStart(); break;
+        case 27: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QColor(*)>(_a[3])),(*reinterpret_cast< QColor(*)>(_a[4])));
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+        case 28: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QColor(*)>(_a[3])));
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+        case 29: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+        case 30: { QTextTable* _r = _t->writeTableContent((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])));
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+        case 31: { QTextTable* _r = _t->writeTableContent((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])));
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+        case 32: { QTextTable* _r = _t->writeTableContentRed((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])));
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+        case 33: { QTextTable* _r = _t->writeTableContentRed((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])));
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
         default: ;
+        }
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+        case 30:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QTextTable* >(); break;
+            }
+            break;
+        case 31:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QTextTable* >(); break;
+            }
+            break;
+        case 32:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QTextTable* >(); break;
+            }
+            break;
+        case 33:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QTextTable* >(); break;
+            }
+            break;
         }
     }
 }
@@ -227,13 +313,13 @@ int HPrint::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 25)
+        if (_id < 34)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 25;
+        _id -= 34;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 25)
-            *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 25;
+        if (_id < 34)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 34;
     }
     return _id;
 }

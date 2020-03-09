@@ -17,7 +17,7 @@
    <string>Lotti</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="icons.qrc">
     <normaloff>:/Resources/Cube.PNG</normaloff>:/Resources/Cube.PNG</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -193,7 +193,7 @@
             <string>Aggiorna</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="icons.qrc">
              <normaloff>:/Resources/Counterclockwise-arrow64.png</normaloff>:/Resources/Counterclockwise-arrow64.png</iconset>
            </property>
           </widget>
@@ -238,7 +238,7 @@
           <string>Informazioni su lotto</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="icons.qrc">
            <normaloff>:/Resources/Wood-4-icon.png</normaloff>:/Resources/Wood-4-icon.png</iconset>
          </property>
          <property name="iconSize">
@@ -250,23 +250,12 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pbModLot">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QPushButton" name="pushButton_4">
          <property name="text">
           <string>Nuova operazione</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="icons.qrc">
            <normaloff>:/Resources/Actions-configure-icon.png</normaloff>:/Resources/Actions-configure-icon.png</iconset>
          </property>
          <property name="iconSize">
@@ -283,7 +272,7 @@
           <string>Scarico Packages</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="icons.qrc">
            <normaloff>:/Resources/App-ark-2-icon.png</normaloff>:/Resources/App-ark-2-icon.png</iconset>
          </property>
          <property name="iconSize">
@@ -300,7 +289,7 @@
           <string>Scadenze</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="icons.qrc">
            <normaloff>:/Resources/Calendar.PNG</normaloff>:/Resources/Calendar.PNG</iconset>
          </property>
          <property name="iconSize">
@@ -317,7 +306,7 @@
           <string>Stampa</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="icons.qrc">
            <normaloff>:/Resources/Printer-icon.png</normaloff>:/Resources/Printer-icon.png</iconset>
          </property>
          <property name="iconSize">
@@ -334,7 +323,7 @@
           <string>Chiudi</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="icons.qrc">
            <normaloff>:/Resources/Actions-window-close-icon.png</normaloff>:/Resources/Actions-window-close-icon.png</iconset>
          </property>
          <property name="iconSize">
@@ -351,7 +340,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
  <slots>
   <slot>showContextMenu()</slot>

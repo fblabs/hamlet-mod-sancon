@@ -25,16 +25,35 @@
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <widget class="QLabel" name="label_2">
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="text">
         <string>Cliente:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="cbCliente"/>
+      <widget class="QComboBox" name="cbCliente">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <property name="insertPolicy">
+        <enum>QComboBox::NoInsert</enum>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_3">
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="text">
         <string>Prodotto:</string>
        </property>
@@ -85,7 +104,36 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="2">
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="leOlio">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>16777215</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="6">
+      <widget class="QComboBox" name="cbSanty"/>
+     </item>
+     <item row="0" column="5">
+      <widget class="QLabel" name="label_8">
+       <property name="maximumSize">
+        <size>
+         <width>80</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Sanificazione:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QComboBox" name="cbTappo"/>
+     </item>
+     <item row="0" column="3">
       <widget class="QLabel" name="label_5">
        <property name="maximumSize">
         <size>
@@ -111,24 +159,8 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="4">
-      <widget class="QLabel" name="label_8">
-       <property name="maximumSize">
-        <size>
-         <width>80</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Sanificazione:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QComboBox" name="cbTappo"/>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="leOlio">
+     <item row="0" column="2">
+      <widget class="QLineEdit" name="leSpecificaOlio">
        <property name="maximumSize">
         <size>
          <width>100</width>
@@ -136,9 +168,6 @@
         </size>
        </property>
       </widget>
-     </item>
-     <item row="0" column="5">
-      <widget class="QComboBox" name="cbSanty"/>
      </item>
     </layout>
    </item>
@@ -219,7 +248,7 @@
         </size>
        </property>
        <property name="readOnly">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
       </widget>
      </item>

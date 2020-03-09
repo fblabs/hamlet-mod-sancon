@@ -17,6 +17,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTextEdit>
@@ -37,6 +38,8 @@ public:
     QSpinBox *sbW;
     QLabel *label_2;
     QSpinBox *sbH;
+    QRadioButton *rbPortrait;
+    QRadioButton *rbLandscape;
     QSpacerItem *horizontalSpacer;
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout;
@@ -113,6 +116,17 @@ public:
 
         horizontalLayout_2->addWidget(sbH);
 
+        rbPortrait = new QRadioButton(HPrint);
+        rbPortrait->setObjectName(QStringLiteral("rbPortrait"));
+        rbPortrait->setChecked(true);
+
+        horizontalLayout_2->addWidget(rbPortrait);
+
+        rbLandscape = new QRadioButton(HPrint);
+        rbLandscape->setObjectName(QStringLiteral("rbLandscape"));
+
+        horizontalLayout_2->addWidget(rbLandscape);
+
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
@@ -185,6 +199,8 @@ public:
         label_3->setText(QApplication::translate("HPrint", "Dimensione Caratteri:", 0));
         label->setText(QApplication::translate("HPrint", "Larghezza immagine:", 0));
         label_2->setText(QApplication::translate("HPrint", "Altezza immagine:", 0));
+        rbPortrait->setText(QApplication::translate("HPrint", "Verticale", 0));
+        rbLandscape->setText(QApplication::translate("HPrint", "Orizzontale", 0));
         textEdit->setHtml(QApplication::translate("HPrint", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

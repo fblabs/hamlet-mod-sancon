@@ -381,6 +381,7 @@ void HUtenti::print()
 
 
             txt=tm->index(r,1).data(0).toString();
+           // f->writeTableContent(tb,r,0,"   "+txt+"   ");
             f->writeTableContent(tb,r,0,"   "+txt+"   ");
             QApplication::processEvents();
 

@@ -14,6 +14,10 @@
 #include "hmodifyrow.h"
 #include "hprint.h"
 #include <QHeaderView>
+#include <QLocale>
+#include <QTextTable>
+#include "hnewsheet.h"
+#include <QDate>
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
@@ -22,12 +26,14 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->setupUi(this);
     user=p_user;
     db=p_db;
-    ui->deDal->setDate(QDate::currentDate());
-    ui->deAl->setDate(QDate::currentDate().addDays(7));
-
-
-
     getSheets();
+    ui->deDal->setDate(QDate::currentDate());
+    ui->deAl->setDate(QDate::currentDate());
+    ui->deAl->setVisible(false);
+    ui->label_5->setVisible(false);
+    ui->deSearch->setDate(QDate::currentDate());
+    ui->deSearchTo->setDate(QDate::currentDate());
+    ui->spSearchLinea->setValue(0);
 
 }
 
@@ -48,13 +54,14 @@ void HWorkProgram::on_pbAdd_clicked()
 }
 
 
-bool HWorkProgram::createSheet()
+bool HWorkProgram::createSheet(int p_line, QDate p_date)
 {
     QSqlQuery q(db);
-    QString datedal=ui->deDal->date().toString("yyyy-MM-dd");
-    QString dateal= ui->deAl->date().toString("yyyy-MM-dd");
-    QString linea=QString::number(ui->spLinea->value());
+    QString datedal=p_date.toString("yyyy-MM-dd");
+    QString dateal= p_date.toString("yyyy-MM-dd");
+    int linea=p_line;
 
+db.transaction();
     QString sql="INSERT INTO produzione(dal,al,linea) VALUES(:datedal,:dateal,:linea)";
     q.prepare(sql);
     q.bindValue(":datedal",datedal );
@@ -63,8 +70,12 @@ bool HWorkProgram::createSheet()
     bool b=q.exec();
     if (b)
     {
+        db.commit();
         QMessageBox::information(this,QApplication::applicationName(),"Foglio creato",QMessageBox::Ok);
         qDebug()<<datedal<<dateal<<q.lastQuery();
+    }else{
+        db.rollback();
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore query:"+q.lastError().text(),QMessageBox::Ok);
     }
     getSheets();
 
@@ -77,7 +88,12 @@ void HWorkProgram::getSheets()
     mod->setTable("produzione");
     mod->select();
     ui->tvStorico->setModel(mod);
+    if(mod->rowCount()>0)
+    {
+        ui->tvStorico->clicked(ui->tvStorico->model()->index(0,0));
+    }
     ui->tvStorico->setColumnHidden(0,true);
+    ui->tvStorico->setColumnHidden(2,true);
     ui->tvStorico->setColumnHidden(4,true);
     ui->tvStorico->horizontalHeader()->setStretchLastSection(true);
     ui->tvGeneral->verticalHeader()->setSectionsMovable(true);
@@ -92,15 +108,16 @@ void HWorkProgram::getSheets()
 
 void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
 {
+
     id=ui->tvStorico->model()->index(index.row(),0).data(0).toInt();
     ui->deDal->setDate(ui->tvStorico->model()->index(index.row(),1).data(0).toDate());
     ui->deAl->setDate(ui->tvStorico->model()->index(index.row(),2).data(0).toDate());
+    ui->spLinea->setValue(ui->tvStorico->model()->index(index.row(),3).data(0).toInt());
        /*HWpManager *f=new HWpManager(id,user,db);
        f->show();*/
     refreshSheet();
 
 
-    //connect(ui->tvGeneral->verticalHeader(),SIGNAL(sectionMoved(int,int,int)),this,SLOT(updateSheet(int,int,int)));
 
 }
 
@@ -108,15 +125,14 @@ void HWorkProgram::refreshSheet()
 {
     wpmod=0;
     wpmod = new HWorkProgressModel(0,db);
-    //wpmod->setEditStrategy(HWorkProgressModel::);
     ui->tvGeneral->setModel(wpmod);
     QSqlRelationalDelegate *rdel=new QSqlRelationalDelegate();
     wpmod->setTable("righe_produzione");
     wpmod->setFilter("idproduzione="+QString::number(id));
     wpmod->setRelation(1,QSqlRelation("produzione","ID","ID"));
-    wpmod->setRelation(5,QSqlRelation("prodotti","ID","descrizione"));
-    wpmod->setRelation(7,QSqlRelation("prodotti","ID","descrizione"));
-    wpmod->setRelation(8,QSqlRelation("anagrafica","ID","ragione_sociale"));
+    wpmod->setRelation(6,QSqlRelation("prodotti","ID","descrizione"));
+    wpmod->setRelation(8,QSqlRelation("prodotti","ID","descrizione"));
+    wpmod->setRelation(9,QSqlRelation("anagrafica","ID","ragione_sociale"));
     wpmod->setSort(2,Qt::AscendingOrder);
     wpmod->select();
     ui->tvGeneral->setModel(wpmod);
@@ -129,20 +145,63 @@ void HWorkProgram::refreshSheet()
 
 }
 
+void HWorkProgram::deleteSheet()
+{
+    int id=-1;
+    bool done=false;
+    id=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
+    QString sql="delete from righe_produzione where IDProduzione=:idproduzione";
+    QSqlQuery q(db);
+    q.prepare(sql);
+    q.bindValue(":idproduzione",id);
+    if (QMessageBox::question(this,QApplication::applicationName(),"Eliminare il foglio produzione selezionato?\nAttenzione operazione irreversibile",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        db.transaction();
+        bool b=q.exec();
+        if (b)
+        {
+            sql=QString();
+            sql="delete from produzione where ID=:idproduzione";
+            q.clear();
+            q.prepare(sql);
+            q.bindValue(":idproduzione",id);
+            done=q.exec();
+            if(done)
+            {
+                if (QMessageBox::question(this,QApplication::applicationName(),"Conferma eliminazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+                   {
+                        db.commit();
+                        getSheets();
+
+                   }
+                   else
+                   {
+                    db.rollback();
+                   }
+
+             }
+         }
+
+     }
+
+}
+
+
 
 void HWorkProgram::on_pbNewSheet_clicked()
 {
-    QString msg="Creare un nuovo foglio produzione (dal "+ui->deDal->date().toString("dd-MM-yyyy")+ " al "+ ui->deAl->date().toString("dd-MM-yyyy")+"-Linea: "+QString::number(ui->spLinea->value())+"?";
-    if(QMessageBox::question(this,QApplication::applicationName(),msg ,QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
-    {
-        createSheet();
-    }
+
+ HNewSheet *f=new HNewSheet();
+ connect(f,SIGNAL(OK(int,QDate)),this, SLOT(createSheet(int,QDate)));
+ f->show();
+
+
 }
 
 void HWorkProgram::updateSheet(int lix,int oldix, int newix)
 {
 
-    qDebug()<<"lix"<<lix<<"oldix"<<oldix<<"newix"<<newix;
+
     QSqlQuery q(db);
     QString sql ="update righe_produzione set num_riga=:num where IDProduzione=:idp and num_riga=:oldnum";
     bool b=false;
@@ -166,13 +225,13 @@ void HWorkProgram::updateSheet(int lix,int oldix, int newix)
             QMessageBox::warning(this,QApplication::applicationName(),"Errore durante la transazione\n"+q.lastError().text(),QMessageBox::Ok);
 
             return;
+        }else{
+          db.commit();
+          refreshSheet();
+          QMessageBox::information(this,QApplication::applicationName(),"Foglio aggiornato correttamente",QMessageBox::Ok);
         }
 
     }
-    db.commit();
-
-  refreshSheet();
-  QMessageBox::information(this,QApplication::applicationName(),"Foglio aggiornato correttamente",QMessageBox::Ok);
 
 }
 
@@ -228,7 +287,7 @@ void HWorkProgram::showModRow()
 
 void HWorkProgram::on_deDal_dateChanged(const QDate &date)
 {
-   // ui->deAl->setDate(date.addDays(7));
+   ui->deAl->setDate(date);
 }
 
 void HWorkProgram::setHeaders()
@@ -236,17 +295,18 @@ void HWorkProgram::setHeaders()
     wpmod->setHeaderData(2,Qt::Horizontal,QObject::tr("Num. Riga"));
     wpmod->setHeaderData(3,Qt::Horizontal,QObject::tr("Vaso (gr.)"));
     wpmod->setHeaderData(4,Qt::Horizontal,QObject::tr("Quantità"));
-    wpmod->setHeaderData(5,Qt::Horizontal,QObject::tr("Prodotto"));
-    wpmod->setHeaderData(6,Qt::Horizontal,QObject::tr("Olio"));
-    wpmod->setHeaderData(7,Qt::Horizontal,QObject::tr("Tappo"));
-    wpmod->setHeaderData(8,Qt::Horizontal,QObject::tr("Cliente"));
-    wpmod->setHeaderData(9,Qt::Horizontal,QObject::tr("Kg"));
-    wpmod->setHeaderData(10,Qt::Horizontal,QObject::tr("Sanificazione"));
-    wpmod->setHeaderData(11,Qt::Horizontal,QObject::tr("Num. Ordine"));
-    wpmod->setHeaderData(12,Qt::Horizontal,QObject::tr("Fresco"));
-    wpmod->setHeaderData(13,Qt::Horizontal,QObject::tr("Pastorizzato"));
-    wpmod->setHeaderData(14,Qt::Horizontal,QObject::tr("Allergeni"));
-    wpmod->setHeaderData(15,Qt::Horizontal,QObject::tr("Note)"));
+    wpmod->setHeaderData(5,Qt::Horizontal,QObject::tr("Spec. Olio"));
+    wpmod->setHeaderData(6,Qt::Horizontal,QObject::tr("Prodotto"));
+    wpmod->setHeaderData(7,Qt::Horizontal,QObject::tr("Olio"));
+    wpmod->setHeaderData(8,Qt::Horizontal,QObject::tr("Tappo"));
+    wpmod->setHeaderData(9,Qt::Horizontal,QObject::tr("Cliente"));
+    wpmod->setHeaderData(10,Qt::Horizontal,QObject::tr("Kg"));
+    wpmod->setHeaderData(11,Qt::Horizontal,QObject::tr("Sanificazione"));
+    wpmod->setHeaderData(12,Qt::Horizontal,QObject::tr("Num. Ordine"));
+    wpmod->setHeaderData(13,Qt::Horizontal,QObject::tr("Fresco"));
+    wpmod->setHeaderData(14,Qt::Horizontal,QObject::tr("Pastorizzato"));
+    wpmod->setHeaderData(15,Qt::Horizontal,QObject::tr("Allergeni"));
+    wpmod->setHeaderData(16,Qt::Horizontal,QObject::tr("Note)"));
 
 }
 
@@ -258,11 +318,12 @@ void HWorkProgram::on_pbPrint_clicked()
 void HWorkProgram::print()
 {
 
-    HPrint *f=new HPrint();
+    HPrint *f=new HPrint(0,true);
     f->toggleImageUI(false);
+    f->setFontSize(9);
     f->showMaximized();
 
-    f->append("PROGRAMMA DI LAVORO - Produzione dal "+ ui->deDal->date().toString("dd.MM.yyyy") + " AL " + ui->deAl->date().toString("dd.MM.yyyy") + " - LINEA "+QString::number(ui->tvStorico->model()->index(ui->tvStorico->selectionModel()->currentIndex().row(),3).data(0).toInt()));
+    f->append("PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy") + " - LINEA "+QString::number(ui->tvStorico->model()->index(ui->tvStorico->selectionModel()->currentIndex().row(),3).data(0).toInt()));
     f->append("");
 
     int c=0;
@@ -271,17 +332,15 @@ void HWorkProgram::print()
     int dcols=wpmod->columnCount();
     int drows=wpmod->rowCount();
 
-    qDebug()<<"TEST"<<wpmod->index(1,12).data(0).toString()<<wpmod->index(1,13).data(0).toString()<<wpmod->index(1,5).data(0).toString();
-
     int cols=dcols-3;
     int rows=drows+2;
 
     QTextTable* table=f->addTable(rows,cols);
-    qDebug()<<"rows"<<rows<<"cols"<<cols;
+
     QString txt="";
     QStringList titles;
 
-    titles<<" Q.tà "<<" PESO "<<" PRODOTTO "<<" OLIO "<<" TAPPO "<<" CLIENTE "<<" KG "<<" SANIF. "<<" ORDINE "<<" FRESCO "<<" PASTORIZZATO "<<" ALLERGENI "<<" NOTE ";
+    titles<<" Q.tà "<<" PESO "<<"SP. OLIO "<<" PRODOTTO "<<" OLIO"<<" TAPPO "<<" CLIENTE "<<" KG "<<" SANIF. "<<" ORDINE "<<" FRESCO "<<" PASTORIZZATO "<<" ALLERGENI "<<" NOTE ";
     int t=0;
 
     if (r==0)
@@ -294,17 +353,34 @@ void HWorkProgram::print()
         }
     }
 
-
     for (r=2;r<rows;r++)
     {
+
+
+
         for(c=0;c<cols;c++)
         {
             int cp=c+3;
             int rp=r-2;
             txt=" "+wpmod->index(rp,cp).data(0).toString();
-            qDebug()<<rp<<cp<<"txt:"<<txt;
 
-            if(cp==12)
+
+            if(cp==10)
+            {
+                QModelIndex tix=wpmod->index(rp,cp);
+
+                bool ok=false;
+                double tot=tix.data(0).toDouble(&ok);
+
+                if(ok)
+                {
+
+                  f->writeTableContent(table,r,c,QString::number(tot,'f',3));
+                }
+
+
+            }
+            else if(cp==13)
             {
                 QModelIndex ixf=wpmod->index(rp,cp);
 
@@ -317,8 +393,7 @@ void HWorkProgram::print()
                 f->writeTableContent(table,r,c,frescotxt);
 
             }
-
-            if(cp==13)
+            else if(cp==14)
             {
                 QModelIndex ixp=wpmod->index(rp,cp);
 
@@ -329,13 +404,9 @@ void HWorkProgram::print()
                 if(px>0)
                 {ptxt="  [X]";}
 
-
-
-
                 f->writeTableContent(table,r,c,ptxt);
             }
-
-            if (cp==14)
+            else if(cp==15)
             {
                  f->writeTableContentRed(table,r,c,txt);
             }
@@ -343,6 +414,8 @@ void HWorkProgram::print()
             {
                 f->writeTableContent(table,r,c,txt);
             }
+
+
 
         }
 
@@ -355,4 +428,43 @@ void HWorkProgram::print()
 
 
     f->show();
+}
+
+void HWorkProgram::on_checkBox_toggled(bool checked)
+{
+    ui->tvStorico->setVisible(!checked);
+}
+
+void HWorkProgram::on_pbDeleteSheet_clicked()
+{
+    deleteSheet();
+}
+
+
+
+
+
+
+void HWorkProgram::on_pbSearch_clicked()
+{
+ search();
+}
+
+void HWorkProgram::search()
+{
+    if(ui->spSearchLinea->value()==0 &&ui->deSearch->date() != QDate::currentDate()&&(ui->deSearchTo->date()> ui->deSearch->date()))
+    {
+        static_cast<QSqlTableModel*>(ui->tvStorico->model())->setFilter("dal between '"+ui->deSearch->date().toString("yyyy-MM-dd")+"' and '"+ ui->deSearchTo->date().toString("yyyy-MM-dd") +"'");
+    qDebug()<<static_cast<QSqlTableModel*>(ui->tvStorico->model())->filter();
+    }
+    else if(ui->spSearchLinea->value()>0)
+    {
+         static_cast<QSqlTableModel*>(ui->tvStorico->model())->setFilter("linea="+QString::number(ui->spSearchLinea->value())+" and dal between '"+ui->deSearch->date().toString("yyyy-MM-dd")+"' and '"+ ui->deSearchTo->date().toString("yyyy-MM-dd") +"'");
+    }
+
+}
+
+void HWorkProgram::on_pbReset_clicked()
+{
+     static_cast<QSqlTableModel*>(ui->tvStorico->model())->setFilter("");
 }

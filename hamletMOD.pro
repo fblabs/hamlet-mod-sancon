@@ -10,6 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = hamletMOD
 TEMPLATE = app
+CONFIG(release,debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
 
 
 SOURCES += main.cpp\
@@ -76,7 +77,8 @@ SOURCES += main.cpp\
     hwpmanager.cpp \
     hworkprogressmodel.cpp \
     hmodifyrow.cpp \
-    hlotmod.cpp
+    hlotmod.cpp \
+    hnewsheet.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -141,7 +143,8 @@ HEADERS  += mainwindow.h \
     hwpmanager.h \
     hworkprogressmodel.h \
     hmodifyrow.h \
-    hlotmod.h
+    hlotmod.h \
+    hnewsheet.h
 
 
 
@@ -202,7 +205,10 @@ FORMS    += mainwindow.ui \
     hworkprogram.ui \
     hwpmanager.ui \
     hmodifyrow.ui \
-    hlotmod.ui
+    hlotmod.ui \
+    hnewsheet.ui
+
+
 
 RESOURCES += \
     icons.qrc
@@ -210,6 +216,7 @@ RESOURCES += \
     win32:RC_ICONS += hamlet.ico
 
 DISTFILES +=
+
 
 
 

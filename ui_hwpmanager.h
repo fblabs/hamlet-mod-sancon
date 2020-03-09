@@ -47,12 +47,13 @@ public:
     QLabel *label;
     QLineEdit *leQuant;
     QGridLayout *gridLayout_3;
-    QLabel *label_6;
     QLineEdit *leOlio;
+    QLabel *label_6;
+    QComboBox *cbSanty;
+    QLabel *label_8;
     QLabel *label_5;
     QComboBox *cbTappo;
-    QLabel *label_8;
-    QComboBox *cbSanty;
+    QLineEdit *leSpecOlio;
     QFormLayout *formLayout_2;
     QLabel *label_10;
     QLineEdit *leAllergeni;
@@ -86,16 +87,19 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         label_2 = new QLabel(HWpManager);
         label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setMaximumSize(QSize(50, 16777215));
 
         gridLayout->addWidget(label_2, 0, 0, 1, 1);
 
         cbCliente = new QComboBox(HWpManager);
         cbCliente->setObjectName(QStringLiteral("cbCliente"));
+        cbCliente->setEditable(true);
 
         gridLayout->addWidget(cbCliente, 0, 1, 1, 1);
 
         label_3 = new QLabel(HWpManager);
         label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setMaximumSize(QSize(50, 16777215));
 
         gridLayout->addWidget(label_3, 0, 2, 1, 1);
 
@@ -150,39 +154,45 @@ public:
 
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        label_6 = new QLabel(HWpManager);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setMaximumSize(QSize(60, 16777215));
-
-        gridLayout_3->addWidget(label_6, 0, 0, 1, 1);
-
         leOlio = new QLineEdit(HWpManager);
         leOlio->setObjectName(QStringLiteral("leOlio"));
         leOlio->setMaximumSize(QSize(100, 16777215));
 
         gridLayout_3->addWidget(leOlio, 0, 1, 1, 1);
 
-        label_5 = new QLabel(HWpManager);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setMaximumSize(QSize(60, 16777215));
+        label_6 = new QLabel(HWpManager);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setMaximumSize(QSize(60, 16777215));
 
-        gridLayout_3->addWidget(label_5, 0, 2, 1, 1);
+        gridLayout_3->addWidget(label_6, 0, 0, 1, 1);
 
-        cbTappo = new QComboBox(HWpManager);
-        cbTappo->setObjectName(QStringLiteral("cbTappo"));
+        cbSanty = new QComboBox(HWpManager);
+        cbSanty->setObjectName(QStringLiteral("cbSanty"));
 
-        gridLayout_3->addWidget(cbTappo, 0, 3, 1, 1);
+        gridLayout_3->addWidget(cbSanty, 0, 6, 1, 1);
 
         label_8 = new QLabel(HWpManager);
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setMaximumSize(QSize(80, 16777215));
 
-        gridLayout_3->addWidget(label_8, 0, 4, 1, 1);
+        gridLayout_3->addWidget(label_8, 0, 5, 1, 1);
 
-        cbSanty = new QComboBox(HWpManager);
-        cbSanty->setObjectName(QStringLiteral("cbSanty"));
+        label_5 = new QLabel(HWpManager);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setMaximumSize(QSize(60, 16777215));
 
-        gridLayout_3->addWidget(cbSanty, 0, 5, 1, 1);
+        gridLayout_3->addWidget(label_5, 0, 3, 1, 1);
+
+        cbTappo = new QComboBox(HWpManager);
+        cbTappo->setObjectName(QStringLiteral("cbTappo"));
+
+        gridLayout_3->addWidget(cbTappo, 0, 4, 1, 1);
+
+        leSpecOlio = new QLineEdit(HWpManager);
+        leSpecOlio->setObjectName(QStringLiteral("leSpecOlio"));
+        leSpecOlio->setMaximumSize(QSize(100, 16777215));
+
+        gridLayout_3->addWidget(leSpecOlio, 0, 2, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout_3);
@@ -297,8 +307,8 @@ public:
         label_4->setText(QApplication::translate("HWpManager", "Vaso (grammi)", 0));
         label->setText(QApplication::translate("HWpManager", "Quantit\303\240: ", 0));
         label_6->setText(QApplication::translate("HWpManager", "Olio:", 0));
-        label_5->setText(QApplication::translate("HWpManager", "Tappo:", 0));
         label_8->setText(QApplication::translate("HWpManager", "Sanificazione:", 0));
+        label_5->setText(QApplication::translate("HWpManager", "Tappo:", 0));
         label_10->setText(QApplication::translate("HWpManager", "Allergeni:", 0));
         rbFresh->setText(QApplication::translate("HWpManager", "Fresco", 0));
         rbPastorized->setText(QApplication::translate("HWpManager", "Pastorizzato", 0));

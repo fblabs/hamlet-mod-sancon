@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QStringListModel>
 #include "hprint.h"
+#include <QCompleter>
 
 HWpManager::HWpManager(int p_id,HUser* p_user, QSqlDatabase p_db, QWidget *parent) :
     QWidget(parent),
@@ -24,6 +25,8 @@ HWpManager::HWpManager(int p_id,HUser* p_user, QSqlDatabase p_db, QWidget *paren
     getProducts();
     getTappi();
     initSanityModel();
+
+
 }
 
 HWpManager::~HWpManager()
@@ -41,6 +44,11 @@ void HWpManager::getClients()
 
     ui->cbCliente->setModel(cmod);
     ui->cbCliente->setModelColumn(1);
+    QCompleter *comp=new QCompleter(cmod);
+    comp->setCompletionColumn(1);
+    comp->setCaseSensitivity(Qt::CaseInsensitive);
+    comp->setCompletionMode(QCompleter::PopupCompletion);
+    ui->cbCliente->setCompleter(comp);
 }
 
 
@@ -120,6 +128,7 @@ void HWpManager::addSheetRow()
     }
     calcTotale();
     QString olio=ui->leOlio->text();
+    QString specolio=ui->leSpecOlio->text();
     int tappo=ui->cbTappo->model()->index(ui->cbTappo->currentIndex(),0).data(0).toInt();
 
     QString sanificazione=ui->cbSanty->currentText();
@@ -134,17 +143,16 @@ void HWpManager::addSheetRow()
     {
         pastorizzato=1;
     }
-    if(QMessageBox::question(this,QApplication::applicationName(),"Salvare?",QMessageBox::Ok)==QMessageBox::Cancel)
-    {
-        return;
-    }
+
     QString note=ui->ptNote->toPlainText();
-    double totale=(quant*vaso)/1000;
-    ui->leTotal->setText(QString::number(totale,'f',3));
+    bool ok=false;
+    double totale=ui->leTotal->text().toDouble(&ok);
 
 
-    QString sql="insert into righe_produzione(IDProduzione,num_riga, idcliente,idprodotto,numero_ordine,vaso_gr,quantita,olio,tappo,sanificazione,allergeni,fresco,pastorizzato,note,totale)"
-                " VALUES(:idproduzione,:numriga,:idcliente,:idprodotto,:numord,:vaso,:quantita,:olio,:tappo,:sanificazione,:allergeni,:fresco,:pastorizzato,:note,:totale)";
+
+
+    QString sql="insert into righe_produzione(IDProduzione,num_riga, idcliente,idprodotto,numero_ordine,vaso_gr,quantita,specificaolio,olio,tappo,sanificazione,allergeni,fresco,pastorizzato,note,totale)"
+                " VALUES(:idproduzione,:numriga,:idcliente,:idprodotto,:numord,:vaso,:quantita,:specolio,:olio,:tappo,:sanificazione,:allergeni,:fresco,:pastorizzato,:note,:totale)";
     q.prepare(sql);
     q.bindValue(":idproduzione",id);
     q.bindValue(":numriga",row);
@@ -153,6 +161,7 @@ void HWpManager::addSheetRow()
     q.bindValue(":numord",ordine);
     q.bindValue(":vaso",vaso);
     q.bindValue(":quantita",quant);
+    q.bindValue(":specolio",specolio);
     q.bindValue(":olio",ui->leOlio->text());
     q.bindValue(":tappo",tappo);
     q.bindValue(":sanificazione",sanificazione);
@@ -161,18 +170,32 @@ void HWpManager::addSheetRow()
     q.bindValue(":pastorizzato",pastorizzato);
     q.bindValue(":note",note);
     q.bindValue(":totale",totale);
+    bool b=false;
 
-    bool b=q.exec();
-
-    if(b)
+    if(QMessageBox::question(this,QApplication::applicationName(),"Salvare?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
-        emit rowAdded();
-        close();
+        db.transaction();
+
+        b=q.exec();
+
+
+
+        if(b)
+        {
+            db.commit();
+            emit rowAdded();
+            close();
+        }
+        else
+        {
+            db.rollback();
+            QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando la riga\n"+q.lastError().text(),QMessageBox::Ok);
+            return;
+        }
     }
     else
     {
-        QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando la riga\n"+q.lastError().text(),QMessageBox::Ok);
-        return;
+        QMessageBox::information(this,QApplication::applicationName(),"Salvataggio annullato",QMessageBox::Ok);
     }
 
 
@@ -219,7 +242,7 @@ double HWpManager::calcTotale()
        return -1;
     }
 
-    double totale=quant*vaso/1000;
+    double totale=(quant*vaso)/1000;
     return totale;
 }
 

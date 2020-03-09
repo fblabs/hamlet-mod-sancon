@@ -34,7 +34,7 @@ private slots:
     void on_pbSave_clicked();
     double calcTotale();
     void on_leTotal_returnPressed();
-    void on_leQuant_returnPressed();
+
 
 signals:
     done();
