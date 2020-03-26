@@ -11,7 +11,7 @@ MAKEFILE      = Makefile.Release
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DUNICODE -DQT_NO_DEBUG_OUTPUT -DQT_NO_DEBUG -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
+DEFINES       = -DUNICODE -DQT_NO_DEBUG -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra $(DEFINES)
 CXXFLAGS      = -pipe -fno-keep-inline-dllexport -O2 -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
 INCPATH       = -I. -I../../Qt/5.5/mingw492_32/include -I../../Qt/5.5/mingw492_32/include/QtPrintSupport -I../../Qt/5.5/mingw492_32/include/QtWidgets -I../../Qt/5.5/mingw492_32/include/QtGui -I../../Qt/5.5/mingw492_32/include/QtANGLE -I../../Qt/5.5/mingw492_32/include/QtSql -I../../Qt/5.5/mingw492_32/include/QtCore -Irelease -I. -I../../Qt/5.5/mingw492_32/mkspecs/win32-g++ 
@@ -19143,6 +19143,8 @@ release/hworkprogram.o: hworkprogram.cpp hworkprogram.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QFrame \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QGridLayout \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
@@ -19153,7 +19155,6 @@ release/hworkprogram.o: hworkprogram.cpp hworkprogram.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \

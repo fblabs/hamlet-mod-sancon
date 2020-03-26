@@ -93,7 +93,7 @@ void HModifyRow::initSanityModel()
 
 void HModifyRow::loadRow()
 {
-
+qDebug()<<"loadRow";
 
     QSqlTableModel *rows_model=new QSqlTableModel(0,db);
     rows_model->setTable("righe_produzione");
@@ -110,8 +110,18 @@ void HModifyRow::loadRow()
    ui->cbCliente->setCurrentIndex(ixc);
 
    QSqlQueryModel *productsmod=static_cast<QSqlQueryModel*>(ui->cbProdotto->model());
-   int r=rows_model->index(0,2).data(0).toInt();
-   QString sxp=productsmod->record(r).value(2).toString();
+   int r=rows_model->index(0,6).data(0).toInt();
+   qDebug()<<QString::number(r);
+   QString sxp;
+
+   for(int ix=0;ix<productsmod->rowCount();++ix)
+   {
+       if(productsmod->record(ix).value(1).toInt()==r)
+       {
+           sxp=productsmod->record(ix).value(2).toString();
+       }
+   }
+
    qDebug()<<"prodotto"<<sxp;
    ui->cbProdotto->setCurrentText(sxp);
 

@@ -86,10 +86,12 @@ void HWorkProgram::getSheets()
 {
     QSqlTableModel *mod=new QSqlTableModel(0,db);
     mod->setTable("produzione");
+    mod->setSort(1,Qt::DescendingOrder);
     mod->select();
     QModelIndex ix=mod->index(0,0);
     ui->tvStorico->setCurrentIndex(ix);
     ui->tvStorico->setModel(mod);
+
     if(mod->rowCount()>0)
     {
         ui->tvStorico->clicked(ui->tvStorico->model()->index(ix.row(),ix.column()));
@@ -187,6 +189,7 @@ void HWorkProgram::deleteSheet()
          }
 
      }
+     refreshSheet();
 
 }
 
@@ -264,8 +267,11 @@ void HWorkProgram::on_cbshowrows_toggled(bool checked)
 
 void HWorkProgram::on_pbRemove_clicked()
 {
-    wpmod->removeRow(ui->tvGeneral->currentIndex().row());
-    refreshSheet();
+    if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        wpmod->removeRow(ui->tvGeneral->currentIndex().row());
+        refreshSheet();
+    }
 
 }
 
@@ -459,7 +465,8 @@ void HWorkProgram::on_pbSearch_clicked()
 
 void HWorkProgram::search()
 {
-    if(ui->spSearchLinea->value()==0 &&ui->deSearch->date() != QDate::currentDate()&&(ui->deSearchTo->date()> ui->deSearch->date()))
+   //if(ui->spSearchLinea->value()==0 /*&&ui->deSearch->date() != QDate::currentDate()&&(ui->deSearchTo->date()> ui->deSearch->date())*/)
+    if(ui->spSearchLinea->value()==0)
     {
         static_cast<QSqlTableModel*>(ui->tvStorico->model())->setFilter("dal between '"+ui->deSearch->date().toString("yyyy-MM-dd")+"' and '"+ ui->deSearchTo->date().toString("yyyy-MM-dd") +"'");
     qDebug()<<static_cast<QSqlTableModel*>(ui->tvStorico->model())->filter();

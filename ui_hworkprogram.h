@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -51,6 +52,7 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QCheckBox *checkBox;
     QCheckBox *cbshowrows;
+    QFrame *line;
     QLabel *label_6;
     QSpinBox *spSearchLinea;
     QLabel *label_7;
@@ -60,6 +62,7 @@ public:
     QPushButton *pbSearch;
     QPushButton *pbReset;
     QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *horizontalSpacer_4;
     QPushButton *pbAdd;
     QPushButton *pbModify;
     QPushButton *pbRemove;
@@ -75,7 +78,7 @@ public:
         if (HWorkProgram->objectName().isEmpty())
             HWorkProgram->setObjectName(QStringLiteral("HWorkProgram"));
         HWorkProgram->setWindowModality(Qt::ApplicationModal);
-        HWorkProgram->resize(1131, 638);
+        HWorkProgram->resize(1143, 638);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/3D_Icons_Icon_256.png"), QSize(), QIcon::Normal, QIcon::Off);
         HWorkProgram->setWindowIcon(icon);
@@ -85,6 +88,10 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         label_4 = new QLabel(HWorkProgram);
         label_4->setObjectName(QStringLiteral("label_4"));
+        QFont font;
+        font.setBold(true);
+        font.setWeight(75);
+        label_4->setFont(font);
 
         gridLayout->addWidget(label_4, 1, 3, 1, 1);
 
@@ -123,9 +130,6 @@ public:
 
         label = new QLabel(HWorkProgram);
         label->setObjectName(QStringLiteral("label"));
-        QFont font;
-        font.setBold(true);
-        font.setWeight(75);
         label->setFont(font);
 
         gridLayout->addWidget(label, 1, 1, 1, 1);
@@ -159,9 +163,12 @@ public:
         tvStorico->setObjectName(QStringLiteral("tvStorico"));
         tvStorico->setMaximumSize(QSize(300, 16777215));
         tvStorico->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tvStorico->setAlternatingRowColors(true);
+        tvStorico->setSelectionMode(QAbstractItemView::SingleSelection);
         tvStorico->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvStorico->setSortingEnabled(true);
         tvStorico->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
+        tvStorico->verticalHeader()->setVisible(false);
         tvStorico->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
 
         horizontalLayout_3->addWidget(tvStorico);
@@ -193,8 +200,17 @@ public:
 
         cbshowrows = new QCheckBox(HWorkProgram);
         cbshowrows->setObjectName(QStringLiteral("cbshowrows"));
+        cbshowrows->setMinimumSize(QSize(125, 0));
+        cbshowrows->setMaximumSize(QSize(300, 16777215));
 
         horizontalLayout_2->addWidget(cbshowrows);
+
+        line = new QFrame(HWorkProgram);
+        line->setObjectName(QStringLiteral("line"));
+        line->setFrameShape(QFrame::VLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout_2->addWidget(line);
 
         label_6 = new QLabel(HWorkProgram);
         label_6->setObjectName(QStringLiteral("label_6"));
@@ -250,6 +266,10 @@ public:
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer_2);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_4);
 
         pbAdd = new QPushButton(HWorkProgram);
         pbAdd->setObjectName(QStringLiteral("pbAdd"));
@@ -336,7 +356,7 @@ public:
     void retranslateUi(QWidget *HWorkProgram)
     {
         HWorkProgram->setWindowTitle(QApplication::translate("HWorkProgram", "Programmazione Lavorazione", 0));
-        label_4->setText(QApplication::translate("HWorkProgram", "Dal", 0));
+        label_4->setText(QApplication::translate("HWorkProgram", "del", 0));
         label_5->setText(QApplication::translate("HWorkProgram", "Al:", 0));
         label_3->setText(QApplication::translate("HWorkProgram", "Linea", 0));
         label->setText(QApplication::translate("HWorkProgram", "PROGRAMMA DI LAVORO", 0));
