@@ -218,6 +218,12 @@
        <property name="text">
         <string>Nascondi Storico</string>
        </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>

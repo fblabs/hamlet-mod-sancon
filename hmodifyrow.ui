@@ -104,6 +104,19 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="4">
+      <widget class="QLabel" name="label_5">
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Tappo:</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="1">
       <widget class="QLineEdit" name="leOlio">
        <property name="maximumSize">
@@ -115,9 +128,6 @@
       </widget>
      </item>
      <item row="0" column="6">
-      <widget class="QComboBox" name="cbSanty"/>
-     </item>
-     <item row="0" column="5">
       <widget class="QLabel" name="label_8">
        <property name="maximumSize">
         <size>
@@ -127,22 +137,6 @@
        </property>
        <property name="text">
         <string>Sanificazione:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="4">
-      <widget class="QComboBox" name="cbTappo"/>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="label_5">
-       <property name="maximumSize">
-        <size>
-         <width>60</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Tappo:</string>
        </property>
       </widget>
      </item>
@@ -159,13 +153,26 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
+     <item row="0" column="3">
       <widget class="QLineEdit" name="leSpecificaOlio">
        <property name="maximumSize">
         <size>
          <width>100</width>
          <height>16777215</height>
         </size>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QComboBox" name="cbTappo"/>
+     </item>
+     <item row="0" column="7">
+      <widget class="QComboBox" name="cbSanty"/>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>Peso Olio</string>
        </property>
       </widget>
      </item>
@@ -307,6 +314,25 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>cbCliente</tabstop>
+  <tabstop>cbProdotto</tabstop>
+  <tabstop>leNumOrd</tabstop>
+  <tabstop>leVaso</tabstop>
+  <tabstop>leQuant</tabstop>
+  <tabstop>leOlio</tabstop>
+  <tabstop>leSpecificaOlio</tabstop>
+  <tabstop>cbTappo</tabstop>
+  <tabstop>cbSanty</tabstop>
+  <tabstop>leAllergeni</tabstop>
+  <tabstop>rbFresh</tabstop>
+  <tabstop>rbPastorized</tabstop>
+  <tabstop>rbNone</tabstop>
+  <tabstop>ptNote</tabstop>
+  <tabstop>leTotal</tabstop>
+  <tabstop>pbSave</tabstop>
+  <tabstop>pbClose</tabstop>
+ </tabstops>
  <resources>
   <include location="icons.qrc"/>
  </resources>

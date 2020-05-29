@@ -203,6 +203,7 @@ void HWorkProgram::on_pbNewSheet_clicked()
  f->show();
 
 
+
 }
 
 void HWorkProgram::updateSheet(int lix,int oldix, int newix)
@@ -304,9 +305,9 @@ void HWorkProgram::on_deDal_dateChanged(const QDate &date)
 void HWorkProgram::setHeaders()
 {
     wpmod->setHeaderData(2,Qt::Horizontal,QObject::tr("Num. Riga"));
-    wpmod->setHeaderData(3,Qt::Horizontal,QObject::tr("Vaso (gr.)"));
-    wpmod->setHeaderData(4,Qt::Horizontal,QObject::tr("Quantità"));
-    wpmod->setHeaderData(5,Qt::Horizontal,QObject::tr("Spec. Olio"));
+    wpmod->setHeaderData(3,Qt::Horizontal,QObject::tr("Quantità"));
+    wpmod->setHeaderData(4,Qt::Horizontal,QObject::tr("Peso prod."));
+    wpmod->setHeaderData(5,Qt::Horizontal,QObject::tr("Peso olio"));
     wpmod->setHeaderData(6,Qt::Horizontal,QObject::tr("Prodotto"));
     wpmod->setHeaderData(7,Qt::Horizontal,QObject::tr("Olio"));
     wpmod->setHeaderData(8,Qt::Horizontal,QObject::tr("Tappo"));
@@ -351,7 +352,7 @@ void HWorkProgram::print()
     QString txt="";
     QStringList titles;
 
-    titles<<" Q.tà "<<" PESO "<<"SP. OLIO "<<" PRODOTTO "<<" OLIO"<<" TAPPO "<<" CLIENTE "<<" KG "<<" SANIF. "<<" ORDINE "<<" FRESCO "<<" PASTORIZZATO "<<" ALLERGENI "<<" NOTE ";
+    titles<<" Q.tà "<<" PESO PRODOTTO "<<"PESO OLIO "<<" PRODOTTO "<<" OLIO"<<" TAPPO "<<" CLIENTE "<<" KG "<<" SANIF. "<<" ORDINE "<<" FRESCO "<<" PASTORIZZATO "<<" ALLERGENI "<<" NOTE ";
     int t=0;
 
     if (r==0)

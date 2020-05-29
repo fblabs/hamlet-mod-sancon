@@ -195,6 +195,8 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         checkBox = new QCheckBox(HWorkProgram);
         checkBox->setObjectName(QStringLiteral("checkBox"));
+        checkBox->setChecked(true);
+        checkBox->setAutoExclusive(true);
 
         horizontalLayout_2->addWidget(checkBox);
 
