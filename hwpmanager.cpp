@@ -246,7 +246,8 @@ double HWpManager::calcTotale()
     return totale;
 }
 
-void HWpManager::on_leQuant_returnPressed()
+
+void HWpManager::on_leVaso_returnPressed()
 {
     double totale =calcTotale();
     ui->leTotal->setText(QString::number(totale,'f',3));

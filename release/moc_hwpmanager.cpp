@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HWpManager_t {
     QByteArrayData data[15];
-    char stringdata0[218];
+    char stringdata0[217];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,17 +41,17 @@ QT_MOC_LITERAL(8, 81, 18), // "on_pbClose_clicked"
 QT_MOC_LITERAL(9, 100, 32), // "on_cbCliente_currentIndexChanged"
 QT_MOC_LITERAL(10, 133, 5), // "index"
 QT_MOC_LITERAL(11, 139, 17), // "on_pbSave_clicked"
-QT_MOC_LITERAL(12, 157, 24), // "on_leTotal_returnPressed"
-QT_MOC_LITERAL(13, 182, 24), // "on_leQuant_returnPressed"
-QT_MOC_LITERAL(14, 207, 10) // "calcTotale"
+QT_MOC_LITERAL(12, 157, 23), // "on_leVaso_returnPressed"
+QT_MOC_LITERAL(13, 181, 24), // "on_leTotal_returnPressed"
+QT_MOC_LITERAL(14, 206, 10) // "calcTotale"
 
     },
     "HWpManager\0rowAdded\0\0getClients\0"
     "getProducts\0getTappi\0initSanityModel\0"
     "addSheetRow\0on_pbClose_clicked\0"
     "on_cbCliente_currentIndexChanged\0index\0"
-    "on_pbSave_clicked\0on_leTotal_returnPressed\0"
-    "on_leQuant_returnPressed\0calcTotale"
+    "on_pbSave_clicked\0on_leVaso_returnPressed\0"
+    "on_leTotal_returnPressed\0calcTotale"
 };
 #undef QT_MOC_LITERAL
 
@@ -118,8 +118,8 @@ void HWpManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 6: _t->on_pbClose_clicked(); break;
         case 7: _t->on_cbCliente_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 8: _t->on_pbSave_clicked(); break;
-        case 9: _t->on_leTotal_returnPressed(); break;
-        case 10: _t->on_leQuant_returnPressed(); break;
+        case 9: _t->on_leVaso_returnPressed(); break;
+        case 10: _t->on_leTotal_returnPressed(); break;
         case 11: { double _r = _t->calcTotale();
             if (_a[0]) *reinterpret_cast< double*>(_a[0]) = _r; }  break;
         default: ;

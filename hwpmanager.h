@@ -29,17 +29,13 @@ private slots:
    void getTappi();
    void initSanityModel();
    void addSheetRow();
-
-
    void on_pbClose_clicked();
    void on_cbCliente_currentIndexChanged(int index);
    void on_pbSave_clicked();
-
+   void on_leVaso_returnPressed();
    void on_leTotal_returnPressed();
-
-   void on_leQuant_returnPressed();
-
    double calcTotale();
+
 
 signals:
    void rowAdded();

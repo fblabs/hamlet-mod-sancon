@@ -80,25 +80,25 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_4">
-     <item row="0" column="0">
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="leQuant"/>
+     </item>
+     <item row="0" column="2">
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Peso prodotto (grammi)</string>
+        <string>Peso prodotto (gr.)</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="leVaso"/>
+     </item>
+     <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Quantità: </string>
        </property>
       </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="leVaso"/>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLineEdit" name="leQuant"/>
      </item>
     </layout>
    </item>
@@ -322,7 +322,6 @@
   <tabstop>cbProdotto</tabstop>
   <tabstop>leNumOrd</tabstop>
   <tabstop>leVaso</tabstop>
-  <tabstop>leQuant</tabstop>
   <tabstop>leOlio</tabstop>
   <tabstop>leSpecOlio</tabstop>
   <tabstop>cbTappo</tabstop>

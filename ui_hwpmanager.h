@@ -42,10 +42,10 @@ public:
     QLabel *label_9;
     QLineEdit *leNumOrd;
     QGridLayout *gridLayout_4;
-    QLabel *label_4;
-    QLabel *label;
-    QLineEdit *leVaso;
     QLineEdit *leQuant;
+    QLabel *label_4;
+    QLineEdit *leVaso;
+    QLabel *label;
     QGridLayout *gridLayout_3;
     QLineEdit *leOlio;
     QLineEdit *leSpecOlio;
@@ -129,25 +129,25 @@ public:
 
         gridLayout_4 = new QGridLayout();
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
+        leQuant = new QLineEdit(HWpManager);
+        leQuant->setObjectName(QStringLiteral("leQuant"));
+
+        gridLayout_4->addWidget(leQuant, 0, 1, 1, 1);
+
         label_4 = new QLabel(HWpManager);
         label_4->setObjectName(QStringLiteral("label_4"));
 
-        gridLayout_4->addWidget(label_4, 0, 0, 1, 1);
-
-        label = new QLabel(HWpManager);
-        label->setObjectName(QStringLiteral("label"));
-
-        gridLayout_4->addWidget(label, 0, 2, 1, 1);
+        gridLayout_4->addWidget(label_4, 0, 2, 1, 1);
 
         leVaso = new QLineEdit(HWpManager);
         leVaso->setObjectName(QStringLiteral("leVaso"));
 
-        gridLayout_4->addWidget(leVaso, 0, 1, 1, 1);
+        gridLayout_4->addWidget(leVaso, 0, 3, 1, 1);
 
-        leQuant = new QLineEdit(HWpManager);
-        leQuant->setObjectName(QStringLiteral("leQuant"));
+        label = new QLabel(HWpManager);
+        label->setObjectName(QStringLiteral("label"));
 
-        gridLayout_4->addWidget(leQuant, 0, 3, 1, 1);
+        gridLayout_4->addWidget(label, 0, 0, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout_4);
@@ -301,8 +301,7 @@ public:
         QWidget::setTabOrder(cbCliente, cbProdotto);
         QWidget::setTabOrder(cbProdotto, leNumOrd);
         QWidget::setTabOrder(leNumOrd, leVaso);
-        QWidget::setTabOrder(leVaso, leQuant);
-        QWidget::setTabOrder(leQuant, leOlio);
+        QWidget::setTabOrder(leVaso, leOlio);
         QWidget::setTabOrder(leOlio, leSpecOlio);
         QWidget::setTabOrder(leSpecOlio, cbTappo);
         QWidget::setTabOrder(cbTappo, cbSanty);
@@ -326,7 +325,7 @@ public:
         label_2->setText(QApplication::translate("HWpManager", "Cliente:", 0));
         label_3->setText(QApplication::translate("HWpManager", "Prodotto:", 0));
         label_9->setText(QApplication::translate("HWpManager", "N.Ordine:", 0));
-        label_4->setText(QApplication::translate("HWpManager", "Peso prodotto (grammi)", 0));
+        label_4->setText(QApplication::translate("HWpManager", "Peso prodotto (gr.)", 0));
         label->setText(QApplication::translate("HWpManager", "Quantit\303\240: ", 0));
         label_6->setText(QApplication::translate("HWpManager", "Olio:", 0));
         label_5->setText(QApplication::translate("HWpManager", "Tappo:", 0));

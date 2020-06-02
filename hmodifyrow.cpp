@@ -134,13 +134,14 @@ qDebug()<<"loadRow";
    int txc=ui->cbTappo->findText(tappotofind);
    ui->cbTappo->setCurrentIndex(txc);
 
-   ui->leNumOrd->setText(rows_model->index(0,12).data(0).toString());
-   ui->leVaso->setText(rows_model->index(0,3).data(0).toString());
-   ui->leQuant->setText(rows_model->index(0,4).data(0).toString());
-   ui->leOlio->setText(rows_model->index(0,7).data(0).toString());
+
+   ui->leQuant->setText(rows_model->index(0,3).data(0).toString());
+   ui->leVaso->setText(rows_model->index(0,4).data(0).toString());
    ui->leSpecificaOlio->setText(rows_model->index(0,5).data(0).toString());
+   ui->leOlio->setText(rows_model->index(0,7).data(0).toString());
    ui->cbSanty->setCurrentText(rows_model->index(0,11).data(0).toString());
    ui->leAllergeni->setText(rows_model->index(0,15).data(0).toString());
+   ui->leNumOrd->setText(rows_model->index(0,12).data(0).toString());
    int fresco=rows_model->index(0,13).data(0).toInt();
    int pastorizzato=rows_model->index(0,14).data(0).toInt();
 
@@ -186,68 +187,75 @@ void HModifyRow::on_pbSave_clicked()
     if(QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Salvare le modifiche?",QMessageBox::Ok|QMessageBox::Cancel))
     {
 
-        int idcliente=ui->cbCliente->model()->index(ui->cbCliente->currentIndex(),0).data(0).toInt();
-        int idprodotto=ui->cbProdotto->model()->index(ui->cbProdotto->currentIndex(),1).data(0).toInt();
-        QString numord=ui->leNumOrd->text();
-        QString vaso=ui->leVaso->text();
-        QString qua=ui->leQuant->text();
-        QString olio=ui->leOlio->text();
-        QString specOlio=ui->leSpecificaOlio->text();
-        int idtappo=static_cast<QSqlQueryModel*>(ui->cbTappo->model())->record(ui->cbTappo->currentIndex()).value(0).toInt();
-        QString san=ui->cbSanty->currentText();
-        QString allerg=ui->leAllergeni->text();
-        int fresco=0;
-        int pastorizzato=0;
-        if(ui->rbFresh->isChecked())
-        {
-            fresco=1;
-        }else if(ui->rbPastorized->isChecked())
-        {
-            pastorizzato=1;
-        }
 
-        QSqlQuery q(db);
-        QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,totale=:tot where IDproduzione=:idproduzione and num_riga=:num";
-        db.transaction();
-        q.prepare(sql);
-        q.bindValue(":idcliente",idcliente);
-        q.bindValue(":idprod",idprodotto);
-        q.bindValue(":nord",numord);
-        q.bindValue(":vasog",vaso);
-        q.bindValue(":quan",qua);
-        q.bindValue(":spolio",specOlio);
-        q.bindValue(":olio",olio);
-        q.bindValue(":tappo",idtappo);
-        q.bindValue(":sanif",san);
-        q.bindValue(":alrg",allerg);
-        q.bindValue(":fresco",fresco);
-        q.bindValue(":pasto",pastorizzato);
-        q.bindValue(":note",ui->ptNote->toPlainText());
-        bool ok=false;
-        q.bindValue(":tot",ui->leTotal->text().toDouble(&ok));
-        if(!ok)
-        {
-            QMessageBox::warning(this,QApplication::applicationName(),"Errore nel formato del totale"+q.lastError().text(),QMessageBox::Ok);
-        }
-        q.bindValue(":idproduzione",idp);
-        q.bindValue(":num",row);
-
-        if (!q.exec())
-        {
-            db.rollback();
-            QMessageBox::warning(this,QApplication::applicationName(),"Errore aggiornando i dati\n"+q.lastError().text(),QMessageBox::Ok);
-        }
-        else
-        {
-            db.commit();
-            emit done();
-            QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
-
-        }
-
-
+        saveRow();
 
     }
+
+}
+
+void HModifyRow::saveRow(){
+
+
+    int idcliente=ui->cbCliente->model()->index(ui->cbCliente->currentIndex(),0).data(0).toInt();
+    int idprodotto=ui->cbProdotto->model()->index(ui->cbProdotto->currentIndex(),1).data(0).toInt();
+    QString numord=ui->leNumOrd->text();
+    QString vaso=ui->leVaso->text();
+    QString qua=ui->leQuant->text();
+    QString olio=ui->leOlio->text();
+    QString specOlio=ui->leSpecificaOlio->text();
+    int idtappo=static_cast<QSqlQueryModel*>(ui->cbTappo->model())->record(ui->cbTappo->currentIndex()).value(0).toInt();
+    QString san=ui->cbSanty->currentText();
+    QString allerg=ui->leAllergeni->text();
+    int fresco=0;
+    int pastorizzato=0;
+    if(ui->rbFresh->isChecked())
+    {
+        fresco=1;
+    }else if(ui->rbPastorized->isChecked())
+    {
+        pastorizzato=1;
+    }
+
+    QSqlQuery q(db);
+    QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,totale=:tot where IDproduzione=:idproduzione and num_riga=:num";
+    db.transaction();
+    q.prepare(sql);
+    q.bindValue(":idcliente",idcliente);
+    q.bindValue(":idprod",idprodotto);
+    q.bindValue(":nord",numord);
+    q.bindValue(":vasog",vaso);
+    q.bindValue(":quan",qua);
+    q.bindValue(":spolio",specOlio);
+    q.bindValue(":olio",olio);
+    q.bindValue(":tappo",idtappo);
+    q.bindValue(":sanif",san);
+    q.bindValue(":alrg",allerg);
+    q.bindValue(":fresco",fresco);
+    q.bindValue(":pasto",pastorizzato);
+    q.bindValue(":note",ui->ptNote->toPlainText());
+    bool ok=false;
+    q.bindValue(":tot",ui->leTotal->text().toDouble(&ok));
+    if(!ok)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore nel formato del totale"+q.lastError().text(),QMessageBox::Ok);
+    }
+    q.bindValue(":idproduzione",idp);
+    q.bindValue(":num",row);
+
+    if (!q.exec())
+    {
+        db.rollback();
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore aggiornando i dati\n"+q.lastError().text(),QMessageBox::Ok);
+    }
+    else
+    {
+        db.commit();
+        emit done();
+        QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
+
+    }
+
 
 }
 
