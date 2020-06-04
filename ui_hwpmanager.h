@@ -300,7 +300,8 @@ public:
 
         QWidget::setTabOrder(cbCliente, cbProdotto);
         QWidget::setTabOrder(cbProdotto, leNumOrd);
-        QWidget::setTabOrder(leNumOrd, leVaso);
+        QWidget::setTabOrder(leNumOrd, leQuant);
+        QWidget::setTabOrder(leQuant, leVaso);
         QWidget::setTabOrder(leVaso, leOlio);
         QWidget::setTabOrder(leOlio, leSpecOlio);
         QWidget::setTabOrder(leSpecOlio, cbTappo);

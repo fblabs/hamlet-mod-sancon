@@ -307,7 +307,18 @@ if(alternateBackgroundColor)
 QTextTable* HPrint::writeTableContent(QTextTable *table, int row, int column,QString text)
 {   
     QTextCharFormat format;
+    if (row % 2)
+    {
+
+        format.setBackground(QColor("lightgreen"));
+    }
+    else
+    {
+        format.setBackground(QColor("white"));
+    }
+
     format.setForeground(QColor("black"));
+    table->cellAt(row,column).setFormat(format);
     QTextCursor c=table->cellAt(row,column).firstCursorPosition();
 
    c.setCharFormat(format);
@@ -321,6 +332,16 @@ QTextTable* HPrint::writeTableContentRed(QTextTable *table, int row, int column,
 {
   QTextCharFormat format;
   format.setForeground(QColor("red"));
+  if (row % 2)
+  {
+
+      format.setBackground(QColor("lightgreen"));
+  }
+  else
+  {
+      format.setBackground(QColor("white"));
+  }
+  table->cellAt(row,column).setFormat(format);
   QTextCursor c=table->cellAt(row,column).firstCursorPosition();
 
    c.setCharFormat(format);

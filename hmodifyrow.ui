@@ -318,6 +318,8 @@
   <tabstop>cbCliente</tabstop>
   <tabstop>cbProdotto</tabstop>
   <tabstop>leNumOrd</tabstop>
+  <tabstop>leQuant</tabstop>
+  <tabstop>leVaso</tabstop>
   <tabstop>leOlio</tabstop>
   <tabstop>leSpecificaOlio</tabstop>
   <tabstop>cbTappo</tabstop>
