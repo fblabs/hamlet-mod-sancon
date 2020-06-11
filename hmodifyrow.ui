@@ -104,8 +104,8 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="leOlio">
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="leSpecificaOlio">
        <property name="maximumSize">
         <size>
          <width>100</width>
@@ -113,9 +113,6 @@
         </size>
        </property>
       </widget>
-     </item>
-     <item row="0" column="7">
-      <widget class="QComboBox" name="cbSanty"/>
      </item>
      <item row="0" column="6">
       <widget class="QLabel" name="label_8">
@@ -126,7 +123,7 @@
         </size>
        </property>
        <property name="text">
-        <string>Sanificazione:</string>
+        <string>Sanific.</string>
        </property>
       </widget>
      </item>
@@ -137,11 +134,8 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="5">
-      <widget class="QComboBox" name="cbTappo"/>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLineEdit" name="leSpecificaOlio">
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="leOlio">
        <property name="maximumSize">
         <size>
          <width>100</width>
@@ -163,6 +157,9 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="7">
+      <widget class="QComboBox" name="cbSanty"/>
+     </item>
      <item row="0" column="0">
       <widget class="QLabel" name="label_6">
        <property name="maximumSize">
@@ -175,6 +172,9 @@
         <string>Olio:</string>
        </property>
       </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QLineEdit" name="leTappo"/>
      </item>
     </layout>
    </item>
@@ -322,7 +322,6 @@
   <tabstop>leVaso</tabstop>
   <tabstop>leOlio</tabstop>
   <tabstop>leSpecificaOlio</tabstop>
-  <tabstop>cbTappo</tabstop>
   <tabstop>cbSanty</tabstop>
   <tabstop>leAllergeni</tabstop>
   <tabstop>rbFresh</tabstop>

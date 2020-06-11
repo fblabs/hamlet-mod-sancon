@@ -605,7 +605,7 @@ void HProduction::printProduction()
     f->cursorToEnd();
 
 
-    QTextTable *table= f->addTable(rows,cols);
+    QTextTable *table= f->addTable(rows,cols,QTextTableFormat());
 
     QString col1,col2,col3;
 
@@ -634,18 +634,20 @@ void HProduction::printProduction()
 
           f->cursorToEnd();
 
+          QTextCharFormat format;
+
           if(model->index(i,6).data(0).toInt()==1)
           {
-              f->writeTableContentRed(table,i,0,col1);
-              f->writeTableContentRed(table,i,1,col2);
-              f->writeTableContentRed(table,i,2,col3);
+              f->writeTableContentRed(table,i,0,format,col1);
+              f->writeTableContentRed(table,i,1,format,col2);
+              f->writeTableContentRed(table,i,2,format,col3);
           }
           else
           {
 
-          f->writeTableContent(table,i,0,col1);
-          f->writeTableContent(table,i,1,col2);
-          f->writeTableContent(table,i,2,col3);
+          f->writeTableContent(table,i,0,QTextCharFormat(),col1);
+          f->writeTableContent(table,i,1,QTextCharFormat(),col2);
+          f->writeTableContent(table,i,2,QTextCharFormat(),col3);
           }
 
           f->cursorToEnd();
@@ -700,7 +702,7 @@ void HProduction::printRecipe()
 
     f->append(ui->textBrowser->toPlainText(),false);
 
-    QTextTable *table= f->addTable(rows,cols);
+    QTextTable *table= f->addTable(rows,cols,QTextTableFormat());
 
       for (int i=0;i<rows;i++)
         {
@@ -716,16 +718,16 @@ void HProduction::printRecipe()
 
 
             // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
-
+            QTextCharFormat format;
             if(model->index(i,6).data(0).toBool())
             {
-                f->writeTableContentRed(table,i,0,ui->tableView->model()->index(i,3).data(0).toString());
-                f->writeTableContentRed(table,i,1,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+                f->writeTableContentRed(table,i,0,format,ui->tableView->model()->index(i,3).data(0).toString());
+                f->writeTableContentRed(table,i,1,format,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
             }
             else
             {
-            f->writeTableContent(table,i,0,ui->tableView->model()->index(i,3).data(0).toString());
-            f->writeTableContent(table,i,1,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+            f->writeTableContent(table,i,0,QTextCharFormat(),ui->tableView->model()->index(i,3).data(0).toString());
+            f->writeTableContent(table,i,1,QTextCharFormat(),QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
             }
 
          f->cursorToEnd();

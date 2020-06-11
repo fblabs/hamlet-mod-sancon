@@ -546,18 +546,19 @@ void HAnalisi::printLot()
     if(ui->tvComp->model()!=0)
     {
 
-    QTextTable* table=f->addTable(righe,colonne);
+    QTextTable* table=f->addTable(righe,colonne,QTextTableFormat());
    // // qDebug()<<QString::number(righe)<<QString::number(colonne);
+    QTextCharFormat cf=QTextCharFormat();
 
     for (int i=0;i<righe;i++)
     {
       // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
      // f->writeTableContent(table,i,0,ui->tvComp->model()->index(i,0).data(0).toString());
-      f->writeTableContent(table,i,0,ui->tvComp->model()->index(i,2).data(0).toString());
-      f->writeTableContent(table,i,1,ui->tvComp->model()->index(i,3).data(0).toString());
-      f->writeTableContent(table,i,2,ui->tvComp->model()->index(i,4).data(0).toString());
-      f->writeTableContent(table,i,3,ui->tvComp->model()->index(i,5).data(0).toString());
-      f->writeTableContent(table,i,4,ui->tvComp->model()->index(i,6).data(0).toString());
+      f->writeTableContent(table,i,0,cf,ui->tvComp->model()->index(i,2).data(0).toString());
+      f->writeTableContent(table,i,1,cf,ui->tvComp->model()->index(i,3).data(0).toString());
+      f->writeTableContent(table,i,2,cf,ui->tvComp->model()->index(i,4).data(0).toString());
+      f->writeTableContent(table,i,3,cf,ui->tvComp->model()->index(i,5).data(0).toString());
+      f->writeTableContent(table,i,4,cf,ui->tvComp->model()->index(i,6).data(0).toString());
 
 
 
@@ -585,19 +586,20 @@ void HAnalisi::printLot()
         colonneb=ui->tvNarrow->model()->columnCount();
 
 
-        QTextTable* tableb=f->addTable(righeb,colonneb);
+        QTextTable* tableb=f->addTable(righeb,colonneb,QTextTableFormat());
+        QTextCharFormat cf=QTextCharFormat();
 
 
         for (int i=0;i<righeb;i++)
         {
           // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
          // f->writeTableContent(tableb,i,0,ui->tvNarrow->model()->index(i,0).data(0).toString());
-          f->writeTableContent(tableb,i,0,ui->tvNarrow->model()->index(i,3).data(0).toString());
-          f->writeTableContent(tableb,i,1,ui->tvNarrow->model()->index(i,2).data(0).toString());
-          f->writeTableContent(tableb,i,2,ui->tvNarrow->model()->index(i,1).data(0).toString());
-          f->writeTableContent(tableb,i,3,ui->tvNarrow->model()->index(i,4).data(0).toString());
-          f->writeTableContent(tableb,i,4,ui->tvNarrow->model()->index(i,5).data(0).toString());
-          f->writeTableContent(tableb,i,5,ui->tvNarrow->model()->index(i,6).data(0).toString());
+          f->writeTableContent(tableb,i,0,cf,ui->tvNarrow->model()->index(i,3).data(0).toString());
+          f->writeTableContent(tableb,i,1,cf,ui->tvNarrow->model()->index(i,2).data(0).toString());
+          f->writeTableContent(tableb,i,2,cf,ui->tvNarrow->model()->index(i,1).data(0).toString());
+          f->writeTableContent(tableb,i,3,cf,ui->tvNarrow->model()->index(i,4).data(0).toString());
+          f->writeTableContent(tableb,i,4,cf,ui->tvNarrow->model()->index(i,5).data(0).toString());
+          f->writeTableContent(tableb,i,5,cf,ui->tvNarrow->model()->index(i,6).data(0).toString());
          // f->writeTableContent(table,i,4,ui->tvComp->model()->index(i,3).data(0).toString());
 
 

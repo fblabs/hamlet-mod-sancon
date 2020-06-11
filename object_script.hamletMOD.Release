@@ -59,12 +59,12 @@ INPUT(
 ./release/hmagazzino.o
 ./release/hproductsmodel.o
 ./release/hmodproduct.o
-./release/hworkprogram.o
 ./release/hwpmanager.o
 ./release/hworkprogressmodel.o
 ./release/hmodifyrow.o
 ./release/hlotmod.o
 ./release/hnewsheet.o
+./release/hworkprogram.o
 ./release/qrc_icons.o
 ./release/moc_mainwindow.o
 ./release/moc_huser.o
@@ -123,10 +123,10 @@ INPUT(
 ./release/moc_hlotmovements.o
 ./release/moc_hmagazzino.o
 ./release/moc_hmodproduct.o
-./release/moc_hworkprogram.o
 ./release/moc_hwpmanager.o
 ./release/moc_hworkprogressmodel.o
 ./release/moc_hmodifyrow.o
 ./release/moc_hlotmod.o
 ./release/moc_hnewsheet.o
+./release/moc_hworkprogram.o
 );

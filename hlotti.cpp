@@ -331,7 +331,7 @@ void HLotti::print()
     f->append("PRODUZIONE DAL "+ ui->datadal->text().toUpper() + " AL " + ui->dataal->text().toUpper(),false);
     f->toggleImageUI(false);
     f->showMaximized();
-    QTextTable *tb=f->addTable(rows,cols);
+    QTextTable *tb=f->addTable(rows,cols,QTextTableFormat());
     QString txt;
 
    int r,c;
@@ -346,7 +346,7 @@ void HLotti::print()
         for (c=0; c<cols; c++)
         {
             txt=ui->twLots->model()->index(r,c).data(0).toString();
-            f->writeTableContent(tb,r,c,txt);
+            f->writeTableContent(tb,r,c,QTextCharFormat(),txt);
             QApplication::processEvents();
 
 

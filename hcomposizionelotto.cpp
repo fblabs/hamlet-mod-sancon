@@ -252,7 +252,7 @@ void HComposizioneLotto::printComposition()
 
 
 
-    QTextTable *tb=f->addTable(rows+3,cols);
+    QTextTable *tb=f->addTable(rows+3,cols,QTextTableFormat());
 
 
 
@@ -266,19 +266,19 @@ void HComposizioneLotto::printComposition()
     int r,c;
 
     txt="DATA";
-    f->writeTableContent(tb,0,1,txt);
+    f->writeTableContent(tb,0,1,QTextCharFormat(),txt);
     txt="LOTTO";
-    f->writeTableContent(tb,0,2,txt);
+    f->writeTableContent(tb,0,2,QTextCharFormat(),txt);
     txt="PRODOTTO";
-    f->writeTableContent(tb,0,3,txt);
+    f->writeTableContent(tb,0,3,QTextCharFormat(),txt);
     txt="FORNITORE";
-    f->writeTableContent(tb,0,4,txt);
+    f->writeTableContent(tb,0,4,QTextCharFormat(),txt);
     txt="QUANTITA'";
-    f->writeTableContent(tb,0,5,txt);
+    f->writeTableContent(tb,0,5,QTextCharFormat(),txt);
     txt="UNITA'";
-    f->writeTableContent(tb,0,6,txt);
+    f->writeTableContent(tb,0,6,QTextCharFormat(),txt);
     txt="GIACENZA";
-    f->writeTableContent(tb,0,7,txt);
+    f->writeTableContent(tb,0,7,QTextCharFormat(),txt);
 
 
     double qta=0.0;
@@ -312,7 +312,7 @@ void HComposizioneLotto::printComposition()
 
             }
 
-            f->writeTableContent(tb,actrow,c,txt);
+            f->writeTableContent(tb,actrow,c,QTextCharFormat(),txt);
 
         }
        QApplication::processEvents();
@@ -321,8 +321,8 @@ void HComposizioneLotto::printComposition()
     txt=QString::number(qta,'f',3);
     qDebug()<<txt;
     actrow++;
-    f->writeTableContent(tb,actrow,4,"QUANTITA' TOTALE:");
-    f->writeTableContent(tb,actrow,5,txt);
+    f->writeTableContent(tb,actrow,4,QTextCharFormat(),"QUANTITA' TOTALE:");
+    f->writeTableContent(tb,actrow,5,QTextCharFormat(),txt);
 
 
 
@@ -345,7 +345,7 @@ void HComposizioneLotto::printUse()
     int cols=ui->tableView->model()->columnCount();
 
 
-    QTextTable *tb=f->addTable(rows+2,cols);
+    QTextTable *tb=f->addTable(rows+2,cols,QTextTableFormat());
 
 
 
@@ -358,15 +358,15 @@ void HComposizioneLotto::printUse()
 
 
     txt="DATA";
-    f->writeTableContent(tb,0,1,txt);
+    f->writeTableContent(tb,0,1,QTextCharFormat(),txt);
     txt="LOTTO";
-    f->writeTableContent(tb,0,2,txt);
+    f->writeTableContent(tb,0,2,QTextCharFormat(),txt);
     txt="LOTTO ESTERNO";
-    f->writeTableContent(tb,0,3,txt);
+    f->writeTableContent(tb,0,3,QTextCharFormat(),txt);
     txt="PRODOTTO";
-    f->writeTableContent(tb,0,4,txt);
+    f->writeTableContent(tb,0,4,QTextCharFormat(),txt);
     txt="CLIENTE";
-    f->writeTableContent(tb,0,5,txt);
+    f->writeTableContent(tb,0,5,QTextCharFormat(),txt);
 
 
 
@@ -380,7 +380,7 @@ void HComposizioneLotto::printUse()
         {
 
            txt=ui->tableView->model()->index(r,c).data(0).toString();
-           f->writeTableContent(tb,actrow,c,txt);
+           f->writeTableContent(tb,actrow,c,QTextCharFormat(),txt);
 
         }
 

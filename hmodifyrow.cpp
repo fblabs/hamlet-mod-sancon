@@ -24,7 +24,7 @@ HModifyRow::HModifyRow(int p_id, int p_row, HUser *p_user, QSqlDatabase p_db, QW
 
     getClients();
     getProducts();
-    getTappi();
+   // getTappi();
     initSanityModel();
     loadRow();
 
@@ -69,7 +69,8 @@ void HModifyRow::getProducts()
 
 }
 
-void HModifyRow::getTappi()
+//REMOVED
+/*void HModifyRow::getTappi()
 {
     QSqlTableModel *tmod=new QSqlTableModel(0,db);
     tmod->setTable("prodotti");
@@ -79,7 +80,7 @@ void HModifyRow::getTappi()
     ui->cbTappo->setModel(tmod);
     ui->cbTappo->setModelColumn(1);
 
-}
+}*/
 
 void HModifyRow::initSanityModel()
 {
@@ -125,20 +126,14 @@ qDebug()<<"loadRow";
    qDebug()<<"prodotto"<<sxp;
    ui->cbProdotto->setCurrentText(sxp);
 
-   QSqlTableModel *tappimod=static_cast<QSqlTableModel*>(ui->cbTappo->model());
-   tappimod->setFilter("ID="+rows_model->index(0,8).data(0).toString());
-   qDebug()<<"TAPPI"<<rows_model->index(0,8).data(0).toString();
-   ui->cbTappo->setCurrentIndex(0);
-   QString tappotofind=ui->cbTappo->currentText();
-   tappimod->setFilter("tipo=4");
-   int txc=ui->cbTappo->findText(tappotofind);
-   ui->cbTappo->setCurrentIndex(txc);
+
 
 
    ui->leQuant->setText(rows_model->index(0,3).data(0).toString());
    ui->leVaso->setText(rows_model->index(0,4).data(0).toString());
    ui->leSpecificaOlio->setText(rows_model->index(0,5).data(0).toString());
    ui->leOlio->setText(rows_model->index(0,7).data(0).toString());
+   ui->leTappo->setText(rows_model->index(0,8).data(0).toString());
    ui->cbSanty->setCurrentText(rows_model->index(0,11).data(0).toString());
    ui->leAllergeni->setText(rows_model->index(0,15).data(0).toString());
    ui->leNumOrd->setText(rows_model->index(0,12).data(0).toString());
@@ -204,7 +199,7 @@ void HModifyRow::saveRow(){
     QString qua=ui->leQuant->text();
     QString olio=ui->leOlio->text();
     QString specOlio=ui->leSpecificaOlio->text();
-    int idtappo=static_cast<QSqlQueryModel*>(ui->cbTappo->model())->record(ui->cbTappo->currentIndex()).value(0).toInt();
+    QString tappo=ui->leTappo->text();
     QString san=ui->cbSanty->currentText();
     QString allerg=ui->leAllergeni->text();
     int fresco=0;
@@ -228,7 +223,7 @@ void HModifyRow::saveRow(){
     q.bindValue(":quan",qua);
     q.bindValue(":spolio",specOlio);
     q.bindValue(":olio",olio);
-    q.bindValue(":tappo",idtappo);
+    q.bindValue(":tappo",tappo);
     q.bindValue(":sanif",san);
     q.bindValue(":alrg",allerg);
     q.bindValue(":fresco",fresco);

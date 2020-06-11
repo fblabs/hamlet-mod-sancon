@@ -73,12 +73,12 @@ SOURCES += main.cpp\
     hmagazzino.cpp \
     hproductsmodel.cpp \
     hmodproduct.cpp \
-    hworkprogram.cpp \
     hwpmanager.cpp \
     hworkprogressmodel.cpp \
     hmodifyrow.cpp \
     hlotmod.cpp \
-    hnewsheet.cpp
+    hnewsheet.cpp \
+    hworkprogram.cpp
 
 HEADERS  += mainwindow.h \
     huser.h \
@@ -139,12 +139,12 @@ HEADERS  += mainwindow.h \
     hmagazzino.h \
     hproductsmodel.h \
     hmodproduct.h \
-    hworkprogram.h \
     hwpmanager.h \
     hworkprogressmodel.h \
     hmodifyrow.h \
     hlotmod.h \
-    hnewsheet.h
+    hnewsheet.h \
+    hworkprogram.h
 
 
 
@@ -202,11 +202,11 @@ FORMS    += mainwindow.ui \
     hlotmovements.ui \
     hmagazzino.ui \
     hmodproduct.ui \
-    hworkprogram.ui \
     hwpmanager.ui \
     hmodifyrow.ui \
     hlotmod.ui \
-    hnewsheet.ui
+    hnewsheet.ui \
+    hworkprogram.ui
 
 
 

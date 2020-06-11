@@ -279,7 +279,7 @@ void HAssociazioni::print()
         f->append("");
         f->toggleImageUI(false);
         f->showMaximized();
-        QTextTable *tb=f->addTable(rows,1);
+        QTextTable *tb=f->addTable(rows,1,QTextTableFormat());
         QString txt;
 
        int r,c;
@@ -292,7 +292,7 @@ void HAssociazioni::print()
         {
 
                 txt=ui->tableView->model()->index(r,c).data(0).toString();
-                f->writeTableContent(tb,r,0,txt);
+                f->writeTableContent(tb,r,0,QTextCharFormat(),txt);
                 QApplication::processEvents();
 
         }

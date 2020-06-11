@@ -75,13 +75,13 @@ void HExpirations::print()
 
     f->toggleImageUI(false);
     f->showMaximized();
-    QTextTable *tb=f->addTable(rows,cols);
+    QTextTable *tb=f->addTable(rows,cols,QTextTableFormat());
     QString txt;
 
-    f->writeTableContent(tb,0,2,"TIPO LOTTO");
-    f->writeTableContent(tb,0,3,"LOTTO");
-    f->writeTableContent(tb,0,5,"PRODOTTO");
-    f->writeTableContent(tb,0,6,"SCADENZA");
+    f->writeTableContent(tb,0,2,QTextCharFormat(),"TIPO LOTTO");
+    f->writeTableContent(tb,0,3,QTextCharFormat(),"LOTTO");
+    f->writeTableContent(tb,0,5,QTextCharFormat(),"PRODOTTO");
+    f->writeTableContent(tb,0,6,QTextCharFormat(),"SCADENZA");
 
 
 
@@ -99,7 +99,7 @@ void HExpirations::print()
             if (c != 0 && c !=1 && c !=4 && c !=7)
             {
             txt=ui->tableView->model()->index(r-2,c).data(0).toString();
-            f->writeTableContent(tb,r,c,txt);
+            f->writeTableContent(tb,r,c,QTextCharFormat(),txt);
             QApplication::processEvents();
             }
 

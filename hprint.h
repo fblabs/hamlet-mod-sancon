@@ -81,9 +81,9 @@ public slots:
    void addImage(QByteArray bytes, QString name, int width, int height);
    void cursorToEnd();
    void cursorToStart();
-   QTextTable *addTable(int rows, int columns, QColor background=QColor("white"), QColor alternateBackground=QColor(230,230,230));
-   QTextTable *writeTableContent(QTextTable *table, int row, int column, QString text="");
-   QTextTable* writeTableContentRed(QTextTable *table, int row, int column, QString text="");
+   QTextTable *addTable(int rows, int columns,QTextTableFormat ptf, QColor background=QColor("white"), QColor alternateBackground=QColor(230,230,230));
+   QTextTable *writeTableContent(QTextTable *table, int row, int column,QTextCharFormat ptcf,QString text);
+   QTextTable* writeTableContentRed(QTextTable *table, int row, int column, QTextCharFormat pformat, QString text="");
 
 
 private:

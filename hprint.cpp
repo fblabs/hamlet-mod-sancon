@@ -211,17 +211,34 @@ void HPrint::setText(QString text)
 
 void HPrint::append(QString text, bool bold)
 {
-    QFont font(ui->textEdit->font());
-    font.setBold(bold);
-    ui->textEdit->setFont(font);
-    ui->textEdit->append("\n"+text);
+
+    QTextCursor c=ui->textEdit->textCursor();
+    QTextCharFormat cf=c.charFormat();
+
+    QTextCharFormat format;
+
+    format.setForeground(QColor("black"));
+    format.setFontWeight(QFont::Bold);
+
+    c.setCharFormat(format);
+
+    c.beginEditBlock();
+    c.insertText(text+"\n");
+    c.endEditBlock();
+    c.movePosition(QTextCursor::End);
+
 }
+
+
+
+
 
 void HPrint::on_pushButton_2_clicked()
 {
 
    // QPrintDialog *dlg=new QPrintDialog(printer);
     printer->setPageSize(QPrinter::A4);
+    printer->setPageMargins(0,0,0,0,QPrinter::Millimeter);
 
     QPrintDialog   dialog( printer);
    // dlg->show();
@@ -250,9 +267,10 @@ void HPrint::on_pushButton_clicked()
     this->close();
 }
 
-QTextTable* HPrint::addTable(int rows, int columns,QColor background,QColor alternateBackground)
+QTextTable* HPrint::addTable(int rows, int columns, QTextTableFormat ptf=QTextTableFormat(), QColor background, QColor alternateBackground)
 {
-    QTextTableFormat tbf;
+    QTextTableFormat tbf=ptf;
+
 
 
 
@@ -263,6 +281,7 @@ QTextTable* HPrint::addTable(int rows, int columns,QColor background,QColor alte
     tbf.setBorder(1);
     tbf.setBorderBrush(black);
     tbf.setCellSpacing(0);
+    tbf.setCellPadding(2);
 
     QTextCursor cur=ui->textEdit->textCursor();
     cur.movePosition(QTextCursor::End);
@@ -304,48 +323,43 @@ if(alternateBackgroundColor)
 
 }
 
-QTextTable* HPrint::writeTableContent(QTextTable *table, int row, int column,QString text)
+QTextTable* HPrint::writeTableContent(QTextTable *table=0, int row=0, int column=0,QTextCharFormat ptcf=QTextCharFormat(),QString text=QString())
 {   
-    QTextCharFormat format;
-    if (row % 2)
-    {
-
-        format.setBackground(QColor("lightgreen"));
-    }
-    else
-    {
-        format.setBackground(QColor("white"));
-    }
+    QTextCharFormat format=ptcf;
 
     format.setForeground(QColor("black"));
+    format.setVerticalAlignment(QTextCharFormat::AlignMiddle);
+
     table->cellAt(row,column).setFormat(format);
     QTextCursor c=table->cellAt(row,column).firstCursorPosition();
+    QTextBlockFormat bf=c.blockFormat();
+    Qt::Alignment horz=bf.alignment() & Qt::AlignHorizontal_Mask;
+    bf.setAlignment(horz);
 
-   c.setCharFormat(format);
-   c.insertText(text);
-   QApplication::processEvents();
+    c.setBlockFormat(bf);
+    c.setCharFormat(format);
+    c.insertText("\n"+text+"\n");
 
-   return table;
+
+     return table;
 }
 
-QTextTable* HPrint::writeTableContentRed(QTextTable *table, int row, int column, QString text)
+QTextTable* HPrint::writeTableContentRed(QTextTable *table, int row, int column,QTextCharFormat pformat, QString text)
 {
-  QTextCharFormat format;
-  format.setForeground(QColor("red"));
-  if (row % 2)
-  {
+  QTextCharFormat format=pformat;
 
-      format.setBackground(QColor("lightgreen"));
-  }
-  else
-  {
-      format.setBackground(QColor("white"));
-  }
+  format.setForeground(QColor("red"));
+  format.setVerticalAlignment(QTextCharFormat::AlignMiddle);
   table->cellAt(row,column).setFormat(format);
   QTextCursor c=table->cellAt(row,column).firstCursorPosition();
+  QTextBlockFormat bf=c.blockFormat();
+  Qt::Alignment horz=bf.alignment() & Qt::AlignHorizontal_Mask;
+  bf.setAlignment(horz);
 
-   c.setCharFormat(format);
-   c.insertText(text);
+  c.setBlockFormat(bf);
+  c.setCharFormat(format);
+  c.insertText("  \n"+text+"\n");
+
 
    return table;
 }
@@ -378,6 +392,7 @@ void HPrint::on_pbant_clicked()
 {
     QPrinter lprinter(QPrinter::HighResolution);
     lprinter.setPaperSize(QPrinter::A4);
+    lprinter.setPageMargins(0,0,0,0,QPrinter::Millimeter);
     QPrintPreviewDialog *dlg=new QPrintPreviewDialog(&lprinter);
     if(ui->rbLandscape->isChecked())
     {

@@ -26,7 +26,7 @@ private:
 private slots:
     void getClients();
     void getProducts();
-    void getTappi();
+   // void getTappi(); REMOVED
     void initSanityModel();
     void loadRow();
     void on_cbCliente_currentIndexChanged(int index);

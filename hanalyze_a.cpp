@@ -379,7 +379,7 @@ void HAnalyze_a::on_pushButton_2_clicked()
 
     //stampa
 
-       table = f->addTable(rws,cls);
+       table = f->addTable(rws,cls,QTextTableFormat());
 
        for(int r=0;r<rws;r++)
        {
@@ -387,7 +387,7 @@ void HAnalyze_a::on_pushButton_2_clicked()
            {
 
 
-               f->writeTableContent(table,r,c,ui->tvDetails->model()->index(r,c).data(0).toString());
+               f->writeTableContent(table,r,c,QTextCharFormat(),ui->tvDetails->model()->index(r,c).data(0).toString());
 
 
           }
@@ -403,7 +403,7 @@ void HAnalyze_a::on_pushButton_2_clicked()
        rws=ui->tableView->model()->rowCount();
        cls=ui->tableView->model()->columnCount();
 
-       table = f->addTable(rws,cls);
+       table = f->addTable(rws,cls,QTextTableFormat());
 
        for(int r=0;r<rws;r++)
        {
@@ -411,7 +411,7 @@ void HAnalyze_a::on_pushButton_2_clicked()
            {
 
 
-               f->writeTableContent(table,r,c,ui->tableView->model()->index(r,c).data(0).toString());
+               f->writeTableContent(table,r,c,QTextCharFormat(),ui->tableView->model()->index(r,c).data(0).toString());
 
 
           }
@@ -426,7 +426,7 @@ void HAnalyze_a::on_pushButton_2_clicked()
 
        if(rws<1)return;
 
-       table = f->addTable(rws,cls);
+       table = f->addTable(rws,cls,QTextTableFormat());
 
        for(int r=0;r<rws;r++)
        {
@@ -434,7 +434,7 @@ void HAnalyze_a::on_pushButton_2_clicked()
            {
 
 
-               f->writeTableContent(table,r,c,ui->tvDetailsLot->model()->index(r,c).data(0).toString());
+               f->writeTableContent(table,r,c,QTextCharFormat(),ui->tvDetailsLot->model()->index(r,c).data(0).toString());
 
 
           }

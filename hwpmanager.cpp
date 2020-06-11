@@ -23,7 +23,7 @@ HWpManager::HWpManager(int p_id,HUser* p_user, QSqlDatabase p_db, QWidget *paren
 
     getClients();
     getProducts();
-    getTappi();
+    //getTappi();
     initSanityModel();
 
 
@@ -69,7 +69,7 @@ void HWpManager::getProducts()
 
 }
 
-void HWpManager::getTappi()
+/*void HWpManager::getTappi()
 {
     QSqlTableModel *tmod=new QSqlTableModel(0,db);
     tmod->setTable("prodotti");
@@ -79,7 +79,7 @@ void HWpManager::getTappi()
     ui->cbTappo->setModel(tmod);
     ui->cbTappo->setModelColumn(1);
 
-}
+}*/
 
 void HWpManager::initSanityModel()
 {
@@ -129,7 +129,7 @@ void HWpManager::addSheetRow()
     calcTotale();
     QString olio=ui->leOlio->text();
     QString specolio=ui->leSpecOlio->text();
-    int tappo=ui->cbTappo->model()->index(ui->cbTappo->currentIndex(),0).data(0).toInt();
+    QString tappo=ui->leTappo->text();
 
     QString sanificazione=ui->cbSanty->currentText();
     QString allergeni=ui->leAllergeni->text();

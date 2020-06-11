@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HPrint_t {
-    QByteArrayData data[54];
-    char stringdata0[653];
+    QByteArrayData data[59];
+    char stringdata0[703];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -75,14 +75,19 @@ QT_MOC_LITERAL(42, 527, 8), // "addTable"
 QT_MOC_LITERAL(43, 536, 11), // "QTextTable*"
 QT_MOC_LITERAL(44, 548, 4), // "rows"
 QT_MOC_LITERAL(45, 553, 7), // "columns"
-QT_MOC_LITERAL(46, 561, 10), // "background"
-QT_MOC_LITERAL(47, 572, 19), // "alternateBackground"
-QT_MOC_LITERAL(48, 592, 17), // "writeTableContent"
-QT_MOC_LITERAL(49, 610, 5), // "table"
-QT_MOC_LITERAL(50, 616, 3), // "row"
-QT_MOC_LITERAL(51, 620, 6), // "column"
-QT_MOC_LITERAL(52, 627, 4), // "text"
-QT_MOC_LITERAL(53, 632, 20) // "writeTableContentRed"
+QT_MOC_LITERAL(46, 561, 16), // "QTextTableFormat"
+QT_MOC_LITERAL(47, 578, 3), // "ptf"
+QT_MOC_LITERAL(48, 582, 10), // "background"
+QT_MOC_LITERAL(49, 593, 19), // "alternateBackground"
+QT_MOC_LITERAL(50, 613, 17), // "writeTableContent"
+QT_MOC_LITERAL(51, 631, 5), // "table"
+QT_MOC_LITERAL(52, 637, 3), // "row"
+QT_MOC_LITERAL(53, 641, 6), // "column"
+QT_MOC_LITERAL(54, 648, 15), // "QTextCharFormat"
+QT_MOC_LITERAL(55, 664, 4), // "ptcf"
+QT_MOC_LITERAL(56, 669, 4), // "text"
+QT_MOC_LITERAL(57, 674, 20), // "writeTableContentRed"
+QT_MOC_LITERAL(58, 695, 7) // "pformat"
 
     },
     "HPrint\0on_pushButton_2_clicked\0\0"
@@ -101,9 +106,10 @@ QT_MOC_LITERAL(53, 632, 20) // "writeTableContentRed"
     "sz\0getFontSize\0addImage\0bytes\0name\0"
     "width\0height\0cursorToEnd\0cursorToStart\0"
     "addTable\0QTextTable*\0rows\0columns\0"
-    "background\0alternateBackground\0"
-    "writeTableContent\0table\0row\0column\0"
-    "text\0writeTableContentRed"
+    "QTextTableFormat\0ptf\0background\0"
+    "alternateBackground\0writeTableContent\0"
+    "table\0row\0column\0QTextCharFormat\0ptcf\0"
+    "text\0writeTableContentRed\0pformat"
 };
 #undef QT_MOC_LITERAL
 
@@ -113,7 +119,7 @@ static const uint qt_meta_data_HPrint[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      34,   14, // methods
+      33,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -121,40 +127,39 @@ static const uint qt_meta_data_HPrint[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  184,    2, 0x08 /* Private */,
-       3,    0,  185,    2, 0x08 /* Private */,
-       4,    0,  186,    2, 0x08 /* Private */,
-       5,    1,  187,    2, 0x08 /* Private */,
-       8,    0,  190,    2, 0x08 /* Private */,
-       9,    1,  191,    2, 0x08 /* Private */,
-      11,    0,  194,    2, 0x08 /* Private */,
-      12,    2,  195,    2, 0x08 /* Private */,
-      16,    1,  200,    2, 0x08 /* Private */,
-      17,    1,  203,    2, 0x08 /* Private */,
-      18,    0,  206,    2, 0x08 /* Private */,
-      19,    1,  207,    2, 0x08 /* Private */,
-      21,    1,  210,    2, 0x08 /* Private */,
-      22,    1,  213,    2, 0x0a /* Public */,
-      24,    1,  216,    2, 0x0a /* Public */,
-      25,    0,  219,    2, 0x0a /* Public */,
-      26,    0,  220,    2, 0x0a /* Public */,
-      27,    0,  221,    2, 0x0a /* Public */,
-      28,    0,  222,    2, 0x0a /* Public */,
-      29,    0,  223,    2, 0x0a /* Public */,
-      30,    0,  224,    2, 0x0a /* Public */,
-      31,    0,  225,    2, 0x0a /* Public */,
-      32,    1,  226,    2, 0x0a /* Public */,
-      34,    0,  229,    2, 0x0a /* Public */,
-      35,    4,  230,    2, 0x0a /* Public */,
-      40,    0,  239,    2, 0x0a /* Public */,
-      41,    0,  240,    2, 0x0a /* Public */,
-      42,    4,  241,    2, 0x0a /* Public */,
-      42,    3,  250,    2, 0x2a /* Public | MethodCloned */,
-      42,    2,  257,    2, 0x2a /* Public | MethodCloned */,
-      48,    4,  262,    2, 0x0a /* Public */,
-      48,    3,  271,    2, 0x2a /* Public | MethodCloned */,
-      53,    4,  278,    2, 0x0a /* Public */,
-      53,    3,  287,    2, 0x2a /* Public | MethodCloned */,
+       1,    0,  179,    2, 0x08 /* Private */,
+       3,    0,  180,    2, 0x08 /* Private */,
+       4,    0,  181,    2, 0x08 /* Private */,
+       5,    1,  182,    2, 0x08 /* Private */,
+       8,    0,  185,    2, 0x08 /* Private */,
+       9,    1,  186,    2, 0x08 /* Private */,
+      11,    0,  189,    2, 0x08 /* Private */,
+      12,    2,  190,    2, 0x08 /* Private */,
+      16,    1,  195,    2, 0x08 /* Private */,
+      17,    1,  198,    2, 0x08 /* Private */,
+      18,    0,  201,    2, 0x08 /* Private */,
+      19,    1,  202,    2, 0x08 /* Private */,
+      21,    1,  205,    2, 0x08 /* Private */,
+      22,    1,  208,    2, 0x0a /* Public */,
+      24,    1,  211,    2, 0x0a /* Public */,
+      25,    0,  214,    2, 0x0a /* Public */,
+      26,    0,  215,    2, 0x0a /* Public */,
+      27,    0,  216,    2, 0x0a /* Public */,
+      28,    0,  217,    2, 0x0a /* Public */,
+      29,    0,  218,    2, 0x0a /* Public */,
+      30,    0,  219,    2, 0x0a /* Public */,
+      31,    0,  220,    2, 0x0a /* Public */,
+      32,    1,  221,    2, 0x0a /* Public */,
+      34,    0,  224,    2, 0x0a /* Public */,
+      35,    4,  225,    2, 0x0a /* Public */,
+      40,    0,  234,    2, 0x0a /* Public */,
+      41,    0,  235,    2, 0x0a /* Public */,
+      42,    5,  236,    2, 0x0a /* Public */,
+      42,    4,  247,    2, 0x2a /* Public | MethodCloned */,
+      42,    3,  256,    2, 0x2a /* Public | MethodCloned */,
+      50,    5,  263,    2, 0x0a /* Public */,
+      57,    5,  274,    2, 0x0a /* Public */,
+      57,    4,  285,    2, 0x2a /* Public | MethodCloned */,
 
  // slots: parameters
     QMetaType::Void,
@@ -184,13 +189,12 @@ static const uint qt_meta_data_HPrint[] = {
     QMetaType::Void, QMetaType::QByteArray, QMetaType::QString, QMetaType::Int, QMetaType::Int,   36,   37,   38,   39,
     QMetaType::Void,
     QMetaType::Void,
-    0x80000000 | 43, QMetaType::Int, QMetaType::Int, QMetaType::QColor, QMetaType::QColor,   44,   45,   46,   47,
-    0x80000000 | 43, QMetaType::Int, QMetaType::Int, QMetaType::QColor,   44,   45,   46,
-    0x80000000 | 43, QMetaType::Int, QMetaType::Int,   44,   45,
-    0x80000000 | 43, 0x80000000 | 43, QMetaType::Int, QMetaType::Int, QMetaType::QString,   49,   50,   51,   52,
-    0x80000000 | 43, 0x80000000 | 43, QMetaType::Int, QMetaType::Int,   49,   50,   51,
-    0x80000000 | 43, 0x80000000 | 43, QMetaType::Int, QMetaType::Int, QMetaType::QString,   49,   50,   51,   52,
-    0x80000000 | 43, 0x80000000 | 43, QMetaType::Int, QMetaType::Int,   49,   50,   51,
+    0x80000000 | 43, QMetaType::Int, QMetaType::Int, 0x80000000 | 46, QMetaType::QColor, QMetaType::QColor,   44,   45,   47,   48,   49,
+    0x80000000 | 43, QMetaType::Int, QMetaType::Int, 0x80000000 | 46, QMetaType::QColor,   44,   45,   47,   48,
+    0x80000000 | 43, QMetaType::Int, QMetaType::Int, 0x80000000 | 46,   44,   45,   47,
+    0x80000000 | 43, 0x80000000 | 43, QMetaType::Int, QMetaType::Int, 0x80000000 | 54, QMetaType::QString,   51,   52,   53,   55,   56,
+    0x80000000 | 43, 0x80000000 | 43, QMetaType::Int, QMetaType::Int, 0x80000000 | 54, QMetaType::QString,   51,   52,   53,   58,   56,
+    0x80000000 | 43, 0x80000000 | 43, QMetaType::Int, QMetaType::Int, 0x80000000 | 54,   51,   52,   53,   58,
 
        0        // eod
 };
@@ -237,19 +241,17 @@ void HPrint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 24: _t->addImage((*reinterpret_cast< QByteArray(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
         case 25: _t->cursorToEnd(); break;
         case 26: _t->cursorToStart(); break;
-        case 27: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QColor(*)>(_a[3])),(*reinterpret_cast< QColor(*)>(_a[4])));
+        case 27: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QTextTableFormat(*)>(_a[3])),(*reinterpret_cast< QColor(*)>(_a[4])),(*reinterpret_cast< QColor(*)>(_a[5])));
             if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
-        case 28: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QColor(*)>(_a[3])));
+        case 28: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QTextTableFormat(*)>(_a[3])),(*reinterpret_cast< QColor(*)>(_a[4])));
             if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
-        case 29: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
+        case 29: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QTextTableFormat(*)>(_a[3])));
             if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
-        case 30: { QTextTable* _r = _t->writeTableContent((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])));
+        case 30: { QTextTable* _r = _t->writeTableContent((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QTextCharFormat(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])));
             if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
-        case 31: { QTextTable* _r = _t->writeTableContent((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])));
+        case 31: { QTextTable* _r = _t->writeTableContentRed((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QTextCharFormat(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])));
             if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
-        case 32: { QTextTable* _r = _t->writeTableContentRed((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])));
-            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
-        case 33: { QTextTable* _r = _t->writeTableContentRed((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])));
+        case 32: { QTextTable* _r = _t->writeTableContentRed((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QTextCharFormat(*)>(_a[4])));
             if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
         default: ;
         }
@@ -271,13 +273,6 @@ void HPrint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
             }
             break;
         case 32:
-            switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-            case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QTextTable* >(); break;
-            }
-            break;
-        case 33:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -313,13 +308,13 @@ int HPrint::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 34)
+        if (_id < 33)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 34;
+        _id -= 33;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 34)
+        if (_id < 33)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 34;
+        _id -= 33;
     }
     return _id;
 }

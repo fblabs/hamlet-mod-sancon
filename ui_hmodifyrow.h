@@ -47,14 +47,14 @@ public:
     QLineEdit *leQuant;
     QLineEdit *leVaso;
     QGridLayout *gridLayout_3;
-    QLineEdit *leOlio;
-    QComboBox *cbSanty;
+    QLineEdit *leSpecificaOlio;
     QLabel *label_8;
     QLabel *label_12;
-    QComboBox *cbTappo;
-    QLineEdit *leSpecificaOlio;
+    QLineEdit *leOlio;
     QLabel *label_5;
+    QComboBox *cbSanty;
     QLabel *label_6;
+    QLineEdit *leTappo;
     QFormLayout *formLayout_2;
     QLabel *label_10;
     QLineEdit *leAllergeni;
@@ -155,16 +155,11 @@ public:
 
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        leOlio = new QLineEdit(HModifyRow);
-        leOlio->setObjectName(QStringLiteral("leOlio"));
-        leOlio->setMaximumSize(QSize(100, 16777215));
+        leSpecificaOlio = new QLineEdit(HModifyRow);
+        leSpecificaOlio->setObjectName(QStringLiteral("leSpecificaOlio"));
+        leSpecificaOlio->setMaximumSize(QSize(100, 16777215));
 
-        gridLayout_3->addWidget(leOlio, 0, 1, 1, 1);
-
-        cbSanty = new QComboBox(HModifyRow);
-        cbSanty->setObjectName(QStringLiteral("cbSanty"));
-
-        gridLayout_3->addWidget(cbSanty, 0, 7, 1, 1);
+        gridLayout_3->addWidget(leSpecificaOlio, 0, 3, 1, 1);
 
         label_8 = new QLabel(HModifyRow);
         label_8->setObjectName(QStringLiteral("label_8"));
@@ -177,16 +172,11 @@ public:
 
         gridLayout_3->addWidget(label_12, 0, 2, 1, 1);
 
-        cbTappo = new QComboBox(HModifyRow);
-        cbTappo->setObjectName(QStringLiteral("cbTappo"));
+        leOlio = new QLineEdit(HModifyRow);
+        leOlio->setObjectName(QStringLiteral("leOlio"));
+        leOlio->setMaximumSize(QSize(100, 16777215));
 
-        gridLayout_3->addWidget(cbTappo, 0, 5, 1, 1);
-
-        leSpecificaOlio = new QLineEdit(HModifyRow);
-        leSpecificaOlio->setObjectName(QStringLiteral("leSpecificaOlio"));
-        leSpecificaOlio->setMaximumSize(QSize(100, 16777215));
-
-        gridLayout_3->addWidget(leSpecificaOlio, 0, 3, 1, 1);
+        gridLayout_3->addWidget(leOlio, 0, 1, 1, 1);
 
         label_5 = new QLabel(HModifyRow);
         label_5->setObjectName(QStringLiteral("label_5"));
@@ -194,11 +184,21 @@ public:
 
         gridLayout_3->addWidget(label_5, 0, 4, 1, 1);
 
+        cbSanty = new QComboBox(HModifyRow);
+        cbSanty->setObjectName(QStringLiteral("cbSanty"));
+
+        gridLayout_3->addWidget(cbSanty, 0, 7, 1, 1);
+
         label_6 = new QLabel(HModifyRow);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setMaximumSize(QSize(60, 16777215));
 
         gridLayout_3->addWidget(label_6, 0, 0, 1, 1);
+
+        leTappo = new QLineEdit(HModifyRow);
+        leTappo->setObjectName(QStringLiteral("leTappo"));
+
+        gridLayout_3->addWidget(leTappo, 0, 5, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout_3);
@@ -305,8 +305,7 @@ public:
         QWidget::setTabOrder(leQuant, leVaso);
         QWidget::setTabOrder(leVaso, leOlio);
         QWidget::setTabOrder(leOlio, leSpecificaOlio);
-        QWidget::setTabOrder(leSpecificaOlio, cbTappo);
-        QWidget::setTabOrder(cbTappo, cbSanty);
+        QWidget::setTabOrder(leSpecificaOlio, cbSanty);
         QWidget::setTabOrder(cbSanty, leAllergeni);
         QWidget::setTabOrder(leAllergeni, rbFresh);
         QWidget::setTabOrder(rbFresh, rbPastorized);
@@ -329,7 +328,7 @@ public:
         label_9->setText(QApplication::translate("HModifyRow", "N.Ordine:", 0));
         label->setText(QApplication::translate("HModifyRow", "Quantit\303\240: ", 0));
         label_4->setText(QApplication::translate("HModifyRow", "Peso prodotto (gr.)", 0));
-        label_8->setText(QApplication::translate("HModifyRow", "Sanificazione:", 0));
+        label_8->setText(QApplication::translate("HModifyRow", "Sanific.", 0));
         label_12->setText(QApplication::translate("HModifyRow", "Peso Olio", 0));
         label_5->setText(QApplication::translate("HModifyRow", "Tappo:", 0));
         label_6->setText(QApplication::translate("HModifyRow", "Olio:", 0));

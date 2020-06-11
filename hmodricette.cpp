@@ -612,9 +612,9 @@ void HModRicette::printRecipe()
     f->append("",false);
     f->cursorToEnd();
 
-    QTextTable* table=f->addTable(righe,colonne-4);
+    QTextTable* table=f->addTable(righe,colonne-4,QTextTableFormat());
 
-
+    QTextCharFormat format;
 
     for (int i=0;i<righe;i++)
     {
@@ -622,13 +622,13 @@ void HModRicette::printRecipe()
 
       if(writeRed->at(i)>0)
       {
-          f->writeTableContentRed(table,i,0,ui->tableView->model()->index(i,3).data(0).toString());
-          f->writeTableContentRed(table,i,1,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+          f->writeTableContentRed(table,i,0,format,ui->tableView->model()->index(i,3).data(0).toString());
+          f->writeTableContentRed(table,i,1,format,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
       }
       else
       {
-      f->writeTableContent(table,i,0,ui->tableView->model()->index(i,3).data(0).toString());
-      f->writeTableContent(table,i,1,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+      f->writeTableContent(table,i,0,QTextCharFormat(),ui->tableView->model()->index(i,3).data(0).toString());
+      f->writeTableContent(table,i,1,QTextCharFormat(),QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
       }
 
 

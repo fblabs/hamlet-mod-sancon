@@ -137,7 +137,6 @@ void HWorkProgram::refreshSheet()
     wpmod->setFilter("idproduzione="+QString::number(id));
     wpmod->setRelation(1,QSqlRelation("produzione","ID","ID"));
     wpmod->setRelation(6,QSqlRelation("prodotti","ID","descrizione"));
-    wpmod->setRelation(8,QSqlRelation("prodotti","ID","descrizione"));
     wpmod->setRelation(9,QSqlRelation("anagrafica","ID","ragione_sociale"));
     wpmod->setSort(2,Qt::AscendingOrder);
     wpmod->select();
@@ -335,8 +334,6 @@ void HWorkProgram::print()
     f->setFontSize(9);
     f->showMaximized();
 
-    f->append("PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy") + " - LINEA "+QString::number(ui->tvStorico->model()->index(ui->tvStorico->selectionModel()->currentIndex().row(),3).data(0).toInt()));
-    f->append("");
 
     int c=0;
     int r=0;
@@ -347,47 +344,81 @@ void HWorkProgram::print()
     int cols=dcols-3;
     int rows=drows+2;
 
-    QTextTable* table=f->addTable(rows,cols);
+    QTextTableFormat tf;
+    tf.setHeaderRowCount(2);
+
+    QTextTable* table=f->addTable(rows,cols,tf);
+
+
 
     QString txt="";
     QStringList titles;
 
-    titles<<" Q.tà "<<" PESO PRODOTTO "<<"PESO OLIO "<<" PRODOTTO "<<" OLIO"<<" TAPPO "<<" CLIENTE "<<" KG "<<" SANIF. "<<" ORDINE "<<" FRESCO "<<" PASTORIZZATO "<<" ALLERGENI "<<" NOTE ";
-    int t=0;
+    table->mergeCells(0,0,1,14);
 
-    if (r==0)
+    QTextCharFormat titleformat;
+    titleformat.setVerticalAlignment(QTextCharFormat::AlignMiddle);
+    titleformat.setFontWeight(QFont::Bold);
+    titleformat.setBackground(QColor("lightblue"));
+
+    QString title="PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy") + " - LINEA "+QString::number(ui->tvStorico->model()->index(ui->tvStorico->selectionModel()->currentIndex().row(),3).data(0).toInt());
+    f->writeTableContent(table,0,0,titleformat,title);
+
+    QTextCharFormat format;
+    format.setFontPointSize(7);
+
+
+
+
+
+    titles<<" Q.tà "<<" P. PROD "<<"P. OLIO "<<" PRODOTTO "<<"OLIO"<<"TAPPO"<<"CLIENTE"<<"KG"<<"SAN."<<"ORD."<<" FR. "<<"PAST."<<"ALG."<<" NOTE ";
+    titleformat.setBackground(QColor("lightgrey"));
+
+    for (c=0;c<cols;c++)
     {
-        for (c=0;c<cols;c++)
-        {
-           txt=titles.at(c);
-           f->writeTableContent(table,r,c,txt);
-           t++;
-        }
+
+       txt=titles.at(c);
+       f->writeTableContent(table,1,c,titleformat,txt);
     }
+
+    format.setFontWeight(QFont::Light);
+
 
     for (r=2;r<rows;r++)
     {
+        if(r%2)
+        {
+            format.setBackground(QColor("lightgreen"));
+        }else{
 
-
+            format.setBackground(QColor("white"));
+        }
 
         for(c=0;c<cols;c++)
         {
             int cp=c+3;
             int rp=r-2;
-            txt=" "+wpmod->index(rp,cp).data(0).toString();
+            txt=wpmod->index(rp,cp).data(0).toString();
 
 
+            if(cp==9)
+            {
+                if(txt.length()>30){
+                    QString tmp=txt;
+                    txt=tmp.mid(0,30)+"...";
+                }
+            }
             if(cp==10)
             {
                 QModelIndex tix=wpmod->index(rp,cp);
 
                 bool ok=false;
-                double tot=tix.data(0).toDouble(&ok);
+                int tot=tix.data(0).toInt(&ok);
 
                 if(ok)
                 {
 
-                  f->writeTableContent(table,r,c,QString::number(tot,'f',3));
+                  f->writeTableContent(table,r,c,format,QString::number(tot));
                 }
 
 
@@ -402,7 +433,7 @@ void HWorkProgram::print()
                 if (fx>0)
                 {frescotxt="  [X]";}
 
-                f->writeTableContent(table,r,c,frescotxt);
+                f->writeTableContent(table,r,c,format,frescotxt);
 
             }
             else if(cp==14)
@@ -416,15 +447,15 @@ void HWorkProgram::print()
                 if(px>0)
                 {ptxt="  [X]";}
 
-                f->writeTableContent(table,r,c,ptxt);
+                f->writeTableContent(table,r,c,format,txt);
             }
             else if(cp==15)
             {
-                 f->writeTableContentRed(table,r,c,txt);
+                 f->writeTableContentRed(table,r,c,format,txt);
             }
             else
             {
-                f->writeTableContent(table,r,c,txt);
+                f->writeTableContent(table,r,c,format,txt);
             }
 
 

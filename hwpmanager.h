@@ -26,7 +26,7 @@ private:
 private slots:
    void getClients();
    void getProducts();
-   void getTappi();
+  // void getTappi();
    void initSanityModel();
    void addSheetRow();
    void on_pbClose_clicked();

@@ -367,7 +367,8 @@ void HUtenti::print()
     f->append("");
     f->toggleImageUI(false);
     f->showMaximized();
-    QTextTable *tb=f->addTable(rows,1);
+    QTextTable *tb=f->addTable(rows,1,QTextTableFormat());
+    QTextCharFormat cf=QTextCharFormat();
     QString txt;
 
    int r,c;
@@ -382,7 +383,7 @@ void HUtenti::print()
 
             txt=tm->index(r,1).data(0).toString();
            // f->writeTableContent(tb,r,0,"   "+txt+"   ");
-            f->writeTableContent(tb,r,0,"   "+txt+"   ");
+            f->writeTableContent(tb,r,0,cf,"   "+txt+"   ");
             QApplication::processEvents();
 
 

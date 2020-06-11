@@ -106,7 +106,7 @@ void HRecipesForClient::print()
     f->append("");
     f->toggleImageUI(false);
     f->showMaximized();
-    QTextTable *tb=f->addTable(rows,1);
+    QTextTable *tb=f->addTable(rows,1,QTextTableFormat());
     QString txt;
 
    int r,c;
@@ -119,7 +119,7 @@ void HRecipesForClient::print()
     {
 
             txt=ui->tvClients->model()->index(r,c).data(0).toString();
-            f->writeTableContent(tb,r,0,txt);
+            f->writeTableContent(tb,r,0,QTextCharFormat(),txt);
             QApplication::processEvents();
 
     }
