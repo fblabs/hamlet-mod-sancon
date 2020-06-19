@@ -6,6 +6,7 @@
 #include <QSqlDatabase>
 #include "hworkprogressmodel.h"
 #include <QDate>
+#include <QHeaderView>
 
 namespace Ui {
 class HWorkProgram;
@@ -27,7 +28,7 @@ private slots:
     void on_tvStorico_clicked(const QModelIndex &index);
     void on_pbNewSheet_clicked();
     void refreshSheet();
-    void updateSheet(int lix, int oldix, int newix);
+    void updateSheet(int newrow, int oldrow);
     void setHeaders();
     void print();
 
@@ -62,12 +63,21 @@ private slots:
 
     void on_pbReset_clicked();
 
+
+
+
+
+
+
 private:
     Ui::HWorkProgram *ui;
     HUser* user;
     QSqlDatabase db;
     int id;
     HWorkProgressModel *wpmod;
+
+
+
 
 };
 

@@ -579,7 +579,7 @@ void HProduction::printProduction()
     title.append(" - ");
     title.append(ui->cbClienti->currentText());
     title.append(" - Lotto: " + ui->leNuovoLot->text());
-    title.append(QDate::currentDate().toString(" - dd\\MM\\yyyy"));
+    title.append(QDate::currentDate().toString(" - dd\\MM\\yyyy\n"));
 
 
     int rows=model->rowCount();
@@ -589,23 +589,31 @@ void HProduction::printProduction()
 
 
     f->cursorToStart();
-    f->append(title,false);
-    f->cursorToEnd();
-
-   /* f->append("",false);
-    f->cursorToEnd();*/
-    f->append("NOTE: " + ui->tNote->toPlainText(),false);
+    f->append(title+"\n",true);
     f->cursorToEnd();
 
 
-    f->append(ui->textBrowser->toPlainText().toUpper(),false);
+    f->append("NOTE: ",true);
+    f->append(ui->tNote->toPlainText());
+    f->cursorToEnd();
+    f->append("\n");
+
+
+    f->append(ui->textBrowser->toPlainText(),false);
 
 
     f->append("",false);
     f->cursorToEnd();
 
+    QTextTableFormat fmt;
+    fmt.setBorder(0.0);
+    fmt.setPadding(0.0);
+    fmt.setCellPadding(1.0);
 
-    QTextTable *table= f->addTable(rows,cols,QTextTableFormat());
+
+    QTextTable *table= f->addTable(rows,cols,fmt);
+
+
 
     QString col1,col2,col3;
 
@@ -636,6 +644,7 @@ void HProduction::printProduction()
 
           QTextCharFormat format;
 
+
           if(model->index(i,6).data(0).toInt()==1)
           {
               f->writeTableContentRed(table,i,0,format,col1);
@@ -656,20 +665,20 @@ void HProduction::printProduction()
         }
       if (!ui->checkBox_2->isChecked())
       {
-      f->append("Quantità: " + ui->leQtyTotal->text(),false);
+      f->append("\n\nQuantità: " + ui->leQtyTotal->text(),false);
       }
       else
       {
-         f->append("Quantità: " + ui->leQuaRic->text(),false);
+         f->append("\n\nQuantità: " + ui->leQuaRic->text(),false);
       }
       f->append("",false);
 
 
-      f->append("..............................................................................",false);
+      f->append("\n..............................................................................",false);
       f->cursorToEnd();
-      f->append("..............................................................................",false);
+      f->append("\n..............................................................................",false);
       f->cursorToEnd();
-      f->append("..............................................................................",false);
+      f->append("\n..............................................................................",false);
 
     f->showMaximized();
 }

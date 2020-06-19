@@ -18,6 +18,7 @@
 #include <QTextTable>
 #include "hnewsheet.h"
 #include <QDate>
+#include <QStandardItemModel>
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
@@ -104,10 +105,12 @@ void HWorkProgram::getSheets()
     ui->tvStorico->horizontalHeader()->setStretchLastSection(true);
     ui->tvGeneral->verticalHeader()->setSectionsMovable(true);
 
-
+    QHeaderView *vert=ui->tvGeneral->verticalHeader();
 
 
 }
+
+
 
 
 
@@ -122,9 +125,6 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
        /*HWpManager *f=new HWpManager(id,user,db);
        f->show();*/
     refreshSheet();
-
-
-
 }
 
 void HWorkProgram::refreshSheet()
@@ -205,7 +205,7 @@ void HWorkProgram::on_pbNewSheet_clicked()
 
 }
 
-void HWorkProgram::updateSheet(int lix,int oldix, int newix)
+void HWorkProgram::updateSheet(int newrow, int oldrow)
 {
 
 
@@ -213,30 +213,32 @@ void HWorkProgram::updateSheet(int lix,int oldix, int newix)
     QString sql ="update righe_produzione set num_riga=:num where IDProduzione=:idp and num_riga=:oldnum";
     bool b=false;
     db.transaction();
-    int i=oldix;
 
-    for (int i=0;i<wpmod->rowCount();i++)
-       {
-        q.prepare(sql);
-        q.bindValue("idp",id);
-       if (i==newix)
-       {
-           q.bindValue(":num",newix);
-       }
-        q.bindValue(":oldnum",i);
-        b=q.exec();
+    QSqlTableModel *mod=static_cast<QSqlTableModel*>(ui->tvGeneral->model());
+    int currentrow=ui->tvGeneral->currentIndex().row();
 
-        if(!b)
-        {
-            db.rollback();
-            QMessageBox::warning(this,QApplication::applicationName(),"Errore durante la transazione\n"+q.lastError().text(),QMessageBox::Ok);
 
-            return;
-        }else{
-          db.commit();
-          refreshSheet();
-          QMessageBox::information(this,QApplication::applicationName(),"Foglio aggiornato correttamente",QMessageBox::Ok);
-        }
+     q.prepare(sql);
+     q.bindValue("idp",mod->index(currentrow,1).data(0).toInt());
+
+     q.bindValue(":num",newrow);
+     q.bindValue(":oldnum",oldrow);
+
+
+     qDebug()<<q.lastQuery()<<newrow<<oldrow;
+
+     b=q.exec();
+
+     if(!b)
+     {
+        db.rollback();
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore durante la transazione\n"+q.lastError().text(),QMessageBox::Ok);
+
+        return;
+     }else{
+      db.commit();
+      QMessageBox::information(this,QApplication::applicationName(),"Foglio aggiornato correttamente",QMessageBox::Ok);
+      refreshSheet();
 
     }
 
@@ -394,11 +396,15 @@ void HWorkProgram::print()
             format.setBackground(QColor("white"));
         }
 
+        int cp=0;
+        int rp=0;
+
         for(c=0;c<cols;c++)
         {
-            int cp=c+3;
-            int rp=r-2;
+            cp=c+3;
+            rp=r-2;
             txt=wpmod->index(rp,cp).data(0).toString();
+
 
 
             if(cp==9)
@@ -442,12 +448,15 @@ void HWorkProgram::print()
 
                 int px=ixp.data(Qt::CheckStateRole).toInt();
 
+                qDebug()<<QString::number(px);
+
+
                 QString ptxt="";
 
                 if(px>0)
                 {ptxt="  [X]";}
 
-                f->writeTableContent(table,r,c,format,txt);
+                f->writeTableContent(table,r,c,format,ptxt);
             }
             else if(cp==15)
             {
@@ -514,3 +523,4 @@ void HWorkProgram::on_pbReset_clicked()
 {
      static_cast<QSqlTableModel*>(ui->tvStorico->model())->setFilter("");
 }
+

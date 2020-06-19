@@ -62,6 +62,7 @@ public:
     QPushButton *pbSearch;
     QPushButton *pbReset;
     QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *horizontalSpacer_5;
     QSpacerItem *horizontalSpacer_4;
     QPushButton *pbAdd;
     QPushButton *pbModify;
@@ -182,8 +183,9 @@ public:
         tvGeneral->setAlternatingRowColors(true);
         tvGeneral->setSelectionMode(QAbstractItemView::SingleSelection);
         tvGeneral->setSelectionBehavior(QAbstractItemView::SelectRows);
-        tvGeneral->setSortingEnabled(true);
+        tvGeneral->setSortingEnabled(false);
         tvGeneral->horizontalHeader()->setStretchLastSection(true);
+        tvGeneral->verticalHeader()->setDefaultSectionSize(40);
         tvGeneral->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
 
         horizontalLayout_3->addWidget(tvGeneral);
@@ -268,6 +270,10 @@ public:
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer_2);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_5);
 
         horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 

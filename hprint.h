@@ -9,6 +9,7 @@
 #include <QTextEdit>
 #include <QPrinter>
 #include <QList>
+#include <QTableView>
 
 
 namespace Ui {
@@ -26,6 +27,7 @@ public:
    void setText(QString text);
    void append (QString text, bool bold=false);
    void setConnection(QString conn);
+   void printPixmap(QTableView *table);
 
    void hideClose();
    void resetText();

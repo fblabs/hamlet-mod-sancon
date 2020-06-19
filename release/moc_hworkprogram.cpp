@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HWorkProgram_t {
-    QByteArrayData data[34];
-    char stringdata0[467];
+    QByteArrayData data[33];
+    char stringdata0[465];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,35 +41,34 @@ QT_MOC_LITERAL(8, 88, 5), // "index"
 QT_MOC_LITERAL(9, 94, 21), // "on_pbNewSheet_clicked"
 QT_MOC_LITERAL(10, 116, 12), // "refreshSheet"
 QT_MOC_LITERAL(11, 129, 11), // "updateSheet"
-QT_MOC_LITERAL(12, 141, 3), // "lix"
-QT_MOC_LITERAL(13, 145, 5), // "oldix"
-QT_MOC_LITERAL(14, 151, 5), // "newix"
-QT_MOC_LITERAL(15, 157, 10), // "setHeaders"
-QT_MOC_LITERAL(16, 168, 5), // "print"
-QT_MOC_LITERAL(17, 174, 17), // "on_pbSave_clicked"
-QT_MOC_LITERAL(18, 192, 18), // "on_pbClose_clicked"
-QT_MOC_LITERAL(19, 211, 21), // "on_cbshowrows_toggled"
-QT_MOC_LITERAL(20, 233, 7), // "checked"
-QT_MOC_LITERAL(21, 241, 19), // "on_pbRemove_clicked"
-QT_MOC_LITERAL(22, 261, 26), // "on_tvGeneral_doubleClicked"
-QT_MOC_LITERAL(23, 288, 19), // "on_pbModify_clicked"
-QT_MOC_LITERAL(24, 308, 10), // "showModRow"
-QT_MOC_LITERAL(25, 319, 20), // "on_deDal_dateChanged"
-QT_MOC_LITERAL(26, 340, 4), // "date"
-QT_MOC_LITERAL(27, 345, 18), // "on_pbPrint_clicked"
-QT_MOC_LITERAL(28, 364, 19), // "on_checkBox_toggled"
-QT_MOC_LITERAL(29, 384, 11), // "deleteSheet"
-QT_MOC_LITERAL(30, 396, 24), // "on_pbDeleteSheet_clicked"
-QT_MOC_LITERAL(31, 421, 19), // "on_pbSearch_clicked"
-QT_MOC_LITERAL(32, 441, 6), // "search"
-QT_MOC_LITERAL(33, 448, 18) // "on_pbReset_clicked"
+QT_MOC_LITERAL(12, 141, 6), // "newrow"
+QT_MOC_LITERAL(13, 148, 6), // "oldrow"
+QT_MOC_LITERAL(14, 155, 10), // "setHeaders"
+QT_MOC_LITERAL(15, 166, 5), // "print"
+QT_MOC_LITERAL(16, 172, 17), // "on_pbSave_clicked"
+QT_MOC_LITERAL(17, 190, 18), // "on_pbClose_clicked"
+QT_MOC_LITERAL(18, 209, 21), // "on_cbshowrows_toggled"
+QT_MOC_LITERAL(19, 231, 7), // "checked"
+QT_MOC_LITERAL(20, 239, 19), // "on_pbRemove_clicked"
+QT_MOC_LITERAL(21, 259, 26), // "on_tvGeneral_doubleClicked"
+QT_MOC_LITERAL(22, 286, 19), // "on_pbModify_clicked"
+QT_MOC_LITERAL(23, 306, 10), // "showModRow"
+QT_MOC_LITERAL(24, 317, 20), // "on_deDal_dateChanged"
+QT_MOC_LITERAL(25, 338, 4), // "date"
+QT_MOC_LITERAL(26, 343, 18), // "on_pbPrint_clicked"
+QT_MOC_LITERAL(27, 362, 19), // "on_checkBox_toggled"
+QT_MOC_LITERAL(28, 382, 11), // "deleteSheet"
+QT_MOC_LITERAL(29, 394, 24), // "on_pbDeleteSheet_clicked"
+QT_MOC_LITERAL(30, 419, 19), // "on_pbSearch_clicked"
+QT_MOC_LITERAL(31, 439, 6), // "search"
+QT_MOC_LITERAL(32, 446, 18) // "on_pbReset_clicked"
 
     },
     "HWorkProgram\0on_pbAdd_clicked\0\0"
     "createSheet\0p_line\0p_date\0getSheets\0"
     "on_tvStorico_clicked\0index\0"
     "on_pbNewSheet_clicked\0refreshSheet\0"
-    "updateSheet\0lix\0oldix\0newix\0setHeaders\0"
+    "updateSheet\0newrow\0oldrow\0setHeaders\0"
     "print\0on_pbSave_clicked\0on_pbClose_clicked\0"
     "on_cbshowrows_toggled\0checked\0"
     "on_pbRemove_clicked\0on_tvGeneral_doubleClicked\0"
@@ -101,24 +100,24 @@ static const uint qt_meta_data_HWorkProgram[] = {
        7,    1,  141,    2, 0x08 /* Private */,
        9,    0,  144,    2, 0x08 /* Private */,
       10,    0,  145,    2, 0x08 /* Private */,
-      11,    3,  146,    2, 0x08 /* Private */,
-      15,    0,  153,    2, 0x08 /* Private */,
-      16,    0,  154,    2, 0x08 /* Private */,
-      17,    0,  155,    2, 0x08 /* Private */,
-      18,    0,  156,    2, 0x08 /* Private */,
-      19,    1,  157,    2, 0x08 /* Private */,
-      21,    0,  160,    2, 0x08 /* Private */,
-      22,    1,  161,    2, 0x08 /* Private */,
-      23,    0,  164,    2, 0x08 /* Private */,
-      24,    0,  165,    2, 0x08 /* Private */,
-      25,    1,  166,    2, 0x08 /* Private */,
-      27,    0,  169,    2, 0x08 /* Private */,
-      28,    1,  170,    2, 0x08 /* Private */,
-      29,    0,  173,    2, 0x08 /* Private */,
-      30,    0,  174,    2, 0x08 /* Private */,
-      31,    0,  175,    2, 0x08 /* Private */,
-      32,    0,  176,    2, 0x08 /* Private */,
-      33,    0,  177,    2, 0x08 /* Private */,
+      11,    2,  146,    2, 0x08 /* Private */,
+      14,    0,  151,    2, 0x08 /* Private */,
+      15,    0,  152,    2, 0x08 /* Private */,
+      16,    0,  153,    2, 0x08 /* Private */,
+      17,    0,  154,    2, 0x08 /* Private */,
+      18,    1,  155,    2, 0x08 /* Private */,
+      20,    0,  158,    2, 0x08 /* Private */,
+      21,    1,  159,    2, 0x08 /* Private */,
+      22,    0,  162,    2, 0x08 /* Private */,
+      23,    0,  163,    2, 0x08 /* Private */,
+      24,    1,  164,    2, 0x08 /* Private */,
+      26,    0,  167,    2, 0x08 /* Private */,
+      27,    1,  168,    2, 0x08 /* Private */,
+      28,    0,  171,    2, 0x08 /* Private */,
+      29,    0,  172,    2, 0x08 /* Private */,
+      30,    0,  173,    2, 0x08 /* Private */,
+      31,    0,  174,    2, 0x08 /* Private */,
+      32,    0,  175,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -127,19 +126,19 @@ static const uint qt_meta_data_HWorkProgram[] = {
     QMetaType::Void, QMetaType::QModelIndex,    8,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,   12,   13,   14,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   12,   13,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   20,
+    QMetaType::Void, QMetaType::Bool,   19,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QModelIndex,    8,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QDate,   26,
+    QMetaType::Void, QMetaType::QDate,   25,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   20,
+    QMetaType::Void, QMetaType::Bool,   19,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -162,7 +161,7 @@ void HWorkProgram::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 3: _t->on_tvStorico_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         case 4: _t->on_pbNewSheet_clicked(); break;
         case 5: _t->refreshSheet(); break;
-        case 6: _t->updateSheet((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
+        case 6: _t->updateSheet((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 7: _t->setHeaders(); break;
         case 8: _t->print(); break;
         case 9: _t->on_pbSave_clicked(); break;

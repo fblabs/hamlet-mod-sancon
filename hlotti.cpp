@@ -323,21 +323,23 @@ void HLotti::print()
 
     HPrint *f =new HPrint();
 
+
+
     int rows=ui->twLots->model()->rowCount();
     int cols=ui->twLots->model()->columnCount();
 
+    QApplication::setOverrideCursor(Qt::WaitCursor);
 
-
-    f->append("PRODUZIONE DAL "+ ui->datadal->text().toUpper() + " AL " + ui->dataal->text().toUpper(),false);
+    f->append("PRODUZIONE DAL "+ ui->datadal->text().toUpper() + " AL " + ui->dataal->text().toUpper()+"\n",true);
     f->toggleImageUI(false);
-    f->showMaximized();
+
     QTextTable *tb=f->addTable(rows,cols,QTextTableFormat());
     QString txt;
 
    int r,c;
 
 
-    f->showMaximized();
+
 
     for (r=0;r<rows;r++)
     {
@@ -349,14 +351,14 @@ void HLotti::print()
             f->writeTableContent(tb,r,c,QTextCharFormat(),txt);
             QApplication::processEvents();
 
-
         }
-        QApplication::processEvents();
+      QApplication::processEvents();
 
     }
-  //  QApplication::processEvents();
 
+    QApplication::setOverrideCursor(Qt::ArrowCursor);
 
+ f->showMaximized();
 
 }
 

@@ -105,6 +105,7 @@ public:
 
         cbCliente = new QComboBox(HWpManager);
         cbCliente->setObjectName(QStringLiteral("cbCliente"));
+        cbCliente->setEditable(true);
 
         gridLayout->addWidget(cbCliente, 0, 1, 1, 1);
 

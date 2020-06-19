@@ -6,6 +6,7 @@
 #include <QTextTable>
 #include <QTextTableCell>
 #include <QImage>
+#include <QPainter>
 #include <QPixmap>
 #include <QGraphicsScene>
 #include <QPrintPreviewDialog>
@@ -15,6 +16,7 @@
 #include <QSqlQuery>
 #include <QSqlDatabase>
 #include <QSqlError>
+#include <QTableView>
 
 HPrint::HPrint(QWidget *parent, bool altColors) :
     QWidget(parent),
@@ -218,12 +220,16 @@ void HPrint::append(QString text, bool bold)
     QTextCharFormat format;
 
     format.setForeground(QColor("black"));
-    format.setFontWeight(QFont::Bold);
+    if (bold){
+        format.setFontWeight(QFont::Bold);
+    }else{
+        format.setFontWeight(QFont::Light);
+    }
 
     c.setCharFormat(format);
 
     c.beginEditBlock();
-    c.insertText(text+"\n");
+    c.insertText(text);
     c.endEditBlock();
     c.movePosition(QTextCursor::End);
 
@@ -338,7 +344,7 @@ QTextTable* HPrint::writeTableContent(QTextTable *table=0, int row=0, int column
 
     c.setBlockFormat(bf);
     c.setCharFormat(format);
-    c.insertText("\n"+text+"\n");
+    c.insertText(text);
 
 
      return table;
@@ -358,7 +364,7 @@ QTextTable* HPrint::writeTableContentRed(QTextTable *table, int row, int column,
 
   c.setBlockFormat(bf);
   c.setCharFormat(format);
-  c.insertText("  \n"+text+"\n");
+  c.insertText(text);
 
 
    return table;
@@ -591,4 +597,36 @@ void HPrint::on_rbLandscape_toggled(bool checked)
 {
     printer->setPageSize(QPrinter::A4);
     printer->setOrientation(QPrinter::Landscape);
+}
+
+void HPrint::printPixmap(QTableView *table)
+{
+    QPrinter printer(QPrinter::HighResolution);
+    QPrintDialog dlg(&printer, this);
+    if(dlg.exec()==QDialog::Accepted)
+    {
+        const int rows = table->model()->rowCount();
+        const int cols=table->model()->columnCount();
+        double totalwidth=0.0;
+
+        for (int c=0;c<cols;++c)
+        {
+            totalwidth*=table->columnWidth(c);
+        }
+        double totalheight=0.0;
+        for(int r=0;r<rows;++r)
+        {
+            totalheight=table->rowHeight(r);
+        }
+
+        QPixmap pixmap(totalwidth,totalheight);
+        QPainter::setRedirected(table->viewport(),&pixmap);
+        QPaintEvent event(QRect(0,0,totalwidth,totalheight));
+        QApplication::sendEvent(table->viewport(),&event);
+        QPainter::restoreRedirected(table->viewport());
+        QPainter painter(&printer);
+        painter.drawPixmap(printer.pageRect(),pixmap,pixmap.rect());
+
+
+    }
 }

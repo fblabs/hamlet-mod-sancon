@@ -53,7 +53,11 @@
       <widget class="QComboBox" name="cbProdotto"/>
      </item>
      <item row="0" column="1">
-      <widget class="QComboBox" name="cbCliente"/>
+      <widget class="QComboBox" name="cbCliente">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

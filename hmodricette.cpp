@@ -591,13 +591,12 @@ void HModRicette::printRecipe()
 
     f->toggleImageUI(false);
 
-    f->show();
 
-   f->setText("=============================================");
+    f->append("=============================================\n");
 
-    f->append(ui->cbRicette->currentText(),false);
+    f->append(ui->cbRicette->currentText(),true);
 
-    f->append("=============================================\n",false);
+    f->append("\n=============================================\n",false);
 
 
 
@@ -605,11 +604,11 @@ void HModRicette::printRecipe()
     int colonne=ui->tableView->model()->columnCount();
 
     f->cursorToEnd();
-    f->append("NOTE:",false);
+    f->append("\nNOTE:\n",true);
     f->append(ui->tbnote->toPlainText(),false);
+    f->append("\n\n");
 
-    f->cursorToEnd();
-    f->append("",false);
+
     f->cursorToEnd();
 
     QTextTable* table=f->addTable(righe,colonne-4,QTextTableFormat());
@@ -634,7 +633,10 @@ void HModRicette::printRecipe()
 
 
     }
-    f->append("Quantità: " + ui->leTotal->text(),false);
+    f->append("\n\nQuantità: " + ui->leTotal->text(),false);
+
+
+    f->show();
 
     //f->append(ui->tbnote->toPlainText(),false);
 }
