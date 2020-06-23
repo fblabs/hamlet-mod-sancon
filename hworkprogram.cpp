@@ -368,6 +368,8 @@ void HWorkProgram::print()
 
     QTextCharFormat format;
     format.setFontPointSize(7);
+    format.setBackground(QColor("white"));
+
 
 
 
@@ -384,6 +386,7 @@ void HWorkProgram::print()
     }
 
     format.setFontWeight(QFont::Light);
+
 
 
     for (r=2;r<rows;r++)
@@ -427,6 +430,8 @@ void HWorkProgram::print()
                   f->writeTableContent(table,r,c,format,QString::number(tot));
                 }
 
+              //  format.setBackground(QColor("white"));
+
 
             }
             else if(cp==13)
@@ -437,7 +442,7 @@ void HWorkProgram::print()
 
                 QString frescotxt="";
                 if (fx>0)
-                {frescotxt="  [X]";}
+                {frescotxt="  X";}
 
                 f->writeTableContent(table,r,c,format,frescotxt);
 
@@ -454,7 +459,7 @@ void HWorkProgram::print()
                 QString ptxt="";
 
                 if(px>0)
-                {ptxt="  [X]";}
+                {ptxt="  X";}
 
                 f->writeTableContent(table,r,c,format,ptxt);
             }

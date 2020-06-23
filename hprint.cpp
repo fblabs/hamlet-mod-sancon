@@ -342,8 +342,9 @@ QTextTable* HPrint::writeTableContent(QTextTable *table=0, int row=0, int column
     Qt::Alignment horz=bf.alignment() & Qt::AlignHorizontal_Mask;
     bf.setAlignment(horz);
 
-    c.setBlockFormat(bf);
+
     c.setCharFormat(format);
+    c.setBlockFormat(bf);
     c.insertText(text);
 
 
@@ -362,8 +363,9 @@ QTextTable* HPrint::writeTableContentRed(QTextTable *table, int row, int column,
   Qt::Alignment horz=bf.alignment() & Qt::AlignHorizontal_Mask;
   bf.setAlignment(horz);
 
-  c.setBlockFormat(bf);
+
   c.setCharFormat(format);
+  c.setBlockFormat(bf);
   c.insertText(text);
 
 

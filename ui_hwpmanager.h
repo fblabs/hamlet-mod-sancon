@@ -305,7 +305,8 @@ public:
         QWidget::setTabOrder(leQuant, leVaso);
         QWidget::setTabOrder(leVaso, leOlio);
         QWidget::setTabOrder(leOlio, leSpecOlio);
-        QWidget::setTabOrder(leSpecOlio, cbSanty);
+        QWidget::setTabOrder(leSpecOlio, leTappo);
+        QWidget::setTabOrder(leTappo, cbSanty);
         QWidget::setTabOrder(cbSanty, leAllergeni);
         QWidget::setTabOrder(leAllergeni, rbFresh);
         QWidget::setTabOrder(rbFresh, rbPastorized);
