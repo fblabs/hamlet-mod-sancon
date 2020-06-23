@@ -58,6 +58,7 @@ public:
     QPushButton *pushButton_4;
     QPushButton *pushButton;
     QPushButton *pbScadenze;
+    QCheckBox *cbPdf;
     QPushButton *pushButton_6;
     QPushButton *pushButton_3;
 
@@ -237,6 +238,12 @@ public:
 
         horizontalLayout->addWidget(pbScadenze);
 
+        cbPdf = new QCheckBox(HLotti);
+        cbPdf->setObjectName(QStringLiteral("cbPdf"));
+        cbPdf->setMaximumSize(QSize(100, 16777215));
+
+        horizontalLayout->addWidget(cbPdf);
+
         pushButton_6 = new QPushButton(HLotti);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
         QIcon icon6;
@@ -282,6 +289,7 @@ public:
         pushButton_4->setText(QApplication::translate("HLotti", "Nuova operazione", 0));
         pushButton->setText(QApplication::translate("HLotti", "Scarico Packages", 0));
         pbScadenze->setText(QApplication::translate("HLotti", "Scadenze", 0));
+        cbPdf->setText(QApplication::translate("HLotti", "Stampa su pdf", 0));
         pushButton_6->setText(QApplication::translate("HLotti", "Stampa", 0));
         pushButton_3->setText(QApplication::translate("HLotti", "Chiudi", 0));
     } // retranslateUi

@@ -21,6 +21,9 @@
 #include "hcomposizionelotto.h"
 #include <QCompleter>
 #include "hexpirations.h"
+#include <QFileDialog>
+#include <QPrintDialog>
+#include <QPainter>
 
 
 HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
@@ -312,14 +315,68 @@ void HLotti::setFilter()
 
 void HLotti::on_pushButton_6_clicked()
 {
-  print();
+    if (ui->cbPdf->isChecked())
+    {
+        print(true);
+    }else{
+    print(false);
+    }
 }
 
 
 
-void HLotti::print()
+void HLotti::print(bool pdf=false)
 {
+    if (pdf)
+    {
+        QString strStream;
+        QString filename=QFileDialog::getSaveFileName(0,"Scegli nome del file",QString(),"Pdf (*.pdf)");
+        QTextStream out(&strStream);
 
+        const int rowCount = ui->twLots->model()->rowCount();
+        const int columnCount = ui->twLots->model()->columnCount();
+
+        out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<<  QString("<title>%1</title>\n").arg("lotti bio")<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n";           "<table border=1 cellspacing=0 cellpadding=2>\n";
+
+        // headers
+        out << "<thead><tr bgcolor=#f0f0f0>";
+        for (int column = 0; column < columnCount; column++)
+            if (!ui->twLots->isColumnHidden(column))
+                out << QString("<th>%1</th>").arg(ui->twLots->model()->headerData(column, Qt::Horizontal).toString());
+        out << "</tr></thead>\n";
+
+        // data table
+        for (int row = 0; row < rowCount; row++) {
+            out << "<tr>";
+            for (int column = 0; column < columnCount; column++) {
+                if (!ui->twLots->isColumnHidden(column)) {
+                    QString data = ui->twLots->model()->data(ui->twLots->model()->index(row, column)).toString().simplified();
+                    out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                }
+            }
+            out << "</tr>\n";
+        }
+        out <<  "</table>\n"
+            "</body>\n"
+            "</html>\n";
+
+        QTextDocument *document = new QTextDocument();
+        document->setHtml(strStream);
+
+        QPrinter printer;
+        printer.setOrientation(QPrinter::Landscape);
+        printer.setOutputFormat(QPrinter::PdfFormat);
+        printer.setPaperSize(QPrinter::A4);
+        printer.setOutputFileName(filename);
+
+        document->print(&printer);
+
+        delete document;
+
+
+    }
+    else
+    {
 
     HPrint *f =new HPrint();
 
@@ -338,6 +395,7 @@ void HLotti::print()
 
    int r,c;
 
+   f->showMaximized();
 
 
 
@@ -358,7 +416,8 @@ void HLotti::print()
 
     QApplication::setOverrideCursor(Qt::ArrowCursor);
 
- f->showMaximized();
+    }
+
 
 }
 

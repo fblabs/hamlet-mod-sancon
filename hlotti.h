@@ -48,7 +48,7 @@ private slots:
     void showContextMenu(const QPoint& pos);
     void copyField();
     void editLot();
-    void print();
+    void print(bool pdf);
     void updateTableView();
     void on_pushButton_6_clicked();
     void on_pushButton_7_clicked();

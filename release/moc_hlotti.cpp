@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HLotti_t {
-    QByteArrayData data[38];
-    char stringdata0[623];
+    QByteArrayData data[39];
+    char stringdata0[627];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -42,38 +42,39 @@ QT_MOC_LITERAL(9, 128, 3), // "pos"
 QT_MOC_LITERAL(10, 132, 9), // "copyField"
 QT_MOC_LITERAL(11, 142, 7), // "editLot"
 QT_MOC_LITERAL(12, 150, 5), // "print"
-QT_MOC_LITERAL(13, 156, 15), // "updateTableView"
-QT_MOC_LITERAL(14, 172, 23), // "on_pushButton_6_clicked"
-QT_MOC_LITERAL(15, 196, 23), // "on_pushButton_7_clicked"
-QT_MOC_LITERAL(16, 220, 10), // "getDetails"
-QT_MOC_LITERAL(17, 231, 14), // "modifySelected"
-QT_MOC_LITERAL(18, 246, 8), // "pidlotto"
-QT_MOC_LITERAL(19, 255, 25), // "on_leLottoRaw_textChanged"
-QT_MOC_LITERAL(20, 281, 4), // "arg1"
-QT_MOC_LITERAL(21, 286, 25), // "on_chTipoProdotti_toggled"
-QT_MOC_LITERAL(22, 312, 7), // "checked"
-QT_MOC_LITERAL(23, 320, 33), // "on_cbTipoProd_currentIndexCha..."
-QT_MOC_LITERAL(24, 354, 5), // "index"
-QT_MOC_LITERAL(25, 360, 15), // "on_chbT_toggled"
-QT_MOC_LITERAL(26, 376, 32), // "on_cbTipiLot_currentIndexChanged"
-QT_MOC_LITERAL(27, 409, 15), // "on_chbP_toggled"
-QT_MOC_LITERAL(28, 425, 33), // "on_cbProdotti_currentIndexCha..."
-QT_MOC_LITERAL(29, 459, 23), // "on_twLots_doubleClicked"
-QT_MOC_LITERAL(30, 483, 21), // "on_pbScadenze_clicked"
-QT_MOC_LITERAL(31, 505, 22), // "on_datadal_dateChanged"
-QT_MOC_LITERAL(32, 528, 4), // "date"
-QT_MOC_LITERAL(33, 533, 21), // "on_dataal_dateChanged"
-QT_MOC_LITERAL(34, 555, 11), // "getDataLots"
-QT_MOC_LITERAL(35, 567, 20), // "on_pbRefresh_clicked"
-QT_MOC_LITERAL(36, 588, 17), // "on_twLots_clicked"
-QT_MOC_LITERAL(37, 606, 16) // "on_chBio_toggled"
+QT_MOC_LITERAL(13, 156, 3), // "pdf"
+QT_MOC_LITERAL(14, 160, 15), // "updateTableView"
+QT_MOC_LITERAL(15, 176, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(16, 200, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(17, 224, 10), // "getDetails"
+QT_MOC_LITERAL(18, 235, 14), // "modifySelected"
+QT_MOC_LITERAL(19, 250, 8), // "pidlotto"
+QT_MOC_LITERAL(20, 259, 25), // "on_leLottoRaw_textChanged"
+QT_MOC_LITERAL(21, 285, 4), // "arg1"
+QT_MOC_LITERAL(22, 290, 25), // "on_chTipoProdotti_toggled"
+QT_MOC_LITERAL(23, 316, 7), // "checked"
+QT_MOC_LITERAL(24, 324, 33), // "on_cbTipoProd_currentIndexCha..."
+QT_MOC_LITERAL(25, 358, 5), // "index"
+QT_MOC_LITERAL(26, 364, 15), // "on_chbT_toggled"
+QT_MOC_LITERAL(27, 380, 32), // "on_cbTipiLot_currentIndexChanged"
+QT_MOC_LITERAL(28, 413, 15), // "on_chbP_toggled"
+QT_MOC_LITERAL(29, 429, 33), // "on_cbProdotti_currentIndexCha..."
+QT_MOC_LITERAL(30, 463, 23), // "on_twLots_doubleClicked"
+QT_MOC_LITERAL(31, 487, 21), // "on_pbScadenze_clicked"
+QT_MOC_LITERAL(32, 509, 22), // "on_datadal_dateChanged"
+QT_MOC_LITERAL(33, 532, 4), // "date"
+QT_MOC_LITERAL(34, 537, 21), // "on_dataal_dateChanged"
+QT_MOC_LITERAL(35, 559, 11), // "getDataLots"
+QT_MOC_LITERAL(36, 571, 20), // "on_pbRefresh_clicked"
+QT_MOC_LITERAL(37, 592, 17), // "on_twLots_clicked"
+QT_MOC_LITERAL(38, 610, 16) // "on_chBio_toggled"
 
     },
     "HLotti\0on_pushButton_clicked\0\0"
     "on_pushButton_3_clicked\0searchProduct\0"
     "resetData\0on_pushButton_4_clicked\0"
     "setFilter\0showContextMenu\0pos\0copyField\0"
-    "editLot\0print\0updateTableView\0"
+    "editLot\0print\0pdf\0updateTableView\0"
     "on_pushButton_6_clicked\0on_pushButton_7_clicked\0"
     "getDetails\0modifySelected\0pidlotto\0"
     "on_leLottoRaw_textChanged\0arg1\0"
@@ -113,28 +114,28 @@ static const uint qt_meta_data_HLotti[] = {
        8,    1,  175,    2, 0x08 /* Private */,
       10,    0,  178,    2, 0x08 /* Private */,
       11,    0,  179,    2, 0x08 /* Private */,
-      12,    0,  180,    2, 0x08 /* Private */,
-      13,    0,  181,    2, 0x08 /* Private */,
-      14,    0,  182,    2, 0x08 /* Private */,
-      15,    0,  183,    2, 0x08 /* Private */,
-      16,    0,  184,    2, 0x08 /* Private */,
-      17,    1,  185,    2, 0x08 /* Private */,
-      17,    0,  188,    2, 0x28 /* Private | MethodCloned */,
-      19,    1,  189,    2, 0x08 /* Private */,
-      21,    1,  192,    2, 0x08 /* Private */,
-      23,    1,  195,    2, 0x08 /* Private */,
-      25,    1,  198,    2, 0x08 /* Private */,
-      26,    1,  201,    2, 0x08 /* Private */,
-      27,    1,  204,    2, 0x08 /* Private */,
-      28,    1,  207,    2, 0x08 /* Private */,
-      29,    1,  210,    2, 0x08 /* Private */,
-      30,    0,  213,    2, 0x08 /* Private */,
-      31,    1,  214,    2, 0x08 /* Private */,
-      33,    1,  217,    2, 0x08 /* Private */,
-      34,    0,  220,    2, 0x08 /* Private */,
-      35,    0,  221,    2, 0x08 /* Private */,
-      36,    1,  222,    2, 0x08 /* Private */,
-      37,    1,  225,    2, 0x08 /* Private */,
+      12,    1,  180,    2, 0x08 /* Private */,
+      14,    0,  183,    2, 0x08 /* Private */,
+      15,    0,  184,    2, 0x08 /* Private */,
+      16,    0,  185,    2, 0x08 /* Private */,
+      17,    0,  186,    2, 0x08 /* Private */,
+      18,    1,  187,    2, 0x08 /* Private */,
+      18,    0,  190,    2, 0x28 /* Private | MethodCloned */,
+      20,    1,  191,    2, 0x08 /* Private */,
+      22,    1,  194,    2, 0x08 /* Private */,
+      24,    1,  197,    2, 0x08 /* Private */,
+      26,    1,  200,    2, 0x08 /* Private */,
+      27,    1,  203,    2, 0x08 /* Private */,
+      28,    1,  206,    2, 0x08 /* Private */,
+      29,    1,  209,    2, 0x08 /* Private */,
+      30,    1,  212,    2, 0x08 /* Private */,
+      31,    0,  215,    2, 0x08 /* Private */,
+      32,    1,  216,    2, 0x08 /* Private */,
+      34,    1,  219,    2, 0x08 /* Private */,
+      35,    0,  222,    2, 0x08 /* Private */,
+      36,    0,  223,    2, 0x08 /* Private */,
+      37,    1,  224,    2, 0x08 /* Private */,
+      38,    1,  227,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -146,28 +147,28 @@ static const uint qt_meta_data_HLotti[] = {
     QMetaType::Void, QMetaType::QPoint,    9,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   13,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   19,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   18,
+    QMetaType::Void, QMetaType::QString,   21,
+    QMetaType::Void, QMetaType::Bool,   23,
+    QMetaType::Void, QMetaType::Int,   25,
+    QMetaType::Void, QMetaType::Bool,   23,
+    QMetaType::Void, QMetaType::Int,   25,
+    QMetaType::Void, QMetaType::Bool,   23,
+    QMetaType::Void, QMetaType::Int,   25,
+    QMetaType::Void, QMetaType::QModelIndex,   25,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   20,
-    QMetaType::Void, QMetaType::Bool,   22,
-    QMetaType::Void, QMetaType::Int,   24,
-    QMetaType::Void, QMetaType::Bool,   22,
-    QMetaType::Void, QMetaType::Int,   24,
-    QMetaType::Void, QMetaType::Bool,   22,
-    QMetaType::Void, QMetaType::Int,   24,
-    QMetaType::Void, QMetaType::QModelIndex,   24,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QDate,   32,
-    QMetaType::Void, QMetaType::QDate,   32,
+    QMetaType::Void, QMetaType::QDate,   33,
+    QMetaType::Void, QMetaType::QDate,   33,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,   24,
-    QMetaType::Void, QMetaType::Bool,   22,
+    QMetaType::Void, QMetaType::QModelIndex,   25,
+    QMetaType::Void, QMetaType::Bool,   23,
 
        0        // eod
 };
@@ -187,7 +188,7 @@ void HLotti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 6: _t->showContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
         case 7: _t->copyField(); break;
         case 8: _t->editLot(); break;
-        case 9: _t->print(); break;
+        case 9: _t->print((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 10: _t->updateTableView(); break;
         case 11: _t->on_pushButton_6_clicked(); break;
         case 12: _t->on_pushButton_7_clicked(); break;
