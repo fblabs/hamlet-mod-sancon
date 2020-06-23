@@ -336,7 +336,7 @@ void HLotti::print(bool pdf=false)
         const int rowCount = ui->twLots->model()->rowCount();
         const int columnCount = ui->twLots->model()->columnCount();
 
-        out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<<  QString("<title>%1</title>\n").arg("lotti bio")<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n";           "<table border=1 cellspacing=0 cellpadding=2>\n";
+        out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<<  QString("<title>%1</title>\n").arg("lotti bio")<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
 
         // headers
         out << "<thead><tr bgcolor=#f0f0f0>";
