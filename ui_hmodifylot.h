@@ -40,6 +40,8 @@ public:
     QLabel *label_3;
     QLabel *label;
     QGridLayout *gridLayout_2;
+    QDateEdit *deScad;
+    QLabel *label_2;
     QPlainTextEdit *plainTextEdit;
     QLabel *label_6;
     QComboBox *cbUm;
@@ -47,15 +49,15 @@ public:
     QLabel *label_4;
     QLabel *label_8;
     QLineEdit *leEan;
-    QDateEdit *deScad;
     QLabel *label_9;
     QComboBox *cbAnag;
-    QLabel *label_2;
     QLabel *label_10;
     QLineEdit *leLotFornitore;
     QCheckBox *cbScad;
     QComboBox *cbtipo;
     QCheckBox *cbAttivo;
+    QLabel *label_11;
+    QLineEdit *leOperatore;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QPushButton *pbComposizione;
@@ -122,6 +124,16 @@ public:
 
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        deScad = new QDateEdit(HModifyLot);
+        deScad->setObjectName(QStringLiteral("deScad"));
+
+        gridLayout_2->addWidget(deScad, 2, 2, 1, 1);
+
+        label_2 = new QLabel(HModifyLot);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        gridLayout_2->addWidget(label_2, 1, 0, 1, 1);
+
         plainTextEdit = new QPlainTextEdit(HModifyLot);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
         plainTextEdit->setMaximumSize(QSize(16777215, 100));
@@ -160,11 +172,6 @@ public:
 
         gridLayout_2->addWidget(leEan, 6, 2, 1, 1);
 
-        deScad = new QDateEdit(HModifyLot);
-        deScad->setObjectName(QStringLiteral("deScad"));
-
-        gridLayout_2->addWidget(deScad, 2, 2, 1, 1);
-
         label_9 = new QLabel(HModifyLot);
         label_9->setObjectName(QStringLiteral("label_9"));
 
@@ -176,11 +183,6 @@ public:
         cbAnag->setInsertPolicy(QComboBox::NoInsert);
 
         gridLayout_2->addWidget(cbAnag, 4, 2, 1, 1);
-
-        label_2 = new QLabel(HModifyLot);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        gridLayout_2->addWidget(label_2, 1, 0, 1, 1);
 
         label_10 = new QLabel(HModifyLot);
         label_10->setObjectName(QStringLiteral("label_10"));
@@ -208,6 +210,16 @@ public:
         cbAttivo->setObjectName(QStringLiteral("cbAttivo"));
 
         gridLayout_2->addWidget(cbAttivo, 0, 0, 1, 1);
+
+        label_11 = new QLabel(HModifyLot);
+        label_11->setObjectName(QStringLiteral("label_11"));
+
+        gridLayout_2->addWidget(label_11, 9, 0, 1, 1);
+
+        leOperatore = new QLineEdit(HModifyLot);
+        leOperatore->setObjectName(QStringLiteral("leOperatore"));
+
+        gridLayout_2->addWidget(leOperatore, 9, 2, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout_2);
@@ -263,15 +275,16 @@ public:
         label_5->setText(QApplication::translate("HModifyLot", "Giacenza:", 0));
         label_3->setText(QApplication::translate("HModifyLot", "Prodotto:", 0));
         label->setText(QApplication::translate("HModifyLot", "Lotto:", 0));
+        label_2->setText(QApplication::translate("HModifyLot", "Unit\303\240 di misura:", 0));
         label_6->setText(QApplication::translate("HModifyLot", "Cliente/fornitore:", 0));
         label_7->setText(QApplication::translate("HModifyLot", "lotto Fornitore:", 0));
         label_4->setText(QApplication::translate("HModifyLot", "Scadenza:", 0));
         label_8->setText(QApplication::translate("HModifyLot", "lotto  di uscita:", 0));
         label_9->setText(QApplication::translate("HModifyLot", "Tipo:", 0));
-        label_2->setText(QApplication::translate("HModifyLot", "Unit\303\240 di misura:", 0));
         label_10->setText(QApplication::translate("HModifyLot", "Note:", 0));
         cbScad->setText(QApplication::translate("HModifyLot", "No scadenza", 0));
         cbAttivo->setText(QApplication::translate("HModifyLot", "Attivo", 0));
+        label_11->setText(QApplication::translate("HModifyLot", "Operatore:", 0));
         pushButton->setText(QApplication::translate("HModifyLot", "Salva", 0));
         pbComposizione->setText(QApplication::translate("HModifyLot", "Dettagli", 0));
         pbLotOperations->setText(QApplication::translate("HModifyLot", "Movimenti Lotto", 0));

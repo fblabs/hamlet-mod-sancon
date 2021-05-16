@@ -24,6 +24,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -46,6 +47,7 @@ public:
     QDateEdit *deAl;
     QLabel *label_5;
     QLabel *label_8;
+    QSpacerItem *horizontalSpacer;
     QTableView *tvLots;
     QHBoxLayout *horizontalLayout_5;
     QGroupBox *groupBox;
@@ -110,8 +112,11 @@ public:
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         pushButton_6 = new QPushButton(HModifyProd);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Resources/Counterclockwise-arrow64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_6->setIcon(icon1);
 
-        gridLayout_2->addWidget(pushButton_6, 0, 5, 1, 1);
+        gridLayout_2->addWidget(pushButton_6, 0, 6, 1, 1);
 
         deDal = new QDateEdit(HModifyProd);
         deDal->setObjectName(QStringLiteral("deDal"));
@@ -139,6 +144,10 @@ public:
         label_8->setObjectName(QStringLiteral("label_8"));
 
         gridLayout_2->addWidget(label_8, 0, 1, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer, 0, 5, 1, 1);
 
 
         horizontalLayout_3->addLayout(gridLayout_2);
@@ -218,9 +227,9 @@ public:
 
         pushButton_3 = new QPushButton(HModifyProd);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon2);
 
         verticalLayout_3->addWidget(pushButton_3);
 
@@ -269,18 +278,18 @@ public:
         pushButton_4 = new QPushButton(HModifyProd);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
         pushButton_4->setEnabled(false);
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon3);
 
         horizontalLayout_2->addWidget(pushButton_4);
 
         pushButton_5 = new QPushButton(HModifyProd);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setEnabled(false);
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon4);
 
         horizontalLayout_2->addWidget(pushButton_5);
 
@@ -300,18 +309,18 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pushButton = new QPushButton(HModifyProd);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon5);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton);
 
         pushButton_2 = new QPushButton(HModifyProd);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon6);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_2);
@@ -328,7 +337,7 @@ public:
     void retranslateUi(QWidget *HModifyProd)
     {
         HModifyProd->setWindowTitle(QApplication::translate("HModifyProd", "Modifica Lotti", 0));
-        label->setText(QApplication::translate("HModifyProd", "Lotti", 0));
+        label->setText(QApplication::translate("HModifyProd", "Lotti:   ", 0));
         radioButton_2->setText(QApplication::translate("HModifyProd", "Prodotti finiti", 0));
         radioButton->setText(QApplication::translate("HModifyProd", "Packages", 0));
         pushButton_6->setText(QApplication::translate("HModifyProd", "Aggiorna", 0));

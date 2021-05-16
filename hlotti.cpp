@@ -23,6 +23,7 @@
 #include "hexpirations.h"
 #include <QFileDialog>
 #include <QPrintDialog>
+#include <QPrintPreviewDialog>
 #include <QPainter>
 
 
@@ -71,6 +72,8 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
    ui->twLots->setItemDelegate(new QSqlRelationalDelegate(tbm));
    ui->twLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
    ui->twLots->setColumnWidth(11,10);
+   ui->twLots->setColumnWidth(13,20);
+
    ui->twLots->setColumnHidden(0,true);
    ui->twLots->setCurrentIndex(ui->twLots->model()->index(-1,0));
    ui->pushButton_7->setEnabled(false);
@@ -186,6 +189,25 @@ void HLotti::showContextMenu(const QPoint &pos)
 
 
     menu->popup(globalPos);
+}
+
+void HLotti::printPreview(QPrinter *printer)
+{
+
+}
+
+void HLotti::printPreviewSlot(QString filename)
+{
+    QPrinter lprinter(QPrinter::HighResolution);
+    lprinter.setPaperSize(QPrinter::A4);
+    lprinter.setOrientation(QPrinter::Landscape);
+    lprinter.setOutputFormat(QPrinter::PdfFormat);
+    qDebug()<<filename;
+    lprinter.setOutputFileName(filename);
+
+    QPrintPreviewDialog *dlg=new QPrintPreviewDialog(&lprinter);
+    connect(dlg,SIGNAL(paintRequested(QPrinter*)),this,SLOT(printPreview(QPrinter*)));
+    dlg->exec();
 }
 
 void HLotti::copyField()
@@ -321,6 +343,8 @@ void HLotti::on_pushButton_6_clicked()
     }else{
     print(false);
     }
+
+
 }
 
 
@@ -336,10 +360,13 @@ void HLotti::print(bool pdf=false)
         const int rowCount = ui->twLots->model()->rowCount();
         const int columnCount = ui->twLots->model()->columnCount();
 
-        out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<<  QString("<title>%1</title>\n").arg("lotti bio")<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
+        QString title="Lotti dal "+ui->datadal->date().toString("dd-MM-yyyy")+" al "+ ui->dataal->date().toString("dd-MM-yyyy");
 
+        out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
+
+        out << "<thead><tr bgcolor='lightyellow'><th colspan='13'>"+ title +"</th></tr>";
         // headers
-        out << "<thead><tr bgcolor=#f0f0f0>";
+        out << "<tr bgcolor=#f0f0f0>";
         for (int column = 0; column < columnCount; column++)
             if (!ui->twLots->isColumnHidden(column))
                 out << QString("<th>%1</th>").arg(ui->twLots->model()->headerData(column, Qt::Horizontal).toString());
@@ -631,3 +658,111 @@ void HLotti::on_chBio_toggled(bool checked)
 }
 
 
+
+void HLotti::on_pbDeleteLot_clicked()
+{
+    deleteSelectedLot();
+}
+
+void HLotti::deleteSelectedLot()
+{
+    int row=ui->twLots->selectionModel()->currentIndex().row();
+
+    int idlotto=ui->twLots->model()->index(row,0).data(0).toInt();
+
+    QSqlQuery q(db);
+    QString sql="SELECT COUNT(ID) FROM operazioni WHERE IDLotto=:id";
+    q.prepare(sql);
+    q.bindValue(":id",QVariant(idlotto));
+    bool b=q.exec();
+    bool ok=false;
+    if(q.value(":id").toInt(&ok)>1)
+    {
+       if(QMessageBox::warning(this,QApplication::applicationName(),"Attenzione, il lotto è già stato movimentato. Impossibile cancellare",QMessageBox::Ok)==QMessageBox::Ok)
+       {
+            return;
+       }
+
+    }
+    else
+    {
+        db.transaction();
+        sql="delete from operazioni where IDLotto=:id";
+        q.prepare(sql);
+        q.bindValue(":id",idlotto);
+        bool ba=q.exec();
+        if(!ba)
+        {
+            db.rollback();
+            tbm->select();
+            QMessageBox::warning(this,QApplication::applicationName(),"Attenzione,impossibile cancellare il lotto in quanto già utilizzato",QMessageBox::Ok);
+            return;
+        }
+        if (QMessageBox::question(this,QApplication::applicationName(),"Confermare cancellazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+        {
+            sql="delete from lotdef where ID=:id";
+            q.prepare(sql);
+            q.bindValue(":id",idlotto);
+
+           bool k=q.exec();
+           if(k){
+               db.commit();
+               tbm->select();
+               QMessageBox::information(this,QApplication::applicationName(),"Lotto cancellato",QMessageBox::Ok);
+
+
+           }
+           else
+           {
+               db.rollback();
+               tbm->select();
+               QMessageBox::warning(this,QApplication::applicationName(),"Attenzione! Errore eliminando il lotto\n"+q.lastError().text(),QMessageBox::Ok);
+           }
+
+        }else{
+            db.rollback();
+            tbm->select();
+            QMessageBox::information(this,QApplication::applicationName(),"Cancellazione lotto annullata",QMessageBox::Ok);
+        }
+
+
+
+    }
+
+
+}
+
+
+
+
+void HLotti::on_leOperatore_returnPressed()
+{
+
+    QString flt=QString();
+
+
+
+    if(ui->leOperatore->text().length()>0){
+
+        prevFilter=tbm->filter();
+        flt = prevFilter + " and operatore LIKE '%" + ui->leOperatore->text() + "%'";
+
+        tbm->setFilter(flt);
+    }else{
+
+        resetFilter(prevFilter);
+
+    }
+
+
+
+}
+
+
+
+void HLotti::resetFilter(QString prevFilter)
+{
+    qDebug()<<prevFilter;
+    if(ui->leOperatore->text().length()<1)
+    tbm->setFilter(prevFilter);
+}

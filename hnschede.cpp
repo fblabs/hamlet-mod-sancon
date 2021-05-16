@@ -43,6 +43,8 @@ HNSChede::HNSChede(QString spcliente, QString spprodotto, QSqlDatabase pdb, HUse
     if (!upd)
     {
         ui->pbsave->setVisible(upd);
+        ui->pbReset->setVisible(false);
+        ui->pbCopy->setVisible(false);
         ui->textEdit->setReadOnly(upd);
         ui->pushButton_8->setEnabled(upd);
         ui->pushButton_7->setEnabled(upd);

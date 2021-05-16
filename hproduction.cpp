@@ -40,6 +40,7 @@ HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->pushButton_8->setVisible(false);
     ui->pushButton_10->setEnabled(false);
     ui->pushButton->setVisible(false);
+    ui->checkBox->setVisible(false);
 
     modifyLot=false;
 
@@ -984,6 +985,7 @@ void HProduction::on_pushButton_5_clicked()
 {
     //ui->tableView->setEnabled(true);
     ui->lvRicette->setEnabled(false);
+    ui->leOperatore->setEnabled(false);
 
     QString nlot=getNewLot(ui->lvRicette->model()->index(ui->lvRicette->currentIndex().row(),1).data(0).toInt());
     ui->leNuovoLot->setText(nlot);
@@ -1030,6 +1032,7 @@ void HProduction::on_pushButton_6_clicked()
     //ui->tableView->setEnabled(false);
     ui->lvRicette->setEnabled(true);
     ui->pushButton_5->setVisible(true);
+     ui->leOperatore->setEnabled(true);
 
     ui->pushButton_6->setVisible(false);
     ui->pushButton->setEnabled(false);
@@ -1067,7 +1070,7 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
 
     // qDebug()<<lot<<prodotto<<data<<"saveNewLot()";
 
-    QString sql="INSERT INTO `lotdef`(`lot`,`prodotto`,`data`,`giacenza`,`um`,`scadenza`,`anagrafica`,`lot_fornitore`, `EAN`, `tipo`, `attivo`,`note`) VALUES(:lot,:prodotto,:data,:giacenza,:um,:scadenza ,:anagrafica,:lotf,:ean,:tipo,:attivo,:note)";
+    QString sql="INSERT INTO `lotdef`(`lot`,`prodotto`,`data`,`giacenza`,`um`,`scadenza`,`anagrafica`,`lot_fornitore`, `EAN`, `tipo`, `attivo`,`note`,`operatore`) VALUES(:lot,:prodotto,:data,:giacenza,:um,:scadenza ,:anagrafica,:lotf,:ean,:tipo,:attivo,:note,:operatore)";
     QString giacenza=ui->leQtyTotal->text();
     QDate scadenza=ui->dateEdit->date();
 // qDebug()<<scadenza.toString("yyyy-MM-dd");
@@ -1087,6 +1090,7 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
     QString um=ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0).toString();
     QString note=ui->tNote->toPlainText();
     QDateTime data=QDateTime::currentDateTime();
+    QString oper=ui->leOperatore->text();
 
     q.prepare(sql);
 
@@ -1102,6 +1106,7 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
     q.bindValue(":tipo",QVariant(tipo));
     q.bindValue(":attivo",QVariant(attivo));
     q.bindValue(":note",QVariant(note));
+    q.bindValue(":operatore",QVariant(oper));
     b = q.exec();
 // qDebug()<<q.boundValue(5).toString()<<q.boundValue(4).toString()<<q.boundValue(6).toString();
     if(!b)

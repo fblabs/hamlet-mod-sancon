@@ -199,7 +199,8 @@ void HSchede::loadScheda(int pcl, int ppr)
        return;
    }
 
-     ui->textEdit->setFontPointSize(fontsize);
+
+   ui->textEdit->setFontPointSize(fontsize);
 
 
 
@@ -214,8 +215,8 @@ void HSchede::loadScheda(int pcl, int ppr)
     ui->textEdit->moveCursor(QTextCursor::End);
 
 
-   ui->textEdit->append("OLIO:" +q.value(1).toString());
-   ui->textEdit->append("VASO: "+q.value(2).toString());
+   ui->textEdit->append("OLIO:" +q.value(1).toString().toUtf8());
+   ui->textEdit->append("VASO: "+q.value(2).toString().toUtf8());
    ui->textEdit->append("TAPPO: "+q.value(3).toString());
   ui->textEdit->append("ETICHETTE: "+q.value(4).toString());
   ui->textEdit->append("SCATOLE: "+q.value(5).toString());
@@ -225,6 +226,7 @@ void HSchede::loadScheda(int pcl, int ppr)
 
   ui->textEdit->moveCursor(QTextCursor::End);
   qDebug()<<"loadscheda: "<<ids;
+
   loadImages(ids);
 
 

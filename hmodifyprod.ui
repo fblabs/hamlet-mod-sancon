@@ -28,7 +28,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Lotti</string>
+          <string>Lotti:   </string>
          </property>
         </widget>
        </item>
@@ -51,10 +51,14 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="5">
+         <item row="0" column="6">
           <widget class="QPushButton" name="pushButton_6">
            <property name="text">
             <string>Aggiorna</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/Resources/Counterclockwise-arrow64.png</normaloff>:/Resources/Counterclockwise-arrow64.png</iconset>
            </property>
           </widget>
          </item>
@@ -92,6 +96,19 @@
             <string>Dal:</string>
            </property>
           </widget>
+         </item>
+         <item row="0" column="5">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>

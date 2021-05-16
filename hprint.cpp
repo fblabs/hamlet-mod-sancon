@@ -597,8 +597,10 @@ void HPrint::on_rbPortrait_toggled(bool checked)
 
 void HPrint::on_rbLandscape_toggled(bool checked)
 {
-    printer->setPageSize(QPrinter::A4);
-    printer->setOrientation(QPrinter::Landscape);
+    if(checked)
+    { printer->setPageSize(QPrinter::A4);
+      printer->setOrientation(QPrinter::Landscape);
+    }
 }
 
 void HPrint::printPixmap(QTableView *table)

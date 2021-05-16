@@ -66,6 +66,7 @@ private slots:
     void findIt(QString arg);
 
     void on_rbprod_toggled(bool checked);
+
 };
 
 #endif // HMODIFYPROD_H

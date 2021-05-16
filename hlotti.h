@@ -12,6 +12,7 @@
 #include <QShortcut>
 #include <QDate>
 #include "hnuovaoperazione.h"
+#include <QPrinter>
 
 namespace Ui {
 class HLotti;
@@ -39,6 +40,7 @@ private slots:
   //  void onConnectionNameSet();
 
     void resetData();
+    void resetFilter(QString prevFilter);
 
     void on_pushButton_4_clicked();
 
@@ -54,6 +56,10 @@ private slots:
     void on_pushButton_7_clicked();
     void getDetails();
     void modifySelected(int pidlotto=-1 );
+    void deleteSelectedLot();
+
+    void printPreview(QPrinter *printer);
+    void printPreviewSlot(QString filename=QString());
 
     void on_leLottoRaw_textChanged(const QString &arg1);
 
@@ -91,6 +97,15 @@ private slots:
    void on_chBio_toggled(bool checked);
 
 
+   void on_pbDeleteLot_clicked();
+
+
+
+   void on_leOperatore_returnPressed();
+
+
+
+
 private:
 
     Ui::HLotti *ui;
@@ -107,6 +122,7 @@ private:
     QDate dal;
     QDate al;
     bool dateset;
+    QString prevFilter;
 
 
 

@@ -61,6 +61,8 @@ public:
     QTextEdit *teNote;
     QLabel *label_11;
     QListView *lvEan;
+    QLineEdit *leOperatore;
+    QLabel *label_12;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pbCrea;
     QPushButton *pbAnnulla;
@@ -229,6 +231,16 @@ public:
         lvEan->setObjectName(QStringLiteral("lvEan"));
 
         formLayout_4->setWidget(1, QFormLayout::FieldRole, lvEan);
+
+        leOperatore = new QLineEdit(HPackages);
+        leOperatore->setObjectName(QStringLiteral("leOperatore"));
+
+        formLayout_4->setWidget(6, QFormLayout::FieldRole, leOperatore);
+
+        label_12 = new QLabel(HPackages);
+        label_12->setObjectName(QStringLiteral("label_12"));
+
+        formLayout_4->setWidget(6, QFormLayout::LabelRole, label_12);
 
 
         verticalLayout_3->addLayout(formLayout_4);
@@ -452,6 +464,7 @@ public:
         label_9->setText(QApplication::translate("HPackages", "Scadenza:", 0));
         label_5->setText(QApplication::translate("HPackages", "Note:", 0));
         label_11->setText(QApplication::translate("HPackages", "Lotti nell'anno", 0));
+        label_12->setText(QApplication::translate("HPackages", "Operatore:", 0));
         pbCrea->setText(QApplication::translate("HPackages", "Inizia", 0));
         pbAnnulla->setText(QApplication::translate("HPackages", "Annulla", 0));
         label_3->setText(QApplication::translate("HPackages", "Componenti:", 0));

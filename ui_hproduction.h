@@ -41,6 +41,8 @@ public:
     QHBoxLayout *horizontalLayout_6;
     QLabel *label_8;
     QComboBox *cbClienti;
+    QLabel *label;
+    QLineEdit *leOperatore;
     QCheckBox *checkBox;
     QListView *lvSubclienti;
     QFormLayout *formLayout_3;
@@ -124,6 +126,16 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout_6);
+
+        label = new QLabel(HProduction);
+        label->setObjectName(QStringLiteral("label"));
+
+        verticalLayout->addWidget(label);
+
+        leOperatore = new QLineEdit(HProduction);
+        leOperatore->setObjectName(QStringLiteral("leOperatore"));
+
+        verticalLayout->addWidget(leOperatore);
 
         checkBox = new QCheckBox(HProduction);
         checkBox->setObjectName(QStringLiteral("checkBox"));
@@ -412,6 +424,32 @@ public:
 
         verticalLayout_4->addLayout(horizontalLayout_2);
 
+        QWidget::setTabOrder(pushButton_10, pushButton);
+        QWidget::setTabOrder(pushButton, checkBox);
+        QWidget::setTabOrder(checkBox, pbAnnulla);
+        QWidget::setTabOrder(pbAnnulla, pushButton_5);
+        QWidget::setTabOrder(pushButton_5, pushButton_6);
+        QWidget::setTabOrder(pushButton_6, leQtyTotal);
+        QWidget::setTabOrder(leQtyTotal, cbTipoLotto);
+        QWidget::setTabOrder(cbTipoLotto, tableView);
+        QWidget::setTabOrder(tableView, pushButton_2);
+        QWidget::setTabOrder(pushButton_2, pushButton_7);
+        QWidget::setTabOrder(pushButton_7, tNote);
+        QWidget::setTabOrder(tNote, leNuovoLot);
+        QWidget::setTabOrder(leNuovoLot, leQuaRic);
+        QWidget::setTabOrder(leQuaRic, dateEdit);
+        QWidget::setTabOrder(dateEdit, cbUm);
+        QWidget::setTabOrder(cbUm, lvSubclienti);
+        QWidget::setTabOrder(lvSubclienti, pushButton_11);
+        QWidget::setTabOrder(pushButton_11, pushButton_8);
+        QWidget::setTabOrder(pushButton_8, checkBox_2);
+        QWidget::setTabOrder(checkBox_2, cbClienti);
+        QWidget::setTabOrder(cbClienti, pushButton_3);
+        QWidget::setTabOrder(pushButton_3, leOperatore);
+        QWidget::setTabOrder(leOperatore, pushButton_4);
+        QWidget::setTabOrder(pushButton_4, textBrowser);
+        QWidget::setTabOrder(textBrowser, pbAddLottoFuoriRicetta);
+        QWidget::setTabOrder(pbAddLottoFuoriRicetta, lvRicette);
 
         retranslateUi(HProduction);
 
@@ -422,6 +460,7 @@ public:
     {
         HProduction->setWindowTitle(QApplication::translate("HProduction", "Produzione", 0));
         label_8->setText(QApplication::translate("HProduction", "Clienti", 0));
+        label->setText(QApplication::translate("HProduction", "Operatore:", 0));
         checkBox->setText(QApplication::translate("HProduction", "mostra subclienti", 0));
         label_6->setText(QApplication::translate("HProduction", "tipo di lotto:", 0));
         pushButton->setText(QApplication::translate("HProduction", "Aggiungi", 0));

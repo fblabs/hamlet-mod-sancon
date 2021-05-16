@@ -48,12 +48,14 @@ public:
     QSpacerItem *horizontalSpacer;
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout_2;
+    QSpacerItem *horizontalSpacer_2;
     QPushButton *pbsave;
     QPushButton *pbCopy;
     QPushButton *pushButton_2;
     QPushButton *pushButton_7;
     QPushButton *pbReset;
     QPushButton *pbClose;
+    QSpacerItem *horizontalSpacer_3;
 
     void setupUi(QWidget *HNSChede)
     {
@@ -215,6 +217,10 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_2);
+
         pbsave = new QPushButton(HNSChede);
         pbsave->setObjectName(QStringLiteral("pbsave"));
         QIcon icon10;
@@ -266,6 +272,10 @@ public:
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbClose);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_3);
 
 
         verticalLayout->addLayout(horizontalLayout_2);

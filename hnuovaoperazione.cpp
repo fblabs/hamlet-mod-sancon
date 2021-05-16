@@ -551,7 +551,6 @@ bool HnuovaOperazione::saveOperationCarico()
     nuovolot=q.value(0).toString();
 
 
-
     b=saveNewLot(nuovolot);
 
 

@@ -20,6 +20,7 @@ class HPrint : public QWidget
 {
     Q_OBJECT
 
+
 public:
     explicit HPrint(QWidget *parent = 0,bool altColors=false);
     ~HPrint();
@@ -28,7 +29,6 @@ public:
    void append (QString text, bool bold=false);
    void setConnection(QString conn);
    void printPixmap(QTableView *table);
-
    void hideClose();
    void resetText();
    void loadImage();

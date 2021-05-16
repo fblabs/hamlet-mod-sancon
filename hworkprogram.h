@@ -30,7 +30,7 @@ private slots:
     void refreshSheet();
     void updateSheet(int newrow, int oldrow);
     void setHeaders();
-    void print();
+    void print(bool pdf=true);
 
 
     void on_pbSave_clicked();

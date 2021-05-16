@@ -200,7 +200,8 @@ void MainWindow::enableButtonsForRole()
         ui->pbCkeckNotifications->setEnabled(true);
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
-        ui->pbProgrammazione->setEnabled(false);
+        if(!user->getCanUpdate())
+        ui->pbProgrammazione->setEnabled(true);
 
 
         break;

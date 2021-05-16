@@ -83,6 +83,7 @@ HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb, QWidget *parent) :
     ui->leLotFornitore->setText(q.value(8).toString());
     ui->leEan->setText(q.value(9).toString());
     ui->plainTextEdit->setPlainText(q.value(12).toString());
+    ui->leOperatore->setText(q.value(13).toString());
 
     sql="SELECT descrizione FROM prodotti where ID=:id";
     q.prepare(sql);
@@ -147,7 +148,7 @@ void HModifyLot::updateLot()
     QString sql;
     bool b=false;
 
-    sql="UPDATE lotdef set  giacenza=:giac, um=:um, scadenza=:scad, anagrafica=:anag, lot_fornitore=:lotf, ean=:ean,tipo=:tipo,attivo=:att,note=:note WHERE id=:lotid";
+    sql="UPDATE lotdef set  giacenza=:giac, um=:um, scadenza=:scad, anagrafica=:anag, lot_fornitore=:lotf, ean=:ean,tipo=:tipo,attivo=:att,note=:note,operatore=:oper WHERE id=:lotid";
     q.prepare(sql);
     q.bindValue(":giac",QVariant(ui->leGiac->text().toDouble()));
     q.bindValue(":um",ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0));
@@ -177,6 +178,7 @@ void HModifyLot::updateLot()
     q.bindValue(":ean",QVariant(ui->leEan->text()));
     q.bindValue(":tipo",ui->cbtipo->model()->index(ui->cbtipo->currentIndex(),0).data(0));
     q.bindValue(":note",QVariant(ui->plainTextEdit->toPlainText()));
+    q.bindValue(":oper",QVariant(ui->leOperatore->text()));
     q.bindValue(":lotid",QVariant(lot));
 
     db.transaction();

@@ -76,6 +76,16 @@
         </layout>
        </item>
        <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Operatore:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="leOperatore"/>
+       </item>
+       <item>
         <widget class="QCheckBox" name="checkBox">
          <property name="text">
           <string>mostra subclienti</string>
@@ -514,6 +524,35 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>pushButton_10</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>pbAnnulla</tabstop>
+  <tabstop>pushButton_5</tabstop>
+  <tabstop>pushButton_6</tabstop>
+  <tabstop>leQtyTotal</tabstop>
+  <tabstop>cbTipoLotto</tabstop>
+  <tabstop>tableView</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_7</tabstop>
+  <tabstop>tNote</tabstop>
+  <tabstop>leNuovoLot</tabstop>
+  <tabstop>leQuaRic</tabstop>
+  <tabstop>dateEdit</tabstop>
+  <tabstop>cbUm</tabstop>
+  <tabstop>lvSubclienti</tabstop>
+  <tabstop>pushButton_11</tabstop>
+  <tabstop>pushButton_8</tabstop>
+  <tabstop>checkBox_2</tabstop>
+  <tabstop>cbClienti</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>leOperatore</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>textBrowser</tabstop>
+  <tabstop>pbAddLottoFuoriRicetta</tabstop>
+  <tabstop>lvRicette</tabstop>
+ </tabstops>
  <resources>
   <include location="icons.qrc"/>
  </resources>

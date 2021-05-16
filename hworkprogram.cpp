@@ -19,6 +19,9 @@
 #include "hnewsheet.h"
 #include <QDate>
 #include <QStandardItemModel>
+#include <QFileDialog>
+#include <QStandardItem>
+
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
@@ -35,6 +38,15 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->deSearch->setDate(QDate::currentDate());
     ui->deSearchTo->setDate(QDate::currentDate());
     ui->spSearchLinea->setValue(0);
+    if(!user->getCanUpdate())
+    {
+        ui->pbSave->setEnabled(false);
+        ui->pbNewSheet->setEnabled(false);
+        ui->pbDeleteSheet->setEnabled(false);
+        ui->pbAdd->setEnabled(false);
+        ui->pbRemove->setEnabled(false);
+        ui->pbModify->setEnabled(false);
+    }
 
 }
 
@@ -105,7 +117,7 @@ void HWorkProgram::getSheets()
     ui->tvStorico->horizontalHeader()->setStretchLastSection(true);
     ui->tvGeneral->verticalHeader()->setSectionsMovable(true);
 
-    QHeaderView *vert=ui->tvGeneral->verticalHeader();
+   // QHeaderView *vert=ui->tvGeneral->verticalHeader();
 
 
 }
@@ -328,164 +340,259 @@ void HWorkProgram::on_pbPrint_clicked()
     print();
 }
 
-void HWorkProgram::print()
+void HWorkProgram::print(bool pdf)
 {
-
-    HPrint *f=new HPrint(0,true);
-    f->toggleImageUI(false);
-    f->setFontSize(9);
-    f->showMaximized();
-
-
-    int c=0;
-    int r=0;
-
-    int dcols=wpmod->columnCount();
-    int drows=wpmod->rowCount();
-
-    int cols=dcols-3;
-    int rows=drows+2;
-
-    QTextTableFormat tf;
-    tf.setHeaderRowCount(2);
-
-    QTextTable* table=f->addTable(rows,cols,tf);
-
-
-
-    QString txt="";
-    QStringList titles;
-
-    table->mergeCells(0,0,1,14);
-
-    QTextCharFormat titleformat;
-    titleformat.setVerticalAlignment(QTextCharFormat::AlignMiddle);
-    titleformat.setFontWeight(QFont::Bold);
-    titleformat.setBackground(QColor("lightblue"));
-
-    QString title="PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy") + " - LINEA "+QString::number(ui->tvStorico->model()->index(ui->tvStorico->selectionModel()->currentIndex().row(),3).data(0).toInt());
-    f->writeTableContent(table,0,0,titleformat,title);
-
-    QTextCharFormat format;
-    format.setFontPointSize(7);
-    format.setBackground(QColor("white"));
-
-
-
-
-
-
-    titles<<" Q.tà "<<" P. PROD "<<"P. OLIO "<<" PRODOTTO "<<"OLIO"<<"TAPPO"<<"CLIENTE"<<"KG"<<"SAN."<<"ORD."<<" FR. "<<"PAST."<<"ALG."<<" NOTE ";
-    titleformat.setBackground(QColor("lightgrey"));
-
-    for (c=0;c<cols;c++)
+    if (pdf)
     {
+        QString strStream;
+        QString filename=QFileDialog::getSaveFileName(0,"Scegli nome del file",QString(),"Pdf (*.pdf)");
+        QTextStream out(&strStream);
+        QString bgcol=QString();
+        QString title=QString();
+        int linea=ui->spLinea->value();
 
-       txt=titles.at(c);
-       f->writeTableContent(table,1,c,titleformat,txt);
-    }
+        const int rowCount = ui->tvGeneral->model()->rowCount();
+        const int columnCount = ui->tvGeneral->model()->columnCount();
+        title ="PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy")+" - LINEA " + QString::number(linea);
 
-    format.setFontWeight(QFont::Light);
+        out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
+
+        // headers
+        QStringList coltit=QStringList();
+        coltit <<""<<""<<""<< "Q.tà"<<"P.PROD"<<"P.OLIO"<<"PRODOTTO"<<"OLIO"<<"TAPPO"<<"CLIENTE"<<"Kg"<<"SAN."<<"ORD."<<"FR."<<"PAST."<<"ALG."<<"NOTE";
+
+
+       out << "<thead><tr bgcolor='#5cabff'><th colspan='14'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
 
 
 
-    for (r=2;r<rows;r++)
-    {
-        if(r%2)
+        for (int column = 0 ; column < columnCount; column++)
         {
-            format.setBackground(QColor("lightgreen"));
-        }else{
-
-            format.setBackground(QColor("white"));
-        }
-
-        int cp=0;
-        int rp=0;
-
-        for(c=0;c<cols;c++)
-        {
-            cp=c+3;
-            rp=r-2;
-            txt=wpmod->index(rp,cp).data(0).toString();
-
-
-
-            if(cp==9)
-            {
-                if(txt.length()>30){
-                    QString tmp=txt;
-                    txt=tmp.mid(0,30)+"...";
-                }
-            }
-            if(cp==10)
-            {
-                QModelIndex tix=wpmod->index(rp,cp);
-
-                bool ok=false;
-                int tot=tix.data(0).toInt(&ok);
-
-                if(ok)
+                if (!ui->tvGeneral->isColumnHidden(column))
                 {
 
-                  f->writeTableContent(table,r,c,format,QString::number(tot));
+                out << QString("<th>%1</th>").arg(coltit.at(column));
                 }
 
-              //  format.setBackground(QColor("white"));
+        }
 
+         out << "</tr></th></thead>\n";
 
-            }
-            else if(cp==13)
+        // data table
+        for (int row = 0; row < rowCount; row++) {
+            out << "<tr>";
+            if(row%2)
             {
-                QModelIndex ixf=wpmod->index(rp,cp);
-
-                int fx=ixf.data(Qt::CheckStateRole).toInt();
-
-                QString frescotxt="";
-                if (fx>0)
-                {frescotxt="  X";}
-
-                f->writeTableContent(table,r,c,format,frescotxt);
-
-            }
-            else if(cp==14)
-            {
-                QModelIndex ixp=wpmod->index(rp,cp);
-
-                int px=ixp.data(Qt::CheckStateRole).toInt();
-
-                qDebug()<<QString::number(px);
-
-
-                QString ptxt="";
-
-                if(px>0)
-                {ptxt="  X";}
-
-                f->writeTableContent(table,r,c,format,ptxt);
-            }
-            else if(cp==15)
-            {
-                 f->writeTableContentRed(table,r,c,format,txt);
+                bgcol="lightgreen";
             }
             else
             {
-                f->writeTableContent(table,r,c,format,txt);
+                bgcol="white";
+            }
+            for (int column = 0; column < columnCount; column++) {
+                if (!ui->tvGeneral->isColumnHidden(column)) {
+                    QString data = ui->tvGeneral->model()->index(row, column).data().toString().simplified();
+
+                    if (column==13 || column==14)
+                    {
+
+                          out << QString("<td bgcolor='"+bgcol+"' align='center'>%1</td>").arg((ui->tvGeneral->model()->index(row,column).data(Qt::CheckStateRole)==Qt::Checked)? QString("[X]") : QString("&nbsp;"));
+
+                    }
+                    else if(column==15)
+                    {
+                         out << QString("<td style='color:red' bgcolor='"+bgcol+"'};>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                    }
+                    else
+                    {
+                        out << QString("<td bgcolor='"+bgcol+"'>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                    }
+                }
+            }
+            out << "</tr>\n";
+        }
+        out <<  "</table>\n"
+            "</body>\n"
+            "</html>\n";
+
+
+        QTextDocument *document = new QTextDocument();
+        document->setHtml(strStream);
+
+
+        QPrinter printer;
+        printer.setOrientation(QPrinter::Landscape);
+        printer.setOutputFormat(QPrinter::PdfFormat);
+        printer.setPaperSize(QPrinter::A4);
+        printer.setOutputFileName(filename);
+
+        document->print(&printer);
+
+        delete document;
+
+
+    }
+    else
+    {
+
+            HPrint *f=new HPrint(0,true);
+            f->toggleImageUI(false);
+            f->setFontSize(9);
+            f->showMaximized();
+
+
+            int c=0;
+            int r=0;
+
+            int dcols=wpmod->columnCount();
+            int drows=wpmod->rowCount();
+
+            int cols=dcols-3;
+            int rows=drows+2;
+
+            QTextTableFormat tf;
+            tf.setHeaderRowCount(2);
+
+            QTextTable* table=f->addTable(rows,cols,tf);
+
+
+
+            QString txt="";
+            QStringList titles;
+
+            table->mergeCells(0,0,1,14);
+
+            QTextCharFormat titleformat;
+            titleformat.setVerticalAlignment(QTextCharFormat::AlignMiddle);
+            titleformat.setFontWeight(QFont::Bold);
+            titleformat.setBackground(QColor("lightblue"));
+
+            QString title="PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy") + " - LINEA "+QString::number(ui->tvStorico->model()->index(ui->tvStorico->selectionModel()->currentIndex().row(),3).data(0).toInt());
+            f->writeTableContent(table,0,0,titleformat,title);
+
+            QTextCharFormat format;
+            format.setFontPointSize(7);
+            format.setBackground(QColor("white"));
+
+
+
+
+
+
+            titles<<" Q.tà "<<" P. PROD "<<"P. OLIO "<<" PRODOTTO "<<"OLIO"<<"TAPPO"<<"CLIENTE"<<"KG"<<"SAN."<<"ORD."<<" FR. "<<"PAST."<<"ALG."<<" NOTE ";
+            titleformat.setBackground(QColor("lightgrey"));
+
+            for (c=0;c<cols;c++)
+            {
+
+               txt=titles.at(c);
+               f->writeTableContent(table,1,c,titleformat,txt);
+            }
+
+            format.setFontWeight(QFont::Light);
+
+
+
+            for (r=2;r<rows;r++)
+            {
+                if(r%2)
+                {
+                    format.setBackground(QColor("lightgreen"));
+                }else{
+
+                    format.setBackground(QColor("white"));
+                }
+
+                int cp=0;
+                int rp=0;
+
+                for(c=0;c<cols;c++)
+                {
+                    cp=c+3;
+                    rp=r-2;
+                    txt=wpmod->index(rp,cp).data(0).toString();
+
+
+
+                    if(cp==9)
+                    {
+                        if(txt.length()>30){
+                            QString tmp=txt;
+                            txt=tmp.mid(0,30)+"...";
+                        }
+                    }
+                    if(cp==10)
+                    {
+                        QModelIndex tix=wpmod->index(rp,cp);
+
+                        bool ok=false;
+                        int tot=tix.data(0).toInt(&ok);
+
+                        if(ok)
+                        {
+
+                          f->writeTableContent(table,r,c,format,QString::number(tot));
+                        }
+
+                      //  format.setBackground(QColor("white"));
+
+
+                    }
+                    else if(cp==13)
+                    {
+                        QModelIndex ixf=wpmod->index(rp,cp);
+
+                        int fx=ixf.data(Qt::CheckStateRole).toInt();
+
+                        QString frescotxt="";
+                        if (fx>0)
+                        {frescotxt="  X";}
+
+                        f->writeTableContent(table,r,c,format,frescotxt);
+
+                    }
+                    else if(cp==14)
+                    {
+                        QModelIndex ixp=wpmod->index(rp,cp);
+
+                        int px=ixp.data(Qt::CheckStateRole).toInt();
+
+                        qDebug()<<QString::number(px);
+
+
+                        QString ptxt="";
+
+                        if(px>0)
+                        {ptxt="  X";}
+
+                        f->writeTableContent(table,r,c,format,ptxt);
+                    }
+                    else if(cp==15)
+                    {
+                         f->writeTableContentRed(table,r,c,format,txt);
+                    }
+                    else
+                    {
+                        f->writeTableContent(table,r,c,format,txt);
+                    }
+
+
+
+                }
+
+
             }
 
 
 
-        }
-
-
-    }
 
 
 
+            f->show();
 
-
-
-    f->show();
+   }
 }
+
 
 void HWorkProgram::on_checkBox_toggled(bool checked)
 {

@@ -13164,6 +13164,7 @@ release/hmodifyprod.o: hmodifyprod.cpp hmodifyprod.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QRadioButton \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qradiobutton.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QSpacerItem \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QTableView \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtableview.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
@@ -14015,7 +14016,14 @@ release/hlotti.o: hlotti.cpp hlotti.h \
 		hpackagesunload.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QCompleter \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qcompleter.h \
-		hexpirations.h
+		hexpirations.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QFileDialog \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qfiledialog.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qdir.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qfileinfo.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrintDialog \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprintdialog.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qabstractprintdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hlotti.o hlotti.cpp
 
 release/htextedit.o: htextedit.cpp htextedit.h \
@@ -20140,7 +20148,12 @@ release/hworkprogram.o: hworkprogram.cpp hworkprogram.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QLocale \
 		hnewsheet.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/QStandardItemModel \
-		../../Qt/5.5/mingw492_32/include/QtGui/qstandarditemmodel.h
+		../../Qt/5.5/mingw492_32/include/QtGui/qstandarditemmodel.h \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/QFileDialog \
+		../../Qt/5.5/mingw492_32/include/QtWidgets/qfiledialog.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qdir.h \
+		../../Qt/5.5/mingw492_32/include/QtCore/qfileinfo.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/QStandardItem
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hworkprogram.o hworkprogram.cpp
 
 release/qrc_icons.o: release/qrc_icons.cpp 
