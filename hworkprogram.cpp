@@ -337,7 +337,7 @@ void HWorkProgram::setHeaders()
 
 void HWorkProgram::on_pbPrint_clicked()
 {
-    print();
+    print(ui->cbPdf->isChecked());
 }
 
 void HWorkProgram::print(bool pdf)

@@ -71,6 +71,7 @@ public:
     QPushButton *pbNewSheet;
     QPushButton *pbSave;
     QPushButton *pbDeleteSheet;
+    QCheckBox *cbPdf;
     QPushButton *pbPrint;
     QPushButton *pbClose;
 
@@ -79,7 +80,7 @@ public:
         if (HWorkProgram->objectName().isEmpty())
             HWorkProgram->setObjectName(QStringLiteral("HWorkProgram"));
         HWorkProgram->setWindowModality(Qt::ApplicationModal);
-        HWorkProgram->resize(1143, 638);
+        HWorkProgram->resize(1149, 638);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/3D_Icons_Icon_256.png"), QSize(), QIcon::Normal, QIcon::Off);
         HWorkProgram->setWindowIcon(icon);
@@ -333,6 +334,13 @@ public:
 
         horizontalLayout->addWidget(pbDeleteSheet);
 
+        cbPdf = new QCheckBox(HWorkProgram);
+        cbPdf->setObjectName(QStringLiteral("cbPdf"));
+        cbPdf->setMinimumSize(QSize(100, 0));
+        cbPdf->setMaximumSize(QSize(100, 16777215));
+
+        horizontalLayout->addWidget(cbPdf);
+
         pbPrint = new QPushButton(HWorkProgram);
         pbPrint->setObjectName(QStringLiteral("pbPrint"));
         pbPrint->setEnabled(true);
@@ -383,6 +391,7 @@ public:
         pbNewSheet->setText(QApplication::translate("HWorkProgram", "Nuovo", 0));
         pbSave->setText(QApplication::translate("HWorkProgram", "Salva", 0));
         pbDeleteSheet->setText(QApplication::translate("HWorkProgram", "Elimina foglio selezionato", 0));
+        cbPdf->setText(QApplication::translate("HWorkProgram", "Stampa su pdf", 0));
         pbPrint->setText(QApplication::translate("HWorkProgram", "Stampa", 0));
         pbClose->setText(QApplication::translate("HWorkProgram", "Chiudi", 0));
     } // retranslateUi
