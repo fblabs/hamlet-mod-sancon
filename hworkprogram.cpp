@@ -338,14 +338,21 @@ void HWorkProgram::setHeaders()
 void HWorkProgram::on_pbPrint_clicked()
 {
     print(ui->cbPdf->isChecked());
+
 }
 
 void HWorkProgram::print(bool pdf)
 {
+    qDebug()<<pdf;
     if (pdf)
     {
         QString strStream;
         QString filename=QFileDialog::getSaveFileName(0,"Scegli nome del file",QString(),"Pdf (*.pdf)");
+        if(filename.isEmpty() || filename.isNull())
+        {
+            qDebug()<<filename<<"cancellato";
+            return;
+        }
         QTextStream out(&strStream);
         QString bgcol=QString();
         QString title=QString();

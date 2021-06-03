@@ -354,13 +354,29 @@ void HLotti::print(bool pdf=false)
     if (pdf)
     {
         QString strStream;
-        QString filename=QFileDialog::getSaveFileName(0,"Scegli nome del file",QString(),"Pdf (*.pdf)");
+        QString filename;
+
+         qDebug()<<"filename="<<filename;
+        filename= QFileDialog::getOpenFileName(this,"Scegli il nome del file",QString(),"Pdf (*.pdf)");
+
+        if (filename.isEmpty() && filename.isNull()){
+            qDebug()<<"annullato";
+            return;
+        }
+
+        qDebug()<<"filename="<<filename;
+
+
+
+
         QTextStream out(&strStream);
 
         const int rowCount = ui->twLots->model()->rowCount();
         const int columnCount = ui->twLots->model()->columnCount();
 
         QString title="Lotti dal "+ui->datadal->date().toString("dd-MM-yyyy")+" al "+ ui->dataal->date().toString("dd-MM-yyyy");
+
+        qDebug()<<filename;
 
         out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
 
@@ -671,12 +687,15 @@ void HLotti::deleteSelectedLot()
     int idlotto=ui->twLots->model()->index(row,0).data(0).toInt();
 
     QSqlQuery q(db);
-    QString sql="SELECT COUNT(ID) FROM operazioni WHERE IDLotto=:id";
+    QString sql="SELECT COUNT(id) FROM operazioni WHERE IDlotto=:idlot";
     q.prepare(sql);
-    q.bindValue(":id",QVariant(idlotto));
+    q.bindValue(":idlot",QVariant(idlotto));
     bool b=q.exec();
+    q.next();
     bool ok=false;
-    if(q.value(":id").toInt(&ok)>1)
+    int cnt=q.value(0).toInt(&ok);
+    qDebug()<<cnt;
+    if(cnt>1)
     {
        if(QMessageBox::warning(this,QApplication::applicationName(),"Attenzione, il lotto è già stato movimentato. Impossibile cancellare",QMessageBox::Ok)==QMessageBox::Ok)
        {
@@ -686,16 +705,24 @@ void HLotti::deleteSelectedLot()
     }
     else
     {
+        bool ba=false;
         db.transaction();
-        sql="delete from operazioni where IDLotto=:id";
+qDebug()<<"transazione";
+
+        sql="delete FROM operazioni WHERE idlotto=:idlot";
         q.prepare(sql);
-        q.bindValue(":id",idlotto);
-        bool ba=q.exec();
+        q.bindValue(":idlot",QVariant(idlotto));
+
+        ba=q.exec();
+qDebug()<<q.lastQuery()<<q.lastError().text()<<q.boundValue(0).toString();
+        q.next();
         if(!ba)
         {
+qDebug()<<q.lastError().text();
             db.rollback();
             tbm->select();
             QMessageBox::warning(this,QApplication::applicationName(),"Attenzione,impossibile cancellare il lotto in quanto già utilizzato",QMessageBox::Ok);
+
             return;
         }
         if (QMessageBox::question(this,QApplication::applicationName(),"Confermare cancellazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
