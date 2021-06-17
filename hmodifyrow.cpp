@@ -22,6 +22,8 @@ HModifyRow::HModifyRow(int p_id, int p_row, HUser *p_user, QSqlDatabase p_db, QW
     user=p_user;
     db=p_db;
 
+    setPermissions(user);
+
     getClients();
     getProducts();
    // getTappi();
@@ -33,6 +35,14 @@ HModifyRow::HModifyRow(int p_id, int p_row, HUser *p_user, QSqlDatabase p_db, QW
 HModifyRow::~HModifyRow()
 {
     delete ui;
+}
+
+void HModifyRow::setPermissions(HUser *p_user)
+{
+
+    ui->cbCliente->setEnabled(p_user->getCanUpdate());
+    ui->cbProdotto->setEnabled(p_user->getCanUpdate());
+
 }
 
 void HModifyRow::getClients()

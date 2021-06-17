@@ -472,7 +472,7 @@ void MainWindow::on_tbClose_clicked()
     if(QMessageBox::question(this,QApplication::applicationName(),"Uscire dall'applicazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         db.close();
-       // db.removeDatabase(sConn);
+        db.removeDatabase(sConn);
         this->close();
 
         QApplication::quit();
@@ -520,7 +520,7 @@ void MainWindow::on_tbLogout_clicked()
 
     user=0;
     db.close();
-    //db.removeDatabase(sConn);
+    db.removeDatabase(sConn);
     disableUI();
 }
 

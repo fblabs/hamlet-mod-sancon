@@ -46,6 +46,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
         ui->pbAdd->setEnabled(false);
         ui->pbRemove->setEnabled(false);
         ui->pbModify->setEnabled(false);
+
     }
 
 }

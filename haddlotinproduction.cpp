@@ -67,6 +67,7 @@ void HAddLotInProduction::lastLots()
     ui->lvLastLots->setCurrentIndex(ui->lvLastLots->model()->index(0,0));
 
 
+
 }
 
 void HAddLotInProduction::addLot()
@@ -98,6 +99,7 @@ void HAddLotInProduction::addLot()
 
 
 
+
 }
 
 
@@ -106,6 +108,7 @@ void HAddLotInProduction::addLot()
 
 void HAddLotInProduction::on_pdClose_clicked()
 {
+
     close();
 }
 

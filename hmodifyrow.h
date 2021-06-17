@@ -35,6 +35,7 @@ private slots:
     double calcTotale();
     void on_leTotal_returnPressed();
     void saveRow();
+    void setPermissions(HUser *p_user=0);
 
 
 signals:
