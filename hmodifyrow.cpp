@@ -42,6 +42,7 @@ void HModifyRow::setPermissions(HUser *p_user)
 
     ui->cbCliente->setEnabled(p_user->getCanUpdate());
     ui->cbProdotto->setEnabled(p_user->getCanUpdate());
+    ui->pbSave->setEnabled(p_user->getCanUpdate());
 
 }
 
