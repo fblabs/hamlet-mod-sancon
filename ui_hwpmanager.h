@@ -62,14 +62,17 @@ public:
     QRadioButton *rbFresh;
     QRadioButton *rbPastorized;
     QRadioButton *rbNone;
+    QHBoxLayout *horizontalLayout;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_11;
     QPlainTextEdit *ptNote;
     QHBoxLayout *horizontalLayout_3;
+    QLabel *label_13;
+    QLineEdit *leLotScad;
     QLabel *label_7;
     QLineEdit *leTotal;
     QSpacerItem *horizontalSpacer;
-    QHBoxLayout *horizontalLayout;
+    QHBoxLayout *horizontalLayout_4;
     QPushButton *pbSave;
     QPushButton *pbClose;
 
@@ -78,7 +81,7 @@ public:
         if (HWpManager->objectName().isEmpty())
             HWpManager->setObjectName(QStringLiteral("HWpManager"));
         HWpManager->setWindowModality(Qt::ApplicationModal);
-        HWpManager->resize(747, 414);
+        HWpManager->resize(747, 415);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HWpManager->setWindowIcon(icon);
@@ -241,6 +244,11 @@ public:
 
         verticalLayout->addLayout(gridLayout_2);
 
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+
+        verticalLayout->addLayout(horizontalLayout);
+
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         label_11 = new QLabel(HWpManager);
@@ -258,6 +266,16 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        label_13 = new QLabel(HWpManager);
+        label_13->setObjectName(QStringLiteral("label_13"));
+
+        horizontalLayout_3->addWidget(label_13);
+
+        leLotScad = new QLineEdit(HWpManager);
+        leLotScad->setObjectName(QStringLiteral("leLotScad"));
+
+        horizontalLayout_3->addWidget(leLotScad);
+
         label_7 = new QLabel(HWpManager);
         label_7->setObjectName(QStringLiteral("label_7"));
 
@@ -276,8 +294,8 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_3);
 
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         pbSave = new QPushButton(HWpManager);
         pbSave->setObjectName(QStringLiteral("pbSave"));
         QIcon icon1;
@@ -285,7 +303,7 @@ public:
         pbSave->setIcon(icon1);
         pbSave->setIconSize(QSize(32, 32));
 
-        horizontalLayout->addWidget(pbSave);
+        horizontalLayout_4->addWidget(pbSave);
 
         pbClose = new QPushButton(HWpManager);
         pbClose->setObjectName(QStringLiteral("pbClose"));
@@ -294,10 +312,10 @@ public:
         pbClose->setIcon(icon2);
         pbClose->setIconSize(QSize(32, 32));
 
-        horizontalLayout->addWidget(pbClose);
+        horizontalLayout_4->addWidget(pbClose);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout->addLayout(horizontalLayout_4);
 
         QWidget::setTabOrder(cbCliente, cbProdotto);
         QWidget::setTabOrder(cbProdotto, leNumOrd);
@@ -338,6 +356,7 @@ public:
         rbPastorized->setText(QApplication::translate("HWpManager", "Pastorizzato", 0));
         rbNone->setText(QApplication::translate("HWpManager", "Nessuna", 0));
         label_11->setText(QApplication::translate("HWpManager", "Note:", 0));
+        label_13->setText(QApplication::translate("HWpManager", "Lotto/scadenza:", 0));
         label_7->setText(QApplication::translate("HWpManager", "Totale:", 0));
         pbSave->setText(QApplication::translate("HWpManager", "Salva", 0));
         pbClose->setText(QApplication::translate("HWpManager", "Chiudi", 0));

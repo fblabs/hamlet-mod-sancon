@@ -4048,6 +4048,12 @@ debug/moc_hlotti.cpp: ../../Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		hnuovaoperazione.h \
 		hreadonlymodelnew.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrinter \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprinter.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
 		hlotti.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/hamletmod/21022015 -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtPrintSupport -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore hlotti.h -o debug/moc_hlotti.cpp
 
@@ -12979,6 +12985,12 @@ debug/hwarehouse.o: hwarehouse.cpp hwarehouse.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QDate \
 		hnuovaoperazione.h \
 		hreadonlymodelnew.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrinter \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprinter.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
 		hwarehousedetails.h \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QDataWidgetMapper \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qdatawidgetmapper.h \
@@ -13901,6 +13913,12 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		hnuovaoperazione.h \
 		hreadonlymodelnew.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrinter \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprinter.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
+		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
 		ui_hlotti.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QVariant \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -14005,12 +14023,6 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/5.5/mingw492_32/include/QtGui/QTextCursor \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/QTextEdit \
 		../../Qt/5.5/mingw492_32/include/QtWidgets/qtextedit.h \
-		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrinter \
-		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprinter.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpagedpaintdevice.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpagelayout.h \
-		../../Qt/5.5/mingw492_32/include/QtGui/qpagesize.h \
-		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qtprintsupportglobal.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/QThread \
 		../../Qt/5.5/mingw492_32/include/QtCore/qthread.h \
 		hpackagesunload.h \
@@ -14023,7 +14035,9 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		../../Qt/5.5/mingw492_32/include/QtCore/qfileinfo.h \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrintDialog \
 		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprintdialog.h \
-		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qabstractprintdialog.h
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qabstractprintdialog.h \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/QPrintPreviewDialog \
+		../../Qt/5.5/mingw492_32/include/QtPrintSupport/qprintpreviewdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/hlotti.o hlotti.cpp
 
 debug/htextedit.o: htextedit.cpp htextedit.h \

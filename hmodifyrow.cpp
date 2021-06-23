@@ -148,6 +148,7 @@ qDebug()<<"loadRow";
    ui->cbSanty->setCurrentText(rows_model->index(0,11).data(0).toString());
    ui->leAllergeni->setText(rows_model->index(0,15).data(0).toString());
    ui->leNumOrd->setText(rows_model->index(0,12).data(0).toString());
+   ui->leLotScad->setText(rows_model->index(0,17).data(0).toString());
    int fresco=rows_model->index(0,13).data(0).toInt();
    int pastorizzato=rows_model->index(0,14).data(0).toInt();
 
@@ -171,6 +172,7 @@ qDebug()<<"loadRow";
    bool qok=false;
    double tot=rows_model->index(0,10).data(0).toDouble(&vok);
    ui->leTotal->setText(QString::number(tot,'f',3));
+   QString lotScad=rows_model->index(0,17).data(0).toString();
 
 
 
@@ -213,6 +215,7 @@ void HModifyRow::saveRow(){
     QString tappo=ui->leTappo->text();
     QString san=ui->cbSanty->currentText();
     QString allerg=ui->leAllergeni->text();
+    QString lotScad=ui->leLotScad->text();
     int fresco=0;
     int pastorizzato=0;
     if(ui->rbFresh->isChecked())
@@ -224,7 +227,7 @@ void HModifyRow::saveRow(){
     }
 
     QSqlQuery q(db);
-    QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,totale=:tot where IDproduzione=:idproduzione and num_riga=:num";
+    QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,lotto_scadenza=:lotscad,totale=:tot where IDproduzione=:idproduzione and num_riga=:num";
     db.transaction();
     q.prepare(sql);
     q.bindValue(":idcliente",idcliente);
@@ -240,6 +243,7 @@ void HModifyRow::saveRow(){
     q.bindValue(":fresco",fresco);
     q.bindValue(":pasto",pastorizzato);
     q.bindValue(":note",ui->ptNote->toPlainText());
+    q.bindValue(":lotscad",lotScad);
     bool ok=false;
     q.bindValue(":tot",ui->leTotal->text().toDouble(&ok));
     if(!ok)

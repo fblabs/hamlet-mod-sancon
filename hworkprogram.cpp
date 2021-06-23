@@ -117,6 +117,10 @@ void HWorkProgram::getSheets()
     ui->tvStorico->setColumnHidden(4,true);
     ui->tvStorico->horizontalHeader()->setStretchLastSection(true);
     ui->tvGeneral->verticalHeader()->setSectionsMovable(true);
+    if (ui->tvGeneral->model()->rowCount()>0)
+    {
+        ui->tvGeneral->selectRow(0);
+    }
 
    // QHeaderView *vert=ui->tvGeneral->verticalHeader();
 
@@ -158,7 +162,8 @@ void HWorkProgram::refreshSheet()
     ui->tvGeneral->setColumnHidden(1,true);
     ui->tvGeneral->setColumnHidden(2,true);
     ui->tvGeneral->setItemDelegate(rdel);
-    ui->tvGeneral->resizeColumnsToContents();
+    //ui->tvGeneral->resizeColumnsToContents();
+    ui->tvGeneral->horizontalHeader()->stretchLastSection();
     setHeaders();
 
 }
@@ -284,7 +289,9 @@ void HWorkProgram::on_pbRemove_clicked()
 {
     if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
+        db.transaction();
         wpmod->removeRow(ui->tvGeneral->currentIndex().row());
+        db.commit();
         refreshSheet();
     }
 
@@ -333,6 +340,7 @@ void HWorkProgram::setHeaders()
     wpmod->setHeaderData(14,Qt::Horizontal,QObject::tr("Pastorizzato"));
     wpmod->setHeaderData(15,Qt::Horizontal,QObject::tr("Allergeni"));
     wpmod->setHeaderData(16,Qt::Horizontal,QObject::tr("Note)"));
+    wpmod->setHeaderData(17,Qt::Horizontal,QObject::tr("Lotto - Scadenza"));
 
 }
 
@@ -367,15 +375,16 @@ void HWorkProgram::print(bool pdf)
 
         // headers
         QStringList coltit=QStringList();
-        coltit <<""<<""<<""<< "Q.tà"<<"P.PROD"<<"P.OLIO"<<"PRODOTTO"<<"OLIO"<<"TAPPO"<<"CLIENTE"<<"Kg"<<"SAN."<<"ORD."<<"FR."<<"PAST."<<"ALG."<<"NOTE";
+        coltit <<""<<""<<""<< "Q.tà"<<"P.PROD"<<"P.OLIO"<<"PRODOTTO"<<"OLIO"<<"TAPPO"<<"CLIENTE"<<"Kg"<<"SAN."<<"ORD."<<"FR."<<"PAST."<<"ALG."<<"NOTE"<<"LOT/SCADENZA";
 
 
-       out << "<thead><tr bgcolor='#5cabff'><th colspan='14'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
-
+       out << "<thead><tr bgcolor='#5cabff'><th colspan='15'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
 
 
         for (int column = 0 ; column < columnCount; column++)
         {
+
+
                 if (!ui->tvGeneral->isColumnHidden(column))
                 {
 
@@ -388,6 +397,7 @@ void HWorkProgram::print(bool pdf)
 
         // data table
         for (int row = 0; row < rowCount; row++) {
+             qDebug()<<row;
             out << "<tr>";
             if(row%2)
             {
@@ -446,6 +456,7 @@ void HWorkProgram::print(bool pdf)
             HPrint *f=new HPrint(0,true);
             f->toggleImageUI(false);
             f->setFontSize(9);
+
             f->showMaximized();
 
 
@@ -468,7 +479,7 @@ void HWorkProgram::print(bool pdf)
             QString txt="";
             QStringList titles;
 
-            table->mergeCells(0,0,1,14);
+            table->mergeCells(0,0,1,15);
 
             QTextCharFormat titleformat;
             titleformat.setVerticalAlignment(QTextCharFormat::AlignMiddle);
@@ -487,7 +498,7 @@ void HWorkProgram::print(bool pdf)
 
 
 
-            titles<<" Q.tà "<<" P. PROD "<<"P. OLIO "<<" PRODOTTO "<<"OLIO"<<"TAPPO"<<"CLIENTE"<<"KG"<<"SAN."<<"ORD."<<" FR. "<<"PAST."<<"ALG."<<" NOTE ";
+            titles<<" Q.tà "<<" P. PROD "<<"P. OLIO "<<" PRODOTTO "<<"OLIO"<<"TAPPO"<<"CLIENTE"<<"KG"<<"SAN."<<"ORD."<<"FR."<<"PAST."<<"ALG."<<"NOTE"<<"LOT/SCAD";
             titleformat.setBackground(QColor("lightgrey"));
 
             for (c=0;c<cols;c++)
@@ -495,6 +506,7 @@ void HWorkProgram::print(bool pdf)
 
                txt=titles.at(c);
                f->writeTableContent(table,1,c,titleformat,txt);
+
             }
 
             format.setFontWeight(QFont::Light);
@@ -503,6 +515,7 @@ void HWorkProgram::print(bool pdf)
 
             for (r=2;r<rows;r++)
             {
+                 qDebug()<<r<<rows;
                 if(r%2)
                 {
                     format.setBackground(QColor("lightgreen"));
@@ -518,7 +531,9 @@ void HWorkProgram::print(bool pdf)
                 {
                     cp=c+3;
                     rp=r-2;
+
                     txt=wpmod->index(rp,cp).data(0).toString();
+
 
 
 
@@ -554,7 +569,7 @@ void HWorkProgram::print(bool pdf)
 
                         QString frescotxt="";
                         if (fx>0)
-                        {frescotxt="  X";}
+                        {frescotxt="X";}
 
                         f->writeTableContent(table,r,c,format,frescotxt);
 
@@ -571,7 +586,7 @@ void HWorkProgram::print(bool pdf)
                         QString ptxt="";
 
                         if(px>0)
-                        {ptxt="  X";}
+                        {ptxt="X";}
 
                         f->writeTableContent(table,r,c,format,ptxt);
                     }
@@ -581,6 +596,8 @@ void HWorkProgram::print(bool pdf)
                     }
                     else
                     {
+                        qDebug()<<cp<<txt;
+
                         f->writeTableContent(table,r,c,format,txt);
                     }
 
@@ -590,10 +607,6 @@ void HWorkProgram::print(bool pdf)
 
 
             }
-
-
-
-
 
 
             f->show();

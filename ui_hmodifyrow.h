@@ -66,6 +66,8 @@ public:
     QLabel *label_11;
     QPlainTextEdit *ptNote;
     QHBoxLayout *horizontalLayout_3;
+    QLabel *label_13;
+    QLineEdit *leLotScad;
     QLabel *label_7;
     QLineEdit *leTotal;
     QSpacerItem *horizontalSpacer;
@@ -257,6 +259,16 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        label_13 = new QLabel(HModifyRow);
+        label_13->setObjectName(QStringLiteral("label_13"));
+
+        horizontalLayout_3->addWidget(label_13);
+
+        leLotScad = new QLineEdit(HModifyRow);
+        leLotScad->setObjectName(QStringLiteral("leLotScad"));
+
+        horizontalLayout_3->addWidget(leLotScad);
+
         label_7 = new QLabel(HModifyRow);
         label_7->setObjectName(QStringLiteral("label_7"));
 
@@ -338,6 +350,7 @@ public:
         rbPastorized->setText(QApplication::translate("HModifyRow", "Pastorizzato", 0));
         rbNone->setText(QApplication::translate("HModifyRow", "Nessuna", 0));
         label_11->setText(QApplication::translate("HModifyRow", "Note:", 0));
+        label_13->setText(QApplication::translate("HModifyRow", "Lot/Scadenza", 0));
         label_7->setText(QApplication::translate("HModifyRow", "Totale Kg:", 0));
         pbSave->setText(QApplication::translate("HModifyRow", "Salva", 0));
         pbClose->setText(QApplication::translate("HModifyRow", "Chiudi", 0));

@@ -334,14 +334,16 @@ QTextTable* HPrint::writeTableContent(QTextTable *table=0, int row=0, int column
     QTextCharFormat format=ptcf;
 
     format.setForeground(QColor("black"));
-    format.setVerticalAlignment(QTextCharFormat::AlignMiddle);
+    //format.setVerticalAlignment(QTextCharFormat::AlignMiddle);
 
     table->cellAt(row,column).setFormat(format);
     QTextCursor c=table->cellAt(row,column).firstCursorPosition();
     QTextBlockFormat bf=c.blockFormat();
     Qt::Alignment horz=bf.alignment() & Qt::AlignHorizontal_Mask;
-    bf.setAlignment(horz);
-
+    Qt::Alignment vert=bf.alignment() & Qt::AlignVertical_Mask;
+    Qt::Alignment hv= horz | vert;
+    bf.setAlignment(vert);
+    bf.setPageBreakPolicy(QTextBlockFormat::PageBreak_Auto);
 
     c.setCharFormat(format);
     c.setBlockFormat(bf);
@@ -361,9 +363,10 @@ QTextTable* HPrint::writeTableContentRed(QTextTable *table, int row, int column,
   QTextCursor c=table->cellAt(row,column).firstCursorPosition();
   QTextBlockFormat bf=c.blockFormat();
   Qt::Alignment horz=bf.alignment() & Qt::AlignHorizontal_Mask;
-  bf.setAlignment(horz);
-
-
+  Qt::Alignment vert=bf.alignment() & Qt::AlignVertical_Mask;
+  Qt::Alignment hv= horz | vert;
+  bf.setAlignment(vert);
+  bf.setPageBreakPolicy(QTextBlockFormat::PageBreak_Auto);
   c.setCharFormat(format);
   c.setBlockFormat(bf);
   c.insertText(text);
@@ -633,4 +636,10 @@ void HPrint::printPixmap(QTableView *table)
 
 
     }
+
+}
+
+void HPrint::setHtml(QString html)
+{
+    ui->textEdit->setHtml(html);
 }

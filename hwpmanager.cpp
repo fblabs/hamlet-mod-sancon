@@ -147,12 +147,13 @@ void HWpManager::addSheetRow()
     QString note=ui->ptNote->toPlainText();
     bool ok=false;
     double totale=ui->leTotal->text().toDouble(&ok);
+    QString lotscad=ui->leLotScad->text();
 
 
 
 
-    QString sql="insert into righe_produzione(IDProduzione,num_riga, idcliente,idprodotto,numero_ordine,vaso_gr,quantita,specificaolio,olio,tappo,sanificazione,allergeni,fresco,pastorizzato,note,totale)"
-                " VALUES(:idproduzione,:numriga,:idcliente,:idprodotto,:numord,:vaso,:quantita,:specolio,:olio,:tappo,:sanificazione,:allergeni,:fresco,:pastorizzato,:note,:totale)";
+    QString sql="insert into righe_produzione(IDProduzione,num_riga, idcliente,idprodotto,numero_ordine,vaso_gr,quantita,specificaolio,olio,tappo,sanificazione,allergeni,fresco,pastorizzato,note,totale,lotto_scadenza)"
+                " VALUES(:idproduzione,:numriga,:idcliente,:idprodotto,:numord,:vaso,:quantita,:specolio,:olio,:tappo,:sanificazione,:allergeni,:fresco,:pastorizzato,:note,:totale,:lot_scad)";
     q.prepare(sql);
     q.bindValue(":idproduzione",id);
     q.bindValue(":numriga",row);
@@ -170,6 +171,7 @@ void HWpManager::addSheetRow()
     q.bindValue(":pastorizzato",pastorizzato);
     q.bindValue(":note",note);
     q.bindValue(":totale",totale);
+    q.bindValue(":lot_scad",lotscad);
     bool b=false;
 
     if(QMessageBox::question(this,QApplication::applicationName(),"Salvare?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)

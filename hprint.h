@@ -35,10 +35,8 @@ public:
    QTextEdit *getViewport();
    QTextCursor getCursor();
    void resizeImage(int wr,int hr);
-
-
    void toggleImageUI(bool visible);
-
+   void setHtml(QString html);
 
 
 private slots:
