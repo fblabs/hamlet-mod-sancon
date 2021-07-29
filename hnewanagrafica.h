@@ -24,6 +24,9 @@ private slots:
 private:
     Ui::HNewAnagrafica *ui;
     QSqlDatabase db;
+
+signals:
+    void done();
 };
 
 #endif // HNEWANAGRAFICA_H

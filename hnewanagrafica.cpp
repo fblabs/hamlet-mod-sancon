@@ -26,6 +26,11 @@ void HNewAnagrafica::on_pushButton_clicked()
     QSqlQuery q(db);
 
     QString SRagSoc=ui->leRagsoc->text();
+    if(SRagSoc.length()<1){
+
+        QMessageBox::warning(this,QApplication::applicationName(),"Attenzione, la ragione sociale non puo' essere vuota",QMessageBox::Ok);
+        return;
+    }
     QString sIndirizzo=ui->leAddress->text();
     QString sCity=ui->leCity->text();
     QString sCap=ui->leCap->text();
@@ -70,15 +75,17 @@ void HNewAnagrafica::on_pushButton_clicked()
 
       if (!b)
       {
-
-          //// qDebug()<<q.lastError().text()<<"\n" + q.lastQuery();
-          QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
+         QMessageBox::information(this,QApplication::applicationName(),"Errore salvando la entry\n"+q.lastError().text(),QMessageBox::Ok);
 
       }
       else
       {
-         QMessageBox::information(this,QApplication::applicationName(),"Anagrafica salvata",QMessageBox::Ok);
+
+         QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
+         emit done();
       }
+
+
 
     }
 }
@@ -87,6 +94,7 @@ void HNewAnagrafica::on_pushButton_2_clicked()
 {
     if(QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Chiudere?",QMessageBox::Ok|QMessageBox::Cancel))
    {
-    this->close();
+
+        this->close();
    }
 }

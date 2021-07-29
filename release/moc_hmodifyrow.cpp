@@ -88,7 +88,7 @@ static const uint qt_meta_data_HModifyRow[] = {
       14,    0,   95,    2, 0x28 /* Private | MethodCloned */,
 
  // signals: parameters
-    QMetaType::Int,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
@@ -113,8 +113,7 @@ void HModifyRow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         HModifyRow *_t = static_cast<HModifyRow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: { int _r = _t->done();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 0: _t->done(); break;
         case 1: _t->getClients(); break;
         case 2: _t->getProducts(); break;
         case 3: _t->initSanityModel(); break;
@@ -145,7 +144,7 @@ void HModifyRow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef int (HModifyRow::*_t)();
+            typedef void (HModifyRow::*_t)();
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&HModifyRow::done)) {
                 *result = 0;
             }
@@ -190,11 +189,8 @@ int HModifyRow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-int HModifyRow::done()
+void HModifyRow::done()
 {
-    int _t0 = int();
-    void *_a[] = { const_cast<void*>(reinterpret_cast<const void*>(&_t0)) };
-    QMetaObject::activate(this, &staticMetaObject, 0, _a);
-    return _t0;
+    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE

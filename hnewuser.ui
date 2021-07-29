@@ -14,7 +14,7 @@
    <string>Nuovo utente</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resources/graphical.qrc">
+   <iconset>
     <normaloff>:/Key.PNG</normaloff>:/Key.PNG</iconset>
   </property>
   <property name="modal">
@@ -101,8 +101,8 @@
         <string>Salva</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>:/save-icon.png</normaloff>:/save-icon.png</iconset>
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Accept64.png</normaloff>:/Resources/Accept64.png</iconset>
        </property>
       </widget>
      </item>
@@ -112,8 +112,8 @@
         <string>Chiudi</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>:/Actions-window-close-icon.png</normaloff>:/Actions-window-close-icon.png</iconset>
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Actions-window-close-icon.png</normaloff>:/Resources/Actions-window-close-icon.png</iconset>
        </property>
       </widget>
      </item>
@@ -122,7 +122,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="Resources/graphical.qrc"/>
+  <include location="icons.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -39,7 +39,7 @@ private slots:
 
 
 signals:
-    done();
+    void done();
 };
 
 #endif // HMODIFYROW_H

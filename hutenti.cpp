@@ -246,7 +246,14 @@ void HUtenti::on_pushButton_clicked()
 {
     HNewAnagrafica *f=new HNewAnagrafica(db);
 
+    connect(f,SIGNAL(done()),this,SLOT(refresh()));
+
     f->show();
+
+}
+
+void HUtenti::refresh()
+{
     tm->select();
 }
 

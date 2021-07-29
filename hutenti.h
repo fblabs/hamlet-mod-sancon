@@ -46,6 +46,7 @@ private slots:
     void setFilter();
     void print();
     bool save();
+    void refresh();
 
 
 

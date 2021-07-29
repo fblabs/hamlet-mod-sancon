@@ -64,7 +64,7 @@ static const uint qt_meta_data_HNewSheet[] = {
        6,    0,   35,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Int, QMetaType::Int, QMetaType::QDate,    3,    4,
+    QMetaType::Void, QMetaType::Int, QMetaType::QDate,    3,    4,
 
  // slots: parameters
     QMetaType::Void,
@@ -79,8 +79,7 @@ void HNewSheet::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         HNewSheet *_t = static_cast<HNewSheet *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: { int _r = _t->OK((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< QDate(*)>(_a[2])));
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 0: _t->OK((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< QDate(*)>(_a[2]))); break;
         case 1: _t->on_pbOK_clicked(); break;
         case 2: _t->on_pbCancel_clicked(); break;
         default: ;
@@ -89,7 +88,7 @@ void HNewSheet::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef int (HNewSheet::*_t)(int , QDate );
+            typedef void (HNewSheet::*_t)(int , QDate );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&HNewSheet::OK)) {
                 *result = 0;
             }
@@ -134,11 +133,9 @@ int HNewSheet::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-int HNewSheet::OK(int _t1, QDate _t2)
+void HNewSheet::OK(int _t1, QDate _t2)
 {
-    int _t0 = int();
-    void *_a[] = { const_cast<void*>(reinterpret_cast<const void*>(&_t0)), const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
-    return _t0;
 }
 QT_END_MOC_NAMESPACE

@@ -125,7 +125,7 @@ public:
         pushButton = new QPushButton(HNewUser);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral(":/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral(":/Resources/Accept64.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon1);
 
         horizontalLayout->addWidget(pushButton);
@@ -133,7 +133,7 @@ public:
         pushButton_2 = new QPushButton(HNewUser);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_2->setIcon(icon2);
 
         horizontalLayout->addWidget(pushButton_2);
