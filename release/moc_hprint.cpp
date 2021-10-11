@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hprint.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hprint.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hprint.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HPrint_t {
     QByteArrayData data[59];
     char stringdata0[703];
@@ -116,7 +119,7 @@ QT_MOC_LITERAL(58, 695, 7) // "pformat"
 static const uint qt_meta_data_HPrint[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       33,   14, // methods
@@ -202,7 +205,7 @@ static const uint qt_meta_data_HPrint[] = {
 void HPrint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HPrint *_t = static_cast<HPrint *>(_o);
+        auto *_t = static_cast<HPrint *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pushButton_2_clicked(); break;
@@ -213,7 +216,7 @@ void HPrint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 5: _t->on_spCharSize_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->spSetValues(); break;
         case 7: { bool _r = _t->eventFilter((*reinterpret_cast< QObject*(*)>(_a[1])),(*reinterpret_cast< QEvent*(*)>(_a[2])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 8: _t->on_sbW_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 9: _t->on_sbH_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 10: _t->on_textEdit_cursorPositionChanged(); break;
@@ -222,37 +225,37 @@ void HPrint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 13: _t->setsbWValue((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 14: _t->setsbHValue((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 15: { QString _r = _t->getImageName();
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         case 16: { int _r = _t->getsbWValue();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 17: { int _r = _t->getsbHValue();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 18: { int _r = _t->getWidthImg0();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 19: { int _r = _t->getHeightImg0();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 20: { int _r = _t->getWidthImg1();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 21: { int _r = _t->getHeightImg1();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 22: _t->setFontSize((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 23: { int _r = _t->getFontSize();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 24: _t->addImage((*reinterpret_cast< QByteArray(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
         case 25: _t->cursorToEnd(); break;
         case 26: _t->cursorToStart(); break;
         case 27: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QTextTableFormat(*)>(_a[3])),(*reinterpret_cast< QColor(*)>(_a[4])),(*reinterpret_cast< QColor(*)>(_a[5])));
-            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = std::move(_r); }  break;
         case 28: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QTextTableFormat(*)>(_a[3])),(*reinterpret_cast< QColor(*)>(_a[4])));
-            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = std::move(_r); }  break;
         case 29: { QTextTable* _r = _t->addTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QTextTableFormat(*)>(_a[3])));
-            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = std::move(_r); }  break;
         case 30: { QTextTable* _r = _t->writeTableContent((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QTextCharFormat(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])));
-            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = std::move(_r); }  break;
         case 31: { QTextTable* _r = _t->writeTableContentRed((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QTextCharFormat(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])));
-            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = std::move(_r); }  break;
         case 32: { QTextTable* _r = _t->writeTableContentRed((*reinterpret_cast< QTextTable*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QTextCharFormat(*)>(_a[4])));
-            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QTextTable**>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -283,10 +286,14 @@ void HPrint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
     }
 }
 
-const QMetaObject HPrint::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HPrint.data,
-      qt_meta_data_HPrint,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HPrint::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HPrint.data,
+    qt_meta_data_HPrint,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HPrint::metaObject() const
@@ -296,9 +303,9 @@ const QMetaObject *HPrint::metaObject() const
 
 void *HPrint::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HPrint.stringdata0))
-        return static_cast<void*>(const_cast< HPrint*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -318,4 +325,5 @@ int HPrint::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

@@ -1,11 +1,12 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hmodricette.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hmodricette.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
@@ -13,12 +14,14 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hmodricette.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HModRicette_t {
     QByteArrayData data[32];
     char stringdata0[505];
@@ -83,7 +86,7 @@ QT_MOC_LITERAL(31, 488, 16) // "on_pbC4R_clicked"
 static const uint qt_meta_data_HModRicette[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       27,   14, // methods
@@ -157,7 +160,7 @@ static const uint qt_meta_data_HModRicette[] = {
 void HModRicette::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HModRicette *_t = static_cast<HModRicette *>(_o);
+        auto *_t = static_cast<HModRicette *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pushButton_2_clicked(); break;
@@ -167,7 +170,7 @@ void HModRicette::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 4: _t->save(); break;
         case 5: _t->creatNewRecipe(); break;
         case 6: { bool _r = _t->duplicateRecipe();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 7: _t->getRicette(); break;
         case 8: _t->printRecipe(); break;
         case 9: _t->saveNote(); break;
@@ -193,10 +196,14 @@ void HModRicette::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     }
 }
 
-const QMetaObject HModRicette::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HModRicette.data,
-      qt_meta_data_HModRicette,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HModRicette::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HModRicette.data,
+    qt_meta_data_HModRicette,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HModRicette::metaObject() const
@@ -206,9 +213,9 @@ const QMetaObject *HModRicette::metaObject() const
 
 void *HModRicette::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HModRicette.stringdata0))
-        return static_cast<void*>(const_cast< HModRicette*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -228,4 +235,5 @@ int HModRicette::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

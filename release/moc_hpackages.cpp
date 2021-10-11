@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hpackages.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hpackages.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hpackages.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HPackages_t {
     QByteArrayData data[45];
     char stringdata0[603];
@@ -99,7 +102,7 @@ QT_MOC_LITERAL(44, 598, 4) // "arg1"
 static const uint qt_meta_data_HPackages[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       33,   14, // methods
@@ -185,7 +188,7 @@ static const uint qt_meta_data_HPackages[] = {
 void HPackages::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HPackages *_t = static_cast<HPackages *>(_o);
+        auto *_t = static_cast<HPackages *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->filterProducts(); break;
@@ -196,37 +199,37 @@ void HPackages::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 5: _t->createNewLotInterno(); break;
         case 6: _t->on_pbCrea_clicked(); break;
         case 7: { bool _r = _t->checkLot((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 8: { bool _r = _t->saveLot((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 9: { bool _r = _t->saveNewLotInLotdef((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 10: { bool _r = _t->chargeNewLot((*reinterpret_cast< int(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 11: { bool _r = _t->unloadNewLotComponents((*reinterpret_cast< int(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 12: { int _r = _t->getIdProdotto((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 13: { QString _r = _t->getDescProdotto((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         case 14: _t->on_pbAddRow_clicked(); break;
         case 15: _t->on_pbRemoveRow_clicked(); break;
         case 16: _t->on_checkBox_2_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 17: _t->on_pushButton_3_clicked(); break;
         case 18: _t->on_pbAnnulla_clicked(); break;
         case 19: { int _r = _t->getLastId();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 20: { int _r = _t->getIdLotto((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 21: _t->getEanList(); break;
         case 22: _t->resetForm(); break;
         case 23: _t->setLotText(); break;
         case 24: { int _r = _t->getumid((*reinterpret_cast< int(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 25: { QString _r = _t->getumdesc((*reinterpret_cast< int(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         case 26: { int _r = _t->getumidfromdesc((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 27: _t->enableUI((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 28: _t->on_rbTutti_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 29: _t->on_rbProdottiFiniti_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
@@ -238,10 +241,14 @@ void HPackages::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
     }
 }
 
-const QMetaObject HPackages::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HPackages.data,
-      qt_meta_data_HPackages,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HPackages::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HPackages.data,
+    qt_meta_data_HPackages,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HPackages::metaObject() const
@@ -251,9 +258,9 @@ const QMetaObject *HPackages::metaObject() const
 
 void *HPackages::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HPackages.stringdata0))
-        return static_cast<void*>(const_cast< HPackages*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -273,4 +280,5 @@ int HPackages::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

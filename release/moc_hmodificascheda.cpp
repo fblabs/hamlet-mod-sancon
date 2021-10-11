@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hmodificascheda.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hmodificascheda.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hmodificascheda.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HModificaScheda_t {
     QByteArrayData data[15];
     char stringdata0[265];
@@ -60,7 +63,7 @@ QT_MOC_LITERAL(14, 241, 23) // "on_pushButton_3_clicked"
 static const uint qt_meta_data_HModificaScheda[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       13,   14, // methods
@@ -110,7 +113,7 @@ static const uint qt_meta_data_HModificaScheda[] = {
 void HModificaScheda::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HModificaScheda *_t = static_cast<HModificaScheda *>(_o);
+        auto *_t = static_cast<HModificaScheda *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->schedaAggiornata(); break;
@@ -130,21 +133,25 @@ void HModificaScheda::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
-        void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (HModificaScheda::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&HModificaScheda::schedaAggiornata)) {
+            using _t = void (HModificaScheda::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&HModificaScheda::schedaAggiornata)) {
                 *result = 0;
+                return;
             }
         }
     }
     Q_UNUSED(_a);
 }
 
-const QMetaObject HModificaScheda::staticMetaObject = {
-    { &QDialog::staticMetaObject, qt_meta_stringdata_HModificaScheda.data,
-      qt_meta_data_HModificaScheda,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HModificaScheda::staticMetaObject = { {
+    QMetaObject::SuperData::link<QDialog::staticMetaObject>(),
+    qt_meta_stringdata_HModificaScheda.data,
+    qt_meta_data_HModificaScheda,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HModificaScheda::metaObject() const
@@ -154,9 +161,9 @@ const QMetaObject *HModificaScheda::metaObject() const
 
 void *HModificaScheda::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HModificaScheda.stringdata0))
-        return static_cast<void*>(const_cast< HModificaScheda*>(this));
+        return static_cast<void*>(this);
     return QDialog::qt_metacast(_clname);
 }
 
@@ -180,6 +187,7 @@ int HModificaScheda::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void HModificaScheda::schedaAggiornata()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

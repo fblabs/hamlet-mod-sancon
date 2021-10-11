@@ -1,26 +1,29 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hmagazzino.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hmagazzino.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hmagazzino.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HMagazzino_t {
-    QByteArrayData data[16];
-    char stringdata0[271];
+    QByteArrayData data[17];
+    char stringdata0[283];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -44,7 +47,8 @@ QT_MOC_LITERAL(11, 173, 14), // "on_cbS_toggled"
 QT_MOC_LITERAL(12, 188, 33), // "on_cbProdotti_currentIndexCha..."
 QT_MOC_LITERAL(13, 222, 5), // "index"
 QT_MOC_LITERAL(14, 228, 15), // "updateOperation"
-QT_MOC_LITERAL(15, 244, 26) // "on_tableView_doubleClicked"
+QT_MOC_LITERAL(15, 244, 26), // "on_tableView_doubleClicked"
+QT_MOC_LITERAL(16, 271, 11) // "QModelIndex"
 
     },
     "HMagazzino\0on_pushButton_clicked\0\0"
@@ -53,14 +57,15 @@ QT_MOC_LITERAL(15, 244, 26) // "on_tableView_doubleClicked"
     "on_pushButton_4_clicked\0on_cbP_toggled\0"
     "checked\0on_cbC_toggled\0on_cbS_toggled\0"
     "on_cbProdotti_currentIndexChanged\0"
-    "index\0updateOperation\0on_tableView_doubleClicked"
+    "index\0updateOperation\0on_tableView_doubleClicked\0"
+    "QModelIndex"
 };
 #undef QT_MOC_LITERAL
 
 static const uint qt_meta_data_HMagazzino[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       12,   14, // methods
@@ -96,7 +101,7 @@ static const uint qt_meta_data_HMagazzino[] = {
     QMetaType::Void, QMetaType::Bool,    9,
     QMetaType::Void, QMetaType::Int,   13,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,   13,
+    QMetaType::Void, 0x80000000 | 16,   13,
 
        0        // eod
 };
@@ -104,7 +109,7 @@ static const uint qt_meta_data_HMagazzino[] = {
 void HMagazzino::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HMagazzino *_t = static_cast<HMagazzino *>(_o);
+        auto *_t = static_cast<HMagazzino *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pushButton_clicked(); break;
@@ -124,10 +129,14 @@ void HMagazzino::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     }
 }
 
-const QMetaObject HMagazzino::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HMagazzino.data,
-      qt_meta_data_HMagazzino,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HMagazzino::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HMagazzino.data,
+    qt_meta_data_HMagazzino,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HMagazzino::metaObject() const
@@ -137,9 +146,9 @@ const QMetaObject *HMagazzino::metaObject() const
 
 void *HMagazzino::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HMagazzino.stringdata0))
-        return static_cast<void*>(const_cast< HMagazzino*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -159,4 +168,5 @@ int HMagazzino::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

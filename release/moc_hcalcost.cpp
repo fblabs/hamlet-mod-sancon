@@ -1,26 +1,29 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hcalcost.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hcalcost.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hcalcost.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HCalcost_t {
-    QByteArrayData data[23];
-    char stringdata0[447];
+    QByteArrayData data[24];
+    char stringdata0[459];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,28 +39,29 @@ QT_MOC_LITERAL(3, 21, 11), // "getProducts"
 QT_MOC_LITERAL(4, 33, 9), // "getRecipe"
 QT_MOC_LITERAL(5, 43, 18), // "on_pbClose_clicked"
 QT_MOC_LITERAL(6, 62, 21), // "on_lvProdotti_clicked"
-QT_MOC_LITERAL(7, 84, 5), // "index"
-QT_MOC_LITERAL(8, 90, 32), // "on_cbClients_currentIndexChanged"
-QT_MOC_LITERAL(9, 123, 18), // "getConfezionamenti"
-QT_MOC_LITERAL(10, 142, 4), // "tipo"
-QT_MOC_LITERAL(11, 147, 29), // "on_cbVasi_currentIndexChanged"
-QT_MOC_LITERAL(12, 177, 30), // "on_cbTappi_currentIndexChanged"
-QT_MOC_LITERAL(13, 208, 25), // "on_leQtVasi_returnPressed"
-QT_MOC_LITERAL(14, 234, 26), // "on_leQtTappi_returnPressed"
-QT_MOC_LITERAL(15, 261, 35), // "on_leQuantitaProdotto_returnP..."
-QT_MOC_LITERAL(16, 297, 29), // "on_leDaprodurre_returnPressed"
-QT_MOC_LITERAL(17, 327, 30), // "on_leCostoTotale_returnPressed"
-QT_MOC_LITERAL(18, 358, 20), // "on_pbCalcola_clicked"
-QT_MOC_LITERAL(19, 379, 18), // "on_pbPrint_clicked"
-QT_MOC_LITERAL(20, 398, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(21, 420, 7), // "resetUI"
-QT_MOC_LITERAL(22, 428, 18) // "performCalculation"
+QT_MOC_LITERAL(7, 84, 11), // "QModelIndex"
+QT_MOC_LITERAL(8, 96, 5), // "index"
+QT_MOC_LITERAL(9, 102, 32), // "on_cbClients_currentIndexChanged"
+QT_MOC_LITERAL(10, 135, 18), // "getConfezionamenti"
+QT_MOC_LITERAL(11, 154, 4), // "tipo"
+QT_MOC_LITERAL(12, 159, 29), // "on_cbVasi_currentIndexChanged"
+QT_MOC_LITERAL(13, 189, 30), // "on_cbTappi_currentIndexChanged"
+QT_MOC_LITERAL(14, 220, 25), // "on_leQtVasi_returnPressed"
+QT_MOC_LITERAL(15, 246, 26), // "on_leQtTappi_returnPressed"
+QT_MOC_LITERAL(16, 273, 35), // "on_leQuantitaProdotto_returnP..."
+QT_MOC_LITERAL(17, 309, 29), // "on_leDaprodurre_returnPressed"
+QT_MOC_LITERAL(18, 339, 30), // "on_leCostoTotale_returnPressed"
+QT_MOC_LITERAL(19, 370, 20), // "on_pbCalcola_clicked"
+QT_MOC_LITERAL(20, 391, 18), // "on_pbPrint_clicked"
+QT_MOC_LITERAL(21, 410, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(22, 432, 7), // "resetUI"
+QT_MOC_LITERAL(23, 440, 18) // "performCalculation"
 
     },
     "HCalcost\0getClients\0\0getProducts\0"
     "getRecipe\0on_pbClose_clicked\0"
-    "on_lvProdotti_clicked\0index\0"
-    "on_cbClients_currentIndexChanged\0"
+    "on_lvProdotti_clicked\0QModelIndex\0"
+    "index\0on_cbClients_currentIndexChanged\0"
     "getConfezionamenti\0tipo\0"
     "on_cbVasi_currentIndexChanged\0"
     "on_cbTappi_currentIndexChanged\0"
@@ -75,7 +79,7 @@ QT_MOC_LITERAL(22, 428, 18) // "performCalculation"
 static const uint qt_meta_data_HCalcost[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       19,   14, // methods
@@ -91,31 +95,31 @@ static const uint qt_meta_data_HCalcost[] = {
        4,    0,  111,    2, 0x08 /* Private */,
        5,    0,  112,    2, 0x08 /* Private */,
        6,    1,  113,    2, 0x08 /* Private */,
-       8,    1,  116,    2, 0x08 /* Private */,
-       9,    1,  119,    2, 0x08 /* Private */,
-      11,    1,  122,    2, 0x08 /* Private */,
-      12,    1,  125,    2, 0x08 /* Private */,
-      13,    0,  128,    2, 0x08 /* Private */,
-      14,    0,  129,    2, 0x08 /* Private */,
-      15,    0,  130,    2, 0x08 /* Private */,
-      16,    0,  131,    2, 0x08 /* Private */,
-      17,    0,  132,    2, 0x08 /* Private */,
-      18,    0,  133,    2, 0x08 /* Private */,
-      19,    0,  134,    2, 0x08 /* Private */,
-      20,    0,  135,    2, 0x08 /* Private */,
-      21,    0,  136,    2, 0x08 /* Private */,
-      22,    0,  137,    2, 0x08 /* Private */,
+       9,    1,  116,    2, 0x08 /* Private */,
+      10,    1,  119,    2, 0x08 /* Private */,
+      12,    1,  122,    2, 0x08 /* Private */,
+      13,    1,  125,    2, 0x08 /* Private */,
+      14,    0,  128,    2, 0x08 /* Private */,
+      15,    0,  129,    2, 0x08 /* Private */,
+      16,    0,  130,    2, 0x08 /* Private */,
+      17,    0,  131,    2, 0x08 /* Private */,
+      18,    0,  132,    2, 0x08 /* Private */,
+      19,    0,  133,    2, 0x08 /* Private */,
+      20,    0,  134,    2, 0x08 /* Private */,
+      21,    0,  135,    2, 0x08 /* Private */,
+      22,    0,  136,    2, 0x08 /* Private */,
+      23,    0,  137,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,    7,
-    QMetaType::Void, QMetaType::Int,    7,
-    QMetaType::Void, QMetaType::Int,   10,
-    QMetaType::Void, QMetaType::Int,    7,
-    QMetaType::Void, QMetaType::Int,    7,
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,   11,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,    8,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -133,7 +137,7 @@ static const uint qt_meta_data_HCalcost[] = {
 void HCalcost::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HCalcost *_t = static_cast<HCalcost *>(_o);
+        auto *_t = static_cast<HCalcost *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->getClients(); break;
@@ -160,10 +164,14 @@ void HCalcost::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
     }
 }
 
-const QMetaObject HCalcost::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HCalcost.data,
-      qt_meta_data_HCalcost,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HCalcost::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HCalcost.data,
+    qt_meta_data_HCalcost,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HCalcost::metaObject() const
@@ -173,9 +181,9 @@ const QMetaObject *HCalcost::metaObject() const
 
 void *HCalcost::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HCalcost.stringdata0))
-        return static_cast<void*>(const_cast< HCalcost*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -195,4 +203,5 @@ int HCalcost::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

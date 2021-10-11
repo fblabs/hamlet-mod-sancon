@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hgestioneutenti.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hgestioneutenti.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hgestioneutenti.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HGestioneUtenti_t {
     QByteArrayData data[14];
     char stringdata0[241];
@@ -58,7 +61,7 @@ QT_MOC_LITERAL(13, 217, 23) // "on_pushButton_4_clicked"
 static const uint qt_meta_data_HGestioneUtenti[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       10,   14, // methods
@@ -98,18 +101,18 @@ static const uint qt_meta_data_HGestioneUtenti[] = {
 void HGestioneUtenti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HGestioneUtenti *_t = static_cast<HGestioneUtenti *>(_o);
+        auto *_t = static_cast<HGestioneUtenti *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: { bool _r = _t->updatePassword();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 1: _t->on_pushButton_3_clicked(); break;
         case 2: _t->on_pushButton_clicked(); break;
         case 3: _t->on_checkBox_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 4: _t->on_pushButton_2_clicked(); break;
         case 5: _t->on_pbNuovaPassword_clicked(); break;
         case 6: { int _r = _t->getGruppo();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 7: _t->getIdUtente(); break;
         case 8: _t->on_comboBox_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 9: _t->on_pushButton_4_clicked(); break;
@@ -118,10 +121,14 @@ void HGestioneUtenti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
     }
 }
 
-const QMetaObject HGestioneUtenti::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HGestioneUtenti.data,
-      qt_meta_data_HGestioneUtenti,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HGestioneUtenti::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HGestioneUtenti.data,
+    qt_meta_data_HGestioneUtenti,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HGestioneUtenti::metaObject() const
@@ -131,9 +138,9 @@ const QMetaObject *HGestioneUtenti::metaObject() const
 
 void *HGestioneUtenti::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HGestioneUtenti.stringdata0))
-        return static_cast<void*>(const_cast< HGestioneUtenti*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -153,4 +160,5 @@ int HGestioneUtenti::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

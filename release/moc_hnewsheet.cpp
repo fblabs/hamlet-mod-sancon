@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hnewsheet.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hnewsheet.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hnewsheet.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HNewSheet_t {
     QByteArrayData data[7];
     char stringdata0[65];
@@ -46,7 +49,7 @@ QT_MOC_LITERAL(6, 45, 19) // "on_pbCancel_clicked"
 static const uint qt_meta_data_HNewSheet[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
        3,   14, // methods
@@ -76,7 +79,7 @@ static const uint qt_meta_data_HNewSheet[] = {
 void HNewSheet::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HNewSheet *_t = static_cast<HNewSheet *>(_o);
+        auto *_t = static_cast<HNewSheet *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->OK((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< QDate(*)>(_a[2]))); break;
@@ -86,20 +89,24 @@ void HNewSheet::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
-        void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (HNewSheet::*_t)(int , QDate );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&HNewSheet::OK)) {
+            using _t = void (HNewSheet::*)(int , QDate );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&HNewSheet::OK)) {
                 *result = 0;
+                return;
             }
         }
     }
 }
 
-const QMetaObject HNewSheet::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HNewSheet.data,
-      qt_meta_data_HNewSheet,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HNewSheet::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HNewSheet.data,
+    qt_meta_data_HNewSheet,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HNewSheet::metaObject() const
@@ -109,9 +116,9 @@ const QMetaObject *HNewSheet::metaObject() const
 
 void *HNewSheet::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HNewSheet.stringdata0))
-        return static_cast<void*>(const_cast< HNewSheet*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -135,7 +142,8 @@ int HNewSheet::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void HNewSheet::OK(int _t1, QDate _t2)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

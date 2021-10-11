@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'halarm.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../halarm.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'halarm.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HAlarm_t {
     QByteArrayData data[29];
     char stringdata0[382];
@@ -77,7 +80,7 @@ QT_MOC_LITERAL(28, 373, 8) // "activate"
 static const uint qt_meta_data_HAlarm[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       17,   14, // methods
@@ -131,13 +134,13 @@ static const uint qt_meta_data_HAlarm[] = {
 void HAlarm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HAlarm *_t = static_cast<HAlarm *>(_o);
+        auto *_t = static_cast<HAlarm *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: { bool _r = _t->addAlarm();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 1: { bool _r = _t->updateAlarm();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 2: _t->on_pushButton_2_clicked(); break;
         case 3: _t->on_pushButton_4_clicked(); break;
         case 4: _t->on_rbGroup_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
@@ -150,9 +153,9 @@ void HAlarm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 11: _t->setUI(); break;
         case 12: _t->on_pushButton_6_clicked(); break;
         case 13: { QString _r = _t->buildFilterString((*reinterpret_cast< QModelIndexList(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         case 14: { QStringList _r = _t->getIndexes((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< QStringList*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QStringList*>(_a[0]) = std::move(_r); }  break;
         case 15: _t->updateButtons((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3])),(*reinterpret_cast< bool(*)>(_a[4])),(*reinterpret_cast< bool(*)>(_a[5]))); break;
         case 16: _t->toggleUIInteractivity((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
@@ -171,10 +174,14 @@ void HAlarm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
     }
 }
 
-const QMetaObject HAlarm::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HAlarm.data,
-      qt_meta_data_HAlarm,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HAlarm::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HAlarm.data,
+    qt_meta_data_HAlarm,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HAlarm::metaObject() const
@@ -184,9 +191,9 @@ const QMetaObject *HAlarm::metaObject() const
 
 void *HAlarm::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HAlarm.stringdata0))
-        return static_cast<void*>(const_cast< HAlarm*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -206,4 +213,5 @@ int HAlarm::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

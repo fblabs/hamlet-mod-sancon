@@ -6,7 +6,7 @@
 
 QT       += core gui sql printsupport
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets sql printsupport
 
 TARGET = hamletMOD
 TEMPLATE = app
@@ -213,7 +213,7 @@ FORMS    += mainwindow.ui \
 RESOURCES += \
     icons.qrc
 
-    win32:RC_ICONS += hamlet.ico
+    win:RC_ICONS =hamlet.ico
 
 DISTFILES +=
 

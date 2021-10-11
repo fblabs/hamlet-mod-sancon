@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hwpmanager.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hwpmanager.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hwpmanager.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HWpManager_t {
     QByteArrayData data[14];
     char stringdata0[208];
@@ -56,7 +59,7 @@ QT_MOC_LITERAL(13, 197, 10) // "calcTotale"
 static const uint qt_meta_data_HWpManager[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       11,   14, // methods
@@ -102,7 +105,7 @@ static const uint qt_meta_data_HWpManager[] = {
 void HWpManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HWpManager *_t = static_cast<HWpManager *>(_o);
+        auto *_t = static_cast<HWpManager *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->rowAdded(); break;
@@ -116,25 +119,29 @@ void HWpManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 8: _t->on_leVaso_returnPressed(); break;
         case 9: _t->on_leTotal_returnPressed(); break;
         case 10: { double _r = _t->calcTotale();
-            if (_a[0]) *reinterpret_cast< double*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< double*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
-        void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (HWpManager::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&HWpManager::rowAdded)) {
+            using _t = void (HWpManager::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&HWpManager::rowAdded)) {
                 *result = 0;
+                return;
             }
         }
     }
 }
 
-const QMetaObject HWpManager::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HWpManager.data,
-      qt_meta_data_HWpManager,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HWpManager::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HWpManager.data,
+    qt_meta_data_HWpManager,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HWpManager::metaObject() const
@@ -144,9 +151,9 @@ const QMetaObject *HWpManager::metaObject() const
 
 void *HWpManager::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HWpManager.stringdata0))
-        return static_cast<void*>(const_cast< HWpManager*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -170,6 +177,7 @@ int HWpManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void HWpManager::rowAdded()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

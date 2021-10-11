@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hnewop.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hnewop.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hnewop.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HNewOp_t {
     QByteArrayData data[20];
     char stringdata0[273];
@@ -65,7 +68,7 @@ QT_MOC_LITERAL(19, 265, 7) // "checked"
 static const uint qt_meta_data_HNewOp[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       15,   14, // methods
@@ -119,7 +122,7 @@ static const uint qt_meta_data_HNewOp[] = {
 void HNewOp::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HNewOp *_t = static_cast<HNewOp *>(_o);
+        auto *_t = static_cast<HNewOp *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->trigger(); break;
@@ -133,31 +136,35 @@ void HNewOp::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 8: _t->onConnectionNameSet(); break;
         case 9: _t->createUmModel(); break;
         case 10: { QString _r = _t->saveOperationString((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2])));
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         case 11: { QString _r = _t->saveNewLotString((*reinterpret_cast< bool(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         case 12: { int _r = _t->saveOperation();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 13: _t->on_pushButton_clicked(); break;
         case 14: _t->on_radioButton_2_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
-        void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (HNewOp::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&HNewOp::trigger)) {
+            using _t = void (HNewOp::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&HNewOp::trigger)) {
                 *result = 0;
+                return;
             }
         }
     }
 }
 
-const QMetaObject HNewOp::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HNewOp.data,
-      qt_meta_data_HNewOp,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HNewOp::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HNewOp.data,
+    qt_meta_data_HNewOp,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HNewOp::metaObject() const
@@ -167,9 +174,9 @@ const QMetaObject *HNewOp::metaObject() const
 
 void *HNewOp::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HNewOp.stringdata0))
-        return static_cast<void*>(const_cast< HNewOp*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -193,6 +200,7 @@ int HNewOp::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void HNewOp::trigger()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

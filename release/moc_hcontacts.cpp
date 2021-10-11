@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hcontacts.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hcontacts.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hcontacts.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HContacts_t {
     QByteArrayData data[13];
     char stringdata0[207];
@@ -56,7 +59,7 @@ QT_MOC_LITERAL(12, 199, 7) // "checked"
 static const uint qt_meta_data_HContacts[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
        9,   14, // methods
@@ -94,14 +97,14 @@ static const uint qt_meta_data_HContacts[] = {
 void HContacts::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HContacts *_t = static_cast<HContacts *>(_o);
+        auto *_t = static_cast<HContacts *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pushButton_4_clicked(); break;
         case 1: _t->on_pushButton_clicked(); break;
         case 2: _t->on_pushButton_5_clicked(); break;
         case 3: { bool _r = _t->removeContact();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 4: _t->on_pushButton_2_clicked(); break;
         case 5: _t->reload(); break;
         case 6: _t->on_pushButton_6_clicked(); break;
@@ -112,10 +115,14 @@ void HContacts::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
     }
 }
 
-const QMetaObject HContacts::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HContacts.data,
-      qt_meta_data_HContacts,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HContacts::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HContacts.data,
+    qt_meta_data_HContacts,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HContacts::metaObject() const
@@ -125,9 +132,9 @@ const QMetaObject *HContacts::metaObject() const
 
 void *HContacts::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HContacts.stringdata0))
-        return static_cast<void*>(const_cast< HContacts*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -147,4 +154,5 @@ int HContacts::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

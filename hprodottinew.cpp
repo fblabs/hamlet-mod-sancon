@@ -172,34 +172,42 @@ void HProdottiNew::on_pushButton_clicked()
 
 void HProdottiNew::on_checkBox_toggled(bool checked)
 {
-    QString lastfilter=tmProdotti->filter();
+
     QString attivo;
-    QString filter;
+    attivo="attivo > 0";
+
+    QString filter=tmProdotti->filter();
+
 
     if(checked)
     {
-        attivo="attivo > 0";
+
+      filter.length() >0 ?  filter.append(" and "+attivo): filter.append(attivo);
+
+
     }
     else
     {
-        attivo="";
+        if(filter.contains(" and "+attivo))
+       {
+            filter.remove(" and "+attivo);
+
+       }
+
+        if(filter.contains(attivo))
+       {
+            filter.remove(attivo);
+       }
+
+
+
     }
 
-    if(lastfilter.contains("tipo=") && !lastfilter.contains(attivo))
-    {
-        if(checked)
-        {
-            filter=lastfilter.append(" and " + attivo);
-        }
-        else
-        {
-            filter=lastfilter;
-        }
-    }
 
+
+    qDebug()<<filter;
 
         tmProdotti->setFilter(filter);
-    //// qDebug()<<filter;
 
 }
 

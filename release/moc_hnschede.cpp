@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hnschede.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hnschede.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hnschede.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HNSChede_t {
     QByteArrayData data[43];
     char stringdata0[604];
@@ -96,7 +99,7 @@ QT_MOC_LITERAL(42, 585, 18) // "on_pbReset_clicked"
 static const uint qt_meta_data_HNSChede[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       33,   14, // methods
@@ -182,14 +185,14 @@ static const uint qt_meta_data_HNSChede[] = {
 void HNSChede::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HNSChede *_t = static_cast<HNSChede *>(_o);
+        auto *_t = static_cast<HNSChede *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->insertImage(); break;
         case 1: _t->on_pushButton_2_clicked(); break;
         case 2: _t->showContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
         case 3: { bool _r = _t->saveCard();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 4: _t->getProducts(); break;
         case 5: _t->loadCard(); break;
         case 6: _t->on_pbsave_clicked(); break;
@@ -197,9 +200,9 @@ void HNSChede::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 8: _t->resizeImage((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 9: _t->showResizeImage(); break;
         case 10: { int _r = _t->getImageWidth();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 11: { int _r = _t->getImageHeight();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 12: _t->printPreview((*reinterpret_cast< QPrinter*(*)>(_a[1]))); break;
         case 13: _t->printPreviewSlot(); break;
         case 14: _t->print(); break;
@@ -226,10 +229,14 @@ void HNSChede::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
     }
 }
 
-const QMetaObject HNSChede::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HNSChede.data,
-      qt_meta_data_HNSChede,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HNSChede::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HNSChede.data,
+    qt_meta_data_HNSChede,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HNSChede::metaObject() const
@@ -239,9 +246,9 @@ const QMetaObject *HNSChede::metaObject() const
 
 void *HNSChede::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HNSChede.stringdata0))
-        return static_cast<void*>(const_cast< HNSChede*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -261,4 +268,5 @@ int HNSChede::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

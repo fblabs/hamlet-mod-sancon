@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>fblabs.png</file>
+    </qresource>
+</RCC>

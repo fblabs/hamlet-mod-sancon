@@ -1,10 +1,6 @@
-# if defined(UNDER_CE)
-#  include <winbase.h>
-# else
-#  include <windows.h>
-# endif
+#include <windows.h>
 
-IDI_ICON1	ICON	DISCARDABLE	"C:/hamletmod/21022015/hamlet.ico"
+IDI_ICON1	ICON	DISCARDABLE	"C:\\Users\\rock\\Documents\\GitHub\\hamlet-mod-sancon\\hamlet.ico"
 
 VS_VERSION_INFO VERSIONINFO
 	FILEVERSION 0,0,0,0

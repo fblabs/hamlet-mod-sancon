@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hnuovaoperazione.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hnuovaoperazione.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hnuovaoperazione.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HnuovaOperazione_t {
     QByteArrayData data[30];
     char stringdata0[494];
@@ -81,7 +84,7 @@ QT_MOC_LITERAL(29, 488, 5) // "index"
 static const uint qt_meta_data_HnuovaOperazione[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       23,   14, // methods
@@ -151,27 +154,27 @@ static const uint qt_meta_data_HnuovaOperazione[] = {
 void HnuovaOperazione::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HnuovaOperazione *_t = static_cast<HnuovaOperazione *>(_o);
+        auto *_t = static_cast<HnuovaOperazione *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->trigger(); break;
         case 1: _t->setFilterProdotti(); break;
         case 2: { bool _r = _t->saveOperation((*reinterpret_cast< bool(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 3: { bool _r = _t->saveOperationCarico();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 4: { bool _r = _t->saveOperationScarico();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 5: _t->setUiforCarico(); break;
         case 6: _t->setUiForScarico(); break;
         case 7: { QString _r = _t->getNewLot((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         case 8: { bool _r = _t->saveNewLot((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 9: _t->on_pushButton_4_clicked(); break;
         case 10: _t->on_pushButton_clicked(); break;
         case 11: { int _r = _t->lastInsertID();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 12: _t->setProdottoText(); break;
         case 13: _t->setLotsFilter(); break;
         case 14: _t->on_radioButton_2_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
@@ -187,20 +190,24 @@ void HnuovaOperazione::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
-        void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (HnuovaOperazione::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&HnuovaOperazione::trigger)) {
+            using _t = void (HnuovaOperazione::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&HnuovaOperazione::trigger)) {
                 *result = 0;
+                return;
             }
         }
     }
 }
 
-const QMetaObject HnuovaOperazione::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HnuovaOperazione.data,
-      qt_meta_data_HnuovaOperazione,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HnuovaOperazione::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HnuovaOperazione.data,
+    qt_meta_data_HnuovaOperazione,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HnuovaOperazione::metaObject() const
@@ -210,9 +217,9 @@ const QMetaObject *HnuovaOperazione::metaObject() const
 
 void *HnuovaOperazione::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HnuovaOperazione.stringdata0))
-        return static_cast<void*>(const_cast< HnuovaOperazione*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -236,6 +243,7 @@ int HnuovaOperazione::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void HnuovaOperazione::trigger()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

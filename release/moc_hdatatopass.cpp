@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hdatatopass.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hdatatopass.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hdatatopass.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HDataToPass_t {
     QByteArrayData data[11];
     char stringdata0[100];
@@ -51,7 +54,7 @@ QT_MOC_LITERAL(10, 90, 9) // "pquantity"
 static const uint qt_meta_data_HDataToPass[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
        8,   14, // methods
@@ -87,7 +90,7 @@ static const uint qt_meta_data_HDataToPass[] = {
 void HDataToPass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HDataToPass *_t = static_cast<HDataToPass *>(_o);
+        auto *_t = static_cast<HDataToPass *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->setData((*reinterpret_cast< QObject*(*)>(_a[1])),(*reinterpret_cast< QStandardItemModel*(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< bool(*)>(_a[5])),(*reinterpret_cast< QString(*)>(_a[6])),(*reinterpret_cast< double(*)>(_a[7]))); break;
@@ -149,10 +152,14 @@ void HDataToPass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     }
 }
 
-const QMetaObject HDataToPass::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_HDataToPass.data,
-      qt_meta_data_HDataToPass,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HDataToPass::staticMetaObject = { {
+    QMetaObject::SuperData::link<QObject::staticMetaObject>(),
+    qt_meta_stringdata_HDataToPass.data,
+    qt_meta_data_HDataToPass,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HDataToPass::metaObject() const
@@ -162,9 +169,9 @@ const QMetaObject *HDataToPass::metaObject() const
 
 void *HDataToPass::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HDataToPass.stringdata0))
-        return static_cast<void*>(const_cast< HDataToPass*>(this));
+        return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
@@ -184,4 +191,5 @@ int HDataToPass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

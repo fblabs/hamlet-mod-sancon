@@ -1,26 +1,29 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hcopycard.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hcopycard.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hcopycard.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HCopyCard_t {
-    QByteArrayData data[15];
-    char stringdata0[165];
+    QByteArrayData data[16];
+    char stringdata0[177];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,23 +44,24 @@ QT_MOC_LITERAL(8, 57, 11), // "getProducts"
 QT_MOC_LITERAL(9, 69, 21), // "on_pushButton_clicked"
 QT_MOC_LITERAL(10, 91, 23), // "on_pushButton_2_clicked"
 QT_MOC_LITERAL(11, 115, 14), // "on_lvC_clicked"
-QT_MOC_LITERAL(12, 130, 5), // "index"
-QT_MOC_LITERAL(13, 136, 23), // "on_lineEdit_textChanged"
-QT_MOC_LITERAL(14, 160, 4) // "arg1"
+QT_MOC_LITERAL(12, 130, 11), // "QModelIndex"
+QT_MOC_LITERAL(13, 142, 5), // "index"
+QT_MOC_LITERAL(14, 148, 23), // "on_lineEdit_textChanged"
+QT_MOC_LITERAL(15, 172, 4) // "arg1"
 
     },
     "HCopyCard\0doCopy\0\0cliente\0prodotto\0"
     "nC\0nP\0schedadacopiare\0getProducts\0"
     "on_pushButton_clicked\0on_pushButton_2_clicked\0"
-    "on_lvC_clicked\0index\0on_lineEdit_textChanged\0"
-    "arg1"
+    "on_lvC_clicked\0QModelIndex\0index\0"
+    "on_lineEdit_textChanged\0arg1"
 };
 #undef QT_MOC_LITERAL
 
 static const uint qt_meta_data_HCopyCard[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
        6,   14, // methods
@@ -75,7 +79,7 @@ static const uint qt_meta_data_HCopyCard[] = {
        9,    0,   56,    2, 0x08 /* Private */,
       10,    0,   57,    2, 0x08 /* Private */,
       11,    1,   58,    2, 0x08 /* Private */,
-      13,    1,   61,    2, 0x08 /* Private */,
+      14,    1,   61,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::QString, QMetaType::QString, QMetaType::QString,    3,    4,    5,    6,    7,
@@ -84,8 +88,8 @@ static const uint qt_meta_data_HCopyCard[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,   12,
-    QMetaType::Void, QMetaType::QString,   14,
+    QMetaType::Void, 0x80000000 | 12,   13,
+    QMetaType::Void, QMetaType::QString,   15,
 
        0        // eod
 };
@@ -93,7 +97,7 @@ static const uint qt_meta_data_HCopyCard[] = {
 void HCopyCard::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HCopyCard *_t = static_cast<HCopyCard *>(_o);
+        auto *_t = static_cast<HCopyCard *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->doCopy((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
@@ -106,20 +110,24 @@ void HCopyCard::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
-        void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (HCopyCard::*_t)(int , int , QString , QString , QString );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&HCopyCard::doCopy)) {
+            using _t = void (HCopyCard::*)(int , int , QString , QString , QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&HCopyCard::doCopy)) {
                 *result = 0;
+                return;
             }
         }
     }
 }
 
-const QMetaObject HCopyCard::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HCopyCard.data,
-      qt_meta_data_HCopyCard,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HCopyCard::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HCopyCard.data,
+    qt_meta_data_HCopyCard,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HCopyCard::metaObject() const
@@ -129,9 +137,9 @@ const QMetaObject *HCopyCard::metaObject() const
 
 void *HCopyCard::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HCopyCard.stringdata0))
-        return static_cast<void*>(const_cast< HCopyCard*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -155,7 +163,8 @@ int HCopyCard::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void HCopyCard::doCopy(int _t1, int _t2, QString _t3, QString _t4, QString _t5)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)), const_cast<void*>(reinterpret_cast<const void*>(&_t5)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

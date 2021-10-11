@@ -1,26 +1,29 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hwarehouse.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hwarehouse.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hwarehouse.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HWarehouse_t {
-    QByteArrayData data[22];
-    char stringdata0[372];
+    QByteArrayData data[23];
+    char stringdata0[384];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,26 +41,27 @@ QT_MOC_LITERAL(5, 44, 23), // "on_pushButton_4_clicked"
 QT_MOC_LITERAL(6, 68, 23), // "on_pushButton_2_clicked"
 QT_MOC_LITERAL(7, 92, 23), // "on_pushButton_5_clicked"
 QT_MOC_LITERAL(8, 116, 26), // "on_tableView_doubleClicked"
-QT_MOC_LITERAL(9, 143, 5), // "index"
-QT_MOC_LITERAL(10, 149, 25), // "on_deDateFrom_dateChanged"
-QT_MOC_LITERAL(11, 175, 4), // "date"
-QT_MOC_LITERAL(12, 180, 23), // "on_deDateTo_dateChanged"
-QT_MOC_LITERAL(13, 204, 12), // "on_Confirmed"
-QT_MOC_LITERAL(14, 217, 16), // "on_pbMod_clicked"
-QT_MOC_LITERAL(15, 234, 25), // "on_lineEdit_returnPressed"
-QT_MOC_LITERAL(16, 260, 23), // "on_lineEdit_textChanged"
-QT_MOC_LITERAL(17, 284, 4), // "arg1"
-QT_MOC_LITERAL(18, 289, 22), // "on_radioButton_toggled"
-QT_MOC_LITERAL(19, 312, 7), // "checked"
-QT_MOC_LITERAL(20, 320, 26), // "on_radioButtonProd_toggled"
-QT_MOC_LITERAL(21, 347, 24) // "on_radioButton_2_toggled"
+QT_MOC_LITERAL(9, 143, 11), // "QModelIndex"
+QT_MOC_LITERAL(10, 155, 5), // "index"
+QT_MOC_LITERAL(11, 161, 25), // "on_deDateFrom_dateChanged"
+QT_MOC_LITERAL(12, 187, 4), // "date"
+QT_MOC_LITERAL(13, 192, 23), // "on_deDateTo_dateChanged"
+QT_MOC_LITERAL(14, 216, 12), // "on_Confirmed"
+QT_MOC_LITERAL(15, 229, 16), // "on_pbMod_clicked"
+QT_MOC_LITERAL(16, 246, 25), // "on_lineEdit_returnPressed"
+QT_MOC_LITERAL(17, 272, 23), // "on_lineEdit_textChanged"
+QT_MOC_LITERAL(18, 296, 4), // "arg1"
+QT_MOC_LITERAL(19, 301, 22), // "on_radioButton_toggled"
+QT_MOC_LITERAL(20, 324, 7), // "checked"
+QT_MOC_LITERAL(21, 332, 26), // "on_radioButtonProd_toggled"
+QT_MOC_LITERAL(22, 359, 24) // "on_radioButton_2_toggled"
 
     },
     "HWarehouse\0update\0\0setOperazioniFilter\0"
     "tipo\0on_pushButton_4_clicked\0"
     "on_pushButton_2_clicked\0on_pushButton_5_clicked\0"
-    "on_tableView_doubleClicked\0index\0"
-    "on_deDateFrom_dateChanged\0date\0"
+    "on_tableView_doubleClicked\0QModelIndex\0"
+    "index\0on_deDateFrom_dateChanged\0date\0"
     "on_deDateTo_dateChanged\0on_Confirmed\0"
     "on_pbMod_clicked\0on_lineEdit_returnPressed\0"
     "on_lineEdit_textChanged\0arg1\0"
@@ -70,7 +74,7 @@ QT_MOC_LITERAL(21, 347, 24) // "on_radioButton_2_toggled"
 static const uint qt_meta_data_HWarehouse[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       15,   14, // methods
@@ -87,15 +91,15 @@ static const uint qt_meta_data_HWarehouse[] = {
        6,    0,   94,    2, 0x08 /* Private */,
        7,    0,   95,    2, 0x08 /* Private */,
        8,    1,   96,    2, 0x08 /* Private */,
-      10,    1,   99,    2, 0x08 /* Private */,
-      12,    1,  102,    2, 0x08 /* Private */,
-      13,    0,  105,    2, 0x08 /* Private */,
-      14,    0,  106,    2, 0x08 /* Private */,
-      15,    0,  107,    2, 0x08 /* Private */,
-      16,    1,  108,    2, 0x08 /* Private */,
-      18,    1,  111,    2, 0x08 /* Private */,
-      20,    1,  114,    2, 0x08 /* Private */,
-      21,    1,  117,    2, 0x08 /* Private */,
+      11,    1,   99,    2, 0x08 /* Private */,
+      13,    1,  102,    2, 0x08 /* Private */,
+      14,    0,  105,    2, 0x08 /* Private */,
+      15,    0,  106,    2, 0x08 /* Private */,
+      16,    0,  107,    2, 0x08 /* Private */,
+      17,    1,  108,    2, 0x08 /* Private */,
+      19,    1,  111,    2, 0x08 /* Private */,
+      21,    1,  114,    2, 0x08 /* Private */,
+      22,    1,  117,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -103,16 +107,16 @@ static const uint qt_meta_data_HWarehouse[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,    9,
-    QMetaType::Void, QMetaType::QDate,   11,
-    QMetaType::Void, QMetaType::QDate,   11,
+    QMetaType::Void, 0x80000000 | 9,   10,
+    QMetaType::Void, QMetaType::QDate,   12,
+    QMetaType::Void, QMetaType::QDate,   12,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   17,
-    QMetaType::Void, QMetaType::Bool,   19,
-    QMetaType::Void, QMetaType::Bool,   19,
-    QMetaType::Void, QMetaType::Bool,   19,
+    QMetaType::Void, QMetaType::QString,   18,
+    QMetaType::Void, QMetaType::Bool,   20,
+    QMetaType::Void, QMetaType::Bool,   20,
+    QMetaType::Void, QMetaType::Bool,   20,
 
        0        // eod
 };
@@ -120,7 +124,7 @@ static const uint qt_meta_data_HWarehouse[] = {
 void HWarehouse::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HWarehouse *_t = static_cast<HWarehouse *>(_o);
+        auto *_t = static_cast<HWarehouse *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->update(); break;
@@ -143,10 +147,14 @@ void HWarehouse::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     }
 }
 
-const QMetaObject HWarehouse::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HWarehouse.data,
-      qt_meta_data_HWarehouse,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HWarehouse::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HWarehouse.data,
+    qt_meta_data_HWarehouse,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HWarehouse::metaObject() const
@@ -156,9 +164,9 @@ const QMetaObject *HWarehouse::metaObject() const
 
 void *HWarehouse::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HWarehouse.stringdata0))
-        return static_cast<void*>(const_cast< HWarehouse*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -178,4 +186,5 @@ int HWarehouse::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

@@ -1,26 +1,29 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hprodottinew.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hprodottinew.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hprodottinew.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HProdottiNew_t {
-    QByteArrayData data[20];
-    char stringdata0[352];
+    QByteArrayData data[21];
+    char stringdata0[364];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -47,8 +50,9 @@ QT_MOC_LITERAL(14, 255, 23), // "on_lineEdit_textChanged"
 QT_MOC_LITERAL(15, 279, 4), // "arg1"
 QT_MOC_LITERAL(16, 284, 16), // "on_rbBio_toggled"
 QT_MOC_LITERAL(17, 301, 27), // "on_tvProdotti_doubleClicked"
-QT_MOC_LITERAL(18, 329, 5), // "index"
-QT_MOC_LITERAL(19, 335, 16) // "on_pbMod_clicked"
+QT_MOC_LITERAL(18, 329, 11), // "QModelIndex"
+QT_MOC_LITERAL(19, 341, 5), // "index"
+QT_MOC_LITERAL(20, 347, 16) // "on_pbMod_clicked"
 
     },
     "HProdottiNew\0on_radioButton_toggled\0"
@@ -61,14 +65,14 @@ QT_MOC_LITERAL(19, 335, 16) // "on_pbMod_clicked"
     "on_pushButton_clicked\0on_checkBox_toggled\0"
     "on_lineEdit_textChanged\0arg1\0"
     "on_rbBio_toggled\0on_tvProdotti_doubleClicked\0"
-    "index\0on_pbMod_clicked"
+    "QModelIndex\0index\0on_pbMod_clicked"
 };
 #undef QT_MOC_LITERAL
 
 static const uint qt_meta_data_HProdottiNew[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
       15,   14, // methods
@@ -93,7 +97,7 @@ static const uint qt_meta_data_HProdottiNew[] = {
       14,    1,  114,    2, 0x08 /* Private */,
       16,    1,  117,    2, 0x08 /* Private */,
       17,    1,  120,    2, 0x08 /* Private */,
-      19,    0,  123,    2, 0x08 /* Private */,
+      20,    0,  123,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Bool,    3,
@@ -109,7 +113,7 @@ static const uint qt_meta_data_HProdottiNew[] = {
     QMetaType::Void, QMetaType::Bool,    3,
     QMetaType::Void, QMetaType::QString,   15,
     QMetaType::Void, QMetaType::Bool,    3,
-    QMetaType::Void, QMetaType::QModelIndex,   18,
+    QMetaType::Void, 0x80000000 | 18,   19,
     QMetaType::Void,
 
        0        // eod
@@ -118,7 +122,7 @@ static const uint qt_meta_data_HProdottiNew[] = {
 void HProdottiNew::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HProdottiNew *_t = static_cast<HProdottiNew *>(_o);
+        auto *_t = static_cast<HProdottiNew *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_radioButton_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
@@ -141,10 +145,14 @@ void HProdottiNew::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     }
 }
 
-const QMetaObject HProdottiNew::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HProdottiNew.data,
-      qt_meta_data_HProdottiNew,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HProdottiNew::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HProdottiNew.data,
+    qt_meta_data_HProdottiNew,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HProdottiNew::metaObject() const
@@ -154,9 +162,9 @@ const QMetaObject *HProdottiNew::metaObject() const
 
 void *HProdottiNew::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HProdottiNew.stringdata0))
-        return static_cast<void*>(const_cast< HProdottiNew*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -176,4 +184,5 @@ int HProdottiNew::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

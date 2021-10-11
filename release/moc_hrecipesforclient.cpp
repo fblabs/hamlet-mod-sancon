@@ -1,23 +1,26 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hrecipesforclient.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../hrecipesforclient.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hrecipesforclient.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.15.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HRecipesForClient_t {
     QByteArrayData data[10];
     char stringdata0[142];
@@ -51,7 +54,7 @@ QT_MOC_LITERAL(9, 136, 5) // "print"
 static const uint qt_meta_data_HRecipesForClient[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
        7,   14, // methods
@@ -85,7 +88,7 @@ static const uint qt_meta_data_HRecipesForClient[] = {
 void HRecipesForClient::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        HRecipesForClient *_t = static_cast<HRecipesForClient *>(_o);
+        auto *_t = static_cast<HRecipesForClient *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pbClose_clicked(); break;
@@ -100,10 +103,14 @@ void HRecipesForClient::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
     }
 }
 
-const QMetaObject HRecipesForClient::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_HRecipesForClient.data,
-      qt_meta_data_HRecipesForClient,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
+QT_INIT_METAOBJECT const QMetaObject HRecipesForClient::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_HRecipesForClient.data,
+    qt_meta_data_HRecipesForClient,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *HRecipesForClient::metaObject() const
@@ -113,9 +120,9 @@ const QMetaObject *HRecipesForClient::metaObject() const
 
 void *HRecipesForClient::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_HRecipesForClient.stringdata0))
-        return static_cast<void*>(const_cast< HRecipesForClient*>(this));
+        return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
@@ -135,4 +142,5 @@ int HRecipesForClient::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

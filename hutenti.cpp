@@ -199,7 +199,10 @@ void HUtenti::on_pushButton_3_clicked()
 {
    if(save())
    {
+       tm->select();
+       ui->lvUtenti->setCurrentIndex(tm->index(0,0));
        QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
+
 
    }
    else
@@ -219,13 +222,13 @@ bool HUtenti::save()
 
        updateSubclient();
 
-       tm->submitAll();
+       bool b= tm->submitAll();
 
-   bool b=db.commit();
+  db.commit();
 
-    qDebug()<<tm->query().lastQuery()<<tm->lastError().text();
+    qDebug()<<b;
 
-    tm->select();
+
 
     return b;
 
@@ -318,8 +321,9 @@ void HUtenti::on_rbTrasports_toggled(bool checked)
 
 void HUtenti::on_cbVisible_2_toggled(bool checked)
 {
-
+    Q_UNUSED(checked)
     setFilter();
+    ui->lvUtenti->setCurrentIndex(tm->index(0,0));
 
 }
 
@@ -366,7 +370,7 @@ void HUtenti::print()
     HPrint *f =new HPrint();
 
     int rows=tm->rowCount();
-    int cols=1;
+    //int cols=1;
 
 
 
