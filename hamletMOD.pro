@@ -10,10 +10,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets sql printsupport
 
 TARGET = hamletMOD
 TEMPLATE = app
-CONFIG(release,debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
+CONFIG(release,debug|release)
 
 
 SOURCES += main.cpp\
+    hworksheetmodel.cpp \
         mainwindow.cpp \
     huser.cpp \
     hprodotti.cpp \
@@ -127,6 +128,7 @@ HEADERS  += mainwindow.h \
     hcopycard.h \
     hcomposizionelotto.h \
     hgraphicprint.h \
+    hworksheetmodel.h \
     nouse.h \
     haddlotinproduction.h \
     hdatatopass.h \

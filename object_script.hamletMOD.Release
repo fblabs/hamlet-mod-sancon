@@ -1,4 +1,5 @@
 release/main.o
+release/hworksheetmodel.o
 release/mainwindow.o
 release/huser.o
 release/hprodotti.o
@@ -111,6 +112,7 @@ release/moc_hmodimage.o
 release/moc_hcopycard.o
 release/moc_hcomposizionelotto.o
 release/moc_hgraphicprint.o
+release/moc_hworksheetmodel.o
 release/moc_nouse.o
 release/moc_haddlotinproduction.o
 release/moc_hdatatopass.o

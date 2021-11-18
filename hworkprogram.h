@@ -7,6 +7,7 @@
 #include "hworkprogressmodel.h"
 #include <QDate>
 #include <QHeaderView>
+#include  "hworksheetmodel.h"
 
 namespace Ui {
 class HWorkProgram;
@@ -23,7 +24,7 @@ public:
 private slots:
     void on_pbAdd_clicked();
     bool createSheet(int p_line, QDate p_date);
-    void getSheets();
+    void getSheets(bool create=false);
 
     void on_tvStorico_clicked(const QModelIndex &index);
     void on_pbNewSheet_clicked();
@@ -63,18 +64,22 @@ private slots:
 
     void on_pbReset_clicked();
 
+    void approve(bool checked);
 
+    void on_pbApprova_clicked();
 
-
-
-
+    void on_pbDisapprova_clicked();
 
 private:
     Ui::HWorkProgram *ui;
     HUser* user;
     QSqlDatabase db;
     int id;
+    HWorkSheetModel *wsmod;
     HWorkProgressModel *wpmod;
+
+
+
 
 
 

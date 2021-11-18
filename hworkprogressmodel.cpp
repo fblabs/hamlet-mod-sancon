@@ -50,9 +50,7 @@ QVariant HWorkProgressModel::data( const QModelIndex & item, int role /*= Qt::Di
 {
 
 
-    int row=item.row();
-
-    QVariant value=QSqlRelationalTableModel::data(item);
+  // QVariant value=QSqlRelationalTableModel::data(item);
 
 
 

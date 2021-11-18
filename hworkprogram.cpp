@@ -12,6 +12,7 @@
 #include "hprint.h"
 #include "hworkprogressmodel.h"
 #include "hmodifyrow.h"
+#include "hworksheetmodel.h"
 #include "hprint.h"
 #include <QHeaderView>
 #include <QLocale>
@@ -23,6 +24,7 @@
 #include <QStandardItem>
 
 
+
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HWorkProgram)
@@ -30,7 +32,8 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->setupUi(this);
     user=p_user;
     db=p_db;
-    getSheets();
+
+    getSheets(true);
     ui->deDal->setDate(QDate::currentDate());
     ui->deAl->setDate(QDate::currentDate());
     ui->deAl->setVisible(false);
@@ -96,22 +99,39 @@ db.transaction();
     return b;
 }
 
-void HWorkProgram::getSheets()
+void HWorkProgram::getSheets(bool create)
 {
-    QSqlTableModel *mod=new QSqlTableModel(0,db);
-    mod->setTable("produzione");
-    mod->setSort(1,Qt::DescendingOrder);
-    mod->select();
-    QModelIndex ix=mod->index(0,0);
+  //  QSqlTableModel *mod=new QSqlTableModel(0,db);
+    QModelIndex ix;
+
+   if(create){
+    wsmod=new HWorkSheetModel(0,db);
+    wsmod->setTable("produzione");
+    wsmod->setSort(1,Qt::DescendingOrder);
+    wsmod->select();
+    ui->tvStorico->setModel(wsmod);
+    ix=wsmod->index(0,0);
     ui->tvStorico->setCurrentIndex(ix);
-    ui->tvStorico->setModel(mod);
-
-    if(mod->rowCount()>0)
+   if(wsmod->rowCount()>0)
     {
-        ui->tvStorico->clicked(ui->tvStorico->model()->index(ix.row(),ix.column()));
+           ui->tvStorico->selectRow(0);
+           emit ui->tvStorico->clicked(ui->tvStorico->model()->index(ix.row(),ix.column()));
+           refreshSheet();
 
-    }
-    ui->tvStorico->selectRow(0);
+     }
+
+   }
+   else
+   {
+       ix=ui->tvStorico->currentIndex();
+       wsmod->select();
+       ui->tvStorico->setCurrentIndex(ix);
+       ui->tvStorico->selectRow(ix.row());
+       emit ui->tvStorico->clicked(ui->tvStorico->model()->index(ix.row(),ix.column()));
+       refreshSheet();
+   }
+
+
     ui->tvStorico->setColumnHidden(0,true);
     ui->tvStorico->setColumnHidden(2,true);
     ui->tvStorico->setColumnHidden(4,true);
@@ -122,7 +142,52 @@ void HWorkProgram::getSheets()
         ui->tvGeneral->selectRow(0);
     }
 
-   // QHeaderView *vert=ui->tvGeneral->verticalHeader();
+
+
+
+
+}
+
+void HWorkProgram::approve(bool approve)
+{
+    qDebug()<<"approve";
+    QSqlQuery q(db);
+    QString sql="update produzione set approvato=:approvato where ID=:id";
+
+   if(QMessageBox::question(this,QApplication::applicationName(),"Aggiornare lo stato del foglio selezionato?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+   {
+
+    int id=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
+
+    q.prepare(sql);
+    q.bindValue(":approvato",approve?1:0);
+    q.bindValue(":id",id);
+    if(q.exec())
+    {
+        if(approve)
+        {
+            QMessageBox::information(this,"UPDATE","Foglio lavoro approvato",QMessageBox::Ok);
+            ui->lblCheck->setPixmap(QPixmap(":/Resources/Accept64.png"));
+        }
+        else
+        {
+            QMessageBox::information(this,"UPDATE","Approvazione Foglio lavoro revocata",QMessageBox::Ok);
+            ui->lblCheck->setPixmap(QPixmap(":/Resources/Pause64.png"));
+
+        }
+
+
+    }else{
+        QMessageBox::information(this,"UPDATE","Errore aggiornando il Foglio lavoro\n"+q.lastError().text(),QMessageBox::Ok);
+    }
+   }
+   else
+   {
+        QMessageBox::information(this,"UPDATE","Aggiornamento annullato",QMessageBox::Ok);
+
+   }
+
+   getSheets(false);
 
 
 }
@@ -136,12 +201,32 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
 {
 
     id=ui->tvStorico->model()->index(index.row(),0).data(0).toInt();
+    qDebug()<<id<<ui->tvStorico->model()->index(index.row(),5).data(0).toInt();
     ui->deDal->setDate(ui->tvStorico->model()->index(index.row(),1).data(0).toDate());
     ui->deAl->setDate(ui->tvStorico->model()->index(index.row(),2).data(0).toDate());
     ui->spLinea->setValue(ui->tvStorico->model()->index(index.row(),3).data(0).toInt());
-       /*HWpManager *f=new HWpManager(id,user,db);
-       f->show();*/
+    bool app=ui->tvStorico->model()->index(index.row(),5).data(0).toInt()>0?true:false;
+    ui->pbApprova->setEnabled(!app);
+    ui->pbDisapprova->setEnabled(app);
+    ui->pbPrint->setEnabled(app);
+    if(app)
+    {
+        ui->lblCheck->setPixmap(QPixmap(":/Resources/Accept64.png"));
+    }
+    else
+    {
+       ui->lblCheck->setPixmap(QPixmap(":/Resources/Pause64.png"));
+    }
+
+    ui->pbAdd->setEnabled(!app);
+    ui->pbModify->setEnabled(!app);
+    ui->pbRemove->setEnabled(!app);
+
     refreshSheet();
+
+
+
+
 }
 
 void HWorkProgram::refreshSheet()
@@ -152,6 +237,7 @@ void HWorkProgram::refreshSheet()
     QSqlRelationalDelegate *rdel=new QSqlRelationalDelegate();
     wpmod->setTable("righe_produzione");
     wpmod->setFilter("idproduzione="+QString::number(id));
+
     wpmod->setRelation(1,QSqlRelation("produzione","ID","ID"));
     wpmod->setRelation(6,QSqlRelation("prodotti","ID","descrizione"));
     wpmod->setRelation(9,QSqlRelation("anagrafica","ID","ragione_sociale"));
@@ -655,5 +741,27 @@ void HWorkProgram::search()
 void HWorkProgram::on_pbReset_clicked()
 {
      static_cast<QSqlTableModel*>(ui->tvStorico->model())->setFilter("");
+}
+
+
+
+void HWorkProgram::on_pbApprova_clicked()
+{
+   QModelIndex current=ui->tvStorico->currentIndex();
+   approve(true);
+   getSheets(false);
+   ui->tvStorico->setCurrentIndex(current);
+   ui->tvStorico->selectRow(current.row());
+
+}
+
+
+void HWorkProgram::on_pbDisapprova_clicked()
+{
+    QModelIndex current=ui->tvStorico->currentIndex();
+    approve(false);
+    getSheets(false);
+    ui->tvStorico->setCurrentIndex(current);
+    ui->tvStorico->selectRow(current.row());
 }
 

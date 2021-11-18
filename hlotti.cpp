@@ -71,6 +71,7 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
    ui->twLots->setModel(tbm);
    ui->twLots->setItemDelegate(new QSqlRelationalDelegate(tbm));
    ui->twLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->twLots->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
    ui->twLots->setColumnWidth(11,10);
    ui->twLots->setColumnWidth(13,20);
 
