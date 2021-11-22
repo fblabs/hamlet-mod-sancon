@@ -44,40 +44,36 @@ QVariant HWorkSheetModel::data( const QModelIndex & item, int role /*= Qt::Displ
 
 
 
-   if (item.column()==5)
+   if (item.column()==5 && role==Qt::CheckStateRole)
    {
 
-         /*  if (role==Qt::CheckStateRole)
-           return (QSqlTableModel::data(item).toInt() > 0) ? Qt::Checked :Qt::Unchecked;
-           if (role==Qt::DisplayRole)
-           return QVariant();*/
+         int checked = QSqlTableModel::data(item).toInt();
 
-           if (role == Qt::CheckStateRole)
-               {
-                 int checked = QSqlTableModel::data(item).toInt();
+         if (checked)
+         {
+             return Qt::Checked;
+         }
+         else{
+             return Qt::Unchecked;
 
-                 if (checked)
-                   {
-                     return Qt::Checked;
-                   }
-                 else
-                   {
-                     return Qt::Unchecked;
-                   }
-               }
+         }
+   }
+   else if (item.column()!=5 && role == Qt::DisplayRole)
+   {
+       const QString original = QSqlTableModel::data(item, Qt::DisplayRole).toString();
 
-           if (role == Qt::DisplayRole)
-           {
-                 const QString original = QSqlTableModel::data(item, Qt::DisplayRole).toString();
-                 QString shownText = original;
-                 return shownText;
-           }
+       return original;
 
+   }
+   else{
+        return QSqlTableModel::data(item,role);
    }
 
 
 
-   return QSqlTableModel::data(item,role);
+
+
+  // return QSqlTableModel::data(item,role);
 
 
 
@@ -86,26 +82,22 @@ QVariant HWorkSheetModel::data( const QModelIndex & item, int role /*= Qt::Displ
 bool HWorkSheetModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
 
-
-
-
-
         if (index.column()==5)
         {
 
-
-
             if (role==Qt::CheckStateRole )
-                return (QSqlTableModel::data(index).toInt() > 0) ? Qt::Checked :Qt::Unchecked;
-            if (role==Qt::ItemDataRole::UserRole)
-                return QSqlTableModel::data(index,role).toInt();
+            return (QSqlTableModel::data(index).toInt() > 0) ? Qt::Checked :Qt::Unchecked;
 
+        }
+        else
+        {
+            return QSqlTableModel::setData(index,value,role);
         }
 
 
 
-        QSqlTableModel::setData(index,value,role);
-        return true;
+       return QSqlTableModel::setData(index,value,role);
+
 
 
  }

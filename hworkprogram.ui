@@ -98,7 +98,7 @@
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Pause64.png</normaloff>:/Resources/Pause64.png</iconset>
+         <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
        </property>
       </widget>
      </item>

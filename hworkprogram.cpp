@@ -49,6 +49,8 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
         ui->pbAdd->setEnabled(false);
         ui->pbRemove->setEnabled(false);
         ui->pbModify->setEnabled(false);
+        ui->pbApprova->setEnabled(false);
+        ui->pbDisapprova->setEnabled(false);
 
     }
 
@@ -168,11 +170,15 @@ void HWorkProgram::approve(bool approve)
         {
             QMessageBox::information(this,"UPDATE","Foglio lavoro approvato",QMessageBox::Ok);
             ui->lblCheck->setPixmap(QPixmap(":/Resources/Accept64.png"));
+
+
         }
         else
         {
             QMessageBox::information(this,"UPDATE","Approvazione Foglio lavoro revocata",QMessageBox::Ok);
-            ui->lblCheck->setPixmap(QPixmap(":/Resources/Pause64.png"));
+            ui->lblCheck->setPixmap(QPixmap(":/Resources/Pencil.png"));
+
+
 
         }
 
@@ -215,12 +221,13 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
     }
     else
     {
-       ui->lblCheck->setPixmap(QPixmap(":/Resources/Pause64.png"));
+       ui->lblCheck->setPixmap(QPixmap(":/Resources/Pencil.PNG"));
     }
 
     ui->pbAdd->setEnabled(!app);
     ui->pbModify->setEnabled(!app);
     ui->pbRemove->setEnabled(!app);
+    ui->cbshowrows->setEnabled(!app);
 
     refreshSheet();
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hlotti.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.15.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,9 +10,8 @@
 #define UI_HLOTTI_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
@@ -68,78 +67,78 @@ public:
     void setupUi(QWidget *HLotti)
     {
         if (HLotti->objectName().isEmpty())
-            HLotti->setObjectName(QStringLiteral("HLotti"));
+            HLotti->setObjectName(QString::fromUtf8("HLotti"));
         HLotti->setWindowModality(Qt::WindowModal);
         HLotti->resize(1232, 664);
         QIcon icon;
-        icon.addFile(QStringLiteral(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HLotti->setWindowIcon(icon);
         verticalLayout_3 = new QVBoxLayout(HLotti);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_4 = new QHBoxLayout();
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         label_3 = new QLabel(HLotti);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName(QString::fromUtf8("label_3"));
 
         horizontalLayout_2->addWidget(label_3);
 
         leLottoRaw = new QLineEdit(HLotti);
-        leLottoRaw->setObjectName(QStringLiteral("leLottoRaw"));
+        leLottoRaw->setObjectName(QString::fromUtf8("leLottoRaw"));
         leLottoRaw->setClearButtonEnabled(true);
 
         horizontalLayout_2->addWidget(leLottoRaw);
 
         label_4 = new QLabel(HLotti);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setObjectName(QString::fromUtf8("label_4"));
 
         horizontalLayout_2->addWidget(label_4);
 
         leOperatore = new QLineEdit(HLotti);
-        leOperatore->setObjectName(QStringLiteral("leOperatore"));
+        leOperatore->setObjectName(QString::fromUtf8("leOperatore"));
         leOperatore->setClearButtonEnabled(true);
 
         horizontalLayout_2->addWidget(leOperatore);
 
         chTipoProdotti = new QCheckBox(HLotti);
-        chTipoProdotti->setObjectName(QStringLiteral("chTipoProdotti"));
+        chTipoProdotti->setObjectName(QString::fromUtf8("chTipoProdotti"));
         chTipoProdotti->setMinimumSize(QSize(80, 0));
         chTipoProdotti->setMaximumSize(QSize(16777215, 16777215));
 
         horizontalLayout_2->addWidget(chTipoProdotti);
 
         cbTipoProd = new QComboBox(HLotti);
-        cbTipoProd->setObjectName(QStringLiteral("cbTipoProd"));
+        cbTipoProd->setObjectName(QString::fromUtf8("cbTipoProd"));
         cbTipoProd->setEnabled(false);
 
         horizontalLayout_2->addWidget(cbTipoProd);
 
         chbT = new QCheckBox(HLotti);
-        chbT->setObjectName(QStringLiteral("chbT"));
+        chbT->setObjectName(QString::fromUtf8("chbT"));
         chbT->setMinimumSize(QSize(66, 0));
         chbT->setMaximumSize(QSize(60, 16777215));
 
         horizontalLayout_2->addWidget(chbT);
 
         cbTipiLot = new QComboBox(HLotti);
-        cbTipiLot->setObjectName(QStringLiteral("cbTipiLot"));
+        cbTipiLot->setObjectName(QString::fromUtf8("cbTipiLot"));
         cbTipiLot->setEnabled(false);
 
         horizontalLayout_2->addWidget(cbTipiLot);
 
         chbP = new QCheckBox(HLotti);
-        chbP->setObjectName(QStringLiteral("chbP"));
+        chbP->setObjectName(QString::fromUtf8("chbP"));
         chbP->setMaximumSize(QSize(66, 16777215));
 
         horizontalLayout_2->addWidget(chbP);
 
         cbProdotti = new QComboBox(HLotti);
-        cbProdotti->setObjectName(QStringLiteral("cbProdotti"));
+        cbProdotti->setObjectName(QString::fromUtf8("cbProdotti"));
         cbProdotti->setEnabled(false);
         cbProdotti->setEditable(true);
         cbProdotti->setInsertPolicy(QComboBox::NoInsert);
@@ -150,32 +149,32 @@ public:
         horizontalLayout_4->addLayout(horizontalLayout_2);
 
         chBio = new QCheckBox(HLotti);
-        chBio->setObjectName(QStringLiteral("chBio"));
+        chBio->setObjectName(QString::fromUtf8("chBio"));
 
         horizontalLayout_4->addWidget(chBio);
 
         horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         label = new QLabel(HLotti);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
         label->setMaximumSize(QSize(20, 16777215));
 
         horizontalLayout_3->addWidget(label);
 
         datadal = new QDateEdit(HLotti);
-        datadal->setObjectName(QStringLiteral("datadal"));
+        datadal->setObjectName(QString::fromUtf8("datadal"));
         datadal->setCalendarPopup(true);
 
         horizontalLayout_3->addWidget(datadal);
 
         label_2 = new QLabel(HLotti);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setMaximumSize(QSize(20, 16777215));
 
         horizontalLayout_3->addWidget(label_2);
 
         dataal = new QDateEdit(HLotti);
-        dataal->setObjectName(QStringLiteral("dataal"));
+        dataal->setObjectName(QString::fromUtf8("dataal"));
         dataal->setCalendarPopup(true);
 
         horizontalLayout_3->addWidget(dataal);
@@ -188,9 +187,9 @@ public:
         horizontalLayout_4->addLayout(horizontalLayout_3);
 
         pbRefresh = new QPushButton(HLotti);
-        pbRefresh->setObjectName(QStringLiteral("pbRefresh"));
+        pbRefresh->setObjectName(QString::fromUtf8("pbRefresh"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Counterclockwise-arrow64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString::fromUtf8(":/Resources/Counterclockwise-arrow64.png"), QSize(), QIcon::Normal, QIcon::Off);
         pbRefresh->setIcon(icon1);
 
         horizontalLayout_4->addWidget(pbRefresh);
@@ -199,7 +198,7 @@ public:
         verticalLayout->addLayout(horizontalLayout_4);
 
         twLots = new QTableView(HLotti);
-        twLots->setObjectName(QStringLiteral("twLots"));
+        twLots->setObjectName(QString::fromUtf8("twLots"));
         twLots->setEnabled(true);
         twLots->setFrameShape(QFrame::StyledPanel);
         twLots->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
@@ -210,6 +209,8 @@ public:
         twLots->setSortingEnabled(true);
         twLots->horizontalHeader()->setCascadingSectionResizes(true);
         twLots->verticalHeader()->setVisible(false);
+        twLots->verticalHeader()->setCascadingSectionResizes(true);
+        twLots->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
 
         verticalLayout->addWidget(twLots);
 
@@ -217,72 +218,72 @@ public:
         verticalLayout_2->addLayout(verticalLayout);
 
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         pushButton_7 = new QPushButton(HLotti);
-        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
+        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Wood-4-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QString::fromUtf8(":/Resources/Wood-4-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_7->setIcon(icon2);
         pushButton_7->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_7);
 
         pushButton_4 = new QPushButton(HLotti);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
         QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Actions-configure-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon3.addFile(QString::fromUtf8(":/Resources/Actions-configure-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_4->setIcon(icon3);
         pushButton_4->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_4);
 
         pbDeleteLot = new QPushButton(HLotti);
-        pbDeleteLot->setObjectName(QStringLiteral("pbDeleteLot"));
+        pbDeleteLot->setObjectName(QString::fromUtf8("pbDeleteLot"));
         QIcon icon4;
-        icon4.addFile(QStringLiteral(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon4.addFile(QString::fromUtf8(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pbDeleteLot->setIcon(icon4);
         pbDeleteLot->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbDeleteLot);
 
         pushButton = new QPushButton(HLotti);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
         QIcon icon5;
-        icon5.addFile(QStringLiteral(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon5.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon5);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton);
 
         pbScadenze = new QPushButton(HLotti);
-        pbScadenze->setObjectName(QStringLiteral("pbScadenze"));
+        pbScadenze->setObjectName(QString::fromUtf8("pbScadenze"));
         QIcon icon6;
-        icon6.addFile(QStringLiteral(":/Resources/Calendar.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon6.addFile(QString::fromUtf8(":/Resources/Calendar.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pbScadenze->setIcon(icon6);
         pbScadenze->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbScadenze);
 
         cbPdf = new QCheckBox(HLotti);
-        cbPdf->setObjectName(QStringLiteral("cbPdf"));
+        cbPdf->setObjectName(QString::fromUtf8("cbPdf"));
         cbPdf->setMaximumSize(QSize(100, 16777215));
         cbPdf->setChecked(true);
 
         horizontalLayout->addWidget(cbPdf);
 
         pushButton_6 = new QPushButton(HLotti);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
         QIcon icon7;
-        icon7.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon7.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_6->setIcon(icon7);
         pushButton_6->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_6);
 
         pushButton_3 = new QPushButton(HLotti);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
         QIcon icon8;
-        icon8.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon8.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_3->setIcon(icon8);
         pushButton_3->setIconSize(QSize(32, 32));
 
@@ -302,24 +303,24 @@ public:
 
     void retranslateUi(QWidget *HLotti)
     {
-        HLotti->setWindowTitle(QApplication::translate("HLotti", "Lotti", 0));
-        label_3->setText(QApplication::translate("HLotti", "Lotto:", 0));
-        label_4->setText(QApplication::translate("HLotti", "Operatore:", 0));
-        chTipoProdotti->setText(QApplication::translate("HLotti", "Tipo prodotto:", 0));
-        chbT->setText(QApplication::translate("HLotti", "Tipo lotto:", 0));
-        chbP->setText(QApplication::translate("HLotti", "Prodotto:", 0));
-        chBio->setText(QApplication::translate("HLotti", "Bio", 0));
-        label->setText(QApplication::translate("HLotti", "Dal:", 0));
-        label_2->setText(QApplication::translate("HLotti", "Al:", 0));
-        pbRefresh->setText(QApplication::translate("HLotti", "Aggiorna", 0));
-        pushButton_7->setText(QApplication::translate("HLotti", "Informazioni su lotto", 0));
-        pushButton_4->setText(QApplication::translate("HLotti", "Nuova operazione", 0));
-        pbDeleteLot->setText(QApplication::translate("HLotti", "Elimina Lotto", 0));
-        pushButton->setText(QApplication::translate("HLotti", "Scarico Packages", 0));
-        pbScadenze->setText(QApplication::translate("HLotti", "Scadenze", 0));
-        cbPdf->setText(QApplication::translate("HLotti", "Stampa su pdf", 0));
-        pushButton_6->setText(QApplication::translate("HLotti", "Stampa", 0));
-        pushButton_3->setText(QApplication::translate("HLotti", "Chiudi", 0));
+        HLotti->setWindowTitle(QCoreApplication::translate("HLotti", "Lotti", nullptr));
+        label_3->setText(QCoreApplication::translate("HLotti", "Lotto:", nullptr));
+        label_4->setText(QCoreApplication::translate("HLotti", "Operatore:", nullptr));
+        chTipoProdotti->setText(QCoreApplication::translate("HLotti", "Tipo prodotto:", nullptr));
+        chbT->setText(QCoreApplication::translate("HLotti", "Tipo lotto:", nullptr));
+        chbP->setText(QCoreApplication::translate("HLotti", "Prodotto:", nullptr));
+        chBio->setText(QCoreApplication::translate("HLotti", "Bio", nullptr));
+        label->setText(QCoreApplication::translate("HLotti", "Dal:", nullptr));
+        label_2->setText(QCoreApplication::translate("HLotti", "Al:", nullptr));
+        pbRefresh->setText(QCoreApplication::translate("HLotti", "Aggiorna", nullptr));
+        pushButton_7->setText(QCoreApplication::translate("HLotti", "Informazioni su lotto", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("HLotti", "Nuova operazione", nullptr));
+        pbDeleteLot->setText(QCoreApplication::translate("HLotti", "Elimina Lotto", nullptr));
+        pushButton->setText(QCoreApplication::translate("HLotti", "Scarico Packages", nullptr));
+        pbScadenze->setText(QCoreApplication::translate("HLotti", "Scadenze", nullptr));
+        cbPdf->setText(QCoreApplication::translate("HLotti", "Stampa su pdf", nullptr));
+        pushButton_6->setText(QCoreApplication::translate("HLotti", "Stampa", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("HLotti", "Chiudi", nullptr));
     } // retranslateUi
 
 };

@@ -1,4 +1,5 @@
 debug/main.o
+debug/hworksheetmodel.o
 debug/mainwindow.o
 debug/huser.o
 debug/hprodotti.o
@@ -111,6 +112,7 @@ debug/moc_hmodimage.o
 debug/moc_hcopycard.o
 debug/moc_hcomposizionelotto.o
 debug/moc_hgraphicprint.o
+debug/moc_hworksheetmodel.o
 debug/moc_nouse.o
 debug/moc_haddlotinproduction.o
 debug/moc_hdatatopass.o
