@@ -66,6 +66,10 @@ private slots:
 
     void on_pbC4R_clicked();
 
+
+
+    void on_pbRicingredient_clicked();
+
 private:
     Ui::HModRicette *ui;
     bool update;

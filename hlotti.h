@@ -61,7 +61,7 @@ private slots:
     void printPreview(QPrinter *printer);
     void printPreviewSlot(QString filename=QString());
 
-    void on_leLottoRaw_textChanged(const QString &arg1);
+   // void on_leLottoRaw_textChanged(const QString &arg1);
 
     void on_chTipoProdotti_toggled(bool checked);
 
@@ -99,12 +99,12 @@ private slots:
 
    void on_pbDeleteLot_clicked();
 
-
-
    void on_leOperatore_returnPressed();
 
 
+   void on_leLottoRaw_returnPressed();
 
+   void on_leLottoRaw_textEdited(const QString &arg1);
 
 private:
 

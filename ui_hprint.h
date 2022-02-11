@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hprint.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.15.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,11 +10,9 @@
 #define UI_HPRINT_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
@@ -50,7 +48,7 @@ public:
     void setupUi(QWidget *HPrint)
     {
         if (HPrint->objectName().isEmpty())
-            HPrint->setObjectName(QStringLiteral("HPrint"));
+            HPrint->setObjectName(QString::fromUtf8("HPrint"));
         HPrint->setWindowModality(Qt::WindowModal);
         HPrint->resize(922, 435);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -59,23 +57,23 @@ public:
         sizePolicy.setHeightForWidth(HPrint->sizePolicy().hasHeightForWidth());
         HPrint->setSizePolicy(sizePolicy);
         QIcon icon;
-        icon.addFile(QStringLiteral(":/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HPrint->setWindowIcon(icon);
         verticalLayout_2 = new QVBoxLayout(HPrint);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
         label_3 = new QLabel(HPrint);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setMaximumSize(QSize(100, 16777215));
 
         horizontalLayout_2->addWidget(label_3);
 
         spCharSize = new QSpinBox(HPrint);
-        spCharSize->setObjectName(QStringLiteral("spCharSize"));
+        spCharSize->setObjectName(QString::fromUtf8("spCharSize"));
         spCharSize->setMaximumSize(QSize(50, 16777215));
         spCharSize->setMinimum(5);
         spCharSize->setMaximum(20);
@@ -84,13 +82,13 @@ public:
         horizontalLayout_2->addWidget(spCharSize);
 
         label = new QLabel(HPrint);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
         label->setMaximumSize(QSize(100, 16777215));
 
         horizontalLayout_2->addWidget(label);
 
         sbW = new QSpinBox(HPrint);
-        sbW->setObjectName(QStringLiteral("sbW"));
+        sbW->setObjectName(QString::fromUtf8("sbW"));
         sbW->setMaximumSize(QSize(80, 16777215));
         sbW->setMinimum(100);
         sbW->setMaximum(1000);
@@ -100,14 +98,14 @@ public:
         horizontalLayout_2->addWidget(sbW);
 
         label_2 = new QLabel(HPrint);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setMaximumSize(QSize(100, 16777215));
         label_2->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         horizontalLayout_2->addWidget(label_2);
 
         sbH = new QSpinBox(HPrint);
-        sbH->setObjectName(QStringLiteral("sbH"));
+        sbH->setObjectName(QString::fromUtf8("sbH"));
         sbH->setMaximumSize(QSize(80, 16777215));
         sbH->setMinimum(100);
         sbH->setMaximum(1000);
@@ -117,13 +115,13 @@ public:
         horizontalLayout_2->addWidget(sbH);
 
         rbPortrait = new QRadioButton(HPrint);
-        rbPortrait->setObjectName(QStringLiteral("rbPortrait"));
+        rbPortrait->setObjectName(QString::fromUtf8("rbPortrait"));
         rbPortrait->setChecked(true);
 
         horizontalLayout_2->addWidget(rbPortrait);
 
         rbLandscape = new QRadioButton(HPrint);
-        rbLandscape->setObjectName(QStringLiteral("rbLandscape"));
+        rbLandscape->setObjectName(QString::fromUtf8("rbLandscape"));
 
         horizontalLayout_2->addWidget(rbLandscape);
 
@@ -135,14 +133,13 @@ public:
         verticalLayout->addLayout(horizontalLayout_2);
 
         textEdit = new QTextEdit(HPrint);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setObjectName(QString::fromUtf8("textEdit"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(1);
         sizePolicy1.setVerticalStretch(1);
         sizePolicy1.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
         textEdit->setSizePolicy(sizePolicy1);
         QFont font;
-        font.setFamily(QStringLiteral("Verdana"));
         font.setPointSize(12);
         font.setStyleStrategy(QFont::PreferAntialias);
         textEdit->setFont(font);
@@ -153,20 +150,20 @@ public:
         verticalLayout->addWidget(textEdit);
 
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         pbant = new QPushButton(HPrint);
-        pbant->setObjectName(QStringLiteral("pbant"));
+        pbant->setObjectName(QString::fromUtf8("pbant"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Photocamera.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString::fromUtf8(":/Resources/Photocamera.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pbant->setIcon(icon1);
         pbant->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbant);
 
         pushButton_2 = new QPushButton(HPrint);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_2->setIcon(icon2);
         pushButton_2->setIconSize(QSize(32, 32));
 
@@ -176,9 +173,9 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
         pushButton = new QPushButton(HPrint);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
         QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon3.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon3);
         pushButton->setIconSize(QSize(21, 32));
 
@@ -195,20 +192,20 @@ public:
 
     void retranslateUi(QWidget *HPrint)
     {
-        HPrint->setWindowTitle(QApplication::translate("HPrint", "Stampa", 0));
-        label_3->setText(QApplication::translate("HPrint", "Dimensione Caratteri:", 0));
-        label->setText(QApplication::translate("HPrint", "Larghezza immagine:", 0));
-        label_2->setText(QApplication::translate("HPrint", "Altezza immagine:", 0));
-        rbPortrait->setText(QApplication::translate("HPrint", "Verticale", 0));
-        rbLandscape->setText(QApplication::translate("HPrint", "Orizzontale", 0));
-        textEdit->setHtml(QApplication::translate("HPrint", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+        HPrint->setWindowTitle(QCoreApplication::translate("HPrint", "Stampa", nullptr));
+        label_3->setText(QCoreApplication::translate("HPrint", "Dimensione Caratteri:", nullptr));
+        label->setText(QCoreApplication::translate("HPrint", "Larghezza immagine:", nullptr));
+        label_2->setText(QCoreApplication::translate("HPrint", "Altezza immagine:", nullptr));
+        rbPortrait->setText(QCoreApplication::translate("HPrint", "Verticale", nullptr));
+        rbLandscape->setText(QCoreApplication::translate("HPrint", "Orizzontale", nullptr));
+        textEdit->setHtml(QCoreApplication::translate("HPrint", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Verdana'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8.25pt;\"><br /></p></body></html>", 0));
-        pbant->setText(QApplication::translate("HPrint", "Anteprima di stampa", 0));
-        pushButton_2->setText(QApplication::translate("HPrint", "Stampa", 0));
-        pushButton->setText(QApplication::translate("HPrint", "Chiudi", 0));
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8.25pt;\"><br /></p></body></html>", nullptr));
+        pbant->setText(QCoreApplication::translate("HPrint", "Anteprima di stampa", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("HPrint", "Stampa", nullptr));
+        pushButton->setText(QCoreApplication::translate("HPrint", "Chiudi", nullptr));
     } // retranslateUi
 
 };

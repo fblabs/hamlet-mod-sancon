@@ -6,7 +6,8 @@
 
 QT       += core gui sql printsupport
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets sql printsupport
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets sql
+Qt+=printsupport
 
 TARGET = hamletMOD
 TEMPLATE = app
@@ -14,6 +15,7 @@ CONFIG(release,debug|release)
 
 
 SOURCES += main.cpp\
+    hrecipesforingredient.cpp \
     hworksheetmodel.cpp \
         mainwindow.cpp \
     huser.cpp \
@@ -82,6 +84,7 @@ SOURCES += main.cpp\
     hworkprogram.cpp
 
 HEADERS  += mainwindow.h \
+    hrecipesforingredient.h \
     huser.h \
     hprodotti.h \
     hutenti.h \
@@ -152,6 +155,7 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     hprodotti.ui \
+    hrecipesforingredient.ui \
     hutenti.ui \
     hnewop.ui \
     hsettings.ui \

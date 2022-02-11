@@ -505,8 +505,9 @@ void HNSChede::showContextMenu(const QPoint &pos)
 
 void HNSChede::printPreviewSlot()
 {
-    QPrinter lprinter(QPrinter::HighResolution);
+    QPrinter lprinter;
     lprinter.setPaperSize(QPrinter::A4);
+    lprinter.setPageMargins(5,5,5,5,QPrinter::Millimeter);
     QPrintPreviewDialog *dlg=new QPrintPreviewDialog(&lprinter);
     connect(dlg,SIGNAL(paintRequested(QPrinter*)),this,SLOT(printPreview(QPrinter*)));
     dlg->exec();
@@ -633,7 +634,7 @@ void HNSChede::initCard(int idProdotto, int idCliente)
 {
    QSqlQuery q(db);
    QString sql="INSERT INTO schede_n(prodotto,cliente,scheda) VALUES (:ip,:ic,:cs)";
-   QString scheda="<table align=center width='98%' border=1><tr><th colspan=5><br>SCHEDA: "+ui->cbClienti->currentText()+" - "+ui->cbProdotti->currentText()+"<br></th></tr><tr><td><b>OLIO:</b></td><td colspan=4> &nbsp;</td></tr><tr><td><b>VASO:</b></td><td colspan=4> &nbsp;</td></tr><tr><td><b>TAPPO:</b></td><td colspan=4>&nbsp;</td></tr><tr><td><b>ETICHETTE:</b></td><td colspan=4></td></tr><tr><td><b>SCATOLE:</b></td><td colspan=4></td></tr><tr><td><b>NOTE:</b></td><td colspan=4></td></tr><tr><td align=left>&nbsp;</td><td align=center colspan=4></td></tr></table>";
+   QString scheda="<table align=center width='100%' border=1><tr><th colspan=5><br>SCHEDA: "+ui->cbClienti->currentText()+" - "+ui->cbProdotti->currentText()+"<br></th></tr><tr><td><b>OLIO:</b></td><td colspan=4> &nbsp;</td></tr><tr><td><b>VASO:</b></td><td colspan=4> &nbsp;</td></tr><tr><td><b>TAPPO:</b></td><td colspan=4>&nbsp;</td></tr><tr><td><b>ETICHETTE:</b></td><td colspan=4></td></tr><tr><td><b>SCATOLE:</b></td><td colspan=4></td></tr><tr><td><b>NOTE:</b></td><td colspan=4></td></tr><tr><td align=left>&nbsp;</td><td align=center colspan=4></td></tr></table>";
 
 
    q.prepare(sql);

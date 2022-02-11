@@ -177,10 +177,8 @@ public:
         label_4 = new QLabel(centralWidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         QFont font;
-        font.setFamily(QString::fromUtf8("Courier New"));
         font.setPointSize(36);
         font.setBold(true);
-        font.setWeight(75);
         font.setStyleStrategy(QFont::PreferAntialias);
         label_4->setFont(font);
         label_4->setScaledContents(false);
@@ -811,28 +809,22 @@ public:
         palette26.setBrush(QPalette::Active, QPalette::Button, brush11);
         palette26.setBrush(QPalette::Active, QPalette::Text, brush6);
         palette26.setBrush(QPalette::Active, QPalette::ButtonText, brush6);
-        QBrush brush21(QColor(0, 0, 0, 128));
-        brush21.setStyle(Qt::NoBrush);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette26.setBrush(QPalette::Active, QPalette::PlaceholderText, brush21);
+        palette26.setBrush(QPalette::Active, QPalette::PlaceholderText, brush6);
 #endif
         palette26.setBrush(QPalette::Inactive, QPalette::WindowText, brush6);
         palette26.setBrush(QPalette::Inactive, QPalette::Button, brush11);
         palette26.setBrush(QPalette::Inactive, QPalette::Text, brush6);
         palette26.setBrush(QPalette::Inactive, QPalette::ButtonText, brush6);
-        QBrush brush22(QColor(0, 0, 0, 128));
-        brush22.setStyle(Qt::NoBrush);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette26.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush22);
+        palette26.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush6);
 #endif
         palette26.setBrush(QPalette::Disabled, QPalette::WindowText, brush6);
         palette26.setBrush(QPalette::Disabled, QPalette::Button, brush11);
         palette26.setBrush(QPalette::Disabled, QPalette::Text, brush6);
         palette26.setBrush(QPalette::Disabled, QPalette::ButtonText, brush6);
-        QBrush brush23(QColor(0, 0, 0, 128));
-        brush23.setStyle(Qt::NoBrush);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette26.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush23);
+        palette26.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush6);
 #endif
         tbSettings->setPalette(palette26);
         tbSettings->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
@@ -875,9 +867,9 @@ public:
         pbProgrammazione->setEnabled(false);
         QPalette palette28;
         palette28.setBrush(QPalette::Active, QPalette::WindowText, brush6);
-        QBrush brush24(QColor(200, 190, 194, 255));
-        brush24.setStyle(Qt::SolidPattern);
-        palette28.setBrush(QPalette::Active, QPalette::Button, brush24);
+        QBrush brush21(QColor(200, 190, 194, 255));
+        brush21.setStyle(Qt::SolidPattern);
+        palette28.setBrush(QPalette::Active, QPalette::Button, brush21);
         palette28.setBrush(QPalette::Active, QPalette::Light, brush6);
         palette28.setBrush(QPalette::Active, QPalette::Midlight, brush6);
         palette28.setBrush(QPalette::Active, QPalette::Dark, brush6);
@@ -891,13 +883,13 @@ public:
         palette28.setBrush(QPalette::Active, QPalette::AlternateBase, brush6);
         palette28.setBrush(QPalette::Active, QPalette::ToolTipBase, brush7);
         palette28.setBrush(QPalette::Active, QPalette::ToolTipText, brush6);
-        QBrush brush25(QColor(255, 255, 255, 128));
-        brush25.setStyle(Qt::NoBrush);
+        QBrush brush22(QColor(255, 255, 255, 128));
+        brush22.setStyle(Qt::NoBrush);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette28.setBrush(QPalette::Active, QPalette::PlaceholderText, brush25);
+        palette28.setBrush(QPalette::Active, QPalette::PlaceholderText, brush22);
 #endif
         palette28.setBrush(QPalette::Inactive, QPalette::WindowText, brush6);
-        palette28.setBrush(QPalette::Inactive, QPalette::Button, brush24);
+        palette28.setBrush(QPalette::Inactive, QPalette::Button, brush21);
         palette28.setBrush(QPalette::Inactive, QPalette::Light, brush6);
         palette28.setBrush(QPalette::Inactive, QPalette::Midlight, brush6);
         palette28.setBrush(QPalette::Inactive, QPalette::Dark, brush6);
@@ -911,13 +903,13 @@ public:
         palette28.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush6);
         palette28.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush7);
         palette28.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush6);
-        QBrush brush26(QColor(255, 255, 255, 128));
-        brush26.setStyle(Qt::NoBrush);
+        QBrush brush23(QColor(255, 255, 255, 128));
+        brush23.setStyle(Qt::NoBrush);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette28.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush26);
+        palette28.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush23);
 #endif
         palette28.setBrush(QPalette::Disabled, QPalette::WindowText, brush6);
-        palette28.setBrush(QPalette::Disabled, QPalette::Button, brush24);
+        palette28.setBrush(QPalette::Disabled, QPalette::Button, brush21);
         palette28.setBrush(QPalette::Disabled, QPalette::Light, brush6);
         palette28.setBrush(QPalette::Disabled, QPalette::Midlight, brush6);
         palette28.setBrush(QPalette::Disabled, QPalette::Dark, brush6);
@@ -931,10 +923,10 @@ public:
         palette28.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush6);
         palette28.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush7);
         palette28.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush6);
-        QBrush brush27(QColor(255, 255, 255, 128));
-        brush27.setStyle(Qt::NoBrush);
+        QBrush brush24(QColor(255, 255, 255, 128));
+        brush24.setStyle(Qt::NoBrush);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette28.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush27);
+        palette28.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush24);
 #endif
         pbProgrammazione->setPalette(palette28);
         QIcon icon26;
@@ -979,7 +971,7 @@ public:
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.9 (64bit)</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 2.9.8.8</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2021</span></p><p><a href=\"\357\277\274\357\277\274https://github.com/fblabs/hamlet-mod-sancon\"><span style=\" font-size:10pt; font-weight:600; text-decoration: underline; color:#aaffff;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.9 (64bit)</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 2.9.8.13</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2022</span></p><p><a href=\"\357\277\274\357\277\274https://github.com/fblabs/hamlet-mod-sancon\"><span style=\" font-size:10pt; font-weight:600; text-decoration: underline; color:#aaffff;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
         tbModificaLotti->setText(QCoreApplication::translate("MainWindow", "Modifica lotti", nullptr));
         pBNewOperation->setText(QCoreApplication::translate("MainWindow", "Nuova Operazione \n"
 "(F6)", nullptr));

@@ -502,9 +502,7 @@
      <widget class="QLabel" name="label_4">
       <property name="font">
        <font>
-        <family>Courier New</family>
         <pointsize>36</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
         <stylestrategy>PreferAntialias</stylestrategy>
        </font>
@@ -575,7 +573,7 @@
          <enum>QFrame::NoFrame</enum>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Hamlet Mod 2.9 (64bit)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Versione: 2.9.8.8&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza:LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.15.2 - MinGW 64&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;© FBLABS 2015-2021&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;￼￼https://github.com/fblabs/hamlet-mod-sancon&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; text-decoration: underline; color:#aaffff;&quot;&gt;Sorgenti (github)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Hamlet Mod 2.9 (64bit)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Versione: 2.9.8.13&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza:LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.15.2 - MinGW 64&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;© FBLABS 2015-2022&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;￼￼https://github.com/fblabs/hamlet-mod-sancon&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; text-decoration: underline; color:#aaffff;&quot;&gt;Sorgenti (github)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -3461,8 +3459,8 @@
               </brush>
              </colorrole>
              <colorrole role="PlaceholderText">
-              <brush brushstyle="NoBrush">
-               <color alpha="128">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
                 <red>0</red>
                 <green>0</green>
                 <blue>0</blue>
@@ -3508,8 +3506,8 @@
               </brush>
              </colorrole>
              <colorrole role="PlaceholderText">
-              <brush brushstyle="NoBrush">
-               <color alpha="128">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
                 <red>0</red>
                 <green>0</green>
                 <blue>0</blue>
@@ -3555,8 +3553,8 @@
               </brush>
              </colorrole>
              <colorrole role="PlaceholderText">
-              <brush brushstyle="NoBrush">
-               <color alpha="128">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
                 <red>0</red>
                 <green>0</green>
                 <blue>0</blue>

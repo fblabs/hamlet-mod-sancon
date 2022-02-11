@@ -17,7 +17,8 @@
 #include "hclientiassociati.h"
 #include <QShortcut>
 #include <QDebug>
-#include <hrecipesforclient.h>
+#include "hrecipesforclient.h"
+#include "hrecipesforingredient.h"
 
 HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
@@ -747,3 +748,18 @@ void HModRicette::on_pbC4R_clicked()
     HRecipesForClient *f=new HRecipesForClient(db,idricetta);
     f->show();
 }
+
+
+
+
+
+
+
+void HModRicette::on_pbRicingredient_clicked()
+{
+    HRecipesForIngredient* f=new HRecipesForIngredient(user,db);
+
+    f->show();
+
+}
+

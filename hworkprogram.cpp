@@ -22,6 +22,7 @@
 #include <QStandardItemModel>
 #include <QFileDialog>
 #include <QStandardItem>
+#include <QDesktopServices>
 
 
 
@@ -91,7 +92,7 @@ db.transaction();
     {
         db.commit();
         QMessageBox::information(this,QApplication::applicationName(),"Foglio creato",QMessageBox::Ok);
-        qDebug()<<datedal<<dateal<<q.lastQuery();
+
     }else{
         db.rollback();
         QMessageBox::warning(this,QApplication::applicationName(),"Errore query:"+q.lastError().text(),QMessageBox::Ok);
@@ -228,6 +229,17 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
     ui->pbModify->setEnabled(!app);
     ui->pbRemove->setEnabled(!app);
     ui->cbshowrows->setEnabled(!app);
+
+    if(!user->getCanUpdate())
+    {
+        ui->pbAdd->setEnabled(false);
+        ui->pbModify->setEnabled(false);
+        ui->pbRemove->setEnabled(false);
+        ui->cbshowrows->setEnabled(false);
+        ui->pbApprova->setEnabled(false);
+        ui->pbDisapprova->setEnabled(false);
+
+    }
 
     refreshSheet();
 
@@ -393,7 +405,7 @@ void HWorkProgram::on_pbRemove_clicked()
 
 void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
 {
-  if (!ui->cbshowrows->isChecked()) showModRow();
+  if (!ui->cbshowrows->isChecked() && user->getCanUpdate()) showModRow();
 }
 
 void HWorkProgram::on_pbModify_clicked()
@@ -538,6 +550,7 @@ void HWorkProgram::print(bool pdf)
         printer.setOutputFileName(filename);
 
         document->print(&printer);
+        QDesktopServices::openUrl(QUrl(filename));
 
         delete document;
 

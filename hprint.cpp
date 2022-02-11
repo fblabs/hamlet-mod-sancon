@@ -17,6 +17,7 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QTableView>
+#include <QPrintDialog>
 
 HPrint::HPrint(QWidget *parent, bool altColors) :
     QWidget(parent),
@@ -26,13 +27,13 @@ HPrint::HPrint(QWidget *parent, bool altColors) :
 
     printer=new QPrinter();
     ui->spCharSize->setValue(10);
-
+    doc=ui->textEdit->document();
     QTextCursor cursor=ui->textEdit->textCursor();
     ui->textEdit->selectAll();
     ui->textEdit->setFontPointSize(ui->spCharSize->value());
     ui->textEdit->setTextCursor( cursor);
-    doc=ui->textEdit->document();
-    ui->textEdit->setDocument(doc);
+
+   // ui->textEdit->setDocument(doc);
     ui->textEdit->installEventFilter(this);
     alternateBackgroundColor=altColors;
 
@@ -242,7 +243,7 @@ void HPrint::append(QString text, bool bold)
 void HPrint::on_pushButton_2_clicked()
 {
 
-   // QPrintDialog *dlg=new QPrintDialog(printer);
+
     printer->setPageSize(QPrinter::A4);
     printer->setPageMargins(0,0,0,0,QPrinter::Millimeter);
 

@@ -22,19 +22,23 @@ public:
     explicit HProdottiNew(HUser *puser=0,QSqlDatabase pdb=QSqlDatabase(),QWidget *parent=0);
     ~HProdottiNew();
 private slots:
-    void on_radioButton_toggled(bool checked);
+    void on_rbAll_toggled(bool checked);
 
-    void on_radioButton_2_toggled(bool checked);
+    void on_rbMaterie_toggled(bool checked);
 
-    void on_radioButton_3_toggled(bool checked);
+    void on_rbProdotti_toggled(bool checked);
 
-    void on_radioButton_4_toggled(bool checked);
+    void on_rbContenitori_toggled(bool checked);
 
-    void on_radioButton_5_toggled(bool checked);
+    void on_rbTappi_toggled(bool checked);
 
-    void on_radioButton_6_toggled(bool checked);
+    void on_rbVasi_toggled(bool checked);
+
+    void on_rbBio_toggled(bool checked);
 
     void save();
+
+    void print(bool pdf=false);
 
     void reloadProduct();
 
@@ -51,11 +55,15 @@ private slots:
 
 
 
-    void on_rbBio_toggled(bool checked);
+
 
     void on_tvProdotti_doubleClicked(const QModelIndex &index);
 
     void on_pbMod_clicked();
+
+    void on_pbPrint_clicked();
+
+
 
 private:
     Ui::HProdottiNew *ui;

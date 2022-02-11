@@ -1,13 +1,13 @@
 #include "hlotti.h"
 #include "ui_hlotti.h"
- #include <QDebug>
+// #include <QDebug>
 #include <QDate>
 #include <QSqlError>
-#include <QSqlquery>
+#include <QSqlQuery>
 #include <QSqlRelationalDelegate>
 #include <QMessageBox>
 #include <QPainter>
-#include <QsqlTableModel>
+#include <QSqlTableModel>
 #include "hnewop.h"
 #include "hmodifylot.h"
 #include "hreadonlymodellots.h"
@@ -25,6 +25,7 @@
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
 #include <QPainter>
+#include <QTextStream>
 
 
 HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
@@ -48,6 +49,16 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
 
    tbm->setTable("lotdef");
 
+
+
+   tbm->setRelation(2,QSqlRelation("prodotti","ID","descrizione"));
+   tbm->setRelation(5,QSqlRelation("unita_di_misura","ID","descrizione"));
+   tbm->setRelation(7,QSqlRelation("anagrafica","ID","ragione_sociale"));
+   tbm->setRelation(10,QSqlRelation("tipi_lot","ID","descrizione"));
+   tbm->setSort(3,Qt::DescendingOrder);
+
+  /* tbm->setFilter("lotdef.attivo>0");*/
+
    tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
    tbm->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
    tbm->setHeaderData(2,Qt::Horizontal,QObject::tr("Prodotto"));
@@ -60,18 +71,10 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
    tbm->setHeaderData(9,Qt::Horizontal,QObject::tr("Lotto di Uscita"));
    tbm->setHeaderData(10,Qt::Horizontal,QObject::tr("Tipologia Lotto"));
 
-   tbm->setRelation(2,QSqlRelation("prodotti","ID","descrizione"));
-   tbm->setRelation(5,QSqlRelation("unita_di_misura","ID","descrizione"));
-   tbm->setRelation(7,QSqlRelation("anagrafica","ID","ragione_sociale"));
-   tbm->setRelation(10,QSqlRelation("tipi_lot","ID","descrizione"));
-   tbm->setSort(3,Qt::DescendingOrder);
-   tbm->select();
-   tbm->setFilter("lotdef.attivo>0");
-
    ui->twLots->setModel(tbm);
    ui->twLots->setItemDelegate(new QSqlRelationalDelegate(tbm));
    ui->twLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->twLots->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+   ui->twLots->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
    ui->twLots->setColumnWidth(11,10);
    ui->twLots->setColumnWidth(13,20);
 
@@ -80,9 +83,9 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
    ui->pushButton_7->setEnabled(false);
 
 
-   ui->datadal->setDate(QDate::currentDate().addMonths(-1));
+   ui->datadal->setDate(QDate::currentDate().addDays(-1));
    ui->dataal->setDate(QDate::currentDate());
-   dal=ui->datadal->date();
+   dal=ui->datadal->date().addDays(-1);
    al=ui->dataal->date();
 
 
@@ -101,6 +104,7 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
     dateset=true;
 
     setFilter();
+    tbm->select();
     QApplication::setOverrideCursor(Qt::ArrowCursor);
 
 }
@@ -203,7 +207,7 @@ void HLotti::printPreviewSlot(QString filename)
     lprinter.setPaperSize(QPrinter::A4);
     lprinter.setOrientation(QPrinter::Landscape);
     lprinter.setOutputFormat(QPrinter::PdfFormat);
-    qDebug()<<filename;
+    //qDebug()<<filename;
     lprinter.setOutputFileName(filename);
 
     QPrintPreviewDialog *dlg=new QPrintPreviewDialog(&lprinter);
@@ -269,10 +273,10 @@ void HLotti::setFilter()
 {
     QString tipo,prodotto,filter;
 
-       if(!tbm) qDebug()<<"no tbm";
+      /* if(!tbm) qDebug()<<"no tbm";
        if(!mTipi)qDebug()<<"noprodotti";
 
-       if(!mProdotti)qDebug()<<"noprodotti";
+       if(!mProdotti)qDebug()<<"noprodotti";*/
 
 
        filter="";
@@ -325,7 +329,7 @@ void HLotti::setFilter()
 
 
 
-   qDebug()<<"DATAFILTER: "<<filter;
+   //qDebug()<<"DATAFILTER: "<<filter;
 
    tbm->setFilter(filter);
 
@@ -357,15 +361,15 @@ void HLotti::print(bool pdf=false)
         QString strStream;
         QString filename;
 
-         qDebug()<<"filename="<<filename;
+        // qDebug()<<"filename="<<filename;
         filename= QFileDialog::getOpenFileName(this,"Scegli il nome del file",QString(),"Pdf (*.pdf)");
 
         if (filename.isEmpty() && filename.isNull()){
-            qDebug()<<"annullato";
+          //  qDebug()<<"annullato";
             return;
         }
 
-        qDebug()<<"filename="<<filename;
+   //     qDebug()<<"filename="<<filename;
 
 
 
@@ -377,7 +381,7 @@ void HLotti::print(bool pdf=false)
 
         QString title="Lotti dal "+ui->datadal->date().toString("dd-MM-yyyy")+" al "+ ui->dataal->date().toString("dd-MM-yyyy");
 
-        qDebug()<<filename;
+     //   qDebug()<<filename;
 
         out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
 
@@ -468,7 +472,7 @@ void HLotti::print(bool pdf=false)
 void HLotti::updateTableView()
 {
     if(tbm) tbm->select();
-    qDebug()<<"update";
+    //qDebug()<<"update";
 }
 
 void HLotti::modifySelected(int pidlotto)
@@ -488,12 +492,13 @@ void HLotti::on_pushButton_7_clicked()
 
 }
 
-void HLotti::on_leLottoRaw_textChanged(const QString &arg1)
+/*void HLotti::on_leLottoRaw_textChanged(const QString &arg1)
 {
-    QString filter="lotdef.lot like '" +arg1+"%'";
-    tbm->setFilter(filter);
-   // // qDebug()<<tbm->query().lastError().text();
-}
+    if(arg1.length()==0){
+      tbm->setFilter(filter);
+    }
+
+}*/
 
 
 
@@ -695,7 +700,7 @@ void HLotti::deleteSelectedLot()
     q.next();
     bool ok=false;
     int cnt=q.value(0).toInt(&ok);
-    qDebug()<<cnt;
+ //   qDebug()<<cnt;
     if(cnt>1)
     {
        if(QMessageBox::warning(this,QApplication::applicationName(),"Attenzione, il lotto è già stato movimentato. Impossibile cancellare",QMessageBox::Ok)==QMessageBox::Ok)
@@ -708,18 +713,18 @@ void HLotti::deleteSelectedLot()
     {
         bool ba=false;
         db.transaction();
-qDebug()<<"transazione";
+//qDebug()<<"transazione";
 
         sql="delete FROM operazioni WHERE idlotto=:idlot";
         q.prepare(sql);
         q.bindValue(":idlot",QVariant(idlotto));
 
         ba=q.exec();
-qDebug()<<q.lastQuery()<<q.lastError().text()<<q.boundValue(0).toString();
+//qDebug()<<q.lastQuery()<<q.lastError().text()<<q.boundValue(0).toString();
         q.next();
         if(!ba)
         {
-qDebug()<<q.lastError().text();
+//qDebug()<<q.lastError().text();
             db.rollback();
             tbm->select();
             QMessageBox::warning(this,QApplication::applicationName(),"Attenzione,impossibile cancellare il lotto in quanto già utilizzato",QMessageBox::Ok);
@@ -790,7 +795,29 @@ void HLotti::on_leOperatore_returnPressed()
 
 void HLotti::resetFilter(QString prevFilter)
 {
-    qDebug()<<prevFilter;
+//    qDebug()<<prevFilter;
     if(ui->leOperatore->text().length()<1)
     tbm->setFilter(prevFilter);
 }
+
+
+
+
+void HLotti::on_leLottoRaw_returnPressed()
+{
+    QString localfilter=QString();
+
+    if(ui->leLottoRaw->text().length()>0){
+    localfilter="lotdef.lot like '" +ui->leLottoRaw->text()+"%'";
+    tbm->setFilter(localfilter);
+    }/*else{
+        setFilter();
+    }*/
+}
+
+
+void HLotti::on_leLottoRaw_textEdited(const QString &arg1)
+{
+    setFilter();
+}
+

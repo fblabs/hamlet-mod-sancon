@@ -34,6 +34,8 @@ public:
    void loadImage();
    QTextEdit *getViewport();
    QTextCursor getCursor();
+   QTextDocument* doc;
+
    void resizeImage(int wr,int hr);
    void toggleImageUI(bool visible);
    void setHtml(QString html);
@@ -90,8 +92,7 @@ private:
     Ui::HPrint *ui;
     QSqlDatabase db;
     QString sConn;
-    QTextDocument *doc;
-    QTextCursor cur;
+    QTextCursor cursor;
     QPrinter *printer;
     QImage *imgobj;
     QPixmap img;

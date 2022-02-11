@@ -12,6 +12,8 @@
 #include <QSqlError>
 #include "hmodproduct.h"
 #include <QMessageBox>
+#include "hprint.h"
+#include <QFileDialog>
 
 HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
@@ -55,6 +57,7 @@ HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
 
     ui->tvProdotti->setModel(tmProdotti);
 
+    ui->tvProdotti->setColumnHidden(0,true);
     ui->tvProdotti->horizontalHeader()->stretchLastSection();
   //  ui->tvProdotti->horizontalHeader()->res
     ui->tvProdotti->resizeColumnsToContents();
@@ -89,7 +92,7 @@ void HProdottiNew::reloadProduct()
     tmProdotti->select();
 }
 
-void HProdottiNew::on_radioButton_toggled(bool checked)
+void HProdottiNew::on_rbAll_toggled(bool checked)
 {
     if (checked)
     {
@@ -97,7 +100,7 @@ void HProdottiNew::on_radioButton_toggled(bool checked)
     }
 }
 
-void HProdottiNew::on_radioButton_2_toggled(bool checked)
+void HProdottiNew::on_rbMaterie_toggled(bool checked)
 {
     if (checked)
     {
@@ -108,7 +111,7 @@ void HProdottiNew::on_radioButton_2_toggled(bool checked)
 
 }
 
-void HProdottiNew::on_radioButton_3_toggled(bool checked)
+void HProdottiNew::on_rbProdotti_toggled(bool checked)
 {
     if (checked)
     {
@@ -117,7 +120,7 @@ void HProdottiNew::on_radioButton_3_toggled(bool checked)
 }
 
 
-void HProdottiNew::on_radioButton_4_toggled(bool checked)
+void HProdottiNew::on_rbContenitori_toggled(bool checked)
 {
     if (checked)
     {
@@ -127,7 +130,9 @@ void HProdottiNew::on_radioButton_4_toggled(bool checked)
 
 
 
-void HProdottiNew::on_radioButton_5_toggled(bool checked)
+
+
+void HProdottiNew::on_rbTappi_toggled(bool checked)
 {
     if (checked)
     {
@@ -135,14 +140,23 @@ void HProdottiNew::on_radioButton_5_toggled(bool checked)
     }
 }
 
-
-
-void HProdottiNew::on_radioButton_6_toggled(bool checked)
+void HProdottiNew::on_rbVasi_toggled(bool checked)
 {
     if (checked)
     {
         tmProdotti->setFilter("tipo=5");
     }
+}
+
+
+
+void HProdottiNew::on_rbBio_toggled(bool checked)
+{
+    if (checked)
+    {
+        tmProdotti->setFilter("bio>0");
+    }
+
 }
 
 void HProdottiNew::save()
@@ -154,6 +168,149 @@ void HProdottiNew::save()
     }
 
     tmProdotti->select();
+}
+
+void HProdottiNew::print(bool pdf)
+{
+    if (pdf)
+    {
+
+        QString strStream;
+        QString filename=QFileDialog::getSaveFileName(0,"Scegli nome del file",QString(),"Pdf (*.pdf)");
+        if(filename.isEmpty() || filename.isNull())
+        {
+            qDebug()<<filename<<"cancellato";
+            return;
+        }
+
+        QApplication::setOverrideCursor(Qt::WaitCursor);
+        QTextStream out(&strStream);
+        QString bgcol=QString();
+        QString title=QString();
+       // int linea=ui->spLinea->value();
+
+        const int rowCount = ui->tvProdotti->model()->rowCount();
+        const int columnCount = ui->tvProdotti->model()->columnCount();
+        title ="STAMPA ANAGRAFICA PRODOTTI";
+
+        out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
+
+        // headers
+        QStringList coltit=QStringList();
+        coltit <<"ID"<<"DESCRIZIONE"<<"TIPO"<< "ALLERGENE"<<"ATTIVO"<<"BIO"<<"PREZZO";
+
+
+       out << "<thead><tr bgcolor='#5cabff'><th colspan='6'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
+
+
+        for (int column = 0 ; column < columnCount; column++)
+        {
+
+
+                if (!ui->tvProdotti->isColumnHidden(column))
+                {
+
+                out << QString("<th>%1</th>").arg(coltit.at(column));
+                }
+
+        }
+
+         out << "</tr></th></thead>\n";
+
+        // data table
+        for (int row = 0; row < rowCount; row++) {
+             qDebug()<<row;
+            out << "<tr>";
+            if(row%2)
+            {
+                bgcol="lightgreen";
+            }
+            else
+            {
+                bgcol="white";
+            }
+            for (int column = 0; column < columnCount; column++) {
+                if (!ui->tvProdotti->isColumnHidden(column)) {
+                    QString data = ui->tvProdotti->model()->index(row, column).data().toString().simplified();
+
+                    if (column>=3 && column<=5)
+                    {
+
+                          out << QString("<td bgcolor='"+bgcol+"' align='center'>%1</td>").arg((ui->tvProdotti->model()->index(row,column).data(Qt::CheckStateRole)==Qt::Checked)? QString("[X]") : QString("&nbsp;"));
+
+                    }
+                    else
+                    {
+                        out << QString("<td bgcolor='"+bgcol+"'>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                    }
+                }
+            }
+            out << "</tr>\n";
+        }
+        out <<  "</table>\n"
+            "</body>\n"
+            "</html>\n";
+
+
+        QTextDocument *document = new QTextDocument();
+        document->setHtml(strStream);
+
+
+        QPrinter printer;
+        printer.setOrientation(QPrinter::Landscape);
+        printer.setOutputFormat(QPrinter::PdfFormat);
+        printer.setPaperSize(QPrinter::A4);
+        printer.setOutputFileName(filename);
+
+        document->print(&printer);
+
+        delete document;
+    }
+    else
+    {
+
+    HPrint *f =new HPrint();
+
+
+
+    int rows=ui->tvProdotti->model()->rowCount();
+    int cols=ui->tvProdotti->model()->columnCount();
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    f->append("STAMPA ANAGRAFICA PRODOTTI",true);
+    f->toggleImageUI(false);
+
+    QTextTable *tb=f->addTable(rows,cols,QTextTableFormat());
+    QString txt;
+
+   int r,c;
+
+   f->showMaximized();
+
+
+
+    for (r=0;r<rows;r++)
+    {
+
+
+        for (c=0; c<cols; c++)
+        {
+            txt=ui->tvProdotti->model()->index(r,c).data(0).toString();
+            f->writeTableContent(tb,r,c,QTextCharFormat(),txt);
+            QApplication::processEvents();
+
+        }
+    //  QApplication::processEvents();
+
+    }
+
+
+
+    }
+
+     QApplication::setOverrideCursor(Qt::ArrowCursor);
+
 }
 
 
@@ -221,17 +378,6 @@ void HProdottiNew::on_lineEdit_textChanged(const QString &arg1)
 }
 
 
-
-
-
-void HProdottiNew::on_rbBio_toggled(bool checked)
-{
-    if (checked)
-    {
-        tmProdotti->setFilter("bio>0");
-    }
-}
-
 void HProdottiNew::on_tvProdotti_doubleClicked(const QModelIndex &index)
 {
     //modifica il prodotto
@@ -259,3 +405,19 @@ void HProdottiNew::on_pbMod_clicked()
         QMessageBox::information(this,QApplication::applicationName(),"Selezionare un prodotto",QMessageBox::Ok);
     }
 }
+
+void HProdottiNew::on_pbPrint_clicked()
+{
+   bool pdf = ui->cbPdf->isChecked();
+
+   print(pdf);
+
+}
+
+
+
+
+
+
+
+

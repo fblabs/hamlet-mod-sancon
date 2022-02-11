@@ -1,4 +1,5 @@
 release/main.o
+release/hrecipesforingredient.o
 release/hworksheetmodel.o
 release/mainwindow.o
 release/huser.o
@@ -67,6 +68,7 @@ release/hnewsheet.o
 release/hworkprogram.o
 release/qrc_icons.o
 release/moc_mainwindow.o
+release/moc_hrecipesforingredient.o
 release/moc_huser.o
 release/moc_hprodotti.o
 release/moc_hutenti.o

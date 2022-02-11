@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hprodottinew.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.15.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,9 +10,8 @@
 #define UI_HPRODOTTINEW_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
@@ -33,12 +32,12 @@ public:
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
-    QRadioButton *radioButton;
-    QRadioButton *radioButton_2;
-    QRadioButton *radioButton_3;
-    QRadioButton *radioButton_4;
-    QRadioButton *radioButton_5;
-    QRadioButton *radioButton_6;
+    QRadioButton *rbAll;
+    QRadioButton *rbMaterie;
+    QRadioButton *rbProdotti;
+    QRadioButton *rbContenitori;
+    QRadioButton *rbTappi;
+    QRadioButton *rbVasi;
     QRadioButton *rbBio;
     QCheckBox *checkBox;
     QTableView *tvProdotti;
@@ -48,61 +47,63 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QPushButton *pbMod;
+    QCheckBox *cbPdf;
+    QPushButton *pbPrint;
     QPushButton *pushButton_2;
 
     void setupUi(QWidget *HProdottiNew)
     {
         if (HProdottiNew->objectName().isEmpty())
-            HProdottiNew->setObjectName(QStringLiteral("HProdottiNew"));
+            HProdottiNew->setObjectName(QString::fromUtf8("HProdottiNew"));
         HProdottiNew->setWindowModality(Qt::ApplicationModal);
         HProdottiNew->resize(1291, 553);
         QIcon icon;
-        icon.addFile(QStringLiteral(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HProdottiNew->setWindowIcon(icon);
         verticalLayout_2 = new QVBoxLayout(HProdottiNew);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        radioButton = new QRadioButton(HProdottiNew);
-        radioButton->setObjectName(QStringLiteral("radioButton"));
-        radioButton->setChecked(true);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        rbAll = new QRadioButton(HProdottiNew);
+        rbAll->setObjectName(QString::fromUtf8("rbAll"));
+        rbAll->setChecked(true);
 
-        horizontalLayout->addWidget(radioButton);
+        horizontalLayout->addWidget(rbAll);
 
-        radioButton_2 = new QRadioButton(HProdottiNew);
-        radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
+        rbMaterie = new QRadioButton(HProdottiNew);
+        rbMaterie->setObjectName(QString::fromUtf8("rbMaterie"));
 
-        horizontalLayout->addWidget(radioButton_2);
+        horizontalLayout->addWidget(rbMaterie);
 
-        radioButton_3 = new QRadioButton(HProdottiNew);
-        radioButton_3->setObjectName(QStringLiteral("radioButton_3"));
+        rbProdotti = new QRadioButton(HProdottiNew);
+        rbProdotti->setObjectName(QString::fromUtf8("rbProdotti"));
 
-        horizontalLayout->addWidget(radioButton_3);
+        horizontalLayout->addWidget(rbProdotti);
 
-        radioButton_4 = new QRadioButton(HProdottiNew);
-        radioButton_4->setObjectName(QStringLiteral("radioButton_4"));
+        rbContenitori = new QRadioButton(HProdottiNew);
+        rbContenitori->setObjectName(QString::fromUtf8("rbContenitori"));
 
-        horizontalLayout->addWidget(radioButton_4);
+        horizontalLayout->addWidget(rbContenitori);
 
-        radioButton_5 = new QRadioButton(HProdottiNew);
-        radioButton_5->setObjectName(QStringLiteral("radioButton_5"));
+        rbTappi = new QRadioButton(HProdottiNew);
+        rbTappi->setObjectName(QString::fromUtf8("rbTappi"));
 
-        horizontalLayout->addWidget(radioButton_5);
+        horizontalLayout->addWidget(rbTappi);
 
-        radioButton_6 = new QRadioButton(HProdottiNew);
-        radioButton_6->setObjectName(QStringLiteral("radioButton_6"));
+        rbVasi = new QRadioButton(HProdottiNew);
+        rbVasi->setObjectName(QString::fromUtf8("rbVasi"));
 
-        horizontalLayout->addWidget(radioButton_6);
+        horizontalLayout->addWidget(rbVasi);
 
         rbBio = new QRadioButton(HProdottiNew);
-        rbBio->setObjectName(QStringLiteral("rbBio"));
+        rbBio->setObjectName(QString::fromUtf8("rbBio"));
 
         horizontalLayout->addWidget(rbBio);
 
         checkBox = new QCheckBox(HProdottiNew);
-        checkBox->setObjectName(QStringLiteral("checkBox"));
+        checkBox->setObjectName(QString::fromUtf8("checkBox"));
 
         horizontalLayout->addWidget(checkBox);
 
@@ -110,7 +111,7 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
         tvProdotti = new QTableView(HProdottiNew);
-        tvProdotti->setObjectName(QStringLiteral("tvProdotti"));
+        tvProdotti->setObjectName(QString::fromUtf8("tvProdotti"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -129,14 +130,14 @@ public:
         verticalLayout->addWidget(tvProdotti);
 
         formLayout = new QFormLayout();
-        formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setObjectName(QString::fromUtf8("formLayout"));
         label = new QLabel(HProdottiNew);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
         lineEdit = new QLineEdit(HProdottiNew);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
         lineEdit->setClearButtonEnabled(true);
 
         formLayout->setWidget(0, QFormLayout::FieldRole, lineEdit);
@@ -148,30 +149,46 @@ public:
         verticalLayout_2->addLayout(verticalLayout);
 
         horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         pushButton = new QPushButton(HProdottiNew);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon1);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton);
 
         pbMod = new QPushButton(HProdottiNew);
-        pbMod->setObjectName(QStringLiteral("pbMod"));
+        pbMod->setObjectName(QString::fromUtf8("pbMod"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Monitoring64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QString::fromUtf8(":/Resources/Monitoring64.png"), QSize(), QIcon::Normal, QIcon::Off);
         pbMod->setIcon(icon2);
         pbMod->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbMod);
 
-        pushButton_2 = new QPushButton(HProdottiNew);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        cbPdf = new QCheckBox(HProdottiNew);
+        cbPdf->setObjectName(QString::fromUtf8("cbPdf"));
+        cbPdf->setMaximumSize(QSize(100, 16777215));
+        cbPdf->setChecked(true);
+
+        horizontalLayout_2->addWidget(cbPdf);
+
+        pbPrint = new QPushButton(HProdottiNew);
+        pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
         QIcon icon3;
-        icon3.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon3);
+        icon3.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon3);
+        pbPrint->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pbPrint);
+
+        pushButton_2 = new QPushButton(HProdottiNew);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon4);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
@@ -187,19 +204,21 @@ public:
 
     void retranslateUi(QWidget *HProdottiNew)
     {
-        HProdottiNew->setWindowTitle(QApplication::translate("HProdottiNew", "Prodotti", 0));
-        radioButton->setText(QApplication::translate("HProdottiNew", "Tutti", 0));
-        radioButton_2->setText(QApplication::translate("HProdottiNew", "Materie prime", 0));
-        radioButton_3->setText(QApplication::translate("HProdottiNew", "Prodotti", 0));
-        radioButton_4->setText(QApplication::translate("HProdottiNew", "Conteniitori", 0));
-        radioButton_5->setText(QApplication::translate("HProdottiNew", "Capsule e tappi", 0));
-        radioButton_6->setText(QApplication::translate("HProdottiNew", "Vasi", 0));
-        rbBio->setText(QApplication::translate("HProdottiNew", "Bio", 0));
-        checkBox->setText(QApplication::translate("HProdottiNew", "Solo prodotti attivi", 0));
-        label->setText(QApplication::translate("HProdottiNew", "Cerca prodotto", 0));
-        pushButton->setText(QApplication::translate("HProdottiNew", "Nuovo", 0));
-        pbMod->setText(QApplication::translate("HProdottiNew", "Modifica prodotto selezionato", 0));
-        pushButton_2->setText(QApplication::translate("HProdottiNew", "Chiudi", 0));
+        HProdottiNew->setWindowTitle(QCoreApplication::translate("HProdottiNew", "Prodotti", nullptr));
+        rbAll->setText(QCoreApplication::translate("HProdottiNew", "Tutti", nullptr));
+        rbMaterie->setText(QCoreApplication::translate("HProdottiNew", "Materie prime", nullptr));
+        rbProdotti->setText(QCoreApplication::translate("HProdottiNew", "Prodotti", nullptr));
+        rbContenitori->setText(QCoreApplication::translate("HProdottiNew", "Conteniitori", nullptr));
+        rbTappi->setText(QCoreApplication::translate("HProdottiNew", "Capsule e tappi", nullptr));
+        rbVasi->setText(QCoreApplication::translate("HProdottiNew", "Vasi", nullptr));
+        rbBio->setText(QCoreApplication::translate("HProdottiNew", "Bio", nullptr));
+        checkBox->setText(QCoreApplication::translate("HProdottiNew", "Solo prodotti attivi", nullptr));
+        label->setText(QCoreApplication::translate("HProdottiNew", "Cerca prodotto", nullptr));
+        pushButton->setText(QCoreApplication::translate("HProdottiNew", "Nuovo", nullptr));
+        pbMod->setText(QCoreApplication::translate("HProdottiNew", "Modifica prodotto selezionato", nullptr));
+        cbPdf->setText(QCoreApplication::translate("HProdottiNew", "Stampa su pdf", nullptr));
+        pbPrint->setText(QCoreApplication::translate("HProdottiNew", "Stampa", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("HProdottiNew", "Chiudi", nullptr));
     } // retranslateUi
 
 };
