@@ -214,7 +214,7 @@ void HCalcost::on_cbVasi_currentIndexChanged(int index)
 {
     double prezzo = ui->cbVasi->model()->index(ui->cbVasi->currentIndex(),2).data(0).toDouble();
     int n=ui->leQtVasi->text().toInt();
-    QString price=QString::number(prezzo*n,'f',4);
+    QString price=QString::number(prezzo*n,'f',2);
     ui->leCostoVasi->setText(price);
 }
 
@@ -222,7 +222,7 @@ void HCalcost::on_cbTappi_currentIndexChanged(int index)
 {
     double prezzo = ui->cbTappi->model()->index(ui->cbTappi->currentIndex(),2).data(0).toDouble();
     int n=ui->leQtTappi->text().toInt();
-    QString price=QString::number(prezzo*n,'f',4);
+    QString price=QString::number(prezzo*n,'f',2);
     ui->leCostoTappi->setText(price);
 }
 
@@ -231,7 +231,7 @@ void HCalcost::on_leQtVasi_returnPressed()
 {
     double prezzo = ui->cbVasi->model()->index(ui->cbVasi->currentIndex(),2).data(0).toDouble();
     int n=ui->leQtVasi->text().toInt();
-    QString price=QString::number(prezzo*n,'f',4);
+    QString price=QString::number(prezzo*n,'f',2);
     ui->leCostoVasi->setText(price);
 }
 
@@ -239,7 +239,7 @@ void HCalcost::on_leQtTappi_returnPressed()
 {
     double prezzo = ui->cbTappi->model()->index(ui->cbTappi->currentIndex(),2).data(0).toDouble();
     int n=ui->leQtTappi->text().toInt();
-    QString price=QString::number(prezzo*n,'f',4);
+    QString price=QString::number(prezzo*n,'f',2);
     ui->leCostoTappi->setText(price);
 }
 
@@ -249,7 +249,7 @@ void HCalcost::on_leDaprodurre_returnPressed()
     double quantita = ui->leDaprodurre->text().toDouble();
 
     double prezzo= costokg*quantita;
-    ui->leCostoProduzione->setText(QString::number(prezzo,'f',4));
+    ui->leCostoProduzione->setText(QString::number(prezzo,'f',2));
 }
 
 void HCalcost::on_leCostoTotale_returnPressed()
@@ -269,9 +269,11 @@ void HCalcost::on_pbPrint_clicked()
 {
     HPrint *f=new HPrint();
     f->toggleImageUI(false);
-    f->show();
 
-    f->append("COSTO PRODOTTO "+ui->lvProdotti->currentIndex().data(0).toString());
+
+
+
+   /* f->append("COSTO PRODOTTO "+ui->lvProdotti->currentIndex().data(0).toString());
     f->append("\nda produrre: \tKg "+ ui->leDaprodurre->text());
     f->append("Costo fisso: \t€ "+ ui->leCostoFisso->text());
     f->append("Costo vasi: \t€ "+ui->leCostoVasi->text());
@@ -280,7 +282,31 @@ void HCalcost::on_pbPrint_clicked()
     f->append("Costo etichette: \t€ "+ui->leCostoEtichette->text());
     f->append("====================================================");
     f->append("Costo prodotto: \t€ "+ui->leCostoTotale->text());
-    f->append("====================================================");
+    f->append("====================================================");*/
+
+    QString title="COSTO PRODOTTO "+ui->lvProdotti->currentIndex().data(0).toString();
+
+
+    QString html=QString();
+
+    html="<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\"><head><style>table,th,td{border:1px solid black}</style><title>untitled</title>";
+               html.append("<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\" />");
+               html.append("</head><body><table width=90%><tr><th  colspan=2>"+title+"</th></tr>");
+               html.append("<tr><td colspan=2></td></tr>");
+               html.append("<tr><td>Da produrre: </td><td>"+ ui->leDaprodurre->text()+"</td></tr>");
+               html.append("<tr><td>Costo fisso: </td><td>€"+ ui->leCostoFisso->text()+"</td></tr>");
+               html.append("<tr><td>Vasi: </td><td>"+ ui->cbVasi->currentText()+"( N."+ui->leQtVasi->text()+")</td></tr>");
+               html.append("<tr><td>Costo vasi: </td><td>€"+ ui->leCostoVasi->text()+"</td></tr>");
+               html.append("<tr><td>Tappi: </td><td>"+ ui->cbTappi->currentText()+"( N."+ui->leQtTappi->text()+")</td></tr>");
+               html.append("<tr><td>Costo tappi: </td><td>€"+ ui->leCostoTappi->text()+"</td></tr>");
+               html.append("<tr><td>Costo cartoni: </td><td>€"+ ui->leCostoCartoni->text()+"</td></tr>");
+               html.append("<tr><td>Costo etichette: </td><td>€"+ ui->leCostoEtichette->text()+"</td></tr>");
+               html.append("<tr><td>Costo totale produzione: </td><td>€"+ ui->leCostoTotale->text()+"</td></tr>");
+               html.append("</table> </body> </html>");
+
+
+    f->setHtml(html);
+    f->show();
 
 
 
