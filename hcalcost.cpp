@@ -273,25 +273,18 @@ void HCalcost::on_pbPrint_clicked()
 
 
 
-   /* f->append("COSTO PRODOTTO "+ui->lvProdotti->currentIndex().data(0).toString());
-    f->append("\nda produrre: \tKg "+ ui->leDaprodurre->text());
-    f->append("Costo fisso: \t€ "+ ui->leCostoFisso->text());
-    f->append("Costo vasi: \t€ "+ui->leCostoVasi->text());
-    f->append("Costo tappi: \t€ "+ui->leCostoTappi->text());
-    f->append("Costo cartoni: \t€ "+ui->leCostoCartoni->text());
-    f->append("Costo etichette: \t€ "+ui->leCostoEtichette->text());
-    f->append("====================================================");
-    f->append("Costo prodotto: \t€ "+ui->leCostoTotale->text());
-    f->append("====================================================");*/
+    QString ings="INGREDIENTI";
 
-    QString title="COSTO PRODOTTO "+ui->lvProdotti->currentIndex().data(0).toString();
+    QString title="COSTO PRODOTTO: "+ui->lvProdotti->currentIndex().data(0).toString();
 
 
     QString html=QString();
 
     html="<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\"><head><style>table,th,td{border:1px solid black}</style><title>untitled</title>";
                html.append("<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\" />");
-               html.append("</head><body><table width=90%><tr><th  colspan=2>"+title+"</th></tr>");
+               html.append("</head><body>");
+
+               html.append("<table width=90%><tr><th  colspan=2>"+title+"</th></tr>");
                html.append("<tr><td colspan=2></td></tr>");
                html.append("<tr><td>Da produrre: </td><td>"+ ui->leDaprodurre->text()+"</td></tr>");
                html.append("<tr><td>Costo fisso: </td><td>€"+ ui->leCostoFisso->text()+"</td></tr>");
@@ -302,7 +295,24 @@ void HCalcost::on_pbPrint_clicked()
                html.append("<tr><td>Costo cartoni: </td><td>€"+ ui->leCostoCartoni->text()+"</td></tr>");
                html.append("<tr><td>Costo etichette: </td><td>€"+ ui->leCostoEtichette->text()+"</td></tr>");
                html.append("<tr><td>Costo totale produzione: </td><td>€"+ ui->leCostoTotale->text()+"</td></tr>");
+               html.append("</table>");
+
+               html.append("<br></br>");
+               html.append("<table width=90%><tr><th  colspan=4>"+ings+"</th></tr>");
+
+
+               int r=ricmod->rowCount();
+
+               for(int rig=0;rig<r;rig++)
+               {
+                double d=ui->tvComponenti->model()->index(rig,3).data(0).toDouble();
+                QString res=QString::number(d,'g',2);
+
+                   html.append("<tr><td>"+ui->tvComponenti->model()->index(rig,0).data(0).toString()+"</td><td>"+ ui->tvComponenti->model()->index(rig,1).data(0).toString()+"</td><td>"+ui->tvComponenti->model()->index(rig,2).data(0).toString()+"</td><td>"+res+"</td></tr>");
+
+               }
                html.append("</table> </body> </html>");
+
 
 
     f->setHtml(html);
