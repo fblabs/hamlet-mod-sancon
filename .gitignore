@@ -86,3 +86,7 @@ debug/moc_predefs.h
 *.user
 *.Debug
 *.user
+*.o
+*.o
+release/mainwindow.o
+*.o

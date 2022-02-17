@@ -356,18 +356,8 @@ void HLotti::on_pushButton_6_clicked()
 
 void HLotti::print(bool pdf=false)
 {
-    if (pdf)
-    {
         QString strStream;
-        QString filename;
 
-        // qDebug()<<"filename="<<filename;
-        filename= QFileDialog::getOpenFileName(this,"Scegli il nome del file",QString(),"Pdf (*.pdf)");
-
-        if (filename.isEmpty() && filename.isNull()){
-          //  qDebug()<<"annullato";
-            return;
-        }
 
    //     qDebug()<<"filename="<<filename;
 
@@ -411,6 +401,19 @@ void HLotti::print(bool pdf=false)
         QTextDocument *document = new QTextDocument();
         document->setHtml(strStream);
 
+
+        if (pdf)
+        {
+            QString filename;
+
+            // qDebug()<<"filename="<<filename;
+            filename= QFileDialog::getOpenFileName(this,"Scegli il nome del file",QString(),"Pdf (*.pdf)");
+
+            if (filename.isEmpty() && filename.isNull()){
+              //  qDebug()<<"annullato";
+                return;
+            }
+
         QPrinter printer;
         printer.setOrientation(QPrinter::Landscape);
         printer.setOutputFormat(QPrinter::PdfFormat);
@@ -420,17 +423,22 @@ void HLotti::print(bool pdf=false)
         document->print(&printer);
 
         delete document;
+        }else{
+
+             HPrint *f =new HPrint();
+             f->setHtml(strStream);
+             f->show();
+
+        }
 
 
-    }
-    else
-    {
-
-    HPrint *f =new HPrint();
 
 
 
-    int rows=ui->twLots->model()->rowCount();
+
+
+
+  /*  int rows=ui->twLots->model()->rowCount();
     int cols=ui->twLots->model()->columnCount();
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -464,7 +472,7 @@ void HLotti::print(bool pdf=false)
 
     QApplication::setOverrideCursor(Qt::ArrowCursor);
 
-    }
+    }*/
 
 
 }

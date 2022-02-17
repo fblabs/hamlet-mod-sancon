@@ -57,7 +57,7 @@ HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
 
     ui->tvProdotti->setModel(tmProdotti);
 
-    ui->tvProdotti->setColumnHidden(0,true);
+    ui->tvProdotti->setColumnHidden(0,false);
     ui->tvProdotti->horizontalHeader()->stretchLastSection();
   //  ui->tvProdotti->horizontalHeader()->res
     ui->tvProdotti->resizeColumnsToContents();

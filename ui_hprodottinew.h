@@ -56,7 +56,7 @@ public:
         if (HProdottiNew->objectName().isEmpty())
             HProdottiNew->setObjectName(QString::fromUtf8("HProdottiNew"));
         HProdottiNew->setWindowModality(Qt::ApplicationModal);
-        HProdottiNew->resize(1291, 553);
+        HProdottiNew->resize(1291, 643);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HProdottiNew->setWindowIcon(icon);
