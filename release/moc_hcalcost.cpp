@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HCalcost_t {
-    QByteArrayData data[24];
-    char stringdata0[459];
+    QByteArrayData data[25];
+    char stringdata0[465];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -55,7 +55,8 @@ QT_MOC_LITERAL(19, 370, 20), // "on_pbCalcola_clicked"
 QT_MOC_LITERAL(20, 391, 18), // "on_pbPrint_clicked"
 QT_MOC_LITERAL(21, 410, 21), // "on_pushButton_clicked"
 QT_MOC_LITERAL(22, 432, 7), // "resetUI"
-QT_MOC_LITERAL(23, 440, 18) // "performCalculation"
+QT_MOC_LITERAL(23, 440, 18), // "performCalculation"
+QT_MOC_LITERAL(24, 459, 5) // "print"
 
     },
     "HCalcost\0getClients\0\0getProducts\0"
@@ -72,7 +73,7 @@ QT_MOC_LITERAL(23, 440, 18) // "performCalculation"
     "on_leCostoTotale_returnPressed\0"
     "on_pbCalcola_clicked\0on_pbPrint_clicked\0"
     "on_pushButton_clicked\0resetUI\0"
-    "performCalculation"
+    "performCalculation\0print"
 };
 #undef QT_MOC_LITERAL
 
@@ -82,7 +83,7 @@ static const uint qt_meta_data_HCalcost[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      19,   14, // methods
+      20,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -90,25 +91,26 @@ static const uint qt_meta_data_HCalcost[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  109,    2, 0x08 /* Private */,
-       3,    0,  110,    2, 0x08 /* Private */,
-       4,    0,  111,    2, 0x08 /* Private */,
-       5,    0,  112,    2, 0x08 /* Private */,
-       6,    1,  113,    2, 0x08 /* Private */,
-       9,    1,  116,    2, 0x08 /* Private */,
-      10,    1,  119,    2, 0x08 /* Private */,
-      12,    1,  122,    2, 0x08 /* Private */,
-      13,    1,  125,    2, 0x08 /* Private */,
-      14,    0,  128,    2, 0x08 /* Private */,
-      15,    0,  129,    2, 0x08 /* Private */,
-      16,    0,  130,    2, 0x08 /* Private */,
-      17,    0,  131,    2, 0x08 /* Private */,
-      18,    0,  132,    2, 0x08 /* Private */,
-      19,    0,  133,    2, 0x08 /* Private */,
-      20,    0,  134,    2, 0x08 /* Private */,
-      21,    0,  135,    2, 0x08 /* Private */,
-      22,    0,  136,    2, 0x08 /* Private */,
-      23,    0,  137,    2, 0x08 /* Private */,
+       1,    0,  114,    2, 0x08 /* Private */,
+       3,    0,  115,    2, 0x08 /* Private */,
+       4,    0,  116,    2, 0x08 /* Private */,
+       5,    0,  117,    2, 0x08 /* Private */,
+       6,    1,  118,    2, 0x08 /* Private */,
+       9,    1,  121,    2, 0x08 /* Private */,
+      10,    1,  124,    2, 0x08 /* Private */,
+      12,    1,  127,    2, 0x08 /* Private */,
+      13,    1,  130,    2, 0x08 /* Private */,
+      14,    0,  133,    2, 0x08 /* Private */,
+      15,    0,  134,    2, 0x08 /* Private */,
+      16,    0,  135,    2, 0x08 /* Private */,
+      17,    0,  136,    2, 0x08 /* Private */,
+      18,    0,  137,    2, 0x08 /* Private */,
+      19,    0,  138,    2, 0x08 /* Private */,
+      20,    0,  139,    2, 0x08 /* Private */,
+      21,    0,  140,    2, 0x08 /* Private */,
+      22,    0,  141,    2, 0x08 /* Private */,
+      23,    0,  142,    2, 0x08 /* Private */,
+      24,    0,  143,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -120,6 +122,7 @@ static const uint qt_meta_data_HCalcost[] = {
     QMetaType::Void, QMetaType::Int,   11,
     QMetaType::Void, QMetaType::Int,    8,
     QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -159,6 +162,7 @@ void HCalcost::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 16: _t->on_pushButton_clicked(); break;
         case 17: _t->resetUI(); break;
         case 18: _t->performCalculation(); break;
+        case 19: _t->print(); break;
         default: ;
         }
     }
@@ -193,13 +197,13 @@ int HCalcost::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 19)
+        if (_id < 20)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 20;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 19)
+        if (_id < 20)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 19;
+        _id -= 20;
     }
     return _id;
 }

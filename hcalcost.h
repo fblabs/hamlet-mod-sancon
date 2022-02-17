@@ -47,6 +47,7 @@ private:
    void on_pushButton_clicked();
    void resetUI();
    void performCalculation();
+   void print();
 };
 
 #endif // HCALCOST_H

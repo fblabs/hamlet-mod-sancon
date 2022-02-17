@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1144</width>
-    <height>706</height>
+    <width>1259</width>
+    <height>869</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -345,6 +345,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="pbPrint">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Stampa</string>
        </property>

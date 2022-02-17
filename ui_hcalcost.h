@@ -83,7 +83,7 @@ public:
         if (HCalcost->objectName().isEmpty())
             HCalcost->setObjectName(QString::fromUtf8("HCalcost"));
         HCalcost->setWindowModality(Qt::ApplicationModal);
-        HCalcost->resize(1144, 706);
+        HCalcost->resize(1259, 869);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Cash-register-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HCalcost->setWindowIcon(icon);
@@ -336,6 +336,7 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         pbPrint = new QPushButton(HCalcost);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
+        pbPrint->setEnabled(false);
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pbPrint->setIcon(icon1);

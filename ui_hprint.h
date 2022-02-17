@@ -50,7 +50,7 @@ public:
         if (HPrint->objectName().isEmpty())
             HPrint->setObjectName(QString::fromUtf8("HPrint"));
         HPrint->setWindowModality(Qt::WindowModal);
-        HPrint->resize(922, 435);
+        HPrint->resize(975, 922);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -201,7 +201,7 @@ public:
         textEdit->setHtml(QCoreApplication::translate("HPrint", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Verdana'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8.25pt;\"><br /></p></body></html>", nullptr));
         pbant->setText(QCoreApplication::translate("HPrint", "Anteprima di stampa", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HPrint", "Stampa", nullptr));

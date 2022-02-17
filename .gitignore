@@ -85,3 +85,4 @@ debug/moc_nouse.cpp
 debug/moc_predefs.h
 *.user
 *.Debug
+*.user

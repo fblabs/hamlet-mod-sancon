@@ -9,6 +9,7 @@
 #include "huser.h"
 #include <QCompleter>
 #include "hprodottinew.h"
+#include <QItemSelectionModel>
 
 #include <QSqlQueryModel>
 HCalcost::HCalcost(QSqlDatabase pdb, HUser* puser,QWidget *parent) :
@@ -25,9 +26,14 @@ HCalcost::HCalcost(QSqlDatabase pdb, HUser* puser,QWidget *parent) :
     getClients();
 
     getProducts();
-    getConfezionamenti(3);
+
+
     getConfezionamenti(4);
     getConfezionamenti(5);
+
+
+
+
 
 
 
@@ -56,6 +62,7 @@ void HCalcost::getClients()
     completer->setCaseSensitivity(Qt::CaseInsensitive);
 
     ui->cbClients->setCompleter(completer);
+    ui->cbClients->setCurrentIndex(0);
 
 }
 
@@ -75,6 +82,11 @@ void HCalcost::getProducts()
    ui->lvProdotti->setModel(cmod);
    ui->lvProdotti->setModelColumn(1);
 
+   ui->lvProdotti->setCurrentIndex(ui->lvProdotti->model()->index(0,0));
+   connect(ui->lvProdotti->selectionModel(),SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),this,SLOT(getRecipe()));
+
+ //  ui->lvProdotti->selectionModel()->setCurrentIndex(ui->lvProdotti->model()->index(0,0),QItemSelectionModel::Select|QItemSelectionModel::Rows);
+ //  ui->lvProdotti->clicked(ui->lvProdotti->model()->index(0,0));
 }
 
 
@@ -83,15 +95,15 @@ void HCalcost::getRecipe()
     resetUI();
     int idp=cmod->index(ui->lvProdotti->selectionModel()->currentIndex().row(),0).data(0).toInt();
     QSqlQuery q(db);
-    QString sql="SELECT prodotti.descrizione as 'PRODOTTO',righe_ricette.quantita as 'QUANTITA',prodotti.prezzo as 'Costo unitario ingrediente',righe_ricette.quantita*prodotti.prezzo as 'COSTO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.ID";
+    QString sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as \"QUANTITA\'\",prodotti.prezzo as 'COSTO UNITARIO (€)',righe_ricette.quantita*prodotti.prezzo as 'COSTO PER RICETTA (€)' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.ID";
     q.prepare(sql);
     q.bindValue(":idp",idp);
     q.exec();
-    qDebug()<<idp<<q.lastError().text();
+
     ricmod=new QSqlQueryModel();
     ricmod->setQuery(q);
-    ui->tvComponenti->setModel(ricmod);
     ui->tvComponenti->horizontalHeader()->resizeSections(QHeaderView::Stretch);
+
 
     int r=ricmod->rowCount();
     double cost=0.0;
@@ -110,6 +122,9 @@ void HCalcost::getRecipe()
     ui->leCostounitaricetta->setText(QString::number(costoperunita,'f',4));
 
     ui->leCostoProdotto->setText(QString::number(cost,'f',4));
+
+    ui->tvComponenti->setModel(ricmod);
+    ui->tvComponenti->horizontalHeader()->resizeSections(QHeaderView::Stretch);
 
 
 }
@@ -187,6 +202,7 @@ void HCalcost::on_lvProdotti_clicked(const QModelIndex &index)
 
 
         getRecipe();
+        ui->pbPrint->setEnabled(true);
 
 }
 
@@ -208,6 +224,7 @@ void HCalcost::resetUI()
 void HCalcost::on_cbClients_currentIndexChanged(int index)
 {
     getProducts();
+
 }
 
 void HCalcost::on_cbVasi_currentIndexChanged(int index)
@@ -267,56 +284,7 @@ void HCalcost::on_pbCalcola_clicked()
 
 void HCalcost::on_pbPrint_clicked()
 {
-    HPrint *f=new HPrint();
-    f->toggleImageUI(false);
-
-
-
-
-    QString ings="INGREDIENTI";
-
-    QString title="COSTO PRODOTTO: "+ui->lvProdotti->currentIndex().data(0).toString();
-
-
-    QString html=QString();
-
-    html="<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\"><head><style>table,th,td{border:1px solid black}</style><title>untitled</title>";
-               html.append("<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\" />");
-               html.append("</head><body>");
-
-               html.append("<table width=90%><tr><th  colspan=2>"+title+"</th></tr>");
-               html.append("<tr><td colspan=2></td></tr>");
-               html.append("<tr><td>Da produrre: </td><td>"+ ui->leDaprodurre->text()+"</td></tr>");
-               html.append("<tr><td>Costo fisso: </td><td>€"+ ui->leCostoFisso->text()+"</td></tr>");
-               html.append("<tr><td>Vasi: </td><td>"+ ui->cbVasi->currentText()+"( N."+ui->leQtVasi->text()+")</td></tr>");
-               html.append("<tr><td>Costo vasi: </td><td>€"+ ui->leCostoVasi->text()+"</td></tr>");
-               html.append("<tr><td>Tappi: </td><td>"+ ui->cbTappi->currentText()+"( N."+ui->leQtTappi->text()+")</td></tr>");
-               html.append("<tr><td>Costo tappi: </td><td>€"+ ui->leCostoTappi->text()+"</td></tr>");
-               html.append("<tr><td>Costo cartoni: </td><td>€"+ ui->leCostoCartoni->text()+"</td></tr>");
-               html.append("<tr><td>Costo etichette: </td><td>€"+ ui->leCostoEtichette->text()+"</td></tr>");
-               html.append("<tr><td>Costo totale produzione: </td><td>€"+ ui->leCostoTotale->text()+"</td></tr>");
-               html.append("</table>");
-
-               html.append("<br></br>");
-               html.append("<table width=90%><tr><th  colspan=4>"+ings+"</th></tr>");
-
-
-               int r=ricmod->rowCount();
-
-               for(int rig=0;rig<r;rig++)
-               {
-                double d=ui->tvComponenti->model()->index(rig,3).data(0).toDouble();
-                QString res=QString::number(d,'g',2);
-
-                   html.append("<tr><td>"+ui->tvComponenti->model()->index(rig,0).data(0).toString()+"</td><td>"+ ui->tvComponenti->model()->index(rig,1).data(0).toString()+"</td><td>"+ui->tvComponenti->model()->index(rig,2).data(0).toString()+"</td><td>"+res+"</td></tr>");
-
-               }
-               html.append("</table> </body> </html>");
-
-
-
-    f->setHtml(html);
-    f->show();
+    print();
 
 
 
@@ -348,4 +316,63 @@ void HCalcost::performCalculation()
     costototale=costoprodotto + costovasi + costotappi + costocartoni +costoetichette +costofisso;
 
     ui->leCostoTotale->setText(QString::number(costototale,'f',4));
+}
+
+void HCalcost::print()
+{
+    HPrint *f=new HPrint();
+    f->toggleImageUI(false);
+
+
+
+
+    QString ings="INGREDIENTI";
+
+    QString title="COSTO PRODOTTO: "+ui->lvProdotti->currentIndex().data(0).toString();
+
+
+    QString html=QString();
+
+    html="<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\"><head><style>table,th,td{border:1px solid black}</style><title>untitled</title>";
+               html.append("<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\" />");
+               html.append("</head><body>");
+
+               html.append("<h3 align=\"center\">"+title+"</h3><br>");
+
+               html.append("<table width=100%><tr><th colspan=4>"+ings+"</th></tr>");
+               html.append("<tr><td align='center'>MATERIALI</td><td align='center'>QUANTITA\'</td><td align='center'> COSTO UNITARIO (€)</td><td align='center'>COSTO PER RICETTA (€)</td></tr><tr><td colspan=4></td></tr>");
+
+               int r=ui->tvComponenti->model()->rowCount();
+
+               for(int rig=0;rig<r;rig++)
+               {
+                double d=ui->tvComponenti->model()->index(rig,3).data(0).toDouble();
+                QString res=QString::number(d,'g',2);
+
+                   html.append("<tr><td>"+ui->tvComponenti->model()->index(rig,0).data(0).toString()+"</td><td>"+ ui->tvComponenti->model()->index(rig,1).data(0).toString()+"</td><td>"+ui->tvComponenti->model()->index(rig,2).data(0).toString()+"</td><td>"+res+"</td></tr>");
+
+               }
+
+               html.append("</table><br><br>");
+               html.append("<table width=100%><tr><th  colspan=2>Calcolo costo prodotto</th></tr>");
+               html.append("<tr><td colspan=2></td></tr>");
+               html.append("<tr><td>Da produrre: </td><td>"+ ui->leDaprodurre->text()+"</td></tr>");
+               html.append("<tr><td>Costo fisso: </td><td>€"+ ui->leCostoFisso->text()+"</td></tr>");
+               html.append("<tr><td>Vasi: </td><td>"+ ui->cbVasi->currentText()+"( N."+ui->leQtVasi->text()+")</td></tr>");
+               html.append("<tr><td>Costo vasi: </td><td>€"+ ui->leCostoVasi->text()+"</td></tr>");
+               html.append("<tr><td>Tappi: </td><td>"+ ui->cbTappi->currentText()+"( N."+ui->leQtTappi->text()+")</td></tr>");
+               html.append("<tr><td>Costo tappi: </td><td>€"+ ui->leCostoTappi->text()+"</td></tr>");
+               html.append("<tr><td>Costo cartoni: </td><td>€"+ ui->leCostoCartoni->text()+"</td></tr>");
+               html.append("<tr><td>Costo etichette: </td><td>€"+ ui->leCostoEtichette->text()+"</td></tr>");
+               html.append("<tr><td>Costo totale produzione: </td><td>€"+ ui->leCostoTotale->text()+"</td></tr>");
+
+
+
+
+               html.append("</table> </body> </html>");
+
+
+
+    f->setHtml(html);
+    f->show();
 }
