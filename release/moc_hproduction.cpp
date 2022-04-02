@@ -202,7 +202,7 @@ static const uint qt_meta_data_HProduction[] = {
     QMetaType::Bool, QMetaType::Int, QMetaType::Int,   28,   26,
     QMetaType::Bool, QMetaType::Int, QMetaType::Int,   17,   30,
     QMetaType::Bool, QMetaType::Int, QMetaType::Int,   32,   33,
-    QMetaType::Void,
+    QMetaType::Bool,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Int,
@@ -261,7 +261,8 @@ void HProduction::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 20: { bool _r = _t->saveComposizione((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 21: _t->updateComposition(); break;
+        case 21: { bool _r = _t->updateComposition();
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 22: _t->printRecipe(); break;
         case 23: _t->printProduction(); break;
         case 24: { int _r = _t->lastInsertId();

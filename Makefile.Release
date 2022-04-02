@@ -13079,9 +13079,7 @@ release/hproduction.o: hproduction.cpp hproduction.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QObject \
 		ui_hproduction.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QAction \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qaction.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/QIcon \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -13089,8 +13087,6 @@ release/hproduction.o: hproduction.cpp hproduction.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdesktopwidget.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qguiapplication.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QButtonGroup \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qbuttongroup.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QCheckBox \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qcheckbox.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractbutton.h \
@@ -13152,7 +13148,7 @@ release/hproduction.o: hproduction.cpp hproduction.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QTextBrowser \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtextbrowser.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QVBoxLayout \
-		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlquery \
+		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlQuery \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlquery.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlError \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlerror.h \
@@ -18815,7 +18811,8 @@ release/hcalcost.o: hcalcost.cpp hcalcost.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlQueryModel \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlRelationalTableModel \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlrelationaltablemodel.h \
-		hproductsmodel.h
+		hproductsmodel.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/QItemSelectionModel
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\hcalcost.o hcalcost.cpp
 
 release/hwarehousedetails.o: hwarehousedetails.cpp hwarehousedetails.h \

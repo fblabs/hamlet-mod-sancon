@@ -68,7 +68,7 @@ private slots:
     bool saveLotLoad(int idlotto, int prodotto);
     bool saveOperation(int row, int action);
     bool saveComposizione(int lottotarget, int operazione);
-    void updateComposition();
+    bool updateComposition();
     void printRecipe();
     void printProduction();
     int lastInsertId();

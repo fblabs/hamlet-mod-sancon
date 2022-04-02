@@ -2,7 +2,7 @@
 #include "ui_hproduction.h"
 
 #include <QSqlDatabase>
-#include <QSqlquery>
+#include <QSqlQuery>
 
 // #include <QDebug>
 #include <QSqlError>
@@ -135,12 +135,12 @@ void HProduction::getLotModel()
 {
     QSqlTableModel *lm=new QSqlTableModel(0,db);
     lm->setTable("lotdef");
-  //  QCompleter *comp=new QCompleter(lm);
-  //  comp->setCompletionMode(QCompleter::PopupCompletion);
-  //  comp->setCompletionColumn(1);
+    //  QCompleter *comp=new QCompleter(lm);
+    //  comp->setCompletionMode(QCompleter::PopupCompletion);
+    //  comp->setCompletionColumn(1);
     lm->setSort(3,Qt::DescendingOrder);
     lm->select();
- //   ui->leLotToEdit->setCompleter(comp);
+    //   ui->leLotToEdit->setCompleter(comp);
 
 }
 
@@ -156,7 +156,7 @@ void HProduction::recalculateTotal()
     }
 
     QString qua=QString::number(quantita,'f',3);
- //   ui->leQtyTotal->setText(qua);
+    //   ui->leQtyTotal->setText(qua);
 
 
 
@@ -176,14 +176,14 @@ void HProduction::calculateActualTotal()
             QMessageBox::warning(this,QApplication::applicationName(),"Errore nella quantità",QMessageBox::Ok);
             return;
         }
-       // // qDebug()<<"calculateactualtotalrow"<<x<<QString::number(quantita);
+        // // qDebug()<<"calculateactualtotalrow"<<x<<QString::number(quantita);
 
     }
     QString qta =QString::number(quantita,'f',3);
 
 
     //ui->leQtyTotal->setText(qta);
-   // ui->leQuaRic->setText(QString::number(quantita,'f',3));
+    // ui->leQuaRic->setText(QString::number(quantita,'f',3));
 
 
 
@@ -196,9 +196,9 @@ void HProduction::updateTotals()
     double dafare = ui->leQtyTotal->text().toDouble(&ok);
     if(!ok)
     {
-       // // qDebug()<<"updatetotals"<<QString::number(dafare,'f',6);
+        // // qDebug()<<"updatetotals"<<QString::number(dafare,'f',6);
     }
-   // ui->leQuaRic->setText(QString::number(dafare,'f',3));
+    // ui->leQuaRic->setText(QString::number(dafare,'f',3));
     double sommarighe=0;
     double factor=0;
     double result=0;
@@ -206,23 +206,23 @@ void HProduction::updateTotals()
 
     for (int x=0;x<model->rowCount();x++)
     {
-       sommarighe += model->index(x,2).data(0).toDouble();
+        sommarighe += model->index(x,2).data(0).toDouble();
 
     }
 
 
     factor = dafare / sommarighe;
 
-  // // // qDebug()<<"updatetotals"<<QString::number(sommarighe,'f',6);
+    // // // qDebug()<<"updatetotals"<<QString::number(sommarighe,'f',6);
 
     for (int j=0;j<model->rowCount();j++)
     {
-       QModelIndex i = model->index(j,2);
-       QModelIndex m = model->index(j,5);
-       result =i.data().toDouble()* factor;
-       QString resulttoadd=QString::number(result,'f',3);
-     //  model->setData(i,QVariant(resulttoadd));
-       model->setData(m,QVariant(resulttoadd));
+        QModelIndex i = model->index(j,2);
+        QModelIndex m = model->index(j,5);
+        result =i.data().toDouble()* factor;
+        QString resulttoadd=QString::number(result,'f',3);
+        //  model->setData(i,QVariant(resulttoadd));
+        model->setData(m,QVariant(resulttoadd));
 
     }
 
@@ -243,7 +243,7 @@ void HProduction::getClients()
 
     qmClienti->setQuery(q);
 
-     qDebug()<<q.lastError().text();
+    qDebug()<<q.lastError().text();
 
     ui->cbClienti->setModel(qmClienti);
     ui->cbClienti->setModelColumn(1);
@@ -279,7 +279,7 @@ void HProduction::getLotToModify(QString lot)
 
     double quantitatotale;
     QStandardItemModel *model=new QStandardItemModel();
-   // QString lot;
+    // QString lot;
     //ricavo lo id del lotto
     QSqlQuery k(db);
 
@@ -297,7 +297,7 @@ void HProduction::getLotToModify(QString lot)
     k.prepare(sql);
     k.bindValue(":idlotto",QVariant(lottomodifica));
     k.exec();
-// qDebug()<< k.lastError().text()<<k.lastQuery();
+    // qDebug()<< k.lastError().text()<<k.lastQuery();
 
     model = new QStandardItemModel(0,7);
 
@@ -311,14 +311,14 @@ void HProduction::getLotToModify(QString lot)
 
     quantitatotale=0.0;
 
-  //  q.first();
+    //  q.first();
     while(k.next())
     {
 
-       quantitatotale +=k.value(2).toDouble();
-     //  model->appendRow(createRecipeRow(q.value(1).toString(),q.value(2).toString(),QString::number(q.value(3).toDouble(),'f',2),"","pippo"));
+        quantitatotale +=k.value(2).toDouble();
+        //  model->appendRow(createRecipeRow(q.value(1).toString(),q.value(2).toString(),QString::number(q.value(3).toDouble(),'f',2),"","pippo"));
         QList<QStandardItem*> columns;
-     //   QStandardItem* IDriga=new QStandardItem(q.value(0).toString());
+        //   QStandardItem* IDriga=new QStandardItem(q.value(0).toString());
 
         QStandardItem* ID_prodotto=new QStandardItem(k.value(0).toString());
         QStandardItem* prodotto=new QStandardItem(k.value(1).toString());
@@ -344,17 +344,17 @@ void HProduction::getLotToModify(QString lot)
     }
     QString qta=QString::number(quantitatotale,'f',3);
 
- //   ui->leQtyTotal->setText(qta);
+    //   ui->leQtyTotal->setText(qta);
 
-   // qmrighe->setQuery(q);
+    // qmrighe->setQuery(q);
     ui->tableView->setModel(model);
     //ui->tableView->horizontalHeader()->setStretchLastSection(true);
-   // ui->tableView->resizeColumnsToContents();
-     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    // ui->tableView->resizeColumnsToContents();
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-   // connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(updateTotals()));                                                                                                 );
+    // connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(updateTotals()));                                                                                                 );
     connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(productSelected()));
-     connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(updateTotals()));
+    connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(updateTotals()));
 
 
 }
@@ -374,8 +374,8 @@ void HProduction::getRecipesForClient()
     ui->tableView->setModel(0);
 
 
- //   QString qs="SELECT select prodotti.ID,ricette.ID,prodotti.descrizione from ricette,associazioni,prodotti,anagrafica where prodotti.ID=ricette.ID_prodotto and ricette.ID=associazioni.ID_ricetta and associazioni.ID_cliente=anagrafica.ID and associazioni.ID_cliente="+idcliente;
-  QString qs="select ricette.ID,prodotti.ID,prodotti.descrizione from prodotti, ricette, associazioni where ricette.ID=associazioni.ID_ricetta and prodotti.ID=ricette.ID_prodotto and associazioni.visualizza=1 and associazioni.visualizza=1 and associazioni.ID_cliente=:idcliente";
+    //   QString qs="SELECT select prodotti.ID,ricette.ID,prodotti.descrizione from ricette,associazioni,prodotti,anagrafica where prodotti.ID=ricette.ID_prodotto and ricette.ID=associazioni.ID_ricetta and associazioni.ID_cliente=anagrafica.ID and associazioni.ID_cliente="+idcliente;
+    QString qs="select ricette.ID,prodotti.ID,prodotti.descrizione from prodotti, ricette, associazioni where ricette.ID=associazioni.ID_ricetta and prodotti.ID=ricette.ID_prodotto and associazioni.visualizza=1 and associazioni.visualizza=1 and associazioni.ID_cliente=:idcliente";
     QSqlQuery q(db);
     q.prepare(qs);
     q.bindValue(":idcliente",QVariant(idcliente));
@@ -396,6 +396,7 @@ void HProduction::getRecipesForClient()
 
 
     ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,0));
+    ui->lvRicette->selectionModel()->select(ui->lvRicette->model()->index(0,0),QItemSelectionModel::Select);
     ui->lvRicette->setFocus();
 
 
@@ -438,7 +439,7 @@ void HProduction::getRecipe()
 
 
 
-     QString sql="select distinct prodotti.ID ,prodotti.descrizione,prodotti.allergenico,righe_ricette.quantita from prodotti,righe_ricette where righe_ricette.ID_prodotto=prodotti.ID and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
+    QString sql="select distinct prodotti.ID ,prodotti.descrizione,prodotti.allergenico,righe_ricette.quantita from prodotti,righe_ricette where righe_ricette.ID_prodotto=prodotti.ID and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
     //writeRed=new QList<int>();
     QSqlQuery q(db);
     qmod=new QSqlQueryModel();
@@ -468,17 +469,17 @@ void HProduction::getRecipe()
     for(int row=0; row<qmod->rowCount();row++)
     {
 
-       bool ok;
+        bool ok;
 
-      // alle=q.value(2).toBool();
-      // writeRed->insert(ix,alle);
-       quantitatot +=qmod->index(row,3).data(0).toDouble(&ok);
-       if(!ok)
-       {
-           QMessageBox::warning(this,QApplication::applicationName(),"ERRORE conversione a double errata",QMessageBox::Ok);
-           return;
-       }
-     //  model->appendRow(createRecipeRow(q.value(1).toString(),q.value(2).toString(),QString::number(q.value(3).toDouble(),'f',2),"","pippo"));
+        // alle=q.value(2).toBool();
+        // writeRed->insert(ix,alle);
+        quantitatot +=qmod->index(row,3).data(0).toDouble(&ok);
+        if(!ok)
+        {
+            QMessageBox::warning(this,QApplication::applicationName(),"ERRORE conversione a double errata",QMessageBox::Ok);
+            return;
+        }
+        //  model->appendRow(createRecipeRow(q.value(1).toString(),q.value(2).toString(),QString::number(q.value(3).toDouble(),'f',2),"","pippo"));
         QList<QStandardItem*> columns;
 
 
@@ -515,7 +516,7 @@ void HProduction::getRecipe()
         columns.append(allergene);
 
 
-    model->appendRow(columns);
+        model->appendRow(columns);
 
 
     }
@@ -537,11 +538,11 @@ void HProduction::getRecipe()
 
 
 
-   // qmrighe->setQuery(q);
+    // qmrighe->setQuery(q);
     ui->tableView->setModel(model);
     //ui->tableView->horizontalHeader()->setStretchLastSection(true);
-   // ui->tableView->resizeColumnsToContents();
-     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    // ui->tableView->resizeColumnsToContents();
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 
 
@@ -574,7 +575,7 @@ void HProduction::printProduction()
 
     QString title;
     double quanteff=0.0;
-  //  printModel=static_cast<QStandardItemModel*>(ui->tableView->model());
+    //  printModel=static_cast<QStandardItemModel*>(ui->tableView->model());
 
     title=ui->lbRicetta->text();
     title.append(" - ");
@@ -619,67 +620,67 @@ void HProduction::printProduction()
     QString col1,col2,col3;
 
 
-      for (int i=0;i<rows;i++)
+    for (int i=0;i<rows;i++)
+    {
+        quanteff+=model->index(i,5).data(0).toDouble();
+        if (ui->checkBox_2->isChecked())
         {
-           quanteff+=model->index(i,5).data(0).toDouble();
-          if (ui->checkBox_2->isChecked())
-          {
-              col1=model->index(i,1).data(0).toString();
-              col2=model->index(i,2).data(0).toString();
-           //   col3=QString::number(model->index(i,3).data(0).toDouble(),'f',3);
-              col3="                                                           ";
+            col1=model->index(i,1).data(0).toString();
+            col2=model->index(i,2).data(0).toString();
+            //   col3=QString::number(model->index(i,3).data(0).toDouble(),'f',3);
+            col3="                                                           ";
 
-          }
-          else
-          {
+        }
+        else
+        {
 
-              col1=model->index(i,1).data(0).toString();
-              col2=model->index(i,4).data(0).toString();
-              double r=model->index(i,5).data(0).toDouble();
-              col3=QString::number(r,'f',3);
-
-
-          }
-
-          f->cursorToEnd();
-
-          QTextCharFormat format;
-
-
-          if(model->index(i,6).data(0).toInt()==1)
-          {
-              f->writeTableContentRed(table,i,0,format,col1);
-              f->writeTableContentRed(table,i,1,format,col2);
-              f->writeTableContentRed(table,i,2,format,col3);
-          }
-          else
-          {
-
-          f->writeTableContent(table,i,0,QTextCharFormat(),col1);
-          f->writeTableContent(table,i,1,QTextCharFormat(),col2);
-          f->writeTableContent(table,i,2,QTextCharFormat(),col3);
-          }
-
-          f->cursorToEnd();
+            col1=model->index(i,1).data(0).toString();
+            col2=model->index(i,4).data(0).toString();
+            double r=model->index(i,5).data(0).toDouble();
+            col3=QString::number(r,'f',3);
 
 
         }
-      if (!ui->checkBox_2->isChecked())
-      {
-      f->append("\n\nQuantità: " + ui->leQtyTotal->text(),false);
-      }
-      else
-      {
-         f->append("\n\nQuantità: " + ui->leQuaRic->text(),false);
-      }
-      f->append("",false);
+
+        f->cursorToEnd();
+
+        QTextCharFormat format;
 
 
-      f->append("\n..............................................................................",false);
-      f->cursorToEnd();
-      f->append("\n..............................................................................",false);
-      f->cursorToEnd();
-      f->append("\n..............................................................................",false);
+        if(model->index(i,6).data(0).toInt()==1)
+        {
+            f->writeTableContentRed(table,i,0,format,col1);
+            f->writeTableContentRed(table,i,1,format,col2);
+            f->writeTableContentRed(table,i,2,format,col3);
+        }
+        else
+        {
+
+            f->writeTableContent(table,i,0,QTextCharFormat(),col1);
+            f->writeTableContent(table,i,1,QTextCharFormat(),col2);
+            f->writeTableContent(table,i,2,QTextCharFormat(),col3);
+        }
+
+        f->cursorToEnd();
+
+
+    }
+    if (!ui->checkBox_2->isChecked())
+    {
+        f->append("\n\nQuantità: " + ui->leQtyTotal->text(),false);
+    }
+    else
+    {
+        f->append("\n\nQuantità: " + ui->leQuaRic->text(),false);
+    }
+    f->append("",false);
+
+
+    f->append("\n..............................................................................",false);
+    f->cursorToEnd();
+    f->append("\n..............................................................................",false);
+    f->cursorToEnd();
+    f->append("\n..............................................................................",false);
 
     f->showMaximized();
 }
@@ -714,44 +715,44 @@ void HProduction::printRecipe()
 
     QTextTable *table= f->addTable(rows,cols,QTextTableFormat());
 
-      for (int i=0;i<rows;i++)
+    for (int i=0;i<rows;i++)
+    {
+
+        col1=ui->tableView->model()->index(i,1).data(0).toString();
+        col2=ui->tableView->model()->index(i,2).data(0).toString();
+
+        //      f->writeTableContent(table,i,0,col1);
+
+        //     f->writeTableContent(table,i,1,col2);
+
+
+
+
+        // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
+        QTextCharFormat format;
+        if(model->index(i,6).data(0).toBool())
         {
-
-          col1=ui->tableView->model()->index(i,1).data(0).toString();
-          col2=ui->tableView->model()->index(i,2).data(0).toString();
-
-    //      f->writeTableContent(table,i,0,col1);
-
-     //     f->writeTableContent(table,i,1,col2);
-
-
-
-
-            // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
-            QTextCharFormat format;
-            if(model->index(i,6).data(0).toBool())
-            {
-                f->writeTableContentRed(table,i,0,format,ui->tableView->model()->index(i,3).data(0).toString());
-                f->writeTableContentRed(table,i,1,format,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
-            }
-            else
-            {
+            f->writeTableContentRed(table,i,0,format,ui->tableView->model()->index(i,3).data(0).toString());
+            f->writeTableContentRed(table,i,1,format,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+        }
+        else
+        {
             f->writeTableContent(table,i,0,QTextCharFormat(),ui->tableView->model()->index(i,3).data(0).toString());
             f->writeTableContent(table,i,1,QTextCharFormat(),QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
-            }
+        }
 
-         f->cursorToEnd();
-
-
+        f->cursorToEnd();
 
 
-          }
 
-   // f->cursorToEnd();
+
+    }
+
+    // f->cursorToEnd();
 
     f->append("QUANTITA': " +ui->leQuaRic->text(),false);
 
- /*   f->cursorToEnd();
+    /*   f->cursorToEnd();
 
 
 
@@ -770,15 +771,15 @@ void HProduction::printRecipe()
 void HProduction::productSelected()
 {
 
-      // lastFiveLots();
-     //  connect (ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
+    // lastFiveLots();
+    //  connect (ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
 
 
 }
 
 void HProduction::lotSelected()
 {
-  /*  //QString lottoadd=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
+    /*  //QString lottoadd=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
 
     double quag;
     double quric;
@@ -800,10 +801,10 @@ void HProduction::lotSelected()
 
 void HProduction::on_pushButton_clicked()
 {
-   // addLotProd();
+    // addLotProd();
 
- //   HLastLots *f=new HLastLots(0,db);
- //   f->show();
+    //   HLastLots *f=new HLastLots(0,db);
+    //   f->show();
 }
 
 /* QList<QStandardItem*> HProduction::addTableRow()
@@ -816,25 +817,25 @@ void HProduction::addLotProd()
 {
 
 
-  //  int idlot;
-  //  int prod;
-  //  QString descprod;
- //   QString peso;
+    //  int idlot;
+    //  int prod;
+    //  QString descprod;
+    //   QString peso;
     QString lotToadd;
- //   QString qty;
-  //  QString qp="SELECT descrizione from prodotti where ID="+prod;
-   // QList<QString> list;
+    //   QString qty;
+    //  QString qp="SELECT descrizione from prodotti where ID="+prod;
+    // QList<QString> list;
 
-  //  QStandardItemModel *qm=static_cast<QStandardItemModel*>(ui->tableView->model());
+    //  QStandardItemModel *qm=static_cast<QStandardItemModel*>(ui->tableView->model());
 
     //lotToadd=ui->leLotToadd->text();
 
- //   QModelIndex idProdotto =qm->index(ui->tableView->currentIndex().row(),0);
-  //  QModelIndex prodotto =qm->index(ui->tableView->currentIndex().row(),1);
- //   QModelIndex quantita =qm->index(ui->tableView->currentIndex().row(),2);
-  //  QModelIndex idlotto =model->index(ui->tableView->currentIndex().row(),3);
- //   QModelIndex lotto =model->index(ui->tableView->currentIndex().row(),4);
-  //  QModelIndex quanteff =model->index(ui->tableView->currentIndex().row(),5);
+    //   QModelIndex idProdotto =qm->index(ui->tableView->currentIndex().row(),0);
+    //  QModelIndex prodotto =qm->index(ui->tableView->currentIndex().row(),1);
+    //   QModelIndex quantita =qm->index(ui->tableView->currentIndex().row(),2);
+    //  QModelIndex idlotto =model->index(ui->tableView->currentIndex().row(),3);
+    //   QModelIndex lotto =model->index(ui->tableView->currentIndex().row(),4);
+    //  QModelIndex quanteff =model->index(ui->tableView->currentIndex().row(),5);
     QModelIndex allergene=model->index(ui->tableView->currentIndex().row(),6);
 
     int row=ui->tableView->currentIndex().row();
@@ -850,16 +851,16 @@ void HProduction::addLotProd()
         return;
     }
 
-  /*  model->setData(idlotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),0).data(0).toString());
+    /*  model->setData(idlotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),0).data(0).toString());
     model->setData(lotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString());*/
-  //  model->setData(quanteff,model->index(row,2).data(0).toString());
+    //  model->setData(quanteff,model->index(row,2).data(0).toString());
     model->setData(allergene,model->index(row,6).data(0).toString());
 
 
 
- //   ui->leLotToadd->setText("");
- //   ui->leqtytoAdd->setText("");
-  //   qmLots->appendRow(createRecipeRow(prod));
+    //   ui->leLotToadd->setText("");
+    //   ui->leqtytoAdd->setText("");
+    //   qmLots->appendRow(createRecipeRow(prod));
 
 
 
@@ -874,15 +875,15 @@ void HProduction::addLotFuoriRicetta()
     bool alle=false;
     QString lotToadd;
     double qty=0.0;
-   // QStandardItemModel *mod=static_cast<QStandardItemModel*>(ui->tableView->model());
+    // QStandardItemModel *mod=static_cast<QStandardItemModel*>(ui->tableView->model());
 
 
     QList<QString> list;
     QList<QStandardItem*> row;
 
-   // disconnect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(lotSelected()));
+    // disconnect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(lotSelected()));
     //disconnect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
-  //  lotToadd=ui->leLotToadd->text();
+    //  lotToadd=ui->leLotToadd->text();
 
 
 
@@ -905,8 +906,8 @@ void HProduction::addLotFuoriRicetta()
         alle=p.value(1).toBool();
     }
 
-  //  peso=ui->leqtytoAdd->text();
-  //  qty=ui->leqtytoAdd->text().toDouble();
+    //  peso=ui->leqtytoAdd->text();
+    //  qty=ui->leqtytoAdd->text().toDouble();
 
     qps="SELECT ID from lotdef WHERE lot=:lot";
     p.prepare(qps);
@@ -920,8 +921,8 @@ void HProduction::addLotFuoriRicetta()
         QMessageBox::warning(this,QApplication::applicationName(),"ERRORE\nIl lotto inserito non esiste",QMessageBox::Ok);
         return;
     }
-   // qty=QString::number(ui->leqtytoAdd->text(),'g',2);
-  //  qty=fabs(ui->leqtytoAdd->text().toDouble());
+    // qty=QString::number(ui->leqtytoAdd->text(),'g',2);
+    //  qty=fabs(ui->leqtytoAdd->text().toDouble());
 
     QStandardItem *idprodotto=new QStandardItem(QString::number(prod));
     QStandardItem *prodotto=new QStandardItem(descprod);
@@ -936,7 +937,7 @@ void HProduction::addLotFuoriRicetta()
     QStandardItem *lotto =new QStandardItem(lotToadd);
     //QStandardItem *qua=new QStandardItem(ui->tableView->model()->index(ui->tableView->currentIndex().row(),5).data(0).toString());
 
-   // double quag=ui->leqtytoAdd->text().toDouble();
+    // double quag=ui->leqtytoAdd->text().toDouble();
     QStandardItem *qua=new QStandardItem(QString::number(qty,'f',3));
     QStandardItem *allergene=new QStandardItem(QString::number(ui->tableView->model()->index(ui->tableView->currentIndex().row(),6).data(0).toBool()));
 
@@ -948,13 +949,13 @@ void HProduction::addLotFuoriRicetta()
     row.append(qua);
     row.append(allergene);
     model->insertRow(ui->tableView->currentIndex().row(),row);
-  //  model->appendRow(row);
-  //  if(alle) writeRed->insert(ui->tableView->currentIndex().row(),alle);
-   // connect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
+    //  model->appendRow(row);
+    //  if(alle) writeRed->insert(ui->tableView->currentIndex().row(),alle);
+    // connect(ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
     ui->tableView->setCurrentIndex(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0));
 
-  //  ui->leLotToadd->setText("");
- //   ui->leqtytoAdd->setText("");
+    //  ui->leLotToadd->setText("");
+    //   ui->leqtytoAdd->setText("");
     recalculateTotal();
 
 }
@@ -976,8 +977,8 @@ QString HProduction::getNewLot(int prod)
 
 void HProduction::addLotFuoriRicettaN(QList<QStandardItem*> row)
 {
-   QStandardItemModel* mod =static_cast<QStandardItemModel*>(ui->tableView->model());
-   mod->appendRow(row);
+    QStandardItemModel* mod =static_cast<QStandardItemModel*>(ui->tableView->model());
+    mod->appendRow(row);
 }
 
 
@@ -998,16 +999,16 @@ void HProduction::on_pushButton_5_clicked()
     ui->pushButton_2->setEnabled(true);
     ui->pushButton_7->setEnabled(true);
     //ui->label->setVisible(true);
-   // ui->cbQuanti->setVisible(true);
-   // ui->lvLastLots->setVisible(true);
-   // ui->leQtyTotal->setReadOnly(true);
+    // ui->cbQuanti->setVisible(true);
+    // ui->lvLastLots->setVisible(true);
+    // ui->leQtyTotal->setReadOnly(true);
     ui->leQtyTotal->setEnabled(true);
     ui->cbTipoLotto->setEnabled(false);
     ui->checkBox->setEnabled(false);
     ui->cbClienti->setEnabled(false);
     ui->leQtyTotal->setFocus();
 
-   // getRecipe()
+    // getRecipe()
 
     updateTotals();
 
@@ -1032,7 +1033,7 @@ void HProduction::on_pushButton_6_clicked()
     //ui->tableView->setEnabled(false);
     ui->lvRicette->setEnabled(true);
     ui->pushButton_5->setVisible(true);
-     ui->leOperatore->setEnabled(true);
+    ui->leOperatore->setEnabled(true);
 
     ui->pushButton_6->setVisible(false);
     ui->pushButton->setEnabled(false);
@@ -1040,17 +1041,17 @@ void HProduction::on_pushButton_6_clicked()
     ui->pushButton_7->setEnabled(false);
 
     //ui->label->setVisible(false);
-   // ui->cbQuanti->setVisible(false);
-   // ui->lvLastLots->setVisible(false);
+    // ui->cbQuanti->setVisible(false);
+    // ui->lvLastLots->setVisible(false);
     ui->leNuovoLot->setText("");
     ui->leQtyTotal->setReadOnly(false);
     ui->cbTipoLotto->setEnabled(true);
     ui->checkBox->setEnabled(true);
     ui->cbClienti->setEnabled(true);
-   // ui->leQtyTotal->setText("0.0");
-//ui->leQtyTotal->setReadOnly(true);
- //   getRecipe();
- //   updateTotals();
+    // ui->leQtyTotal->setText("0.0");
+    //ui->leQtyTotal->setReadOnly(true);
+    //   getRecipe();
+    //   updateTotals();
 
 
 
@@ -1058,7 +1059,9 @@ void HProduction::on_pushButton_6_clicked()
     modifyLot=false;
     ui->tableView->setModel(0);
     getRecipe();
-    ui->pushButton_10->setEnabled(false);
+   /* ui->pushButton_10->setEnabled(false);
+    ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,0));
+    ui->lvRicette->selectionModel()->select(ui->lvRicette->model()->index(0,0),QItemSelectionModel::Select);*/
     disconnect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
 
 }
@@ -1073,15 +1076,15 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
     QString sql="INSERT INTO `lotdef`(`lot`,`prodotto`,`data`,`giacenza`,`um`,`scadenza`,`anagrafica`,`lot_fornitore`, `EAN`, `tipo`, `attivo`,`note`,`operatore`) VALUES(:lot,:prodotto,:data,:giacenza,:um,:scadenza ,:anagrafica,:lotf,:ean,:tipo,:attivo,:note,:operatore)";
     QString giacenza=ui->leQtyTotal->text();
     QDate scadenza=ui->dateEdit->date();
-// qDebug()<<scadenza.toString("yyyy-MM-dd");
+    // qDebug()<<scadenza.toString("yyyy-MM-dd");
     QString anagrafica;
     if(ui->checkBox->isChecked())
     {
-     anagrafica=ui->lvSubclienti->model()->index(ui->lvSubclienti->currentIndex().row(),0).data(0).toString();
+        anagrafica=ui->lvSubclienti->model()->index(ui->lvSubclienti->currentIndex().row(),0).data(0).toString();
     }
     else
     {
-    anagrafica=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toString();
+        anagrafica=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toString();
     }
     QString lotf="PRODUZIONE";
     QString ean="";
@@ -1092,30 +1095,29 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
     QDateTime data=QDateTime::currentDateTime();
     QString oper=ui->leOperatore->text();
 
-    q.prepare(sql);
+    b=false;
 
-    q.bindValue(":lot",QVariant(lot));
-    q.bindValue(":prodotto",QVariant(prodotto));
-    q.bindValue(":data",QVariant(data));
-    q.bindValue(":giacenza",QVariant(giacenza));
-    q.bindValue(":um",QVariant(um));
-    q.bindValue(":scadenza",QVariant(scadenza));
-    q.bindValue(":anagrafica",QVariant(anagrafica));
-    q.bindValue(":lotf",QVariant(lotf));
-    q.bindValue(":ean",QVariant(ean));
-    q.bindValue(":tipo",QVariant(tipo));
-    q.bindValue(":attivo",QVariant(attivo));
-    q.bindValue(":note",QVariant(note));
-    q.bindValue(":operatore",QVariant(oper));
-    b = q.exec();
-// qDebug()<<q.boundValue(5).toString()<<q.boundValue(4).toString()<<q.boundValue(6).toString();
-    if(!b)
+    if(QMessageBox::question(this,QApplication::applicationName(),"Confermare la produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
-        // qDebug()<<q.lastError().text()<<q.lastQuery();
-        QMessageBox::warning(this,"savenewlot",q.lastError().text()+"\n"+prodotto,QMessageBox::Ok);
+        q.prepare(sql);
+
+        q.bindValue(":lot",QVariant(lot));
+        q.bindValue(":prodotto",QVariant(prodotto));
+        q.bindValue(":data",QVariant(data));
+        q.bindValue(":giacenza",QVariant(giacenza));
+        q.bindValue(":um",QVariant(um));
+        q.bindValue(":scadenza",QVariant(scadenza));
+        q.bindValue(":anagrafica",QVariant(anagrafica));
+        q.bindValue(":lotf",QVariant(lotf));
+        q.bindValue(":ean",QVariant(ean));
+        q.bindValue(":tipo",QVariant(tipo));
+        q.bindValue(":attivo",QVariant(attivo));
+        q.bindValue(":note",QVariant(note));
+        q.bindValue(":operatore",QVariant(oper));
+        b = q.exec();
 
     }
-
+    if(!b){QMessageBox::warning(this,QApplication::applicationName(),"errore ell'inserimento nuovo lotto"+db.lastError().text(),QMessageBox::Ok);}
     return b;
 
 
@@ -1143,9 +1145,13 @@ bool HProduction::saveLotLoad(int idlotto, int prodotto)
     q.bindValue(":azione",QVariant(1));
     q.bindValue(":quantita",QVariant(giacenza));
     q.bindValue(":um",QVariant(um));
-   // // qDebug()<<"prima di eseguire la query di lotload";
+    qDebug()<<"prima di eseguire la query di lotload";
     bool b=q.exec();
-   // // qDebug()<<q.lastError().text()<<q.lastQuery();
+    qDebug()<<q.lastError().text()<<q.lastQuery();
+    if(!b){
+        db.rollback();
+    }
+
     return b;
 }
 //--saveLotLoad()------------------------------
@@ -1164,77 +1170,77 @@ int HProduction::lastInsertId()
 
 }
 
- bool HProduction::saveOperation(int row,int action)//carico=1 - scarico= 2
- {
-     QSqlQuery q(db);
-     QString sql;
+bool HProduction::saveOperation(int row,int action)//carico=1 - scarico= 2
+{
+    QSqlQuery q(db);
+    QString sql;
 
-     QString data,note;
-
-
-     int idlotto=ui->tableView->model()->index(row,3).data(0).toInt();
-     int idprodotto=ui->tableView->model()->index(row,0).data(0).toInt();
-     int utente=user->getID();
-     double quant= ui->tableView->model()->index(row,5).data(0).toDouble();
-     int um=ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0).toInt();
-
-     data=QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
-     note="";
+    QString data,note;
 
 
-     sql="INSERT INTO `operazioni` (`IDlotto`,`data`,`utente`, `IDprodotto`,`azione`,`quantita`,`um`) VALUES (:idlotto,:data,:utente,:idprodotto,:azione,:quantita,:um)";
-     q.prepare(sql);
+    int idlotto=ui->tableView->model()->index(row,3).data(0).toInt();
+    int idprodotto=ui->tableView->model()->index(row,0).data(0).toInt();
+    int utente=user->getID();
+    double quant= ui->tableView->model()->index(row,5).data(0).toDouble();
+    int um=ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0).toInt();
 
-     q.bindValue(":idlotto",QVariant(idlotto));
-     q.bindValue(":data",QVariant(data));
-     q.bindValue(":utente",QVariant(utente));
-     q.bindValue(":idprodotto",QVariant(idprodotto));
-     q.bindValue(":azione",QVariant(action));
-     q.bindValue(":quantita",QVariant(quant));
-     q.bindValue(":um",QVariant(um));
+    data=QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+    note="";
 
 
-     bool b;
+    sql="INSERT INTO `operazioni` (`IDlotto`,`data`,`utente`, `IDprodotto`,`azione`,`quantita`,`um`) VALUES (:idlotto,:data,:utente,:idprodotto,:azione,:quantita,:um)";
+    q.prepare(sql);
 
-     b=q.exec();
+    q.bindValue(":idlotto",QVariant(idlotto));
+    q.bindValue(":data",QVariant(data));
+    q.bindValue(":utente",QVariant(utente));
+    q.bindValue(":idprodotto",QVariant(idprodotto));
+    q.bindValue(":azione",QVariant(action));
+    q.bindValue(":quantita",QVariant(quant));
+    q.bindValue(":um",QVariant(um));
 
-     if(!b)
-     {
-        // qDebug() << q.lastError().text();
-        QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveOperazione(" + QString::number(row) +")\nIDlotto:"+idlotto,QMessageBox::Ok);
 
-     }
+    bool b=false;
 
-     return b;
- }
+    b=q.exec();
+
+    if(!b)
+    {
+        qDebug() << q.lastError().text();
+        // QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveOperazione(" + QString::number(row) +")\nIDlotto:"+idlotto,QMessageBox::Ok);
+
+    }
+
+    return b;
+}
 
 
 //---saveOperation
 
 //*----save Composizione----------------
 
- bool HProduction::saveComposizione(int lottotarget,int operazione)
- {
+bool HProduction::saveComposizione(int lottotarget,int operazione)
+{
     bool b=false;
 
-     QSqlQuery q(db);
-     QString sql;
+    QSqlQuery q(db);
+    QString sql;
 
     // int operazione=lastInsertId();
 
-// #include <QDebug><<"lottotarget: "<<QString::number(lottotarget)<<" operazione: "<<QString::number(operazione);
-          sql="INSERT INTO composizione_lot (ID_lotto,operazione) VALUES (:lottotarget,:operazione)";
-          q.prepare(sql);
-          q.bindValue(":lottotarget",QVariant(lottotarget));
-          q.bindValue(":operazione",QVariant(operazione));
-          // qDebug()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
+    // #include <QDebug><<"lottotarget: "<<QString::number(lottotarget)<<" operazione: "<<QString::number(operazione);
+    sql="INSERT INTO composizione_lot (ID_lotto,operazione) VALUES (:lottotarget,:operazione)";
+    q.prepare(sql);
+    q.bindValue(":lottotarget",QVariant(lottotarget));
+    q.bindValue(":operazione",QVariant(operazione));
+    // qDebug()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
 
-          b=q.exec();
-          // qDebug()<< "savecomposizione"<<q.lastError().text();
+    b=q.exec();
+    // qDebug()<< "savecomposizione"<<q.lastError().text();
 
-     return b;
+    return b;
 
- }
+}
 //-------- saveComposition();
 
 bool HProduction::saveProduction()
@@ -1249,115 +1255,126 @@ bool HProduction::saveProduction()
     QDate scadenza;
     int op;
 
-    bool fb;
+    bool fb=false;
 
     data=QDateTime::currentDateTime();
     scadenza=ui->dateEdit->date();
     idprodotto=ui->lvRicette->model()->index(ui->lvRicette->currentIndex().row(),1).data(0).toInt();
-    lotto=getNewLot(idprodotto);
-   // // qDebug()<<"INIZIO A SALVARE"<<"lotto="<<lotto<<" Prodotto="<<QString::number(idprodotto);
+
+
+    //creo un nuovo lotto
 
     db.transaction();
-//creo un nuovo lotto
 
- fb=saveNewLot(lotto,idprodotto);
-// // qDebug()<<"saveNewLot"<<fb;
+    lotto=getNewLot(idprodotto);
 
-  newlotid=lastInsertId();
- // // qDebug()<<QString::number(newlotid);
- if(!fb)
-   {
-       QMessageBox::warning(this,QApplication::applicationName(),"Errore creando il nuovo lotto\n"+db.lastError().text(),QMessageBox::Ok);
-       db.rollback();
-       return fb;
-   }
+    qDebug()<<lotto;
 
-//carico il nuovo lotto
+    fb=saveNewLot(lotto,idprodotto);
+    qDebug()<<"saveNewLot"<<fb;
+
+    if(!fb)
+    {
+        db.rollback();
+        QMessageBox::warning(this,QApplication::applicationName(),"Il nuovo lotto non è stato creato\nOperazione annullata o fallita"+db.lastError().text(),QMessageBox::Ok);
+
+        return fb;
+    }
 
 
-  fb=saveLotLoad(newlotid,idprodotto);
- // int lastopid=lastInsertId();
- // // qDebug()<<"savelotload";
+    newlotid=lastInsertId();
 
-  if(!fb)
-  {
-    QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveLotLoad()",QMessageBox::Ok);
-    db.rollback();
+    //carico il nuovo lotto
+    fb=saveLotLoad(newlotid,idprodotto);
+    if(!fb)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore in SaveLotLoad"+db.lastError().text(),QMessageBox::Ok);
+        db.rollback();
+        return fb;
+    }
+
+    //scarico i componenti e salvo la composizione del lotto
+    int rows=ui->tableView->model()->rowCount();
+
+    bool bop=false;
+    for (int x=0;x<rows;x++)
+    {
+
+        bop=saveOperation(x,2);
+        // // qDebug()<<"saveoperazione"<<QString::number(x);
+        op=lastInsertId();
+        // recupero l'id dell'ultima operazione di scarico(cioè lo scarico della prima riga di  tableview se x=0
+        if (bop)
+        {
+            //se l'operazione è salvata senza errori
+            // la salvo in composizone_lot,new lotid è il lotto di cui voglio salvare la composizione (lotid) e op è l'id dell'operazione
+            bool j=saveComposizione(newlotid,op);
+
+            op=lastInsertId();
+            if (!j)
+            {
+                QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveComposizione",QMessageBox::Ok);
+                db.rollback();
+                return j;
+            }
+
+        }
+        else
+        {
+
+            QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveOperation("+ QString::number(x) +")",QMessageBox::Ok);
+            db.rollback();
+            return bop;
+        } //se saveoperazione
+
+
+
+    }//for (per ogni riga della tabella)
+
+    fb=bop;
+    qDebug()<<"fb finale: "<<fb;
+
+
+    if(fb)
+    {
+        db.commit();
+        QMessageBox::information(this,QApplication::applicationName(),"Produzione salvata",QMessageBox::Ok);}
+    else
+    {
+
+        db.rollback();
+        QMessageBox::information(this,QApplication::applicationName(),"Errore",QMessageBox::Ok);
+    }
+
+    ui->tableView->setEnabled(false);
+
+
     return fb;
-  }
-  //ultimo ID di operazioni)
-  // qDebug()<<QString::number(k);
 
-//scarico i componenti e salvo la composizione del lotto
-  int rows=ui->tableView->model()->rowCount();
- // // qDebug()<<QString::number(rows);
-
-   for (int x=0;x<rows;x++)
-   {
-
-       fb=saveOperation(x,2);
-      // // qDebug()<<"saveoperazione"<<QString::number(x);
-       op=lastInsertId();
-      // recupero l'id dell'ultima operazione di scarico(cioè lo scarico della prima riga di  tableview se x=0
-       if (fb)
-       {
-           //se l'operazione è salvata senza errori
-           // la salvo in composizone_lot,new lotid è il lotto di cui voglio salvare la composizione (lotid) e op è l'id dell'operazione
-           bool j=saveComposizione(newlotid,op);
-          // // qDebug()<<"newlotid="<<QString::number(newlotid)<<"operazione:"<<QString::number(op);
-           op=lastInsertId();
-           if (!j)
-           {
-               QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveComposizione",QMessageBox::Ok);
-               db.rollback();
-               return false;
-           }
-          // // qDebug()<<"saveComposizione()";
-       }
-       else
-       {
-           QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveOperation("+ QString::number(x) +")",QMessageBox::Ok);
-           db.rollback();
-           return fb;
-       } //se saveoperazione
-
-
-
-   }//for (per ogni riga della tabella)
-
-
-
-       db.commit();
-       QMessageBox::information(this,QApplication::applicationName(),"Produzione salvata",QMessageBox::Ok);
-      // ui->tableView->setModel(0);
-       ui->tableView->setEnabled(false);
-
-
-return true;
 
 }
 
 bool HProduction::saveUpdatedComposizione()
 {
 
-       // int rows=ui->tableView->model()->rowCount();
-        bool b=false;
+    // int rows=ui->tableView->model()->rowCount();
+    bool b=false;
 
-        QSqlQuery q(db);
-        QString sql;
+    QSqlQuery q(db);
+    QString sql;
 
-        int operazione=lastInsertId();
+    int operazione=lastInsertId();
 
 
-             sql="INSERT INTO composizione_lot (ID_lotto,operazione) VALUES (:lottotarget,:operazione)";
-             q.prepare(sql);
-             q.bindValue(":lottotarget",QVariant(lottomodifica));
-             q.bindValue(":operazione",QVariant(operazione));
+    sql="INSERT INTO composizione_lot (ID_lotto,operazione) VALUES (:lottotarget,:operazione)";
+    q.prepare(sql);
+    q.bindValue(":lottotarget",QVariant(lottomodifica));
+    q.bindValue(":operazione",QVariant(operazione));
 
-             b=q.exec();
-             // qDebug()<< "savecomposizione"<<QString::number(b);
+    b=q.exec();
+    // qDebug()<< "savecomposizione"<<QString::number(b);
 
-        return b;
+    return b;
 }
 
 
@@ -1365,36 +1382,45 @@ bool HProduction::saveUpdatedComposizione()
 
 void HProduction::on_pushButton_3_clicked()
 {
-   if (!modifyLot){
-       saveProduction();
-    //   ui->pushButton_11->click();
-       ui->pushButton_6->click();
-       ui->tableView->setEnabled(true);
-       ui->pushButton_10->setEnabled(true);
-   }
-   else
-   {
-       updateComposition();
-   }
-  // ui->tableView->setEnabled(false);
-   ui->lvRicette->setEnabled(true);
-   ui->pushButton_5->setVisible(true);
-   ui->pushButton_6->setVisible(false);
-   ui->pushButton->setEnabled(false);
-   ui->pushButton_2->setEnabled(false);
-   ui->pushButton_7->setEnabled(false);
-  /* ui->label->setVisible(false);
+    bool b=false;
+
+    if (!modifyLot){
+
+
+
+        saveProduction();
+
+
+        //   ui->pushButton_11->click();
+        ui->pushButton_6->click();
+        ui->tableView->setEnabled(true);
+        ui->pushButton_10->setEnabled(true);
+    }
+    else
+    {
+        updateComposition();
+    }
+    // ui->tableView->setEnabled(false);
+    ui->lvRicette->setEnabled(true);
+    ui->pushButton_5->setVisible(true);
+    ui->pushButton_6->setVisible(false);
+    ui->pushButton->setEnabled(false);
+    ui->pushButton_2->setEnabled(false);
+    ui->pushButton_7->setEnabled(false);
+    /* ui->label->setVisible(false);
    ui->cbQuanti->setVisible(false);
    ui->lvLastLots->setVisible(false);*/
-   ui->leNuovoLot->setText("");
-   ui->leQtyTotal->setReadOnly(false);
-   ui->cbTipoLotto->setEnabled(true);
-   ui->checkBox->setEnabled(true);
-       ui->cbClienti->setEnabled(true);
-//   getRecipe();
- //  updateTotals();
-   modifyLot=false;
-  // ui->tableView->setModel(0);
+    ui->leNuovoLot->setText("");
+    ui->leQtyTotal->setReadOnly(false);
+    ui->cbTipoLotto->setEnabled(true);
+    ui->checkBox->setEnabled(true);
+    ui->cbClienti->setEnabled(true);
+    //   getRecipe();
+    //  updateTotals();
+    modifyLot=false;
+
+    // ui->tableView->setModel(0);
+
 
 }
 
@@ -1402,7 +1428,7 @@ void HProduction::on_pushButton_3_clicked()
 
 void HProduction::on_leQtyTotal_returnPressed()
 {
-  // calcola pesi
+    // calcola pesi
     // qDebug()<<"going into updateTotals();";
     updateTotals();
 
@@ -1416,7 +1442,7 @@ void HProduction::on_pushButton_7_clicked()
     qDebug()<<"PFR:"<<product;
 
     HLastLots *f=new HLastLots(0,db,ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toDouble(),product);
-   // connect(f,SIGNAL(rowAdded(QList<QStandardItem*> row)),this,SLOT(addLotFuoriRicettaN(QList<QStandardItem*> row)));
+    // connect(f,SIGNAL(rowAdded(QList<QStandardItem*> row)),this,SLOT(addLotFuoriRicettaN(QList<QStandardItem*> row)));
     connect (f,SIGNAL(rowAdded(QList<QStandardItem*>)),this,SLOT(addLotFuoriRicettaN(QList<QStandardItem*>)));
     f->show();
 }
@@ -1434,30 +1460,30 @@ void HProduction::on_pushButton_2_clicked()
     if(QMessageBox::question(this,QApplication::applicationName(),"Eliminare la riga?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         QModelIndex ix=ui->tableView->currentIndex();
-      //  QModelIndex xx=ui->tableView->model()->index(ix.row(),2);
-      // QModelIndex xy=ui->tableView->model()->index(ix.row(),5);
+        //  QModelIndex xx=ui->tableView->model()->index(ix.row(),2);
+        // QModelIndex xy=ui->tableView->model()->index(ix.row(),5);
 
-       ui->tableView->model()->removeRow(ix.row());
-      //  ui->tableView->model()->setData(xx,QVariant(0),Qt::EditRole);
-      //  ui->tableView->model()->setData(xy,QVariant(0),Qt::EditRole);
-       recalculateTotal();
+        ui->tableView->model()->removeRow(ix.row());
+        //  ui->tableView->model()->setData(xx,QVariant(0),Qt::EditRole);
+        //  ui->tableView->model()->setData(xy,QVariant(0),Qt::EditRole);
+        recalculateTotal();
 
     }
 }
 
 void HProduction::on_pushButton_7_toggled(bool checked)
 {
-   setAddProductFuoriRicettaUI(checked);
+    setAddProductFuoriRicettaUI(checked);
 }
 
 void HProduction::setAddProductFuoriRicettaUI(bool visible)
 {
     ui->label_6->setVisible(visible);
-   /* ui->label_2->setVisible(visible);
+    /* ui->label_2->setVisible(visible);
     ui->label_4->setVisible(visible);
     ui->leqtytoAdd->setVisible(visible);
     ui->leLotToadd->setVisible(visible);*/
-  //  ui->cbTipoLotto->setVisible(visible);
+    //  ui->cbTipoLotto->setVisible(visible);
     ui->pbAddLottoFuoriRicetta->setVisible(visible);
     ui->pbAnnulla->setVisible(visible);
 
@@ -1475,26 +1501,24 @@ void HProduction::on_pbAddLottoFuoriRicetta_clicked()
 
 void HProduction::on_pushButton_8_clicked()
 {
-   // printProduction(false);
+    // printProduction(false);
     printRecipe();
 }
 
 
-void HProduction::updateComposition()
+bool HProduction::updateComposition()
 {
 
-   // int rows=ui->tableView->model()->rowCount();
+    // int rows=ui->tableView->model()->rowCount();
 
-  //  int idprodotto;
-  //  double quantita;
-  //  int idlotto;
-  // double quanteff;
- //   int idoperazione;
+    //  int idprodotto;
+    //  double quantita;
+    //  int idlotto;
+    // double quanteff;
+    //   int idoperazione;
 
     QString sql;
     QSqlQuery q(db);
-
-    db.transaction();
 
     //cancello la composizione del lotto
     sql="delete from composizione_lot where ID_lotto=:lotto";
@@ -1506,13 +1530,13 @@ void HProduction::updateComposition()
     {
         QMessageBox::warning(this,QApplication::applicationName(),"errore aggiornando la composizione (step 1)",QMessageBox::Ok);
         db.rollback();
-        return;
+        return false;
     }
 
 
- bool fb;
+    bool fb;
 
- //salvo le operazioni nuove
+    //salvo le operazioni nuove
 
     for (int x=0;x<ui->tableView->model()->rowCount();x++)
     {
@@ -1523,77 +1547,73 @@ void HProduction::updateComposition()
             if (!j)
             {
                 QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveUpdatedComposizione",QMessageBox::Ok);
-                db.rollback();
-                return ;
+                return j;
             }
         }
         else
         {
             QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveUpdatedOperation("+ QString::number(x) +")",QMessageBox::Ok);
-            db.rollback();
-            return ;
+
+
         }
 
 
 
     }
 
-    db.commit();
-    QMessageBox::information(this,QApplication::applicationName(),"Composizione aggiornata",QMessageBox::Ok);
+    return fb;
+
+
+
 
 
 }
 
 bool HProduction::saveUpdatedOperazione(int row)
 {
-        bool b;
-        QSqlQuery q(db);
-        QString sql;
+    bool b;
+    QSqlQuery q(db);
+    QString sql;
 
-        QString data,azione,note;
-
-
-        int idlotto=ui->tableView->model()->index(row,3).data(0).toInt();
-        int idprodotto=ui->tableView->model()->index(row,0).data(0).toInt();
-        int utente=user->getID();
-        double quant= ui->tableView->model()->index(row,5).data(0).toDouble();
-        int um=ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0).toInt();
-
-        data=QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
-        azione="2";
-        note="";
+    QString data,azione,note;
 
 
-        sql="INSERT INTO `operazioni` (`IDlotto`,`data`,`utente`, `IDprodotto`,`azione`,`quantita`,`um`,`note`) VALUES (:idlotto,:data,:utente,:idprodotto,:azione,:quantita,:um,:note)";
-        q.prepare(sql);
+    int idlotto=ui->tableView->model()->index(row,3).data(0).toInt();
+    int idprodotto=ui->tableView->model()->index(row,0).data(0).toInt();
+    int utente=user->getID();
+    double quant= ui->tableView->model()->index(row,5).data(0).toDouble();
+    int um=ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0).toInt();
 
-        q.bindValue(":idlotto",QVariant(idlotto));
-        q.bindValue(":data",QVariant(data));
-        q.bindValue(":utente",QVariant(utente));
-        q.bindValue(":idprodotto",QVariant(idprodotto));
-        q.bindValue(":azione",QVariant(azione));
-        q.bindValue(":quantita",QVariant(quant));
-        q.bindValue(":um",QVariant(um));
-        q.bindValue(":note",QVariant(note));
+    data=QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+    azione="2";
+    note="";
 
 
-        b=q.exec();
+    sql="INSERT INTO `operazioni` (`IDlotto`,`data`,`utente`, `IDprodotto`,`azione`,`quantita`,`um`,`note`) VALUES (:idlotto,:data,:utente,:idprodotto,:azione,:quantita,:um,:note)";
+    q.prepare(sql);
 
-        if(!b)
-        {
-           // qDebug() << q.lastError().text();
-          // QMessageBox::warning(this,QApplication::applicationName(),"saveOperazione(" + QString::number(row) +")\noperazione:"+operazione,QMessageBox::Ok);
+    q.bindValue(":idlotto",QVariant(idlotto));
+    q.bindValue(":data",QVariant(data));
+    q.bindValue(":utente",QVariant(utente));
+    q.bindValue(":idprodotto",QVariant(idprodotto));
+    q.bindValue(":azione",QVariant(azione));
+    q.bindValue(":quantita",QVariant(quant));
+    q.bindValue(":um",QVariant(um));
+    q.bindValue(":note",QVariant(note));
 
-        }
 
-        return b;
+    b=q.exec();
+
+
+
+    return b;
 
 
 }
 
 void HProduction::on_pushButton_10_clicked()
 {
-   printProduction();
+    printProduction();
 }
 
 void HProduction::on_checkBox_toggled(bool checked)
@@ -1618,10 +1638,10 @@ void HProduction::on_pbAnnulla_clicked()
 
 void HProduction::on_pushButton_11_clicked()
 {
-  if(QMessageBox::question(0,QApplication::applicationDisplayName(),"Resettare la ricetta?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
-  {
-      getRecipe();
-  }
+    if(QMessageBox::question(0,QApplication::applicationDisplayName(),"Resettare la ricetta?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        getRecipe();
+    }
 }
 
 
@@ -1647,15 +1667,15 @@ void HProduction::addLot(QModelIndex index)
     data->mod=static_cast<QStandardItemModel*>(ui->tableView->model());
 
 
-   HAddLotInProduction *f= new HAddLotInProduction(0,data,db);
-   f->setWindowModality(Qt::ApplicationModal);
+    HAddLotInProduction *f= new HAddLotInProduction(0,data,db);
+    f->setWindowModality(Qt::ApplicationModal);
 
 
-  // f->setWindowFlags(Qt::FramelessWindowHint);
-   f->move(10+ui->tableView->x()-f->width()-10,QCursor::pos().y());
+    // f->setWindowFlags(Qt::FramelessWindowHint);
+    f->move(10+ui->tableView->x()-f->width()-10,QCursor::pos().y());
 
 
-   f->show();
+    f->show();
 }
 
 

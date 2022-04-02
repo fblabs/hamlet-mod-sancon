@@ -471,6 +471,7 @@ void MainWindow::on_tbClose_clicked()
 {
     if(QMessageBox::question(this,QApplication::applicationName(),"Uscire dall'applicazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
+
         db.close();
         db.removeDatabase(sConn);
         this->close();
