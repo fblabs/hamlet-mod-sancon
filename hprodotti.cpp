@@ -50,12 +50,6 @@ HProdotti::HProdotti(HUser *puser,QSqlDatabase pdb, QWidget *parent) :
 
 
 
-
-
-
-
-
-
 void HProdotti::setMain(MainWindow *w)
 {
    wmain = w;

@@ -96,6 +96,7 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
     dwMapper->addMapping(ui->tnote,12);
     dwMapper->addMapping(ui->cbsub,13);
     dwMapper->addMapping(ui->cbVisible,15);
+    dwMapper->addMapping(ui->cbStamp,16);
 
 
 
@@ -358,6 +359,10 @@ void HUtenti::setFilter()
     {
         filter="trasportatore>0 and " + visible;
     }
+    else if(ui->rbGraphics->isChecked())
+    {
+        filter="stampatore>0 and " + visible;
+    }
     tm->setFilter(filter);
     qDebug()<<tm->filter()<<tm->lastError().text()<<filter;
 
@@ -425,3 +430,14 @@ void HUtenti::on_pushButton_6_clicked()
     ui->lsearch->setText("");
     productSearch();
 }
+
+void HUtenti::on_rbGraphics_toggled(bool checked)
+{
+    if (checked){
+        setFilter();
+    }
+}
+
+
+
+

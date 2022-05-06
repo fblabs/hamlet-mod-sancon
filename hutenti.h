@@ -68,6 +68,8 @@ private slots:
 
     void on_lsearch_returnPressed();
     void on_pushButton_6_clicked();
+    void on_rbGraphics_toggled(bool checked);
+
 };
 
 

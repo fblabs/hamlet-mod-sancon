@@ -91,7 +91,7 @@ void HLogin2::login()
       //  emit userLogged(usr->getID(),usr->getRole(),usr->getCanUpdate(),usr->getCanUpdateAnag(),db);
         emit userLogged(usr,db);
 
-        qrLogin.clear();
+       
 
 
     // // qDebug()<<"HLogin2"<<usr->getUsername()<<QString::number(usr->getRole())<<usr->getCanUpdate()<<usr->getCanUpdateAnag();

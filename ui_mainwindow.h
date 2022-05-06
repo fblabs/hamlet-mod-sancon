@@ -74,7 +74,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->setWindowModality(Qt::NonModal);
-        MainWindow->resize(1112, 780);
+        MainWindow->resize(1156, 831);
         QPalette palette;
         QBrush brush(QColor(255, 255, 255, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -625,7 +625,7 @@ public:
         label_3->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.9 (64bit)</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 2.9.9.5</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2022</span></p><p><a href=\"\357\277\274\357\277\274https://github.com/fblabs/hamlet-mod-sancon\"><span style=\" font-size:10pt; font-weight:600; text-decoration: underline; color:#aaffff;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 2.9 (64bit)</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 2.9.9.6</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2022</span></p><p><a href=\"\357\277\274\357\277\274https://github.com/fblabs/hamlet-mod-sancon\"><span style=\" font-size:10pt; font-weight:600; text-decoration: underline; color:#aaffff;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
         tbLogout->setText(QCoreApplication::translate("MainWindow", "Logout", nullptr));
         pbSchede->setText(QCoreApplication::translate("MainWindow", "Schede Clienti (F3)", nullptr));
 #if QT_CONFIG(shortcut)

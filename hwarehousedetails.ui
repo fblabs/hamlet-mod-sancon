@@ -95,6 +95,11 @@
        </item>
       </layout>
      </widget>
+     <widget class="QLabel" name="lbidlotto">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </item>
    <item>
@@ -205,6 +210,9 @@
         <widget class="QLineEdit" name="leEAN">
          <property name="styleSheet">
           <string notr="true">background-color: rgb(255, 255, 127);</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

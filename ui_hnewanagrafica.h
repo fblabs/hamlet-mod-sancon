@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hnewanagrafica.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.15.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,13 +10,11 @@
 #define UI_HNEWANAGRAFICA_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -53,6 +51,7 @@ public:
     QCheckBox *cbCliente;
     QCheckBox *cbfornitore;
     QCheckBox *cbTrasportatore;
+    QCheckBox *cbStampatore;
     QCheckBox *cbSubcliente;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
@@ -61,111 +60,111 @@ public:
     void setupUi(QWidget *HNewAnagrafica)
     {
         if (HNewAnagrafica->objectName().isEmpty())
-            HNewAnagrafica->setObjectName(QStringLiteral("HNewAnagrafica"));
+            HNewAnagrafica->setObjectName(QString::fromUtf8("HNewAnagrafica"));
         HNewAnagrafica->setWindowModality(Qt::ApplicationModal);
-        HNewAnagrafica->resize(487, 307);
+        HNewAnagrafica->resize(636, 397);
         QIcon icon;
-        icon.addFile(QStringLiteral(":/Resources/User-Male.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/Resources/User-Male.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HNewAnagrafica->setWindowIcon(icon);
         verticalLayout_2 = new QVBoxLayout(HNewAnagrafica);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         formLayout = new QFormLayout();
-        formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setObjectName(QString::fromUtf8("formLayout"));
         label = new QLabel(HNewAnagrafica);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
         leRagsoc = new QLineEdit(HNewAnagrafica);
-        leRagsoc->setObjectName(QStringLiteral("leRagsoc"));
+        leRagsoc->setObjectName(QString::fromUtf8("leRagsoc"));
         leRagsoc->setMaxLength(45);
 
         formLayout->setWidget(0, QFormLayout::FieldRole, leRagsoc);
 
         label_2 = new QLabel(HNewAnagrafica);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
 
         formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
 
         leAddress = new QLineEdit(HNewAnagrafica);
-        leAddress->setObjectName(QStringLiteral("leAddress"));
+        leAddress->setObjectName(QString::fromUtf8("leAddress"));
         leAddress->setMaxLength(50);
 
         formLayout->setWidget(1, QFormLayout::FieldRole, leAddress);
 
         label_3 = new QLabel(HNewAnagrafica);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName(QString::fromUtf8("label_3"));
 
         formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
 
         leCity = new QLineEdit(HNewAnagrafica);
-        leCity->setObjectName(QStringLiteral("leCity"));
+        leCity->setObjectName(QString::fromUtf8("leCity"));
         leCity->setMaxLength(50);
 
         formLayout->setWidget(2, QFormLayout::FieldRole, leCity);
 
         label_4 = new QLabel(HNewAnagrafica);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setObjectName(QString::fromUtf8("label_4"));
 
         formLayout->setWidget(3, QFormLayout::LabelRole, label_4);
 
         leCap = new QLineEdit(HNewAnagrafica);
-        leCap->setObjectName(QStringLiteral("leCap"));
+        leCap->setObjectName(QString::fromUtf8("leCap"));
         leCap->setMaxLength(12);
 
         formLayout->setWidget(3, QFormLayout::FieldRole, leCap);
 
         label_5 = new QLabel(HNewAnagrafica);
-        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setObjectName(QString::fromUtf8("label_5"));
 
         formLayout->setWidget(4, QFormLayout::LabelRole, label_5);
 
         leProvincia = new QLineEdit(HNewAnagrafica);
-        leProvincia->setObjectName(QStringLiteral("leProvincia"));
+        leProvincia->setObjectName(QString::fromUtf8("leProvincia"));
 
         formLayout->setWidget(4, QFormLayout::FieldRole, leProvincia);
 
         label_6 = new QLabel(HNewAnagrafica);
-        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setObjectName(QString::fromUtf8("label_6"));
 
         formLayout->setWidget(6, QFormLayout::LabelRole, label_6);
 
         leTel = new QLineEdit(HNewAnagrafica);
-        leTel->setObjectName(QStringLiteral("leTel"));
+        leTel->setObjectName(QString::fromUtf8("leTel"));
         leTel->setMaxLength(45);
 
         formLayout->setWidget(6, QFormLayout::FieldRole, leTel);
 
         label_7 = new QLabel(HNewAnagrafica);
-        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setObjectName(QString::fromUtf8("label_7"));
 
         formLayout->setWidget(7, QFormLayout::LabelRole, label_7);
 
         leContatto = new QLineEdit(HNewAnagrafica);
-        leContatto->setObjectName(QStringLiteral("leContatto"));
+        leContatto->setObjectName(QString::fromUtf8("leContatto"));
         leContatto->setMaxLength(45);
 
         formLayout->setWidget(7, QFormLayout::FieldRole, leContatto);
 
         label_8 = new QLabel(HNewAnagrafica);
-        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setObjectName(QString::fromUtf8("label_8"));
 
         formLayout->setWidget(8, QFormLayout::LabelRole, label_8);
 
         leNote = new QLineEdit(HNewAnagrafica);
-        leNote->setObjectName(QStringLiteral("leNote"));
+        leNote->setObjectName(QString::fromUtf8("leNote"));
 
         formLayout->setWidget(8, QFormLayout::FieldRole, leNote);
 
         label_9 = new QLabel(HNewAnagrafica);
-        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setObjectName(QString::fromUtf8("label_9"));
 
         formLayout->setWidget(5, QFormLayout::LabelRole, label_9);
 
         leNazione = new QLineEdit(HNewAnagrafica);
-        leNazione->setObjectName(QStringLiteral("leNazione"));
+        leNazione->setObjectName(QString::fromUtf8("leNazione"));
         leNazione->setMaxLength(45);
 
         formLayout->setWidget(5, QFormLayout::FieldRole, leNazione);
@@ -174,24 +173,29 @@ public:
         verticalLayout->addLayout(formLayout);
 
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         cbCliente = new QCheckBox(HNewAnagrafica);
-        cbCliente->setObjectName(QStringLiteral("cbCliente"));
+        cbCliente->setObjectName(QString::fromUtf8("cbCliente"));
 
         horizontalLayout->addWidget(cbCliente);
 
         cbfornitore = new QCheckBox(HNewAnagrafica);
-        cbfornitore->setObjectName(QStringLiteral("cbfornitore"));
+        cbfornitore->setObjectName(QString::fromUtf8("cbfornitore"));
 
         horizontalLayout->addWidget(cbfornitore);
 
         cbTrasportatore = new QCheckBox(HNewAnagrafica);
-        cbTrasportatore->setObjectName(QStringLiteral("cbTrasportatore"));
+        cbTrasportatore->setObjectName(QString::fromUtf8("cbTrasportatore"));
 
         horizontalLayout->addWidget(cbTrasportatore);
 
+        cbStampatore = new QCheckBox(HNewAnagrafica);
+        cbStampatore->setObjectName(QString::fromUtf8("cbStampatore"));
+
+        horizontalLayout->addWidget(cbStampatore);
+
         cbSubcliente = new QCheckBox(HNewAnagrafica);
-        cbSubcliente->setObjectName(QStringLiteral("cbSubcliente"));
+        cbSubcliente->setObjectName(QString::fromUtf8("cbSubcliente"));
 
         horizontalLayout->addWidget(cbSubcliente);
 
@@ -202,20 +206,22 @@ public:
         verticalLayout_2->addLayout(verticalLayout);
 
         horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         pushButton = new QPushButton(HNewAnagrafica);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral(":/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString::fromUtf8(":/Resources/Accept64.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon1);
+        pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton);
 
         pushButton_2 = new QPushButton(HNewAnagrafica);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_2->setIcon(icon2);
+        pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
 
@@ -244,22 +250,23 @@ public:
 
     void retranslateUi(QWidget *HNewAnagrafica)
     {
-        HNewAnagrafica->setWindowTitle(QApplication::translate("HNewAnagrafica", "Nuova anagrafica", 0));
-        label->setText(QApplication::translate("HNewAnagrafica", "*Ragione sociale:", 0));
-        label_2->setText(QApplication::translate("HNewAnagrafica", "Indirizzo:", 0));
-        label_3->setText(QApplication::translate("HNewAnagrafica", "Citt\303\240:", 0));
-        label_4->setText(QApplication::translate("HNewAnagrafica", "CAP:", 0));
-        label_5->setText(QApplication::translate("HNewAnagrafica", "Provincia/stato:", 0));
-        label_6->setText(QApplication::translate("HNewAnagrafica", "Telefono:", 0));
-        label_7->setText(QApplication::translate("HNewAnagrafica", "Contatto:", 0));
-        label_8->setText(QApplication::translate("HNewAnagrafica", "Note:", 0));
-        label_9->setText(QApplication::translate("HNewAnagrafica", "Nazione:", 0));
-        cbCliente->setText(QApplication::translate("HNewAnagrafica", "Cliente", 0));
-        cbfornitore->setText(QApplication::translate("HNewAnagrafica", "Fornitore", 0));
-        cbTrasportatore->setText(QApplication::translate("HNewAnagrafica", "Trasportatore", 0));
-        cbSubcliente->setText(QApplication::translate("HNewAnagrafica", "Subcliente", 0));
-        pushButton->setText(QApplication::translate("HNewAnagrafica", "Salva", 0));
-        pushButton_2->setText(QApplication::translate("HNewAnagrafica", "Chiudi", 0));
+        HNewAnagrafica->setWindowTitle(QCoreApplication::translate("HNewAnagrafica", "Nuova anagrafica", nullptr));
+        label->setText(QCoreApplication::translate("HNewAnagrafica", "*Ragione sociale:", nullptr));
+        label_2->setText(QCoreApplication::translate("HNewAnagrafica", "Indirizzo:", nullptr));
+        label_3->setText(QCoreApplication::translate("HNewAnagrafica", "Citt\303\240:", nullptr));
+        label_4->setText(QCoreApplication::translate("HNewAnagrafica", "CAP:", nullptr));
+        label_5->setText(QCoreApplication::translate("HNewAnagrafica", "Provincia/stato:", nullptr));
+        label_6->setText(QCoreApplication::translate("HNewAnagrafica", "Telefono:", nullptr));
+        label_7->setText(QCoreApplication::translate("HNewAnagrafica", "Contatto:", nullptr));
+        label_8->setText(QCoreApplication::translate("HNewAnagrafica", "Note:", nullptr));
+        label_9->setText(QCoreApplication::translate("HNewAnagrafica", "Nazione:", nullptr));
+        cbCliente->setText(QCoreApplication::translate("HNewAnagrafica", "Cliente", nullptr));
+        cbfornitore->setText(QCoreApplication::translate("HNewAnagrafica", "Fornitore", nullptr));
+        cbTrasportatore->setText(QCoreApplication::translate("HNewAnagrafica", "Trasportatore", nullptr));
+        cbStampatore->setText(QCoreApplication::translate("HNewAnagrafica", "Stampatore", nullptr));
+        cbSubcliente->setText(QCoreApplication::translate("HNewAnagrafica", "Subcliente", nullptr));
+        pushButton->setText(QCoreApplication::translate("HNewAnagrafica", "Salva", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("HNewAnagrafica", "Chiudi", nullptr));
     } // retranslateUi
 
 };

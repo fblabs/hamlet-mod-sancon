@@ -9,6 +9,7 @@
 #include "huser.h"
 
 
+
 enum FIELDS{
     ID=0,
     DESCRIZIONE=1,
@@ -16,7 +17,8 @@ enum FIELDS{
     ALLERGENE=3,
     ATTIVO=4,
     BIO=5,
-    PRICE=6
+    PRICE=6,
+    LAST_UPDATE=7
 };
 
 namespace Ui {
@@ -44,8 +46,7 @@ private slots:
    void on_pbClose_clicked();
    void on_pbSave_clicked();
    void setModifyEnabled(bool enable=false);
-
-
+   void on_pbToday_clicked();
 
 signals:
    void done();

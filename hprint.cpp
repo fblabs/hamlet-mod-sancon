@@ -644,3 +644,8 @@ void HPrint::setHtml(QString html)
 {
     ui->textEdit->setHtml(html);
 }
+
+QTextDocument *HPrint::getTextDocument()
+{
+   return doc;
+}

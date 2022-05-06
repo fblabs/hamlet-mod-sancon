@@ -16,7 +16,7 @@ class HWarehouseDetails : public QWidget
     Q_OBJECT
 
 public:
-    explicit HWarehouseDetails(QSqlDatabase pdb=QSqlDatabase(),int id=-1,QWidget *parent = 0);
+    explicit HWarehouseDetails(QSqlDatabase pdb=QSqlDatabase(), int id=-1, int pidlotto=0, QWidget *parent = 0);
     ~HWarehouseDetails();
 
 private slots:
@@ -25,8 +25,11 @@ private slots:
     void on_pbSave_clicked();
     void on_pbClose_clicked();
     bool saveOperation();
+    void updateAmounts();
 
 
+
+    void on_leQuantita_returnPressed();
 
 private:
     Ui::HWarehouseDetails *ui;
@@ -34,6 +37,7 @@ private:
     QSqlRelationalTableModel *mod;
     QDataWidgetMapper *mapper;
     int opid;
+    int idlotto;
 signals:
     void confirm();
 };

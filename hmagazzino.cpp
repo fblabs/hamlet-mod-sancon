@@ -82,7 +82,7 @@ void HMagazzino::queryOperations()
 
     where.append(" order by o.data desc");
 
-    QString sql="SELECT o.ID, o.data as 'DATA',p.descrizione as 'PRODOTTO',l.lot as 'LOTTO',l.lot_fornitore as 'LOTTO FORNITORE',l.giacenza as 'GIACENZA',a.descrizione as 'AZIONE',o.quantita as 'QUANTITA',m.descrizione as 'UNITA DI MISURA',u.nome AS 'UTENTE',o.note AS 'NOTE' \
+    QString sql="SELECT o.ID,o.IDlotto, o.data as 'DATA',p.descrizione as 'PRODOTTO',l.lot as 'LOTTO',l.lot_fornitore as 'LOTTO FORNITORE',l.giacenza as 'GIACENZA',a.descrizione as 'AZIONE',o.quantita as 'QUANTITA',m.descrizione as 'UNITA DI MISURA',u.nome AS 'UTENTE',o.note AS 'NOTE' \
             FROM operazioni as o\
             INNER JOIN lotdef as l\
             ON l.ID=o.IDlotto\
@@ -108,6 +108,7 @@ void HMagazzino::queryOperations()
     //ui->tableView->horizontalHeader()->setStretchLastSection(true);
     ui->tableView->setModel(mod);
     ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setColumnHidden(1,true);
 
     QApplication::setOverrideCursor(Qt::ArrowCursor);
 
@@ -137,7 +138,8 @@ void HMagazzino::loadProdotti()
 void HMagazzino::updateOperation()
 {
     int id=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
-    HWarehouseDetails *f=new HWarehouseDetails(db,id);
+    int idlotto=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data(0).toInt();
+    HWarehouseDetails *f=new HWarehouseDetails(db,id,idlotto);
     connect(f,SIGNAL(confirm()),this,SLOT(queryOperations()));
     f->show();
 }

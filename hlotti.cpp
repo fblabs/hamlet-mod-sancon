@@ -1,6 +1,6 @@
 #include "hlotti.h"
 #include "ui_hlotti.h"
-// #include <QDebug>
+#include <QDebug>
 #include <QDate>
 #include <QSqlError>
 #include <QSqlQuery>
@@ -26,6 +26,7 @@
 #include <QPrintPreviewDialog>
 #include <QPainter>
 #include <QTextStream>
+#include <QSqlRecord>
 
 
 HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
@@ -722,14 +723,34 @@ void HLotti::deleteSelectedLot()
         bool ba=false;
         db.transaction();
 //qDebug()<<"transazione";
+        QSqlQueryModel* cmod=new QSqlQueryModel();
+        sql= "select operazione from composizione_lot where id_lotto=:idlot";
+        q.prepare(sql);
+        q.bindValue(":idlot",QVariant(idlotto));
+        q.exec();
+        cmod->setQuery(q);
 
-        sql="delete FROM operazioni WHERE idlotto=:idlot";
+
+
+        sql="delete from composizione_lot where id_lotto=:idlot";
+
         q.prepare(sql);
         q.bindValue(":idlot",QVariant(idlotto));
 
         ba=q.exec();
-//qDebug()<<q.lastQuery()<<q.lastError().text()<<q.boundValue(0).toString();
-        q.next();
+
+        qDebug()<<"delete from composizione"<<q.lastError().text();
+
+        for(int r=0; r<cmod->rowCount();r++)
+        {
+        sql="delete FROM operazioni WHERE id =:idrow";
+        q.prepare(sql);
+        q.bindValue(":idrow",QVariant(cmod->record(r).value(r)));
+        ba=q.exec();
+        }
+
+qDebug()<<q.lastQuery()<<q.lastError().text()<<q.boundValue(0).toString();
+
         if(!ba)
         {
 //qDebug()<<q.lastError().text();
@@ -739,8 +760,13 @@ void HLotti::deleteSelectedLot()
 
             return;
         }
-        if (QMessageBox::question(this,QApplication::applicationName(),"Confermare cancellazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+        if (QMessageBox::question(this,QApplication::applicationName(),"Confermare cancellazione?\nAttenzione operazione irreversibile",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
         {
+            sql="delete from operazioni where IDlotto=:id";
+            q.prepare(sql);
+            q.bindValue(":id",idlotto);
+            q.exec();
+
             sql="delete from lotdef where ID=:id";
             q.prepare(sql);
             q.bindValue(":id",idlotto);
@@ -769,6 +795,12 @@ void HLotti::deleteSelectedLot()
 
 
     }
+
+
+
+
+
+
 
 
 }

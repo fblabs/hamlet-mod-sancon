@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hmodproduct.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.15.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,17 +10,17 @@
 #define UI_HMODPRODUCT_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QDateEdit>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -30,17 +30,20 @@ class Ui_HModProduct
 {
 public:
     QVBoxLayout *verticalLayout;
-    QFormLayout *formLayout;
+    QGridLayout *gridLayout;
+    QLabel *label_4;
     QLabel *label;
-    QLineEdit *leDescription;
     QLabel *label_2;
-    QComboBox *cbType;
-    QLabel *label_3;
     QLineEdit *lePrice;
+    QLabel *label_3;
+    QComboBox *cbType;
+    QDateEdit *deLastUpdate;
+    QLineEdit *leDescription;
     QHBoxLayout *horizontalLayout;
     QCheckBox *cbAllergene;
     QCheckBox *cbActive;
     QCheckBox *cbBio;
+    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pbSave;
     QPushButton *pbClose;
@@ -48,88 +51,108 @@ public:
     void setupUi(QWidget *HModProduct)
     {
         if (HModProduct->objectName().isEmpty())
-            HModProduct->setObjectName(QStringLiteral("HModProduct"));
+            HModProduct->setObjectName(QString::fromUtf8("HModProduct"));
         HModProduct->setWindowModality(Qt::ApplicationModal);
-        HModProduct->resize(499, 195);
+        HModProduct->resize(499, 234);
         QIcon icon;
-        icon.addFile(QStringLiteral(":/Resources/Eye64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/Resources/Eye64.png"), QSize(), QIcon::Normal, QIcon::Off);
         HModProduct->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(HModProduct);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        formLayout = new QFormLayout();
-        formLayout->setObjectName(QStringLiteral("formLayout"));
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        label_4 = new QLabel(HModProduct);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        gridLayout->addWidget(label_4, 5, 0, 1, 1);
+
         label = new QLabel(HModProduct);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
         label->setMinimumSize(QSize(60, 0));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label);
-
-        leDescription = new QLineEdit(HModProduct);
-        leDescription->setObjectName(QStringLiteral("leDescription"));
-
-        formLayout->setWidget(0, QFormLayout::FieldRole, leDescription);
+        gridLayout->addWidget(label, 0, 0, 1, 1);
 
         label_2 = new QLabel(HModProduct);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setMaximumSize(QSize(60, 16777215));
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
-
-        cbType = new QComboBox(HModProduct);
-        cbType->setObjectName(QStringLiteral("cbType"));
-
-        formLayout->setWidget(1, QFormLayout::FieldRole, cbType);
-
-        label_3 = new QLabel(HModProduct);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setMaximumSize(QSize(100, 16777215));
-
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
+        gridLayout->addWidget(label_2, 1, 0, 1, 1);
 
         lePrice = new QLineEdit(HModProduct);
-        lePrice->setObjectName(QStringLiteral("lePrice"));
+        lePrice->setObjectName(QString::fromUtf8("lePrice"));
         lePrice->setMaximumSize(QSize(100, 16777215));
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, lePrice);
+        gridLayout->addWidget(lePrice, 4, 1, 1, 1);
+
+        label_3 = new QLabel(HModProduct);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setMaximumSize(QSize(100, 16777215));
+
+        gridLayout->addWidget(label_3, 4, 0, 1, 1);
+
+        cbType = new QComboBox(HModProduct);
+        cbType->setObjectName(QString::fromUtf8("cbType"));
+
+        gridLayout->addWidget(cbType, 1, 1, 1, 1);
+
+        deLastUpdate = new QDateEdit(HModProduct);
+        deLastUpdate->setObjectName(QString::fromUtf8("deLastUpdate"));
+        deLastUpdate->setMaximumSize(QSize(100, 16777215));
+        deLastUpdate->setButtonSymbols(QAbstractSpinBox::NoButtons);
+        deLastUpdate->setAccelerated(true);
+        deLastUpdate->setKeyboardTracking(false);
+        deLastUpdate->setDateTime(QDateTime(QDate(2022, 1, 1), QTime(0, 0, 0)));
+        deLastUpdate->setCalendarPopup(true);
+
+        gridLayout->addWidget(deLastUpdate, 5, 1, 1, 1);
+
+        leDescription = new QLineEdit(HModProduct);
+        leDescription->setObjectName(QString::fromUtf8("leDescription"));
+
+        gridLayout->addWidget(leDescription, 0, 1, 1, 1);
 
 
-        verticalLayout->addLayout(formLayout);
+        verticalLayout->addLayout(gridLayout);
 
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         cbAllergene = new QCheckBox(HModProduct);
-        cbAllergene->setObjectName(QStringLiteral("cbAllergene"));
+        cbAllergene->setObjectName(QString::fromUtf8("cbAllergene"));
 
         horizontalLayout->addWidget(cbAllergene);
 
         cbActive = new QCheckBox(HModProduct);
-        cbActive->setObjectName(QStringLiteral("cbActive"));
+        cbActive->setObjectName(QString::fromUtf8("cbActive"));
 
         horizontalLayout->addWidget(cbActive);
 
         cbBio = new QCheckBox(HModProduct);
-        cbBio->setObjectName(QStringLiteral("cbBio"));
+        cbBio->setObjectName(QString::fromUtf8("cbBio"));
 
         horizontalLayout->addWidget(cbBio);
 
 
         verticalLayout->addLayout(horizontalLayout);
 
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
+
         horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         pbSave = new QPushButton(HModProduct);
-        pbSave->setObjectName(QStringLiteral("pbSave"));
+        pbSave->setObjectName(QString::fromUtf8("pbSave"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pbSave->setIcon(icon1);
         pbSave->setIconSize(QSize(32, 32));
 
         horizontalLayout_3->addWidget(pbSave);
 
         pbClose = new QPushButton(HModProduct);
-        pbClose->setObjectName(QStringLiteral("pbClose"));
+        pbClose->setObjectName(QString::fromUtf8("pbClose"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pbClose->setIcon(icon2);
         pbClose->setIconSize(QSize(32, 32));
 
@@ -146,15 +169,17 @@ public:
 
     void retranslateUi(QWidget *HModProduct)
     {
-        HModProduct->setWindowTitle(QApplication::translate("HModProduct", "Modifica Prodotto", 0));
-        label->setText(QApplication::translate("HModProduct", "Descrizione", 0));
-        label_2->setText(QApplication::translate("HModProduct", "Tipo:", 0));
-        label_3->setText(QApplication::translate("HModProduct", "Prezzo:", 0));
-        cbAllergene->setText(QApplication::translate("HModProduct", "Allergene", 0));
-        cbActive->setText(QApplication::translate("HModProduct", "Attivo", 0));
-        cbBio->setText(QApplication::translate("HModProduct", "Bio", 0));
-        pbSave->setText(QApplication::translate("HModProduct", "Salva", 0));
-        pbClose->setText(QApplication::translate("HModProduct", "Chiudi", 0));
+        HModProduct->setWindowTitle(QCoreApplication::translate("HModProduct", "Modifica Prodotto", nullptr));
+        label_4->setText(QCoreApplication::translate("HModProduct", "<html><head/><body><p>Ultimo <br>aggiornamento</p></body></html>", nullptr));
+        label->setText(QCoreApplication::translate("HModProduct", "Descrizione", nullptr));
+        label_2->setText(QCoreApplication::translate("HModProduct", "Tipo:", nullptr));
+        label_3->setText(QCoreApplication::translate("HModProduct", "Prezzo:", nullptr));
+        deLastUpdate->setSpecialValueText(QCoreApplication::translate("HModProduct", "---", nullptr));
+        cbAllergene->setText(QCoreApplication::translate("HModProduct", "Allergene", nullptr));
+        cbActive->setText(QCoreApplication::translate("HModProduct", "Attivo", nullptr));
+        cbBio->setText(QCoreApplication::translate("HModProduct", "Bio", nullptr));
+        pbSave->setText(QCoreApplication::translate("HModProduct", "Salva", nullptr));
+        pbClose->setText(QCoreApplication::translate("HModProduct", "Chiudi", nullptr));
     } // retranslateUi
 
 };

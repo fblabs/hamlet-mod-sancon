@@ -79,6 +79,9 @@ HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     tmProdotti->setHeaderData(2,Qt::Horizontal,"Tipo");
     tmProdotti->setHeaderData(3,Qt::Horizontal,"Allergene");
     tmProdotti->setHeaderData(4,Qt::Horizontal,"Attivo");
+    tmProdotti->setHeaderData(5,Qt::Horizontal,"Bio");
+    tmProdotti->setHeaderData(6,Qt::Horizontal,"Prezzo");
+    tmProdotti->setHeaderData(7,Qt::Horizontal,"Ultimo aggiornamento prezzo");
 }
 
 HProdottiNew::~HProdottiNew()
@@ -197,10 +200,10 @@ void HProdottiNew::print(bool pdf)
 
         // headers
         QStringList coltit=QStringList();
-        coltit <<"ID"<<"DESCRIZIONE"<<"TIPO"<< "ALLERGENE"<<"ATTIVO"<<"BIO"<<"PREZZO";
+        coltit <<"ID"<<"DESCRIZIONE"<<"TIPO"<< "ALLERGENE"<<"ATTIVO"<<"BIO"<<"PREZZO"<<"DATA ULTIMO AGGIORNAMENTO PREZZO";
 
 
-       out << "<thead><tr bgcolor='#5cabff'><th colspan='6'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
+       out << "<thead><tr bgcolor='#5cabff'><th colspan='8'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
 
 
         for (int column = 0 ; column < columnCount; column++)
@@ -270,6 +273,7 @@ void HProdottiNew::print(bool pdf)
     {
 
     HPrint *f =new HPrint();
+    QTextDocument* doc=new QTextDocument();
 
 
 

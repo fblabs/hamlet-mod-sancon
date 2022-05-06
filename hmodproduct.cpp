@@ -20,6 +20,7 @@ HModProduct::HModProduct(int pID, HUser *user, QSqlDatabase pdb, QWidget *parent
     setModifyEnabled(user->getCanUpdateAnag());
     db=pdb;
     ID=pID;
+    ui->deLastUpdate->setDate(QDate::currentDate());
     getProductData();
 
 
@@ -33,7 +34,7 @@ HModProduct::~HModProduct()
 void HModProduct::setModifyEnabled(bool enable)
 {
 
-        ui->pbSave->setEnabled(enable);
+    ui->pbSave->setEnabled(enable);
 
 
 }
@@ -44,9 +45,8 @@ bool HModProduct::getProductData()
     productsmodel->setTable("prodotti");
     productsmodel->setRelation(2,QSqlRelation("tipi_prodotto","ID","descrizione"));
     productsmodel->setFilter("prodotti.ID="+QString::number(ID));
-    productsmodel->setEditStrategy(QSqlRelationalTableModel::OnManualSubmit);
+    productsmodel->setEditStrategy(QSqlRelationalTableModel::OnFieldChange);
     productsmodel->select();
-
 
 
     map=new QDataWidgetMapper(productsmodel);
@@ -61,16 +61,12 @@ bool HModProduct::getProductData()
     map->addMapping(ui->cbAllergene,ALLERGENE);
     map->addMapping(ui->cbBio,BIO);
     map->addMapping(ui->lePrice,PRICE);
+    map->addMapping(ui->deLastUpdate,LAST_UPDATE);
 
 
     map->toFirst();
-    //map->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
+    map->setSubmitPolicy(QDataWidgetMapper::AutoSubmit);
     connect(ui->cbType,SIGNAL(currentIndexChanged(int)),productsmodel,SLOT(submit()));
-
-
-    qDebug()<<productsmodel->rowCount()<<productsmodel->lastError().text();
-
-
 
 
     return true;
@@ -82,7 +78,7 @@ void HModProduct::on_pbClose_clicked()
 {
 
 
-      close();
+    close();
 
 }
 
@@ -90,22 +86,33 @@ void HModProduct::on_pbSave_clicked()
 {
     if(QMessageBox::question(this,QApplication::applicationName(),"Salvare?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
+        map->submit();
+        bool b= productsmodel->submitAll();
+        qDebug()<<productsmodel->lastError().text();
+        if(b){
+            productsmodel->select();
+            emit done();
+            close();
+        }else{
 
-      bool b= productsmodel->submitAll();
-      if(b){
-       productsmodel->select();
-       emit done();
-       close();
-      }else{
-
-          QMessageBox::information(this,QApplication::applicationName(),"Errore durante il salvataggio",QMessageBox::Ok);
-      }
+            QMessageBox::information(this,QApplication::applicationName(),"Errore durante il salvataggio",QMessageBox::Ok);
+        }
 
 
     }
 }
 
 
+void HModProduct::on_pbToday_clicked()
+{
+   /* if( QMessageBox::question(this,QApplication::applicationName(),"Aggiornare la data ultimo aggiornamento alla data correte?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {*/
+       // ui->deLastUpdate->setDate(QDate::currentDate().addDays(-1));
+        ui->deLastUpdate->setDate(QDate::currentDate());
+
+
+   // }
+}
 
 
 

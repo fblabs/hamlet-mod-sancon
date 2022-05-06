@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>862</width>
-    <height>565</height>
+    <height>614</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,6 +55,13 @@
           <widget class="QRadioButton" name="rbTrasports">
            <property name="text">
             <string>Trasportatori</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rbGraphics">
+           <property name="text">
+            <string>Stampatori</string>
            </property>
           </widget>
          </item>
@@ -223,21 +230,14 @@
          </property>
         </widget>
        </item>
-       <item row="11" column="1">
+       <item row="13" column="1">
         <widget class="QCheckBox" name="cbtra">
          <property name="text">
           <string>Trasportatore</string>
          </property>
         </widget>
        </item>
-       <item row="12" column="1">
-        <widget class="QCheckBox" name="cbfor">
-         <property name="text">
-          <string>Fornitore</string>
-         </property>
-        </widget>
-       </item>
-       <item row="15" column="1">
+       <item row="17" column="1">
         <widget class="QComboBox" name="cbxMasterCli">
          <property name="enabled">
           <bool>true</bool>
@@ -250,7 +250,7 @@
          </property>
         </widget>
        </item>
-       <item row="17" column="1">
+       <item row="19" column="1">
         <widget class="QPushButton" name="pushButton_5">
          <property name="text">
           <string>Notifica</string>
@@ -261,17 +261,31 @@
          </property>
         </widget>
        </item>
-       <item row="13" column="1">
+       <item row="15" column="1">
         <widget class="QCheckBox" name="cbsub">
          <property name="text">
           <string>Subcliente di:</string>
          </property>
         </widget>
        </item>
-       <item row="16" column="1">
+       <item row="18" column="1">
         <widget class="QCheckBox" name="cbVisible">
          <property name="text">
           <string>Visibile in produzione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="1">
+        <widget class="QCheckBox" name="cbfor">
+         <property name="text">
+          <string>Fornitore</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="1">
+        <widget class="QCheckBox" name="cbStamp">
+         <property name="text">
+          <string>Stampatore</string>
          </property>
         </widget>
        </item>

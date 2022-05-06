@@ -9633,9 +9633,7 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qrubberband.h \
 		ui_hutenti.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QAction \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qaction.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/QIcon \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -9643,8 +9641,6 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdesktopwidget.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qguiapplication.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QButtonGroup \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qbuttongroup.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QCheckBox \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qcheckbox.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractbutton.h \
@@ -9658,8 +9654,6 @@ debug/hutenti.o: hutenti.cpp mainwindow.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qboxlayout.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QHBoxLayout \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QHeaderView \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qheaderview.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QLabel \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlabel.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QLineEdit \
@@ -12286,10 +12280,8 @@ debug/hnewanagrafica.o: hnewanagrafica.cpp hnewanagrafica.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qtsql-config.h \
 		ui_hnewanagrafica.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QAction \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qaction.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/QIcon \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qicon.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qactiongroup.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -12297,8 +12289,6 @@ debug/hnewanagrafica.o: hnewanagrafica.cpp hnewanagrafica.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdesktopwidget.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qguiapplication.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QButtonGroup \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qbuttongroup.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QCheckBox \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qcheckbox.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractbutton.h \
@@ -12310,26 +12300,9 @@ debug/hnewanagrafica.o: hnewanagrafica.cpp hnewanagrafica.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qboxlayout.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QHBoxLayout \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QHeaderView \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qheaderview.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qframe.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtCore/qitemselectionmodel.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qstyleoption.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtGui/qvalidator.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtCore/qregularexpression.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qslider.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractslider.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qstyle.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtabbar.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtabwidget.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qrubberband.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QLabel \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlabel.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qframe.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QLineEdit \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlineedit.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qtextcursor.h \
@@ -12344,6 +12317,7 @@ debug/hnewanagrafica.o: hnewanagrafica.cpp hnewanagrafica.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMessageBox \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmessagebox.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdialog.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlError \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\hnewanagrafica.o hnewanagrafica.cpp
@@ -14609,6 +14583,7 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QTableView \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtableview.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QVBoxLayout \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlError \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlerror.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlQuery \
@@ -14673,7 +14648,9 @@ debug/hlotti.o: hlotti.cpp hlotti.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtPrintSupport/qabstractprintdialog.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtPrintSupport/QPrintPreviewDialog \
 		C:/Qt/5.15.2/mingw81_64/include/QtPrintSupport/qprintpreviewdialog.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtCore/QTextStream
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/QTextStream \
+		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlRecord \
+		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlrecord.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\hlotti.o hlotti.cpp
 
 debug/htextedit.o: htextedit.cpp htextedit.h \
@@ -18932,10 +18909,8 @@ debug/hwarehousedetails.o: hwarehousedetails.cpp hwarehousedetails.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdatawidgetmapper.h \
 		ui_hwarehousedetails.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QAction \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qaction.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/QIcon \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qicon.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qactiongroup.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -18943,8 +18918,6 @@ debug/hwarehousedetails.o: hwarehousedetails.cpp hwarehousedetails.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdesktopwidget.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qguiapplication.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QButtonGroup \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qbuttongroup.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QComboBox \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qcombobox.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractitemdelegate.h \
@@ -18969,11 +18942,6 @@ debug/hwarehousedetails.o: hwarehousedetails.cpp hwarehousedetails.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlayout.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgridlayout.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QHeaderView \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qheaderview.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtCore/qitemselectionmodel.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QLabel \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlabel.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QLineEdit \
@@ -18985,6 +18953,7 @@ debug/hwarehousedetails.o: hwarehousedetails.cpp hwarehousedetails.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QPlainTextEdit \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qplaintextedit.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtextedit.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qtextdocument.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qabstracttextdocumentlayout.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qtextlayout.h \
@@ -19004,6 +18973,8 @@ debug/hwarehousedetails.o: hwarehousedetails.cpp hwarehousedetails.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlrelationaldelegate.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qitemdelegate.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlistview.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/qitemselectionmodel.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqldriver.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/qmetaobject.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QDate \
@@ -19770,10 +19741,8 @@ debug/hmodproduct.o: hmodproduct.cpp hmodproduct.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QObject \
 		ui_hmodproduct.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QAction \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qaction.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/QIcon \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qicon.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qactiongroup.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -19781,8 +19750,6 @@ debug/hmodproduct.o: hmodproduct.cpp hmodproduct.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdesktopwidget.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qguiapplication.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QButtonGroup \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qbuttongroup.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QCheckBox \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qcheckbox.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractbutton.h \
@@ -19800,19 +19767,16 @@ debug/hmodproduct.o: hmodproduct.cpp hmodproduct.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qrubberband.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qframe.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QFormLayout \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qformlayout.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QLayout \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QDateEdit \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdatetimeedit.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QGridLayout \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlayout.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QHBoxLayout \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QHeaderView \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qheaderview.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtCore/qitemselectionmodel.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QLabel \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlabel.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QLineEdit \
@@ -19823,6 +19787,7 @@ debug/hmodproduct.o: hmodproduct.cpp hmodproduct.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qtextoption.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QPushButton \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QSpacerItem \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QVBoxLayout \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlQuery \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlquery.h \
@@ -19830,6 +19795,9 @@ debug/hmodproduct.o: hmodproduct.cpp hmodproduct.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlrelationaldelegate.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qitemdelegate.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlistview.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/qitemselectionmodel.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqldriver.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/qmetaobject.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlRelation \
