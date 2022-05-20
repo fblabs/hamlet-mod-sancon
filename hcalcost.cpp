@@ -348,7 +348,7 @@ void HCalcost::print()
                for(int rig=0;rig<r;rig++)
                {
                 double d=ui->tvComponenti->model()->index(rig,3).data(0).toDouble();
-                QString res=QString::number(d,'g',2);
+                QString res=QString::number(d,'f',2);
 
                    html.append("<tr><td>"+ui->tvComponenti->model()->index(rig,0).data(0).toString()+"</td><td>"+ ui->tvComponenti->model()->index(rig,1).data(0).toString()+"</td><td>"+ui->tvComponenti->model()->index(rig,2).data(0).toString()+"</td><td>"+res+"</td></tr>");
 
