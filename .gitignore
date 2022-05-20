@@ -114,6 +114,7 @@ usersrockappdatalocaltemptmptjf3n4
 usersrockappdatalocaltemptmpd3fgnq
 *.autosave
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 *.db
 *.db
 usersrockappdatalocaltemptmp2hnuju
@@ -134,19 +135,27 @@ release/moc_hmodproduct.cpp
 release/moc_hmodproduct.cpp
 release/moc_hmodproduct.o
 =======
+=======
+>>>>>>> Stashed changes
 *.user
 hamletMOD.pro.user
 hlogin2.cpp.autosave
 *.o
 *.o
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 release/moc_hutenti.cpp
 release/moc_hutenti.o
 release/moc_hwarehousedetails.cpp
 release/moc_hwarehousedetails.o
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 *.o
 =======
+=======
+>>>>>>> Stashed changes
 *.db
 usersrockappdatalocaltemptmp2hnuju
 usersrockappdatalocaltemptmpvmgawb
@@ -154,6 +163,9 @@ usersrockappdatalocaltemptmpy9v1oa
 *.o
 *.user
 Resources/Thumbs.db
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 hamletMOD.pro.user
 hcalcost.cpp
+=======
+>>>>>>> Stashed changes
