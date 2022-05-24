@@ -169,3 +169,7 @@ hamletMOD.pro.user
 hcalcost.cpp
 =======
 >>>>>>> Stashed changes
+*.o
+*.o
+*.o
+*.user
