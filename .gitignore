@@ -173,3 +173,5 @@ hcalcost.cpp
 *.o
 *.o
 *.user
+release/moc_halarm.cpp
+*.user
