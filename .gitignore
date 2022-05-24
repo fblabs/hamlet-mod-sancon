@@ -170,4 +170,6 @@ hcalcost.cpp
 =======
 >>>>>>> Stashed changes
 *.o
+*.o
+*.o
 *.user
