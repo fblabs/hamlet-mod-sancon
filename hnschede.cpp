@@ -43,8 +43,8 @@ HNSChede::HNSChede(QString spcliente, QString spprodotto, QSqlDatabase pdb, HUse
     if (!upd)
     {
         ui->pbsave->setVisible(upd);
-        ui->pbReset->setVisible(false);
-        ui->pbCopy->setVisible(false);
+        ui->pbReset->setVisible(upd);
+        ui->pbCopy->setVisible(upd);
         ui->textEdit->setReadOnly(upd);
         ui->pushButton_8->setEnabled(upd);
         ui->pushButton_7->setEnabled(upd);
@@ -252,10 +252,11 @@ bool HNSChede::saveCard()
     if(b)
     {
         db.commit();
+        qDebug()<<q.lastQuery();
     }
     else {
         db.rollback();
-        //qDebug()<<"savecard: "<<q.lastError().text()<<cliente<<prodotto<<QString::number(update);
+        qDebug()<<"savecard: "<<q.lastError().text()<<cliente<<prodotto<<QString::number(update);
     }
 
 
@@ -636,6 +637,7 @@ void HNSChede::initCard(int idProdotto, int idCliente)
    QString sql="INSERT INTO schede_n(prodotto,cliente,scheda) VALUES (:ip,:ic,:cs)";
    QString scheda="<table align=center width='100%' border=1><tr><th colspan=5><br>SCHEDA: "+ui->cbClienti->currentText()+" - "+ui->cbProdotti->currentText()+"<br></th></tr><tr><td><b>OLIO:</b></td><td colspan=4> &nbsp;</td></tr><tr><td><b>VASO:</b></td><td colspan=4> &nbsp;</td></tr><tr><td><b>TAPPO:</b></td><td colspan=4>&nbsp;</td></tr><tr><td><b>ETICHETTE:</b></td><td colspan=4></td></tr><tr><td><b>SCATOLE:</b></td><td colspan=4></td></tr><tr><td><b>NOTE:</b></td><td colspan=4></td></tr><tr><td align=left>&nbsp;</td><td align=center colspan=4></td></tr></table>";
 
+   update=true;
 
    q.prepare(sql);
    q.bindValue(":ip",idProdotto);
@@ -790,5 +792,8 @@ void HNSChede::on_pbReset_clicked()
 
     loadCard();
 }
+
+
+
 
 

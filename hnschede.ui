@@ -96,6 +96,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QPushButton" name="pushButton_8">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="toolTip">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;modifica scheda&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>

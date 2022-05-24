@@ -87,7 +87,7 @@ void HModProduct::on_pbSave_clicked()
     if(QMessageBox::question(this,QApplication::applicationName(),"Salvare?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         map->submit();
-        bool b= productsmodel->submitAll();
+        bool b= map->submit();
         qDebug()<<productsmodel->lastError().text();
         if(b){
             productsmodel->select();
