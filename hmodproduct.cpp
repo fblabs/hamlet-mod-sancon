@@ -95,7 +95,7 @@ void HModProduct::on_pbSave_clicked()
             close();
         }else{
 
-            QMessageBox::information(this,QApplication::applicationName(),"Errore durante il salvataggio",QMessageBox::Ok);
+            QMessageBox::information(this,QApplication::applicationName(),"Errore durante il salvataggio\n"+productsmodel->lastError().text(),QMessageBox::Ok);
         }
 
 
