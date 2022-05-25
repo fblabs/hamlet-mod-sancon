@@ -66,7 +66,7 @@ bool HModProduct::getProductData()
 
     map->toFirst();
     map->setSubmitPolicy(QDataWidgetMapper::AutoSubmit);
-    connect(ui->cbType,SIGNAL(currentIndexChanged(int)),productsmodel,SLOT(submit()));
+   // connect(ui->cbType,SIGNAL(currentIndexChanged(int)),productsmodel,SLOT(submit()));
 
 
     return true;
@@ -86,7 +86,7 @@ void HModProduct::on_pbSave_clicked()
 {
     if(QMessageBox::question(this,QApplication::applicationName(),"Salvare?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
-        map->submit();
+
         bool b= map->submit();
         qDebug()<<productsmodel->lastError().text();
         if(b){
@@ -103,16 +103,7 @@ void HModProduct::on_pbSave_clicked()
 }
 
 
-void HModProduct::on_pbToday_clicked()
-{
-   /* if( QMessageBox::question(this,QApplication::applicationName(),"Aggiornare la data ultimo aggiornamento alla data correte?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
-    {*/
-       // ui->deLastUpdate->setDate(QDate::currentDate().addDays(-1));
-        ui->deLastUpdate->setDate(QDate::currentDate());
 
-
-   // }
-}
 
 
 

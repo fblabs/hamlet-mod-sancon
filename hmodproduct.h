@@ -46,7 +46,7 @@ private slots:
    void on_pbClose_clicked();
    void on_pbSave_clicked();
    void setModifyEnabled(bool enable=false);
-   void on_pbToday_clicked();
+
 
 signals:
    void done();
