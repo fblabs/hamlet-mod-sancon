@@ -3,6 +3,7 @@
 #include "hnschede.h"
 #include <QSqlTableModel>
 #include <QSqlQuery>
+#include <QHeaderView>
 #include <QMessageBox>
 #include "huser.h"
 
@@ -90,6 +91,7 @@ void HAssociazioni::getRecipesForTable()
     ui->tableView->setColumnHidden(1,true);
 
     ui->tableView->resizeColumnsToContents();
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ////// qDebug()<<q.lastError().text();
 
