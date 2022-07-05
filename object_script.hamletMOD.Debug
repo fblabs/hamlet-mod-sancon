@@ -1,4 +1,5 @@
 debug/main.o
+debug/hlotcomposition.o
 debug/hrecipesforingredient.o
 debug/hworksheetmodel.o
 debug/mainwindow.o
@@ -68,6 +69,7 @@ debug/hnewsheet.o
 debug/hworkprogram.o
 debug/qrc_icons.o
 debug/moc_mainwindow.o
+debug/moc_hlotcomposition.o
 debug/moc_hrecipesforingredient.o
 debug/moc_huser.o
 debug/moc_hprodotti.o

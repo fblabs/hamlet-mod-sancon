@@ -15,6 +15,7 @@ CONFIG(release,debug|release)
 
 
 SOURCES += main.cpp\
+    hlotcomposition.cpp \
     hrecipesforingredient.cpp \
     hworksheetmodel.cpp \
         mainwindow.cpp \
@@ -84,6 +85,7 @@ SOURCES += main.cpp\
     hworkprogram.cpp
 
 HEADERS  += mainwindow.h \
+    hlotcomposition.h \
     hrecipesforingredient.h \
     huser.h \
     hprodotti.h \
@@ -154,6 +156,7 @@ HEADERS  += mainwindow.h \
 
 
 FORMS    += mainwindow.ui \
+    hlotcomposition.ui \
     hprodotti.ui \
     hrecipesforingredient.ui \
     hutenti.ui \

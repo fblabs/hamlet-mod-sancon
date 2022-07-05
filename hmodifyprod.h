@@ -26,6 +26,7 @@ private:
     QSqlRelationalTableModel *tmLots;
     QSqlTableModel *tmProdotti;
     QCompleter *comp;
+    QSqlQueryModel *qmod;
  //   QCompleter *prodcomp;
     HUser *user;
     int action;
@@ -38,12 +39,14 @@ private:
     int tipoLot;
     QString filter;
 private slots:
-    void getComponetsLot();
-    void getIDLot();
+    void getComponentsLot();
+   // void getIDLot();
     void getLotRowData();
     bool updateRow();
     bool deleteRow();
     bool addRow();
+
+    void updateProduction();
 
  //   bool deleteSelectedRow();
 
@@ -66,6 +69,9 @@ private slots:
     void findIt(QString arg);
 
     void on_rbprod_toggled(bool checked);
+    void on_pbUpdateAmount_clicked();
+    void on_radioButton_2_toggled(bool checked);
+    void refreshData();
 
 };
 

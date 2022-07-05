@@ -54,6 +54,7 @@ public:
     QRadioButton *rbprod;
     QRadioButton *rblots;
     QLineEdit *leSearch;
+    QPushButton *pbUpdateAmount;
     QPushButton *pushButton_7;
     QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *verticalLayout_3;
@@ -98,12 +99,13 @@ public:
 
         radioButton_2 = new QRadioButton(HModifyProd);
         radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
+        radioButton_2->setChecked(true);
 
         horizontalLayout_3->addWidget(radioButton_2);
 
         radioButton = new QRadioButton(HModifyProd);
         radioButton->setObjectName(QString::fromUtf8("radioButton"));
-        radioButton->setChecked(true);
+        radioButton->setChecked(false);
 
         horizontalLayout_3->addWidget(radioButton);
 
@@ -195,8 +197,21 @@ public:
 
         horizontalLayout_5->addWidget(leSearch);
 
+        pbUpdateAmount = new QPushButton(HModifyProd);
+        pbUpdateAmount->setObjectName(QString::fromUtf8("pbUpdateAmount"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/Line-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbUpdateAmount->setIcon(icon2);
+        pbUpdateAmount->setIconSize(QSize(32, 32));
+
+        horizontalLayout_5->addWidget(pbUpdateAmount);
+
         pushButton_7 = new QPushButton(HModifyProd);
         pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Arrow-turn-left64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_7->setIcon(icon3);
+        pushButton_7->setIconSize(QSize(32, 32));
 
         horizontalLayout_5->addWidget(pushButton_7);
 
@@ -226,9 +241,9 @@ public:
 
         pushButton_3 = new QPushButton(HModifyProd);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon2);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon4);
 
         verticalLayout_3->addWidget(pushButton_3);
 
@@ -277,18 +292,18 @@ public:
         pushButton_4 = new QPushButton(HModifyProd);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
         pushButton_4->setEnabled(false);
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon3);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon5);
 
         horizontalLayout_2->addWidget(pushButton_4);
 
         pushButton_5 = new QPushButton(HModifyProd);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
         pushButton_5->setEnabled(false);
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon4);
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon6);
 
         horizontalLayout_2->addWidget(pushButton_5);
 
@@ -308,18 +323,18 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         pushButton = new QPushButton(HModifyProd);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon5);
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon7);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton);
 
         pushButton_2 = new QPushButton(HModifyProd);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon6);
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon8);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_2);
@@ -346,6 +361,7 @@ public:
         groupBox->setTitle(QString());
         rbprod->setText(QCoreApplication::translate("HModifyProd", "Cerca Prodotto", nullptr));
         rblots->setText(QCoreApplication::translate("HModifyProd", "Cerca lotto", nullptr));
+        pbUpdateAmount->setText(QCoreApplication::translate("HModifyProd", "Modifica Quantit\303\240", nullptr));
         pushButton_7->setText(QCoreApplication::translate("HModifyProd", "Reset", nullptr));
         label_2->setText(QCoreApplication::translate("HModifyProd", "Composizione lotto:", nullptr));
         lbProd->setText(QString());

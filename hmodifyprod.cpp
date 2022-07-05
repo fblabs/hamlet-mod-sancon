@@ -13,6 +13,7 @@
 #include <QDate>
 // #include <QDebug>
 #include <huser.h>
+#include "hlotcomposition.h"
 
 
 #include <QMessageBox>
@@ -32,7 +33,10 @@ HModifyProd::HModifyProd(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->deAl->setDate(QDate::currentDate());
     dfrom=ui->deDal->date();
     dto=ui->deAl->date().addDays(1);
-    tipo="lotdef.tipo=4";
+    tipo="lotdef.tipo=3";
+
+
+   // ui->pbUpdateAmount->setVisible(user->getCanUpdate());
 
 
 
@@ -98,11 +102,11 @@ HModifyProd::HModifyProd(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
    ui->tvLots->setColumnHidden(11,true);
    ui->tvLots->setColumnHidden(12,true);
 
-   ui->tvDetails->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+ //  ui->tvDetails->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 
+    connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getComponentsLot()));
 
-    connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getIDLot()));
 }
 
 HModifyProd::~HModifyProd()
@@ -110,20 +114,19 @@ HModifyProd::~HModifyProd()
     delete ui;
 }
 
-void HModifyProd::getComponetsLot()
+void HModifyProd::getComponentsLot()
 {
     QSqlQuery q(db);
-  //  idlot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
+    idlot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
     QString sql="select operazioni.ID,operazioni.IDlotto,lotdef.lot,prodotti.ID,prodotti.descrizione,operazioni.quantita,unita_di_misura.ID,unita_di_misura.descrizione from operazioni,lotdef,prodotti,unita_di_misura where prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and unita_di_misura.ID=operazioni.um and  operazioni.ID in (SELECT operazione from composizione_lot where ID_lotto=:lotid )order by operazioni.quantita desc";
-    QSqlQueryModel *qmod = new QSqlQueryModel();
+    qmod = new QSqlQueryModel();
     q.prepare(sql);
     q.bindValue(":lotid",QVariant(idlot));
     q.exec();
     qmod->setQuery(q);
-   // // qDebug()<<q.lastQuery();
-
-    ui->tvDetails->setModel(qmod);
-    connect(ui->tvDetails->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getLotRowData()));
+   // // qDebug()<<q.lastQuery();*/
+     ui->tvDetails->setModel(qmod);
+ //   connect(ui->tvDetails->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getLotRowData()));
     //// qDebug()<<q.lastError().text();
     qmod->setHeaderData(4,Qt::Horizontal,QObject::tr("Ingrediente"));
     qmod->setHeaderData(5,Qt::Horizontal,QObject::tr("Quantità"));
@@ -131,6 +134,7 @@ void HModifyProd::getComponetsLot()
     ui->tvDetails->setColumnHidden(1,true);
     ui->tvDetails->setColumnHidden(3,true);
     ui->tvDetails->setColumnHidden(6,true);
+    ui->tvDetails->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 
     QString lbtxt;
@@ -138,6 +142,8 @@ void HModifyProd::getComponetsLot()
     lbtxt.append(" - ");
     lbtxt.append(ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),2).data(0).toString());
     ui->lbProd->setText(lbtxt);
+
+    connect(ui->tvDetails->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getLotRowData()));
 
 
 
@@ -149,7 +155,7 @@ void HModifyProd::getComponetsLot()
 void HModifyProd::getLotRowData()
 {
    ui->leLotto->setText(ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),2).data(0).toString());
-   int opid=ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),0).data(0).toInt();
+  // int opid=ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),0).data(0).toInt();
 
    QString toSearchUm=ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),7).data(0).toString();
 
@@ -200,7 +206,7 @@ bool HModifyProd::updateRow()
    // // qDebug()<<q.lastError().text();
     return b;
     return false;
-    getComponetsLot();
+    getComponentsLot();
 }
 
 bool HModifyProd::deleteRow()
@@ -235,7 +241,7 @@ bool HModifyProd::deleteRow()
 
 
 
-    getComponetsLot();
+    getComponentsLot();
     return b;
 }
 
@@ -309,6 +315,13 @@ db.transaction();
 
 }
 
+void HModifyProd::updateProduction()
+{
+   HLotComposition *f=new HLotComposition(idlot,ui->lbProd->text(),static_cast<QSqlQueryModel*>(ui->tvDetails->model()),db);
+   connect(f,SIGNAL(composition_updated()),this, SLOT(refreshData()));
+   f->show();
+}
+
 void HModifyProd::on_pushButton_2_clicked()
 {
 
@@ -321,12 +334,12 @@ void HModifyProd::on_pushButton_2_clicked()
     }
 }
 
-void HModifyProd::getIDLot()
+/*void HModifyProd::getIDLot()
 {
     idlot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
     ui->pushButton_4->setEnabled(true);
-    getComponetsLot();
-}
+    getComponentsLot();
+}*/
 
 
 void HModifyProd::on_pushButton_clicked()
@@ -336,7 +349,7 @@ void HModifyProd::on_pushButton_clicked()
 
     if(updateRow())
         {
-          getComponetsLot();
+          getComponentsLot();
           QMessageBox::information(this,QApplication::applicationName(),"Riga modificata",QMessageBox::Ok);
 
         }
@@ -349,7 +362,7 @@ void HModifyProd::on_pushButton_clicked()
     {
         if(addRow())
             {
-              getComponetsLot();
+              getComponentsLot();
 
             QMessageBox::information(this,QApplication::applicationName(),"Riga aggiunta",QMessageBox::Ok);
 
@@ -522,5 +535,24 @@ void HModifyProd::on_rbprod_toggled(bool checked)
     ui->leSearch->setText("");
 
 }
+
+
+void HModifyProd::on_pbUpdateAmount_clicked()
+{
+    updateProduction();
+}
+
+
+void HModifyProd::on_radioButton_2_toggled(bool checked)
+{
+    ui->pbUpdateAmount->setEnabled(checked);
+}
+
+void HModifyProd::refreshData()
+{
+   getComponentsLot();
+}
+
+
 
 
