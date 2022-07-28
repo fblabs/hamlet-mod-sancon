@@ -97,7 +97,7 @@ public:
         if (HPackages->objectName().isEmpty())
             HPackages->setObjectName(QString::fromUtf8("HPackages"));
         HPackages->setWindowModality(Qt::NonModal);
-        HPackages->resize(1257, 832);
+        HPackages->resize(1257, 836);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HPackages->setWindowIcon(icon);
@@ -308,9 +308,11 @@ public:
         tvLots = new QTableView(HPackages);
         tvLots->setObjectName(QString::fromUtf8("tvLots"));
         tvLots->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        tvLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvLots->setAlternatingRowColors(true);
         tvLots->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvLots->setSortingEnabled(true);
+        tvLots->horizontalHeader()->setCascadingSectionResizes(true);
         tvLots->horizontalHeader()->setStretchLastSection(true);
         tvLots->verticalHeader()->setVisible(false);
 

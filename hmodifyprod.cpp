@@ -11,7 +11,7 @@
 #include <QSqlError>
 #include <QCompleter>
 #include <QDate>
-// #include <QDebug>
+#include <QDebug>
 #include <huser.h>
 #include "hlotcomposition.h"
 
@@ -34,6 +34,8 @@ HModifyProd::HModifyProd(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     dfrom=ui->deDal->date();
     dto=ui->deAl->date().addDays(1);
     tipo="lotdef.tipo=3";
+    ui->pushButton->setVisible(false);
+    ui->pushButton_5->setVisible(false);
 
 
    // ui->pbUpdateAmount->setVisible(user->getCanUpdate());
@@ -76,11 +78,16 @@ HModifyProd::HModifyProd(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->cbUm->setModelColumn(1);
 
 
-    comp=new QCompleter();
+    QSqlTableModel* tmRaw=new QSqlTableModel(nullptr,db);
+    tmRaw->setTable("lotdef");
+    tmRaw->setFilter("tipo=1");
+    tmRaw->setSort(3,Qt::DescendingOrder);
+    tmRaw->select();
+    comp=new QCompleter(tmRaw);
     comp->setCaseSensitivity(Qt::CaseInsensitive);
     comp->setCompletionColumn(1);
     comp->setCompletionMode(QCompleter::PopupCompletion);
-    comp->setModel(tmLots);
+  //  comp->setModel(tmLots);
 
     ui->leLotto->setCompleter(comp);
 
@@ -165,6 +172,8 @@ void HModifyProd::getLotRowData()
 
    ui->leQuantita->setText(ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),5).data(0).toString());
 
+   ui->pushButton_4->setEnabled(true);
+
 
 
 
@@ -204,9 +213,10 @@ bool HModifyProd::updateRow()
 
     bool b= q.exec();
    // // qDebug()<<q.lastError().text();
+    getComponentsLot();
     return b;
     return false;
-    getComponentsLot();
+
 }
 
 bool HModifyProd::deleteRow()
@@ -260,14 +270,16 @@ bool HModifyProd::addRow(){
     double quantita=ui->leQuantita->text().toDouble();
     int um=ui->cbUm->model()->index(ui->cbUm->currentIndex(),0).data(0).toInt();
     QString sql;
+    QString lotto=ui->leLotto->text();
 
     QSqlQuery q(db);
     sql="SELECT ID from lotdef where lot=:lot";
     q.prepare(sql);
-    q.bindValue(":lot",QVariant(ui->leLotto->text()));
+    q.bindValue(":lot",lotto);
     q.exec();
     q.first();
     idl=q.value(0).toInt();
+    qDebug()<<idl<<lotto;
 
 
 
@@ -282,12 +294,12 @@ db.transaction();
     q.bindValue(":azione",QVariant(azione));
     q.bindValue(":quantita",QVariant(quantita));
     q.bindValue(":um",QVariant(um));
-   bool   b =q.exec();
-  // // qDebug()<<"insert:"<<q.lastError().text();
+    bool b =q.exec();
+    qDebug()<<"insert:"<<idl<<q.lastError().text();
    if(!b) return false;
    int idop=q.lastInsertId().toInt();
 
-  // // qDebug()<<QString::number(idl)<<QString::number(idop);
+   qDebug()<<QString::number(idl)<<QString::number(idop);
 
    sql="INSERT into composizione_lot(`ID_lotto`,`operazione`) VALUES(:lot,:operazione)";
    q.prepare(sql);
@@ -295,14 +307,15 @@ db.transaction();
    q.bindValue(":operazione",QVariant(idop));
 
    b=q.exec();
-  // // qDebug()<<"compB"<<q.lastError().text()<<q.lastQuery()<<QString::number(idlot)<<QString::number(idop);
+   qDebug()<<"compB"<<q.lastError().text()<<q.lastQuery()<<QString::number(idlot)<<QString::number(idop);
 
 
 
     if(b)
     {
         db.commit();
-        tmLots->select();
+        getComponentsLot();
+      //  tmLots->select();
        // // qDebug()<<"compA"<<q.lastError().text()<<q.lastQuery()<<QString::number(idlot)<<QString::number(idop);
     }
     else
@@ -419,9 +432,8 @@ void HModifyProd::on_radioButton_2_clicked()
 void HModifyProd::on_pushButton_4_clicked()
 {
 
-    ui->leLotto->setText("");
-    ui->leQuantita->setText("");
-    QSqlTableModel *lotm=new QSqlTableModel(0,db);
+
+   /* QSqlTableModel *lotm=new QSqlTableModel(0,db);
     lotm->setTable("lotdef");
     lotm->setFilter("tipo=1");
     lotm->setSort(3,Qt::DescendingOrder);
@@ -429,16 +441,20 @@ void HModifyProd::on_pushButton_4_clicked()
     QCompleter *lcmp=new QCompleter(lotm);
     lcmp->setCaseSensitivity(Qt::CaseInsensitive);
     lcmp->setCompletionMode(QCompleter::PopupCompletion);
-    lcmp->setCompletionColumn(1);
+    lcmp->setCompletionColumn(1);*/
 
 
     action=1;
+    addRow();
 
 
 
-    ui->leLotto->setCompleter(lcmp);
+  //  ui->leLotto->setCompleter(lcmp);
+    ui->leLotto->setText("");
+    ui->leQuantita->setText("");
     ui->pushButton_4->setEnabled(false);
     ui->pushButton_5->setEnabled(true);
+    getComponentsLot();
 }
 
 
@@ -555,4 +571,12 @@ void HModifyProd::refreshData()
 
 
 
+
+
+
+
+void HModifyProd::on_leQuantita_returnPressed()
+{
+    ui->pushButton_4->setEnabled(true);
+}
 

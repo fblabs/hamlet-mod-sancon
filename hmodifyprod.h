@@ -73,6 +73,8 @@ private slots:
     void on_radioButton_2_toggled(bool checked);
     void refreshData();
 
+
+    void on_leQuantita_returnPressed();
 };
 
 #endif // HMODIFYPROD_H

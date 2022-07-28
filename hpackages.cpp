@@ -23,7 +23,7 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     user=puser;
     db=pdb;
 
-    basefilter="lotdef.attivo=2 and year(lotdef.data) > " +QString::number(QDate::currentDate().addYears(-3).year());
+    basefilter="lotdef.attivo>0 and year(lotdef.data) > " +QString::number(QDate::currentDate().addYears(-3).year());
    // // qDebug()<<basefilter;
 
     ui->checkBox->setVisible(false);
@@ -32,7 +32,7 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     tmUnitaMisura = new QSqlTableModel(0,db);
 
     tmClienti->setTable("anagrafica");
-    tmClienti->setFilter("(cliente=1 or subcliente=1) and visibile=1");
+    tmClienti->setFilter("(cliente>0 or subcliente>0) and visibile>0");
     tmClienti->setSort(1,Qt::AscendingOrder);
     tmClienti->select();
 

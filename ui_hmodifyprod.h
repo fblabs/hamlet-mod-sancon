@@ -277,15 +277,12 @@ public:
         label_7 = new QLabel(HModifyProd);
         label_7->setObjectName(QString::fromUtf8("label_7"));
 
-        formLayout_2->setWidget(2, QFormLayout::LabelRole, label_7);
+        formLayout_2->setWidget(3, QFormLayout::LabelRole, label_7);
 
         cbUm = new QComboBox(HModifyProd);
         cbUm->setObjectName(QString::fromUtf8("cbUm"));
 
-        formLayout_2->setWidget(2, QFormLayout::FieldRole, cbUm);
-
-
-        verticalLayout_2->addLayout(formLayout_2);
+        formLayout_2->setWidget(3, QFormLayout::FieldRole, cbUm);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
@@ -308,7 +305,10 @@ public:
         horizontalLayout_2->addWidget(pushButton_5);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_2);
+        formLayout_2->setLayout(4, QFormLayout::FieldRole, horizontalLayout_2);
+
+
+        verticalLayout_2->addLayout(formLayout_2);
 
 
         horizontalLayout_4->addLayout(verticalLayout_2);
