@@ -877,6 +877,8 @@ debug/moc_hlotcomposition.cpp: hlotcomposition.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlDatabase \
+		huser.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/QObject \
 		debug/moc_predefs.h \
 		C:/Qt/5.15.2/mingw81_64/bin/moc.exe
 	C:\Qt\5.15.2\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/info/Documents/GitHub/hamlet-mod-sancon/debug/moc_predefs.h -IC:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++ -IC:/Users/info/Documents/GitHub/hamlet-mod-sancon -IC:/Qt/5.15.2/mingw81_64/include -IC:/Qt/5.15.2/mingw81_64/include/QtPrintSupport -IC:/Qt/5.15.2/mingw81_64/include/QtWidgets -IC:/Qt/5.15.2/mingw81_64/include/QtGui -IC:/Qt/5.15.2/mingw81_64/include/QtANGLE -IC:/Qt/5.15.2/mingw81_64/include/QtSql -IC:/Qt/5.15.2/mingw81_64/include/QtCore -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include hlotcomposition.h -o debug\moc_hlotcomposition.cpp
@@ -9066,6 +9068,8 @@ debug/hlotcomposition.o: hlotcomposition.cpp hlotcomposition.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlDatabase \
+		huser.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/QObject \
 		ui_hlotcomposition.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QVariant \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/QIcon \
@@ -14222,6 +14226,7 @@ debug/hmodifyprod.o: hmodifyprod.cpp hmodifyprod.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlquery.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlError \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlerror.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
 		hlotcomposition.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMessageBox \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmessagebox.h \
