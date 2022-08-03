@@ -278,7 +278,7 @@ void HProduction::getLotToModify(QString lot)
     ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
 
     double quantitatotale;
-    QStandardItemModel *model=new QStandardItemModel();
+    QStandardItemModel *model;
     // QString lot;
     //ricavo lo id del lotto
     QSqlQuery k(db);
@@ -977,8 +977,9 @@ QString HProduction::getNewLot(int prod)
 
 void HProduction::addLotFuoriRicettaN(QList<QStandardItem*> row)
 {
-    QStandardItemModel* mod =static_cast<QStandardItemModel*>(ui->tableView->model());
-    mod->appendRow(row);
+  /*  QStandardItemModel* mod =static_cast<QStandardItemModel*>(ui->tableView->model());
+    mod->appendRow(row);*/
+    model->appendRow(row);
 }
 
 

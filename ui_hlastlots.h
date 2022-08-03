@@ -46,6 +46,7 @@ public:
     {
         if (HLastLots->objectName().isEmpty())
             HLastLots->setObjectName(QString::fromUtf8("HLastLots"));
+        HLastLots->setWindowModality(Qt::ApplicationModal);
         HLastLots->resize(296, 293);
         verticalLayout = new QVBoxLayout(HLastLots);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));

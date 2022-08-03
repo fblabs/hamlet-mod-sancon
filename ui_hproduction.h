@@ -90,7 +90,7 @@ public:
     {
         if (HProduction->objectName().isEmpty())
             HProduction->setObjectName(QString::fromUtf8("HProduction"));
-        HProduction->setWindowModality(Qt::ApplicationModal);
+        HProduction->setWindowModality(Qt::NonModal);
         HProduction->setEnabled(true);
         HProduction->resize(1025, 697);
         QIcon icon;
