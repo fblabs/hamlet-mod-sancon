@@ -3,7 +3,7 @@
  <class>HProduction</class>
  <widget class="QWidget" name="HProduction">
   <property name="windowModality">
-   <enum>Qt::NonModal</enum>
+   <enum>Qt::ApplicationModal</enum>
   </property>
   <property name="enabled">
    <bool>true</bool>
