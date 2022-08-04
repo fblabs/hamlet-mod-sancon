@@ -43,6 +43,7 @@ private:
     QSqlQueryModel* qmod;
 
 
+
     bool modifyLot;
     int lottomodifica;
 
@@ -93,6 +94,7 @@ private slots:
     void on_pushButton_11_clicked();
 
 
+    void ui_enable(int arg);
 };
 
 #endif // HPRODUCTION_H
