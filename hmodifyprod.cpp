@@ -80,7 +80,7 @@ HModifyProd::HModifyProd(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
 
     QSqlTableModel* tmRaw=new QSqlTableModel(nullptr,db);
     tmRaw->setTable("lotdef");
-    tmRaw->setFilter("tipo=1");
+    tmRaw->setFilter("tipo=1 or tipo=3");
     tmRaw->setSort(3,Qt::DescendingOrder);
     tmRaw->select();
     comp=new QCompleter(tmRaw);

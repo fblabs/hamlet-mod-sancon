@@ -56,16 +56,35 @@ void HLotComposition::recalculate()
 
     double factor=0.0;
     double result=0.0;
+    QString sql=QString();
+    QSqlQuery q(db);
+
+    int id_operation=findLotFirstLoad();
 
 
     factor = dafare / sommarighe;
 
-    QSqlQuery q(db);
 
 
     QModelIndex i=QModelIndex();
     QString resulttoadd=QString();
-    QString sql=QString();
+
+
+    sql="UPDATE operazioni set quantita=:q where id=:id";
+    q.prepare(sql);
+    q.bindValue(":id",id_operation);
+    q.bindValue(":q",dafare);
+
+     bool b=q.exec();
+
+     if(!b){
+         db.rollback();
+         return;
+     }
+
+
+
+
 
 
 
@@ -93,7 +112,7 @@ void HLotComposition::recalculate()
        }
 
 
-      QString sql="select operazioni.ID,operazioni.IDlotto,lotdef.lot,prodotti.ID,prodotti.descrizione,operazioni.quantita,unita_di_misura.ID,unita_di_misura.descrizione from operazioni,lotdef,prodotti,unita_di_misura where prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and unita_di_misura.ID=operazioni.um and  operazioni.ID in (SELECT operazione from composizione_lot where ID_lotto=:lotid )order by operazioni.quantita desc";
+      sql="select operazioni.ID,operazioni.IDlotto,lotdef.lot,prodotti.ID,prodotti.descrizione,operazioni.quantita,unita_di_misura.ID,unita_di_misura.descrizione from operazioni,lotdef,prodotti,unita_di_misura where prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and unita_di_misura.ID=operazioni.um and  operazioni.ID in (SELECT operazione from composizione_lot where ID_lotto=:lotid )order by operazioni.quantita desc";
       QSqlQuery qm(db);
       QSqlQueryModel *qmod = new QSqlQueryModel();
        qm.prepare(sql);
@@ -149,5 +168,20 @@ void HLotComposition::on_pbRecalculate_clicked()
 {
     db.transaction();
     recalculate();
+}
+
+int HLotComposition::findLotFirstLoad()
+{
+ int result=0;
+
+ QString sql="SELECT MIN(ID) from operazioni where IDLotto=:id";
+ QSqlQuery q(db);
+ q.prepare(sql);
+ q.bindValue(":id",idLotto);
+ q.exec();
+ q.first();
+ result=q.value(0).toInt();
+
+ return result;
 }
 

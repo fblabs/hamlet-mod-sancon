@@ -31,6 +31,7 @@ private slots:
     void on_pbSave_clicked();
 
     void on_pbRecalculate_clicked();
+    int findLotFirstLoad();
 
 signals:
    void composition_updated();
