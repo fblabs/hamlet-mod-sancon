@@ -12,7 +12,7 @@
 #include <QMenu>
 #include <QAction>
 
-HAnalisi::HAnalisi(QSqlDatabase pdb=QSqlDatabase(),QWidget *parent) :
+HAnalisi::HAnalisi(QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HAnalisi)
 {

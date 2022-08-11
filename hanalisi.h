@@ -15,7 +15,7 @@ class HAnalisi : public QWidget
     Q_OBJECT
 
 public:
-    explicit HAnalisi(QSqlDatabase pdb, QWidget *parent = 0);
+    explicit HAnalisi(QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = nullptr);
     ~HAnalisi();
 public slots:
 
@@ -34,16 +34,16 @@ private slots:
     void getLotComponents();
     void getLotComponents(int idlotto);
     int getLotID(QString lot);
-  //  void findLotComposition();
+    //  void findLotComposition();
     void findLotUse();
     void setLotSearch(QString msg);
     void setNarrowSearch();
     void narrow();
     void setCompSearch();
     void on_rbAll_toggled(bool checked);
-   // void on_rbMateriePrime_toggled(bool checked);
+    // void on_rbMateriePrime_toggled(bool checked);
     void on_rbProdottifiniti_toggled(bool checked);
-   // void on_rbSemilavorati_toggled(bool checked);
+    // void on_rbSemilavorati_toggled(bool checked);
     void on_rbPackages_toggled(bool checked);
     void on_pushButton_clicked();
     void on_pushButton_3_clicked();

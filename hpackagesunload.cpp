@@ -49,20 +49,25 @@ void HPackagesUnload::getClients()
     ui->cbClienti->setModelColumn(1);
 
     ui->cbClienti->setCompleter(cmpCl);
-  //  ui->cbClienti->setCurrentIndex(1);
+    ui->cbClienti->setCurrentIndex(0);
+    getProducts();
+    loadPackages();
+
+    connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getProducts()));
+  //  connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(loadPackages()));
 
 
- //   connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getProducts()));
+
 
 }
 
 void HPackagesUnload::getProducts()
 {
     modProdotti=new QSqlQueryModel();
-    QVariant idc;
+    int idc=0;
     QSqlQuery q(db);
 
-    idc=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0);
+    idc=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
 
     QString sql="SELECT ID,descrizione FROM prodotti where tipo=2 and ID in(SELECT ID_prodotto from ricette,associazioni where ricette.ID = associazioni.ID_ricetta and associazioni.ID_cliente=:idc) order by descrizione asc";
     q.prepare(sql);
@@ -85,13 +90,15 @@ void HPackagesUnload::loadPackages()
     QString prodotto;
     QString prfilt;
     QString flt;
-
+    int anagrafica=0;
     prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0).toString();
+    anagrafica=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
+
 
     prfilt=" and prodotto=" + prodotto;
 
 
-    flt=baseFilter+prfilt + " order by data desc";
+    flt=baseFilter+prfilt + " and anagrafica="+QString::number(anagrafica)+" order by data desc";
 
     mlots=new QSqlTableModel(0,db);
     mlots->setTable("lotdef");

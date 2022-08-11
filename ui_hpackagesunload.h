@@ -18,6 +18,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -43,6 +44,7 @@ public:
     QLineEdit *leQuantita;
     QLineEdit *leNote;
     QLabel *label_5;
+    QSpacerItem *verticalSpacer;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
 
@@ -50,7 +52,7 @@ public:
     {
         if (HPackagesUnload->objectName().isEmpty())
             HPackagesUnload->setObjectName(QString::fromUtf8("HPackagesUnload"));
-        HPackagesUnload->resize(536, 430);
+        HPackagesUnload->resize(1060, 562);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HPackagesUnload->setWindowIcon(icon);
@@ -62,6 +64,8 @@ public:
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
         label = new QLabel(HPackagesUnload);
         label->setObjectName(QString::fromUtf8("label"));
+        label->setMinimumSize(QSize(80, 0));
+        label->setMaximumSize(QSize(80, 16777215));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
@@ -81,6 +85,7 @@ public:
         formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
         label_2 = new QLabel(HPackagesUnload);
         label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setMinimumSize(QSize(80, 0));
 
         formLayout_2->setWidget(0, QFormLayout::LabelRole, label_2);
 
@@ -100,13 +105,16 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         label_3 = new QLabel(HPackagesUnload);
         label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setMinimumSize(QSize(80, 0));
 
         verticalLayout->addWidget(label_3);
 
         tvLots = new QTableView(HPackagesUnload);
         tvLots->setObjectName(QString::fromUtf8("tvLots"));
+        tvLots->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
         tvLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvLots->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvLots->verticalHeader()->setVisible(false);
 
         verticalLayout->addWidget(tvLots);
 
@@ -122,6 +130,7 @@ public:
 
         leQuantita = new QLineEdit(HPackagesUnload);
         leQuantita->setObjectName(QString::fromUtf8("leQuantita"));
+        leQuantita->setMaximumSize(QSize(150, 16777215));
 
         formLayout_3->setWidget(1, QFormLayout::FieldRole, leQuantita);
 
@@ -134,6 +143,10 @@ public:
         label_5->setObjectName(QString::fromUtf8("label_5"));
 
         formLayout_3->setWidget(2, QFormLayout::LabelRole, label_5);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        formLayout_3->setItem(3, QFormLayout::FieldRole, verticalSpacer);
 
 
         verticalLayout_2->addLayout(formLayout_3);
