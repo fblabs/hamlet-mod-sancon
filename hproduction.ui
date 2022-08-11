@@ -180,6 +180,17 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
+            <widget class="QPushButton" name="pbResetWindow">
+             <property name="text">
+              <string>Reset Finestra</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/Resources/Arrow-turn-left64.png</normaloff>:/Resources/Arrow-turn-left64.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="pbAddLottoFuoriRicetta">
              <property name="text">
               <string>Aggiungi</string>
@@ -440,7 +451,7 @@
        <item>
         <widget class="QPushButton" name="pushButton_11">
          <property name="text">
-          <string>Reset</string>
+          <string>Reset Ricetta</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">

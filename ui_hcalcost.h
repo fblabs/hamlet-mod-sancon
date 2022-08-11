@@ -21,6 +21,7 @@
 #include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -37,6 +38,8 @@ public:
     QComboBox *cbClients;
     QListView *lvProdotti;
     QVBoxLayout *verticalLayout_4;
+    QLabel *label_5;
+    QTextEdit *teNote;
     QLabel *label_15;
     QTableView *tvComponenti;
     QVBoxLayout *verticalLayout_2;
@@ -122,6 +125,17 @@ public:
 
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
+        label_5 = new QLabel(HCalcost);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+
+        verticalLayout_4->addWidget(label_5);
+
+        teNote = new QTextEdit(HCalcost);
+        teNote->setObjectName(QString::fromUtf8("teNote"));
+        teNote->setMaximumSize(QSize(16777215, 80));
+
+        verticalLayout_4->addWidget(teNote);
+
         label_15 = new QLabel(HCalcost);
         label_15->setObjectName(QString::fromUtf8("label_15"));
         QFont font;
@@ -375,6 +389,7 @@ public:
     {
         HCalcost->setWindowTitle(QCoreApplication::translate("HCalcost", "Calcolo costi", nullptr));
         label->setText(QCoreApplication::translate("HCalcost", "Clienti:", nullptr));
+        label_5->setText(QCoreApplication::translate("HCalcost", "Note:", nullptr));
         label_15->setText(QCoreApplication::translate("HCalcost", "Componenti prodotto ", nullptr));
         label_14->setText(QCoreApplication::translate("HCalcost", "Costo prodotto finito", nullptr));
         label_2->setText(QCoreApplication::translate("HCalcost", "Costo Ricetta (\342\202\254)", nullptr));

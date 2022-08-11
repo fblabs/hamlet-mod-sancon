@@ -96,7 +96,18 @@ void HCalcost::getRecipe()
     resetUI();
     int idp=cmod->index(ui->lvProdotti->selectionModel()->currentIndex().row(),0).data(0).toInt();
     QSqlQuery q(db);
-    QString sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as \"QUANTITA\'\",prodotti.prezzo as 'COSTO UNITARIO (€)',righe_ricette.quantita*prodotti.prezzo as 'COSTO PER RICETTA (€)' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.ID";
+    QString sql=QString();
+    sql ="SELECT note FROM fbgmdb260.ricette WHERE ID_prodotto=:prodotto";
+    q.prepare(sql);
+    q.bindValue(":prodotto",idp);
+    q.exec();
+    q.first();
+    QString note=q.value(0).toString();
+    ui->teNote->setPlainText(note);
+
+
+
+    sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as \"QUANTITA\'\",prodotti.prezzo as 'COSTO UNITARIO (€)',righe_ricette.quantita*prodotti.prezzo as 'COSTO PER RICETTA (€)' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.ID";
     q.prepare(sql);
     q.bindValue(":idp",idp);
     q.exec();
@@ -219,6 +230,7 @@ void HCalcost::resetUI()
     ui->leCostoEtichette->setText("");
     ui->leCostounitaricetta->setText("");
     ui->leCostoVasi->setText("");
+    ui->teNote->setPlainText("");
 }
 
 
@@ -337,9 +349,10 @@ void HCalcost::print()
     html="<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\"><head><style>table,th,td{border:1px solid black}</style><title>untitled</title>";
                html.append("<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\" />");
                html.append("</head><body>");
-
                html.append("<h3 align=\"center\">"+title+"</h3><br>");
-
+               html.append("<p>");
+               html.append(ui->teNote->toPlainText());
+                html.append("</p>");
                html.append("<table width=100%><tr><th colspan=4>"+ings+"</th></tr>");
                html.append("<tr><td align='center'>MATERIALI</td><td align='center'>QUANTITA\'</td><td align='center'> COSTO UNITARIO (€)</td><td align='center'>COSTO PER RICETTA (€)</td></tr><tr><td colspan=4></td></tr>");
 

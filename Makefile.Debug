@@ -15825,6 +15825,7 @@ debug/hpackagesunload.o: hpackagesunload.cpp hpackagesunload.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QPushButton \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qpushbutton.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QSpacerItem \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QTableView \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtableview.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QVBoxLayout \

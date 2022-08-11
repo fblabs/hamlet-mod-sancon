@@ -95,6 +95,7 @@ private slots:
 
 
     void ui_enable(int arg);
+    void on_pbResetWindow_clicked();
 };
 
 #endif // HPRODUCTION_H

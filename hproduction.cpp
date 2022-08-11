@@ -1723,3 +1723,34 @@ void HProduction::addLot(QModelIndex index)
 
 
 
+
+void HProduction::on_pbResetWindow_clicked()
+{
+    ui->dateEdit->setVisible(false);
+    ui->label_9->setVisible(false);
+    ui->pushButton_8->setVisible(false);
+    ui->pushButton_10->setEnabled(false);
+    ui->pushButton->setVisible(false);
+    ui->checkBox->setVisible(false);
+    ui->cbClienti->setCurrentIndex(ui->cbClienti->model()->rowCount());
+    ui->cbClienti->setCurrentIndex(0);
+
+    ui->lvRicette->setEnabled(true);
+    ui->lvSubclienti->setVisible(false);
+
+    ui->leQtyTotal->setEnabled(true);
+    ui->pushButton_5->setVisible(true);
+    ui->pushButton_6->setVisible(false);
+    ui->pushButton->setEnabled(false);
+    ui->pushButton_2->setEnabled(false);
+    ui->pushButton_7->setEnabled(false);
+    ui->leNuovoLot->setText("");
+    ui->label_6->setVisible(true);
+    ui->dateEdit->setDate(QDate::currentDate().addYears(2));
+
+    setAddProductFuoriRicettaUI(false);
+
+    modifyLot=false;
+
+}
+
