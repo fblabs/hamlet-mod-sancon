@@ -90,6 +90,7 @@ public:
     QTableView *tvPack;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_3;
+    QCheckBox *cb_unload;
     QPushButton *pushButton_4;
 
     void setupUi(QWidget *HPackages)
@@ -432,6 +433,12 @@ public:
 
         horizontalLayout->addWidget(pushButton_3);
 
+        cb_unload = new QCheckBox(HPackages);
+        cb_unload->setObjectName(QString::fromUtf8("cb_unload"));
+        cb_unload->setMaximumSize(QSize(130, 16777215));
+
+        horizontalLayout->addWidget(cb_unload);
+
         pushButton_4 = new QPushButton(HPackages);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
         QIcon icon7;
@@ -480,6 +487,7 @@ public:
         pbRemoveRow->setText(QCoreApplication::translate("HPackages", "Rimuovi", nullptr));
         label_2->setText(QCoreApplication::translate("HPackages", "Lotto interno creato:", nullptr));
         pushButton_3->setText(QCoreApplication::translate("HPackages", "Salva", nullptr));
+        cb_unload->setText(QCoreApplication::translate("HPackages", "Scarico contestuale", nullptr));
         pushButton_4->setText(QCoreApplication::translate("HPackages", "Chiudi", nullptr));
     } // retranslateUi
 

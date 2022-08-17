@@ -161,6 +161,7 @@ void HPackages::resetForm()
     ui->pbCrea->setEnabled(true);
     ui->leComponente->setEnabled(false);
     ui->leQuantita->setEnabled(false);
+    ui->leQuantLot->setText(QString());
     ui->pbAddRow->setEnabled(false);
     ui->pbRemoveRow->setEnabled(false);
     ui->leNewLot->setText("");
@@ -798,9 +799,10 @@ void HPackages::on_pushButton_3_clicked()
 
 
 bool b;
+QString msg=QString();
 
 
-    if(QMessageBox::question(this,QApplication::applicationName(),"Salvare il nuovo lotto?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    if(QMessageBox::question(this,QApplication::applicationName(),"Salvare il nuovo package?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
 
        db.transaction();

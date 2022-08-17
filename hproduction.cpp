@@ -1012,11 +1012,12 @@ void HProduction::on_pushButton_5_clicked()
     ui->cbClienti->setEnabled(false);
     ui->leQtyTotal->setFocus();
 
-    // getRecipe()
+    getRecipe();
 
     updateTotals();
 
     //QModelIndex tindex=ui->tableView->selectionModel()->currentIndex();
+    ui->tableView->setEnabled(true);
     connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
 
 
@@ -1036,6 +1037,7 @@ void HProduction::on_pushButton_6_clicked()
 {
     //ui->tableView->setEnabled(false);
     ui->lvRicette->setEnabled(true);
+    ui->tableView->setEnabled(false);
     ui->pushButton_5->setVisible(true);
     ui->leOperatore->setEnabled(true);
 
@@ -1062,10 +1064,11 @@ void HProduction::on_pushButton_6_clicked()
 
     modifyLot=false;
     ui->tableView->setModel(0);
-    getRecipe();
+   // getRecipe();
     /* ui->pushButton_10->setEnabled(false);
     ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,0));
     ui->lvRicette->selectionModel()->select(ui->lvRicette->model()->index(0,0),QItemSelectionModel::Select);*/
+    ui->tableView->setEnabled(false);
     disconnect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
 
 }
