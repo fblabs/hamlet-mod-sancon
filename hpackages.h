@@ -77,6 +77,7 @@ private slots:
     QString getumdesc(int umid);
     int getumidfromdesc(QString pdesc);
     void enableUI(bool e);
+    bool unloadPackage(const int pid_package=-1);
 
 
 
@@ -87,6 +88,8 @@ private slots:
     void on_rbVasi_toggled(bool checked);
     void on_rbTappi_toggled(bool checked);
     void on_leSearch_textChanged(const QString &arg1);
+
+    void on_cbProdotti_currentTextChanged(const QString &arg1);
 
 };
 

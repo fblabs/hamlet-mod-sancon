@@ -307,7 +307,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="leSearch"/>
+            <widget class="QLineEdit" name="leSearch">
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
            </item>
            <item>
             <layout class="QFormLayout" name="formLayout">
@@ -479,6 +483,9 @@
          </property>
          <property name="text">
           <string>Scarico contestuale</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

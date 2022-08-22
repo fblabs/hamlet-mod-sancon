@@ -52,7 +52,6 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     tmLots->setHeaderData(5,Qt::Horizontal,"Unità di misura");
 
 
-
     ui->cbClienti->setModel(tmClienti);
     ui->cbClienti->setModelColumn(1);
     ui->cbClienti->setCurrentIndex(0);
@@ -146,6 +145,32 @@ void HPackages::enableUI(bool e)
     ui->pushButton_3->setEnabled(!e);
 
 
+}
+
+bool HPackages::unloadPackage(const int pid_package)
+{
+    bool result=false;
+    int ix=ui->cbProdotti->currentIndex();
+    int idProdotto=ui->cbProdotti->model()->index(ix,0).data(0).toInt();
+    int amount=ui->leQuantLot->text().toInt();
+    int azione=2;
+    int um=2;
+    QSqlQuery q(db);
+    QString sql="INSERT INTO `fbgmdb260`.`operazioni` (`IDlotto`,`data`,`utente`,`IDprodotto`,`azione`,`quantita`,`um`,`note`) VALUES (:IDlotto,:data,:utente,:IDprodotto,:azione,:quantita,:um,:note)";
+    q.prepare(sql);
+    q.bindValue(":IDlotto",pid_package);
+    q.bindValue(":data",QDate::currentDate());
+    q.bindValue(":utente",user->getID());
+    q.bindValue(":IDprodotto",idProdotto);
+    q.bindValue(":azione",azione);
+    q.bindValue(":quantita",amount);
+    q.bindValue(":um",um);
+    q.bindValue(":note",QString());
+
+    result= q.exec();
+
+
+    return result;
 }
 
 void HPackages::setLotText()
@@ -584,6 +609,21 @@ db.transaction();
         return false;
     }
 
+    if(ui->cb_unload->isChecked())
+    {
+        //scarica contestualmente il package
+      if(QMessageBox::question(nullptr,QApplication::applicationName(),"Scaricare il package?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+      {
+        bool bs=unloadPackage(nlotid);
+        if (!bs)
+        {
+            QMessageBox::warning(nullptr,QApplication::applicationName(),"Error scaricando il package",QMessageBox::Ok);
+        }
+
+      }
+
+    }
+
 
 
 
@@ -700,7 +740,7 @@ bool HPackages::unloadNewLotComponents(int nlot)
 
         q.prepare(sql);
 
-        q.bindValue(":idlot",ui->tvPack->model()->index(row,2).data(0));
+        q.bindValue(":idlot",lotdascaricare);
         q.bindValue(":data",QDateTime::currentDateTime());
         q.bindValue(":utente",QVariant(user->getID()));
         q.bindValue(":idprodotto",QVariant(prodottodascaricare));
@@ -871,11 +911,13 @@ void HPackages::on_rbProdottiFiniti_toggled(bool checked)
 
 void HPackages::on_rbVasi_toggled(bool checked)
 {
-    QString flt=basefilter + " and lotdef.tipo=1 and prodotto in (SELECT ID from prodotti where tipo=5)";
+    QString flt=basefilter + " and lotdef.tipo=1 and prodotto in (SELECT ID from prodotti where prodotti.tipo=5)";
+    qDebug()<<basefilter << flt;
     if (checked)
     {
-        tmLots->setFilter(flt);
+
         ui->leSearch->setText("");
+        tmLots->setFilter(flt);
 
     }
 
@@ -883,11 +925,12 @@ void HPackages::on_rbVasi_toggled(bool checked)
 
 void HPackages::on_rbTappi_toggled(bool checked)
 {
-    QString flt=basefilter + " and lotdef.tipo and prodotto in (SELECT ID from prodotti where tipo=4)";
+    QString flt=basefilter + " and lotdef.tipo=1 and prodotto in (SELECT ID from prodotti where tipo=4)";
     if (checked)
     {
-        tmLots->setFilter(flt);
         ui->leSearch->setText("");
+        tmLots->setFilter(flt);
+
     }
 }
 
@@ -914,5 +957,13 @@ void HPackages::on_leSearch_textChanged(const QString &arg1)
     tmLots->setFilter(filterinit);
    // // qDebug()<<tmLots->filter();
 }
+
+
+
+void HPackages::on_cbProdotti_currentTextChanged(const QString &arg1)
+{
+    if(ui->rbProdottiFiniti->isChecked())ui->leSearch->setText(arg1);
+}
+
 
 

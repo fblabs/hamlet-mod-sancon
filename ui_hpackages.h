@@ -326,6 +326,7 @@ public:
 
         leSearch = new QLineEdit(HPackages);
         leSearch->setObjectName(QString::fromUtf8("leSearch"));
+        leSearch->setClearButtonEnabled(true);
 
         verticalLayout->addWidget(leSearch);
 
@@ -436,6 +437,7 @@ public:
         cb_unload = new QCheckBox(HPackages);
         cb_unload->setObjectName(QString::fromUtf8("cb_unload"));
         cb_unload->setMaximumSize(QSize(130, 16777215));
+        cb_unload->setChecked(true);
 
         horizontalLayout->addWidget(cb_unload);
 
