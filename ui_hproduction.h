@@ -414,6 +414,7 @@ public:
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         pushButton_3 = new QPushButton(HProduction);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_3->setEnabled(false);
         QIcon icon9;
         icon9.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_3->setIcon(icon9);

@@ -988,7 +988,7 @@ void HProduction::addLotFuoriRicettaN(QList<QStandardItem*> row)
 
 void HProduction::on_pushButton_5_clicked()
 {
-    //ui->tableView->setEnabled(true);
+   ui->pushButton_3->setEnabled(true);
     ui->lvRicette->setEnabled(false);
     ui->leOperatore->setEnabled(false);
 
@@ -1035,7 +1035,7 @@ void HProduction::on_pushButton_5_clicked()
 
 void HProduction::on_pushButton_6_clicked()
 {
-    //ui->tableView->setEnabled(false);
+    ui->pushButton_3->setEnabled(false);
     ui->lvRicette->setEnabled(true);
     ui->tableView->setEnabled(false);
     ui->pushButton_5->setVisible(true);
@@ -1367,6 +1367,7 @@ bool HProduction::saveProduction()
         ui->pushButton->setEnabled(false);
         ui->pushButton_2->setEnabled(false);
         ui->pushButton_7->setEnabled(false);
+        ui->pushButton_3->setEnabled(false);
 
     }
     else
