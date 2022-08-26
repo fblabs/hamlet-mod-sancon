@@ -220,3 +220,5 @@ hamletMOD.pro.user
 Makefile.Debug
 *.user
 *.user
+release/moc_hpackages.cpp
+release/moc_hpackages.cpp

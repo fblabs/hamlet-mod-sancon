@@ -43,7 +43,8 @@ public:
     {
         if (HLogin2->objectName().isEmpty())
             HLogin2->setObjectName(QString::fromUtf8("HLogin2"));
-        HLogin2->resize(342, 134);
+        HLogin2->setWindowModality(Qt::ApplicationModal);
+        HLogin2->resize(342, 136);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/fblabs.png"), QSize(), QIcon::Normal, QIcon::Off);
         HLogin2->setWindowIcon(icon);
@@ -58,7 +59,6 @@ public:
         label->setObjectName(QString::fromUtf8("label"));
         QFont font;
         font.setBold(true);
-        font.setWeight(75);
         label->setFont(font);
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label);

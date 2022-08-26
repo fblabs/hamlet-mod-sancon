@@ -38,8 +38,8 @@ private:
     QStandardItemModel *model;
     QSqlTableModel *tmTipiLotti;
     QSqlTableModel *tmUm;
- //   QList<int> *writeRed;
- //   QStandardItemModel *tableModel;
+    //   QList<int> *writeRed;
+    //   QStandardItemModel *tableModel;
     QSqlQueryModel* qmod;
 
 
@@ -77,6 +77,7 @@ private slots:
     QString getNewLot(int prod);
     bool saveUpdatedComposizione();
     bool saveUpdatedOperazione(int row);
+    void resetForm(bool pcomplete);
     void on_pushButton_clicked();
     void on_pushButton_5_clicked();
     void on_pushButton_6_clicked();
@@ -92,10 +93,8 @@ private slots:
     void on_checkBox_toggled(bool checked);
     void on_pbAnnulla_clicked();
     void on_pushButton_11_clicked();
-
-
     void ui_enable(int arg);
-    void on_pbResetWindow_clicked();
+
 };
 
 #endif // HPRODUCTION_H

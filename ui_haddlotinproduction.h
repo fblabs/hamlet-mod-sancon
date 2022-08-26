@@ -128,7 +128,7 @@ public:
         label->setText(QCoreApplication::translate("HAddLotInProduction", "Quantit\303\240:", nullptr));
         dsbQt->setSpecialValueText(QString());
         pbAdd->setText(QCoreApplication::translate("HAddLotInProduction", "Aggiungi", nullptr));
-        pdClose->setText(QCoreApplication::translate("HAddLotInProduction", "Annulla", nullptr));
+        pdClose->setText(QCoreApplication::translate("HAddLotInProduction", "Chiudi", nullptr));
     } // retranslateUi
 
 };

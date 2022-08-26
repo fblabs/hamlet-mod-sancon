@@ -54,7 +54,6 @@ public:
     QVBoxLayout *verticalLayout_2;
     QFormLayout *formLayout_2;
     QHBoxLayout *horizontalLayout_4;
-    QPushButton *pbResetWindow;
     QPushButton *pbAddLottoFuoriRicetta;
     QPushButton *pbAnnulla;
     QHBoxLayout *horizontalLayout_5;
@@ -134,6 +133,7 @@ public:
 
         leOperatore = new QLineEdit(HProduction);
         leOperatore->setObjectName(QString::fromUtf8("leOperatore"));
+        leOperatore->setClearButtonEnabled(true);
 
         verticalLayout->addWidget(leOperatore);
 
@@ -202,21 +202,17 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        pbResetWindow = new QPushButton(HProduction);
-        pbResetWindow->setObjectName(QString::fromUtf8("pbResetWindow"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Resources/Arrow-turn-left64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbResetWindow->setIcon(icon2);
-
-        horizontalLayout_4->addWidget(pbResetWindow);
-
         pbAddLottoFuoriRicetta = new QPushButton(HProduction);
         pbAddLottoFuoriRicetta->setObjectName(QString::fromUtf8("pbAddLottoFuoriRicetta"));
+        pbAddLottoFuoriRicetta->setIcon(icon1);
 
         horizontalLayout_4->addWidget(pbAddLottoFuoriRicetta);
 
         pbAnnulla = new QPushButton(HProduction);
         pbAnnulla->setObjectName(QString::fromUtf8("pbAnnulla"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/Counterclockwise-arrow64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbAnnulla->setIcon(icon2);
 
         horizontalLayout_4->addWidget(pbAnnulla);
 
@@ -474,7 +470,6 @@ public:
         checkBox->setText(QCoreApplication::translate("HProduction", "mostra subclienti", nullptr));
         label_6->setText(QCoreApplication::translate("HProduction", "tipo di lotto:", nullptr));
         pushButton->setText(QCoreApplication::translate("HProduction", "Aggiungi", nullptr));
-        pbResetWindow->setText(QCoreApplication::translate("HProduction", "Reset Finestra", nullptr));
         pbAddLottoFuoriRicetta->setText(QCoreApplication::translate("HProduction", "Aggiungi", nullptr));
         pbAnnulla->setText(QCoreApplication::translate("HProduction", "Annulla", nullptr));
         pushButton_5->setText(QCoreApplication::translate("HProduction", "inizia", nullptr));

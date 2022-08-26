@@ -83,7 +83,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="leOperatore"/>
+        <widget class="QLineEdit" name="leOperatore">
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="checkBox">
@@ -180,20 +184,13 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QPushButton" name="pbResetWindow">
-             <property name="text">
-              <string>Reset Finestra</string>
-             </property>
-             <property name="icon">
-              <iconset resource="icons.qrc">
-               <normaloff>:/Resources/Arrow-turn-left64.png</normaloff>:/Resources/Arrow-turn-left64.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
             <widget class="QPushButton" name="pbAddLottoFuoriRicetta">
              <property name="text">
               <string>Aggiungi</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/Resources/Plus.PNG</normaloff>:/Resources/Plus.PNG</iconset>
              </property>
             </widget>
            </item>
@@ -201,6 +198,10 @@
             <widget class="QPushButton" name="pbAnnulla">
              <property name="text">
               <string>Annulla</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/Resources/Counterclockwise-arrow64.png</normaloff>:/Resources/Counterclockwise-arrow64.png</iconset>
              </property>
             </widget>
            </item>

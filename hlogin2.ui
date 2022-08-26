@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>HLogin2</class>
  <widget class="QDialog" name="HLogin2">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>342</width>
-    <height>134</height>
+    <height>136</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +32,6 @@
         <widget class="QLabel" name="label">
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -55,7 +57,6 @@
         <widget class="QLabel" name="label_2">
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>

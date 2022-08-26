@@ -988,7 +988,7 @@ void HProduction::addLotFuoriRicettaN(QList<QStandardItem*> row)
 
 void HProduction::on_pushButton_5_clicked()
 {
-   ui->pushButton_3->setEnabled(true);
+    ui->pushButton_3->setEnabled(true);
     ui->lvRicette->setEnabled(false);
     ui->leOperatore->setEnabled(false);
 
@@ -1035,7 +1035,7 @@ void HProduction::on_pushButton_5_clicked()
 
 void HProduction::on_pushButton_6_clicked()
 {
-    ui->pushButton_3->setEnabled(false);
+    /* ui->pushButton_3->setEnabled(false);
     ui->lvRicette->setEnabled(true);
     ui->tableView->setEnabled(false);
     ui->pushButton_5->setVisible(true);
@@ -1044,32 +1044,34 @@ void HProduction::on_pushButton_6_clicked()
     ui->pushButton_6->setVisible(false);
     ui->pushButton->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
-    ui->pushButton_7->setEnabled(false);
+    ui->pushButton_7->setEnabled(false);*/
 
     //ui->label->setVisible(false);
     // ui->cbQuanti->setVisible(false);
     // ui->lvLastLots->setVisible(false);
-    ui->leNuovoLot->setText("");
+    /*   ui->leNuovoLot->setText("");
     ui->leQtyTotal->setReadOnly(false);
     ui->cbTipoLotto->setEnabled(true);
     ui->checkBox->setEnabled(true);
-    ui->cbClienti->setEnabled(true);
+    ui->cbClienti->setEnabled(true);*/
     // ui->leQtyTotal->setText("0.0");
     //ui->leQtyTotal->setReadOnly(true);
     //   getRecipe();
     //   updateTotals();
 
+    resetForm(false);
 
 
 
-    modifyLot=false;
-    ui->tableView->setModel(0);
-   // getRecipe();
+
+    //  modifyLot=false;
+    //  ui->tableView->setModel(0);
+    // getRecipe();
     /* ui->pushButton_10->setEnabled(false);
     ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,0));
     ui->lvRicette->selectionModel()->select(ui->lvRicette->model()->index(0,0),QItemSelectionModel::Select);*/
-    ui->tableView->setEnabled(false);
-    disconnect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
+    //  ui->tableView->setEnabled(false);
+    //  disconnect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
 
 }
 
@@ -1291,7 +1293,7 @@ bool HProduction::saveProduction()
     if(QMessageBox::warning(this,QApplication::applicationName(),"Avviare il salvataggio della produzione?\n verificare",QMessageBox::Ok| QMessageBox::Cancel)==QMessageBox::Cancel)
     {
         db.rollback();
-         ui_enable(ACTION::WAIT);
+        ui_enable(ACTION::WAIT);
         return false;
     }
 
@@ -1434,9 +1436,13 @@ void HProduction::on_pushButton_3_clicked()
         updateComposition();
     }
 
-    modifyLot=false;
 
-    // ui->tableView->setModel(0);
+
+
+    //  ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,0));
+    //  ui->lvRicette->selectionModel()->clearSelection();
+    //  ui->tableView->setModel(nullptr);
+    resetForm(true);
 
 
 }
@@ -1628,6 +1634,41 @@ bool HProduction::saveUpdatedOperazione(int row)
 
 }
 
+void HProduction::resetForm(bool pcomplete)
+{
+    ui->dateEdit->setVisible(false);
+    ui->label_9->setVisible(false);
+    ui->pushButton_8->setVisible(false);
+    ui->pushButton_10->setEnabled(false);
+    ui->pushButton->setVisible(false);
+    ui->checkBox->setVisible(false);
+   // ui->cbClienti->setCurrentIndex(ui->cbClienti->model()->rowCount());
+   // ui->cbClienti->setCurrentIndex(0);
+
+    ui->lvRicette->setEnabled(true);
+    ui->lvSubclienti->setVisible(false);
+
+    ui->leQtyTotal->setEnabled(true);
+    ui->pushButton_5->setVisible(true);
+    ui->pushButton_6->setVisible(false);
+    ui->pushButton->setEnabled(false);
+    ui->pushButton_2->setEnabled(false);
+    ui->pushButton_7->setEnabled(false);
+    ui->pushButton_3->setEnabled(false);
+    ui->leNuovoLot->setText("");
+    ui->label_6->setVisible(true);
+    ui->dateEdit->setDate(QDate::currentDate().addYears(2));
+    if(pcomplete) ui->leOperatore->setText(QString());
+    ui->leOperatore->setEnabled(true);
+
+    ui->cbClienti->setEnabled(true);
+
+    setAddProductFuoriRicettaUI(false);
+
+    modifyLot=false;
+
+}
+
 void HProduction::on_pushButton_10_clicked()
 {
     printProduction();
@@ -1687,15 +1728,6 @@ void HProduction::ui_enable(int arg)
 }
 
 
-/*void HProduction::on_leQuaRic_textChanged(const QString &arg1)
-{
-   // // qDebug()<<arg1;
-}*/
-
-
-
-
-
 void HProduction::addLot(QModelIndex index)
 {
     HDataToPass *data=new HDataToPass(0);
@@ -1728,33 +1760,5 @@ void HProduction::addLot(QModelIndex index)
 
 
 
-void HProduction::on_pbResetWindow_clicked()
-{
-    ui->dateEdit->setVisible(false);
-    ui->label_9->setVisible(false);
-    ui->pushButton_8->setVisible(false);
-    ui->pushButton_10->setEnabled(false);
-    ui->pushButton->setVisible(false);
-    ui->checkBox->setVisible(false);
-    ui->cbClienti->setCurrentIndex(ui->cbClienti->model()->rowCount());
-    ui->cbClienti->setCurrentIndex(0);
 
-    ui->lvRicette->setEnabled(true);
-    ui->lvSubclienti->setVisible(false);
-
-    ui->leQtyTotal->setEnabled(true);
-    ui->pushButton_5->setVisible(true);
-    ui->pushButton_6->setVisible(false);
-    ui->pushButton->setEnabled(false);
-    ui->pushButton_2->setEnabled(false);
-    ui->pushButton_7->setEnabled(false);
-    ui->leNuovoLot->setText("");
-    ui->label_6->setVisible(true);
-    ui->dateEdit->setDate(QDate::currentDate().addYears(2));
-
-    setAddProductFuoriRicettaUI(false);
-
-    modifyLot=false;
-
-}
 
