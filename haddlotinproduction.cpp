@@ -29,7 +29,7 @@ HAddLotInProduction::HAddLotInProduction(QWidget *parent, HDataToPass *datapass,
     ui->cbLastLots->addItem("Ultimi 5 lotti",5);
     ui->cbLastLots->addItem("Ultimi 10 lotti",10);
     ui->cbLastLots->addItem("Ultimi 50 lotti",50);
-    ui->cbLastLots->setCurrentIndex(1);
+    ui->cbLastLots->setCurrentIndex(0);
 
     lastLots();
 
@@ -97,7 +97,7 @@ void HAddLotInProduction::addLot()
        mod->setData(mod->index(nrow,6),QString("0"));
    }
 
-
+   close();
 
 
 }
