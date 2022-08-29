@@ -5,7 +5,7 @@
 #include <QSqlDatabase>
 #include <QStandardItemModel>
 #include <QSqlQueryModel>
-#include "huser.h"
+//#include "huser.h"
 #include "hdatatopass.h"
 
 
@@ -36,6 +36,11 @@ private slots:
     void on_pdClose_clicked();
     void on_pbAdd_clicked();
     void on_lvLastLots_doubleClicked(const QModelIndex &index);
+
+ //  void searchByLot();
+ //   void on_leSearch_returnPressed();
+
+ //   void on_leSearch_textChanged(const QString &arg1);
 };
 
 #endif // HADDLOTINPRODUCTION_H

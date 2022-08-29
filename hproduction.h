@@ -56,7 +56,6 @@ private slots:
     void getRecipe();
     void productSelected();
     void getLotModel();
-    void lotSelected();
     void addLotProd();
     void addLotFuoriRicettaN(QList<QStandardItem *> row);
     void addLotFuoriRicetta();

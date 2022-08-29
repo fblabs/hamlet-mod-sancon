@@ -28,6 +28,18 @@ HLastLots::HLastLots(QWidget *parent, QSqlDatabase pdb, double qrecipe, QString 
     ui->cbUI->addItem("Pz.",2);
     ui->cbUI->setCurrentIndex(0);
 
+    QSqlTableModel* lmod=new QSqlTableModel(nullptr,db);
+    lmod->setTable("lotdef");
+    lmod->setSort(3,Qt::DescendingOrder);
+    lmod->setFilter("attivo>0");
+    lmod->select();
+    QCompleter *cmp=new QCompleter();
+    cmp->setModel(lmod);
+    cmp->setCompletionColumn(1);
+    cmp->setCompletionMode(QCompleter::InlineCompletion);
+    cmp->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->leSearch->setCompleter(cmp);
+
 
 
 
@@ -43,10 +55,12 @@ HLastLots::HLastLots(QWidget *parent, QSqlDatabase pdb, double qrecipe, QString 
     QCompleter *compprods=new QCompleter();
     compprods->setCompletionColumn(1);
     compprods->setModel(prodModel);
-    compprods->setCompletionMode(QCompleter::PopupCompletion);
+    compprods->setCompletionMode(QCompleter::InlineCompletion);
     compprods->setCaseSensitivity(Qt::CaseInsensitive);
 
     ui->cbProducts->setCompleter(compprods);
+
+
 
     lastLots();
 
@@ -65,7 +79,7 @@ void HLastLots::lastLots()
 
 
         QSqlQuery qlots(db);
-        QSqlQueryModel *qmLots=new QSqlQueryModel(0);
+        QSqlQueryModel *qmLots=new QSqlQueryModel();
 
 
 
@@ -85,6 +99,33 @@ void HLastLots::lastLots()
         ui->lvLastLots->setCurrentIndex(ui->lvLastLots->model()->index(0,0));
 
 
+
+
+}
+
+void HLastLots::lastLotsByLot(QString plot)
+{
+    QSqlQuery q(db);
+    QSqlQueryModel *qmLots=new QSqlQueryModel();
+
+
+
+
+    QString sql="select lotdef.ID,lotdef.lot,lotdef.prodotto,prodotti.descrizione,prodotti.allergenico,lotdef.data from lotdef,prodotti where prodotti.ID=lotdef.prodotto and lotdef.attivo>0 and lotdef.lot LIKE :lot ORDER BY lotdef.data desc";
+    q.prepare(sql);
+    q.bindValue(":lot",QString("%1%").arg(plot));
+    q.exec();
+    qmLots->setQuery(q);
+
+
+    qDebug()<<q.lastError().text()<<q.executedQuery()<<QString("'%1%'").arg(plot)<<q.value(1).toString()<<q.size()<<qmLots->rowCount();
+
+
+
+    ui->lvLastLots->clearSelection();
+    ui->lvLastLots->setModel(qmLots);
+    ui->lvLastLots->setModelColumn(1);
+   // ui->lvLastLots->setCurrentIndex(ui->lvLastLots->model()->index(0,0));
 
 
 }
@@ -114,7 +155,7 @@ void HLastLots::on_pushButton_clicked()
     {
         QMessageBox::warning(this,QApplication::applicationName(),"Quantità errata!",QMessageBox::Ok);
         ui->leQua->setText(QString());
-        quantitaeff=0.0;
+       // quantitaeff=0.0;
         return;
 
     }
@@ -155,3 +196,14 @@ void HLastLots::on_pushButton_clicked()
     close();
 
 }
+
+void HLastLots::on_leSearch_returnPressed()
+{
+   if(ui->leSearch->text().length()>3){
+    lastLotsByLot(ui->leSearch->text());
+    }
+}
+
+
+
+

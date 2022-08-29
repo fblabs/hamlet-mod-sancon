@@ -30,6 +30,7 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *lbDesc;
     QComboBox *cbLastLots;
+    QHBoxLayout *horizontalLayout_3;
     QListView *lvLastLots;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
@@ -56,6 +57,11 @@ public:
         cbLastLots->setObjectName(QString::fromUtf8("cbLastLots"));
 
         verticalLayout->addWidget(cbLastLots);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+
+        verticalLayout->addLayout(horizontalLayout_3);
 
         lvLastLots = new QListView(HAddLotInProduction);
         lvLastLots->setObjectName(QString::fromUtf8("lvLastLots"));

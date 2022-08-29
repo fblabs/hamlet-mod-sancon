@@ -27,6 +27,9 @@ class Ui_HLastLots
 {
 public:
     QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *label_4;
+    QLineEdit *leSearch;
     QHBoxLayout *horizontalLayout;
     QLabel *label_2;
     QComboBox *cbProducts;
@@ -47,14 +50,32 @@ public:
         if (HLastLots->objectName().isEmpty())
             HLastLots->setObjectName(QString::fromUtf8("HLastLots"));
         HLastLots->setWindowModality(Qt::ApplicationModal);
-        HLastLots->resize(296, 293);
+        HLastLots->resize(332, 297);
         verticalLayout = new QVBoxLayout(HLastLots);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        label_4 = new QLabel(HLastLots);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setMinimumSize(QSize(80, 0));
+        label_4->setMaximumSize(QSize(80, 16777215));
+
+        horizontalLayout_5->addWidget(label_4);
+
+        leSearch = new QLineEdit(HLastLots);
+        leSearch->setObjectName(QString::fromUtf8("leSearch"));
+        leSearch->setClearButtonEnabled(true);
+
+        horizontalLayout_5->addWidget(leSearch);
+
+
+        verticalLayout->addLayout(horizontalLayout_5);
+
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         label_2 = new QLabel(HLastLots);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setMaximumSize(QSize(50, 16777215));
+        label_2->setMaximumSize(QSize(80, 16777215));
 
         horizontalLayout->addWidget(label_2);
 
@@ -71,7 +92,7 @@ public:
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         label = new QLabel(HLastLots);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setMaximumSize(QSize(50, 16777215));
+        label->setMaximumSize(QSize(80, 16777215));
 
         horizontalLayout_3->addWidget(label);
 
@@ -99,6 +120,8 @@ public:
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         label_3 = new QLabel(HLastLots);
         label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setMinimumSize(QSize(80, 0));
+        label_3->setMaximumSize(QSize(80, 16777215));
 
         horizontalLayout_4->addWidget(label_3);
 
@@ -145,9 +168,10 @@ public:
     void retranslateUi(QWidget *HLastLots)
     {
         HLastLots->setWindowTitle(QCoreApplication::translate("HLastLots", "Aggiungi lotto fuori ricettta", nullptr));
+        label_4->setText(QCoreApplication::translate("HLastLots", "Cerca Lotto:", nullptr));
         label_2->setText(QCoreApplication::translate("HLastLots", "Prodotto:", nullptr));
-        label->setText(QCoreApplication::translate("HLastLots", "Quanti:", nullptr));
-        label_3->setText(QCoreApplication::translate("HLastLots", "Quantit\303\240", nullptr));
+        label->setText(QCoreApplication::translate("HLastLots", "Mostra:", nullptr));
+        label_3->setText(QCoreApplication::translate("HLastLots", "Quantit\303\240:", nullptr));
         pushButton->setText(QCoreApplication::translate("HLastLots", "Aggiungi", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HLastLots", "Chiudi", nullptr));
     } // retranslateUi

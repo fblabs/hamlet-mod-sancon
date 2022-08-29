@@ -28,6 +28,9 @@
     <widget class="QComboBox" name="cbLastLots"/>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3"/>
+   </item>
+   <item>
     <widget class="QListView" name="lvLastLots">
      <property name="font">
       <font>

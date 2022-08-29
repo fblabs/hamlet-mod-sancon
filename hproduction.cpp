@@ -780,26 +780,6 @@ void HProduction::productSelected()
 
 }
 
-void HProduction::lotSelected()
-{
-    /*  //QString lottoadd=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
-
-    double quag;
-    double quric;
-    double qty;
-
-    quric=ui->tableView->model()->index(ui->tableView->currentIndex().row(),2).data(0).toDouble();
-    quag=ui->tableView->model()->index(ui->tableView->currentIndex().row(),5).data(0).toDouble();
-    qty=quric - quag;
-
- //   QString quantita=ui->tableView->model()->index(ui->tableView->currentIndex().row(),2).data(0).toString();
-
-    QString quantita=QString::number(qty);
-    ui->leLotToadd->setText(lottoadd);
-    ui->leqtytoAdd->setText(quantita);
-
-*/
-}
 
 
 void HProduction::on_pushButton_clicked()
@@ -1420,15 +1400,7 @@ void HProduction::on_pushButton_3_clicked()
 
     if (!modifyLot){
 
-
-
-        b=saveProduction();
-
-
-        //if(!b)
-
-
-        //   ui->pushButton_11->click();
+        saveProduction();
 
     }
     else
@@ -1436,14 +1408,7 @@ void HProduction::on_pushButton_3_clicked()
         updateComposition();
     }
 
-
-
-
-    //  ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,0));
-    //  ui->lvRicette->selectionModel()->clearSelection();
-    //  ui->tableView->setModel(nullptr);
     resetForm(true);
-
 
 }
 
@@ -1451,8 +1416,7 @@ void HProduction::on_pushButton_3_clicked()
 
 void HProduction::on_leQtyTotal_returnPressed()
 {
-    // calcola pesi
-    // qDebug()<<"going into updateTotals();";
+
     updateTotals();
 
 }
@@ -1460,11 +1424,8 @@ void HProduction::on_leQtyTotal_returnPressed()
 void HProduction::on_pushButton_7_clicked()
 {
 
-
     QString product=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data(0).toString();
-    qDebug()<<"PFR:"<<product;
-
-    HLastLots *f=new HLastLots(0,db,ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toDouble(),product);
+    HLastLots *f=new HLastLots(nullptr,db,ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toDouble(),product);
     // connect(f,SIGNAL(rowAdded(QList<QStandardItem*> row)),this,SLOT(addLotFuoriRicettaN(QList<QStandardItem*> row)));
     connect (f,SIGNAL(rowAdded(QList<QStandardItem*>)),this,SLOT(addLotFuoriRicettaN(QList<QStandardItem*>)));
     f->show();

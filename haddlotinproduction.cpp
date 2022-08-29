@@ -70,6 +70,8 @@ void HAddLotInProduction::lastLots()
 
 }
 
+
+
 void HAddLotInProduction::addLot()
 {
    // here I want to add a lot's component
@@ -124,3 +126,39 @@ void HAddLotInProduction::on_lvLastLots_doubleClicked(const QModelIndex &index)
     close();
 
 }
+
+/*void HAddLotInProduction::searchByLot()
+{
+    QSqlQuery q(db);
+    QString sql="SELECT id, lot from lotdef where lot like '"+ui->leSearch->text()+"%'";
+    q.exec(sql);
+    QSqlQueryModel *mod=static_cast<QSqlQueryModel*>(ui->lvLastLots->model());
+    mod->setQuery(q);
+    ui->lvLastLots->setModelColumn(1);
+    ui->lvLastLots->setModel(mod);
+    qDebug()<<sql<<q.lastError().text();
+
+
+}*/
+
+
+
+
+/*void HAddLotInProduction::on_leSearch_returnPressed()
+{
+    searchByLot();
+}*/
+
+
+
+
+
+/*void HAddLotInProduction::on_leSearch_textChanged(const QString &arg1)
+{
+    QString lot=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
+    QStringList normlot=lot.split("-");
+    QString slot=normlot.at(0)+"-"+normlot.at(1);
+
+    ui->leSearch->setText(slot);
+}*/
+
