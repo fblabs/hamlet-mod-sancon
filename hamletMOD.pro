@@ -221,8 +221,7 @@ FORMS    += mainwindow.ui \
 
 RESOURCES += \
     icons.qrc
-
-    win:RC_ICONS =hamlet.ico
+    RC_ICONS +=hamlet.ico
 
 DISTFILES +=
 

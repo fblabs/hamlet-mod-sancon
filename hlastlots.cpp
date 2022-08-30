@@ -22,7 +22,7 @@ HLastLots::HLastLots(QWidget *parent, QSqlDatabase pdb, double qrecipe, QString 
     ui->cbLastLots->addItem("Ultimi 5 lotti",5);
     ui->cbLastLots->addItem("Ultimi 10 lotti",10);
     ui->cbLastLots->addItem("Ultimi 50 lotti",50);
-    ui->cbLastLots->setCurrentIndex(1);
+    ui->cbLastLots->setCurrentIndex(0);
 
     ui->cbUI->addItem("KG",1);
     ui->cbUI->addItem("Pz.",2);
