@@ -117,7 +117,7 @@ static const uint qt_meta_data_HAnalisi[] = {
       26,    0,  172,    2, 0x08 /* Private */,
       27,    0,  173,    2, 0x08 /* Private */,
       28,    0,  174,    2, 0x08 /* Private */,
-      29,    1,  175,    2, 0x0a /* Public */,
+      29,    1,  175,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,

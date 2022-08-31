@@ -1,6 +1,6 @@
 #include "hanalisi.h"
 #include "ui_hanalisi.h"
-// #include <QDebug>
+#include <QDebug>
 #include <QSqlError>
 #include <QSqlDatabase>
 #include <QSqlTableModel>
@@ -55,9 +55,9 @@ HAnalisi::HAnalisi(QSqlDatabase pdb,QWidget *parent) :
     ui->tvNarrow->setColumnHidden(0,true);
 
 
-    connect(ui->cbClienti,SIGNAL(currentIndexChanged(QString)),this,SLOT(getProductsForClient()));
-    connect(ui->cbClienti,SIGNAL(currentIndexChanged(QString)),this,SLOT(getYearlyProduction()));
-    connect(ui->tvLots->selectionModel(),SIGNAL(currentIndexChanged(QString)),this,SLOT(getLotComponents()));
+    connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getProductsForClient()));
+    connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getYearlyProduction()));
+    connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex ,QModelIndex)),this,SLOT(getLotComponents()));
 
     connect(ui->tvLots,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(doMenu(QPoint)));
 
@@ -73,36 +73,38 @@ HAnalisi::~HAnalisi()
 
 void HAnalisi::getYearlyProduction()
 {
-        QSqlQuery q(db);
-        QSqlQueryModel *yprod=new QSqlQueryModel();
-        QString sql="SELECT DISTINCT prodotti.ID,prodotti.descrizione from prodotti,lotdef where prodotti.ID=lotdef.prodotto and prodotti.tipo=2 and lotdef.anagrafica=:cliente";
 
-        int cliente;
+    QSqlQuery q(db);
+    QSqlQueryModel *yprod=new QSqlQueryModel();
+    QString sql="SELECT DISTINCT prodotti.ID,prodotti.descrizione from prodotti,lotdef where prodotti.ID=lotdef.prodotto and prodotti.tipo=2 and lotdef.anagrafica=:cliente ORDER BY prodotti.descrizione";
 
-        cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
-        datedal=ui->deFrom->date();
-        dateal=ui->deTo->date();
+    int cliente;
 
-        QModelIndex ix=ui->tvYearlyProduction->currentIndex();
+    cliente=ui->cbClienti->model()->index(ui->cbClienti->currentIndex(),0).data(0).toInt();
+    datedal=ui->deFrom->date();
+    dateal=ui->deTo->date();
 
-        q.prepare(sql);
-        q.bindValue(":cliente",cliente);
-        q.bindValue(":datedal",datedal);
-        q.bindValue(":dateal",dateal);
+    QModelIndex ix=ui->tvYearlyProduction->currentIndex();
 
-        q.exec();
-        yprod->setQuery(q);
+    q.prepare(sql);
+    q.bindValue(":cliente",cliente);
+    q.bindValue(":datedal",datedal);
+    q.bindValue(":dateal",dateal);
 
-        ui->tvYearlyProduction->setModel(yprod);
-        ui->tvYearlyProduction->horizontalHeader()->setStretchLastSection(true);
+    q.exec();
+    yprod->setQuery(q);
 
-        ui->tvYearlyProduction->setCurrentIndex(ix);
+    ui->tvYearlyProduction->setModel(yprod);
+    ui->tvYearlyProduction->horizontalHeader()->setStretchLastSection(true);
+    ui->tvYearlyProduction->setColumnHidden(0,true);
+
+    ui->tvYearlyProduction->setCurrentIndex(ix);
 
 
-       // if (ui->checkBox->isChecked())
+    if (ui->checkBox->isChecked())
         connect(ui->tvYearlyProduction->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
-     //   else
-     //   disconnect(ui->tvYearlyProduction->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
+    else
+        disconnect(ui->tvYearlyProduction->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getProductsForClient()));
 
 
 }
@@ -116,6 +118,7 @@ void HAnalisi::setLotSearch(QString msg)
 
 void HAnalisi::getProductsForClient()
 {
+    qDebug()<<"getProductsForClient";
     disconnect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getLotComponents()));
     ui->tvNarrow->setModel(0);
     ui->tvComp->setModel(0);
@@ -132,8 +135,8 @@ void HAnalisi::getProductsForClient()
 
     if(ui->rbAll->isChecked())
     {
-       tipo= "3,4";
-       cl=client;
+        tipo= "3,4";
+        cl=client;
 
     }
     else if (ui->rbProdottifiniti->isChecked())
@@ -158,17 +161,18 @@ void HAnalisi::getProductsForClient()
     if (ui->checkBox->isChecked())//se prodotto selezionato
     {
         int prodotto=ui->tvYearlyProduction->model()->index(ui->tvYearlyProduction->currentIndex().row(),0).data(0).toInt();
-      //  sql="SELECT distinct lotdef.data,lotdef.ID,lotdef.prodotto,lotdef.EAN as 'Lotto esterno', lotdef.lot, prodotti.descrizione FROM lotdef,prodotti,anagrafica,tipi_lot where tipi_lot.ID=lotdef.tipo and anagrafica.ID = lotdef.anagrafica and prodotti.ID = lotdef.prodotto and lotdef.anagrafica in (:cliente) and lotdef.prodotto=:prodotto and lotdef.tipo in ("+tipo+") and lotdef.data between :from and :to order by lotdef.data desc";
-        sql="SELECT  lotdef.ID as 'ID lotto',lotdef.data,lotdef.lot,lotdef.prodotto,lotdef.EAN as 'Lotto esterno', prodotti.descrizione FROM lotdef,prodotti,anagrafica,tipi_lot where tipi_lot.ID=lotdef.tipo and anagrafica.ID = lotdef.anagrafica and prodotti.ID = lotdef.prodotto and lotdef.anagrafica in ("+cl+")and lotdef.tipo in ("+tipo+") and lotdef.prodotto=:prodotto and lotdef.data between :from and :to order by lotdef.data desc";
+        //  sql="SELECT distinct lotdef.data,lotdef.ID,lotdef.prodotto,lotdef.EAN as 'Lotto esterno', lotdef.lot, prodotti.descrizione FROM lotdef,prodotti,anagrafica,tipi_lot where tipi_lot.ID=lotdef.tipo and anagrafica.ID = lotdef.anagrafica and prodotti.ID = lotdef.prodotto and lotdef.anagrafica in (:cliente) and lotdef.prodotto=:prodotto and lotdef.tipo in ("+tipo+") and lotdef.data between :from and :to order by lotdef.data desc";
+        sql="SELECT  lotdef.ID as 'ID lotto',lotdef.data,lotdef.lot,lotdef.prodotto,lotdef.EAN as 'Lotto esterno', prodotti.descrizione FROM lotdef,prodotti,anagrafica,tipi_lot where tipi_lot.ID=lotdef.tipo and anagrafica.ID = lotdef.anagrafica and prodotti.ID = lotdef.prodotto and lotdef.anagrafica in ("+cl+")and lotdef.tipo in ("+tipo+") and lotdef.prodotto=:prodotto and lotdef.data between :from and :to order by prodotti.descrizione ASC, lotdef.data desc";
         q.prepare(sql);
 
 
-       q.bindValue(":cliente",QVariant(cl));
-       q.bindValue(":prodotto",QVariant(prodotto));
-       q.bindValue(":from",QVariant(datedal));
-       q.bindValue(":to",QVariant(dateal.addDays(1)));
-       q.bindValue(":tipo",QVariant(tipo));
-       q.exec();
+        q.bindValue(":cliente",QVariant(cl));
+        q.bindValue(":prodotto",QVariant(prodotto));
+        q.bindValue(":from",QVariant(datedal));
+        q.bindValue(":to",QVariant(dateal.addDays(1)));
+        q.bindValue(":tipo",QVariant(tipo));
+        q.exec();
+        qDebug()<<q.lastError().text();
 
     }
     else//non filtro per prodotto selezionato
@@ -182,23 +186,25 @@ void HAnalisi::getProductsForClient()
         q.bindValue(":tipo",QVariant(tipo));
         q.exec();
 
+         qDebug()<<q.lastError().text();
+
 
     }
 
-//// qDebug()<<sql;
+    //// qDebug()<<sql;
 
-   mod->setQuery(q);
+    mod->setQuery(q);
 
-   ui->tvLots->setModel(mod);
-  ui->tvLots->setColumnHidden(0,true);
-  ui->tvLots->setColumnHidden(3,true);
-//  ui->tvLots->setColumnHidden(2,true);
-   ui->tvLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
+    ui->tvLots->setModel(mod);
+    ui->tvLots->setColumnHidden(0,true);
+    ui->tvLots->setColumnHidden(3,true);
+    //  ui->tvLots->setColumnHidden(2,true);
+    ui->tvLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
 
-//// qDebug()<<"getproductsforclient"<<q.lastQuery()<<"ERROR:"<<q.lastError().text()<<q.boundValue(0)<<q.boundValue(1)<<q.boundValue(2)<<q.boundValue(3)<<q.lastError().text();
+    //// qDebug()<<"getproductsforclient"<<q.lastQuery()<<"ERROR:"<<q.lastError().text()<<q.boundValue(0)<<q.boundValue(1)<<q.boundValue(2)<<q.boundValue(3)<<q.lastError().text();
 
 
-   connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getLotComponents()));
+    connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex, QModelIndex)),this,SLOT(getLotComponents()));
 
 
 
@@ -249,12 +255,12 @@ void HAnalisi::findLotUse()
     ui->tvNarrow->setModel(mod);
     ui->tvNarrow->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
     ui->tvNarrow->setColumnHidden(0,true);
-  //  ui->tvNarrow->setColumnHidden(1,true);
+    //  ui->tvNarrow->setColumnHidden(1,true);
 
     connect(ui->tvNarrow->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setNarrowSearch()));
-   // // qDebug()<<"findlotuse :"<<q.lastError().text();
+    // // qDebug()<<"findlotuse :"<<q.lastError().text();
 
- }
+}
 
 
 
@@ -268,7 +274,7 @@ void HAnalisi::narrow()
 
     ui->tvNarrow->setModel(0);
 
-   disconnect(ui->tvNarrow->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setNarrowSearch()));
+    disconnect(ui->tvNarrow->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setNarrowSearch()));
 
     mod=new QSqlQueryModel();
 
@@ -283,10 +289,10 @@ void HAnalisi::narrow()
 
     mod->setQuery(q);
 
-   // // qDebug()<<"narrow"<<q.lastQuery()<<QString::number(lotid)<<q.lastError().text();
+    // // qDebug()<<"narrow"<<q.lastQuery()<<QString::number(lotid)<<q.lastError().text();
 
     ui->tvNarrow->setColumnHidden(0,true);
-  //  ui->tvNarrow->setColumnHidden(1,true);
+    //  ui->tvNarrow->setColumnHidden(1,true);
 
     ui->tvNarrow->setModel(mod);
     ui->tvNarrow->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
@@ -333,7 +339,7 @@ void HAnalisi::getLotComponents()
 
     int lotid=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();//componenti
 
-  //  sql="select  operazioni.IDlotto,operazioni.data,lotdef.lot,prodotti.descrizione,operazioni.quantita from prodotti,operazioni,lotdef where lotdef.ID=operazioni.IDlotto and prodotti.ID=operazioni.IDprodotto and operazioni.ID in(select operazione from composizione_lot where ID_lotto=:lotid)";
+    //  sql="select  operazioni.IDlotto,operazioni.data,lotdef.lot,prodotti.descrizione,operazioni.quantita from prodotti,operazioni,lotdef where lotdef.ID=operazioni.IDlotto and prodotti.ID=operazioni.IDprodotto and operazioni.ID in(select operazione from composizione_lot where ID_lotto=:lotid)";
     sql="select DISTINCT lotdef.ID,operazioni.data,lotdef.lot,prodotti.descrizione,anagrafica.ragione_sociale, operazioni.quantita,unita_di_misura.descrizione as 'Unità di misura' from operazioni,prodotti,lotdef,anagrafica,unita_di_misura where prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and anagrafica.ID=lotdef.anagrafica and unita_di_misura.ID=operazioni.um and operazioni.ID in (SELECT operazione from composizione_lot where ID_lotto=:lotid)";
 
     q.prepare(sql);
@@ -343,15 +349,15 @@ void HAnalisi::getLotComponents()
 
     mod->setQuery(q);
 
-   // // qDebug()<<q.lastError().text()<<QString::number(lotid);
+    // // qDebug()<<q.lastError().text()<<QString::number(lotid);
 
     ui->tvComp->setModel(mod);
     ui->tvComp->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
     ui->tvComp->setColumnHidden(0,true);
-  //  ui->tvComp->setColumnHidden(1,true);
+    //  ui->tvComp->setColumnHidden(1,true);
     
 
-  //  connect(ui->tvComp->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(narrow()));
+    //  connect(ui->tvComp->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(narrow()));
     connect(ui->tvComp->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setCompSearch()));
     connect(ui->tvComp->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(narrow()));
 
@@ -371,9 +377,9 @@ void HAnalisi::getLotComponents(int idlotto)
     mod=new QSqlQueryModel();
     QTableView *w = ui->tvNarrow;
 
-//sql="select lotdef.ID,lotdef.data,lotdef.lot,prodotti.descrizione, anagrafica.ragione_sociale,operazioni.quantita from operazioni,prodotti,lotdef,anagrafica  where  prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID in (select operazione from composizione_lot where ID_lotto=:lotid)";  //+QString::number(lotid)
- //   sql="select  operazioni.IDlotto,operazioni.data,lotdef.lot,prodotti.descrizione,operazioni.quantita from operazioni,lotdef,prodotti where lotdef.ID=operazioni.IDlotto and prodotti.ID=operazioni.IDprodotto and operazioni.ID in(select operazione from composizione_lot where ID_lotto=:lotid)";
- sql="select lotdef.ID,operazioni.data,lotdef.lot,prodotti.descrizione,anagrafica.ragione_sociale, operazioni.quantita,unita_di_misura.descrizione as 'Unità di misura' from operazioni,prodotti,lotdef,anagrafica,unita_di_misura where prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and anagrafica.ID=lotdef.anagrafica and unita_di_misura.ID=operazioni.um and operazioni.ID in (SELECT operazione from composizione_lot where ID_lotto=:lotid)";
+    //sql="select lotdef.ID,lotdef.data,lotdef.lot,prodotti.descrizione, anagrafica.ragione_sociale,operazioni.quantita from operazioni,prodotti,lotdef,anagrafica  where  prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID in (select operazione from composizione_lot where ID_lotto=:lotid)";  //+QString::number(lotid)
+    //   sql="select  operazioni.IDlotto,operazioni.data,lotdef.lot,prodotti.descrizione,operazioni.quantita from operazioni,lotdef,prodotti where lotdef.ID=operazioni.IDlotto and prodotti.ID=operazioni.IDprodotto and operazioni.ID in(select operazione from composizione_lot where ID_lotto=:lotid)";
+    sql="select lotdef.ID,operazioni.data,lotdef.lot,prodotti.descrizione,anagrafica.ragione_sociale, operazioni.quantita,unita_di_misura.descrizione as 'Unità di misura' from operazioni,prodotti,lotdef,anagrafica,unita_di_misura where prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and anagrafica.ID=lotdef.anagrafica and unita_di_misura.ID=operazioni.um and operazioni.ID in (SELECT operazione from composizione_lot where ID_lotto=:lotid)";
     q.prepare(sql);
     q.bindValue(":lotid",QVariant(idlotto));
     q.exec();
@@ -381,7 +387,7 @@ void HAnalisi::getLotComponents(int idlotto)
 
     mod->setQuery(q);
 
-   // // qDebug()<<q.lastError().text()<<QString::number(idlotto);
+    // // qDebug()<<q.lastError().text()<<QString::number(idlotto);
 
     w->setModel(mod);
     w->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
@@ -399,12 +405,12 @@ void HAnalisi::getLotComponents(int idlotto)
 
 void HAnalisi::on_rbAll_toggled(bool checked)
 {
-   if (checked) getProductsForClient();
+    if (checked) getProductsForClient();
 }
 
 //void HAnalisi::on_rbMateriePrime_toggled(bool checked)
 //{
-  //  if (checked) getProductsForClient();
+//  if (checked) getProductsForClient();
 //}
 
 
@@ -438,7 +444,7 @@ void HAnalisi::on_pushButton_3_clicked()
 
 void HAnalisi::on_pushButton_4_clicked()
 {
-   // findLotComposition();
+    // findLotComposition();
     int lotid=ui->tvNarrow->model()->index(ui->tvNarrow->currentIndex().row(),0).data(0).toInt();
     getLotComponents(lotid);
     ui->leLot->setText("");
@@ -467,7 +473,7 @@ void HAnalisi::on_deFrom_dateChanged(const QDate &date)
 {
     Q_UNUSED(date);
     datedal=ui->deFrom->date();
-   // getYearlyProduction();
+    // getYearlyProduction();
     getProductsForClient();
 }
 
@@ -475,7 +481,7 @@ void HAnalisi::on_deTo_dateChanged(const QDate &date)
 {
     Q_UNUSED(date);
     dateal=ui->deTo->date();
-   // getYearlyProduction();
+    // getYearlyProduction();
     getProductsForClient();
 }
 
@@ -483,22 +489,22 @@ void HAnalisi::on_deTo_dateChanged(const QDate &date)
 void HAnalisi::doMenu(QPoint pos)
 {
 
-     //   QPoint globalPos = ui->tvLots->viewport()->mapToGlobal(pos);
+    //   QPoint globalPos = ui->tvLots->viewport()->mapToGlobal(pos);
 
 
 
-        QMenu *menu=new QMenu(0);
-        QAction *printAction=menu->addAction("Stampa");
-        connect(printAction,SIGNAL(triggered(bool)),this,SLOT(printThis()));
+    QMenu *menu=new QMenu(0);
+    QAction *printAction=menu->addAction("Stampa");
+    connect(printAction,SIGNAL(triggered(bool)),this,SLOT(printThis()));
 
-        menu->popup(ui->tvLots->viewport()->mapToGlobal(pos));
+    menu->popup(ui->tvLots->viewport()->mapToGlobal(pos));
 
 
 }
 
 void HAnalisi::printThis()
 {
- // // qDebug()<<"STAMPA DEL RIQUADRO SELEZIONATO!";
+    // // qDebug()<<"STAMPA DEL RIQUADRO SELEZIONATO!";
 }
 
 
@@ -518,11 +524,11 @@ void HAnalisi::printLot()
 
     f->show();
 
-  //  f->setText("=============================================");
+    //  f->setText("=============================================");
 
     //f->append(ui->cbRicette->currentText(),false);
 
-  // RIQUADRO SUPERIORE
+    // RIQUADRO SUPERIORE
 
 
     QString toappend;
@@ -546,27 +552,27 @@ void HAnalisi::printLot()
     if(ui->tvComp->model()!=0)
     {
 
-    QTextTable* table=f->addTable(righe,colonne,QTextTableFormat());
-   // // qDebug()<<QString::number(righe)<<QString::number(colonne);
-    QTextCharFormat cf=QTextCharFormat();
+        QTextTable* table=f->addTable(righe,colonne,QTextTableFormat());
+        // // qDebug()<<QString::number(righe)<<QString::number(colonne);
+        QTextCharFormat cf=QTextCharFormat();
 
-    for (int i=0;i<righe;i++)
-    {
-      // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
-     // f->writeTableContent(table,i,0,ui->tvComp->model()->index(i,0).data(0).toString());
-      f->writeTableContent(table,i,0,cf,ui->tvComp->model()->index(i,2).data(0).toString());
-      f->writeTableContent(table,i,1,cf,ui->tvComp->model()->index(i,3).data(0).toString());
-      f->writeTableContent(table,i,2,cf,ui->tvComp->model()->index(i,4).data(0).toString());
-      f->writeTableContent(table,i,3,cf,ui->tvComp->model()->index(i,5).data(0).toString());
-      f->writeTableContent(table,i,4,cf,ui->tvComp->model()->index(i,6).data(0).toString());
-
-
+        for (int i=0;i<righe;i++)
+        {
+            // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
+            // f->writeTableContent(table,i,0,ui->tvComp->model()->index(i,0).data(0).toString());
+            f->writeTableContent(table,i,0,cf,ui->tvComp->model()->index(i,2).data(0).toString());
+            f->writeTableContent(table,i,1,cf,ui->tvComp->model()->index(i,3).data(0).toString());
+            f->writeTableContent(table,i,2,cf,ui->tvComp->model()->index(i,4).data(0).toString());
+            f->writeTableContent(table,i,3,cf,ui->tvComp->model()->index(i,5).data(0).toString());
+            f->writeTableContent(table,i,4,cf,ui->tvComp->model()->index(i,6).data(0).toString());
 
 
-     // f->writeTableContent(table,i,4,ui->tvComp->model()->index(i,3).data(0).toString());
 
 
-    }
+            // f->writeTableContent(table,i,4,ui->tvComp->model()->index(i,3).data(0).toString());
+
+
+        }
 
     }else
     {return;}
@@ -592,22 +598,22 @@ void HAnalisi::printLot()
 
         for (int i=0;i<righeb;i++)
         {
-          // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
-         // f->writeTableContent(tableb,i,0,ui->tvNarrow->model()->index(i,0).data(0).toString());
-          f->writeTableContent(tableb,i,0,cf,ui->tvNarrow->model()->index(i,3).data(0).toString());
-          f->writeTableContent(tableb,i,1,cf,ui->tvNarrow->model()->index(i,2).data(0).toString());
-          f->writeTableContent(tableb,i,2,cf,ui->tvNarrow->model()->index(i,1).data(0).toString());
-          f->writeTableContent(tableb,i,3,cf,ui->tvNarrow->model()->index(i,4).data(0).toString());
-          f->writeTableContent(tableb,i,4,cf,ui->tvNarrow->model()->index(i,5).data(0).toString());
-          f->writeTableContent(tableb,i,5,cf,ui->tvNarrow->model()->index(i,6).data(0).toString());
-         // f->writeTableContent(table,i,4,ui->tvComp->model()->index(i,3).data(0).toString());
+            // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
+            // f->writeTableContent(tableb,i,0,ui->tvNarrow->model()->index(i,0).data(0).toString());
+            f->writeTableContent(tableb,i,0,cf,ui->tvNarrow->model()->index(i,3).data(0).toString());
+            f->writeTableContent(tableb,i,1,cf,ui->tvNarrow->model()->index(i,2).data(0).toString());
+            f->writeTableContent(tableb,i,2,cf,ui->tvNarrow->model()->index(i,1).data(0).toString());
+            f->writeTableContent(tableb,i,3,cf,ui->tvNarrow->model()->index(i,4).data(0).toString());
+            f->writeTableContent(tableb,i,4,cf,ui->tvNarrow->model()->index(i,5).data(0).toString());
+            f->writeTableContent(tableb,i,5,cf,ui->tvNarrow->model()->index(i,6).data(0).toString());
+            // f->writeTableContent(table,i,4,ui->tvComp->model()->index(i,3).data(0).toString());
 
 
         }
 
 
 
-     }
+    }
 
 
 

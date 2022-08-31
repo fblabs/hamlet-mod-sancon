@@ -223,3 +223,7 @@ Makefile.Debug
 release/moc_hpackages.cpp
 release/moc_hpackages.cpp
 hamletMOD.pro.user
+release/moc_hanalisi.cpp
+Makefile.Debug
+Makefile.Release
+Makefile.Release
