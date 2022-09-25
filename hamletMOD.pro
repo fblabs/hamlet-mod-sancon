@@ -20,7 +20,6 @@ SOURCES += main.cpp\
     hworksheetmodel.cpp \
         mainwindow.cpp \
     huser.cpp \
-    hprodotti.cpp \
     hutenti.cpp \
     hnewop.cpp \
     hsettings.cpp \
@@ -88,7 +87,6 @@ HEADERS  += mainwindow.h \
     hlotcomposition.h \
     hrecipesforingredient.h \
     huser.h \
-    hprodotti.h \
     hutenti.h \
     hnewop.h \
     hsettings.h \
@@ -157,7 +155,6 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     hlotcomposition.ui \
-    hprodotti.ui \
     hrecipesforingredient.ui \
     hutenti.ui \
     hnewop.ui \

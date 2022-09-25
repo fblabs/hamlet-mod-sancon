@@ -2,10 +2,12 @@
 #include "ui_haddlotinproduction.h"
 #include <QSqlQueryModel>
 #include <QSqlQuery>
+#include <QSqlRecord>
 #include <QDebug>
 #include <QSqlError>
 #include <QStandardItem>
 #include "hdatatopass.h"
+#include <QFile>
 
 HAddLotInProduction::HAddLotInProduction(QWidget *parent, HDataToPass *datapass, QSqlDatabase pdb) :
     QWidget(parent),
@@ -13,6 +15,8 @@ HAddLotInProduction::HAddLotInProduction(QWidget *parent, HDataToPass *datapass,
 {
     ui->setupUi(this);
 
+     prefsdb=QSqlDatabase::addDatabase("QSQLITE");
+     prefsdb.setDatabaseName("preferences.db");
 
 
     db=pdb;
@@ -64,7 +68,19 @@ void HAddLotInProduction::lastLots()
     ui->lvLastLots->clearSelection();
     ui->lvLastLots->setModel(qmLots);
     ui->lvLastLots->setModelColumn(1);
-    ui->lvLastLots->setCurrentIndex(ui->lvLastLots->model()->index(0,0));
+
+    QString default_lot=findDefaultLot(QString::number(data->productId));
+    if (default_lot==QString()) return;
+
+    for(int i=0; i<qmLots->rowCount();++i)
+    {
+        if(qmLots->record(i).value(1).toString()==default_lot)
+        {
+            ui->lvLastLots->setCurrentIndex(qmLots->index(i,1));
+        }
+    }
+
+
 
 
 
@@ -74,6 +90,7 @@ void HAddLotInProduction::lastLots()
 
 void HAddLotInProduction::addLot()
 {
+
    // here I want to add a lot's component
     QStandardItemModel* mod= data->mod;
     int nrow=data->row;
@@ -122,8 +139,30 @@ void HAddLotInProduction::on_pbAdd_clicked()
 
 void HAddLotInProduction::on_lvLastLots_doubleClicked(const QModelIndex &index)
 {
+    Q_UNUSED(index);
     addLot();
     close();
+
+}
+
+QString HAddLotInProduction::findDefaultLot(const QString p_prod)
+{
+    QString defaultLot=QString();
+    prefsdb.open();
+
+    QString sql("SELECT lot FROM pref WHERE prod=:prod");
+    QSqlQuery q(prefsdb);
+    q.prepare(sql);
+    q.bindValue(":prod",p_prod);
+    if (q.exec())
+    {
+        q.first();
+        defaultLot=q.value(0).toString();
+    }
+
+    qDebug()<<q.lastError().text()<<defaultLot<<p_prod;
+
+    return defaultLot;
 
 }
 
@@ -161,4 +200,60 @@ void HAddLotInProduction::on_lvLastLots_doubleClicked(const QModelIndex &index)
 
     ui->leSearch->setText(slot);
 }*/
+
+
+void HAddLotInProduction::on_pbDefaultLot_clicked()
+{
+    QSqlQuery qp(prefsdb);
+    QSqlQuery qpm(prefsdb);
+    QString psql=QString();
+    QString lot=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
+    QString prod=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),2).data(0).toString();
+    QString sqlprep="SELECT COUNT(*) from pref WHERE prod=:idp";
+    qp.prepare(sqlprep);
+    qp.bindValue(":idp",prod);
+qDebug()<<lot<<prod;
+
+   if(qp.exec())
+   {
+       qp.first();
+       if(qp.value(0).toInt()>0)
+       {
+           psql="UPDATE pref SET lot=:lot where prod=:idp";
+       }
+       else
+       {
+            psql="INSERT INTO pref (prod,lot) VALUES(:idp,:lot)";
+       }
+
+       prefsdb.transaction();
+
+       qpm.prepare(psql);
+       qpm.bindValue(":lot",lot);
+       qpm.bindValue(":idp",prod);
+       if(qpm.exec()){prefsdb.commit();}else{prefsdb.rollback();}
+
+       qDebug()<<"qpm"<<qpm.lastError().text();
+
+
+    }
+    qDebug()<<"qp"<<qp.lastError().text();
+}
+
+
+
+void HAddLotInProduction::on_pbCancel_clicked()
+{
+    QSqlQuery q(prefsdb);
+    QString prod=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),2).data(0).toString();
+    QString msql="UPDATE pref SET lot='' where prod=:idp";
+
+    q.prepare(msql);
+    q.bindValue(":idp",prod);
+    q.exec();
+    ui->lvLastLots->selectionModel()->clearSelection();
+    ui->lvLastLots->selectionModel()->clearCurrentIndex();
+
+
+}
 

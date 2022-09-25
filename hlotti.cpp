@@ -65,21 +65,29 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
    tbm->setHeaderData(2,Qt::Horizontal,QObject::tr("Prodotto"));
    tbm->setHeaderData(3,Qt::Horizontal,QObject::tr("Data"));
    tbm->setHeaderData(4,Qt::Horizontal,QObject::tr("Giacenza"));
-   tbm->setHeaderData(5,Qt::Horizontal,QObject::tr("Unità di misura"));
+   tbm->setHeaderData(5,Qt::Horizontal,QObject::tr("U.M"));
    tbm->setHeaderData(6,Qt::Horizontal,QObject::tr("Scadenza"));
    tbm->setHeaderData(7,Qt::Horizontal,QObject::tr("Cliente(U) - Fornitore(E)"));
    tbm->setHeaderData(8,Qt::Horizontal,QObject::tr("Lotto Fornitore"));
-   tbm->setHeaderData(9,Qt::Horizontal,QObject::tr("Lotto di Uscita"));
+   tbm->setHeaderData(9,Qt::Horizontal,QObject::tr("Lotto Ext"));
    tbm->setHeaderData(10,Qt::Horizontal,QObject::tr("Tipologia Lotto"));
 
    ui->twLots->setModel(tbm);
    ui->twLots->setItemDelegate(new QSqlRelationalDelegate(tbm));
-   ui->twLots->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+   ui->twLots->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+   ui->twLots->horizontalHeader()->setSectionResizeMode(1,QHeaderView::ResizeToContents);
+   ui->twLots->horizontalHeader()->setSectionResizeMode(2,QHeaderView::ResizeToContents);
+   ui->twLots->horizontalHeader()->setSectionResizeMode(4,QHeaderView::ResizeToContents);
+   ui->twLots->horizontalHeader()->setSectionResizeMode(5,QHeaderView::ResizeToContents);
+   ui->twLots->horizontalHeader()->setSectionResizeMode(9,QHeaderView::ResizeToContents);
+   ui->twLots->horizontalHeader()->setSectionResizeMode(11,QHeaderView::ResizeToContents);
+   ui->twLots->horizontalHeader()->setSectionResizeMode(12,QHeaderView::Stretch);
    ui->twLots->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-   ui->twLots->setColumnWidth(11,10);
-   ui->twLots->setColumnWidth(13,20);
+
 
    ui->twLots->setColumnHidden(0,true);
+   ui->twLots->setColumnHidden(3,true);
+   ui->twLots->setColumnHidden(6,true);
    ui->twLots->setCurrentIndex(ui->twLots->model()->index(-1,0));
    ui->pushButton_7->setEnabled(false);
 
@@ -376,7 +384,7 @@ void HLotti::print(bool pdf=false)
 
         out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
 
-        out << "<thead><tr bgcolor='lightyellow'><th colspan='13'>"+ title +"</th></tr>";
+        out << "<thead><tr bgcolor='lightyellow'><th colspan='11'>"+ title +"</th></tr>";
         // headers
         out << "<tr bgcolor=#f0f0f0>";
         for (int column = 0; column < columnCount; column++)

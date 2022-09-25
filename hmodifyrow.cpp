@@ -169,7 +169,6 @@ qDebug()<<"loadRow";
    ui->ptNote->setPlainText(note);
 
    bool vok=false;
-   bool qok=false;
    double tot=rows_model->index(0,10).data(0).toDouble(&vok);
    ui->leTotal->setText(QString::number(tot,'f',3));
    QString lotScad=rows_model->index(0,17).data(0).toString();
@@ -181,6 +180,7 @@ qDebug()<<"loadRow";
 
 void HModifyRow::on_cbCliente_currentIndexChanged(int index)
 {
+    Q_UNUSED(index);
     getProducts();
 }
 

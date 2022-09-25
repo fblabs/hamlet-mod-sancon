@@ -1,12 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QtSql/QSqlDatabase>
-//// #include <QDebug>
 #include <QSqlError>
-#include "hprodotti.h"
+//#include "hprodotti.h"
 #include "hutenti.h"
 #include "hmodricette.h"
-#include "hproduzione.h"
+#include "hproduction.h"
 #include "hlotti.h"
 #include "hsettings.h"
 #include <QSettings>
@@ -26,6 +25,7 @@
 #include "hprodottinew.h"
 #include "hnuovaricetta.h"
 #include "hwarehouse.h"
+#include "hexpirations.h"
 #include "hmodifyprod.h"
 #include "hpackages.h"
 #include "hpackagesunload.h"
@@ -36,42 +36,41 @@
 #include "hnotifica.h"
 #include "hverifylabels.h"
 #include "hschedeclienti.h"
-//#include "hschede.h"
 #include "hnschede.h"
 #include "hgraphicprint.h"
-#include  "hexpirations.h"
 #include "hcalcost.h"
 #include "hrecipesforclient.h"
 #include <QCryptographicHash>
 #include "hmagazzino.h"
 #include "hworkprogram.h"
-
-
-
 #include <QDebug>
 #include <QInputDialog>
 #include <QMessageBox>
 
 
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-  QSettings settings("hamletmod");
- // user=new HUser(0);
+   bool bp=createPreferencesDB();
+
+   if (!bp){QMessageBox::warning(nullptr,QApplication::applicationName(),"Errore creando il database lotti preferiti, la funzionalità non sarà disponible ",QMessageBox::Ok);}
+
+    QSettings settings("hamletmod.ini",QSettings::IniFormat);
+
 
     ui->setupUi(this);
     ui->pushButton->setVisible(false);
 
     ui->pbVerifyLabels->setVisible(false);
 
-    //enableDB();
     setFocusPolicy(Qt::StrongFocus);
     sConn=settings.value("conn").toString();
 
     ui->pbOldCards->setVisible(false);
     ui->toolButton->click();
 
-  //  installEventFilter(this);
+
 
 
 
@@ -677,6 +676,25 @@ void MainWindow::on_pbCalcoloCosti_clicked()
 {
     HCalcost *f= new HCalcost(db,user);
     f->show();
+}
+
+bool MainWindow::createPreferencesDB()
+{
+   if(!QFile::exists("preferences.db"))
+   {
+        QSqlDatabase prefs=QSqlDatabase::addDatabase("QSQLITE");
+        prefs.setDatabaseName("preferences.db");
+        prefs.open();
+        QString sql="CREATE TABLE 'pref' ( 'prod'	TEXT, 'lot'	TEXT )";
+        QSqlQuery q(prefs);
+        q.exec(sql);
+        qDebug()<<q.lastError().text();
+        prefs.close();
+        QMessageBox::information(nullptr,QApplication::applicationName(),q.lastError().text(),QMessageBox::Ok);
+   }
+
+   return QFile::exists("preferences.db");
+
 }
 
 

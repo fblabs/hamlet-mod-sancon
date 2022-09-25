@@ -1,4 +1,3 @@
-#include "mainwindow.h"
 #include "hutenti.h"
 #include "ui_hutenti.h"
 #include <QtGui>
@@ -10,14 +9,12 @@
 #include <QDataWidgetMapper>
 #include <QSqlQueryModel>
 #include<QSqlQuery>
-#include <QSettings>
 #include <hnewanagrafica.h>
 #include <QCompleter>
 #include <QSqlRelation>
 #include <QSqlRelationalDelegate>
 #include <QSqlError>
 #include "huser.h"
-#include "hgroups.h"
 #include <QMessageBox>
 #include "halarm.h"
 

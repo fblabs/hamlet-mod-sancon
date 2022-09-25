@@ -9,7 +9,7 @@ HSettings::HSettings(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QSettings settings("hamletmod",QSettings::NativeFormat);
+    QSettings settings("hamletmod.ini",QSettings::IniFormat);
     ui->leUser->setText (settings.value("user").toString());
     ui->leAddress->setText(settings.value("server").toString());
     ui->lePort->setText(settings.value("port").toString());
@@ -29,7 +29,7 @@ void HSettings::on_pushButton_clicked()
 
 
 
-   QSettings settings ("hamletmod");
+   QSettings settings ("hamletmod.ini",QSettings::IniFormat);
    QString sUser = ui->leUser->text();
    QString sAddress = ui->leAddress->text();
    QString sPort = ui->lePort->text();

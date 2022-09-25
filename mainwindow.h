@@ -47,34 +47,20 @@ private slots:
     void on_tbAssociazioni_clicked();
     void on_pbSchede_clicked();
     void on_pushButton_clicked();
-
-
     void on_tbUtenti_clicked();
-
     void on_tbModificaLotti_clicked();
-
     void on_pbPackages_clicked();
-  //  void enableDB();
-  //  void userLogged(int id, int gruppo, bool update, bool updateanag, QSqlDatabase pdb);
     void userLogged(HUser *usr, QSqlDatabase pdb);
     void on_pbUnload_clicked();
     void on_pbContacts_clicked();
-
     void on_pbNotifiche_clicked();
-
     void checkNotifications();
-  //  bool eventFilter(QObject *, QEvent *);
-    //void on_pushButton_2_clicked();
-
     void on_pbCkeckNotifications_clicked();
-
     void on_pbVerifyLabels_clicked();
-
     void on_pbOldCards_clicked();
-
     void on_pbExpirations_clicked();
-
     void on_pbCalcoloCosti_clicked();
+    bool createPreferencesDB();
 
 
 

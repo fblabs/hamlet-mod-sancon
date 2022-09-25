@@ -33,7 +33,7 @@ HLogin2::~HLogin2()
 void HLogin2::login()
 {
 
-    QSettings settings("hamletmod");
+    QSettings settings("hamletmod.ini");
 
     QString host,database,username,password,conname;
     int port;

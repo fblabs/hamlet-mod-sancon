@@ -35,7 +35,9 @@ public:
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QDoubleSpinBox *dsbQt;
-    QSpacerItem *horizontalSpacer;
+    QPushButton *pbDefaultLot;
+    QPushButton *pbCancel;
+    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pbAdd;
     QPushButton *pdClose;
@@ -45,7 +47,7 @@ public:
         if (HAddLotInProduction->objectName().isEmpty())
             HAddLotInProduction->setObjectName(QString::fromUtf8("HAddLotInProduction"));
         HAddLotInProduction->setWindowModality(Qt::ApplicationModal);
-        HAddLotInProduction->resize(275, 329);
+        HAddLotInProduction->resize(393, 361);
         verticalLayout = new QVBoxLayout(HAddLotInProduction);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         lbDesc = new QLabel(HAddLotInProduction);
@@ -94,28 +96,48 @@ public:
 
         horizontalLayout->addWidget(dsbQt);
 
-        horizontalSpacer = new QSpacerItem(45, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        pbDefaultLot = new QPushButton(HAddLotInProduction);
+        pbDefaultLot->setObjectName(QString::fromUtf8("pbDefaultLot"));
+        pbDefaultLot->setMinimumSize(QSize(110, 0));
+        pbDefaultLot->setMaximumSize(QSize(110, 16777215));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Resources/Flag-green64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDefaultLot->setIcon(icon);
 
-        horizontalLayout->addItem(horizontalSpacer);
+        horizontalLayout->addWidget(pbDefaultLot);
+
+        pbCancel = new QPushButton(HAddLotInProduction);
+        pbCancel->setObjectName(QString::fromUtf8("pbCancel"));
+        pbCancel->setMinimumSize(QSize(110, 0));
+        pbCancel->setMaximumSize(QSize(110, 16777215));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/Resources/Flag-red64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbCancel->setIcon(icon1);
+
+        horizontalLayout->addWidget(pbCancel);
 
 
         verticalLayout->addLayout(horizontalLayout);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         pbAdd = new QPushButton(HAddLotInProduction);
         pbAdd->setObjectName(QString::fromUtf8("pbAdd"));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/Resources/Accept64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbAdd->setIcon(icon);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/Accept64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbAdd->setIcon(icon2);
 
         horizontalLayout_2->addWidget(pbAdd);
 
         pdClose = new QPushButton(HAddLotInProduction);
         pdClose->setObjectName(QString::fromUtf8("pdClose"));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pdClose->setIcon(icon1);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pdClose->setIcon(icon3);
 
         horizontalLayout_2->addWidget(pdClose);
 
@@ -134,6 +156,8 @@ public:
         lbDesc->setText(QCoreApplication::translate("HAddLotInProduction", "TextLabel", nullptr));
         label->setText(QCoreApplication::translate("HAddLotInProduction", "Quantit\303\240:", nullptr));
         dsbQt->setSpecialValueText(QString());
+        pbDefaultLot->setText(QCoreApplication::translate("HAddLotInProduction", "Lot predefinito", nullptr));
+        pbCancel->setText(QCoreApplication::translate("HAddLotInProduction", "Annulla", nullptr));
         pbAdd->setText(QCoreApplication::translate("HAddLotInProduction", "Aggiungi", nullptr));
         pdClose->setText(QCoreApplication::translate("HAddLotInProduction", "Chiudi", nullptr));
     } // retranslateUi

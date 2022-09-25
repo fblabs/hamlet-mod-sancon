@@ -12,11 +12,6 @@
 #include <QSqlQueryModel>
 #include "huser.h"
 
-
-#include "hprint.h"
-
-
-
 namespace Ui {
 class HProduzione;
 }
