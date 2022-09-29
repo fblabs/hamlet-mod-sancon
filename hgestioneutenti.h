@@ -2,9 +2,6 @@
 #define HGESTIONEUTENTI_H
 
 #include <QWidget>
-#include "hgroups.h"
-
-
 #include <QSqlDatabase>
 #include <QSqlRelationalTableModel>
 #include <QDataWidgetMapper>
@@ -45,7 +42,7 @@ private:
     QDataWidgetMapper *mapper;
     QSqlDatabase db;
     QSqlRelationalTableModel *utm;
- //   QSqlRelationalTableModel *gtm;
+    //   QSqlRelationalTableModel *gtm;
     QSqlTableModel *gtm;
     int idgruppo;
     int idutente;

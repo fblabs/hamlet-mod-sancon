@@ -29,7 +29,6 @@ SOURCES += main.cpp\
     hnewproduct.cpp \
     hlogin2.cpp \
     hreadonlymodellots.cpp \
-    hanalyze_a.cpp \
     hnuovaoperazione.cpp \
     hoverview.cpp \
     hgestioneutenti.cpp \
@@ -51,7 +50,6 @@ SOURCES += main.cpp\
     hduplicate.cpp \
     hmodifylot.cpp \
     hpackagesunload.cpp \
-    hgroups.cpp \
     hcontacts.cpp \
     hnewcontact.cpp \
     halarm.cpp \
@@ -96,7 +94,6 @@ HEADERS  += mainwindow.h \
     hnewproduct.h \
     hlogin2.h \
     hreadonlymodellots.h \
-    hanalyze_a.h \
     hnuovaoperazione.h \
     hoverview.h \
     hgestioneutenti.h \
@@ -118,7 +115,6 @@ HEADERS  += mainwindow.h \
     hduplicate.h \
     hmodifylot.h \
     hpackagesunload.h \
-    hgroups.h \
     hcontacts.h \
     hnewcontact.h \
     halarm.h \
@@ -185,7 +181,6 @@ FORMS    += mainwindow.ui \
     hmodifylot.ui \
     hlotti.ui \
     hpackagesunload.ui \
-    hgroups.ui \
     hcontacts.ui \
     hnewcontact.ui \
     halarm.ui \

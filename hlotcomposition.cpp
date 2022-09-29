@@ -18,11 +18,6 @@ HLotComposition::HLotComposition(int lotid, QString title, QSqlQueryModel *pmod,
 
     ui->lbLot->setText(title);
 
-    if(!db.open())
-    {
-
-        qDebug()<<db.lastError().text();
-    }
     double current=0.0;
 
     for(int r=0;r<mod->rowCount();r++)

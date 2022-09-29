@@ -4,7 +4,7 @@
 #include <QSqlDatabase>
 #include <QSqlRelationalTableModel>
 #include <QSqlRelationalDelegate>
-#include <QSqlquery>
+#include <QSqlQuery>
 #include <QDataWidgetMapper>
 #include <QMessageBox>
 // #include <QDebug>
@@ -212,6 +212,6 @@ void HGestioneUtenti::on_comboBox_currentIndexChanged(int index)
 
 void HGestioneUtenti::on_pushButton_4_clicked()
 {
-    HGroups *f=new HGroups(0,"toremove");
-    f->show();
+  //  HGroups *f=new HGroups(0,"toremove");
+  //  f->show();
 }

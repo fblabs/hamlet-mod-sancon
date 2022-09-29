@@ -17,6 +17,7 @@ HAddLotInProduction::HAddLotInProduction(QWidget *parent, HDataToPass *datapass,
 
      prefsdb=QSqlDatabase::addDatabase("QSQLITE");
      prefsdb.setDatabaseName("preferences.db");
+     prefsdb.open();
 
 
     db=pdb;
@@ -127,13 +128,14 @@ void HAddLotInProduction::addLot()
 
 void HAddLotInProduction::on_pdClose_clicked()
 {
-
+   prefsdb.close();
     close();
 }
 
 void HAddLotInProduction::on_pbAdd_clicked()
 {
     addLot();
+    prefsdb.close();
     close();
 }
 
@@ -141,6 +143,7 @@ void HAddLotInProduction::on_lvLastLots_doubleClicked(const QModelIndex &index)
 {
     Q_UNUSED(index);
     addLot();
+    prefsdb.close();
     close();
 
 }
@@ -148,9 +151,8 @@ void HAddLotInProduction::on_lvLastLots_doubleClicked(const QModelIndex &index)
 QString HAddLotInProduction::findDefaultLot(const QString p_prod)
 {
     QString defaultLot=QString();
-    prefsdb.open();
-
     QString sql("SELECT lot FROM pref WHERE prod=:prod");
+
     QSqlQuery q(prefsdb);
     q.prepare(sql);
     q.bindValue(":prod",p_prod);
@@ -180,26 +182,6 @@ QString HAddLotInProduction::findDefaultLot(const QString p_prod)
 
 }*/
 
-
-
-
-/*void HAddLotInProduction::on_leSearch_returnPressed()
-{
-    searchByLot();
-}*/
-
-
-
-
-
-/*void HAddLotInProduction::on_leSearch_textChanged(const QString &arg1)
-{
-    QString lot=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
-    QStringList normlot=lot.split("-");
-    QString slot=normlot.at(0)+"-"+normlot.at(1);
-
-    ui->leSearch->setText(slot);
-}*/
 
 
 void HAddLotInProduction::on_pbDefaultLot_clicked()

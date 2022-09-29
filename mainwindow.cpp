@@ -16,9 +16,7 @@
 #include "hnewop.h"
 #include "hassociations.h"
 #include "hclientfiles.h"
-#include "hanalyze_a.h"
 #include "hnuovaoperazione.h"
-#include "hanalyze_a.h"
 #include "hgestioneutenti.h"
 #include "hassociazioni.h"
 #include "hproduction.h"
@@ -110,8 +108,7 @@ void MainWindow::userLogged(HUser* usr,QSqlDatabase pdb)
         bool b=db.isOpen();
         qDebug()<<"userLogged Main"<<QString::number(b);
         enableButtonsForRole();
-       // ui->toolButton->click();
-       // checkNotifications();
+
     }
 }
 
@@ -659,12 +656,6 @@ void MainWindow::on_pbVerifyLabels_clicked()
     f->show();
 }
 
-void MainWindow::on_pbOldCards_clicked()
-{
-     HSchedeClienti *f = new HSchedeClienti();
-     f->init(sConn,user);
-     f->showMaximized();
-}
 
 void MainWindow::on_pbExpirations_clicked()
 {

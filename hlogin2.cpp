@@ -19,7 +19,7 @@ HLogin2::HLogin2(QWidget *parent) :
     ok->setKey(Qt::Key_Enter);
 
     connect(ok,SIGNAL(activated()),this,SLOT(on_pushButton_clicked()));
-  //  this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+    //  this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 
 
 }
@@ -33,7 +33,7 @@ HLogin2::~HLogin2()
 void HLogin2::login()
 {
 
-    QSettings settings("hamletmod.ini");
+    QSettings settings ("hamletmod.ini",QSettings::IniFormat);
 
     QString host,database,username,password,conname;
     int port;
@@ -45,6 +45,8 @@ void HLogin2::login()
     password=settings.value("pwd").toString();
     conname=settings.value("conn").toString();
 
+    qDebug()<<host;
+
 
     db = QSqlDatabase::addDatabase("QMYSQL",conname);
     db.setHostName(host);
@@ -53,7 +55,7 @@ void HLogin2::login()
     db.setUserName(username);
     db.setPassword(password);
 
-    QString s="settings: "+host+" "+database;
+    QString s="settings: "+host+" "+database+"\n";
 
     if (!db.open())
     {
@@ -70,8 +72,8 @@ void HLogin2::login()
     if(!b)
     {
 
-       QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! Errore query\n" + qrLogin.lastError().text() ,QMessageBox::Ok);
-       return;
+        QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente!! Errore query\n" + qrLogin.lastError().text() ,QMessageBox::Ok);
+        return;
 
     }
 
@@ -88,23 +90,22 @@ void HLogin2::login()
         usr->setCanUpdate(qrLogin.value(3).toBool());
         usr->setCanUpdateAnag(qrLogin.value(4).toBool());
         usr->setNome(qrLogin.value(5).toString());
-      //  emit userLogged(usr->getID(),usr->getRole(),usr->getCanUpdate(),usr->getCanUpdateAnag(),db);
         emit userLogged(usr,db);
 
-       
 
 
-    // // qDebug()<<"HLogin2"<<usr->getUsername()<<QString::number(usr->getRole())<<usr->getCanUpdate()<<usr->getCanUpdateAnag();
+
+        // // qDebug()<<"HLogin2"<<usr->getUsername()<<QString::number(usr->getRole())<<usr->getCanUpdate()<<usr->getCanUpdateAnag();
         close();
-     }
-  else
-  {
+    }
+    else
+    {
         QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente\nErrore Risposta database- query size= "+QString::number(qrLogin.size())+qrLogin.lastError().text()+"*",QMessageBox::Ok);
 
         ui->leUser->setText("");
         ui->lePwd->setText("");
         ui->leUser->setFocus();
-  }
+    }
 
 
 }
@@ -124,10 +125,7 @@ void HLogin2::on_pushButton_2_clicked()
 }
 
 
-void HLogin2::on_lePwd_editingFinished()
-{
 
-}
 
 void HLogin2::on_checkBox_toggled(bool checked)
 {

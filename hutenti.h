@@ -32,7 +32,6 @@ private:
     QDataWidgetMapper* dwMapper;
     QDataWidgetMapper* scmodel;
     QItemSelectionModel* selm;
-    QString sConn;
     HUser *user;
 
 

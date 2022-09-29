@@ -20,7 +20,7 @@ private:
      bool updateana;
      QString nome;
      QString username;
-     QString sConn;
+
 
 
 signals:

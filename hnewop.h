@@ -17,10 +17,9 @@ class HNewOp : public QWidget
     Q_OBJECT
 
 public:
-    explicit HNewOp(QWidget *parent = 0);
+    explicit HNewOp(HUser *user, QWidget *parent = 0);
     ~HNewOp();
     QSqlDatabase db;
-    void setUser(int userl);
     void setConnectionName(QString conn);
 
 private:

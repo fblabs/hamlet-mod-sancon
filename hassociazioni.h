@@ -27,7 +27,6 @@ private:
     Ui::HAssociazioni *ui;
 
     QSqlDatabase db;
-    QString sConn;
     QSqlTableModel *tmClienti;
     QCompleter *comp;
     QSqlQueryModel *qm;
@@ -45,7 +44,6 @@ private slots:
     void on_pushButton_4_clicked();
     void on_pushButton_5_clicked();
     void on_pushButton_6_clicked();
-   // void on_leCliente_textChanged(const QString &arg1);
     void on_pbPrint_clicked();
     void print();
 };

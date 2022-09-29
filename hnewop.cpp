@@ -10,15 +10,14 @@
 #include <QSqlRecord>
 #include <QSqlField>
 
-HNewOp::HNewOp(QWidget *parent) :
+HNewOp::HNewOp(HUser* user,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HNewOp)
 {
     ui->setupUi(this);
 
     this->setWindowModality(Qt::ApplicationModal);
-    usr=user;
-  //// qDebug() <<user<<"user";
+    usr=user->getID();
     setupForm();
     createUmModel();
     APEX="'";
@@ -28,12 +27,6 @@ HNewOp::HNewOp(QWidget *parent) :
 HNewOp::~HNewOp()
 {
     delete ui;
-}
-
-void HNewOp::setUser(int userl)
-{
-    usr = userl;
-
 }
 
 void HNewOp::setConnectionName(QString conn)
@@ -47,9 +40,6 @@ void HNewOp::createUmModel()
 {
     ui->cbUm->addItem("Kg",QVariant(0));
     ui->cbUm->addItem("Pz",QVariant(1));
-   // ui->cbUm->addItem("Kg", QVariant(0));
-  //  ui->cbUm->addItem("Pz", QVariant(1));
-
 }
 
 void HNewOp::setupForm()
@@ -58,9 +48,7 @@ void HNewOp::setupForm()
 
 
     db = QSqlDatabase::database(sConn);
-    db.open();
-    //ui->cbUm->addItem("Kg", QVariant(0));
-    //ui->cbUm->addItem("Pz", QVariant(1));
+
     tbm = new  QSqlTableModel(this,db);
     tbm->setTable("prodotti");
     tbm->setFilter("tipo!=1");
@@ -80,7 +68,6 @@ void HNewOp::setupForm()
     ui->cbTipoLotto->setModel(tmtipi);
     ui->cbTipoLotto->setModelColumn(1);
 
-//model->index(ui->combobox->currentIndex(), 0).data(0).toString().toInt()
     tmtipi->select();
 
     cbTipiLotSet();

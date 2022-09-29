@@ -6,7 +6,6 @@
 #include <QSqlDatabase>
 #include <QTimer>
 #include "huser.h"
-#include "hlogin2.h"
 
 
 
@@ -17,17 +16,18 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    QString sConn;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    QSqlDatabase db;
 
 
-    //int user;
+
+
 private slots:
 
-  //  void enableButtonsForRole(bool role);
+
 
     void login();
     void enableButtonsForRole();
@@ -57,7 +57,6 @@ private slots:
     void checkNotifications();
     void on_pbCkeckNotifications_clicked();
     void on_pbVerifyLabels_clicked();
-    void on_pbOldCards_clicked();
     void on_pbExpirations_clicked();
     void on_pbCalcoloCosti_clicked();
     bool createPreferencesDB();
@@ -74,13 +73,10 @@ protected:
 
 private:
     Ui::MainWindow *ui;
-    QString sConn;
     HUser *user;
     QTimer timer;
+    QSqlDatabase db;
 
-
-signals:
-    void onConnectionName();
 
 };
 

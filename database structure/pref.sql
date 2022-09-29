@@ -1,0 +1,6 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "pref" (
+	"prod"	TEXT,
+	"lot"	TEXT
+);
+COMMIT;

@@ -11,6 +11,7 @@
 #include <QCompleter>
 #include <QMenu>
 #include <QAction>
+#include "hmodifylot.h"
 
 HAnalisi::HAnalisi(QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
@@ -131,7 +132,7 @@ void HAnalisi::getProductsForClient()
     QString cl;
 
 
-    ui->tvLots->setModel(0);
+    // ui->tvLots->setModel(0);
 
     if(ui->rbAll->isChecked())
     {
@@ -154,7 +155,7 @@ void HAnalisi::getProductsForClient()
     }
 
 
-    mod=0;
+    mod=nullptr;
 
     mod=new QSqlQueryModel();
 
@@ -186,7 +187,7 @@ void HAnalisi::getProductsForClient()
         q.bindValue(":tipo",QVariant(tipo));
         q.exec();
 
-         qDebug()<<q.lastError().text();
+        qDebug()<<q.lastError().text();
 
 
     }
@@ -621,3 +622,15 @@ void HAnalisi::printLot()
 
 
 }
+
+void HAnalisi::on_tvLots_doubleClicked(const QModelIndex &index)
+{
+    int lotid=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
+
+    qDebug()<<lotid;
+
+    HModifyLot *f=new HModifyLot(lotid,db);
+
+    f->show();
+}
+

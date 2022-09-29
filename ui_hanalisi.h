@@ -94,6 +94,7 @@ public:
         tvYearlyProduction->setAlternatingRowColors(true);
         tvYearlyProduction->setSelectionMode(QAbstractItemView::SingleSelection);
         tvYearlyProduction->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvYearlyProduction->verticalHeader()->setVisible(false);
 
         verticalLayout_2->addWidget(tvYearlyProduction);
 
