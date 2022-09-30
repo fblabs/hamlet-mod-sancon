@@ -228,3 +228,4 @@ Makefile.Debug
 Makefile.Release
 Makefile.Release
 LICENSEKEY
+*.ini
