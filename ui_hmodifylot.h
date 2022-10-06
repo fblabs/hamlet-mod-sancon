@@ -38,24 +38,26 @@ public:
     QLabel *label_3;
     QLabel *label;
     QGridLayout *gridLayout_2;
+    QCheckBox *cbAttivo;
+    QLabel *label_6;
+    QLabel *label_4;
+    QLineEdit *leLotFornitore;
+    QLabel *label_11;
+    QLabel *label_7;
+    QLineEdit *leOperatore;
+    QCheckBox *cbScad;
+    QComboBox *cbAnag;
+    QLabel *label_9;
+    QComboBox *cbUm;
     QDateEdit *deScad;
     QLabel *label_2;
-    QPlainTextEdit *plainTextEdit;
-    QLabel *label_6;
-    QComboBox *cbUm;
-    QLabel *label_7;
-    QLabel *label_4;
     QLabel *label_8;
     QLineEdit *leEan;
-    QLabel *label_9;
-    QComboBox *cbAnag;
-    QLabel *label_10;
-    QLineEdit *leLotFornitore;
-    QCheckBox *cbScad;
     QComboBox *cbtipo;
-    QCheckBox *cbAttivo;
-    QLabel *label_11;
-    QLineEdit *leOperatore;
+    QLabel *label_10;
+    QPlainTextEdit *plainTextEdit;
+    QLabel *lbLoad;
+    QLineEdit *leLoad;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QPushButton *pbComposizione;
@@ -67,7 +69,7 @@ public:
         if (HModifyLot->objectName().isEmpty())
             HModifyLot->setObjectName(QString::fromUtf8("HModifyLot"));
         HModifyLot->setWindowModality(Qt::ApplicationModal);
-        HModifyLot->resize(914, 467);
+        HModifyLot->resize(914, 429);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Wood-4-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HModifyLot->setWindowIcon(icon);
@@ -122,6 +124,65 @@ public:
 
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        cbAttivo = new QCheckBox(HModifyLot);
+        cbAttivo->setObjectName(QString::fromUtf8("cbAttivo"));
+
+        gridLayout_2->addWidget(cbAttivo, 0, 0, 1, 1);
+
+        label_6 = new QLabel(HModifyLot);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+
+        gridLayout_2->addWidget(label_6, 4, 0, 1, 1);
+
+        label_4 = new QLabel(HModifyLot);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        gridLayout_2->addWidget(label_4, 2, 0, 1, 1);
+
+        leLotFornitore = new QLineEdit(HModifyLot);
+        leLotFornitore->setObjectName(QString::fromUtf8("leLotFornitore"));
+
+        gridLayout_2->addWidget(leLotFornitore, 5, 2, 1, 1);
+
+        label_11 = new QLabel(HModifyLot);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+
+        gridLayout_2->addWidget(label_11, 9, 0, 1, 1);
+
+        label_7 = new QLabel(HModifyLot);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+
+        gridLayout_2->addWidget(label_7, 5, 0, 1, 1);
+
+        leOperatore = new QLineEdit(HModifyLot);
+        leOperatore->setObjectName(QString::fromUtf8("leOperatore"));
+
+        gridLayout_2->addWidget(leOperatore, 9, 2, 1, 1);
+
+        cbScad = new QCheckBox(HModifyLot);
+        cbScad->setObjectName(QString::fromUtf8("cbScad"));
+
+        gridLayout_2->addWidget(cbScad, 2, 1, 1, 1);
+
+        cbAnag = new QComboBox(HModifyLot);
+        cbAnag->setObjectName(QString::fromUtf8("cbAnag"));
+        cbAnag->setEditable(true);
+        cbAnag->setInsertPolicy(QComboBox::NoInsert);
+
+        gridLayout_2->addWidget(cbAnag, 4, 2, 1, 1);
+
+        label_9 = new QLabel(HModifyLot);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+
+        gridLayout_2->addWidget(label_9, 7, 0, 1, 1);
+
+        cbUm = new QComboBox(HModifyLot);
+        cbUm->setObjectName(QString::fromUtf8("cbUm"));
+        cbUm->setEditable(true);
+        cbUm->setInsertPolicy(QComboBox::NoInsert);
+
+        gridLayout_2->addWidget(cbUm, 1, 2, 1, 1);
+
         deScad = new QDateEdit(HModifyLot);
         deScad->setObjectName(QString::fromUtf8("deScad"));
 
@@ -131,34 +192,6 @@ public:
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
         gridLayout_2->addWidget(label_2, 1, 0, 1, 1);
-
-        plainTextEdit = new QPlainTextEdit(HModifyLot);
-        plainTextEdit->setObjectName(QString::fromUtf8("plainTextEdit"));
-        plainTextEdit->setMaximumSize(QSize(16777215, 100));
-
-        gridLayout_2->addWidget(plainTextEdit, 8, 2, 1, 1);
-
-        label_6 = new QLabel(HModifyLot);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-
-        gridLayout_2->addWidget(label_6, 4, 0, 1, 1);
-
-        cbUm = new QComboBox(HModifyLot);
-        cbUm->setObjectName(QString::fromUtf8("cbUm"));
-        cbUm->setEditable(true);
-        cbUm->setInsertPolicy(QComboBox::NoInsert);
-
-        gridLayout_2->addWidget(cbUm, 1, 2, 1, 1);
-
-        label_7 = new QLabel(HModifyLot);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
-
-        gridLayout_2->addWidget(label_7, 5, 0, 1, 1);
-
-        label_4 = new QLabel(HModifyLot);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-
-        gridLayout_2->addWidget(label_4, 2, 0, 1, 1);
 
         label_8 = new QLabel(HModifyLot);
         label_8->setObjectName(QString::fromUtf8("label_8"));
@@ -170,33 +203,6 @@ public:
 
         gridLayout_2->addWidget(leEan, 6, 2, 1, 1);
 
-        label_9 = new QLabel(HModifyLot);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
-
-        gridLayout_2->addWidget(label_9, 7, 0, 1, 1);
-
-        cbAnag = new QComboBox(HModifyLot);
-        cbAnag->setObjectName(QString::fromUtf8("cbAnag"));
-        cbAnag->setEditable(true);
-        cbAnag->setInsertPolicy(QComboBox::NoInsert);
-
-        gridLayout_2->addWidget(cbAnag, 4, 2, 1, 1);
-
-        label_10 = new QLabel(HModifyLot);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-
-        gridLayout_2->addWidget(label_10, 8, 0, 1, 1);
-
-        leLotFornitore = new QLineEdit(HModifyLot);
-        leLotFornitore->setObjectName(QString::fromUtf8("leLotFornitore"));
-
-        gridLayout_2->addWidget(leLotFornitore, 5, 2, 1, 1);
-
-        cbScad = new QCheckBox(HModifyLot);
-        cbScad->setObjectName(QString::fromUtf8("cbScad"));
-
-        gridLayout_2->addWidget(cbScad, 2, 1, 1, 1);
-
         cbtipo = new QComboBox(HModifyLot);
         cbtipo->setObjectName(QString::fromUtf8("cbtipo"));
         cbtipo->setEditable(true);
@@ -204,20 +210,29 @@ public:
 
         gridLayout_2->addWidget(cbtipo, 7, 2, 1, 1);
 
-        cbAttivo = new QCheckBox(HModifyLot);
-        cbAttivo->setObjectName(QString::fromUtf8("cbAttivo"));
+        label_10 = new QLabel(HModifyLot);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
 
-        gridLayout_2->addWidget(cbAttivo, 0, 0, 1, 1);
+        gridLayout_2->addWidget(label_10, 8, 0, 1, 1);
 
-        label_11 = new QLabel(HModifyLot);
-        label_11->setObjectName(QString::fromUtf8("label_11"));
+        plainTextEdit = new QPlainTextEdit(HModifyLot);
+        plainTextEdit->setObjectName(QString::fromUtf8("plainTextEdit"));
+        plainTextEdit->setMaximumSize(QSize(16777215, 100));
 
-        gridLayout_2->addWidget(label_11, 9, 0, 1, 1);
+        gridLayout_2->addWidget(plainTextEdit, 8, 2, 1, 1);
 
-        leOperatore = new QLineEdit(HModifyLot);
-        leOperatore->setObjectName(QString::fromUtf8("leOperatore"));
+        lbLoad = new QLabel(HModifyLot);
+        lbLoad->setObjectName(QString::fromUtf8("lbLoad"));
 
-        gridLayout_2->addWidget(leOperatore, 9, 2, 1, 1);
+        gridLayout_2->addWidget(lbLoad, 10, 0, 1, 1);
+
+        leLoad = new QLineEdit(HModifyLot);
+        leLoad->setObjectName(QString::fromUtf8("leLoad"));
+        leLoad->setMaximumSize(QSize(100, 16777215));
+        leLoad->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+        leLoad->setReadOnly(true);
+
+        gridLayout_2->addWidget(leLoad, 10, 2, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout_2);
@@ -273,16 +288,17 @@ public:
         label_5->setText(QCoreApplication::translate("HModifyLot", "Giacenza:", nullptr));
         label_3->setText(QCoreApplication::translate("HModifyLot", "Prodotto:", nullptr));
         label->setText(QCoreApplication::translate("HModifyLot", "Lotto:", nullptr));
-        label_2->setText(QCoreApplication::translate("HModifyLot", "Unit\303\240 di misura:", nullptr));
-        label_6->setText(QCoreApplication::translate("HModifyLot", "Cliente/fornitore:", nullptr));
-        label_7->setText(QCoreApplication::translate("HModifyLot", "lotto Fornitore:", nullptr));
-        label_4->setText(QCoreApplication::translate("HModifyLot", "Scadenza:", nullptr));
-        label_8->setText(QCoreApplication::translate("HModifyLot", "lotto  di uscita:", nullptr));
-        label_9->setText(QCoreApplication::translate("HModifyLot", "Tipo:", nullptr));
-        label_10->setText(QCoreApplication::translate("HModifyLot", "Note:", nullptr));
-        cbScad->setText(QCoreApplication::translate("HModifyLot", "No scadenza", nullptr));
         cbAttivo->setText(QCoreApplication::translate("HModifyLot", "Attivo", nullptr));
+        label_6->setText(QCoreApplication::translate("HModifyLot", "Cliente/fornitore:", nullptr));
+        label_4->setText(QCoreApplication::translate("HModifyLot", "Scadenza:", nullptr));
         label_11->setText(QCoreApplication::translate("HModifyLot", "Operatore:", nullptr));
+        label_7->setText(QCoreApplication::translate("HModifyLot", "lotto Fornitore:", nullptr));
+        cbScad->setText(QCoreApplication::translate("HModifyLot", "No scadenza", nullptr));
+        label_9->setText(QCoreApplication::translate("HModifyLot", "Tipo:", nullptr));
+        label_2->setText(QCoreApplication::translate("HModifyLot", "Unit\303\240 di misura:", nullptr));
+        label_8->setText(QCoreApplication::translate("HModifyLot", "lotto  di uscita:", nullptr));
+        label_10->setText(QCoreApplication::translate("HModifyLot", "Note:", nullptr));
+        lbLoad->setText(QCoreApplication::translate("HModifyLot", "Carichi tra", nullptr));
         pushButton->setText(QCoreApplication::translate("HModifyLot", "Salva", nullptr));
         pbComposizione->setText(QCoreApplication::translate("HModifyLot", "Dettagli", nullptr));
         pbLotOperations->setText(QCoreApplication::translate("HModifyLot", "Movimenti Lotto", nullptr));

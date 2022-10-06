@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QSqlDatabase>
-#include "hcomposizionelotto.h"
+#include <QDate>
 
 
 namespace Ui {
@@ -15,8 +15,9 @@ class HModifyLot : public QWidget
     Q_OBJECT
 
 public:
-    explicit HModifyLot( int pidlotto=1, QSqlDatabase pdb=QSqlDatabase(),QWidget *parent = 0);
+    explicit HModifyLot( int pidlotto=1, QSqlDatabase pdb=QSqlDatabase(),const QDate from=QDate(), const QDate to=QDate(),QWidget *parent = nullptr);
     ~HModifyLot();
+
 
 
 private slots:
@@ -33,11 +34,17 @@ private slots:
 
     void on_pbLotOperations_clicked();
 
+
+    void getLoadAmount();
+
 private:
     Ui::HModifyLot *ui;
     QSqlDatabase db;
     int lot;
     int tipo;
+    int prodotto;
+    QDate f;
+    QDate t;
 
 
 signals:

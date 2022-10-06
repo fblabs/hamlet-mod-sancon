@@ -11,11 +11,31 @@
 #include "hlotmovements.h"
 
 
-HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb, QWidget *parent) :
+HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb, const QDate from, const QDate to, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HModifyLot)
 {
     ui->setupUi(this);
+
+    f=from;
+    t=to;
+
+    qDebug()<<"FTOSTRING"<<f.toString();
+
+  //  qDebug()<<f.toString("dd-MM-yyyy");
+
+    if (f.isNull())
+    {
+        ui->lbLoad->setVisible(false);
+        ui->leLoad->setVisible(false);
+
+    }
+    else
+    {
+        ui->lbLoad->setText("Carichi tra\n"+f.toString("dd-MM-yyyy")+"\n e \n"+t.toString("dd-MM-yyyy"));
+    }
+
+
 
     db=pdb;
     lot=pidlotto;
@@ -56,7 +76,8 @@ HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb, QWidget *parent) :
 
     //setto la form ai valori correnti
 
-    QVariant prod=q.value(2);
+    prodotto=q.value(2).toInt();
+    qDebug()<<"prodotto:"<<prodotto;
     QVariant anag=q.value(7);
     QVariant ixtipo=q.value(10);
     tipo=q.value(10).toInt();
@@ -87,7 +108,7 @@ HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb, QWidget *parent) :
 
     sql="SELECT descrizione FROM prodotti where ID=:id";
     q.prepare(sql);
-    q.bindValue(":id",prod);
+    q.bindValue(":id",prodotto);
     q.exec();
     q.first();
     ui->leProd->setText(q.value(0).toString());
@@ -106,6 +127,16 @@ HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb, QWidget *parent) :
     q.bindValue(":id",ixtipo);
     q.exec();
     q.first();
+    if (ixtipo.toInt()!=1)
+    {
+        ui->lbLoad->setVisible(false);
+        ui->leLoad->setVisible(false);
+
+    }
+    else
+    {
+        ui->lbLoad->setText("Carichi tra\n"+f.toString("dd-MM-yyyy")+"\n e \n"+t.toString("dd-MM-yyyy"));
+    }
 
     bool at=attv.toBool();
     ui->cbAttivo->setChecked(at);
@@ -121,6 +152,8 @@ HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb, QWidget *parent) :
 
     int ium=ui->cbUm->findText(q.value(0).toString());
     ui->cbUm->setCurrentIndex(ium);
+
+    getLoadAmount();
 }
 
 HModifyLot::~HModifyLot()
@@ -237,4 +270,30 @@ void HModifyLot::on_pbLotOperations_clicked()
 {
     HLotMovements *f =new HLotMovements(lot,db);
     f->show();
+}
+
+
+
+void HModifyLot::getLoadAmount()
+{
+     QSqlQuery q(db);
+     QString sql="SELECT SUM(quantita) from operazioni,lotdef where operazioni.IDlotto=lotdef.ID and lotdef.tipo=1 and operazioni.IDProdotto=:idp and operazioni.IDProdotto=:idp and operazioni.data between :from and :to";
+     q.prepare(sql);
+     q.bindValue(":idp",prodotto);
+     q.bindValue(":from",f);
+     q.bindValue(":to",t);
+     q.exec();
+     q.first();
+
+     double load=0.0;
+     load=q.value(0).toDouble();
+     qDebug()<<q.executedQuery()<<q.lastError().text();
+
+     const QString s_load=QString::number(load);
+     ui->leLoad->setText(s_load);
+     qDebug()<<s_load;
+
+
+
+
 }

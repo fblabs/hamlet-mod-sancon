@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>914</width>
-    <height>467</height>
+    <height>429</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -114,23 +114,10 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="2" column="2">
-      <widget class="QDateEdit" name="deScad"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_2">
+     <item row="0" column="0">
+      <widget class="QCheckBox" name="cbAttivo">
        <property name="text">
-        <string>Unità di misura:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="2">
-      <widget class="QPlainTextEdit" name="plainTextEdit">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>100</height>
-        </size>
+        <string>Attivo</string>
        </property>
       </widget>
      </item>
@@ -138,6 +125,57 @@
       <widget class="QLabel" name="label_6">
        <property name="text">
         <string>Cliente/fornitore:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Scadenza:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="2">
+      <widget class="QLineEdit" name="leLotFornitore"/>
+     </item>
+     <item row="9" column="0">
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Operatore:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>lotto Fornitore:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="2">
+      <widget class="QLineEdit" name="leOperatore"/>
+     </item>
+     <item row="2" column="1">
+      <widget class="QCheckBox" name="cbScad">
+       <property name="text">
+        <string>No scadenza</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QComboBox" name="cbAnag">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <property name="insertPolicy">
+        <enum>QComboBox::NoInsert</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>Tipo:</string>
        </property>
       </widget>
      </item>
@@ -151,17 +189,13 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>lotto Fornitore:</string>
-       </property>
-      </widget>
+     <item row="2" column="2">
+      <widget class="QDateEdit" name="deScad"/>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_4">
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Scadenza:</string>
+        <string>Unità di misura:</string>
        </property>
       </widget>
      </item>
@@ -175,15 +209,8 @@
      <item row="6" column="2">
       <widget class="QLineEdit" name="leEan"/>
      </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>Tipo:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="2">
-      <widget class="QComboBox" name="cbAnag">
+     <item row="7" column="2">
+      <widget class="QComboBox" name="cbtipo">
        <property name="editable">
         <bool>true</bool>
        </property>
@@ -199,42 +226,38 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="2">
-      <widget class="QLineEdit" name="leLotFornitore"/>
-     </item>
-     <item row="2" column="1">
-      <widget class="QCheckBox" name="cbScad">
-       <property name="text">
-        <string>No scadenza</string>
+     <item row="8" column="2">
+      <widget class="QPlainTextEdit" name="plainTextEdit">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>100</height>
+        </size>
        </property>
       </widget>
      </item>
-     <item row="7" column="2">
-      <widget class="QComboBox" name="cbtipo">
-       <property name="editable">
+     <item row="10" column="0">
+      <widget class="QLabel" name="lbLoad">
+       <property name="text">
+        <string>Carichi tra</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="2">
+      <widget class="QLineEdit" name="leLoad">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 127);</string>
+       </property>
+       <property name="readOnly">
         <bool>true</bool>
        </property>
-       <property name="insertPolicy">
-        <enum>QComboBox::NoInsert</enum>
-       </property>
       </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QCheckBox" name="cbAttivo">
-       <property name="text">
-        <string>Attivo</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="0">
-      <widget class="QLabel" name="label_11">
-       <property name="text">
-        <string>Operatore:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="2">
-      <widget class="QLineEdit" name="leOperatore"/>
      </item>
     </layout>
    </item>
