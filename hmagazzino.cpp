@@ -11,6 +11,7 @@
 #include "hnuovaoperazione.h"
 #include "hwarehousedetails.h"
 #include "hpackagesunload.h"
+#include "hmodifylot.h"
 
 
 HMagazzino::HMagazzino(QSqlDatabase pdb,HUser *puser,QWidget *parent) :
@@ -82,7 +83,7 @@ void HMagazzino::queryOperations()
 
     where.append(" order by o.data desc");
 
-    QString sql="SELECT o.ID,o.IDlotto, o.data as 'DATA',p.descrizione as 'PRODOTTO',l.lot as 'LOTTO',l.lot_fornitore as 'LOTTO FORNITORE',l.giacenza as 'GIACENZA',a.descrizione as 'AZIONE',o.quantita as 'QUANTITA',m.descrizione as 'UNITA DI MISURA',u.nome AS 'UTENTE',o.note AS 'NOTE' \
+    QString sql="SELECT o.ID,o.IDlotto, o.data as 'DATA',p.descrizione as 'PRODOTTO',l.ID as 'IDLotto',l.lot as 'LOTTO',l.lot_fornitore as 'LOTTO FORNITORE',l.giacenza as 'GIACENZA',a.descrizione as 'AZIONE',o.quantita as 'QUANTITA',m.descrizione as 'UNITA DI MISURA',u.nome AS 'UTENTE',o.note AS 'NOTE' \
             FROM operazioni as o\
             INNER JOIN lotdef as l\
             ON l.ID=o.IDlotto\
@@ -109,6 +110,7 @@ void HMagazzino::queryOperations()
     ui->tableView->setModel(mod);
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(1,true);
+    ui->tableView->setColumnHidden(4,true);
 
     QApplication::setOverrideCursor(Qt::ArrowCursor);
 
@@ -189,3 +191,16 @@ void HMagazzino::on_tableView_doubleClicked(const QModelIndex &index)
 {
     updateOperation();
 }
+
+void HMagazzino::on_pbLotInfo_clicked()
+{
+    QSqlQueryModel *mod=static_cast<QSqlQueryModel*>(ui->tableView->model());
+    int r=0;
+    int c=4;
+    r=ui->tableView->selectionModel()->currentIndex().row();
+    const int idlotto=mod->index(r,c).data(0).toInt();
+    qDebug()<<"POIPPO"<<idlotto<<r<<c;
+    HModifyLot *f=new HModifyLot(idlotto,db,ui->deFrom->date(),ui->deTo->date());
+    f->show();
+}
+
