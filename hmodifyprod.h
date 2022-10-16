@@ -34,6 +34,7 @@ private:
     QDate dfrom;
     QDate dto;
     QString tipo;
+    QSqlTableModel* tmRaw;
 
     QString currentLot;
     int tipoLot;
@@ -45,11 +46,7 @@ private slots:
     bool updateRow();
     bool deleteRow();
     bool addRow();
-
     void updateProduction();
-
- //   bool deleteSelectedRow();
-
 
     void on_pushButton_2_clicked();
     void on_pushButton_clicked();
@@ -57,24 +54,20 @@ private slots:
     void on_radioButton_clicked();
     void on_radioButton_2_clicked();
     void on_pushButton_4_clicked();
-
-    void on_cbUm_currentIndexChanged(int index);
     void on_pushButton_5_clicked();
     void on_deDal_dateChanged(const QDate &date);
     void on_deAl_dateChanged(const QDate &date);
     void on_pushButton_6_clicked();
- //   void on_leSearch_returnPressed();
     void on_leSearch_textChanged(const QString &arg1);
     void on_pushButton_7_clicked();
     void findIt(QString arg);
-
     void on_rbprod_toggled(bool checked);
     void on_pbUpdateAmount_clicked();
     void on_radioButton_2_toggled(bool checked);
     void refreshData();
-
-
     void on_leQuantita_returnPressed();
+    void on_leLotto_returnPressed();
+    void on_leLotto_textChanged(const QString &arg1);
 };
 
 #endif // HMODIFYPROD_H

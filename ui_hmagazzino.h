@@ -47,6 +47,7 @@ public:
     QTableView *tableView;
     QHBoxLayout *horizontalLayout_5;
     QPushButton *pushButton_3;
+    QPushButton *pbLotInfo;
     QPushButton *pushButton_2;
     QPushButton *pushButton_4;
     QSpacerItem *horizontalSpacer_2;
@@ -161,19 +162,27 @@ public:
 
         horizontalLayout_5->addWidget(pushButton_3);
 
+        pbLotInfo = new QPushButton(HMagazzino);
+        pbLotInfo->setObjectName(QString::fromUtf8("pbLotInfo"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/Wood-4-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbLotInfo->setIcon(icon2);
+
+        horizontalLayout_5->addWidget(pbLotInfo);
+
         pushButton_2 = new QPushButton(HMagazzino);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Resources/Monitoring64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Monitoring64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon3);
 
         horizontalLayout_5->addWidget(pushButton_2);
 
         pushButton_4 = new QPushButton(HMagazzino);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/Upload.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/Upload.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon4);
 
         horizontalLayout_5->addWidget(pushButton_4);
 
@@ -183,9 +192,9 @@ public:
 
         pushButton = new QPushButton(HMagazzino);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon5);
 
         horizontalLayout_5->addWidget(pushButton);
 
@@ -208,6 +217,7 @@ public:
         cbC->setText(QCoreApplication::translate("HMagazzino", "CARICO", nullptr));
         cbS->setText(QCoreApplication::translate("HMagazzino", "SCARICO", nullptr));
         pushButton_3->setText(QCoreApplication::translate("HMagazzino", "Nuova operazione", nullptr));
+        pbLotInfo->setText(QCoreApplication::translate("HMagazzino", "Informazioni su lotto", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HMagazzino", "Modifica operazione selezionata", nullptr));
         pushButton_4->setText(QCoreApplication::translate("HMagazzino", "Scarico packages", nullptr));
         pushButton->setText(QCoreApplication::translate("HMagazzino", "Chiudi", nullptr));
