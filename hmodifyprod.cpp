@@ -19,6 +19,14 @@
 
 #include <QMessageBox>
 
+enum MP_ACTION
+{
+    NOACTION=-1,
+    ADDROW=0,
+    UPDATEROW=1,
+    DELETEROW=2
+};
+
 
 
 HModifyProd::HModifyProd(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
@@ -28,19 +36,13 @@ HModifyProd::HModifyProd(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->setupUi(this);
     db=pdb;
     user=puser;
-    action=0;
+    ACTION=MP_ACTION::NOACTION;
 
     ui->deDal->setDate(QDate::currentDate().addYears(-2));
     ui->deAl->setDate(QDate::currentDate());
     dfrom=ui->deDal->date();
     dto=ui->deAl->date().addDays(1);
     tipo="lotdef.tipo=3";
-    ui->pushButton->setVisible(false);
-    ui->pushButton_5->setVisible(false);
-    ui->pushButton_4->setEnabled(false);
-
-
-    // ui->pbUpdateAmount->setVisible(user->getCanUpdate());
 
 
 
@@ -96,7 +98,7 @@ HModifyProd::HModifyProd(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->tvLots->setColumnHidden(11,true);
     ui->tvLots->setColumnHidden(12,true);
 
-    ui->tvLots->setCurrentIndex(QModelIndex());
+    ui->tvLots->selectionModel()->setCurrentIndex(tmLots->index(0,0),QItemSelectionModel::Select);
 
     //  ui->tvDetails->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -112,6 +114,7 @@ HModifyProd::~HModifyProd()
 
 void HModifyProd::getComponentsLot()
 {
+    qDebug()<<"getComponentsLot";
     QSqlQuery q(db);
     idlot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
     QString sql="select operazioni.ID,operazioni.IDlotto,lotdef.lot,prodotti.ID,prodotti.descrizione,operazioni.quantita,unita_di_misura.ID,unita_di_misura.descrizione from operazioni,lotdef,prodotti,unita_di_misura where prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and unita_di_misura.ID=operazioni.um and  operazioni.ID in (SELECT operazione from composizione_lot where ID_lotto=:lotid )order by operazioni.quantita desc";
@@ -139,17 +142,17 @@ void HModifyProd::getComponentsLot()
     lbtxt.append(ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),2).data(0).toString());
     ui->lbProd->setText(lbtxt);
 
+
+    ui->tvDetails->selectionModel()->clearSelection();
+
+
     connect(ui->tvDetails->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getLotRowData()));
-
-
-
-
-
 
 }
 
 void HModifyProd::getLotRowData()
 {
+    qDebug()<<"getLotRowData";
     ui->leLotto->setText(ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),2).data(0).toString());
     // int opid=ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),0).data(0).toInt();
 
@@ -163,10 +166,6 @@ void HModifyProd::getLotRowData()
 
     ui->leQuantita->setText(qty);
 
-    ui->pushButton_4->setEnabled(true);
-    ui->leLotto->setText(QString());
-    ui->leQuantita->setText(QString());
-    ui->leSearch->setText(QString());
 }
 
 bool HModifyProd::updateRow()
@@ -180,12 +179,6 @@ bool HModifyProd::updateRow()
     // // qDebug()<<"umupdate"<<QString::number(um)<<q.lastError()<<q.lastQuery();
     int idr=ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),0).data(0).toInt();
     double quantita=ui->leQuantita->text().toDouble(&ok);
-    if (!ok)
-    {
-
-        return false;
-    }
-
 
     q.prepare(sql);
     q.bindValue(":idr",QVariant(idr));
@@ -194,10 +187,10 @@ bool HModifyProd::updateRow()
 
 
     bool b= q.exec();
-    // // qDebug()<<q.lastError().text();
+    qDebug()<<q.lastError().text();
     getComponentsLot();
     return b;
-    return false;
+
 
 }
 
@@ -207,20 +200,20 @@ bool HModifyProd::deleteRow()
     QString sql="delete from operazioni where ID=:id";
     QString comp="delete from composizione_lot where operazione=:id";
     QString id=ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),0).data(0).toString();
-    bool b=q.exec();
+    bool b=false;
+
+
 
     q.prepare(comp);
     q.bindValue(":id",QVariant(id));
+
+
     b=q.exec();
+
     if(!b)
     {
-        QMessageBox::question(this,QApplication::applicationName(),"ERRORE\n"+q.lastError().text()+"\n"+q.lastQuery(),QMessageBox::Ok | QMessageBox::Cancel);
-        return false;
+       return false;
     }
-
-    q.clear();
-
-
 
     q.prepare(sql);
     id=ui->tvDetails->model()->index(ui->tvDetails->currentIndex().row(),0).data(0).toString();
@@ -228,12 +221,9 @@ bool HModifyProd::deleteRow()
     b=q.exec();
     if(!b)
     {
-        QMessageBox::question(this,QApplication::applicationName(),"ERRORE\n"+q.lastError().text()+"\n"+q.lastQuery(),QMessageBox::Ok | QMessageBox::Cancel);
+        return false;
     }
 
-
-
-    getComponentsLot();
     return b;
 }
 
@@ -291,20 +281,19 @@ bool HModifyProd::addRow(){
     b=q.exec();
     qDebug()<<"compB"<<q.lastError().text()<<q.lastQuery()<<QString::number(idlot)<<QString::number(idop);
 
-
-
     if(b)
     {
         db.commit();
-        getComponentsLot();
-        //  tmLots->select();
-        // // qDebug()<<"compA"<<q.lastError().text()<<q.lastQuery()<<QString::number(idlot)<<QString::number(idop);
+
+
     }
     else
     {
 
         db.rollback();
     }
+    updateGiacenza();
+    getComponentsLot();
 
     return b;
 
@@ -329,68 +318,86 @@ void HModifyProd::on_pushButton_2_clicked()
     }
 }
 
-/*void HModifyProd::getIDLot()
-{
-    idlot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
-    ui->pushButton_4->setEnabled(true);
-    getComponentsLot();
-}*/
-
 
 void HModifyProd::on_pushButton_clicked()
 {
-    if (action==0)
-    {
 
+
+    if (ACTION==MP_ACTION::UPDATEROW)
+    {
+        db.transaction();
         if(updateRow())
         {
+            updateGiacenza();
             getComponentsLot();
+            db.commit();
+            tmLots->select();
             QMessageBox::information(this,QApplication::applicationName(),"Riga modificata",QMessageBox::Ok);
+
 
         }
         else
         {
+            db.rollback();
             QMessageBox::warning(this,QApplication::applicationName(),"MODERRORACCIO!!!\n" + db.lastError().text()  ,QMessageBox::Ok);
         }
+
+        ui->rbNoAction->setChecked(true);
     }
-    else if (action==1)
+    else if (ACTION==MP_ACTION::ADDROW)
     {
+        db.transaction();
         if(addRow())
         {
+            updateGiacenza();
             getComponentsLot();
+            db.commit();
+            tmLots->select();
 
             QMessageBox::information(this,QApplication::applicationName(),"Riga aggiunta",QMessageBox::Ok);
 
         }
         else
         {
+            db.rollback();
             QMessageBox::warning(this,QApplication::applicationName(),"MODERRORINO!!!\n" + db.lastError().text()  ,QMessageBox::Ok);
         }
-        action=0;
+
+        ui->rbNoAction->setChecked(true);
+
     }
-    ui->pushButton_4->setEnabled(true);
-    ui->pushButton_5->setEnabled(false);
 
-}
-
-void HModifyProd::on_pushButton_3_clicked()
-{
-    if (QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga?\n Attenzione!! La cancellazione è definitiva",QMessageBox::Ok|QMessageBox::Cancel))
+   else  if(ACTION==DELETEROW)
     {
-        bool b= deleteRow();
-        if(b)
-        {
-            QMessageBox::information(this,QApplication::applicationName(),"Riga rimossa",QMessageBox::Ok);
+        db.transaction();
+        if(deleteRow()){
+            updateGiacenza();
+            getComponentsLot();
+            db.commit();
+            QMessageBox::information(this,QApplication::applicationName(),"Riga eliminata",QMessageBox::Ok);
         }
         else
         {
-            QMessageBox::warning(this,QApplication::applicationName(),"ERRORACCIO!!!\n" + db.lastError().text()  ,QMessageBox::Ok);
+            db.rollback();
+            QMessageBox::warning(this,QApplication::applicationName(),"ERRORE\nrimuovendo la riga\n" + db.lastError().text()  ,QMessageBox::Ok);
         }
+
+        ui->rbNoAction->setChecked(true);
+
+
     }
+   else if (ACTION==MP_ACTION::NOACTION){
+        QMessageBox::information(this,QApplication::applicationName(),"Selezionare una azione",QMessageBox::Ok);
+        return;
+
+    }
+
+    ui->leLotto->setText(QString());
+    ui->leQuantita->setText(QString());
+
 
 
 }
-
 
 
 void HModifyProd::on_radioButton_clicked()
@@ -411,24 +418,6 @@ void HModifyProd::on_radioButton_2_clicked()
     //// qDebug()<<tmLots->query().lastError().text();
 }
 
-void HModifyProd::on_pushButton_4_clicked()
-{
-    action=1;
-    addRow();
-
-    ui->leLotto->setText("");
-    ui->leQuantita->setText("");
-    ui->pushButton_4->setEnabled(false);
-    ui->pushButton_5->setEnabled(true);
-    getComponentsLot();
-}
-
-void HModifyProd::on_pushButton_5_clicked()
-{
-    action=0;
-    ui->pushButton_4->setEnabled(true);
-    ui->pushButton_5->setEnabled(false);
-}
 
 void HModifyProd::on_deDal_dateChanged(const QDate &date)
 {
@@ -439,14 +428,6 @@ void HModifyProd::on_deAl_dateChanged(const QDate &date)
 {
     dto=date;
 }
-
-void HModifyProd::on_pushButton_6_clicked()
-{
-    filter=tipo +" and lotdef.data between '" + dfrom.toString("yyyy-MM-dd") + "' and '" + dto.toString("yyyy-MM-dd")+"'";
-    tmLots->setFilter(filter);
-}
-
-
 
 void HModifyProd::findIt(QString arg)
 {  QString filter;
@@ -483,10 +464,10 @@ void HModifyProd::findIt(QString arg)
 
 
     tmLots->setFilter(filter);
-    ui->tvDetails->setModel(0);
+    //ui->tvDetails->setModel(0);
 
     //// // qDebug()<<tmLots->query().lastError().text();
-    // // qDebug()<<tmLots->query().lastQuery()<<tmLots->lastError();
+    qDebug()<<tmLots->query().lastQuery()<<tmLots->lastError();
 }
 
 void HModifyProd::on_leSearch_textChanged(const QString &arg1)
@@ -497,13 +478,6 @@ void HModifyProd::on_leSearch_textChanged(const QString &arg1)
 
 }
 
-void HModifyProd::on_pushButton_7_clicked()
-{
-    ui->leSearch->setText("");
-}
-
-
-
 void HModifyProd::on_rbprod_toggled(bool checked)
 {
     ui->leSearch->setText("");
@@ -513,8 +487,12 @@ void HModifyProd::on_rbprod_toggled(bool checked)
 
 void HModifyProd::on_pbUpdateAmount_clicked()
 {
+    QModelIndex ix=ui->tvLots->selectionModel()->currentIndex();
     updateProduction();
+    refreshData();
+    ui->tvLots->selectionModel()->setCurrentIndex(ix,QItemSelectionModel::Select);
 }
+
 
 
 void HModifyProd::on_radioButton_2_toggled(bool checked)
@@ -525,15 +503,13 @@ void HModifyProd::on_radioButton_2_toggled(bool checked)
 void HModifyProd::refreshData()
 {
     getComponentsLot();
+    tmLots->select();
 }
 
 void HModifyProd::on_leQuantita_returnPressed()
 {
-    ui->pushButton_4->setEnabled(true);
+    ui->pushButton->setEnabled(true);
 }
-
-
-
 
 
 void HModifyProd::on_leLotto_returnPressed()
@@ -552,8 +528,80 @@ void HModifyProd::on_leLotto_returnPressed()
 void HModifyProd::on_leLotto_textChanged(const QString &arg1)
 {
     if(arg1.length()<10)
-        ui->pushButton_4->setEnabled(false);
+    {
+        ui->pushButton->setEnabled(false);
+
+    }
     else
-        ui->pushButton_4->setEnabled(true);
+    {
+        ui->pushButton->setEnabled(true);
+
+    }
+}
+
+void HModifyProd::updateGiacenza()
+{
+
+
+    int firstLoadId=findLotFirstLoad();
+    double firstLoadAmount=0.0;
+
+
+    for (int i=0;i<ui->tvDetails->model()->rowCount();++i)
+    {
+        firstLoadAmount+=ui->tvDetails->model()->index(i,5).data(0).toDouble();
+    }
+
+    qDebug()<<firstLoadAmount;
+
+    QSqlQuery q(db);
+    QString sql="update operazioni set quantita=:q where id=:id";
+    q.prepare(sql);
+    q.bindValue(":id",firstLoadId);
+    q.bindValue(":q",firstLoadAmount);
+    q.exec();
+    qDebug()<<"UPDATE"<<q.lastError().text();
+
+}
+
+int HModifyProd::findLotFirstLoad()
+{
+
+    int idLotto=ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),0).data(0).toInt();
+    int result=0;
+
+    QString sql="SELECT MIN(ID) from operazioni where IDLotto=:id";
+    QSqlQuery q(db);
+    q.prepare(sql);
+    q.bindValue(":id",idLotto);
+    q.exec();
+    q.first();
+    result=q.value(0).toInt();
+
+    return result;
+
+}
+
+void HModifyProd::on_rbNoAction_toggled(bool checked)
+{
+     if(checked){ACTION=MP_ACTION::NOACTION;}
+}
+
+
+void HModifyProd::on_rbAdd_toggled(bool checked)
+{
+     if(checked){ACTION=MP_ACTION::ADDROW;}
+}
+
+
+void HModifyProd::on_rbDelete_toggled(bool checked)
+{
+     if(checked){ACTION=MP_ACTION::DELETEROW;}
+}
+
+
+void HModifyProd::on_rbUpdate_toggled(bool checked)
+{
+     if(checked){ACTION=MP_ACTION::UPDATEROW;}
 }
 

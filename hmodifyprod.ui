@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1143</width>
-    <height>711</height>
+    <height>728</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,175 +20,171 @@
    <iconset resource="icons.qrc">
     <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_4">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Lotti:   </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="radioButton_2">
+       <property name="text">
+        <string>Prodotti finiti</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="radioButton">
+       <property name="text">
+        <string>Packages</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Periodo:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Dal:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDateEdit" name="deDal">
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>Al:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDateEdit" name="deAl">
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableView" name="tvLots">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QRadioButton" name="rbprod">
          <property name="text">
-          <string>Lotti:   </string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radioButton_2">
-         <property name="text">
-          <string>Prodotti finiti</string>
+          <string>Cerca Prodotto</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup_2</string>
+         </attribute>
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton">
+        <widget class="QRadioButton" name="rblots">
          <property name="text">
-          <string>Packages</string>
+          <string>Cerca lotto</string>
          </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup_2</string>
+         </attribute>
         </widget>
-       </item>
-       <item>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="6">
-          <widget class="QPushButton" name="pushButton_6">
-           <property name="text">
-            <string>Aggiorna</string>
-           </property>
-           <property name="icon">
-            <iconset resource="icons.qrc">
-             <normaloff>:/Resources/Counterclockwise-arrow64.png</normaloff>:/Resources/Counterclockwise-arrow64.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QDateEdit" name="deDal">
-           <property name="calendarPopup">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>Al:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
-          <widget class="QDateEdit" name="deAl">
-           <property name="calendarPopup">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Periodo:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>Dal:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="5">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
        </item>
       </layout>
      </item>
      <item>
-      <widget class="QTableView" name="tvLots">
-       <property name="editTriggers">
-        <set>QAbstractItemView::NoEditTriggers</set>
+      <widget class="QLineEdit" name="leSearch">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
        </property>
-       <property name="alternatingRowColors">
+       <property name="frame">
         <bool>true</bool>
        </property>
-       <property name="selectionMode">
-        <enum>QAbstractItemView::SingleSelection</enum>
-       </property>
-       <property name="selectionBehavior">
-        <enum>QAbstractItemView::SelectRows</enum>
-       </property>
-       <property name="sortingEnabled">
+       <property name="clearButtonEnabled">
         <bool>true</bool>
        </property>
-       <attribute name="horizontalHeaderStretchLastSection">
-        <bool>true</bool>
-       </attribute>
-       <attribute name="verticalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
-       <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QRadioButton" name="rbprod">
-            <property name="text">
-             <string>Cerca Prodotto</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="rblots">
-            <property name="text">
-             <string>Cerca lotto</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="leSearch">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="frame">
-          <bool>true</bool>
-         </property>
-         <property name="clearButtonEnabled">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
        <item>
         <widget class="QPushButton" name="pbUpdateAmount">
          <property name="text">
@@ -225,158 +221,181 @@
        </item>
       </layout>
      </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Composizione lotto:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbProd">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 127);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableView" name="tvDetails">
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QRadioButton" name="rbNoAction">
            <property name="text">
-            <string>Composizione lotto:</string>
+            <string>Nessuna azione</string>
            </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="lbProd">
+          <widget class="QRadioButton" name="rbAdd">
            <property name="text">
-            <string/>
+            <string>Aggiungi</string>
            </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
           </widget>
          </item>
          <item>
-          <widget class="QTableView" name="tvDetails">
-           <property name="selectionMode">
-            <enum>QAbstractItemView::SingleSelection</enum>
+          <widget class="QRadioButton" name="rbDelete">
+           <property name="text">
+            <string>Elimina</string>
            </property>
-           <property name="selectionBehavior">
-            <enum>QAbstractItemView::SelectRows</enum>
-           </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QRadioButton" name="rbUpdate">
            <property name="text">
-            <string>Rimuovi componente selezionato</string>
+            <string>Modifica</string>
            </property>
-           <property name="icon">
-            <iconset resource="icons.qrc">
-             <normaloff>:/Resources/Minus.PNG</normaloff>:/Resources/Minus.PNG</iconset>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QFormLayout" name="formLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Lotto:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Quantita</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="leQuantita"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Unità di misura</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="cbUm"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="leLotto">
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <layout class="QFormLayout" name="formLayout_2">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string>lotto</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="leLotto"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_6">
-             <property name="text">
-              <string>Quantita</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="leQuantita"/>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_7">
-             <property name="text">
-              <string>Unità di misura</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QComboBox" name="cbUm"/>
-           </item>
-           <item row="4" column="1">
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <widget class="QPushButton" name="pushButton_4">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>Aggiungi</string>
-               </property>
-               <property name="icon">
-                <iconset resource="icons.qrc">
-                 <normaloff>:/Resources/Plus.PNG</normaloff>:/Resources/Plus.PNG</iconset>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_5">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>Annulla aggiunta</string>
-               </property>
-               <property name="icon">
-                <iconset resource="icons.qrc">
-                 <normaloff>:/Resources/Banned-Sign.PNG</normaloff>:/Resources/Banned-Sign.PNG</iconset>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </item>
-        </layout>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Salva</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/save-icon.png</normaloff>:/Resources/save-icon.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3"/>
        </item>
       </layout>
      </item>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>Salva</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/save-icon.png</normaloff>:/Resources/save-icon.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="text">
-        <string>Chiudi</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Actions-window-close-icon.png</normaloff>:/Resources/Actions-window-close-icon.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="text">
+      <string>Chiudi</string>
+     </property>
+     <property name="icon">
+      <iconset resource="icons.qrc">
+       <normaloff>:/Resources/Actions-window-close-icon.png</normaloff>:/Resources/Actions-window-close-icon.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -384,4 +403,8 @@
   <include location="icons.qrc"/>
  </resources>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+ </buttongroups>
 </ui>

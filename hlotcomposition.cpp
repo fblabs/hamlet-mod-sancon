@@ -78,12 +78,6 @@ void HLotComposition::recalculate()
      }
 
 
-
-
-
-
-
-
     for (int j=0;j<mod->rowCount();j++)
     {
        i = mod->index(j,5);
