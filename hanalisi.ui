@@ -276,6 +276,17 @@
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="pbBioData">
+             <property name="text">
+              <string>Dati Biometrici</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/Resources/Bar-chart64.png</normaloff>:/Resources/Bar-chart64.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="pbPrint">
              <property name="text">
               <string>Stampa</string>

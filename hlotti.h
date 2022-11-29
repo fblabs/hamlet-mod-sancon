@@ -57,6 +57,7 @@ private slots:
     void getDetails();
     void modifySelected(int pidlotto=-1 );
     void deleteSelectedLot();
+    void dataBio();
 
     void printPreview(QPrinter *printer);
     void printPreviewSlot(QString filename=QString());

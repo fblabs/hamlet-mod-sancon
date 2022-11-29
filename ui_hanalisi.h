@@ -59,6 +59,7 @@ public:
     QLineEdit *leLot;
     QPushButton *pushButton_4;
     QPushButton *pushButton_5;
+    QPushButton *pbBioData;
     QPushButton *pbPrint;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pushButton_3;
@@ -236,11 +237,19 @@ public:
 
         horizontalLayout_4->addWidget(pushButton_5);
 
+        pbBioData = new QPushButton(HAnalisi);
+        pbBioData->setObjectName(QString::fromUtf8("pbBioData"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbBioData->setIcon(icon3);
+
+        horizontalLayout_4->addWidget(pbBioData);
+
         pbPrint = new QPushButton(HAnalisi);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon4);
 
         horizontalLayout_4->addWidget(pbPrint);
 
@@ -257,9 +266,9 @@ public:
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         pushButton_3 = new QPushButton(HAnalisi);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon5);
 
         horizontalLayout_3->addWidget(pushButton_3);
 
@@ -293,6 +302,7 @@ public:
         label_5->setText(QCoreApplication::translate("HAnalisi", "Cerca lotto:", nullptr));
         pushButton_4->setText(QCoreApplication::translate("HAnalisi", "Cerca ingredienti", nullptr));
         pushButton_5->setText(QCoreApplication::translate("HAnalisi", "Cerca uso", nullptr));
+        pbBioData->setText(QCoreApplication::translate("HAnalisi", "Dati Biometrici", nullptr));
         pbPrint->setText(QCoreApplication::translate("HAnalisi", "Stampa", nullptr));
         pushButton_3->setText(QCoreApplication::translate("HAnalisi", "Chiudi", nullptr));
     } // retranslateUi

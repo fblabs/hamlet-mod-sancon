@@ -27,6 +27,7 @@
 #include <QPainter>
 #include <QTextStream>
 #include <QSqlRecord>
+#include "hbiodetails.h"
 
 
 HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
@@ -195,11 +196,13 @@ void HLotti::showContextMenu(const QPoint &pos)
     menu->addSeparator();
     QAction *copyAction=menu->addAction("Copia il testo sotto il cursore");
     QAction *editAction=menu->addAction("Modifica/Copia dati ...");
-   //. detailsAction->setShortcut(QKeySequence("Ctrl+F5"));
+    QAction *bioAction=menu->addAction("Dati Biologici ...");
+
 
     connect(detailsAction,SIGNAL(triggered(bool)),this,SLOT(getDetails()));
     connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyField()));
     connect(editAction,SIGNAL(triggered(bool)),this,SLOT(editLot()));
+    connect(bioAction,SIGNAL(triggered(bool)),this,SLOT(dataBio()));
 
 
 
@@ -814,6 +817,15 @@ qDebug()<<q.lastQuery()<<q.lastError().text()<<q.boundValue(0).toString();
 
 }
 
+void HLotti::dataBio()
+{
+    int pidlotto=ui->twLots->model()->index(ui->twLots->currentIndex().row(),0).data(0).toInt();
+
+    qDebug()<<pidlotto;
+    HBioDetails *f=new HBioDetails(pidlotto,db);
+    f->show();
+}
+
 
 
 
@@ -859,9 +871,7 @@ void HLotti::on_leLottoRaw_returnPressed()
     if(ui->leLottoRaw->text().length()>0){
     localfilter="lotdef.lot like '" +ui->leLottoRaw->text()+"%'";
     tbm->setFilter(localfilter);
-    }/*else{
-        setFilter();
-    }*/
+    }
 }
 
 

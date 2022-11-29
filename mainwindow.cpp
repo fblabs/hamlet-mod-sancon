@@ -469,7 +469,7 @@ void MainWindow::on_tbClose_clicked()
     {
 
         db.close();
-        db.removeDatabase(sConn);
+        QSqlDatabase::removeDatabase(sConn);
         this->close();
 
         QApplication::quit();
@@ -515,9 +515,9 @@ void MainWindow::login()
 void MainWindow::on_tbLogout_clicked()
 {
 
-    user=0;
+    user=nullptr;
     db.close();
-    db.removeDatabase(sConn);
+    QSqlDatabase::removeDatabase(sConn);
     disableUI();
 }
 

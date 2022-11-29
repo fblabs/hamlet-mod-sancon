@@ -12,6 +12,7 @@
 #include <QMenu>
 #include <QAction>
 #include "hmodifylot.h"
+#include "hbiodetails.h"
 
 HAnalisi::HAnalisi(QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
@@ -631,6 +632,16 @@ void HAnalisi::on_tvLots_doubleClicked(const QModelIndex &index)
 
     HModifyLot *f=new HModifyLot(lotid,db);
 
+    f->show();
+}
+
+
+void HAnalisi::on_pbBioData_clicked()
+{
+    int pidlotto=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
+
+    qDebug()<<pidlotto;
+    HBioDetails *f=new HBioDetails(pidlotto,db);
     f->show();
 }
 

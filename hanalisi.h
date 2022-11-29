@@ -58,6 +58,7 @@ private slots:
     void on_pbPrint_clicked();
     void doMenu(QPoint pos);
     void on_tvLots_doubleClicked(const QModelIndex &index);
+    void on_pbBioData_clicked();
 };
 
 #endif // HANALISI_H
