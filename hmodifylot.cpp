@@ -11,14 +11,14 @@
 #include "hlotmovements.h"
 
 
-HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb, const QDate from, const QDate to, QWidget *parent) :
+HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb,/*/ const QDate from, const QDate to,*/ QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HModifyLot)
 {
     ui->setupUi(this);
 
-    f=from;
-    t=to;
+  /*  f=from;
+    t=to;*/
 
     qDebug()<<"FTOSTRING"<<f.toString();
 

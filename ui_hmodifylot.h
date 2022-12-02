@@ -69,7 +69,7 @@ public:
         if (HModifyLot->objectName().isEmpty())
             HModifyLot->setObjectName(QString::fromUtf8("HModifyLot"));
         HModifyLot->setWindowModality(Qt::ApplicationModal);
-        HModifyLot->resize(914, 429);
+        HModifyLot->resize(914, 437);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Wood-4-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HModifyLot->setWindowIcon(icon);
@@ -185,6 +185,7 @@ public:
 
         deScad = new QDateEdit(HModifyLot);
         deScad->setObjectName(QString::fromUtf8("deScad"));
+        deScad->setCalendarPopup(true);
 
         gridLayout_2->addWidget(deScad, 2, 2, 1, 1);
 

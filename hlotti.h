@@ -5,6 +5,9 @@
 #include <QSql>
 #include <QSqlDatabase>
 #include <QSqlRelationalTableModel>
+//----------------------------------------
+#include <QSqlQueryModel>
+//----------------------------------------
 #include <QSqlTableModel>
 #include <QSqlDatabase>
 #include "hreadonlymodellots.h"
@@ -31,6 +34,7 @@ public:
 
 
 private slots:
+    void getLotsOverview();
     void on_pushButton_clicked();
 
     void on_pushButton_3_clicked();
@@ -124,6 +128,7 @@ private:
     QDate al;
     bool dateset;
     QString prevFilter;
+    QSqlQueryModel *mod;
 
 
 

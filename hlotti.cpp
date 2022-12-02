@@ -4,6 +4,10 @@
 #include <QDate>
 #include <QSqlError>
 #include <QSqlQuery>
+//---------------------------------------------
+#include <QSqlQueryModel>
+
+//---------------------------------------------
 #include <QSqlRelationalDelegate>
 #include <QMessageBox>
 #include <QPainter>
@@ -59,7 +63,7 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
    tbm->setRelation(10,QSqlRelation("tipi_lot","ID","descrizione"));
    tbm->setSort(3,Qt::DescendingOrder);
 
-  /* tbm->setFilter("lotdef.attivo>0");*/
+   tbm->setFilter("lotdef.attivo>0");
 
    tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
    tbm->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
@@ -90,8 +94,9 @@ HLotti::HLotti(QSqlDatabase pdb, HUser *puser, QWidget *parent) :
    ui->twLots->setColumnHidden(3,true);
    ui->twLots->setColumnHidden(6,true);
    ui->twLots->setCurrentIndex(ui->twLots->model()->index(-1,0));
-   ui->pushButton_7->setEnabled(false);
 
+  // getLotsOverview();
+   ui->pushButton_7->setEnabled(false);
 
    ui->datadal->setDate(QDate::currentDate().addDays(-1));
    ui->dataal->setDate(QDate::currentDate());
@@ -125,6 +130,19 @@ HLotti::~HLotti()
 {
 
     delete ui;
+
+}
+
+void HLotti::getLotsOverview()
+{
+
+    mod=new QSqlQueryModel();
+    QSqlQuery q(db);
+    QString sql="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE' from lotdef,prodotti,anagrafica where prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica ORDER By lotdef.data DESC";
+    q.exec();
+    mod->setQuery(q);
+
+    ui->twLots->setModel(mod);
 
 }
 
@@ -168,7 +186,7 @@ void HLotti::getDataLots()
 void HLotti::editLot()
 {
     int idlotto=ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt();
-    HModifyLot *f=new HModifyLot(idlotto,db,ui->datadal->date(), ui->dataal->date());
+    HModifyLot *f=new HModifyLot(idlotto,db/*,ui->datadal->date(), ui->dataal->date()*/);
     connect(f,SIGNAL(updateLot()),this,SLOT(updateTableView()));
 
     f->show();
@@ -499,7 +517,7 @@ void HLotti::updateTableView()
 void HLotti::modifySelected(int pidlotto)
 {
 
-   HModifyLot *f=new HModifyLot(pidlotto,db,ui->datadal->date(),ui->dataal->date());
+   HModifyLot *f=new HModifyLot(pidlotto,db/*,ui->datadal->date(),ui->dataal->date()*/);
    connect(f,SIGNAL(updatedLot()),this,SLOT(updateTableView()));
    f->show();
 

@@ -1396,7 +1396,7 @@ bool HProduction::saveUpdatedComposizione()
 
 void HProduction::on_pushButton_3_clicked()
 {
-    bool b=false;
+
 
     if (!modifyLot){
 
@@ -1518,7 +1518,7 @@ bool HProduction::updateComposition()
     }
 
 
-    bool fb;
+    bool fb=false;
 
     //salvo le operazioni nuove
 

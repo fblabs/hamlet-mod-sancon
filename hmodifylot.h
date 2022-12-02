@@ -15,7 +15,7 @@ class HModifyLot : public QWidget
     Q_OBJECT
 
 public:
-    explicit HModifyLot( int pidlotto=1, QSqlDatabase pdb=QSqlDatabase(),const QDate from=QDate(), const QDate to=QDate(),QWidget *parent = nullptr);
+    explicit HModifyLot(int pidlotto=-1, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = nullptr);
     ~HModifyLot();
 
 
