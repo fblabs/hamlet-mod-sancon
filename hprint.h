@@ -25,67 +25,67 @@ public:
     explicit HPrint(QWidget *parent = 0,bool altColors=false);
     ~HPrint();
 
-   void setText(QString text);
-   void append (QString text, bool bold=false);
-   void setConnection(QString conn);
-   void printPixmap(QTableView *table);
-   void hideClose();
-   void resetText();
-   void loadImage();
-   QTextEdit *getViewport();
-   QTextCursor getCursor();
-   QTextDocument* doc;
+    void setText(QString text);
+    void append (QString text, bool bold=false);
+    void setConnection(QString conn);
+    void printPixmap(QTableView *table);
+    void hideClose();
+    void resetText();
+    void loadImage();
+    QTextEdit *getViewport();
+    QTextCursor getCursor();
+    QTextDocument* doc;
 
-   void resizeImage(int wr,int hr);
-   void toggleImageUI(bool visible);
-   void setHtml(QString html);
-
-   QTextDocument *getTextDocument();
+    void resizeImage(int wr,int hr);
+    void toggleImageUI(bool visible);
+    void setHtml(QString html);
+    QTextDocument *getTextDocument();
 private slots:
-   void on_pushButton_2_clicked();
-   void on_pushButton_clicked();
-   void onConnectionSet();
+    void on_pushButton_2_clicked();
+    void on_pushButton_clicked();
+    void onConnectionSet();
 
-   void printPreview(QPrinter *printer);
-   void on_pbant_clicked();
-   void on_spCharSize_valueChanged(int arg1);
-   void spSetValues();
-   bool eventFilter(QObject *target, QEvent *event);
+    void printPreview(QPrinter *printer);
+    void on_pbant_clicked();
+    void on_spCharSize_valueChanged(int arg1);
+    void spSetValues();
 
-
-
+    bool eventFilter(QObject *target, QEvent *event);
 
 
 
 
-   void on_sbW_valueChanged(int arg1);
 
-   void on_sbH_valueChanged(int arg1);
 
-   void on_textEdit_cursorPositionChanged();
 
-   void on_rbPortrait_toggled(bool checked);
+    void on_sbW_valueChanged(int arg1);
 
-   void on_rbLandscape_toggled(bool checked);
+    void on_sbH_valueChanged(int arg1);
+
+    void on_textEdit_cursorPositionChanged();
+
+    void on_rbPortrait_toggled(bool checked);
+
+    void on_rbLandscape_toggled(bool checked);
 
 public slots:
-   void setsbWValue(int val);
-   void setsbHValue(int val);
-   QString getImageName();
-   int getsbWValue();
-   int getsbHValue();
-   int getWidthImg0();
-   int getHeightImg0();
-   int getWidthImg1();
-   int getHeightImg1();
-   void setFontSize(int sz);
-   int getFontSize();
-   void addImage(QByteArray bytes, QString name, int width, int height);
-   void cursorToEnd();
-   void cursorToStart();
-   QTextTable *addTable(int rows, int columns,QTextTableFormat ptf, QColor background=QColor("white"), QColor alternateBackground=QColor(230,230,230));
-   QTextTable *writeTableContent(QTextTable *table, int row, int column,QTextCharFormat ptcf,QString text);
-   QTextTable* writeTableContentRed(QTextTable *table, int row, int column, QTextCharFormat pformat, QString text="");
+    void setsbWValue(int val);
+    void setsbHValue(int val);
+    QString getImageName();
+    int getsbWValue();
+    int getsbHValue();
+    int getWidthImg0();
+    int getHeightImg0();
+    int getWidthImg1();
+    int getHeightImg1();
+    void setFontSize(int sz);
+    int getFontSize();
+    void addImage(QByteArray bytes, QString name, int width, int height);
+    void cursorToEnd();
+    void cursorToStart();
+    QTextTable *addTable(int rows, int columns,QTextTableFormat ptf, QColor background=QColor("white"), QColor alternateBackground=QColor(230,230,230));
+    QTextTable *writeTableContent(QTextTable *table, int row, int column,QTextCharFormat ptcf,QString text);
+    QTextTable* writeTableContentRed(QTextTable *table, int row, int column, QTextCharFormat pformat, QString text="");
 
 
 private:

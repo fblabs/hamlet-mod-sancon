@@ -35,6 +35,10 @@ private slots:
     void on_cbType_currentIndexChanged(int index);
     void print();
     void on_pbPrint_clicked();
+    QString buildLotsQuery(int tipo=-1, int prodotto=-1);
+    QSqlQueryModel *getProducts();
+    void on_cbProduct_currentIndexChanged(int index);
+    void on_ckbUseProduct_toggled(bool checked);
 };
 
 #endif // HLOTTI_NEW_H

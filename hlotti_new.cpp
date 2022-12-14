@@ -21,10 +21,14 @@ HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     ui->deFrom->setDate(QDate::currentDate().addMonths(-1));
     ui->deTo->setDate(QDate::currentDate());
     db=pdb;
-
     getLotTypes();
+    ui->cbProduct->setModel(getProducts());
+    ui->cbProduct->setModelColumn(1);
 
     ui->tvLotti->setModel(loadLotsData());
+
+
+
 
 }
 
@@ -38,25 +42,37 @@ QSqlQueryModel* HLotti_new::loadLotsData()
     QSqlQueryModel * local_mod=new QSqlQueryModel();
     QString sql=QString();
 
+    int tipo=-1;
+    int prodotto=-1;
+
+
 
     if(ui->ckbUseType->isChecked())
     {
-        sql="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
-                from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto\
-                AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.data BETWEEN :dfrom AND :dto AND lotdef.tipo=:idtipo ORDER BY lotdef.data DESC";
-    }else{
-
-        sql="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
-                from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto\
-                AND anagrafica.ID=lotdef.anagrafica and lotdef.data BETWEEN :dfrom AND :dto and tipi_lot.ID=lotdef.tipo  ORDER BY lotdef.data DESC";
+       tipo=ui->cbType->model()->index(ui->cbType->currentIndex(),0).data(0).toInt();
     }
+    if (ui->ckbUseProduct->isChecked())
+    {
+        prodotto=ui->cbProduct->model()->index(ui->cbProduct->currentIndex(),0).data(0).toInt();
+    }
+
+    sql=buildLotsQuery(tipo,prodotto);
+
+    qDebug()<<sql;
+
+    if(!db.isOpen())qDebug()<<"NOT OPEN";
+
     QSqlQuery q(db);
     q.prepare (sql);
+    q.bindValue(":tipo",tipo);
+    q.bindValue(":prodotto",prodotto);
     q.bindValue(":dfrom",ui->deFrom->date());
     q.bindValue(":dto",ui->deTo->date());
-    if(ui->ckbUseType->isChecked()) q.bindValue(":idtipo",ui->cbType->model()->index(ui->cbType->currentIndex(),0).data(0).toInt());
+
+
     q.exec();
-    qDebug()<<q.lastError().text()<<sql<<q.lastQuery();
+
+    qDebug()<<q.lastError().text();
 
     local_mod->setQuery(q);
     return local_mod;
@@ -119,9 +135,7 @@ void HLotti_new::getLotTypes()
 
 void HLotti_new::on_ckbUseType_toggled(bool checked)
 {
-    qDebug()<<"TOGGLED";
     ui->tvLotti->setModel(loadLotsData());
-
 }
 
 
@@ -148,7 +162,7 @@ void HLotti_new::print()
 
     out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
 
-    out << "<thead><tr bgcolor='lightyellow'><th colspan='11'>"+ title +"</th></tr>";
+    out << "<thead><tr bgcolor='lightyellow'><th colspan='5'>"+ title +"</th></tr>";
     // headers
     out << "<tr bgcolor=#f0f0f0>";
     for (int column = 0; column < columnCount; column++)
@@ -209,20 +223,83 @@ void HLotti_new::print()
 
 }
 
-
-
-
-
-
-
-
-
-
-
 void HLotti_new::on_pbPrint_clicked()
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
     print();
-     QApplication::setOverrideCursor(Qt::ArrowCursor);
+    QApplication::setOverrideCursor(Qt::ArrowCursor);
+}
+
+QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
+{
+    QString lots_query=QString();
+
+    //NON USO NE' TIPO LOTTO NE' PRODOTTO
+
+
+    if(tipo<0 && prodotto<0)
+    {
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
+                from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto\
+                AND anagrafica.ID=lotdef.anagrafica and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
+    }
+
+    // USO SOLO IL TIPO LOTTO
+
+    if(tipo>-1 && prodotto<0)
+    {
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
+                FROM lotdef,prodotti,anagrafica, tipi_lot\
+                 WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.tipo=:tipo and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
+    }
+
+    //USO SOLO IL PRODOTTO
+
+    if(tipo<0 && prodotto>-1)
+    {
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
+                FROM lotdef,prodotti,anagrafica, tipi_lot WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
+    }
+
+    //USO TIPO LOTTO E PRODOTTI
+
+    if(tipo>-1 && prodotto > -1)
+    {
+
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
+        from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.tipo=:tipo and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
+
+    }
+
+    return lots_query;
+}
+
+
+QSqlQueryModel* HLotti_new::getProducts()
+{
+    QSqlQuery q(db);
+    QSqlQueryModel *mod=new QSqlQueryModel();
+    QString sql="select ID,descrizione FROM prodotti ORDER BY descrizione asc;";
+
+    q.prepare(sql);
+    q.exec();
+    mod->setQuery(q);
+
+    return mod;
+
+
+
+}
+
+
+void HLotti_new::on_cbProduct_currentIndexChanged(int index)
+{
+     ui->tvLotti->setModel(loadLotsData());
+}
+
+
+void HLotti_new::on_ckbUseProduct_toggled(bool checked)
+{
+   ui->tvLotti->setModel(loadLotsData());
 }
 

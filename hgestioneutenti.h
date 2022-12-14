@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlRelationalTableModel>
 #include <QDataWidgetMapper>
+#include "huser.h"
 
 
 #include <hnewuser.h>
@@ -18,7 +19,7 @@ class HGestioneUtenti : public QWidget
     Q_OBJECT
 
 public:
-    explicit HGestioneUtenti(QSqlDatabase pdb=QSqlDatabase(),QWidget *parent = 0);
+    explicit HGestioneUtenti(HUser * p_user=nullptr,QSqlDatabase pdb=QSqlDatabase(),QWidget *parent = 0);
     ~HGestioneUtenti();
 
 
@@ -34,10 +35,13 @@ private slots:
 
     void on_comboBox_currentIndexChanged(int index);
 
-    void on_pushButton_4_clicked();
+
+
+    void on_pbGroups_clicked();
 
 private:
     Ui::HGestioneUtenti *ui;
+    HUser *user;
 
     QDataWidgetMapper *mapper;
     QSqlDatabase db;

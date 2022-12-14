@@ -7,16 +7,18 @@
 #include <QSqlQuery>
 #include <QDataWidgetMapper>
 #include <QMessageBox>
+#include "huser.h"
 // #include <QDebug>
 #include <QSqlError>
 
-HGestioneUtenti::HGestioneUtenti(QSqlDatabase pdb,QWidget *parent) :
+HGestioneUtenti::HGestioneUtenti(HUser *p_user, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HGestioneUtenti)
 {
     ui->setupUi(this);
 
     db=pdb;
+    user=p_user;
 
     utm=new QSqlRelationalTableModel(0,db);
     gtm=new QSqlTableModel(0,db);
@@ -210,8 +212,9 @@ void HGestioneUtenti::on_comboBox_currentIndexChanged(int index)
    // // qDebug()<<ui->comboBox->currentText()<<ui->comboBox->itemData(ui->comboBox->currentIndex())<<ui->comboBox->model()->index(ui->comboBox->currentIndex(),3).data().toString();
 }
 
-void HGestioneUtenti::on_pushButton_4_clicked()
+
+void HGestioneUtenti::on_pbGroups_clicked()
 {
-  //  HGroups *f=new HGroups(0,"toremove");
-  //  f->show();
+    return;
 }
+

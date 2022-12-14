@@ -19,6 +19,12 @@
 #include <QTableView>
 #include <QPrintDialog>
 
+enum model_type{
+
+    QUERYMODEL=1,
+    TABLEMODEL=2
+};
+
 HPrint::HPrint(QWidget *parent, bool altColors) :
     QWidget(parent),
     ui(new Ui::HPrint)
@@ -644,6 +650,8 @@ void HPrint::setHtml(QString html)
 {
     ui->textEdit->setHtml(html);
 }
+
+
 
 QTextDocument *HPrint::getTextDocument()
 {

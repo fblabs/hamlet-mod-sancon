@@ -67,6 +67,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     sConn=settings.value("conn").toString();
 
     ui->pbOldCards->setVisible(false);
+    ui->lbUser_label->setVisible(false);
     ui->toolButton->click();
 
 
@@ -108,6 +109,10 @@ void MainWindow::userLogged(HUser* usr,QSqlDatabase pdb)
 
         bool b=db.isOpen();
         qDebug()<<"userLogged Main"<<QString::number(b);
+
+        ui->lbUser_label->setVisible(true);
+        ui->lbCurrentUser->setVisible(true);
+        ui->lbCurrentUser->setText(usr->getUsername()+" ("+usr->getName()+")");
         enableButtonsForRole();
 
     }
@@ -518,6 +523,9 @@ void MainWindow::on_tbLogout_clicked()
 {
 
     user=nullptr;
+    ui->lbUser_label->setVisible(false);
+    ui->lbCurrentUser->setVisible(false);
+    ui->lbCurrentUser->setText("");
     db.close();
     QSqlDatabase::removeDatabase(sConn);
     disableUI();
@@ -551,14 +559,10 @@ void MainWindow::on_pbSchede_clicked()
 void MainWindow::on_tbUtenti_clicked()
 {
    // int i=1;
-    HGestioneUtenti *f=new HGestioneUtenti(db);
+    HGestioneUtenti *f=new HGestioneUtenti(user,db);
     f->show();
 }
 
-/*void MainWindow::on_pushButton_clicked()
-{
-
-}*/
 
 void MainWindow::on_tbModificaLotti_clicked()
 {
