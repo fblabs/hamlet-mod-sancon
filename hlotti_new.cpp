@@ -196,7 +196,7 @@ void HLotti_new::print()
         QString filename;
 
         // qDebug()<<"filename="<<filename;
-        filename= QFileDialog::getOpenFileName(this,"Scegli il nome del file",QString(),"Pdf (*.pdf)");
+        filename= QFileDialog::getSaveFileName(this,"Scegli il nome del file",QString(),"Pdf (*.pdf)");
 
         if (filename.isEmpty() && filename.isNull()){
             //  qDebug()<<"annullato";
