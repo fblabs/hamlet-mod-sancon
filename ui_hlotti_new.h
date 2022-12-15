@@ -31,7 +31,6 @@ class Ui_HLotti_new
 public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_3;
-    QLabel *label;
     QDateEdit *deFrom;
     QLabel *label_2;
     QDateEdit *deTo;
@@ -39,7 +38,12 @@ public:
     QLabel *label_3;
     QComboBox *cbType;
     QCheckBox *ckbUseType;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label_4;
+    QComboBox *cbProduct;
+    QCheckBox *ckbUseProduct;
     QSpacerItem *horizontalSpacer;
+    QLabel *label;
     QTableView *tvLotti;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbLotInfo;
@@ -52,15 +56,13 @@ public:
             HLotti_new->setObjectName(QString::fromUtf8("HLotti_new"));
         HLotti_new->setWindowModality(Qt::ApplicationModal);
         HLotti_new->resize(1188, 538);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        HLotti_new->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(HLotti_new);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        label = new QLabel(HLotti_new);
-        label->setObjectName(QString::fromUtf8("label"));
-
-        horizontalLayout_3->addWidget(label);
-
         deFrom = new QDateEdit(HLotti_new);
         deFrom->setObjectName(QString::fromUtf8("deFrom"));
         deFrom->setCalendarPopup(true);
@@ -100,12 +102,39 @@ public:
 
         horizontalLayout_3->addLayout(horizontalLayout_2);
 
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        label_4 = new QLabel(HLotti_new);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        horizontalLayout_4->addWidget(label_4);
+
+        cbProduct = new QComboBox(HLotti_new);
+        cbProduct->setObjectName(QString::fromUtf8("cbProduct"));
+        cbProduct->setEditable(true);
+        cbProduct->setInsertPolicy(QComboBox::NoInsert);
+
+        horizontalLayout_4->addWidget(cbProduct);
+
+        ckbUseProduct = new QCheckBox(HLotti_new);
+        ckbUseProduct->setObjectName(QString::fromUtf8("ckbUseProduct"));
+
+        horizontalLayout_4->addWidget(ckbUseProduct);
+
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_3->addItem(horizontalSpacer);
+        horizontalLayout_4->addItem(horizontalSpacer);
+
+
+        horizontalLayout_3->addLayout(horizontalLayout_4);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
+
+        label = new QLabel(HLotti_new);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        verticalLayout->addWidget(label);
 
         tvLotti = new QTableView(HLotti_new);
         tvLotti->setObjectName(QString::fromUtf8("tvLotti"));
@@ -127,27 +156,27 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         pbLotInfo = new QPushButton(HLotti_new);
         pbLotInfo->setObjectName(QString::fromUtf8("pbLotInfo"));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbLotInfo->setIcon(icon);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbLotInfo->setIcon(icon1);
         pbLotInfo->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbLotInfo);
 
         pbPrint = new QPushButton(HLotti_new);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/Resources/print-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/print-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon2);
         pbPrint->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbPrint);
 
         pbClose = new QPushButton(HLotti_new);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon3);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbClose);
@@ -163,11 +192,13 @@ public:
 
     void retranslateUi(QWidget *HLotti_new)
     {
-        HLotti_new->setWindowTitle(QCoreApplication::translate("HLotti_new", "Form", nullptr));
-        label->setText(QCoreApplication::translate("HLotti_new", "Dal:", nullptr));
+        HLotti_new->setWindowTitle(QCoreApplication::translate("HLotti_new", "Lotti", nullptr));
         label_2->setText(QCoreApplication::translate("HLotti_new", "Al:", nullptr));
         label_3->setText(QCoreApplication::translate("HLotti_new", "Tipo lotto:", nullptr));
         ckbUseType->setText(QString());
+        label_4->setText(QCoreApplication::translate("HLotti_new", "Prodotto:", nullptr));
+        ckbUseProduct->setText(QString());
+        label->setText(QCoreApplication::translate("HLotti_new", "Dal:", nullptr));
         pbLotInfo->setText(QCoreApplication::translate("HLotti_new", "Informazioni", nullptr));
         pbPrint->setText(QCoreApplication::translate("HLotti_new", "Stampa", nullptr));
         pbClose->setText(QCoreApplication::translate("HLotti_new", "Chiudi", nullptr));

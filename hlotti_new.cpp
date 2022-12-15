@@ -11,6 +11,7 @@
 #include <QCursor>
 #include "hprint.h"
 #include "hmodifylot.h"
+#include <QCompleter>
 
 HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     QWidget(parent),

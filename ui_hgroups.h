@@ -12,11 +12,11 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -25,82 +25,71 @@ QT_BEGIN_NAMESPACE
 class Ui_HGroups
 {
 public:
-    QVBoxLayout *verticalLayout_3;
-    QVBoxLayout *verticalLayout_2;
-    QHBoxLayout *horizontalLayout_2;
-    QListView *lvGruppi;
     QVBoxLayout *verticalLayout;
-    QLineEdit *leNome;
-    QCheckBox *cbCanUpdate;
-    QCheckBox *cbCanUpdateAna;
     QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QLabel *label;
+    QComboBox *cbGroups;
+    QSpacerItem *verticalSpacer;
+    QHBoxLayout *horizontalLayout_2;
+    QPushButton *pBSave;
+    QPushButton *pbClose;
 
     void setupUi(QWidget *HGroups)
     {
         if (HGroups->objectName().isEmpty())
             HGroups->setObjectName(QString::fromUtf8("HGroups"));
-        HGroups->resize(754, 464);
-        verticalLayout_3 = new QVBoxLayout(HGroups);
-        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        lvGruppi = new QListView(HGroups);
-        lvGruppi->setObjectName(QString::fromUtf8("lvGruppi"));
-
-        horizontalLayout_2->addWidget(lvGruppi);
-
-        verticalLayout = new QVBoxLayout();
+        HGroups->setWindowModality(Qt::ApplicationModal);
+        HGroups->resize(978, 476);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Resources/Users64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        HGroups->setWindowIcon(icon);
+        verticalLayout = new QVBoxLayout(HGroups);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        leNome = new QLineEdit(HGroups);
-        leNome->setObjectName(QString::fromUtf8("leNome"));
-
-        verticalLayout->addWidget(leNome);
-
-        cbCanUpdate = new QCheckBox(HGroups);
-        cbCanUpdate->setObjectName(QString::fromUtf8("cbCanUpdate"));
-
-        verticalLayout->addWidget(cbCanUpdate);
-
-        cbCanUpdateAna = new QCheckBox(HGroups);
-        cbCanUpdateAna->setObjectName(QString::fromUtf8("cbCanUpdateAna"));
-
-        verticalLayout->addWidget(cbCanUpdateAna);
-
-
-        horizontalLayout_2->addLayout(verticalLayout);
-
-
-        verticalLayout_2->addLayout(horizontalLayout_2);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        pushButton = new QPushButton(HGroups);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon);
-        pushButton->setIconSize(QSize(32, 32));
+        label = new QLabel(HGroups);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setMinimumSize(QSize(100, 0));
+        label->setMaximumSize(QSize(100, 16777215));
 
-        horizontalLayout->addWidget(pushButton);
+        horizontalLayout->addWidget(label);
 
-        pushButton_2 = new QPushButton(HGroups);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        cbGroups = new QComboBox(HGroups);
+        cbGroups->setObjectName(QString::fromUtf8("cbGroups"));
+        cbGroups->setEditable(true);
+        cbGroups->setInsertPolicy(QComboBox::NoInsert);
+
+        horizontalLayout->addWidget(cbGroups);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        pBSave = new QPushButton(HGroups);
+        pBSave->setObjectName(QString::fromUtf8("pBSave"));
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon1);
-        pushButton_2->setIconSize(QSize(32, 32));
+        icon1.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pBSave->setIcon(icon1);
+        pBSave->setIconSize(QSize(32, 32));
 
-        horizontalLayout->addWidget(pushButton_2);
+        horizontalLayout_2->addWidget(pBSave);
+
+        pbClose = new QPushButton(HGroups);
+        pbClose->setObjectName(QString::fromUtf8("pbClose"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon2);
+        pbClose->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pbClose);
 
 
-        verticalLayout_2->addLayout(horizontalLayout);
-
-
-        verticalLayout_3->addLayout(verticalLayout_2);
+        verticalLayout->addLayout(horizontalLayout_2);
 
 
         retranslateUi(HGroups);
@@ -110,11 +99,10 @@ public:
 
     void retranslateUi(QWidget *HGroups)
     {
-        HGroups->setWindowTitle(QCoreApplication::translate("HGroups", "Gestione Gruppi", nullptr));
-        cbCanUpdate->setText(QCoreApplication::translate("HGroups", "Pu\303\262 modificare Ricette, Prodotti e Schede clienti", nullptr));
-        cbCanUpdateAna->setText(QCoreApplication::translate("HGroups", "Pu\303\262 modificare l'anagrafica", nullptr));
-        pushButton->setText(QCoreApplication::translate("HGroups", "Salva", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("HGroups", "Chiudi", nullptr));
+        HGroups->setWindowTitle(QCoreApplication::translate("HGroups", "Gestione permessi", nullptr));
+        label->setText(QCoreApplication::translate("HGroups", "Descrizione:", nullptr));
+        pBSave->setText(QCoreApplication::translate("HGroups", "Salva", nullptr));
+        pbClose->setText(QCoreApplication::translate("HGroups", "Chiudi", nullptr));
     } // retranslateUi
 
 };

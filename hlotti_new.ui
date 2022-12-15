@@ -14,7 +14,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Lotti</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/Resources/Cube.PNG</normaloff>:/Resources/Cube.PNG</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

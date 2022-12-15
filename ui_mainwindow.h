@@ -29,8 +29,11 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
-    QLabel *label_3;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *lbUser_label;
+    QLabel *lbCurrentUser;
     QLabel *label_4;
+    QSpacerItem *horizontalSpacer_2;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
     QLabel *label;
@@ -158,10 +161,21 @@ public:
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        label_3 = new QLabel(centralWidget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        lbUser_label = new QLabel(centralWidget);
+        lbUser_label->setObjectName(QString::fromUtf8("lbUser_label"));
+        lbUser_label->setMinimumSize(QSize(100, 0));
+        lbUser_label->setMaximumSize(QSize(100, 16777215));
+        lbUser_label->setStyleSheet(QString::fromUtf8(""));
 
-        verticalLayout->addWidget(label_3);
+        horizontalLayout_2->addWidget(lbUser_label);
+
+        lbCurrentUser = new QLabel(centralWidget);
+        lbCurrentUser->setObjectName(QString::fromUtf8("lbCurrentUser"));
+
+        horizontalLayout_2->addWidget(lbCurrentUser);
 
         label_4 = new QLabel(centralWidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
@@ -173,7 +187,14 @@ public:
         label_4->setScaledContents(false);
         label_4->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
-        verticalLayout->addWidget(label_4);
+        horizontalLayout_2->addWidget(label_4);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_2);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
@@ -205,7 +226,7 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(17, 79, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer);
 
@@ -617,10 +638,11 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Hamlet MOD 2.9", nullptr));
-        label_3->setText(QString());
+        lbUser_label->setText(QCoreApplication::translate("MainWindow", "Utente corrente:", nullptr));
+        lbCurrentUser->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 3.2 </span><span style=\" font-size:10pt; font-weight:600; font-style:italic;\">(64bit)</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 3.2.2.1.</span><span style=\" font-size:10pt; font-weight:600;\">001</span><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2022</span></p><p><a href=\"\357\277\274\357\277\274https://github.com/fblabs/hamlet-mod-sancon\"><span style=\" font-size:10pt; font-weight:600; text-decoration: underline; color:#aaffff;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 3.2 </span><span style=\" font-size:10pt; font-weight:600; font-style:italic;\">(64bit)</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 3.2.2.2.</span><span style=\" font-size:10pt; font-weight:600;\">002</span><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza:LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2022</span></p><p><a href=\"\357\277\274\357\277\274https://github.com/fblabs/hamlet-mod-sancon\"><span style=\" font-size:10pt; font-weight:600; text-decoration: underline; color:#aaffff;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
         tbLogout->setText(QCoreApplication::translate("MainWindow", "Logout", nullptr));
         pbSchede->setText(QCoreApplication::translate("MainWindow", "Schede Clienti (F3)", nullptr));
 #if QT_CONFIG(shortcut)
