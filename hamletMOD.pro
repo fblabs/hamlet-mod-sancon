@@ -162,7 +162,6 @@ FORMS    += mainwindow.ui \
     hlotti_new.ui \
     hrecipesforingredient.ui \
     hutenti.ui \
-    hnewop.ui \
     hsettings.ui \
     hprint.ui \
     hnewproduct.ui \

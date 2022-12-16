@@ -46,6 +46,8 @@
 #include <QMessageBox>
 #include "hlotti_new.h"
 
+#include <QDesktopServices>
+
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
@@ -709,3 +711,6 @@ void MainWindow::on_pbProgrammazione_clicked()
     HWorkProgram *f=new HWorkProgram(user,db);
     f->showMaximized();
 }
+
+
+

@@ -90,6 +90,7 @@ void HComposizioneLotto::getDetails()
       //  parf=f;
 
         parf->show();
+        close();
 
 }
 

@@ -24,6 +24,13 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Dal:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QDateEdit" name="deFrom">
        <property name="calendarPopup">
         <bool>true</bool>
@@ -54,19 +61,19 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="ckbUseType">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QComboBox" name="cbType">
          <property name="editable">
           <bool>true</bool>
          </property>
          <property name="insertPolicy">
           <enum>QComboBox::NoInsert</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="ckbUseType">
-         <property name="text">
-          <string/>
          </property>
         </widget>
        </item>
@@ -82,19 +89,19 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="ckbUseProduct">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QComboBox" name="cbProduct">
          <property name="editable">
           <bool>true</bool>
          </property>
          <property name="insertPolicy">
           <enum>QComboBox::NoInsert</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="ckbUseProduct">
-         <property name="text">
-          <string/>
          </property>
         </widget>
        </item>
@@ -116,14 +123,10 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Dal:</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QTableView" name="tvLotti">
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustIgnored</enum>
+     </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>
@@ -139,8 +142,14 @@
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
      <attribute name="horizontalHeaderMinimumSectionSize">
-      <number>300</number>
+      <number>150</number>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>30</number>
      </attribute>
      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
       <bool>true</bool>
@@ -156,6 +165,12 @@
      </attribute>
      <attribute name="verticalHeaderMinimumSectionSize">
       <number>30</number>
+     </attribute>
+     <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderStretchLastSection">
+      <bool>false</bool>
      </attribute>
     </widget>
    </item>

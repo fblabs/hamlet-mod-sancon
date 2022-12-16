@@ -19,8 +19,6 @@ class HnuovaOperazione : public QWidget
 public:
     explicit HnuovaOperazione(HUser *puser=0, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = 0);
     ~HnuovaOperazione();
-public slots:
-//    void setConnectionName(QString conn, HUser *pusr);
 private:
     Ui::HnuovaOperazione *ui;
     QSqlDatabase db;

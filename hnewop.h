@@ -17,10 +17,10 @@ class HNewOp : public QWidget
     Q_OBJECT
 
 public:
-    explicit HNewOp(HUser *user, QWidget *parent = 0);
+    explicit HNewOp(HUser *user=new HUser(), QSqlDatabase p_db=QSqlDatabase(), QWidget *parent = 0);
     ~HNewOp();
     QSqlDatabase db;
-    void setConnectionName(QString conn);
+
 
 private:
     Ui::HNewOp *ui;
@@ -39,10 +39,6 @@ private:
     QString sLot0;
     QString newLot;
     int usr;
- //   void saveOpCarico();
- //   void saveOpScarico();
-
-    QString sConn;
     QString parseLotForProductID(QString lot);
     QString getNewLot();
     int user;

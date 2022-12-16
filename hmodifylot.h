@@ -37,7 +37,7 @@ private slots:
 
     void getLoadAmount();
 
-private:
+ private:
     Ui::HModifyLot *ui;
     QSqlDatabase db;
     int lot;

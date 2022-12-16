@@ -60,12 +60,9 @@ private slots:
     void on_pbExpirations_clicked();
     void on_pbCalcoloCosti_clicked();
     bool createPreferencesDB();
-
-
-
     void on_pbC4R_clicked();
-
     void on_pbProgrammazione_clicked();
+
 
 protected:
     void keyPressEvent(QKeyEvent *ke);

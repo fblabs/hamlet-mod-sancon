@@ -10,13 +10,13 @@
 #include <QSqlRecord>
 #include <QSqlField>
 
-HNewOp::HNewOp(HUser* user,QWidget *parent) :
-    QWidget(parent),
+HNewOp::HNewOp(HUser* user, QSqlDatabase p_db, QWidget *parent) :
+    QWidget(),
     ui(new Ui::HNewOp)
 {
     ui->setupUi(this);
 
-    this->setWindowModality(Qt::ApplicationModal);
+    db=p_db;
     usr=user->getID();
     setupForm();
     createUmModel();
@@ -29,12 +29,7 @@ HNewOp::~HNewOp()
     delete ui;
 }
 
-void HNewOp::setConnectionName(QString conn)
-{
-    sConn=conn;
-    setupForm();
 
-}
 
 void HNewOp::createUmModel()
 {
@@ -45,9 +40,6 @@ void HNewOp::createUmModel()
 void HNewOp::setupForm()
 {
 
-
-
-    db = QSqlDatabase::database(sConn);
 
     tbm = new  QSqlTableModel(this,db);
     tbm->setTable("prodotti");
@@ -106,35 +98,7 @@ void HNewOp::elabLeLot()
 
 }
 
-/*void HNewOp::saveOpScarico()
-{
-    //// qDebug()<<"utente"<<usr;
 
-       QSqlQuery* qsaveOp = new QSqlQuery(db);
-
-       QString sLot0=ui->leLot->text();
-
-       float quantita =ui->leQuantity->text().toFloat();
-
-       if(quantita >0)
-       {
-           quantita *= -1;
-       }
-
-       QString qry = "insert into operazioni(ID,lot,data,utente,IDprodotto,azione,quantita,note) values(-1,'"+ sLot0 +"',NOW()," + QString::number(usr) + "," + parseLotForProductID(sLot0) +",2 ," + QString::number(quantita)+ ",'" + ui->leNote->text()+"')";
-
-
-
-       if (qsaveOp->exec(qry))
-       {
-           QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
-       }
-       else
-       {
-           QMessageBox::warning(this,QApplication::applicationName(),"Errore salvando l'operazione",QMessageBox::Ok);
-           //// qDebug()<<qry<<qsaveOp->lastError().text();
-       }
-}*/
 
 QString HNewOp::saveOperationString(QString plot,bool isLoad)
 {

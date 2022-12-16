@@ -28,7 +28,7 @@ public:
     {
         if (NoUse->objectName().isEmpty())
             NoUse->setObjectName(QString::fromUtf8("NoUse"));
-        NoUse->resize(400, 298);
+        NoUse->resize(349, 298);
         NoUse->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 85, 255);"));
         verticalLayout = new QVBoxLayout(NoUse);
         verticalLayout->setSpacing(0);
@@ -36,7 +36,7 @@ public:
         verticalLayout->setContentsMargins(-1, -1, -1, 9);
         label_2 = new QLabel(NoUse);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setAutoFillBackground(true);
+        label_2->setAutoFillBackground(false);
         label_2->setPixmap(QPixmap(QString::fromUtf8("Resources/palet-03-icon.png")));
         label_2->setScaledContents(false);
         label_2->setAlignment(Qt::AlignCenter);
@@ -48,9 +48,8 @@ public:
         QFont font;
         font.setPointSize(11);
         font.setBold(true);
-        font.setWeight(75);
         label->setFont(font);
-        label->setAutoFillBackground(true);
+        label->setAutoFillBackground(false);
         label->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 0);"));
         label->setAlignment(Qt::AlignCenter);
 

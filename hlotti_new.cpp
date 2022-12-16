@@ -26,7 +26,9 @@ HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     ui->cbProduct->setModel(getProducts());
     ui->cbProduct->setModelColumn(1);
 
+    ui->tvLotti->setColumnHidden(0,true);
     ui->tvLotti->setModel(loadLotsData());
+    ui->tvLotti->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
 
 
@@ -68,7 +70,7 @@ QSqlQueryModel* HLotti_new::loadLotsData()
     q.bindValue(":tipo",tipo);
     q.bindValue(":prodotto",prodotto);
     q.bindValue(":dfrom",ui->deFrom->date());
-    q.bindValue(":dto",ui->deTo->date());
+    q.bindValue(":dto",ui->deTo->date().addDays(+1));
 
 
     q.exec();
@@ -240,7 +242,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
 
     if(tipo<0 && prodotto<0)
     {
-        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore AS 'LOTTO FORNITORE'\
                 from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto\
                 AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
     }
@@ -249,7 +251,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
 
     if(tipo>-1 && prodotto<0)
     {
-        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
                 FROM lotdef,prodotti,anagrafica, tipi_lot\
                  WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.tipo=:tipo and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
     }
@@ -258,7 +260,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
 
     if(tipo<0 && prodotto>-1)
     {
-        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
                 FROM lotdef,prodotti,anagrafica, tipi_lot WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
     }
 
@@ -267,7 +269,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
     if(tipo>-1 && prodotto > -1)
     {
 
-        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
         from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.tipo=:tipo and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
 
     }

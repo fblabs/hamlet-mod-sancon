@@ -40,6 +40,8 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     ui->tableView->setItemDelegate(new QSqlRelationalDelegate(tbm));
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
+    tbm->setSort(0,Qt::DescendingOrder);
+    tbm->setFilter("operazioni.data >=DATE(CURDATE())");
 
 
 
@@ -53,30 +55,18 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     tbm->setHeaderData(7,Qt::Horizontal,QObject::tr("Unità di misura"));
     tbm->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
 
-    tbm->select();
+
      qDebug()<<"selecting"<<tbm->query().lastError().text()<<tbm->lastError().text();
 
-    tbm->setSort(0,Qt::DescendingOrder);
-    tbm->setFilter("operazioni.data >=DATE(CURDATE())");
-
-
-
+    /*tbm->setSort(0,Qt::DescendingOrder);
+    tbm->setFilter("operazioni.data >=DATE(CURDATE())");*/
 
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
 
-
-
-
-
     ui->cbShowPackages->setVisible(false);
 
-
-
     //lista lotti
-
-
-
     //lista anagrafica
 
     ui->deScadenza->setDate(QDate::currentDate().addYears(2));
@@ -153,6 +143,8 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     comforn->setCompletionMode(QCompleter::PopupCompletion);
 
     ui->cbAnagrafica->setCompleter(comforn);
+
+    tbm->select();
 
 
     connect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setProdottoText()));

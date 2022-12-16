@@ -31,19 +31,19 @@ class Ui_HLotti_new
 public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_3;
+    QLabel *label;
     QDateEdit *deFrom;
     QLabel *label_2;
     QDateEdit *deTo;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_3;
-    QComboBox *cbType;
     QCheckBox *ckbUseType;
+    QComboBox *cbType;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_4;
-    QComboBox *cbProduct;
     QCheckBox *ckbUseProduct;
+    QComboBox *cbProduct;
     QSpacerItem *horizontalSpacer;
-    QLabel *label;
     QTableView *tvLotti;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbLotInfo;
@@ -63,6 +63,11 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        label = new QLabel(HLotti_new);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        horizontalLayout_3->addWidget(label);
+
         deFrom = new QDateEdit(HLotti_new);
         deFrom->setObjectName(QString::fromUtf8("deFrom"));
         deFrom->setCalendarPopup(true);
@@ -87,17 +92,17 @@ public:
 
         horizontalLayout_2->addWidget(label_3);
 
+        ckbUseType = new QCheckBox(HLotti_new);
+        ckbUseType->setObjectName(QString::fromUtf8("ckbUseType"));
+
+        horizontalLayout_2->addWidget(ckbUseType);
+
         cbType = new QComboBox(HLotti_new);
         cbType->setObjectName(QString::fromUtf8("cbType"));
         cbType->setEditable(true);
         cbType->setInsertPolicy(QComboBox::NoInsert);
 
         horizontalLayout_2->addWidget(cbType);
-
-        ckbUseType = new QCheckBox(HLotti_new);
-        ckbUseType->setObjectName(QString::fromUtf8("ckbUseType"));
-
-        horizontalLayout_2->addWidget(ckbUseType);
 
 
         horizontalLayout_3->addLayout(horizontalLayout_2);
@@ -109,17 +114,17 @@ public:
 
         horizontalLayout_4->addWidget(label_4);
 
+        ckbUseProduct = new QCheckBox(HLotti_new);
+        ckbUseProduct->setObjectName(QString::fromUtf8("ckbUseProduct"));
+
+        horizontalLayout_4->addWidget(ckbUseProduct);
+
         cbProduct = new QComboBox(HLotti_new);
         cbProduct->setObjectName(QString::fromUtf8("cbProduct"));
         cbProduct->setEditable(true);
         cbProduct->setInsertPolicy(QComboBox::NoInsert);
 
         horizontalLayout_4->addWidget(cbProduct);
-
-        ckbUseProduct = new QCheckBox(HLotti_new);
-        ckbUseProduct->setObjectName(QString::fromUtf8("ckbUseProduct"));
-
-        horizontalLayout_4->addWidget(ckbUseProduct);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -131,24 +136,24 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_3);
 
-        label = new QLabel(HLotti_new);
-        label->setObjectName(QString::fromUtf8("label"));
-
-        verticalLayout->addWidget(label);
-
         tvLotti = new QTableView(HLotti_new);
         tvLotti->setObjectName(QString::fromUtf8("tvLotti"));
+        tvLotti->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
         tvLotti->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvLotti->setAlternatingRowColors(true);
         tvLotti->setSelectionMode(QAbstractItemView::SingleSelection);
         tvLotti->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvLotti->setSortingEnabled(true);
-        tvLotti->horizontalHeader()->setMinimumSectionSize(300);
+        tvLotti->horizontalHeader()->setCascadingSectionResizes(true);
+        tvLotti->horizontalHeader()->setMinimumSectionSize(150);
+        tvLotti->horizontalHeader()->setDefaultSectionSize(30);
         tvLotti->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
         tvLotti->horizontalHeader()->setStretchLastSection(true);
         tvLotti->verticalHeader()->setVisible(false);
         tvLotti->verticalHeader()->setCascadingSectionResizes(true);
         tvLotti->verticalHeader()->setMinimumSectionSize(30);
+        tvLotti->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
+        tvLotti->verticalHeader()->setStretchLastSection(false);
 
         verticalLayout->addWidget(tvLotti);
 
@@ -193,12 +198,12 @@ public:
     void retranslateUi(QWidget *HLotti_new)
     {
         HLotti_new->setWindowTitle(QCoreApplication::translate("HLotti_new", "Lotti", nullptr));
+        label->setText(QCoreApplication::translate("HLotti_new", "Dal:", nullptr));
         label_2->setText(QCoreApplication::translate("HLotti_new", "Al:", nullptr));
         label_3->setText(QCoreApplication::translate("HLotti_new", "Tipo lotto:", nullptr));
         ckbUseType->setText(QString());
         label_4->setText(QCoreApplication::translate("HLotti_new", "Prodotto:", nullptr));
         ckbUseProduct->setText(QString());
-        label->setText(QCoreApplication::translate("HLotti_new", "Dal:", nullptr));
         pbLotInfo->setText(QCoreApplication::translate("HLotti_new", "Informazioni", nullptr));
         pbPrint->setText(QCoreApplication::translate("HLotti_new", "Stampa", nullptr));
         pbClose->setText(QCoreApplication::translate("HLotti_new", "Chiudi", nullptr));
