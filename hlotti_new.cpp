@@ -242,7 +242,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
     {
         lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO'\
                 from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto\
-                AND anagrafica.ID=lotdef.anagrafica and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
+                AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
     }
 
     // USO SOLO IL TIPO LOTTO
