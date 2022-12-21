@@ -185,7 +185,7 @@ bool HComposizioneLotto::deleteComponent()
 
 }
 
-bool HComposizioneLotto::unloadAll()
+void HComposizioneLotto::unloadAll()
 {
 
 
@@ -229,7 +229,7 @@ bool HComposizioneLotto::unloadAll()
     if(!b) {
         db.rollback();
         QMessageBox::warning(this,QApplication::applicationName(),"Errore nello scaricamento della giacenza del lotto",QMessageBox::Ok);
-        return false;
+
     }
     else
     {
@@ -254,7 +254,7 @@ bool HComposizioneLotto::unloadAll()
 
 
 
-    return b;
+
 
 
 }
@@ -628,6 +628,7 @@ void HComposizioneLotto::on_pbRemove_clicked()
 
 void HComposizioneLotto::on_pbScarico_clicked()
 {
-    unloadAll();
+   unloadAll();
+
 }
 

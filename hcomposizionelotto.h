@@ -47,7 +47,7 @@ private slots:
     int getTipo(int idl);
     void getDetails();
     bool deleteComponent();
-    bool unloadAll();
+    void unloadAll();
 
 
     void on_pbAdd_clicked();

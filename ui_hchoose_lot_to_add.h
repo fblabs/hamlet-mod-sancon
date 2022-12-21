@@ -10,6 +10,7 @@
 #define UI_HCHOOSE_LOT_TO_ADD_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
@@ -102,11 +103,17 @@ public:
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         pbAdd = new QPushButton(HChoose_lot_to_add);
         pbAdd->setObjectName(QString::fromUtf8("pbAdd"));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbAdd->setIcon(icon);
 
         horizontalLayout_2->addWidget(pbAdd);
 
         pbClose = new QPushButton(HChoose_lot_to_add);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon1);
 
         horizontalLayout_2->addWidget(pbClose);
 
@@ -121,7 +128,7 @@ public:
 
     void retranslateUi(QWidget *HChoose_lot_to_add)
     {
-        HChoose_lot_to_add->setWindowTitle(QCoreApplication::translate("HChoose_lot_to_add", "Form", nullptr));
+        HChoose_lot_to_add->setWindowTitle(QCoreApplication::translate("HChoose_lot_to_add", "Scelta lotto", nullptr));
         label->setText(QCoreApplication::translate("HChoose_lot_to_add", "Prodotti:", nullptr));
         label_2->setText(QCoreApplication::translate("HChoose_lot_to_add", "Quantit\303\240:", nullptr));
         pbAdd->setText(QCoreApplication::translate("HChoose_lot_to_add", "Aggiungi", nullptr));
