@@ -161,7 +161,7 @@ void HModifyLot::on_pushButton_clicked()
 void HModifyLot::on_pbComposizione_clicked()
 {
    // int p_idlotto, QString p_descrizione, HUser *p_user, QSqlDatabase pdb,QWidget *parent
-        QString desc=ui->leLot->text()+" - "+ui->leProd->text();
+    QString desc=ui->leLot->text()+" - "+ui->leProd->text();
 
     HComposizioneLotto *f=new HComposizioneLotto(lot,desc,user,db);
     connect(f,SIGNAL(unloaded()),this,SLOT(loadLotData()));

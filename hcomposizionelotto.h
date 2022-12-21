@@ -48,16 +48,12 @@ private slots:
     void getDetails();
     bool deleteComponent();
     void unloadAll();
-
-
     void on_pbAdd_clicked();
- //   bool addComponent();
- //   bool modifyComponent();
- //   bool removeComponent();
     void on_pbRemove_clicked();
     void on_pbScarico_clicked();
 signals:
    void unloaded();
+
 };
 
 #endif // HCOMPOSIZIONELOTTO_H

@@ -32,6 +32,9 @@ public:
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QComboBox *cbProducts;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label_3;
+    QLineEdit *leSearch;
     QTableView *tvLots;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_2;
@@ -53,6 +56,7 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         label = new QLabel(HChoose_lot_to_add);
         label->setObjectName(QString::fromUtf8("label"));
+        label->setMinimumSize(QSize(100, 0));
         label->setMaximumSize(QSize(100, 16777215));
 
         horizontalLayout->addWidget(label);
@@ -66,6 +70,24 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        label_3 = new QLabel(HChoose_lot_to_add);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setMinimumSize(QSize(100, 0));
+        label_3->setMaximumSize(QSize(100, 16777215));
+
+        horizontalLayout_4->addWidget(label_3);
+
+        leSearch = new QLineEdit(HChoose_lot_to_add);
+        leSearch->setObjectName(QString::fromUtf8("leSearch"));
+        leSearch->setClearButtonEnabled(true);
+
+        horizontalLayout_4->addWidget(leSearch);
+
+
+        verticalLayout->addLayout(horizontalLayout_4);
 
         tvLots = new QTableView(HChoose_lot_to_add);
         tvLots->setObjectName(QString::fromUtf8("tvLots"));
@@ -130,6 +152,7 @@ public:
     {
         HChoose_lot_to_add->setWindowTitle(QCoreApplication::translate("HChoose_lot_to_add", "Scelta lotto", nullptr));
         label->setText(QCoreApplication::translate("HChoose_lot_to_add", "Prodotti:", nullptr));
+        label_3->setText(QCoreApplication::translate("HChoose_lot_to_add", "Lotto:", nullptr));
         label_2->setText(QCoreApplication::translate("HChoose_lot_to_add", "Quantit\303\240:", nullptr));
         pbAdd->setText(QCoreApplication::translate("HChoose_lot_to_add", "Aggiungi", nullptr));
         pbClose->setText(QCoreApplication::translate("HChoose_lot_to_add", "Chiudi", nullptr));

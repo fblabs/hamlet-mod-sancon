@@ -83,13 +83,17 @@ void HChoose_lot_to_add::on_pbAdd_clicked()
         emit add_saved();
         close();
     }
+    else
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"ERRORE",QMessageBox::Ok);
+    }
 }
 
 bool HChoose_lot_to_add::saveAdd()
 {
+     //QString sql="SELECT ID, lot, data,prodotto,um FROM lotdef WHERE  prodotto=:prodotto ORDER BY lot ASC";
     QDateTime data=QDateTime::currentDateTime();
     int idl=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
-    qDebug()<<"IDL"<<idl;
     int utente=user->getID();
     int idprod=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),3).data(0).toInt();
     int azione=2;
@@ -99,7 +103,7 @@ bool HChoose_lot_to_add::saveAdd()
     QSqlQuery q(db);
     QString sql;
 
-     sql="INSERT INTO `operazioni`(`IDlotto`,`data`,`utente`,`IDprodotto`,`azione`,`quantita`,`um`)VALUES(:idlotto,:data,:utente,:idprodotto,:azione,:quantita,:um)";
+    sql="INSERT INTO `operazioni`(`IDlotto`,`data`,`utente`,`IDprodotto`,`azione`,`quantita`,`um`)VALUES(:idlotto,:data,:utente,:idprodotto,:azione,:quantita,:um)";
     db.transaction();
     q.prepare(sql);
     q.bindValue(":idlotto",idl);
@@ -132,6 +136,8 @@ bool HChoose_lot_to_add::saveAdd()
         db.commit();
 
         QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
+        close();
+
 
 
     }
@@ -148,4 +154,28 @@ bool HChoose_lot_to_add::saveAdd()
 
 }
 
+
+
+QSqlQueryModel *HChoose_lot_to_add::search_by_lot()
+{
+    QString to_search=ui->leSearch->text();
+
+     QSqlQueryModel *mod=new QSqlQueryModel();
+
+     QSqlQuery q(db);
+     QString sql="SELECT ID, lot, data,prodotto,um FROM lotdef WHERE  lot LIKE '" +to_search+"%' ORDER BY lot ASC";
+     q.prepare(sql);
+     q.exec();
+     mod->setQuery(q);
+     return mod;
+}
+
+
+void HChoose_lot_to_add::on_leSearch_returnPressed()
+{
+   ui->tvLots->setModel(search_by_lot());
+   ui->tvLots->setColumnHidden(0,true);
+   ui->tvLots->setColumnHidden(3,true);
+   ui->tvLots->setColumnHidden(4,true);
+}
 

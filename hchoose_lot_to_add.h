@@ -29,6 +29,10 @@ private slots:
     void on_cbProducts_currentIndexChanged(int index);
     void on_pbAdd_clicked();
     bool saveAdd();
+    QSqlQueryModel* search_by_lot();
+
+    void on_leSearch_returnPressed();
+
 signals:
     void add_saved();
 

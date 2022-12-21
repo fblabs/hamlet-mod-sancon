@@ -53,9 +53,9 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
 
     tipo=getTipo(id);
 
+        qDebug()<<"DESC"<<descrizione<<p_descrizione;
 
-    descrizione=p_descrizione;
-    ui->leDesc->setText(descrizione);
+
 
      if(tipo==4)ui->pbScarico->setVisible(true);
      if(tipo!=4)ui->pbScarico->setVisible(false);
@@ -103,20 +103,31 @@ void HComposizioneLotto::getDetails()
 
         QModelIndex ixlot;
         QModelIndex ixpro;
+        QString desc=QString();
+
+
 
         if (tipo != 1)
         {
-         ixlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),2);
-         ixpro=mod->index(ui->tableView->selectionModel()->currentIndex().row(),3);
+         ixlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),4);
+         ixpro=mod->index(ui->tableView->selectionModel()->currentIndex().row(),5);
+         desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
+
+
         }
         else
         {
           ixlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),2);
           ixpro=mod->index(ui->tableView->selectionModel()->currentIndex().row(),4);
+          desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
+
+
+
+
         }
 
 
-        QString desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
+
 
 
         HComposizioneLotto *f=new HComposizioneLotto(lotid,desc,user,db);
@@ -361,9 +372,9 @@ void HComposizioneLotto::getLotUse()
 
 
 
-       // QString pdesc=mod->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toString() + " - " + mod->index(ui->tableView->selectionModel()->currentIndex().row(),3).data(0).toString() ;
 
-       // ui->leDesc->setText(pdesc);
+
+
 
 
 
@@ -374,7 +385,15 @@ void HComposizioneLotto::getLotUse()
 
 void HComposizioneLotto::refresh_data()
 {
+    qDebug()<<"refresh"<<tipo;
 
+   if (tipo>1)
+   {
+       getLotComposition();
+   }
+   else {
+       getLotUse();
+   }
 }
 
 
@@ -600,13 +619,12 @@ void HComposizioneLotto::on_pbUse_clicked()
 void HComposizioneLotto::on_pbAdd_clicked()
 {
    HChoose_lot_to_add *f=new HChoose_lot_to_add(id,user,db);
-   connect(f,SIGNAL(add_saved()),this,SLOT(getLotComposition()));
+   connect(f,SIGNAL(add_saved()),this,SLOT(refresh_data()));
    f->show();
-}
 
-/*bool HComposizioneLotto::addComponent()
-{
-}*/
+
+
+}
 
 
 void HComposizioneLotto::on_pbRemove_clicked()
@@ -614,7 +632,7 @@ void HComposizioneLotto::on_pbRemove_clicked()
 
    if (deleteComponent())
    {
-       getLotComposition();
+      refresh_data();
 
    }
    else
@@ -629,6 +647,7 @@ void HComposizioneLotto::on_pbRemove_clicked()
 void HComposizioneLotto::on_pbScarico_clicked()
 {
    unloadAll();
+   refresh_data();
 
 }
 
