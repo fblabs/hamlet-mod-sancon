@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QSqlDatabase>
 #include <QSqlTableModel>
+#include "huser.h"
 #include <QDate>
 
 namespace Ui {
@@ -15,7 +16,7 @@ class HAnalisi : public QWidget
     Q_OBJECT
 
 public:
-    explicit HAnalisi(QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = nullptr);
+    explicit HAnalisi(QSqlDatabase pdb=QSqlDatabase(),HUser *p_user=new HUser(), QWidget *parent = nullptr);
     ~HAnalisi();
 public slots:
 
@@ -24,6 +25,7 @@ private:
     Ui::HAnalisi *ui;
     QSqlDatabase db;
     QSqlTableModel *tmClienti;
+    HUser *user;
     QDate datedal;
     QDate dateal;
 

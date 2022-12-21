@@ -12,6 +12,7 @@
 #include "hprint.h"
 #include "hmodifylot.h"
 #include <QCompleter>
+#include "huser.h"
 
 HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     QWidget(parent),
@@ -19,9 +20,11 @@ HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    user=p_user;
+    db=pdb;
+
     ui->deFrom->setDate(QDate::currentDate().addMonths(-1));
     ui->deTo->setDate(QDate::currentDate());
-    db=pdb;
     getLotTypes();
     ui->cbProduct->setModel(getProducts());
     ui->cbProduct->setModelColumn(1);
@@ -29,9 +32,6 @@ HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     ui->tvLotti->setColumnHidden(0,true);
     ui->tvLotti->setModel(loadLotsData());
     ui->tvLotti->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-
-
-
 
 }
 
@@ -112,7 +112,7 @@ void HLotti_new::on_tvLotti_doubleClicked(const QModelIndex &index)
 {
     int idlotto=ui->tvLotti->model()->index(ui->tvLotti->currentIndex().row(),0).data(0).toInt();
 
-    HModifyLot *f=new HModifyLot(idlotto,db/*,ui->deFrom->date(),ui->deTo->date()*/);
+    HModifyLot *f=new HModifyLot(idlotto,user,db);
     //   connect(f,SIGNAL(updatedLot()),this,SLOT(updateTableView()));
     f->show();
 }
@@ -121,7 +121,7 @@ void HLotti_new::on_tvLotti_doubleClicked(const QModelIndex &index)
 void HLotti_new::on_pbLotInfo_clicked()
 {
     int idlotto=ui->tvLotti->model()->index(ui->tvLotti->currentIndex().row(),0).data(0).toInt();
-    HModifyLot *f=new HModifyLot(idlotto,db/*,ui->deFrom->date(),ui->deTo->date()*/);
+    HModifyLot *f=new HModifyLot(idlotto,user,db);
     f->show();
 }
 

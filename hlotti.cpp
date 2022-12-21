@@ -186,7 +186,7 @@ void HLotti::getDataLots()
 void HLotti::editLot()
 {
     int idlotto=ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),0).data(0).toInt();
-    HModifyLot *f=new HModifyLot(idlotto,db/*,ui->datadal->date(), ui->dataal->date()*/);
+    HModifyLot *f=new HModifyLot(idlotto,user,db);
     connect(f,SIGNAL(updateLot()),this,SLOT(updateTableView()));
 
     f->show();
@@ -201,7 +201,7 @@ void HLotti::getDetails()
     desc+=ui->twLots->model()->index(ui->twLots->selectionModel()->currentIndex().row(),2).data(0).toString();
 
 
-    HComposizioneLotto *f=new HComposizioneLotto(0,db,lot,desc);
+    HComposizioneLotto *f=new HComposizioneLotto(lot,desc,user,db);
     f->show();
 }
 
@@ -517,7 +517,7 @@ void HLotti::updateTableView()
 void HLotti::modifySelected(int pidlotto)
 {
 
-   HModifyLot *f=new HModifyLot(pidlotto,db/*,ui->datadal->date(),ui->dataal->date()*/);
+   HModifyLot *f=new HModifyLot(pidlotto,user,db);
    connect(f,SIGNAL(updatedLot()),this,SLOT(updateTableView()));
    f->show();
 

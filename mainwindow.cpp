@@ -70,6 +70,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     ui->pbOldCards->setVisible(false);
     ui->lbUser_label->setVisible(false);
+    ui->tbModificaLotti->setVisible(false);
+    ui->pbUnload->setVisible(false);
     ui->toolButton->click();
 
 

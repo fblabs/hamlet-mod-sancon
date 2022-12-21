@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QSqlError>
 #include <QMessageBox>
+#include <huser.h>
 
 enum BIO_SAVE{
 
@@ -16,7 +17,7 @@ enum BIO_SAVE{
 
 };
 
-HBioDetails::HBioDetails(int p_idlotto,QSqlDatabase pdb,QWidget *parent) :
+HBioDetails::HBioDetails(int p_idlotto,QSqlDatabase pdb,HUser *p_user,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HBioDetails)
 {

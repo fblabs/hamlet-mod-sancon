@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
+#include "huser.h"
 
 
 namespace Ui {
@@ -15,7 +16,7 @@ class HBioDetails : public QWidget
     Q_OBJECT
 
 public:
-    explicit HBioDetails(int idlotto=-1, QSqlDatabase pdb=QSqlDatabase(),QWidget *parent = nullptr);
+    explicit HBioDetails(int idlotto=-1, QSqlDatabase pdb=QSqlDatabase(),HUser *user=nullptr,QWidget *parent = nullptr);
     ~HBioDetails();
 
 private:
@@ -34,6 +35,10 @@ private:
 
 
     void on_pbPrint_clicked();
+
+signals:
+    void add_saved();
+
 };
 
 #endif // HBIODETAILS_H

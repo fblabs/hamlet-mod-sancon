@@ -16,6 +16,7 @@ CONFIG(release,debug|release)
 
 SOURCES += main.cpp\
     hbiodetails.cpp \
+    hchoose_lot_to_add.cpp \
     hchooselot.cpp \
     hlotcomposition.cpp \
     hlotti_new.cpp \
@@ -86,6 +87,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     hbiodetails.h \
+    hchoose_lot_to_add.h \
     hchooselot.h \
     hlotcomposition.h \
     hlotti_new.h \
@@ -157,6 +159,7 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     hbiodetails.ui \
+    hchoose_lot_to_add.ui \
     hchooselot.ui \
     hlotcomposition.ui \
     hlotti_new.ui \

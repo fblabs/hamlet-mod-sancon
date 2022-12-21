@@ -200,7 +200,7 @@ void HMagazzino::on_pbLotInfo_clicked()
     r=ui->tableView->selectionModel()->currentIndex().row();
     const int idlotto=mod->index(r,c).data(0).toInt();
     qDebug()<<"POIPPO"<<idlotto<<r<<c;
-    HModifyLot *f=new HModifyLot(idlotto,db/*,ui->deFrom->date(),ui->deTo->date()*/);
+    HModifyLot *f=new HModifyLot(idlotto,user,db);
     f->show();
 }
 

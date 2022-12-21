@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QSqlDatabase>
 #include <QDate>
+#include "huser.h"
 
 
 namespace Ui {
@@ -15,7 +16,7 @@ class HModifyLot : public QWidget
     Q_OBJECT
 
 public:
-    explicit HModifyLot(int pidlotto=-1, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent = nullptr);
+    explicit HModifyLot(int pidlotto=-1, HUser *p_user=new HUser(), QSqlDatabase pdb=QSqlDatabase(), const QString p_descrizione=QString(), QWidget *parent = nullptr);
     ~HModifyLot();
 
 
@@ -37,6 +38,8 @@ private slots:
 
     void getLoadAmount();
 
+    void loadLotData();
+
  private:
     Ui::HModifyLot *ui;
     QSqlDatabase db;
@@ -45,6 +48,8 @@ private slots:
     int prodotto;
     QDate f;
     QDate t;
+    HUser *user;
+    QString descrizione;
 
 
 signals:

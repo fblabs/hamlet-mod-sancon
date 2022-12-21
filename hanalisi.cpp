@@ -14,13 +14,14 @@
 #include "hmodifylot.h"
 #include "hbiodetails.h"
 
-HAnalisi::HAnalisi(QSqlDatabase pdb,QWidget *parent) :
+HAnalisi::HAnalisi(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HAnalisi)
 {
     ui->setupUi(this);
 
     db=pdb;
+    user=p_user;
 
     ui->pushButton->setVisible(false);
 
@@ -630,7 +631,7 @@ void HAnalisi::on_tvLots_doubleClicked(const QModelIndex &index)
 
     qDebug()<<lotid;
 
-    HModifyLot *f=new HModifyLot(lotid,db);
+    HModifyLot *f=new HModifyLot(lotid,user,db);
 
     f->show();
 }
@@ -641,7 +642,7 @@ void HAnalisi::on_pbBioData_clicked()
     int pidlotto=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
 
     qDebug()<<pidlotto;
-    HBioDetails *f=new HBioDetails(pidlotto,db);
+    HBioDetails *f=new HBioDetails(pidlotto,db,user);
     f->show();
 }
 

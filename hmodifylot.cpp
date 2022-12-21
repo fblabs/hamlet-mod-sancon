@@ -5,13 +5,14 @@
 #include <QSqlRecord>
 #include <QMessageBox>
 #include <QSqlTableModel>
- #include <QDebug>
+#include <QDebug>
 #include "hcomposizionelotto.h"
 #include <QSqlError>
 #include "hlotmovements.h"
+#include "huser.h"
 
 
-HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb,/*/ const QDate from, const QDate to,*/ QWidget *parent) :
+HModifyLot::HModifyLot(int pidlotto, HUser *p_user, QSqlDatabase pdb,const QString p_descrizione, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HModifyLot)
 {
@@ -20,9 +21,9 @@ HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb,/*/ const QDate from, cons
   /*  f=from;
     t=to;*/
 
-    qDebug()<<"FTOSTRING"<<f.toString();
+    user=p_user;
+    descrizione=p_descrizione;
 
-  //  qDebug()<<f.toString("dd-MM-yyyy");
 
     if (f.isNull())
     {
@@ -64,95 +65,7 @@ HModifyLot::HModifyLot(int pidlotto, QSqlDatabase pdb,/*/ const QDate from, cons
     ui->cbtipo->setModelColumn(1);
     ui->cbtipo->setModel(mtipi);
 
-
-
-    QSqlQuery q(db);
-    QString sql="SELECT * from lotdef WHERE ID=:id";
-    q.prepare(sql);
-    q.bindValue(":id",QVariant(lot));
-    q.exec();
-    q.first();
-
-
-    //setto la form ai valori correnti
-
-    prodotto=q.value(2).toInt();
-    qDebug()<<"prodotto:"<<prodotto;
-    QVariant anag=q.value(7);
-    QVariant ixtipo=q.value(10);
-    tipo=q.value(10).toInt();
-    QVariant ixum=q.value(5);
-    QVariant scadz= q.value(6);
-    QVariant attv=q.value(11);
-
-    if (scadz.isNull())
-    {
-        ui->cbScad->setChecked(true);
-        ui->deScad->setVisible(false);
-
-    }
-    else
-    {
-        ui->cbScad->setChecked(false);
-        ui->deScad->setVisible(true);
-    }
-
-    ui->leLot->setText(q.value(1).toString());
-
-    ui->leGiac->setText(QString::number(q.value(4).toDouble(),'n',3));
-    ui->deScad->setDate(q.value(6).toDate());
-    ui->leLotFornitore->setText(q.value(8).toString());
-    ui->leEan->setText(q.value(9).toString());
-    ui->plainTextEdit->setPlainText(q.value(12).toString());
-    ui->leOperatore->setText(q.value(13).toString());
-
-    sql="SELECT descrizione FROM prodotti where ID=:id";
-    q.prepare(sql);
-    q.bindValue(":id",prodotto);
-    q.exec();
-    q.first();
-    ui->leProd->setText(q.value(0).toString());
-
-    sql= "select ragione_sociale from anagrafica where ID=:id";
-    q.prepare(sql);
-    q.bindValue(":id",anag);
-    q.exec();
-    q.first();
-
-    int idx=ui->cbAnag->findText(q.value(0).toString());
-    ui->cbAnag->setCurrentIndex(idx);
-
-    sql= "select descrizione from tipi_lot where ID=:id";
-    q.prepare(sql);
-    q.bindValue(":id",ixtipo);
-    q.exec();
-    q.first();
-    if (ixtipo.toInt()!=1)
-    {
-        ui->lbLoad->setVisible(false);
-        ui->leLoad->setVisible(false);
-
-    }
-    else
-    {
-        ui->lbLoad->setText("Carichi tra\n"+f.toString("dd-MM-yyyy")+"\n e \n"+t.toString("dd-MM-yyyy"));
-    }
-
-    bool at=attv.toBool();
-    ui->cbAttivo->setChecked(at);
-
-    int ixt=ui->cbtipo->findText(q.value(0).toString());
-    ui->cbtipo->setCurrentIndex(ixt);
-
-    sql="select descrizione from unita_di_misura where ID=:id";
-    q.prepare(sql);
-    q.bindValue(":id",ixum);
-    q.exec();
-    q.first();
-
-    int ium=ui->cbUm->findText(q.value(0).toString());
-    ui->cbUm->setCurrentIndex(ium);
-
+    loadLotData();
     getLoadAmount();
 }
 
@@ -247,9 +160,11 @@ void HModifyLot::on_pushButton_clicked()
 
 void HModifyLot::on_pbComposizione_clicked()
 {
+   // int p_idlotto, QString p_descrizione, HUser *p_user, QSqlDatabase pdb,QWidget *parent
+        QString desc=ui->leLot->text()+" - "+ui->leProd->text();
 
-
-    HComposizioneLotto *f=new HComposizioneLotto(0,db,lot,ui->leLot->text() + " - " + ui->leProd->text());
+    HComposizioneLotto *f=new HComposizioneLotto(lot,desc,user,db);
+    connect(f,SIGNAL(unloaded()),this,SLOT(loadLotData()));
 
     f->show();
 
@@ -296,6 +211,93 @@ void HModifyLot::getLoadAmount()
 
 
 
+}
+
+void HModifyLot::loadLotData()
+{
+    QSqlQuery q(db);
+    QString sql="SELECT * from lotdef WHERE ID=:id";
+    q.prepare(sql);
+    q.bindValue(":id",QVariant(lot));
+    q.exec();
+    q.first();
+
+    prodotto=q.value(2).toInt();
+    qDebug()<<"prodotto:"<<prodotto;
+    QVariant anag=q.value(7);
+    QVariant ixtipo=q.value(10);
+    tipo=q.value(10).toInt();
+    QVariant ixum=q.value(5);
+    QVariant scadz= q.value(6);
+    QVariant attv=q.value(11);
+
+    if (scadz.isNull())
+    {
+        ui->cbScad->setChecked(true);
+        ui->deScad->setVisible(false);
+
+    }
+    else
+    {
+        ui->cbScad->setChecked(false);
+        ui->deScad->setVisible(true);
+    }
+
+    ui->leLot->setText(q.value(1).toString());
+
+    ui->leGiac->setText(QString::number(q.value(4).toDouble(),'n',3));
+    ui->deScad->setDate(q.value(6).toDate());
+    ui->leLotFornitore->setText(q.value(8).toString());
+    ui->leEan->setText(q.value(9).toString());
+    ui->plainTextEdit->setPlainText(q.value(12).toString());
+    ui->leOperatore->setText(q.value(13).toString());
+
+    sql="SELECT descrizione FROM prodotti where ID=:id";
+    q.prepare(sql);
+    q.bindValue(":id",prodotto);
+    q.exec();
+    q.first();
+    ui->leProd->setText(q.value(0).toString());
+
+    sql= "select ragione_sociale from anagrafica where ID=:id";
+    q.prepare(sql);
+    q.bindValue(":id",anag);
+    q.exec();
+    q.first();
+
+    int idx=ui->cbAnag->findText(q.value(0).toString());
+    ui->cbAnag->setCurrentIndex(idx);
+
+    sql= "select descrizione from tipi_lot where ID=:id";
+    q.prepare(sql);
+    q.bindValue(":id",ixtipo);
+    q.exec();
+    q.first();
+    if (ixtipo.toInt()!=1)
+    {
+        ui->lbLoad->setVisible(false);
+        ui->leLoad->setVisible(false);
+
+    }
+    else
+    {
+        ui->lbLoad->setText("Carichi tra\n"+f.toString("dd-MM-yyyy")+"\n e \n"+t.toString("dd-MM-yyyy"));
+    }
+
+    bool at=attv.toBool();
+    ui->cbAttivo->setChecked(at);
+
+    int ixt=ui->cbtipo->findText(q.value(0).toString());
+    ui->cbtipo->setCurrentIndex(ixt);
+
+    sql="select descrizione from unita_di_misura where ID=:id";
+    q.prepare(sql);
+    q.bindValue(":id",ixum);
+    q.exec();
+    q.first();
+
+    int ium=ui->cbUm->findText(q.value(0).toString());
+    ui->cbUm->setCurrentIndex(ium);
 }
 
 
