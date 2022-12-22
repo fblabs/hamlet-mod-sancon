@@ -56,8 +56,8 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         label = new QLabel(HChoose_lot_to_add);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setMinimumSize(QSize(100, 0));
-        label->setMaximumSize(QSize(100, 16777215));
+        label->setMinimumSize(QSize(60, 0));
+        label->setMaximumSize(QSize(60, 16777215));
 
         horizontalLayout->addWidget(label);
 
@@ -75,8 +75,8 @@ public:
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         label_3 = new QLabel(HChoose_lot_to_add);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setMinimumSize(QSize(100, 0));
-        label_3->setMaximumSize(QSize(100, 16777215));
+        label_3->setMinimumSize(QSize(60, 0));
+        label_3->setMaximumSize(QSize(60, 16777215));
 
         horizontalLayout_4->addWidget(label_3);
 
@@ -104,7 +104,8 @@ public:
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         label_2 = new QLabel(HChoose_lot_to_add);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setMaximumSize(QSize(100, 16777215));
+        label_2->setMinimumSize(QSize(60, 0));
+        label_2->setMaximumSize(QSize(60, 16777215));
 
         horizontalLayout_3->addWidget(label_2);
 

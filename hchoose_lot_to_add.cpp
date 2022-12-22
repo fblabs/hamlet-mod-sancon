@@ -83,10 +83,7 @@ void HChoose_lot_to_add::on_pbAdd_clicked()
         emit add_saved();
         close();
     }
-    else
-    {
-        QMessageBox::warning(this,QApplication::applicationName(),"ERRORE",QMessageBox::Ok);
-    }
+
 }
 
 bool HChoose_lot_to_add::saveAdd()
@@ -103,6 +100,8 @@ bool HChoose_lot_to_add::saveAdd()
     QSqlQuery q(db);
     QString sql;
 
+    qDebug()<<"IDL"<<idl;
+
     sql="INSERT INTO `operazioni`(`IDlotto`,`data`,`utente`,`IDprodotto`,`azione`,`quantita`,`um`)VALUES(:idlotto,:data,:utente,:idprodotto,:azione,:quantita,:um)";
     db.transaction();
     q.prepare(sql);
@@ -117,6 +116,7 @@ bool HChoose_lot_to_add::saveAdd()
     qDebug()<<"insert:"<<idl<<q.lastError().text();
     if(!b) {
         db.rollback();
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore inserendo operazione"+q.lastError().text(),QMessageBox::Ok);
         return false;
     }
     int idop=q.lastInsertId().toInt();
@@ -137,6 +137,7 @@ bool HChoose_lot_to_add::saveAdd()
 
         QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
         close();
+
 
 
 
@@ -163,7 +164,7 @@ QSqlQueryModel *HChoose_lot_to_add::search_by_lot()
      QSqlQueryModel *mod=new QSqlQueryModel();
 
      QSqlQuery q(db);
-     QString sql="SELECT ID, lot, data,prodotto,um FROM lotdef WHERE  lot LIKE '" +to_search+"%' ORDER BY lot ASC";
+     QString sql="SELECT ID, lot, data,prodotto,um FROM lotdef WHERE  lot LIKE '" +to_search+"%' ORDER BY lot DESC";
      q.prepare(sql);
      q.exec();
      mod->setQuery(q);
