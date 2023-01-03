@@ -53,7 +53,7 @@ QSqlQueryModel *HChoose_lot_to_add::getProductLots()
     QSqlQueryModel *mod=new QSqlQueryModel();
 
     QSqlQuery q(db);
-    QString sql="SELECT ID, lot, data,prodotto,um FROM lotdef WHERE  prodotto=:prodotto ORDER BY lot ASC";
+    QString sql="SELECT ID, lot, data,prodotto,um FROM lotdef WHERE  prodotto=:prodotto ORDER BY data DESC";
     q.prepare(sql);
     q.bindValue(":prodotto",prodotto);
     q.exec();

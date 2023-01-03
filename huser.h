@@ -1,8 +1,7 @@
 #ifndef HUSER_H
 #define HUSER_H
-
 #include <QObject>
-#include <QSqlDatabase>
+
 
 class HUser : public QObject
 {
@@ -12,7 +11,7 @@ public:
     explicit HUser(QObject *parent = 0);
 
 private:
-     QSqlDatabase db;
+
      int role;
      int id;
      bool active;

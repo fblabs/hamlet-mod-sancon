@@ -190,7 +190,7 @@ void HModificaScheda::on_pushButton_clicked()
 
 void HModificaScheda::on_pushButton_2_clicked()
 {
-    if (QMessageBox::question(this,QApplication::applicationName(),"Sicur* di chiudere?",QMessageBox::Ok|QMessageBox::Cancel))
+    if (QMessageBox::question(this,QApplication::applicationName(),"Chiudere?",QMessageBox::Ok|QMessageBox::Cancel))
     {
     this->close();
     }

@@ -14,7 +14,7 @@ class HChoose_lot_to_add : public QWidget
     Q_OBJECT
 
 public:
-    explicit HChoose_lot_to_add(const int p_destlot, HUser *p_user=new HUser(), QSqlDatabase p_db=QSqlDatabase(), QWidget *parent = nullptr);
+    explicit HChoose_lot_to_add(const int p_destlot, HUser *p_user=nullptr, QSqlDatabase p_db=QSqlDatabase(), QWidget *parent = nullptr);
     ~HChoose_lot_to_add();
 
 private:

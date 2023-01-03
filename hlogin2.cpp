@@ -77,7 +77,7 @@ void HLogin2::login()
 
     }
 
-    qrLogin.first();
+    qrLogin.next();
 
     if (qrLogin.size()==1)
     {

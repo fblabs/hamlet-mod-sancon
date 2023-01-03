@@ -53,9 +53,9 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-   bool bp=createPreferencesDB();
+    bool bp=createPreferencesDB();
 
-   if (!bp){QMessageBox::warning(nullptr,QApplication::applicationName(),"Errore creando il database lotti preferiti, la funzionalità non sarà disponible ",QMessageBox::Ok);}
+    if (!bp){QMessageBox::warning(nullptr,QApplication::applicationName(),"Errore creando il database lotti preferiti, la funzionalità non sarà disponible ",QMessageBox::Ok);}
 
     QSettings settings("hamletmod.ini",QSettings::IniFormat);
 
@@ -80,11 +80,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
 
 
-this->showMaximized();
+    this->showMaximized();
 
 
 
-disableUI();
+    disableUI();
 
 }
 
@@ -109,11 +109,7 @@ void MainWindow::userLogged(HUser* usr,QSqlDatabase pdb)
 
     if(usr)
     {
-
-
-        bool b=db.isOpen();
-        qDebug()<<"userLogged Main"<<QString::number(b);
-
+       // bool b=db.isOpen();
         ui->lbUser_label->setVisible(true);
         ui->lbCurrentUser->setVisible(true);
         ui->lbCurrentUser->setText(usr->getUsername()+" ("+usr->getName()+")");
@@ -134,11 +130,9 @@ void MainWindow::disableUI()
     ui->tbClose->setEnabled(true);
     ui->tbProdotti->setEnabled(false);
     ui->tbRicette->setEnabled(false);
-   // ui->pbNuovaRicetta->setEnabled(false);
     ui->tbSettings->setEnabled(true);
     ui->tnProduzione->setEnabled(false);
     ui->tbAnalisi->setEnabled(false);
-  //  ui->pbRicercaLotto->setEnabled(true);
     ui->tbModificaLotti->setEnabled(false);
     ui->pBNewOperation->setEnabled(false);
     ui->tbUtenti->setEnabled(false);
@@ -207,7 +201,7 @@ void MainWindow::enableButtonsForRole()
         ui->pbExpirations->setEnabled(true);
         ui->pbC4R->setEnabled(true);
         if(!user->getCanUpdate())
-        ui->pbProgrammazione->setEnabled(true);
+            ui->pbProgrammazione->setEnabled(true);
 
 
         break;
@@ -216,7 +210,6 @@ void MainWindow::enableButtonsForRole()
         // magazzino
 
 
-     //   ui->pbRicercaLotto->setEnabled(true);
         ui->tnProduzione->setEnabled(false);
         ui->tbLogout->setEnabled(true);
         ui->toolButton->setEnabled(true);
@@ -301,7 +294,7 @@ void MainWindow::enableButtonsForRole()
 
 
         break;
-     case 5://amministrativo
+    case 5://amministrativo
         ui->toolButton->setEnabled(false);
         ui->tbMagaz->setEnabled(true);
         ui->tbLotti->setEnabled(true);
@@ -332,7 +325,7 @@ void MainWindow::enableButtonsForRole()
 
 
         break;
-     case 6:
+    case 6:
         ui->tnProduzione->setEnabled(false);
         ui->tbLogout->setEnabled(false);
         ui->toolButton->setEnabled(true);
@@ -384,7 +377,7 @@ void MainWindow::on_tbMagaz_clicked()
 void MainWindow::on_tbLotti_clicked()
 {
 
-  /*  HLotti *f = new HLotti(db,user);*/
+    /*  HLotti *f = new HLotti(db,user);*/
     HLotti_new *f=new HLotti_new(db,user);
     f->showMaximized();
 }
@@ -403,7 +396,7 @@ void MainWindow::on_tbAnag_clicked()
     //connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
     //emit onConnectionName();
 
-   // f->setWindowModality(Qt::ApplicationModal);
+    // f->setWindowModality(Qt::ApplicationModal);
     f->showMaximized();
 }
 
@@ -423,38 +416,31 @@ void MainWindow::on_tbSettings_clicked()
         QMessageBox::warning(this,QApplication::applicationName(),"E' necessario il file di licenza\nRivolgersi all'amministrazione",QMessageBox::Ok);
         return;
     }
-        license.open(QFile::ReadOnly);
-        QString readCodeFromLicense =license.readLine();
-        license.close();
+    license.open(QFile::ReadOnly);
+    QString readCodeFromLicense =license.readLine();
+    license.close();
 
     bool ok;
     QString input_pass_azienda=QInputDialog::getText(this,"AUTENTICAZIONE","Codice Azienda",QLineEdit::Normal,"codice azienda",&ok);
     if(ok)
     {
-    QByteArray passHash=input_pass_azienda.toLatin1().toHex();
-    QCryptographicHash passHashCrypt(QCryptographicHash::Sha1);
-  //  passHashCrypt.hash(passHash,QCryptographicHash::Sha1);
-    QString input_pass_hash=QString(passHashCrypt.hash(passHash,QCryptographicHash::Sha1).toHex());
-
-  //  qDebug()<<"license :"+readCodeFromLicense.replace("\n","").replace("\r","")<<"input:"+input_pass_hash;
-
-   // QString hash = QString("%1").arg(QString(QCryptographicHash::hash(str.toUtf8(),QCryptographicHash::Sha1).toHex()))
+        QByteArray passHash=input_pass_azienda.toLatin1().toHex();
+        QCryptographicHash passHashCrypt(QCryptographicHash::Sha1);
+        QString input_pass_hash=QString(passHashCrypt.hash(passHash,QCryptographicHash::Sha1).toHex());
 
 
+        if (input_pass_hash==readCodeFromLicense.replace("\n","").replace("\r",""))
+        {
+            HSettings *f = new HSettings();
+            f->show();
 
-    if (input_pass_hash==readCodeFromLicense.replace("\n","").replace("\r",""))
-    {
-        HSettings *f = new HSettings();
-        f->show();
+        }
+        else
+        {
 
-    }
-    else
-    {
-
-        QMessageBox::warning(this,QApplication::applicationName(),"Attenzione:codice di sblocco errato\nRivolgersi all'amministrazione",QMessageBox::Ok);
-        //QApplication::quit();
-        disableUI();
-    }
+            QMessageBox::warning(this,QApplication::applicationName(),"Attenzione:codice di sblocco errato\nRivolgersi all'amministrazione",QMessageBox::Ok);
+            disableUI();
+        }
     }
     else
     {
@@ -505,9 +491,9 @@ void MainWindow::on_toolButton_clicked()
 
 void MainWindow::on_pBNewOperation_clicked()
 {
-  
-  HnuovaOperazione *f = new HnuovaOperazione(user,db);
-  f->show();
+
+    HnuovaOperazione *f = new HnuovaOperazione(user,db);
+    f->show();
 
 
 }
@@ -540,19 +526,19 @@ void MainWindow::on_tbLogout_clicked()
 void MainWindow::on_tbAssociazioni_clicked()
 {
     HAssociazioni* f = new HAssociazioni(user,db);
- //   connect(this,SIGNAL(onConnectionName()),f,SLOT(setConnectionName(QString)));
+    //   connect(this,SIGNAL(onConnectionName()),f,SLOT(setConnectionName(QString)));
     f->show();
 }
 
 void MainWindow::on_pbSchede_clicked()
 {
-   // QApplication::setOverrideCursor(Qt::WaitCursor);
-   // HSchedeClienti *f = new HSchedeClienti();
-   // f->init(sConn,user);
-   // f->showMaximized();
+    // QApplication::setOverrideCursor(Qt::WaitCursor);
+    // HSchedeClienti *f = new HSchedeClienti();
+    // f->init(sConn,user);
+    // f->showMaximized();
 
 
-   /* HSchede *f =new HSchede(0,db);
+    /* HSchede *f =new HSchede(0,db);
     f->show();**/
 
     HNSChede *f= new HNSChede("","",db,user);
@@ -562,7 +548,7 @@ void MainWindow::on_pbSchede_clicked()
 
 void MainWindow::on_tbUtenti_clicked()
 {
-   // int i=1;
+    // int i=1;
     HGestioneUtenti *f=new HGestioneUtenti(user,db);
     f->show();
 }
@@ -578,14 +564,14 @@ void MainWindow::on_tbModificaLotti_clicked()
 void MainWindow::on_pbPackages_clicked()
 {
     HPackages *f =new HPackages(user,db);
-  //  f->init(sConn,QString::number(user->getID()));
+    //  f->init(sConn,QString::number(user->getID()));
     f->show();
 }
 
 void MainWindow::on_pushButton_clicked()
 {
 
-   /* if(QMessageBox::Ok==QMessageBox::information(this,QApplication::applicationName(),"L'applicazione verrà chiusa per permettere l'aggiornamento. Continuare?",QMessageBox::Ok|QMessageBox::Cancel))
+    /* if(QMessageBox::Ok==QMessageBox::information(this,QApplication::applicationName(),"L'applicazione verrà chiusa per permettere l'aggiornamento. Continuare?",QMessageBox::Ok|QMessageBox::Cancel))
     {
         QString file="./EasyUpdater/EasyUpdater.exe";
         QProcess::startDetached(file);
@@ -601,8 +587,8 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pbUnload_clicked()
 {
-  HPackagesUnload *f=new HPackagesUnload(user,db);
-  f->show();
+    HPackagesUnload *f=new HPackagesUnload(user,db);
+    f->show();
 }
 
 
@@ -643,12 +629,12 @@ void MainWindow::checkNotifications()
     qDebug()<<"check: "<<userID<<groupID<<q.lastQuery()<<q.lastError().text()<<"size:"<<q.size();
     if(b)
     {
-     qDebug()<<"b:true"<<q.lastError().text();
-    while (q.next())
+        qDebug()<<"b:true"<<q.lastError().text();
+        while (q.next())
         {
-        qDebug()<<"check open form: "<<q.value(1).toString();
-        HNotifica *f= new HNotifica(0,q.value(0).toInt(),db);
-        f->show();
+            qDebug()<<"check open form: "<<q.value(1).toString();
+            HNotifica *f= new HNotifica(0,q.value(0).toInt(),db);
+            f->show();
         }
     }
 
@@ -657,7 +643,7 @@ void MainWindow::checkNotifications()
 
 void MainWindow::on_pbCkeckNotifications_clicked()
 {
-     checkNotifications();
+    checkNotifications();
 }
 
 void MainWindow::on_pbVerifyLabels_clicked()
@@ -681,8 +667,8 @@ void MainWindow::on_pbCalcoloCosti_clicked()
 
 bool MainWindow::createPreferencesDB()
 {
-   if(!QFile::exists("preferences.db"))
-   {
+    if(!QFile::exists("preferences.db"))
+    {
         QSqlDatabase prefs=QSqlDatabase::addDatabase("QSQLITE");
         prefs.setDatabaseName("preferences.db");
         prefs.open();
@@ -692,9 +678,9 @@ bool MainWindow::createPreferencesDB()
         qDebug()<<q.lastError().text();
         prefs.close();
         QMessageBox::information(nullptr,QApplication::applicationName(),q.lastError().text(),QMessageBox::Ok);
-   }
+    }
 
-   return QFile::exists("preferences.db");
+    return QFile::exists("preferences.db");
 
 }
 
@@ -713,6 +699,4 @@ void MainWindow::on_pbProgrammazione_clicked()
     HWorkProgram *f=new HWorkProgram(user,db);
     f->showMaximized();
 }
-
-
 

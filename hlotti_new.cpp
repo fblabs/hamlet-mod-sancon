@@ -31,6 +31,9 @@ HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
 
     ui->tvLotti->setColumnHidden(0,true);
     ui->tvLotti->setModel(loadLotsData());
+
+    QModelIndex index=ui->tvLotti->model()->index(0,0);
+    if(index.isValid())  ui->tvLotti->selectionModel()->setCurrentIndex(index,QItemSelectionModel::Select);
     ui->tvLotti->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
 }
@@ -61,9 +64,6 @@ QSqlQueryModel* HLotti_new::loadLotsData()
 
     sql=buildLotsQuery(tipo,prodotto);
 
-    qDebug()<<sql;
-
-    if(!db.isOpen())qDebug()<<"NOT OPEN";
 
     QSqlQuery q(db);
     q.prepare (sql);

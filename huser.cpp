@@ -1,8 +1,6 @@
 #include "huser.h"
-//#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QMessageBox>
-// #include <QDebug>
+#include <QSettings>
+#include <QSqlDatabase>
 
 HUser::HUser(QObject *parent) :
     QObject(parent)
@@ -84,3 +82,5 @@ QString HUser::getName()
 {
     return nome;
 }
+
+

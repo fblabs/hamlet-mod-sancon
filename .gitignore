@@ -246,3 +246,7 @@ object_script.hamletMOD.Release
 object_script.hamMOD.Debug
 object_script.hamletMOD.Debug
 usersinfoappdatalocaltemptmpf13uzn
+Makefile.Release
+Makefile.Debug
+Makefile.Debug
+*.Debug
