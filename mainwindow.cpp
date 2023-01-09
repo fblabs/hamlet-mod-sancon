@@ -475,7 +475,7 @@ void MainWindow::on_tbClose_clicked()
 
 void MainWindow::on_tbAnalisi_clicked()
 {
-    HAnalisi *f=new HAnalisi(db);
+    HAnalisi *f=new HAnalisi(db,user);
 
 
     f->showMaximized();

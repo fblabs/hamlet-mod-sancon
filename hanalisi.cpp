@@ -14,7 +14,7 @@
 #include "hmodifylot.h"
 #include "hbiodetails.h"
 
-HAnalisi::HAnalisi(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
+HAnalisi::HAnalisi(QSqlDatabase pdb,HUser *p_user, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HAnalisi)
 {

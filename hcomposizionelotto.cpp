@@ -22,7 +22,7 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
     ui->setupUi(this);
     //ui->pushButton_2->setVisible(false);
     ui->pbUse->setVisible(false);
-    //ui->checkBox->setVisible(false);
+    ui->pbModify->setVisible(false);
     db=pdb;
     user=p_user;
     id=p_idlotto;
@@ -637,6 +637,12 @@ void HComposizioneLotto::on_pbScarico_clicked()
 {
    unloadAll();
    refresh_data();
+
+}
+
+
+void HComposizioneLotto::on_pbModify_clicked()
+{
 
 }
 

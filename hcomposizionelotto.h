@@ -50,6 +50,8 @@ private slots:
     void on_pbAdd_clicked();
     void on_pbRemove_clicked();
     void on_pbScarico_clicked();
+    void on_pbModify_clicked();
+
 signals:
    void unloaded();
 
