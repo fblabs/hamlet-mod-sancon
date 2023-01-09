@@ -158,8 +158,6 @@ void HLotti_new::print()
     const int rowCount = ui->tvLotti->model()->rowCount();
     const int columnCount = ui->tvLotti->model()->columnCount();
 
-    qDebug()<<rowCount<<columnCount;
-
     QString title="Lotti dal "+ui->deFrom->date().toString("dd-MM-yyyy")+" al "+ ui->deTo->date().toString("dd-MM-yyyy");
 
     //   qDebug()<<filename;

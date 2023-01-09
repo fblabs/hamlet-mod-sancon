@@ -29,8 +29,9 @@ HWarehouseDetails::HWarehouseDetails(QSqlDatabase pdb, int id,int pidlotto, QWid
     mod->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
     mod->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
     mod->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
-    mod->select();
     mod->setFilter("operazioni.ID="+QString::number(opid));
+    mod->select();
+
 
     mod->setEditStrategy(QSqlRelationalTableModel::OnManualSubmit);
 

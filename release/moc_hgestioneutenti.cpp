@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HGestioneUtenti_t {
     QByteArrayData data[14];
-    char stringdata0[241];
+    char stringdata0[237];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -45,7 +45,7 @@ QT_MOC_LITERAL(9, 157, 9), // "getGruppo"
 QT_MOC_LITERAL(10, 167, 11), // "getIdUtente"
 QT_MOC_LITERAL(11, 179, 31), // "on_comboBox_currentIndexChanged"
 QT_MOC_LITERAL(12, 211, 5), // "index"
-QT_MOC_LITERAL(13, 217, 23) // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(13, 217, 19) // "on_pbGroups_clicked"
 
     },
     "HGestioneUtenti\0updatePassword\0\0"
@@ -54,7 +54,7 @@ QT_MOC_LITERAL(13, 217, 23) // "on_pushButton_4_clicked"
     "on_pushButton_2_clicked\0"
     "on_pbNuovaPassword_clicked\0getGruppo\0"
     "getIdUtente\0on_comboBox_currentIndexChanged\0"
-    "index\0on_pushButton_4_clicked"
+    "index\0on_pbGroups_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -115,7 +115,7 @@ void HGestioneUtenti::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 7: _t->getIdUtente(); break;
         case 8: _t->on_comboBox_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 9: _t->on_pushButton_4_clicked(); break;
+        case 9: _t->on_pbGroups_clicked(); break;
         default: ;
         }
     }

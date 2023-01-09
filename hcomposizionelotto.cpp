@@ -12,6 +12,7 @@
 #include "hchoose_lot_to_add.h"
 #include "huser.h"
 #include <QDateTime>
+#include "hwarehousedetails.h"
 
 
 HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUser *p_user, QSqlDatabase pdb, QWidget *parent) :
@@ -22,7 +23,7 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
     ui->setupUi(this);
     //ui->pushButton_2->setVisible(false);
     ui->pbUse->setVisible(false);
-    ui->pbModify->setVisible(false);
+  //  ui->pbModify->setVisible(false);
     db=pdb;
     user=p_user;
     id=p_idlotto;
@@ -643,6 +644,11 @@ void HComposizioneLotto::on_pbScarico_clicked()
 
 void HComposizioneLotto::on_pbModify_clicked()
 {
+    int idop=ui->tableView->model()->index(ui->tableView->currentIndex().row(),1).data(0).toInt();
+
+    HWarehouseDetails *f=new HWarehouseDetails(db,idop);
+    connect(f,SIGNAL(confirm()),this,SLOT(refresh_data()));
+    f->show();
 
 }
 

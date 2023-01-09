@@ -37,6 +37,7 @@ public:
     QPushButton *pbUse;
     QPushButton *pbAdd;
     QPushButton *pbRemove;
+    QPushButton *pbModify;
     QPushButton *pbScarico;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_2;
@@ -115,11 +116,20 @@ public:
 
         horizontalLayout->addWidget(pbRemove);
 
+        pbModify = new QPushButton(HComposizioneLotto);
+        pbModify->setObjectName(QString::fromUtf8("pbModify"));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/Actions-configure-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbModify->setIcon(icon4);
+        pbModify->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pbModify);
+
         pbScarico = new QPushButton(HComposizioneLotto);
         pbScarico->setObjectName(QString::fromUtf8("pbScarico"));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbScarico->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbScarico->setIcon(icon5);
         pbScarico->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbScarico);
@@ -130,18 +140,18 @@ public:
 
         pushButton_2 = new QPushButton(HComposizioneLotto);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon6);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_2);
 
         pushButton_3 = new QPushButton(HComposizioneLotto);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon6);
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon7);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_3);
@@ -162,6 +172,7 @@ public:
         pbUse->setText(QCoreApplication::translate("HComposizioneLotto", "Visualizza", nullptr));
         pbAdd->setText(QCoreApplication::translate("HComposizioneLotto", "Aggiungi componente", nullptr));
         pbRemove->setText(QCoreApplication::translate("HComposizioneLotto", "Rimuovi Componente", nullptr));
+        pbModify->setText(QCoreApplication::translate("HComposizioneLotto", "Modifica riga", nullptr));
         pbScarico->setText(QCoreApplication::translate("HComposizioneLotto", "Scarica giacenza", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HComposizioneLotto", "Stampa", nullptr));
         pushButton_3->setText(QCoreApplication::translate("HComposizioneLotto", "Chiudi", nullptr));
