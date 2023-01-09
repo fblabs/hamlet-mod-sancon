@@ -377,7 +377,7 @@ void MainWindow::on_tbMagaz_clicked()
 void MainWindow::on_tbLotti_clicked()
 {
 
-    /*  HLotti *f = new HLotti(db,user);*/
+   /* HLotti *f = new HLotti(db,user);*/
     HLotti_new *f=new HLotti_new(db,user);
     f->showMaximized();
 }

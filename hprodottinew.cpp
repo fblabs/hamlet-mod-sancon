@@ -13,6 +13,7 @@
 #include "hmodproduct.h"
 #include <QMessageBox>
 #include "hprint.h"
+#include "hloads.h"
 #include <QFileDialog>
 
 HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
@@ -423,5 +424,10 @@ void HProdottiNew::on_pbPrint_clicked()
 
 
 
-
+void HProdottiNew::on_pbLoads_clicked()
+{
+    int id=ui->tvProdotti->model()->index(ui->tvProdotti->selectionModel()->currentIndex().row(),0).data(0).toInt();
+    HLoads *f=new HLoads(id,db);
+    f->show();
+}
 

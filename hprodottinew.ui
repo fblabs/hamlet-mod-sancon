@@ -180,6 +180,23 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pbLoads">
+       <property name="text">
+        <string>Carichi</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/App-ark-2-icon.png</normaloff>:/Resources/App-ark-2-icon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QCheckBox" name="cbPdf">
        <property name="maximumSize">
         <size>

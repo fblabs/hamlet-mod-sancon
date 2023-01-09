@@ -47,6 +47,7 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QPushButton *pbMod;
+    QPushButton *pbLoads;
     QCheckBox *cbPdf;
     QPushButton *pbPrint;
     QPushButton *pushButton_2;
@@ -168,6 +169,15 @@ public:
 
         horizontalLayout_2->addWidget(pbMod);
 
+        pbLoads = new QPushButton(HProdottiNew);
+        pbLoads->setObjectName(QString::fromUtf8("pbLoads"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbLoads->setIcon(icon3);
+        pbLoads->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pbLoads);
+
         cbPdf = new QCheckBox(HProdottiNew);
         cbPdf->setObjectName(QString::fromUtf8("cbPdf"));
         cbPdf->setMaximumSize(QSize(100, 16777215));
@@ -177,18 +187,18 @@ public:
 
         pbPrint = new QPushButton(HProdottiNew);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon4);
         pbPrint->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbPrint);
 
         pushButton_2 = new QPushButton(HProdottiNew);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon5);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
@@ -216,6 +226,7 @@ public:
         label->setText(QCoreApplication::translate("HProdottiNew", "Cerca prodotto", nullptr));
         pushButton->setText(QCoreApplication::translate("HProdottiNew", "Nuovo", nullptr));
         pbMod->setText(QCoreApplication::translate("HProdottiNew", "Modifica prodotto selezionato", nullptr));
+        pbLoads->setText(QCoreApplication::translate("HProdottiNew", "Carichi", nullptr));
         cbPdf->setText(QCoreApplication::translate("HProdottiNew", "Stampa su pdf", nullptr));
         pbPrint->setText(QCoreApplication::translate("HProdottiNew", "Stampa", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HProdottiNew", "Chiudi", nullptr));

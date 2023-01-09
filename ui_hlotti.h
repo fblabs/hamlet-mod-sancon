@@ -30,7 +30,6 @@ QT_BEGIN_NAMESPACE
 class Ui_HLotti
 {
 public:
-    QVBoxLayout *verticalLayout_3;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_4;
@@ -73,9 +72,7 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HLotti->setWindowIcon(icon);
-        verticalLayout_3 = new QVBoxLayout(HLotti);
-        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2 = new QVBoxLayout(HLotti);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
@@ -197,6 +194,9 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_4);
 
+
+        verticalLayout_2->addLayout(verticalLayout);
+
         twLots = new QTableView(HLotti);
         twLots->setObjectName(QString::fromUtf8("twLots"));
         twLots->setEnabled(true);
@@ -212,10 +212,7 @@ public:
         twLots->verticalHeader()->setCascadingSectionResizes(true);
         twLots->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
 
-        verticalLayout->addWidget(twLots);
-
-
-        verticalLayout_2->addLayout(verticalLayout);
+        verticalLayout_2->addWidget(twLots);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -291,9 +288,6 @@ public:
 
 
         verticalLayout_2->addLayout(horizontalLayout);
-
-
-        verticalLayout_3->addLayout(verticalLayout_2);
 
 
         retranslateUi(HLotti);

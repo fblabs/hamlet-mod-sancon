@@ -52,18 +52,13 @@ private slots:
 
     void on_lineEdit_textChanged(const QString &arg1);
 
-
-
-
-
-
     void on_tvProdotti_doubleClicked(const QModelIndex &index);
 
     void on_pbMod_clicked();
 
     void on_pbPrint_clicked();
 
-
+    void on_pbLoads_clicked();
 
 private:
     Ui::HProdottiNew *ui;

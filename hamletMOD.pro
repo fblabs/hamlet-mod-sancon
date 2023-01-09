@@ -18,6 +18,7 @@ SOURCES += main.cpp\
     hbiodetails.cpp \
     hchoose_lot_to_add.cpp \
     hchooselot.cpp \
+    hloads.cpp \
     hlotcomposition.cpp \
     hlotti_new.cpp \
     hrecipesforingredient.cpp \
@@ -89,6 +90,7 @@ HEADERS  += mainwindow.h \
     hbiodetails.h \
     hchoose_lot_to_add.h \
     hchooselot.h \
+    hloads.h \
     hlotcomposition.h \
     hlotti_new.h \
     hrecipesforingredient.h \
@@ -161,6 +163,7 @@ FORMS    += mainwindow.ui \
     hbiodetails.ui \
     hchoose_lot_to_add.ui \
     hchooselot.ui \
+    hloads.ui \
     hlotcomposition.ui \
     hlotti_new.ui \
     hrecipesforingredient.ui \
