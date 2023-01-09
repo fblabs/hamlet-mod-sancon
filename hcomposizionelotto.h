@@ -18,7 +18,7 @@ class HComposizioneLotto : public QWidget
     Q_OBJECT
 
 public:
-    explicit HComposizioneLotto(int p_idlotto=-1, QString p_descrizione=QString(), HUser *p_user=nullptr, QSqlDatabase pdb=QSqlDatabase(),QWidget *parent=nullptr);
+    explicit HComposizioneLotto(int p_idlotto=-1, QString p_descrizione=QString(),HUser *p_user=nullptr, QSqlDatabase pdb=QSqlDatabase(),QWidget *parent=nullptr);
     ~HComposizioneLotto();
 
 private:
@@ -29,7 +29,6 @@ private:
     HUser *user;
     QString descrizione;
     QSqlQueryModel *mod;
-  //  HComposizioneLotto *parf;
     QShortcut *det;
 
 private slots:

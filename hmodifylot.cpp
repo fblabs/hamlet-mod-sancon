@@ -12,7 +12,7 @@
 #include "huser.h"
 
 
-HModifyLot::HModifyLot(int pidlotto, HUser *p_user, QSqlDatabase pdb,const QString p_descrizione, QWidget *parent) :
+HModifyLot::HModifyLot(int pidlotto, HUser *p_user, QSqlDatabase pdb, const QString p_descrizione, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HModifyLot)
 {

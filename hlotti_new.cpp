@@ -13,6 +13,7 @@
 #include "hmodifylot.h"
 #include <QCompleter>
 #include "huser.h"
+#include <QDesktopServices>
 
 HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     QWidget(parent),
@@ -214,6 +215,8 @@ void HLotti_new::print()
         document->print(&printer);
 
         delete document;
+
+        QDesktopServices::openUrl(filename);
     }else{
 
         HPrint *f =new HPrint();

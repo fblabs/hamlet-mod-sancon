@@ -14,7 +14,7 @@
 #include <QDateTime>
 
 
-HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUser *p_user, QSqlDatabase pdb,QWidget *parent) :
+HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUser *p_user, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HComposizioneLotto)
 {
@@ -34,18 +34,7 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
     tipo=getTipo(id);
     qDebug()<<"TIPO"<<tipo;
 
-     ui->pbScarico->setVisible(false);
-
-   /* if (tipo==1)
-    {
-        ui->pbAdd->setVisible(false);
-        ui->pbRemove->setVisible(false);
-
-    }
-    if (tipo==4)
-    {
-        ui->pbScarico->setVisible(true);
-    }*/
+    ui->pbScarico->setVisible(false);
 
     det=new QShortcut(QKeySequence("F5"),this);
 
