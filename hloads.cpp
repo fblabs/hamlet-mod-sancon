@@ -28,13 +28,13 @@ void HLoads::getLoads()
         QSqlQuery q(db);
         QDate from=ui->deFrom->date();
         QDate to=ui->deTo->date();
-        QString sql="SELECT SUM(quantita) from operazioni where operazioni.IDProdotto=:idprodotto  and operazioni.azione=1 and operazioni.data >= :from AND operazioni.data <= :to";
+        QString sql="SELECT SUM(quantita) from operazioni,lotdef where operazioni.IDlotto=lotdef.ID and lotdef.tipo=1 and operazioni.IDprodotto=:idp and operazioni.azione=1";
         q.prepare(sql);
-        q.bindValue(":idprodotto", id_prodotto);
+        q.bindValue(":idp", id_prodotto);
         q.bindValue(":from",from);
         q.bindValue(":to",to);
         q.exec();
-        qDebug()<<q.lastError().text()<<q.lastQuery();
+        qDebug()<<q.lastError().text()<<q.lastQuery()<<id_prodotto;
         q.next();
 
         double amount=q.value(0).toDouble();

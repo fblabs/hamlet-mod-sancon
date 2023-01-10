@@ -192,7 +192,7 @@ void HModifyLot::on_pbLotOperations_clicked()
 void HModifyLot::getLoadAmount()
 {
      QSqlQuery q(db);
-     QString sql="SELECT SUM(quantita) from operazioni,lotdef where operazioni.IDlotto=lotdef.ID and lotdef.tipo=1 and operazioni.IDProdotto=:idp and operazioni.IDProdotto=:idp and operazioni.azione=1 and operazioni.data between :from and :to";
+     QString sql="SELECT SUM(quantita) from operazioni,lotdef where operazioni.IDlotto=lotdef.ID and lotdef.tipo=1 and operazioni.IDProdotto=:idp  and operazioni.azione=1 and operazioni.data between :from and :to";
      q.prepare(sql);
      q.bindValue(":idp",prodotto);
      q.bindValue(":from",f);
