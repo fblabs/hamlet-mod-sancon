@@ -28,7 +28,7 @@ void HLoads::getLoads()
         QSqlQuery q(db);
         QDate from=ui->deFrom->date();
         QDate to=ui->deTo->date();
-        QString sql="SELECT SUM(quantita) from operazioni,lotdef where operazioni.IDlotto=lotdef.ID and lotdef.tipo=1 and operazioni.IDprodotto=:idp and operazioni.azione=1";
+        QString sql="SELECT SUM(quantita) from operazioni,lotdef where operazioni.IDlotto=lotdef.ID and lotdef.tipo=1 and operazioni.IDprodotto=:idp and operazioni.azione=1 and operazioni.data >= :from and operazioni.data <=:to";
         q.prepare(sql);
         q.bindValue(":idp", id_prodotto);
         q.bindValue(":from",from);
