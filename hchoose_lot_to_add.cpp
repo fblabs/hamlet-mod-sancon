@@ -70,9 +70,13 @@ void HChoose_lot_to_add::on_pbClose_clicked()
 void HChoose_lot_to_add::on_cbProducts_currentIndexChanged(int index)
 {
     ui->tvLots->setModel(getProductLots());
+    connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setCurrentLsText()));
+
     ui->tvLots->setColumnHidden(0,true);
     ui->tvLots->setColumnHidden(3,true);
     ui->tvLots->setColumnHidden(4,true);
+
+
 }
 
 
@@ -80,8 +84,10 @@ void HChoose_lot_to_add::on_pbAdd_clicked()
 {
     if (saveAdd())
     {
-        emit add_saved();
+
+        QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
         close();
+
     }
 
 }
@@ -134,14 +140,9 @@ bool HChoose_lot_to_add::saveAdd()
     if(b)
     {
         db.commit();
+        emit add_saved();
 
-        QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
-        close();
-
-
-
-
-    }
+   }
     else
     {
 
@@ -164,11 +165,19 @@ QSqlQueryModel *HChoose_lot_to_add::search_by_lot()
      QSqlQueryModel *mod=new QSqlQueryModel();
 
      QSqlQuery q(db);
-     QString sql="SELECT ID, lot, data,prodotto,um FROM lotdef WHERE  lot LIKE '" +to_search+"%' ORDER BY lot DESC";
+     QString sql="SELECT ID, lot, data,prodotto,um FROM lotdef WHERE  lot LIKE '" +to_search+"%' ORDER BY data DESC";
      q.prepare(sql);
      q.exec();
      mod->setQuery(q);
      return mod;
+}
+
+void HChoose_lot_to_add::setCurrentLsText()
+{
+    QModelIndex cix=ui->tvLots->model()->index(ui->tvLots->selectionModel()->currentIndex().row(),1);
+
+    QString ntext=cix.data(0).toString();
+    ui->leSearch->setText(ntext);
 }
 
 

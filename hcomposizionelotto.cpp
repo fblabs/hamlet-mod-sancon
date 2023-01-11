@@ -8,7 +8,6 @@
 #include "hprint.h"
 #include <QCursor>
 #include <QShortcut>
-#include "nouse.h"
 #include "hchoose_lot_to_add.h"
 #include "huser.h"
 #include <QDateTime>
@@ -23,17 +22,16 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
     ui->setupUi(this);
     //ui->pushButton_2->setVisible(false);
     ui->pbUse->setVisible(false);
-  //  ui->pbModify->setVisible(false);
+    //  ui->pbModify->setVisible(false);
     db=pdb;
     user=p_user;
     id=p_idlotto;
+    tipo=getTipo(id);
     descrizione=p_descrizione;
 
 
     ui->leDesc->setText(descrizione);
 
-    tipo=getTipo(id);
-    qDebug()<<"TIPO"<<tipo;
 
     ui->pbScarico->setVisible(false);
 
@@ -41,14 +39,9 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
 
     connect(det,SIGNAL(activated()),this,SLOT(getDetails()));
 
-    tipo=getTipo(id);
 
-        qDebug()<<"DESC"<<descrizione<<p_descrizione;
-
-
-
-     if(tipo==4)ui->pbScarico->setVisible(true);
-     if(tipo!=4)ui->pbScarico->setVisible(false);
+    if(tipo==4)ui->pbScarico->setVisible(true);
+    if(tipo!=4)ui->pbScarico->setVisible(false);
 
 
     if(tipo!=1)
@@ -56,9 +49,14 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
         this->setWindowTitle("Composizione Lotto");
         ui->pbAdd->setVisible(true);
         ui->pbRemove->setVisible(true);
+         qDebug()<<"tipo"<<tipo<<descrizione;
 
-
-        getLotComposition();
+        ui->tableView->setModel(getLotComposition());
+        ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
+        ui->tableView->setColumnHidden(0,true);
+        ui->tableView->setColumnHidden(1,true);
+        ui->tableView->setColumnHidden(2,true);
+        ui->tableView->setColumnHidden(8,true);
     }
     else
     {
@@ -68,10 +66,13 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
         ui->pbRemove->setVisible(false);
         if(tipo==4)ui->pbScarico->setVisible(false);
 
-        getLotUse();
+        ui->tableView->setModel(getLotUse());
+        ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
 
 
     }
+
+
 
 
 
@@ -85,48 +86,49 @@ HComposizioneLotto::~HComposizioneLotto()
 
 void HComposizioneLotto::getDetails()
 {
-      //  HComposizioneLotto *f;
-
-
-
-        int lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
-
-        QModelIndex ixlot;
-        QModelIndex ixpro;
-        QString desc=QString();
-
-
-
-        if (tipo != 1)
-        {
-         ixlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),4);
-         ixpro=mod->index(ui->tableView->selectionModel()->currentIndex().row(),5);
-         desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
-
-
-        }
-        else
-        {
-          ixlot=mod->index(ui->tableView->selectionModel()->currentIndex().row(),2);
-          ixpro=mod->index(ui->tableView->selectionModel()->currentIndex().row(),4);
-          desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
-
-
-
-
-        }
+    //  HComposizioneLotto *f;
 
 
 
 
 
-        HComposizioneLotto *f=new HComposizioneLotto(lotid,desc,user,db);
+    int lotid=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
 
-        f->show();
+    QModelIndex ixlot;
+    QModelIndex ixpro;
+    QString desc=QString();
+
+     qDebug()<<"getDetails()"<<tipo<<lotid;
 
 
-     //   parf->show();
-        close();
+
+    if (tipo != 1)
+    {
+        ixlot=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),4);
+        ixpro=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),5);
+        desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
+
+
+    }
+    else
+    {
+        ixlot=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2);
+        ixpro=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),4);
+        desc=ixlot.data(0).toString()+" - "+ixpro.data(0).toString();
+
+    }
+
+
+
+
+
+    HComposizioneLotto *f=new HComposizioneLotto(lotid,desc,user,db);
+
+    f->show();
+
+
+    //   parf->show();
+    close();
 
 }
 
@@ -191,7 +193,7 @@ void HComposizioneLotto::unloadAll()
 
 
     QDateTime data=QDateTime::currentDateTime();
-   // int lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
+    // int lotid=mod->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
     int utente=user->getID();
     int idprod=ui->tableView->model()->index(ui->tableView->currentIndex().row(),2).data(0).toInt();
     int azione=2;
@@ -224,30 +226,30 @@ void HComposizioneLotto::unloadAll()
     bool b;
     if(QMessageBox::question(this,QApplication::applicationName(),"Scaricare la giacenza del lotto selezionato?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
-    b=q.exec();
+        b=q.exec();
 
 
-    if(!b) {
-        db.rollback();
-        QMessageBox::warning(this,QApplication::applicationName(),"Errore nello scaricamento della giacenza del lotto",QMessageBox::Ok);
+        if(!b) {
+            db.rollback();
+            QMessageBox::warning(this,QApplication::applicationName(),"Errore nello scaricamento della giacenza del lotto",QMessageBox::Ok);
 
-    }
-    else
-    {
-        if(QMessageBox::warning(this,QApplication::applicationName(),"Confermare l'operazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
-        {
-            db.commit();
-            QMessageBox::information(this,QApplication::applicationName(),"Giacenza azzerata",QMessageBox::Ok);
-            emit unloaded();
         }
         else
         {
-            QMessageBox::information(this,QApplication::applicationName(),"Operazione annullata",QMessageBox::Ok);
-            db.rollback();
+            if(QMessageBox::warning(this,QApplication::applicationName(),"Confermare l'operazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+            {
+                db.commit();
+                QMessageBox::information(this,QApplication::applicationName(),"Giacenza azzerata",QMessageBox::Ok);
+                emit unloaded();
+            }
+            else
+            {
+                QMessageBox::information(this,QApplication::applicationName(),"Operazione annullata",QMessageBox::Ok);
+                db.rollback();
+            }
+
+
         }
-
-
-    }
 
 
     }
@@ -260,8 +262,9 @@ void HComposizioneLotto::unloadAll()
 
 }
 
-void HComposizioneLotto::getLotComposition()
+QSqlQueryModel* HComposizioneLotto::getLotComposition()
 {
+    QSqlQueryModel* lmod=new QSqlQueryModel();
     QSqlQuery q(db);
     QString sql;
 
@@ -272,121 +275,95 @@ void HComposizioneLotto::getLotComposition()
     q.bindValue(":lotid",QVariant(id));
     q.exec();
 
-    mod=new QSqlQueryModel();
-    mod->setQuery(q);
+    qDebug()<<"ID"<<id;
 
-    ui->tableView->setModel(mod);
 
-    ui->tableView->setModel(mod);
-    ui->tableView->setColumnHidden(0,true);
-    ui->tableView->setColumnHidden(1,true);
-    ui->tableView->setColumnHidden(2,true);
-    ui->tableView->setColumnHidden(8,true);
+    lmod->setQuery(q);
 
-   if(mod->rowCount()>0)
-   {
+
+    return lmod;
 
 
 
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
-   // ui->tableView->setColumnHidden(0,true);
-    ui->tableView->setCurrentIndex(ui->tableView->model()->index(0,0));
-    }
-    else
-    {
-
-            ui->tableView->setVisible(false);
-            NoUse *w=new NoUse();
-            ui->verticalLayout->addWidget(w);
-            w->SetLabelText("Ricerca composizione non applicabile per il tipo di lotto selezionato");
-            w->show();
-
-   }
-
-   qDebug()<<q.lastError().text();
-
-
-
-
-      // setAttribute(Qt::WA_DeleteOnClose);
-
-      // close();
-
-
-    }
+}
 
 
 
 
 //}
 
-void HComposizioneLotto::getLotUse()
+QSqlQueryModel* HComposizioneLotto::getLotUse()
 {
 
 
-        QSqlQuery q(db);
-        QString sql;
+    QSqlQuery q(db);
+    QString sql;
 
 
-        mod=new QSqlQueryModel();
-
-
-
-        sql="select lotdef.ID,lotdef.data as 'DATA',lotdef.lot as 'LOTTO',lotdef.EAN as 'LOT. ESTERNO',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE' from  lotdef,prodotti,operazioni,anagrafica,composizione_lot where prodotti.ID=lotdef.prodotto and lotdef.ID =composizione_lot.ID_lotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID=composizione_lot.operazione and operazioni.IDlotto =:id ORDER BY lotdef.data desc";
-
-        q.prepare(sql);
-        q.bindValue(":id",id);
-
-        q.exec();
-
-
-        mod->setQuery(q);
-
-
-        ui->tableView->setModel(mod);
-        ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
-        ui->tableView->setColumnHidden(0,true);
-        ui->tableView->setCurrentIndex(ui->tableView->model()->index(0,0));
-
-
-        if(mod->rowCount()<1)
-        {
-            ui->tableView->setVisible(false);
-            NoUse *w=new NoUse();
-            w->SetLabelText("Lotto non ancora utilizzato o ricerca uso del lotto non applicabile a questa tipologia di lotto");
-            ui->verticalLayout->addWidget(w);
-            w->show();
-
-        }
+    QSqlQueryModel* lmod=new QSqlQueryModel();
 
 
 
+    sql="select lotdef.ID,lotdef.data as 'DATA',lotdef.lot as 'LOTTO',lotdef.EAN as 'LOT. ESTERNO',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE' from  lotdef,prodotti,operazioni,anagrafica,composizione_lot where prodotti.ID=lotdef.prodotto and lotdef.ID =composizione_lot.ID_lotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID=composizione_lot.operazione and operazioni.IDlotto =:id ORDER BY lotdef.data desc";
+
+    q.prepare(sql);
+    q.bindValue(":id",id);
+
+    q.exec();
 
 
+    lmod->setQuery(q);
 
-
-
-
-
-
+    return lmod;
 
 
 }
 
 void HComposizioneLotto::refresh_data()
 {
-    qDebug()<<"refresh"<<tipo;
 
-   if (tipo>1)
-   {
-       getLotComposition();
-   }
-   else {
-       getLotUse();
-   }
+
+    if (getTipo(id)>1)
+    {
+        ui->tableView->setModel(getLotComposition());
+
+        if(ui->tableView->model()->rowCount()>0)
+        {
+            ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
+            ui->tableView->setCurrentIndex(ui->tableView->model()->index(0,0));
+
+            return;
+        }
+        else
+        {
+
+
+
+            return;
+
+        }
+    }
+    else {
+        ui->tableView->setModel(getLotUse());
+
+
+
+        if(ui->tableView->model()->rowCount()>0)
+        {
+            ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
+            ui->tableView->setCurrentIndex(ui->tableView->model()->index(0,0));
+
+            return;
+        }
+        else
+        {
+
+            return;
+
+        }
+
+    }
 }
-
-
 
 
 
@@ -409,14 +386,14 @@ void HComposizioneLotto::print()
 {
 
 
-        if(tipo<2)
-        {
-          printUse();
-        }
-        else
-        {
-          printComposition();
-        }
+    if(tipo<2)
+    {
+        printUse();
+    }
+    else
+    {
+        printComposition();
+    }
 
 
 
@@ -485,7 +462,7 @@ void HComposizioneLotto::printComposition()
 
                 if(ok)
                 {
-                qta+=lq;
+                    qta+=lq;
                 }
 
             }
@@ -502,7 +479,7 @@ void HComposizioneLotto::printComposition()
             f->writeTableContent(tb,actrow,c,QTextCharFormat(),txt);
 
         }
-       QApplication::processEvents();
+        QApplication::processEvents();
 
     }
     txt=QString::number(qta,'f',3);
@@ -566,13 +543,13 @@ void HComposizioneLotto::printUse()
         for (c=1; c<cols; c++)
         {
 
-           txt=ui->tableView->model()->index(r,c).data(0).toString();
-           f->writeTableContent(tb,actrow,c,QTextCharFormat(),txt);
+            txt=ui->tableView->model()->index(r,c).data(0).toString();
+            f->writeTableContent(tb,actrow,c,QTextCharFormat(),txt);
 
         }
 
 
-   }
+    }
 
     QApplication::processEvents();
     QApplication::setOverrideCursor(Qt::ArrowCursor);
@@ -596,7 +573,7 @@ int HComposizioneLotto::getTipo(int idl)
 
 void HComposizioneLotto::on_pbUse_clicked()
 {
-  getDetails();
+    getDetails();
 }
 
 
@@ -608,9 +585,9 @@ void HComposizioneLotto::on_pbUse_clicked()
 
 void HComposizioneLotto::on_pbAdd_clicked()
 {
-   HChoose_lot_to_add *f=new HChoose_lot_to_add(id,user,db);
-   connect(f,SIGNAL(add_saved()),this,SLOT(refresh_data()));
-   f->show();
+    HChoose_lot_to_add *f=new HChoose_lot_to_add(id,user,db);
+    connect(f,SIGNAL(add_saved()),this,SLOT(refresh_data()));
+    f->show();
 
 
 
@@ -620,15 +597,15 @@ void HComposizioneLotto::on_pbAdd_clicked()
 void HComposizioneLotto::on_pbRemove_clicked()
 {
 
-   if (deleteComponent())
-   {
-      refresh_data();
+    if (deleteComponent())
+    {
+        refresh_data();
 
-   }
-   else
-   {
+    }
+    else
+    {
         QMessageBox::warning(this,QApplication::applicationName(),"Errore eliminando il componente",QMessageBox::Ok);
-   }
+    }
 
 
 }
@@ -636,8 +613,8 @@ void HComposizioneLotto::on_pbRemove_clicked()
 
 void HComposizioneLotto::on_pbScarico_clicked()
 {
-   unloadAll();
-   refresh_data();
+    unloadAll();
+    refresh_data();
 
 }
 

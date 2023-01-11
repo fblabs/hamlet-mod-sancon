@@ -28,12 +28,12 @@ private:
     int tipo;
     HUser *user;
     QString descrizione;
-    QSqlQueryModel *mod;
+  //  QSqlQueryModel *mod;
     QShortcut *det;
 
 private slots:
-    void getLotComposition();
-    void getLotUse();
+    QSqlQueryModel *getLotComposition();
+    QSqlQueryModel *getLotUse();
     void refresh_data();
 
     void on_tableView_doubleClicked(const QModelIndex &index);

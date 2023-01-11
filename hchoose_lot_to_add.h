@@ -30,6 +30,7 @@ private slots:
     void on_pbAdd_clicked();
     bool saveAdd();
     QSqlQueryModel* search_by_lot();
+    void setCurrentLsText();
 
     void on_leSearch_returnPressed();
 
