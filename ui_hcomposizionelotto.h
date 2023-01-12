@@ -39,11 +39,8 @@ public:
     QPushButton *pbRemove;
     QPushButton *pbModify;
     QPushButton *pbScarico;
-    QPushButton *pushButton_2;
     QSpacerItem *horizontalSpacer;
-    QLineEdit *leCurrentAmount;
-    QLineEdit *leNewAmount;
-    QPushButton *pbModifyAmount;
+    QPushButton *pushButton_2;
     QPushButton *pushButton_3;
 
     void setupUi(QWidget *HComposizioneLotto)
@@ -85,6 +82,9 @@ public:
         tableView->verticalHeader()->setVisible(false);
 
         verticalLayout->addWidget(tableView);
+
+
+        verticalLayout_2->addLayout(verticalLayout);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -134,6 +134,10 @@ public:
 
         horizontalLayout->addWidget(pbScarico);
 
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
         pushButton_2 = new QPushButton(HComposizioneLotto);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         QIcon icon6;
@@ -143,45 +147,17 @@ public:
 
         horizontalLayout->addWidget(pushButton_2);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
-
-        leCurrentAmount = new QLineEdit(HComposizioneLotto);
-        leCurrentAmount->setObjectName(QString::fromUtf8("leCurrentAmount"));
-        leCurrentAmount->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
-        leCurrentAmount->setReadOnly(true);
-
-        horizontalLayout->addWidget(leCurrentAmount);
-
-        leNewAmount = new QLineEdit(HComposizioneLotto);
-        leNewAmount->setObjectName(QString::fromUtf8("leNewAmount"));
-
-        horizontalLayout->addWidget(leNewAmount);
-
-        pbModifyAmount = new QPushButton(HComposizioneLotto);
-        pbModifyAmount->setObjectName(QString::fromUtf8("pbModifyAmount"));
-        QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/Resources/Cash-register-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbModifyAmount->setIcon(icon7);
-        pbModifyAmount->setIconSize(QSize(32, 32));
-
-        horizontalLayout->addWidget(pbModifyAmount);
-
         pushButton_3 = new QPushButton(HComposizioneLotto);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon8);
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon7);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_3);
 
 
-        verticalLayout->addLayout(horizontalLayout);
-
-
-        verticalLayout_2->addLayout(verticalLayout);
+        verticalLayout_2->addLayout(horizontalLayout);
 
 
         retranslateUi(HComposizioneLotto);
@@ -199,7 +175,6 @@ public:
         pbModify->setText(QCoreApplication::translate("HComposizioneLotto", "Modifica riga", nullptr));
         pbScarico->setText(QCoreApplication::translate("HComposizioneLotto", "Scarica giacenza", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HComposizioneLotto", "Stampa", nullptr));
-        pbModifyAmount->setText(QCoreApplication::translate("HComposizioneLotto", "Modifica Quantit\303\240", nullptr));
         pushButton_3->setText(QCoreApplication::translate("HComposizioneLotto", "Chiudi", nullptr));
     } // retranslateUi
 

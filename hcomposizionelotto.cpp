@@ -12,7 +12,6 @@
 #include "huser.h"
 #include <QDateTime>
 #include "hwarehousedetails.h"
-#include <QMessageBox>
 
 
 HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUser *p_user, QSqlDatabase pdb, QWidget *parent) :
@@ -31,18 +30,10 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
     descrizione=p_descrizione;
 
 
-    QValidator *iv=new QDoubleValidator(0.000,999999,3);
-    ui->leNewAmount->setValidator(iv);
-
-
-
     ui->leDesc->setText(descrizione);
 
 
     ui->pbScarico->setVisible(false);
-    ui->pbModifyAmount->setVisible(false);
-    ui->leCurrentAmount->setVisible(false);
-    ui->leNewAmount->setVisible(false);
 
     det=new QShortcut(QKeySequence("F5"),this);
 
@@ -58,6 +49,7 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
         this->setWindowTitle("Composizione Lotto");
         ui->pbAdd->setVisible(true);
         ui->pbRemove->setVisible(true);
+         qDebug()<<"tipo"<<tipo<<descrizione;
 
         ui->tableView->setModel(getLotComposition());
         ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch );
@@ -79,18 +71,6 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
 
 
     }
-
-    if(tipo>1 && tipo <4)
-    {
-        ui->pbModifyAmount->setVisible(true);
-        ui->leCurrentAmount->setVisible(true);
-        ui->leNewAmount->setVisible(true);
-
-
-
-    }
-
-
 
 
 
@@ -118,7 +98,7 @@ void HComposizioneLotto::getDetails()
     QModelIndex ixpro;
     QString desc=QString();
 
-    qDebug()<<"getDetails()"<<tipo<<lotid;
+     qDebug()<<"getDetails()"<<tipo<<lotid;
 
 
 
@@ -300,15 +280,6 @@ QSqlQueryModel* HComposizioneLotto::getLotComposition()
 
     lmod->setQuery(q);
 
-    double dafare=0.0;
-
-    for(int i=0; i<lmod->rowCount();++i)
-    {
-
-        dafare+=lmod->index(i,7).data(0).toDouble();
-        ui->leCurrentAmount->setText(QString::number(dafare,'f',3));
-    }
-
 
     return lmod;
 
@@ -392,92 +363,6 @@ void HComposizioneLotto::refresh_data()
         }
 
     }
-}
-
-int HComposizioneLotto::findLotFirstLoad()
-{
-
-    int result=0;
-
-    QString sql="SELECT MIN(ID) from operazioni where IDLotto=:id";
-    QSqlQuery q(db);
-    q.prepare(sql);
-    q.bindValue(":id",id);
-    q.exec();
-    q.first();
-    result=q.value(0).toInt();
-
-    return result;
-}
-
-double HComposizioneLotto::recalculateAmount()
-{
-    double dafare = ui->leNewAmount->text().toDouble();
-    double sommarighe=ui->leCurrentAmount->text().toDouble();
-
-    double factor= dafare / sommarighe;
-
-    QString sql=QString();
-    QSqlQuery q(db);
-
-    QAbstractItemModel* mod=ui->tableView->model();
-
-    int id_operation=findLotFirstLoad();
-    qDebug()<<"FIRST LOAD"<<id_operation;
-
-
-    // factor = dafare / sommarighe;
-
-
-    sql="UPDATE operazioni set quantita=:q where id=:id";
-    q.prepare(sql);
-    q.bindValue(":id",id_operation);
-    q.bindValue(":q",dafare);
-
-
-    bool b=q.exec();
-
-    if(!b){
-
-        qDebug()<<"ERROR UPDATE LOAD"<<id<<dafare<<q.lastError().text();;
-
-        return -1.0;
-    }
-
-    double result=0.0;
-    for (int j=0;j<mod->rowCount();++j)
-    {
-
-        QModelIndex i = mod->index(j,7);
-        double current=i.data().toDouble();
-        double updaterow =i.data().toDouble() * factor;
-        result+=updaterow;
-        int row=mod->index(j,1).data(0).toInt();
-
-        qDebug()<<"current"<<current<<"updaterow"<<updaterow<<"RIGA"<<row<<result;
-
-
-        sql="UPDATE operazioni set quantita=:q where id=:id";
-        q.prepare(sql);
-        q.bindValue(":q",updaterow);
-        q.bindValue(":id",row);
-
-        bool b=q.exec();
-        if(!b){
-            qDebug()<<"UPDATE"<<"riga"<<row<<q.lastError().text();
-            return -1.0;
-        }
-
-
-
-    }
-    db.commit();
-    qDebug()<<"commit";
-
-    return result;
-
-
-
 }
 
 
@@ -742,28 +627,5 @@ void HComposizioneLotto::on_pbModify_clicked()
     connect(f,SIGNAL(confirm()),this,SLOT(refresh_data()));
     f->show();
 
-}
-
-
-void HComposizioneLotto::on_pbModifyAmount_clicked()
-{
-    double amount=0.0;
-
-    if(QMessageBox::question(this,QApplication::applicationName(),"Modificare la quantità iniziale del lotto?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
-    {
-
-        db.transaction();
-        amount=recalculateAmount();
-        if (amount >-1)
-        {
-            db.commit();
-            getLotComposition();
-        }else{
-            db.rollback();
-        }
-
-        ui->leCurrentAmount->setText(QString::number(amount,'f',3));
-        ui->tableView->setModel(getLotComposition());
-    }
 }
 

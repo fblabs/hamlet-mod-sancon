@@ -35,8 +35,6 @@ private slots:
     QSqlQueryModel *getLotComposition();
     QSqlQueryModel *getLotUse();
     void refresh_data();
-    int findLotFirstLoad();
-    double recalculateAmount();
 
     void on_tableView_doubleClicked(const QModelIndex &index);
     void on_pushButton_3_clicked();
@@ -53,8 +51,6 @@ private slots:
     void on_pbRemove_clicked();
     void on_pbScarico_clicked();
     void on_pbModify_clicked();
-
-    void on_pbModifyAmount_clicked();
 
 signals:
    void unloaded();

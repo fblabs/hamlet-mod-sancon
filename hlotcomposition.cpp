@@ -157,7 +157,6 @@ void HLotComposition::on_pbRecalculate_clicked()
 {
     db.transaction();
     recalculate();
-
 }
 
 int HLotComposition::findLotFirstLoad()
