@@ -764,6 +764,8 @@ void HComposizioneLotto::on_pbModifyAmount_clicked()
 
         ui->leCurrentAmount->setText(QString::number(amount,'f',3));
         ui->tableView->setModel(getLotComposition());
+
+        ui->leNewAmount->setText("");
     }
 }
 
