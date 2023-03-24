@@ -31,7 +31,7 @@ QT_BEGIN_NAMESPACE
 class Ui_HCalcolo_costi
 {
 public:
-    QVBoxLayout *verticalLayout_3;
+    QVBoxLayout *verticalLayout_4;
     QFormLayout *formLayout_2;
     QGridLayout *gridLayout;
     QComboBox *cbClienti;
@@ -39,20 +39,30 @@ public:
     QLineEdit *leFormato;
     QLabel *label;
     QSpacerItem *horizontalSpacer;
-    QHBoxLayout *horizontalLayout_2;
-    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout_3;
+    QVBoxLayout *verticalLayout_3;
     QLabel *label_5;
     QListView *lv_prodotti;
     QLabel *label_3;
     QTableView *tvRicetta;
-    QFormLayout *formLayout;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_2;
+    QLabel *lbTotQuantita;
+    QLabel *label_14;
+    QLabel *lbCostoRicetta;
+    QLabel *label_16;
+    QLabel *lbCostoFormato;
+    QGridLayout *gridLayout_2;
     QLabel *label_6;
     QLineEdit *leCosto_energia;
+    QPushButton *pbAddEnergy;
     QLabel *label_7;
     QLineEdit *leCosto_personale;
+    QPushButton *pbAddPersonale;
     QLabel *label_8;
     QLineEdit *leCosto_spese_generali;
-    QVBoxLayout *verticalLayout_4;
+    QPushButton *pbGeneraleExpenses;
+    QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QLabel *label_9;
     QTableView *tvComponentiCosto;
@@ -79,8 +89,8 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Cash-register-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HCalcolo_costi->setWindowIcon(icon);
-        verticalLayout_3 = new QVBoxLayout(HCalcolo_costi);
-        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        verticalLayout_4 = new QVBoxLayout(HCalcolo_costi);
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         formLayout_2 = new QFormLayout();
         formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
         gridLayout = new QGridLayout();
@@ -118,26 +128,26 @@ public:
         formLayout_2->setItem(0, QFormLayout::FieldRole, horizontalSpacer);
 
 
-        verticalLayout_3->addLayout(formLayout_2);
+        verticalLayout_4->addLayout(formLayout_2);
 
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         label_5 = new QLabel(HCalcolo_costi);
         label_5->setObjectName(QString::fromUtf8("label_5"));
 
-        verticalLayout_2->addWidget(label_5);
+        verticalLayout_3->addWidget(label_5);
 
         lv_prodotti = new QListView(HCalcolo_costi);
         lv_prodotti->setObjectName(QString::fromUtf8("lv_prodotti"));
 
-        verticalLayout_2->addWidget(lv_prodotti);
+        verticalLayout_3->addWidget(lv_prodotti);
 
         label_3 = new QLabel(HCalcolo_costi);
         label_3->setObjectName(QString::fromUtf8("label_3"));
 
-        verticalLayout_2->addWidget(label_3);
+        verticalLayout_3->addWidget(label_3);
 
         tvRicetta = new QTableView(HCalcolo_costi);
         tvRicetta->setObjectName(QString::fromUtf8("tvRicetta"));
@@ -146,48 +156,106 @@ public:
         tvRicetta->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvRicetta->horizontalHeader()->setStretchLastSection(true);
 
-        verticalLayout_2->addWidget(tvRicetta);
+        verticalLayout_3->addWidget(tvRicetta);
 
-        formLayout = new QFormLayout();
-        formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        label_2 = new QLabel(HCalcolo_costi);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        horizontalLayout_2->addWidget(label_2);
+
+        lbTotQuantita = new QLabel(HCalcolo_costi);
+        lbTotQuantita->setObjectName(QString::fromUtf8("lbTotQuantita"));
+        lbTotQuantita->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+
+        horizontalLayout_2->addWidget(lbTotQuantita);
+
+        label_14 = new QLabel(HCalcolo_costi);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+
+        horizontalLayout_2->addWidget(label_14);
+
+        lbCostoRicetta = new QLabel(HCalcolo_costi);
+        lbCostoRicetta->setObjectName(QString::fromUtf8("lbCostoRicetta"));
+        lbCostoRicetta->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+
+        horizontalLayout_2->addWidget(lbCostoRicetta);
+
+        label_16 = new QLabel(HCalcolo_costi);
+        label_16->setObjectName(QString::fromUtf8("label_16"));
+
+        horizontalLayout_2->addWidget(label_16);
+
+        lbCostoFormato = new QLabel(HCalcolo_costi);
+        lbCostoFormato->setObjectName(QString::fromUtf8("lbCostoFormato"));
+        lbCostoFormato->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+
+        horizontalLayout_2->addWidget(lbCostoFormato);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_2);
+
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         label_6 = new QLabel(HCalcolo_costi);
         label_6->setObjectName(QString::fromUtf8("label_6"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label_6);
+        gridLayout_2->addWidget(label_6, 0, 0, 1, 1);
 
         leCosto_energia = new QLineEdit(HCalcolo_costi);
         leCosto_energia->setObjectName(QString::fromUtf8("leCosto_energia"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, leCosto_energia);
+        gridLayout_2->addWidget(leCosto_energia, 0, 1, 1, 1);
+
+        pbAddEnergy = new QPushButton(HCalcolo_costi);
+        pbAddEnergy->setObjectName(QString::fromUtf8("pbAddEnergy"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbAddEnergy->setIcon(icon1);
+
+        gridLayout_2->addWidget(pbAddEnergy, 0, 2, 1, 1);
 
         label_7 = new QLabel(HCalcolo_costi);
         label_7->setObjectName(QString::fromUtf8("label_7"));
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_7);
+        gridLayout_2->addWidget(label_7, 1, 0, 1, 1);
 
         leCosto_personale = new QLineEdit(HCalcolo_costi);
         leCosto_personale->setObjectName(QString::fromUtf8("leCosto_personale"));
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, leCosto_personale);
+        gridLayout_2->addWidget(leCosto_personale, 1, 1, 1, 1);
+
+        pbAddPersonale = new QPushButton(HCalcolo_costi);
+        pbAddPersonale->setObjectName(QString::fromUtf8("pbAddPersonale"));
+        pbAddPersonale->setIcon(icon1);
+
+        gridLayout_2->addWidget(pbAddPersonale, 1, 2, 1, 1);
 
         label_8 = new QLabel(HCalcolo_costi);
         label_8->setObjectName(QString::fromUtf8("label_8"));
 
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_8);
+        gridLayout_2->addWidget(label_8, 2, 0, 1, 1);
 
         leCosto_spese_generali = new QLineEdit(HCalcolo_costi);
         leCosto_spese_generali->setObjectName(QString::fromUtf8("leCosto_spese_generali"));
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, leCosto_spese_generali);
+        gridLayout_2->addWidget(leCosto_spese_generali, 2, 1, 1, 1);
+
+        pbGeneraleExpenses = new QPushButton(HCalcolo_costi);
+        pbGeneraleExpenses->setObjectName(QString::fromUtf8("pbGeneraleExpenses"));
+        pbGeneraleExpenses->setIcon(icon1);
+
+        gridLayout_2->addWidget(pbGeneraleExpenses, 2, 2, 1, 1);
 
 
-        verticalLayout_2->addLayout(formLayout);
+        verticalLayout_3->addLayout(gridLayout_2);
 
 
-        horizontalLayout_2->addLayout(verticalLayout_2);
+        horizontalLayout_3->addLayout(verticalLayout_3);
 
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         label_9 = new QLabel(HCalcolo_costi);
@@ -207,7 +275,7 @@ public:
         verticalLayout->addWidget(tvComponentiCosto);
 
 
-        verticalLayout_4->addLayout(verticalLayout);
+        verticalLayout_2->addLayout(verticalLayout);
 
         formLayout_3 = new QFormLayout();
         formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
@@ -245,20 +313,18 @@ public:
         formLayout_3->setWidget(2, QFormLayout::FieldRole, leResult);
 
 
-        verticalLayout_4->addLayout(formLayout_3);
+        verticalLayout_2->addLayout(formLayout_3);
 
 
-        horizontalLayout_2->addLayout(verticalLayout_4);
+        horizontalLayout_3->addLayout(verticalLayout_2);
 
 
-        verticalLayout_3->addLayout(horizontalLayout_2);
+        verticalLayout_4->addLayout(horizontalLayout_3);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         pbAggiungi_componente_costo = new QPushButton(HCalcolo_costi);
         pbAggiungi_componente_costo->setObjectName(QString::fromUtf8("pbAggiungi_componente_costo"));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         pbAggiungi_componente_costo->setIcon(icon1);
         pbAggiungi_componente_costo->setIconSize(QSize(32, 32));
 
@@ -283,7 +349,7 @@ public:
         horizontalLayout->addWidget(pbCalcolo);
 
 
-        verticalLayout_3->addLayout(horizontalLayout);
+        verticalLayout_4->addLayout(horizontalLayout);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
@@ -306,7 +372,7 @@ public:
         horizontalLayout_4->addWidget(pbClose);
 
 
-        verticalLayout_3->addLayout(horizontalLayout_4);
+        verticalLayout_4->addLayout(horizontalLayout_4);
 
 
         retranslateUi(HCalcolo_costi);
@@ -322,9 +388,18 @@ public:
         label->setText(QCoreApplication::translate("HCalcolo_costi", "Cliente:", nullptr));
         label_5->setText(QCoreApplication::translate("HCalcolo_costi", "Prodotti cliente", nullptr));
         label_3->setText(QCoreApplication::translate("HCalcolo_costi", "Componenti ricetta", nullptr));
+        label_2->setText(QCoreApplication::translate("HCalcolo_costi", "Tot. Quantit\303\240", nullptr));
+        lbTotQuantita->setText(QString());
+        label_14->setText(QCoreApplication::translate("HCalcolo_costi", "Costo/ricetta:", nullptr));
+        lbCostoRicetta->setText(QString());
+        label_16->setText(QCoreApplication::translate("HCalcolo_costi", "Costo formato:", nullptr));
+        lbCostoFormato->setText(QString());
         label_6->setText(QCoreApplication::translate("HCalcolo_costi", "Energia:", nullptr));
+        pbAddEnergy->setText(QString());
         label_7->setText(QCoreApplication::translate("HCalcolo_costi", "Personale:", nullptr));
+        pbAddPersonale->setText(QString());
         label_8->setText(QCoreApplication::translate("HCalcolo_costi", "Spese generali:", nullptr));
+        pbGeneraleExpenses->setText(QString());
         label_9->setText(QCoreApplication::translate("HCalcolo_costi", "Componenti costo", nullptr));
         label_10->setText(QCoreApplication::translate("HCalcolo_costi", "Costo formato:", nullptr));
         label_11->setText(QCoreApplication::translate("HCalcolo_costi", "Margine (%):", nullptr));

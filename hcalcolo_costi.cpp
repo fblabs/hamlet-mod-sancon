@@ -141,10 +141,14 @@ void HCalcolo_costi::get_ricetta()
     //ui->leCosto_formato->setText()
 
     double costo_formato=0.0;
+    double costo_ricetta=0.0;
+    double tot_quantita=0.0;
 
     for (int r=0;r<ricmod->rowCount();r++)
     {
         costo_formato+=ricmod->index(r,4).data(0).toDouble();
+        costo_ricetta+=ricmod->index(r,3).data(0).toDouble();
+        tot_quantita+=ricmod->index(r,1).data(0).toDouble();
         //    qDebug()<<r<<costo_formato;
 
     }
@@ -152,6 +156,9 @@ void HCalcolo_costi::get_ricetta()
     // ui->tvRicetta->setColumnHidden(2,true);
 
     ui->leCosto_formato->setText(QString::number(costo_formato,'f',4));
+    ui->lbCostoFormato->setText(QString::number(costo_formato,'f',4));
+    ui->lbTotQuantita->setText(QString::number(tot_quantita,'f',2));
+    ui->lbCostoRicetta->setText(QString::number(costo_ricetta,'f',4));
 
 
 }
@@ -606,12 +613,34 @@ void HCalcolo_costi::on_tvComponentiCosto_doubleClicked(const QModelIndex &index
     connect(f,SIGNAL(item_added(QString,QString)),this,SLOT(update_componenti_costo_row(QString,QString)));
     f->show();
 
+}
+
+
+void HCalcolo_costi::on_pbAddEnergy_clicked()
+{
+    QList<QStandardItem*> row;
+
+    row<<new QStandardItem("COSTO ENERGIA")<<new QStandardItem("")<<new QStandardItem(ui->leCosto_energia->text());
+    componenti_costo_model->appendRow(row);
+}
 
 
 
 
+void HCalcolo_costi::on_pbAddPersonale_clicked()
+{
+    QList<QStandardItem*> row;
+
+    row<<new QStandardItem("COSTO PERSONALE")<<new QStandardItem("")<<new QStandardItem(ui->leCosto_personale->text());
+    componenti_costo_model->appendRow(row);
+}
 
 
+void HCalcolo_costi::on_pbGeneraleExpenses_clicked()
+{
+    QList<QStandardItem*> row;
 
+    row<<new QStandardItem("SPESE GENERALI")<<new QStandardItem("")<<new QStandardItem(ui->leCosto_spese_generali->text());
+    componenti_costo_model->appendRow(row);
 }
 

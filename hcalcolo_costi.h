@@ -54,6 +54,12 @@ private slots:
 
    void on_tvComponentiCosto_doubleClicked(const QModelIndex &index);
 
+   void on_pbAddEnergy_clicked();
+
+   void on_pbAddPersonale_clicked();
+
+   void on_pbGeneraleExpenses_clicked();
+
 signals:
    void component_added(QString p_item=QString(),QString p_costo=QString("0.00"));
 };
