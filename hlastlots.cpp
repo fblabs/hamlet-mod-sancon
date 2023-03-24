@@ -75,7 +75,7 @@ void HLastLots::lastLots()
         int prd =ui->cbProducts->model()->index(ui->cbProducts->currentIndex(),0).data(0).toInt();
         int quanti=ui->cbLastLots->currentData().toInt();
 
-        qDebug()<<"quanti"<<quanti;
+
 
 
         QSqlQuery qlots(db);

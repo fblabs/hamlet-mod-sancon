@@ -26,8 +26,9 @@ class HAddLotInProduction : public QWidget
 
 
 public:
-    explicit HAddLotInProduction(QWidget *parent, HDataToPass *datapass, QSqlDatabase pdb=QSqlDatabase());
+    explicit HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent=nullptr);
     ~HAddLotInProduction();
+    void click();
 
 private:
     Ui::HAddLotInProduction *ui;

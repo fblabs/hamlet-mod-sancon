@@ -24,6 +24,7 @@
 #include "hdatatopass.h"
 #include "hlastlots.h"
 #include "huser.h"
+#include <QSettings>
 
 enum ACTION{
     RESET=0,
@@ -38,18 +39,32 @@ HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
 
     user=puser;
     db=pdb;
+    qDebug()<<"GETPRODUZIONE_U"<<QString::number(user->get_produzione_u()>0);
+
+    ui->pushButton_5->setEnabled(user->get_produzione_u()>0);
+    ui->pushButton_2->setEnabled(user->get_produzione_u()>0);
+    ui->pushButton_3->setEnabled(false);
+    ui->pushButton_7->setEnabled(user->get_produzione_u()>0);
+    ui->pushButton_11->setEnabled(user->get_produzione_u()>0);
+
+
+
+    QSettings settings("hamletmod.ini",QSettings::IniFormat);
+    preferred_db=settings.value("preferred_lots").toString();
+
+
+
+     prefdb=QSqlDatabase::addDatabase("QSQLITE");
+     prefdb.setDatabaseName(preferred_db);
+     prefdb.open();
 
     ui->dateEdit->setVisible(false);
     ui->label_9->setVisible(false);
-    ui->pushButton_8->setVisible(false);
     ui->pushButton_10->setEnabled(false);
     ui->pushButton->setVisible(false);
     ui->checkBox->setVisible(false);
 
     modifyLot=false;
-
-
-
 
     tmTipiLotti=new QSqlTableModel(0,db);
     tmTipiLotti->setTable("tipi_lot");
@@ -78,22 +93,17 @@ HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->lvRicette->setEnabled(true);
     ui->lvSubclienti->setVisible(false);
 
-    ui->leQtyTotal->setEnabled(true);
+  /*  ui->leQtyTotal->setEnabled(true);
     ui->pushButton_5->setVisible(true);
     ui->pushButton_6->setVisible(false);
     ui->pushButton->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
     ui->pushButton_7->setEnabled(false);
     ui->leNuovoLot->setText("");
-    ui->label_6->setVisible(true);
+    ui->label_6->setVisible(true);*/
     ui->dateEdit->setDate(QDate::currentDate().addYears(2));
 
     setAddProductFuoriRicettaUI(false);
-
-    connect(ui->cbClienti,SIGNAL(currentIndexChanged(int)),this,SLOT(getSubclients()));
-
-
-
 
 }
 
@@ -225,7 +235,6 @@ void HProduction::updateTotals()
         QModelIndex m = model->index(j,5);
         result =i.data().toDouble()* factor;
         QString resulttoadd=QString::number(result,'f',3);
-        //  model->setData(i,QVariant(resulttoadd));
         model->setData(m,QVariant(resulttoadd));
 
     }
@@ -267,16 +276,16 @@ void HProduction::getLotToModify(QString lot)
     ui->lvRicette->setEnabled(false);
 
     ui->pushButton_5->setVisible(false);
-    ui->pushButton_6->setVisible(true);
+    ui->pushButton_6->setVisible(user->get_produzione_u()>0);
     ui->pushButton->setEnabled(true);
-    ui->pushButton_2->setEnabled(true);
-    ui->pushButton_7->setEnabled(true);
+    ui->pushButton_2->setEnabled(user->get_produzione_u()>0);
+    ui->pushButton_7->setEnabled(user->get_produzione_u()>0);
     //ui->label->setVisible(true);
     //ui->cbQuanti->setVisible(true);
     //ui->lvLastLots->setVisible(true);
-    ui->leQtyTotal->setReadOnly(false);
-    ui->leQtyTotal->setEnabled(true);
-    ui->cbTipoLotto->setEnabled(false);
+    ui->leQtyTotal->setReadOnly(user->get_produzione_u()>0);
+    ui->leQtyTotal->setEnabled(user->get_produzione_u()>0);
+    ui->cbTipoLotto->setEnabled(user->get_produzione_u()>0);
 
 
     ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
@@ -555,8 +564,6 @@ void HProduction::getRecipe()
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
     ui->tableView->setColumnHidden(6,true);
-
-    ui->pushButton_8->setEnabled(true);
     ui->pushButton_10->setEnabled(true);
 
 
@@ -968,7 +975,7 @@ void HProduction::addLotFuoriRicettaN(QList<QStandardItem*> row)
 
 void HProduction::on_pushButton_5_clicked()
 {
-    ui->pushButton_3->setEnabled(true);
+    ui->pushButton_3->setEnabled(user->get_produzione_u()>0);
     ui->lvRicette->setEnabled(false);
     ui->leOperatore->setEnabled(false);
 
@@ -993,8 +1000,8 @@ void HProduction::on_pushButton_5_clicked()
     ui->leQtyTotal->setFocus();
 
     getRecipe();
-
     updateTotals();
+   // addPreferredLots();
 
     //QModelIndex tindex=ui->tableView->selectionModel()->currentIndex();
     ui->tableView->setEnabled(true);
@@ -1040,6 +1047,8 @@ void HProduction::on_pushButton_6_clicked()
     //   updateTotals();
 
     resetForm(false);
+
+    ui->pushButton_3->setEnabled(false);
 
 
 
@@ -1088,6 +1097,7 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
 
     if(QMessageBox::question(this,QApplication::applicationName(),"Confermare la produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
+        QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
         q.prepare(sql);
 
         q.bindValue(":lot",QVariant(lot));
@@ -1262,6 +1272,8 @@ bool HProduction::saveProduction()
 
 
 
+
+
     //creo un nuovo lotto
 
     db.transaction();
@@ -1277,12 +1289,15 @@ bool HProduction::saveProduction()
         return false;
     }
 
+   //  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
     fb=saveNewLot(lotto,idprodotto);
     qDebug()<<"saveNewLot"<<fb;
 
     if(!fb)
     {
         db.rollback();
+        QApplication::restoreOverrideCursor();
         QMessageBox::warning(this,QApplication::applicationName(),"Il nuovo lotto non è stato creato\nOperazione annullata o fallita"+db.lastError().text(),QMessageBox::Ok);
 
         return fb;
@@ -1297,6 +1312,7 @@ bool HProduction::saveProduction()
     {
         QMessageBox::warning(this,QApplication::applicationName(),"Errore in SaveLotLoad"+db.lastError().text(),QMessageBox::Ok);
         db.rollback();
+        QApplication::restoreOverrideCursor();
         return fb;
     }
 
@@ -1322,6 +1338,7 @@ bool HProduction::saveProduction()
             {
                 QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveComposizione",QMessageBox::Ok);
                 db.rollback();
+                QApplication::restoreOverrideCursor();
                 return j;
             }
 
@@ -1331,6 +1348,7 @@ bool HProduction::saveProduction()
 
             QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveOperation("+ QString::number(x) +")",QMessageBox::Ok);
             db.rollback();
+            QApplication::restoreOverrideCursor();
             return bop;
         } //se saveoperazione
 
@@ -1341,6 +1359,7 @@ bool HProduction::saveProduction()
 
     if(bop)
     {
+         QApplication::restoreOverrideCursor();
         db.commit();
         QMessageBox::information(this,QApplication::applicationName(),"Produzione salvata",QMessageBox::Ok);
         ui->lvRicette->setEnabled(true);
@@ -1355,11 +1374,14 @@ bool HProduction::saveProduction()
     else
     {
 
+        QApplication::restoreOverrideCursor();
         db.rollback();
         QMessageBox::information(this,QApplication::applicationName(),"Errore",QMessageBox::Ok);
     }
 
     ui->tableView->setEnabled(false);
+
+    QApplication::restoreOverrideCursor();
 
 
 
@@ -1409,6 +1431,9 @@ void HProduction::on_pushButton_3_clicked()
     }
 
     resetForm(true);
+
+    ui->pushButton_3->setEnabled(false);
+
 
 }
 
@@ -1480,13 +1505,6 @@ void HProduction::on_pbAddLottoFuoriRicetta_clicked()
     addLotFuoriRicetta();
     setAddProductFuoriRicettaUI(false);
     ui->pushButton_7->setChecked(false);
-}
-
-
-void HProduction::on_pushButton_8_clicked()
-{
-    // printProduction(false);
-    printRecipe();
 }
 
 
@@ -1599,8 +1617,7 @@ void HProduction::resetForm(bool pcomplete)
 {
     ui->dateEdit->setVisible(false);
     ui->label_9->setVisible(false);
-    ui->pushButton_8->setVisible(false);
-    ui->pushButton_10->setEnabled(false);
+   // ui->pushButton_10->setEnabled(false);
     ui->pushButton->setVisible(false);
     ui->checkBox->setVisible(false);
    // ui->cbClienti->setCurrentIndex(ui->cbClienti->model()->rowCount());
@@ -1609,14 +1626,18 @@ void HProduction::resetForm(bool pcomplete)
     ui->lvRicette->setEnabled(true);
     ui->lvSubclienti->setVisible(false);
 
+    ui->pushButton_5->setEnabled(user->get_produzione_u()>0);
+    ui->pushButton_2->setEnabled(user->get_produzione_u()>0);
+    ui->pushButton_3->setEnabled(user->get_produzione_u()>0);
+    ui->pushButton_7->setEnabled(user->get_produzione_u()>0);
+    ui->pushButton_11->setEnabled(user->get_produzione_u()>0);
+
     ui->leQtyTotal->setEnabled(true);
     ui->pushButton_5->setVisible(true);
     ui->pushButton_6->setVisible(false);
     ui->pushButton->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
-    ui->pushButton_7->setEnabled(false);
-    ui->pushButton_3->setEnabled(false);
-    ui->leNuovoLot->setText("");
+     ui->leNuovoLot->setText("");
     ui->label_6->setVisible(true);
     ui->dateEdit->setDate(QDate::currentDate().addYears(2));
     if(pcomplete) ui->leOperatore->setText(QString());
@@ -1688,38 +1709,80 @@ void HProduction::ui_enable(int arg)
 
 }
 
+void HProduction::addPreferredLots()
+{
+   int rows=ui->tableView->model()->rowCount();
 
-void HProduction::addLot(QModelIndex index)
+   for(int row=0;row<rows;++row)
+   {
+       QModelIndex ix=ui->tableView->model()->index(row,0);
+       addLot(ix,false);
+   }
+}
+
+const QString HProduction::findPreferredLot(const int id_prod)
+{
+    QString default_lot=QString();
+    QString sql("SELECT lot FROM pref WHERE prod=:prod");
+    QSqlDatabase prefdb=QSqlDatabase::addDatabase("QSQLITE");
+    prefdb.setDatabaseName("preferences.db");
+    prefdb.open();
+
+    QSqlQuery q(prefdb);
+    q.prepare(sql);
+    q.bindValue(":prod",id_prod);
+    if (q.exec())
+    {
+        q.first();
+        default_lot=q.value(0).toString();
+    }
+
+    prefdb.close();
+
+    return default_lot;
+}
+
+
+void HProduction::addLot(QModelIndex index,bool show_window)
 {
     HDataToPass *data=new HDataToPass(0);
 
 
-    data->allergene=ui->tableView->model()->index(ui->tableView->currentIndex().row(),6).data(0).toBool();
-    data->description=ui->tableView->model()->index(ui->tableView->currentIndex().row(),1).data(0).toString();
-    data->productId=ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0)).toInt();
+    data->allergene=ui->tableView->model()->index(index.row(),6).data(0).toBool();
+    data->description=ui->tableView->model()->index(index.row(),1).data(0).toString();
+    data->productId=ui->tableView->model()->data(ui->tableView->model()->index(index.row(),0)).toInt();
     data->row=index.row();
-    data->quantity=ui->tableView->model()->index(ui->tableView->currentIndex().row(),5).data(0).toDouble();
+    data->quantity=ui->tableView->model()->index(index.row(),5).data(0).toDouble();
     data->mod=static_cast<QStandardItemModel*>(ui->tableView->model());
 
 
-    HAddLotInProduction *f= new HAddLotInProduction(0,data,db);
-    f->setWindowModality(Qt::ApplicationModal);
+    HAddLotInProduction *f= new HAddLotInProduction(data,db);
+
+    if(show_window){
+   // f->setWindowModality(Qt::ApplicationModal);
+    f->move(10+ui->tableView->x()-f->width()-10,QCursor::pos().y());
+    f->show();
 
 
     // f->setWindowFlags(Qt::FramelessWindowHint);
-    f->move(10+ui->tableView->x()-f->width()-10,QCursor::pos().y());
 
 
-    f->show();
+
+
+
+    }else{
+        f->click();
+        f->close();
+    }
+
 }
 
 
 
 
 
-
-
-
-
-
+void HProduction::on_pbPreferredLots_clicked()
+{
+    addPreferredLots();
+}
 

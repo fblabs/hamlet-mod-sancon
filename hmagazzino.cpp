@@ -35,6 +35,10 @@ HMagazzino::HMagazzino(QSqlDatabase pdb,HUser *puser,QWidget *parent) :
     connect(ui->deFrom,SIGNAL(dateChanged(QDate)),this,SLOT(queryOperations()));
     connect(ui->deTo,SIGNAL(dateChanged(QDate)),this,SLOT(queryOperations()));
 
+    ui->pushButton_2->setEnabled(user->get_operazioni_u()>0);
+    ui->pushButton_3->setEnabled(user->get_operazioni_u()>0);
+    ui->pushButton_4->setEnabled(user->get_lotti_u()>0);
+
 
 
 }
@@ -83,7 +87,7 @@ void HMagazzino::queryOperations()
 
     where.append(" order by o.data desc");
 
-    QString sql="SELECT o.ID,o.IDlotto, o.data as 'DATA',p.descrizione as 'PRODOTTO',l.ID as 'IDLotto',l.lot as 'LOTTO',l.lot_fornitore as 'LOTTO FORNITORE',l.giacenza as 'GIACENZA',a.descrizione as 'AZIONE',o.quantita as 'QUANTITA',m.descrizione as 'UNITA DI MISURA',u.nome AS 'UTENTE',o.note AS 'NOTE' \
+    QString sql="SELECT o.ID,o.IDlotto, o.data as 'DATA',p.descrizione as 'PRODOTTO',l.ID as 'IDLotto',l.lot as 'LOTTO',l.lot_fornitore as 'LOTTO FORNITORE',l.EAN as 'LOTTO ESTERNO',l.giacenza as 'GIACENZA',a.descrizione as 'AZIONE',o.quantita as 'QUANTITA',m.descrizione as 'UNITA DI MISURA',u.nome AS 'UTENTE',o.note AS 'NOTE' \
             FROM operazioni as o\
             INNER JOIN lotdef as l\
             ON l.ID=o.IDlotto\
@@ -141,7 +145,7 @@ void HMagazzino::updateOperation()
 {
     int id=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
     int idlotto=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data(0).toInt();
-    HWarehouseDetails *f=new HWarehouseDetails(db,id,idlotto);
+    HWarehouseDetails *f=new HWarehouseDetails(user,db,id,idlotto);
     connect(f,SIGNAL(confirm()),this,SLOT(queryOperations()));
     f->show();
 }

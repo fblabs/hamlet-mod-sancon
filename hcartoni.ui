@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HCartoni</class>
+ <widget class="QWidget" name="HCartoni">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QFormLayout" name="formLayout_3">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_13">
+       <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Cartoni:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="cbCartoni"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_15">
+       <property name="text">
+        <string>Costo unitario</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="leCosto_unitario_cartone"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_14">
+       <property name="text">
+        <string>Vasi per cartone</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="leVasi_per_cartone"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_16">
+       <property name="text">
+        <string>Costo per vaso</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="leCostoper_vaso"/>
+     </item>
+     <item row="4" column="1">
+      <widget class="QPushButton" name="pbAdd">
+       <property name="text">
+        <string>Aggiungi</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

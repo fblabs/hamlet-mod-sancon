@@ -39,6 +39,15 @@ private slots:
     QSqlQueryModel *getProducts();
     void on_cbProduct_currentIndexChanged(int index);
     void on_ckbUseProduct_toggled(bool checked);
+    void on_tvLotti_customContextMenuRequested(const QPoint &pos);
+    void showContextMenu(const QPoint& pos);
+    void copyField();
+    void datiBio();
+    void on_pbDelete_clicked();
+    void deleteLot(const int p_id);
+    void on_chb_bio_toggled(bool checked);
+
+    void on_le_search_returnPressed();
 };
 
 #endif // HLOTTI_NEW_H

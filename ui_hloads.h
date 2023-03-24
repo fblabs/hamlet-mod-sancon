@@ -17,6 +17,8 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -26,15 +28,21 @@ class Ui_HLoads
 {
 public:
     QVBoxLayout *verticalLayout;
+    QLineEdit *leProduct;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QDateEdit *deFrom;
     QLabel *label_2;
     QDateEdit *deTo;
-    QPushButton *pushButton;
+    QPushButton *pbSearch;
+    QHBoxLayout *horizontalLayout_3;
+    QRadioButton *rbLoads;
+    QRadioButton *rbUnloads;
+    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_3;
     QLineEdit *leAmount;
+    QSpacerItem *verticalSpacer_2;
     QPushButton *pbClose;
 
     void setupUi(QWidget *HLoads)
@@ -42,9 +50,16 @@ public:
         if (HLoads->objectName().isEmpty())
             HLoads->setObjectName(QString::fromUtf8("HLoads"));
         HLoads->setWindowModality(Qt::ApplicationModal);
-        HLoads->resize(253, 282);
+        HLoads->resize(339, 282);
         verticalLayout = new QVBoxLayout(HLoads);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        leProduct = new QLineEdit(HLoads);
+        leProduct->setObjectName(QString::fromUtf8("leProduct"));
+        leProduct->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+        leProduct->setReadOnly(true);
+
+        verticalLayout->addWidget(leProduct);
+
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         label = new QLabel(HLoads);
@@ -69,16 +84,36 @@ public:
 
         horizontalLayout->addWidget(deTo);
 
-        pushButton = new QPushButton(HLoads);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pbSearch = new QPushButton(HLoads);
+        pbSearch->setObjectName(QString::fromUtf8("pbSearch"));
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Monitoring64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon);
+        pbSearch->setIcon(icon);
 
-        horizontalLayout->addWidget(pushButton);
+        horizontalLayout->addWidget(pbSearch);
 
 
         verticalLayout->addLayout(horizontalLayout);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        rbLoads = new QRadioButton(HLoads);
+        rbLoads->setObjectName(QString::fromUtf8("rbLoads"));
+        rbLoads->setChecked(true);
+
+        horizontalLayout_3->addWidget(rbLoads);
+
+        rbUnloads = new QRadioButton(HLoads);
+        rbUnloads->setObjectName(QString::fromUtf8("rbUnloads"));
+
+        horizontalLayout_3->addWidget(rbUnloads);
+
+        verticalSpacer = new QSpacerItem(20, 64, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        horizontalLayout_3->addItem(verticalSpacer);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
@@ -96,6 +131,10 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout_2);
+
+        verticalSpacer_2 = new QSpacerItem(20, 63, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_2);
 
         pbClose = new QPushButton(HLoads);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
@@ -116,8 +155,10 @@ public:
         HLoads->setWindowTitle(QCoreApplication::translate("HLoads", "Carichi", nullptr));
         label->setText(QCoreApplication::translate("HLoads", "Tra il:", nullptr));
         label_2->setText(QCoreApplication::translate("HLoads", "e il:", nullptr));
-        pushButton->setText(QCoreApplication::translate("HLoads", "Cerca", nullptr));
-        label_3->setText(QCoreApplication::translate("HLoads", "Totale carichi:", nullptr));
+        pbSearch->setText(QCoreApplication::translate("HLoads", "Cerca", nullptr));
+        rbLoads->setText(QCoreApplication::translate("HLoads", "Carichi", nullptr));
+        rbUnloads->setText(QCoreApplication::translate("HLoads", "Scarichi", nullptr));
+        label_3->setText(QCoreApplication::translate("HLoads", "Totale::", nullptr));
         pbClose->setText(QCoreApplication::translate("HLoads", "Chiudi", nullptr));
     } // retranslateUi
 

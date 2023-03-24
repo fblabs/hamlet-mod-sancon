@@ -14,7 +14,7 @@ class HLoads : public QWidget
     Q_OBJECT
 
 public:
-    explicit HLoads(int pid_prodotto, QSqlDatabase p_db=QSqlDatabase(), QWidget *parent = nullptr);
+    explicit HLoads(const int pid_prodotto,const QString p_title=QString(),QSqlDatabase p_db=QSqlDatabase(), QWidget *parent = nullptr);
     ~HLoads();
 
 private:
@@ -23,8 +23,10 @@ private:
     int id_prodotto;
 private slots:
    void getLoads();
+   void getUnloads();
    void on_pbClose_clicked();
-   void on_pushButton_clicked();
+   void on_rbLoads_toggled(bool checked);
+   void on_pbSearch_clicked();
 };
 
 #endif // HLOADS_H

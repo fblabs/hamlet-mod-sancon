@@ -48,6 +48,7 @@ private:
    void resetUI();
    void performCalculation();
    void print();
+   void getCartoni();
 };
 
 #endif // HCALCOST_H

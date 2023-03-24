@@ -10,8 +10,9 @@
 #include <QMessageBox>
 #include <QSqlError>
 #include <QSqlQueryModel>
+#include "huser.h"
 
-HWarehouseDetails::HWarehouseDetails(QSqlDatabase pdb, int id,int pidlotto, QWidget *parent) :
+HWarehouseDetails::HWarehouseDetails(HUser *p_user,QSqlDatabase pdb, int id,int pidlotto, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HWarehouseDetails)
 {
@@ -21,7 +22,9 @@ HWarehouseDetails::HWarehouseDetails(QSqlDatabase pdb, int id,int pidlotto, QWid
     opid=id;
     idlotto=pidlotto;
     mod=new QSqlRelationalTableModel(0,db);
-    qDebug()<<db.userName();
+    user=p_user;
+
+    ui->pbSave->setEnabled(user->get_operazioni_u()>0);
 
     mod->setTable("operazioni");
     mod->setRelation(1,QSqlRelation("lotdef","ID","lot"));
@@ -66,7 +69,8 @@ HWarehouseDetails::HWarehouseDetails(QSqlDatabase pdb, int id,int pidlotto, QWid
 
     if (ui->cbUM->currentText()=="Kg")
     {ui->leQuantita->setText(QString::number(ui->leQuantita->text().toDouble(),'f',3));}
-    else return;
+
+
 }
 
 HWarehouseDetails::~HWarehouseDetails()

@@ -3,13 +3,13 @@
  <class>HWorkProgram</class>
  <widget class="QWidget" name="HWorkProgram">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1149</width>
+    <width>1211</width>
     <height>638</height>
    </rect>
   </property>
@@ -34,7 +34,6 @@
       <widget class="QLabel" name="label">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -47,7 +46,6 @@
       <widget class="QLabel" name="label_4">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>

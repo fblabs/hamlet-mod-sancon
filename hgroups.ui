@@ -9,70 +9,506 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>978</width>
-    <height>476</height>
+    <width>964</width>
+    <height>451</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Gestione permessi</string>
+   <string>Gestione Gruppi</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
-    <normaloff>:/Resources/Users64.png</normaloff>:/Resources/Users64.png</iconset>
+    <normaloff>:/Resources/user-group-icon.png</normaloff>:/Resources/user-group-icon.png</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLabel" name="label">
-       <property name="minimumSize">
-        <size>
-         <width>100</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>100</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Descrizione:</string>
-       </property>
-      </widget>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="1">
+        <widget class="QComboBox" name="cbGruppi">
+         <property name="minimumSize">
+          <size>
+           <width>500</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>500</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="pbDelete">
+         <property name="text">
+          <string>Elimina gruppo permessi</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Banned-Sign.PNG</normaloff>:/Resources/Banned-Sign.PNG</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="lb_gruppo">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>GRUPPO:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
-      <widget class="QComboBox" name="cbGroups">
-       <property name="editable">
-        <bool>true</bool>
-       </property>
-       <property name="insertPolicy">
-        <enum>QComboBox::NoInsert</enum>
-       </property>
-      </widget>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QLabel" name="spacer">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="leDesc"/>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="pBSave">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Utenti</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QCheckBox" name="cbVistaUtenti">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QCheckBox" name="cbUpdateUtenti">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Anagrafica:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="cbVistaAnagrafica">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QCheckBox" name="cbUpdateAnagrafica">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Notifiche</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QCheckBox" name="cbVistaNotifiche">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QCheckBox" name="cbUpdateNotifiche">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Contatti:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QCheckBox" name="cbVistacontatti">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QCheckBox" name="cbUpdateContatti">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Lotti</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QCheckBox" name="cbVistaLotti">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QCheckBox" name="cbUpdateLotti">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Operazioni:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QCheckBox" name="cbVistaOperazioni">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QCheckBox" name="cbUpdateOperazioni">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Prodotti:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QCheckBox" name="cbVistaProdotti">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QCheckBox" name="cbUpdateProdotti">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Schede Clienti:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QCheckBox" name="cbVistaSchede">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QCheckBox" name="cbUpdateSchede">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_10">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Ricette:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="cbVistaRicette">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QCheckBox" name="cbUpdateRicette">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_11">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Programmi:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QCheckBox" name="cbVistaProgrammi">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QCheckBox" name="cbUpdateProgrammi">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_12">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Produzione:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QCheckBox" name="cbVistaProduzione">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QCheckBox" name="cbUpdateProduzione">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_13">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Packages:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QCheckBox" name="cbVistaPackages">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QCheckBox" name="cbUpdatePackages">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_14">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Calcolo costi:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QCheckBox" name="cbVistaCalcoloCosti">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QCheckBox" name="cbUpdateCalcoloCosti">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_15">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Analisi:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QCheckBox" name="cbVistaAnalisi">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QCheckBox" name="cbUpdateAnalisi">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QPushButton" name="pbCreateGroup">
        <property name="text">
-        <string>Salva</string>
+        <string>Crea nuovo gruppo permessi</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/user-group-icon.png</normaloff>:/Resources/user-group-icon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbSave">
+       <property name="text">
+        <string>Salva modifiche</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">

@@ -17,7 +17,7 @@ HModProduct::HModProduct(int pID, HUser *user, QSqlDatabase pdb, QWidget *parent
     ui(new Ui::HModProduct)
 {
     ui->setupUi(this);
-    setModifyEnabled(user->getCanUpdateAnag());
+    setModifyEnabled(user->get_prodotti_u()>0);
     db=pdb;
     ID=pID;
     ui->deLastUpdate->setDate(QDate::currentDate());

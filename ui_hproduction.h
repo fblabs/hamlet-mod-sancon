@@ -34,8 +34,8 @@ QT_BEGIN_NAMESPACE
 class Ui_HProduction
 {
 public:
-    QVBoxLayout *verticalLayout_4;
-    QHBoxLayout *horizontalLayout;
+    QVBoxLayout *verticalLayout_6;
+    QHBoxLayout *horizontalLayout_7;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_6;
     QLabel *label_8;
@@ -59,14 +59,19 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QPushButton *pushButton_5;
     QPushButton *pushButton_6;
-    QVBoxLayout *verticalLayout_3;
+    QVBoxLayout *verticalLayout_5;
     QLabel *lbRicetta;
     QTextBrowser *textBrowser;
     QTableView *tableView;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_7;
+    QVBoxLayout *verticalLayout_3;
     QLabel *label_10;
     QPlainTextEdit *tNote;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *pushButton_7;
+    QPushButton *pushButton_2;
+    QPushButton *pbPreferredLots;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_11;
     QGridLayout *gridLayout;
     QLabel *label_3;
     QLabel *label_5;
@@ -78,12 +83,10 @@ public:
     QComboBox *cbUm;
     QLabel *label_11;
     QLineEdit *leQtyTotal;
-    QPushButton *pushButton_11;
-    QPushButton *pushButton_8;
+    QVBoxLayout *verticalLayout_4;
+    QHBoxLayout *horizontalLayout_2;
     QCheckBox *checkBox_2;
     QPushButton *pushButton_10;
-    QHBoxLayout *horizontalLayout_2;
-    QPushButton *pushButton_3;
     QPushButton *pushButton_4;
 
     void setupUi(QWidget *HProduction)
@@ -92,14 +95,14 @@ public:
             HProduction->setObjectName(QString::fromUtf8("HProduction"));
         HProduction->setWindowModality(Qt::NonModal);
         HProduction->setEnabled(true);
-        HProduction->resize(1025, 697);
+        HProduction->resize(1025, 605);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Gears.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HProduction->setWindowIcon(icon);
-        verticalLayout_4 = new QVBoxLayout(HProduction);
-        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        verticalLayout_6 = new QVBoxLayout(HProduction);
+        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_6 = new QHBoxLayout();
@@ -248,15 +251,15 @@ public:
         verticalLayout->addLayout(horizontalLayout_5);
 
 
-        horizontalLayout->addLayout(verticalLayout);
+        horizontalLayout_7->addLayout(verticalLayout);
 
-        verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
         lbRicetta = new QLabel(HProduction);
         lbRicetta->setObjectName(QString::fromUtf8("lbRicetta"));
         lbRicetta->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
 
-        verticalLayout_3->addWidget(lbRicetta);
+        verticalLayout_5->addWidget(lbRicetta);
 
         textBrowser = new QTextBrowser(HProduction);
         textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
@@ -265,7 +268,7 @@ public:
         font1.setPointSize(10);
         textBrowser->setFont(font1);
 
-        verticalLayout_3->addWidget(textBrowser);
+        verticalLayout_5->addWidget(textBrowser);
 
         tableView = new QTableView(HProduction);
         tableView->setObjectName(QString::fromUtf8("tableView"));
@@ -277,29 +280,13 @@ public:
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
         tableView->verticalHeader()->setVisible(false);
 
-        verticalLayout_3->addWidget(tableView);
+        verticalLayout_5->addWidget(tableView);
 
-        pushButton_2 = new QPushButton(HProduction);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon5);
-        pushButton_2->setIconSize(QSize(32, 32));
-
-        verticalLayout_3->addWidget(pushButton_2);
-
-        pushButton_7 = new QPushButton(HProduction);
-        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
-        QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/Resources/Download.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_7->setIcon(icon6);
-        pushButton_7->setIconSize(QSize(32, 32));
-        pushButton_7->setCheckable(false);
-
-        verticalLayout_3->addWidget(pushButton_7);
-
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         label_10 = new QLabel(HProduction);
         label_10->setObjectName(QString::fromUtf8("label_10"));
+        label_10->setMaximumSize(QSize(16777215, 30));
 
         verticalLayout_3->addWidget(label_10);
 
@@ -309,6 +296,61 @@ public:
         tNote->setFont(font1);
 
         verticalLayout_3->addWidget(tNote);
+
+
+        verticalLayout_5->addLayout(verticalLayout_3);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        pushButton_7 = new QPushButton(HProduction);
+        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Resources/Download.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_7->setIcon(icon5);
+        pushButton_7->setIconSize(QSize(32, 32));
+        pushButton_7->setCheckable(false);
+
+        horizontalLayout->addWidget(pushButton_7);
+
+        pushButton_2 = new QPushButton(HProduction);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon6);
+        pushButton_2->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pushButton_2);
+
+        pbPreferredLots = new QPushButton(HProduction);
+        pbPreferredLots->setObjectName(QString::fromUtf8("pbPreferredLots"));
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/Resources/Center64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPreferredLots->setIcon(icon7);
+        pbPreferredLots->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pbPreferredLots);
+
+        pushButton_3 = new QPushButton(HProduction);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_3->setEnabled(false);
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon8);
+        pushButton_3->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pushButton_3);
+
+        pushButton_11 = new QPushButton(HProduction);
+        pushButton_11->setObjectName(QString::fromUtf8("pushButton_11"));
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/Resources/Arrow-Left.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_11->setIcon(icon9);
+        pushButton_11->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pushButton_11);
+
+
+        verticalLayout_5->addLayout(horizontalLayout);
 
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
@@ -369,68 +411,50 @@ public:
         gridLayout->addWidget(leQtyTotal, 4, 1, 1, 1);
 
 
-        verticalLayout_3->addLayout(gridLayout);
+        verticalLayout_5->addLayout(gridLayout);
 
-        pushButton_11 = new QPushButton(HProduction);
-        pushButton_11->setObjectName(QString::fromUtf8("pushButton_11"));
-        QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/Resources/Arrow-Left.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_11->setIcon(icon7);
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
 
-        verticalLayout_3->addWidget(pushButton_11);
+        verticalLayout_5->addLayout(verticalLayout_4);
 
-        pushButton_8 = new QPushButton(HProduction);
-        pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        pushButton_8->setEnabled(false);
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_8->setIcon(icon8);
 
-        verticalLayout_3->addWidget(pushButton_8);
+        horizontalLayout_7->addLayout(verticalLayout_5);
 
+
+        verticalLayout_6->addLayout(horizontalLayout_7);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         checkBox_2 = new QCheckBox(HProduction);
         checkBox_2->setObjectName(QString::fromUtf8("checkBox_2"));
+        checkBox_2->setMinimumSize(QSize(145, 0));
+        checkBox_2->setMaximumSize(QSize(145, 16777215));
 
-        verticalLayout_3->addWidget(checkBox_2);
+        horizontalLayout_2->addWidget(checkBox_2);
 
         pushButton_10 = new QPushButton(HProduction);
         pushButton_10->setObjectName(QString::fromUtf8("pushButton_10"));
         pushButton_10->setEnabled(true);
-        pushButton_10->setIcon(icon8);
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_10->setIcon(icon10);
+        pushButton_10->setIconSize(QSize(32, 32));
 
-        verticalLayout_3->addWidget(pushButton_10);
-
-
-        horizontalLayout->addLayout(verticalLayout_3);
-
-
-        verticalLayout_4->addLayout(horizontalLayout);
-
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        pushButton_3 = new QPushButton(HProduction);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setEnabled(false);
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon9);
-        pushButton_3->setIconSize(QSize(32, 32));
-
-        horizontalLayout_2->addWidget(pushButton_3);
+        horizontalLayout_2->addWidget(pushButton_10);
 
         pushButton_4 = new QPushButton(HProduction);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        QIcon icon10;
-        icon10.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon10);
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon11);
         pushButton_4->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_4);
 
 
-        verticalLayout_4->addLayout(horizontalLayout_2);
+        verticalLayout_6->addLayout(horizontalLayout_2);
 
-        QWidget::setTabOrder(pushButton_10, pushButton);
         QWidget::setTabOrder(pushButton, checkBox);
         QWidget::setTabOrder(checkBox, pbAnnulla);
         QWidget::setTabOrder(pbAnnulla, pushButton_5);
@@ -438,20 +462,15 @@ public:
         QWidget::setTabOrder(pushButton_6, leQtyTotal);
         QWidget::setTabOrder(leQtyTotal, cbTipoLotto);
         QWidget::setTabOrder(cbTipoLotto, tableView);
-        QWidget::setTabOrder(tableView, pushButton_2);
-        QWidget::setTabOrder(pushButton_2, pushButton_7);
+        QWidget::setTabOrder(tableView, pushButton_7);
         QWidget::setTabOrder(pushButton_7, tNote);
         QWidget::setTabOrder(tNote, leNuovoLot);
         QWidget::setTabOrder(leNuovoLot, leQuaRic);
         QWidget::setTabOrder(leQuaRic, dateEdit);
         QWidget::setTabOrder(dateEdit, cbUm);
         QWidget::setTabOrder(cbUm, lvSubclienti);
-        QWidget::setTabOrder(lvSubclienti, pushButton_11);
-        QWidget::setTabOrder(pushButton_11, pushButton_8);
-        QWidget::setTabOrder(pushButton_8, checkBox_2);
-        QWidget::setTabOrder(checkBox_2, cbClienti);
-        QWidget::setTabOrder(cbClienti, pushButton_3);
-        QWidget::setTabOrder(pushButton_3, leOperatore);
+        QWidget::setTabOrder(lvSubclienti, cbClienti);
+        QWidget::setTabOrder(cbClienti, leOperatore);
         QWidget::setTabOrder(leOperatore, pushButton_4);
         QWidget::setTabOrder(pushButton_4, textBrowser);
         QWidget::setTabOrder(textBrowser, pbAddLottoFuoriRicetta);
@@ -475,19 +494,19 @@ public:
         pushButton_5->setText(QCoreApplication::translate("HProduction", "inizia", nullptr));
         pushButton_6->setText(QCoreApplication::translate("HProduction", "Annulla", nullptr));
         lbRicetta->setText(QString());
-        pushButton_2->setText(QCoreApplication::translate("HProduction", "Rimuovi", nullptr));
+        label_10->setText(QCoreApplication::translate("HProduction", "Note produzione:", nullptr));
         pushButton_7->setText(QCoreApplication::translate("HProduction", "Aggiungi lotto fuori ricetta", nullptr));
-        label_10->setText(QCoreApplication::translate("HProduction", "Note:", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("HProduction", "Rimuovi riga", nullptr));
+        pbPreferredLots->setText(QCoreApplication::translate("HProduction", "Mostra Lotti predefinti", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("HProduction", "Salva", nullptr));
+        pushButton_11->setText(QCoreApplication::translate("HProduction", "Reset Ricetta", nullptr));
         label_3->setText(QCoreApplication::translate("HProduction", "Quantit\303\240 totale", nullptr));
         label_5->setText(QCoreApplication::translate("HProduction", "Nuovo lotto:", nullptr));
         label_9->setText(QCoreApplication::translate("HProduction", "Scadenza:", nullptr));
         label_7->setText(QCoreApplication::translate("HProduction", "Unit\303\240 di misura:", nullptr));
         label_11->setText(QCoreApplication::translate("HProduction", "Quantit\303\240 ricetta:", nullptr));
-        pushButton_11->setText(QCoreApplication::translate("HProduction", "Reset Ricetta", nullptr));
-        pushButton_8->setText(QCoreApplication::translate("HProduction", "Stampa Ricetta", nullptr));
         checkBox_2->setText(QCoreApplication::translate("HProduction", "Stampa ricetta originale", nullptr));
         pushButton_10->setText(QCoreApplication::translate("HProduction", "Stampa", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("HProduction", "Salva", nullptr));
         pushButton_4->setText(QCoreApplication::translate("HProduction", "Chiudi", nullptr));
     } // retranslateUi
 

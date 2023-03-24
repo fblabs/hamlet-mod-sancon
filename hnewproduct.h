@@ -22,6 +22,7 @@ public:
 private slots:
     void on_pushButton_2_clicked();
     void addNewProduct();
+    bool addNewContainer(const int p_id);
     void on_pbSave_clicked();
 
     void on_pbCancel_clicked();

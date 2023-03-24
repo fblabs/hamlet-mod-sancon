@@ -23,6 +23,8 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     user=puser;
     db=pdb;
 
+    ui->pbCrea->setEnabled(user->get_lotti_u()>0);
+
     basefilter="lotdef.attivo>0 and year(lotdef.data) > " +QString::number(QDate::currentDate().addYears(-3).year());
    // // qDebug()<<basefilter;
 
@@ -117,7 +119,7 @@ HPackages::HPackages(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     connect(ui->tvLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(setLotText()));
 
     ui->pbAnnulla->setEnabled(false);
-    ui->pbCrea->setEnabled(true);//
+   // ui->pbCrea->setEnabled(true);//
     ui->leComponente->setEnabled(false);
     ui->leQuantita->setEnabled(false);
     ui->pbAddRow->setEnabled(false);

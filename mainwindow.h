@@ -66,13 +66,12 @@ private slots:
 protected:
     void keyPressEvent(QKeyEvent *ke);
 
-
 private:
     Ui::MainWindow *ui;
     HUser *user;
     QTimer timer;
     QSqlDatabase db;
-
+    QSqlDatabase prefdb;
 
 };
 

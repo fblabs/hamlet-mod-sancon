@@ -39,11 +39,6 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
     ui->leDesc->setText(descrizione);
 
 
-    ui->pbScarico->setVisible(false);
-    ui->pbModifyAmount->setVisible(false);
-    ui->leCurrentAmount->setVisible(false);
-    ui->leNewAmount->setVisible(false);
-
     det=new QShortcut(QKeySequence("F5"),this);
 
     connect(det,SIGNAL(activated()),this,SLOT(getDetails()));
@@ -90,6 +85,11 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
 
     }
 
+    ui->pbAdd->setEnabled(user->get_lotti_u()>0);
+    ui->pbModify->setEnabled(user->get_lotti_u()>0);
+    ui->pbRemove->setEnabled(user->get_lotti_u()>0);
+    ui->pbScarico->setEnabled(user->get_lotti_u()>0);
+    ui->pbModifyAmount->setEnabled(user->get_lotti_u()>0);
 
 
 
@@ -738,7 +738,7 @@ void HComposizioneLotto::on_pbModify_clicked()
 {
     int idop=ui->tableView->model()->index(ui->tableView->currentIndex().row(),1).data(0).toInt();
 
-    HWarehouseDetails *f=new HWarehouseDetails(db,idop);
+    HWarehouseDetails *f=new HWarehouseDetails(user,db,idop);
     connect(f,SIGNAL(confirm()),this,SLOT(refresh_data()));
     f->show();
 
@@ -764,8 +764,6 @@ void HComposizioneLotto::on_pbModifyAmount_clicked()
 
         ui->leCurrentAmount->setText(QString::number(amount,'f',3));
         ui->tableView->setModel(getLotComposition());
-
-        ui->leNewAmount->setText("");
     }
 }
 

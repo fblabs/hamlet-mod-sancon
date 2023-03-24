@@ -32,6 +32,8 @@ private:
     Ui::HProduction *ui;
     QSqlDatabase db;
     HUser *user;
+    QString preferred_db;
+    QSqlDatabase prefdb;
 
     QSqlQueryModel *qmClienti;
     QSqlQueryModel *qmRicette;
@@ -48,7 +50,7 @@ private:
     int lottomodifica;
 
 private slots:
-    void addLot(QModelIndex index);
+    void addLot(QModelIndex index, bool show_window=true);
     void getNewRow(QList<QStandardItem *> list);
     void getClients();
     void getSubclients();
@@ -87,13 +89,17 @@ private slots:
     void on_pushButton_2_clicked();
     void on_pushButton_7_toggled(bool checked);
     void on_pbAddLottoFuoriRicetta_clicked();
-    void on_pushButton_8_clicked();
     void on_pushButton_10_clicked();
     void on_checkBox_toggled(bool checked);
     void on_pbAnnulla_clicked();
     void on_pushButton_11_clicked();
     void ui_enable(int arg);
+    void addPreferredLots();
+    const QString findPreferredLot(const int id_prod=-1);
 
+
+
+    void on_pbPreferredLots_clicked();
 };
 
 #endif // HPRODUCTION_H

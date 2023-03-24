@@ -27,8 +27,6 @@ HBioDetails::HBioDetails(int p_idlotto,QSqlDatabase pdb,HUser *p_user,QWidget *p
     ui->deBegin->setDateTime(QDateTime::currentDateTime());
     ui->deEnd->setDateTime(QDateTime::currentDateTime());
 
-    qDebug()<<"CoSTRUTTORE"<<idlotto;
-
     getLotData();
 }
 

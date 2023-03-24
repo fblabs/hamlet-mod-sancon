@@ -23,10 +23,6 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     user=puser;
     db=pdb;
 
-    if (!db.isOpen())
-    {
-        db.open();
-    }
 
     tbm = new HReadOnlyModelNew(0,db);
     tbm->setTable("operazioni");
@@ -35,15 +31,18 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     tbm->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
     tbm->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
     tbm->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
+
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableView->setModel(tbm);
-    ui->tableView->setItemDelegate(new QSqlRelationalDelegate(tbm));
+
+   // ui->tableView->setItemDelegate(new QSqlRelationalDelegate(tbm));
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
+    ui->tableView->setModel(tbm);
+
+
     tbm->setSort(0,Qt::DescendingOrder);
     tbm->setFilter("operazioni.data >=DATE(CURDATE())");
-
-
+    tbm->select();
 
     tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
     tbm->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));// 1 lotdef.lot
@@ -56,18 +55,13 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     tbm->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
 
 
-     qDebug()<<"selecting"<<tbm->query().lastError().text()<<tbm->lastError().text();
 
-    /*tbm->setSort(0,Qt::DescendingOrder);
-    tbm->setFilter("operazioni.data >=DATE(CURDATE())");*/
 
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
 
     ui->cbShowPackages->setVisible(false);
 
-    //lista lotti
-    //lista anagrafica
 
     ui->deScadenza->setDate(QDate::currentDate().addYears(2));
 
@@ -144,14 +138,13 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
 
     ui->cbAnagrafica->setCompleter(comforn);
 
-    tbm->select();
-
 
     connect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setProdottoText()));
 
 
-
     setUiforCarico();
+
+
 
     QApplication::setOverrideCursor(Qt::ArrowCursor);
 

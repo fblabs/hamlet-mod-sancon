@@ -16,11 +16,21 @@ CONFIG(release,debug|release)
 
 SOURCES += main.cpp\
     hbiodetails.cpp \
+    hcalcolo_costi.cpp \
+    hcalcolo_costi_item.cpp \
     hchoose_lot_to_add.cpp \
     hchooselot.cpp \
+    hcomponenti_costo_item.cpp \
+    hcontainer_cartoni.cpp \
+    hcontainer_generic.cpp \
+    hcontainer_generic_product.cpp \
+    hcreategroup.cpp \
+    hgroups.cpp \
     hloads.cpp \
     hlotcomposition.cpp \
     hlotti_new.cpp \
+    hpdfprint.cpp \
+    hproducts_for_calcolo_costi.cpp \
     hrecipesforingredient.cpp \
     hworksheetmodel.cpp \
     mainwindow.cpp \
@@ -88,11 +98,21 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     hbiodetails.h \
+    hcalcolo_costi.h \
+    hcalcolo_costi_item.h \
     hchoose_lot_to_add.h \
     hchooselot.h \
+    hcomponenti_costo_item.h \
+    hcontainer_cartoni.h \
+    hcontainer_generic.h \
+    hcontainer_generic_product.h \
+    hcreategroup.h \
+    hgroups.h \
     hloads.h \
     hlotcomposition.h \
     hlotti_new.h \
+    hpdfprint.h \
+    hproducts_for_calcolo_costi.h \
     hrecipesforingredient.h \
     huser.h \
     hutenti.h \
@@ -160,12 +180,23 @@ HEADERS  += mainwindow.h \
 
 
 FORMS    += mainwindow.ui \
+    hcalcolo_costi_item.ui \
+    hcomponenti_costo_item.ui \
+    hcontainer_cartoni.ui \
     hbiodetails.ui \
+    hcalcolo_costi.ui \
+    hcartoni.ui \
     hchoose_lot_to_add.ui \
     hchooselot.ui \
+    hcontainer_generic.ui \
+    hcontainer_generic_product.ui \
+    hcreategroup.ui \
+    hgroups.ui \
     hloads.ui \
     hlotcomposition.ui \
     hlotti_new.ui \
+    hpdfprint.ui \
+    hproducts_for_calcolo_costi.ui \
     hrecipesforingredient.ui \
     hutenti.ui \
     hsettings.ui \
@@ -222,6 +253,7 @@ FORMS    += mainwindow.ui \
     hlotmod.ui \
     hnewsheet.ui \
     hworkprogram.ui
+
 
 
 

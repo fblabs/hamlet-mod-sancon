@@ -3,7 +3,7 @@
  <class>HProdottiNew</class>
  <widget class="QWidget" name="HProdottiNew">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -20,126 +20,124 @@
    <iconset resource="icons.qrc">
     <normaloff>:/Resources/Box.PNG</normaloff>:/Resources/Box.PNG</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QRadioButton" name="rbAll">
-         <property name="text">
-          <string>Tutti</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="rbMaterie">
-         <property name="text">
-          <string>Materie prime</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="rbProdotti">
-         <property name="text">
-          <string>Prodotti</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="rbContenitori">
-         <property name="text">
-          <string>Conteniitori</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="rbTappi">
-         <property name="text">
-          <string>Capsule e tappi</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="rbVasi">
-         <property name="text">
-          <string>Vasi</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="rbBio">
-         <property name="text">
-          <string>Bio</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox">
-         <property name="text">
-          <string>Solo prodotti attivi</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <widget class="QLabel" name="label_2">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Tipo prodotto:</string>
+       </property>
+      </widget>
      </item>
      <item>
-      <widget class="QTableView" name="tvProdotti">
+      <widget class="QComboBox" name="cbTipiProdotto">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="editTriggers">
-        <set>QAbstractItemView::NoEditTriggers</set>
-       </property>
-       <property name="alternatingRowColors">
+       <property name="editable">
         <bool>true</bool>
        </property>
-       <property name="selectionMode">
-        <enum>QAbstractItemView::SingleSelection</enum>
+       <property name="insertPolicy">
+        <enum>QComboBox::NoInsert</enum>
        </property>
-       <property name="selectionBehavior">
-        <enum>QAbstractItemView::SelectRows</enum>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
        </property>
-       <property name="sortingEnabled">
-        <bool>true</bool>
+       <property name="modelColumn">
+        <number>1</number>
        </property>
-       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-        <bool>true</bool>
-       </attribute>
-       <attribute name="horizontalHeaderStretchLastSection">
-        <bool>true</bool>
-       </attribute>
-       <attribute name="verticalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="verticalHeaderStretchLastSection">
-        <bool>false</bool>
-       </attribute>
       </widget>
      </item>
      <item>
-      <layout class="QFormLayout" name="formLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Cerca prodotto</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit">
-         <property name="clearButtonEnabled">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <widget class="QCheckBox" name="chbBio">
+       <property name="maximumSize">
+        <size>
+         <width>120</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Bio</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="checkBox">
+       <property name="maximumSize">
+        <size>
+         <width>120</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Solo prodotti attivi</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableView" name="tvProdotti">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderStretchLastSection">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Cerca prodotto</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -182,7 +180,7 @@
      <item>
       <widget class="QPushButton" name="pbLoads">
        <property name="text">
-        <string>Carichi</string>
+        <string>Carichi/scarichi</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">

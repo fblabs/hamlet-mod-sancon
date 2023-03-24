@@ -28,7 +28,17 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     db=pdb;
     user=pusr;
 
-    update=user->getCanUpdate();
+    ui->pushButton->setEnabled(user->get_ricette_u()>0);
+    ui->pushButton_6->setEnabled(user->get_ricette_u()>0);
+    ui->pbAddRow->setEnabled(user->get_ricette_u()>0);
+    ui->pbDeleteRow->setEnabled(user->get_ricette_u()>0);
+    ui->pushButton_3->setEnabled(user->get_ricette_u()>0);
+    ui->pbduplica->setEnabled(user->get_ricette_u()>0);
+
+
+
+
+    /*  update=user->getCanUpdate();
     if (!update)
     {
         ui->pushButton->setEnabled(false);
@@ -47,7 +57,7 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
         ui->pushButton_3->setEnabled(true);
         ui->pbduplica->setEnabled(true);
 
-    }
+    }*/
 
     getRicette();
 
@@ -66,13 +76,13 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     connect(ui->cbRicette,SIGNAL(currentIndexChanged(int)),this,SLOT(loadRicetta()));
 
 
- //  ui->cbRicette->findData()
+    //  ui->cbRicette->findData()
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
 
     loadRicetta();
 
     ui->tableView->resizeColumnsToContents();
-   // ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
+    // ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
 
 
 
@@ -127,7 +137,7 @@ void HModRicette::on_pushButton_2_clicked()
 {
     if (QMessageBox::question(this,QApplication::applicationName(),"Chiudere?",QMessageBox::Ok|QMessageBox::Cancel))
     {
-    this->close();
+        this->close();
     }
 }
 
@@ -149,7 +159,7 @@ void HModRicette::getRicette()
     comp->setCompletionMode(QCompleter::PopupCompletion);
     comp->setCaseSensitivity(Qt::CaseInsensitive);
     ui->cbRicette->setCompleter(comp);
-   // // qDebug()<<q.lastQuery()<<q.lastError().text();
+    // // qDebug()<<q.lastQuery()<<q.lastError().text();
 
 }
 
@@ -181,7 +191,7 @@ void HModRicette::creatNewRecipe()
 
             return;
         }
-//// qDebug()<<q.lastError().text();
+        //// qDebug()<<q.lastError().text();
 
         int idnuovoprodotto=q.lastInsertId().toInt();
 
@@ -200,10 +210,10 @@ void HModRicette::creatNewRecipe()
         }
         else
         {
-             QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO LA RICETTA!",QMessageBox::Ok);
-             //// qDebug()<<q.lastError().text();
-             db.rollback();
-             return;
+            QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO LA RICETTA!",QMessageBox::Ok);
+            //// qDebug()<<q.lastError().text();
+            db.rollback();
+            return;
         }
 
 
@@ -230,11 +240,11 @@ void HModRicette::creatNewRecipe()
 
 void HModRicette::addRiga(QList<QStandardItem*>list)
 {
-  QStandardItemModel* model = static_cast<QStandardItemModel*>(ui->tableView->model());
+    QStandardItemModel* model = static_cast<QStandardItemModel*>(ui->tableView->model());
 
-  model->appendRow(list);
+    model->appendRow(list);
 
- // loadRicetta();
+    // loadRicetta();
 
 
 
@@ -251,14 +261,14 @@ bool HModRicette::duplicateRecipe()
     //text=text.toUpper();
 
     QString text=QInputDialog::getText(this,"Nuova Ricetta","Inserire il nome\nVerrà creata una nuova ricetta copiata da quella corrente",QLineEdit::Normal,"",&ok);
-     text=text.toUpper();
+    text=text.toUpper();
 
     if(ok)
     {
-     db.transaction();
+        db.transaction();
 
 
-     //inserico un nuovo prodotto di cui creo la ricetta da quella corrente
+        //inserico un nuovo prodotto di cui creo la ricetta da quella corrente
 
         QString sql="INSERT INTO `prodotti`(`descrizione`,`tipo`,`allergenico`)VALUES(:descrizione,2,0)";
         QSqlQuery q(db);
@@ -278,7 +288,7 @@ bool HModRicette::duplicateRecipe()
         int idnuovoprodotto=q.lastInsertId().toInt();
         QString note=ui->tbnote->toPlainText();
 
-      //inserico la nuova ricetta
+        //inserico la nuova ricetta
 
         sql="INSERT INTO ricette (ID_prodotto,note) VALUES (:id,:note)";
         q.prepare(sql);
@@ -287,9 +297,9 @@ bool HModRicette::duplicateRecipe()
         b=q.exec();
 
         if(!b){
-             QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO LA RICETTA!",QMessageBox::Ok);
-             db.rollback();
-             return b;
+            QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO LA RICETTA!",QMessageBox::Ok);
+            db.rollback();
+            return b;
         }
 
         int idnuovaricetta=q.lastInsertId().toInt();
@@ -330,7 +340,7 @@ bool HModRicette::duplicateRecipe()
 
 
 
- return b;
+    return b;
 
 
 
@@ -372,15 +382,15 @@ void HModRicette::loadRicetta()
         int alle=q.value(6).toInt();
 
 
-         writeRed->append(alle);
+        writeRed->append(alle);
 
 
-         if (alle==1)
-         {
-             descrizione->setForeground(Qt::red);
-         }
+        if (alle==1)
+        {
+            descrizione->setForeground(Qt::red);
+        }
 
-    //   descrizione->setForeground(Qt::red);
+        //   descrizione->setForeground(Qt::red);
 
         list.append(idriga);
         list.append(idricetta);
@@ -395,41 +405,41 @@ void HModRicette::loadRicetta()
 
     }
 
-     ui->tableView->setModel(mod);
+    ui->tableView->setModel(mod);
 
 
-     mod->setHeaderData(3,Qt::Horizontal,"Ingrediente");
-     mod->setHeaderData(4,Qt::Horizontal,"Quantità");
-     mod->setHeaderData(5,Qt::Horizontal,"Mostra in Produzione");
+    mod->setHeaderData(3,Qt::Horizontal,"Ingrediente");
+    mod->setHeaderData(4,Qt::Horizontal,"Quantità");
+    mod->setHeaderData(5,Qt::Horizontal,"Mostra in Produzione");
 
-     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-     ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
     //
 
 
-     connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(findProduct()));
+    connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(findProduct()));
 
-     //note
+    //note
 
-     QSqlQuery n(db);
-     QString sql2;
-     sql2="SELECT ricette.note from prodotti,ricette where prodotti.ID=ricette.ID_prodotto and ricette.ID=:idricetta";
-     n.prepare(sql2);
-     n.bindValue(":idricetta",QVariant(idricetta));
-     n.exec();
-     n.first();
-     ui->tbnote->setText(n.value(0).toString());
-     ui->tableView->setColumnHidden(0,true);
-     ui->tableView->setColumnHidden(1,true);
-     ui->tableView->setColumnHidden(2,true);
-     ui->tableView->setColumnHidden(5,true);
-     ui->tableView->setColumnHidden(6,true);
+    QSqlQuery n(db);
+    QString sql2;
+    sql2="SELECT ricette.note from prodotti,ricette where prodotti.ID=ricette.ID_prodotto and ricette.ID=:idricetta";
+    n.prepare(sql2);
+    n.bindValue(":idricetta",QVariant(idricetta));
+    n.exec();
+    n.first();
+    ui->tbnote->setText(n.value(0).toString());
+    ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setColumnHidden(1,true);
+    ui->tableView->setColumnHidden(2,true);
+    ui->tableView->setColumnHidden(5,true);
+    ui->tableView->setColumnHidden(6,true);
 
-   //  ui->tvRecipe->horizontalHeader()->resizeSections(QHeaderView::Stretch);
+    //  ui->tvRecipe->horizontalHeader()->resizeSections(QHeaderView::Stretch);
 
-     //ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
+    //ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
     // ui->tableView->resizeColumnsToContents();
-     calculateTotal();
+    calculateTotal();
 
 
 }
@@ -444,7 +454,7 @@ void HModRicette::updateTotals()
 
     for (int x=0;x<model->rowCount();x++)
     {
-       sommarighe += model->index(x,4).data(0).toDouble();
+        sommarighe += model->index(x,4).data(0).toDouble();
 
     }
 
@@ -453,10 +463,10 @@ void HModRicette::updateTotals()
 
     for (int j=0;j<model->rowCount();j++)
     {
-       QModelIndex i = model->index(j,4);
-       result =i.data().toDouble()* factor;
-       QString resulttoadd=QString::number(result,'f',2);
-       model->setData(i,QVariant(resulttoadd));
+        QModelIndex i = model->index(j,4);
+        result =i.data().toDouble()* factor;
+        QString resulttoadd=QString::number(result,'f',2);
+        model->setData(i,QVariant(resulttoadd));
 
     }
 
@@ -535,9 +545,9 @@ void HModRicette::save()
     sql="delete from righe_ricette where ID_ricetta=:idricetta";
     q.prepare(sql);
     q.bindValue(":idricetta",QVariant(idricetta));
-   bool b= q.exec();
+    bool b= q.exec();
 
-   if(!b)return;
+    if(!b)return;
 
     //la ricreo modificata
 
@@ -570,7 +580,7 @@ void HModRicette::save()
             QMessageBox::warning(this,QApplication::applicationName(),"Si è verificato un errore (riga 554)",QMessageBox::Ok);
             return;
         }
-         //// qDebug()<<"save(for)="<<q.lastError().text()<<QString::number(show);
+        //// qDebug()<<"save(for)="<<q.lastError().text()<<QString::number(show);
 
 
 
@@ -618,18 +628,18 @@ void HModRicette::printRecipe()
 
     for (int i=0;i<righe;i++)
     {
-      // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
+        // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
 
-      if(writeRed->at(i)>0)
-      {
-          f->writeTableContentRed(table,i,0,format,ui->tableView->model()->index(i,3).data(0).toString());
-          f->writeTableContentRed(table,i,1,format,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
-      }
-      else
-      {
-      f->writeTableContent(table,i,0,QTextCharFormat(),ui->tableView->model()->index(i,3).data(0).toString());
-      f->writeTableContent(table,i,1,QTextCharFormat(),QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
-      }
+        if(writeRed->at(i)>0)
+        {
+            f->writeTableContentRed(table,i,0,format,ui->tableView->model()->index(i,3).data(0).toString());
+            f->writeTableContentRed(table,i,1,format,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+        }
+        else
+        {
+            f->writeTableContent(table,i,0,QTextCharFormat(),ui->tableView->model()->index(i,3).data(0).toString());
+            f->writeTableContent(table,i,1,QTextCharFormat(),QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+        }
 
 
 
@@ -678,7 +688,10 @@ void HModRicette::on_pbAddRow_clicked()
 
 void HModRicette::on_pbDeleteRow_clicked()
 {
-    removeItem();
+    if(QMessageBox::question(this,QApplication::applicationName(), "Rimuovere ingrediente selezionato?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        removeItem();
+    }
 }
 
 void HModRicette::on_pushButton_3_clicked()
@@ -689,11 +702,11 @@ void HModRicette::on_pushButton_3_clicked()
 void HModRicette::on_pushButton_clicked()
 {
 
-     save();
-     saveNote();
+    save();
+    saveNote();
 
-     loadRicetta();
-     calculateTotal();
+    loadRicetta();
+    calculateTotal();
 }
 
 void HModRicette::on_pushButton_5_clicked()
@@ -705,9 +718,7 @@ void HModRicette::on_pushButton_5_clicked()
 
 void HModRicette::on_pushButton_4_clicked()
 {
-    HAssociazioni* f = new HAssociazioni(0,db);
-    //   connect(this,SIGNAL(onConnectionName()),f,SLOT(setConnectionName(QString)));
-
+    HAssociazioni* f = new HAssociazioni(user,db);
     f->show();
 }
 
@@ -726,7 +737,7 @@ void HModRicette::on_leTotal_returnPressed()
 
 void HModRicette::on_leTotal_textChanged(const QString &arg1)
 {
-    if (ui->leTotal->text().length()==0)
+    if (ui->leTotal->text().length()>5)
     {
         loadRicetta();
         calculateTotal();

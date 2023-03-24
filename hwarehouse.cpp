@@ -187,7 +187,7 @@ void HWarehouse::on_tableView_doubleClicked(const QModelIndex &index)
     int id=tmOperazioni->index(index.row(),0).data(0).toInt();
     qDebug()<<id;
 
-    HWarehouseDetails *f=new HWarehouseDetails(db,id);
+    HWarehouseDetails *f=new HWarehouseDetails(user,db,id);
     connect(f,SIGNAL(confirm()),this,SLOT(on_Confirmed()));
     f->show();
 }
@@ -215,7 +215,7 @@ void HWarehouse::on_deDateTo_dateChanged(const QDate &date)
 void HWarehouse::on_pbMod_clicked()
 {
    int id=tmOperazioni->index(ui->tableView->selectionModel()->currentIndex().row(),0).data(0).toInt();
-   HWarehouseDetails *f=new HWarehouseDetails(db,id);
+   HWarehouseDetails *f=new HWarehouseDetails(user,db,id);
    connect(f,SIGNAL(confirm()),this,SLOT(on_Confirmed()));
    f->show();
 }

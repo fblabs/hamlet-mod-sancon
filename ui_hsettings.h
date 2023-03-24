@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFormLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -23,7 +24,6 @@ QT_BEGIN_NAMESPACE
 class Ui_HSettings
 {
 public:
-    QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QFormLayout *formLayout;
     QLabel *label_2;
@@ -38,7 +38,10 @@ public:
     QLineEdit *leDatabase;
     QLabel *label_6;
     QLineEdit *leConnessione;
-    QFormLayout *formLayout_2;
+    QLabel *label_7;
+    QLineEdit *lePreferredDb;
+    QPushButton *pbSelect;
+    QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
 
@@ -47,10 +50,8 @@ public:
         if (HSettings->objectName().isEmpty())
             HSettings->setObjectName(QString::fromUtf8("HSettings"));
         HSettings->setWindowModality(Qt::ApplicationModal);
-        HSettings->resize(400, 225);
-        verticalLayout_2 = new QVBoxLayout(HSettings);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        verticalLayout = new QVBoxLayout();
+        HSettings->resize(400, 302);
+        verticalLayout = new QVBoxLayout(HSettings);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         formLayout = new QFormLayout();
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
@@ -58,7 +59,6 @@ public:
         label_2->setObjectName(QString::fromUtf8("label_2"));
         QFont font;
         font.setBold(true);
-        font.setWeight(75);
         label_2->setFont(font);
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label_2);
@@ -124,26 +124,39 @@ public:
 
         formLayout->setWidget(5, QFormLayout::FieldRole, leConnessione);
 
+        label_7 = new QLabel(HSettings);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setFont(font);
+
+        formLayout->setWidget(6, QFormLayout::LabelRole, label_7);
+
+        lePreferredDb = new QLineEdit(HSettings);
+        lePreferredDb->setObjectName(QString::fromUtf8("lePreferredDb"));
+
+        formLayout->setWidget(6, QFormLayout::FieldRole, lePreferredDb);
+
+        pbSelect = new QPushButton(HSettings);
+        pbSelect->setObjectName(QString::fromUtf8("pbSelect"));
+
+        formLayout->setWidget(7, QFormLayout::LabelRole, pbSelect);
+
 
         verticalLayout->addLayout(formLayout);
 
-        formLayout_2 = new QFormLayout();
-        formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         pushButton = new QPushButton(HSettings);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
-        formLayout_2->setWidget(0, QFormLayout::LabelRole, pushButton);
+        horizontalLayout->addWidget(pushButton);
 
         pushButton_2 = new QPushButton(HSettings);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
 
-        formLayout_2->setWidget(0, QFormLayout::FieldRole, pushButton_2);
+        horizontalLayout->addWidget(pushButton_2);
 
 
-        verticalLayout->addLayout(formLayout_2);
-
-
-        verticalLayout_2->addLayout(verticalLayout);
+        verticalLayout->addLayout(horizontalLayout);
 
 
         retranslateUi(HSettings);
@@ -160,6 +173,8 @@ public:
         label_4->setText(QCoreApplication::translate("HSettings", "Porta:", nullptr));
         label_3->setText(QCoreApplication::translate("HSettings", "Database:", nullptr));
         label_6->setText(QCoreApplication::translate("HSettings", "Connessione:", nullptr));
+        label_7->setText(QCoreApplication::translate("HSettings", "Database lotti preferiti", nullptr));
+        pbSelect->setText(QCoreApplication::translate("HSettings", "Seleziona", nullptr));
         pushButton->setText(QCoreApplication::translate("HSettings", "&Salva", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HSettings", "&Chiudi", nullptr));
     } // retranslateUi

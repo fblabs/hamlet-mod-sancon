@@ -503,11 +503,12 @@ void HPrint::setFontSize(int sz)
 
 void HPrint::on_sbW_valueChanged(int arg1)
 {
+
     //devo vedere quale foto è selezionata e modificare width se 0 e widthc se 1
     qDebug()<<" sbw valchanged "<<arg1;
-    qDebug()<<"getimagename "<<getImageName();
-    QString n=getImageName();
-    if(n=="0")
+   // qDebug()<<"getimagename "<<getImageName();
+   QString n=getImageName();
+   if(n=="0")
     {
         imgw=arg1;
         resizeImage(imgw,imgh);
@@ -544,15 +545,13 @@ void HPrint::on_sbH_valueChanged(int arg1)
 
 void HPrint::on_textEdit_cursorPositionChanged()
 {
-    qDebug()<<getImageName();
+    //qDebug()<<getImageName();
     spSetValues();
 }
 
 QString HPrint::getImageName()
 {
     QString name;
-
-
 
     QTextBlock currentBlock = ui->textEdit->textCursor().block();
         QTextBlock::iterator it;

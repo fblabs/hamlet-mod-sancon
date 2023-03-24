@@ -3,7 +3,7 @@
  <class>HLotti_new</class>
  <widget class="QWidget" name="HLotti_new">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -106,6 +106,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="chb_bio">
+         <property name="text">
+          <string>Bio</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -117,6 +124,32 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Cerca Lotto:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="le_search">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -149,7 +182,7 @@
       <number>150</number>
      </attribute>
      <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>30</number>
+      <number>150</number>
      </attribute>
      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
       <bool>true</bool>
@@ -184,6 +217,23 @@
        <property name="icon">
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/Box.PNG</normaloff>:/Resources/Box.PNG</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbDelete">
+       <property name="text">
+        <string>Elimina lotto selezionato</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Flag-red64.png</normaloff>:/Resources/Flag-red64.png</iconset>
        </property>
        <property name="iconSize">
         <size>

@@ -11,6 +11,7 @@
 // #include <QDebug>
 #include <QItemDelegate>
 #include "hprint.h"
+#include <QMessageBox>
 
 HAssociazioni::HAssociazioni(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
@@ -43,6 +44,12 @@ HAssociazioni::HAssociazioni(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
     getRecipesForTable();
 
    // ui->tableView->setColumnHidden(1,true);
+
+    ui->pushButton_2->setEnabled(user->get_ricette_u()>0);
+    ui->pushButton_3->setEnabled(user->get_ricette_u()>0);
+    ui->pushButton_4->setEnabled(user->get_ricette_u()>0);
+    ui->pushButton_5->setEnabled(user->get_ricette_u()>0);
+    ui->pushButton_6->setEnabled(user->get_ricette_u()>0);
 
 
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(QString)),this,SLOT(getRecipesForTable()));
@@ -202,12 +209,18 @@ void HAssociazioni::setVisibility(bool visible)
 
 void HAssociazioni::on_pushButton_2_clicked()
 {
+    if(QMessageBox::question(this,QApplication::applicationName(),"Aggiungere associazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
     saveAssociation();
+    }
 }
 
 void HAssociazioni::on_pushButton_3_clicked()
 {
+    if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere associazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
     deleteAssociation();
+    }
 }
 
 void HAssociazioni::on_pushButton_clicked()
@@ -217,17 +230,15 @@ void HAssociazioni::on_pushButton_clicked()
 
 void HAssociazioni::on_pushButton_4_clicked()
 {
+    if(user->get_schede_v())
+    {
+
     QString sCliente=ui->cbClienti->currentText();
     QString sRicetta=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toString();
 
-
-
     HNSChede *f = new HNSChede(sCliente,sRicetta,db,user);
-
-
-
-  //  f->loadCard();
     f->show();
+    }
 }
 
 void HAssociazioni::on_pushButton_5_clicked()

@@ -17,13 +17,11 @@ HModifyLot::HModifyLot(int pidlotto, HUser *p_user, QSqlDatabase pdb, const QStr
     ui(new Ui::HModifyLot)
 {
     ui->setupUi(this);
-
-  /*  f=from;
-    t=to;*/
-
     user=p_user;
     descrizione=p_descrizione;
 
+    qDebug()<<"PIPPO"<<QString::number(user->get_lotti_u()>0);
+    ui->pushButton->setEnabled(user->get_lotti_u()>0);
 
     if (f.isNull())
     {

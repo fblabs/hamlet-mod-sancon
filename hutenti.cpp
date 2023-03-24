@@ -17,6 +17,7 @@
 #include "huser.h"
 #include <QMessageBox>
 #include "halarm.h"
+#include <QDebug>
 
 HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
@@ -26,10 +27,29 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
     db=pdb;
     user=pusr;
 
-    bool upd=user->getCanUpdateAnag();
+    ui->pushButton->setEnabled(false);
+    ui->pushButton_2->setEnabled(false);
+    ui->pushButton_3->setEnabled(false);
+    ui->tnote->setReadOnly(true);
+
+
+
+
+
+    if(user->get_anagrafica_u()>0)
+    {
+        ui->pushButton->setEnabled(true);
+        ui->pushButton_2->setEnabled(true);
+        ui->pushButton_3->setEnabled(true);
+        ui->tnote->setReadOnly(false);
+    }
+
+
+
+
 
    //notifiche
-    int g=user->getRole();
+ /*   int g=user->getRole();
     if (g==3 || g==5)
     {
         ui->pushButton_5->setEnabled(true);
@@ -45,7 +65,7 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
         ui->pushButton_2->setVisible(false);
         ui->pushButton_3->setVisible(false);
         ui->tnote->setReadOnly(true);
-    }
+    }*/
 
 
    QSqlTableModel *cmod=new QSqlTableModel(0,db);

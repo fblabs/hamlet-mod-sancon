@@ -3,6 +3,7 @@
 #include <QSqlDatabase>
 #include <QSqlTableModel>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
 #include <QSqlError>
 #include <QMessageBox>
 #include <QDebug>
@@ -30,6 +31,8 @@ HCalcost::HCalcost(QSqlDatabase pdb, HUser* puser,QWidget *parent) :
 
     getConfezionamenti(4);
     getConfezionamenti(5);
+
+    getCartoni();
 
 
 
@@ -97,16 +100,6 @@ void HCalcost::getRecipe()
     int idp=cmod->index(ui->lvProdotti->selectionModel()->currentIndex().row(),0).data(0).toInt();
     QSqlQuery q(db);
     QString sql=QString();
-    sql ="SELECT note FROM fbgmdb260.ricette WHERE ID_prodotto=:prodotto";
-    q.prepare(sql);
-    q.bindValue(":prodotto",idp);
-    q.exec();
-    q.first();
-    QString note=q.value(0).toString();
-    ui->teNote->setPlainText(note);
-
-
-
     sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as \"QUANTITA\'\",prodotti.prezzo as 'COSTO UNITARIO (€)',righe_ricette.quantita*prodotti.prezzo as 'COSTO PER RICETTA (€)' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.ID";
     q.prepare(sql);
     q.bindValue(":idp",idp);
@@ -224,13 +217,13 @@ void HCalcost::resetUI()
     ui->leCostoFisso->setText("");
     ui->leCostoProduzione->setText("");
     ui->leCostoProdotto->setText("");
-    ui->leCostoCartoni->setText("");
+   // ui->leCostoCartoni->setText("");
     ui->leCostoEtichette->setText("");
     ui->leCostoTappi->setText("");
     ui->leCostoEtichette->setText("");
     ui->leCostounitaricetta->setText("");
     ui->leCostoVasi->setText("");
-    ui->teNote->setPlainText("");
+   // ui->teNote->setPlainText("");
 }
 
 
@@ -322,7 +315,7 @@ void HCalcost::performCalculation()
     costoprodotto=ui->leCostoProduzione->text().toDouble();
     costovasi=ui->leCostoVasi->text().toDouble();
     costotappi=ui->leCostoTappi->text().toDouble();
-    costocartoni=ui->leCostoCartoni->text().toDouble();
+   // costocartoni=ui->leCostoCartoni->text().toDouble();
     costoetichette=ui->leCostoEtichette->text().toDouble();
     costofisso=ui->leCostoFisso->text().toDouble();
 
@@ -351,7 +344,7 @@ void HCalcost::print()
                html.append("</head><body>");
                html.append("<h3 align=\"center\">"+title+"</h3><br>");
                html.append("<p>");
-               html.append(ui->teNote->toPlainText());
+              // html.append(ui->teNote->toPlainText());
                 html.append("</p>");
                html.append("<table width=100%><tr><th colspan=4>"+ings+"</th></tr>");
                html.append("<tr><td align='center'>MATERIALI</td><td align='center'>QUANTITA\'</td><td align='center'> COSTO UNITARIO (€)</td><td align='center'>COSTO PER RICETTA (€)</td></tr><tr><td colspan=4></td></tr>");
@@ -373,10 +366,10 @@ void HCalcost::print()
                html.append("<tr><td>Da produrre: </td><td>"+ ui->leDaprodurre->text()+"</td></tr>");
                html.append("<tr><td>Costo fisso: </td><td>€"+ ui->leCostoFisso->text()+"</td></tr>");
                html.append("<tr><td>Vasi: </td><td>"+ ui->cbVasi->currentText()+"( N."+ui->leQtVasi->text()+")</td></tr>");
-               html.append("<tr><td>Costo vasi: </td><td>€"+ ui->leCostoVasi->text()+"</td></tr>");
+             //  html.append("<tr><td>Costo vasi: </td><td>€"+ ui->leCostoVasi->text()+"</td></tr>");
                html.append("<tr><td>Tappi: </td><td>"+ ui->cbTappi->currentText()+"( N."+ui->leQtTappi->text()+")</td></tr>");
                html.append("<tr><td>Costo tappi: </td><td>€"+ ui->leCostoTappi->text()+"</td></tr>");
-               html.append("<tr><td>Costo cartoni: </td><td>€"+ ui->leCostoCartoni->text()+"</td></tr>");
+             //  html.append("<tr><td>Costo cartoni: </td><td>€"+ ui->leCostoCartoni->text()+"</td></tr>");
                html.append("<tr><td>Costo etichette: </td><td>€"+ ui->leCostoEtichette->text()+"</td></tr>");
                html.append("<tr><td>Costo totale produzione: </td><td>€"+ ui->leCostoTotale->text()+"</td></tr>");
 
@@ -389,4 +382,15 @@ void HCalcost::print()
 
     f->setHtml(html);
     f->show();
+}
+
+void HCalcost::getCartoni()
+{
+    QSqlQuery q(db);
+    QString sql="SELECT ID,descrizione from prodotti where tipo=3";
+    QSqlQueryModel *mod=new QSqlQueryModel();
+    q.exec();
+    mod->setQuery(q);
+    ui->cbCartoni->setModel(mod);
+
 }

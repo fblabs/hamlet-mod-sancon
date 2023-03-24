@@ -42,18 +42,20 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->deSearch->setDate(QDate::currentDate());
     ui->deSearchTo->setDate(QDate::currentDate());
     ui->spSearchLinea->setValue(0);
-    if(!user->getCanUpdate())
-    {
-        ui->pbSave->setEnabled(false);
-        ui->pbNewSheet->setEnabled(false);
-        ui->pbDeleteSheet->setEnabled(false);
-        ui->pbAdd->setEnabled(false);
-        ui->pbRemove->setEnabled(false);
-        ui->pbModify->setEnabled(false);
-        ui->pbApprova->setEnabled(false);
-        ui->pbDisapprova->setEnabled(false);
 
-    }
+    ui->pbSave->setEnabled(user->get_programmi_u()>0);
+    ui->pbNewSheet->setEnabled(user->get_programmi_u()>0);
+    ui->pbDeleteSheet->setEnabled(user->get_programmi_u()>0);
+    ui->pbAdd->setEnabled(user->get_programmi_u()>0);
+    ui->pbRemove->setEnabled(user->get_programmi_u()>0);
+    ui->pbModify->setEnabled(user->get_programmi_u()>0);
+    ui->pbApprova->setEnabled(user->get_programmi_u()>0);
+    ui->pbDisapprova->setEnabled(user->get_programmi_u()>0);
+    ui->pbPrint->setEnabled(user->get_programmi_u()>0);
+
+
+
+
 
 }
 
@@ -145,10 +147,6 @@ void HWorkProgram::getSheets(bool create)
         ui->tvGeneral->selectRow(0);
     }
 
-
-
-
-
 }
 
 void HWorkProgram::approve(bool approve)
@@ -196,6 +194,11 @@ void HWorkProgram::approve(bool approve)
 
    getSheets(false);
 
+  if(user->get_programmi_u()<0)
+   {
+   ui->pbPrint->setEnabled(approve);
+  }
+
 
 }
 
@@ -216,7 +219,8 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
     ui->pbApprova->setEnabled(!app);
     ui->pbDisapprova->setEnabled(app);
     ui->pbPrint->setEnabled(app);
-    if(app)
+  //  ui->pbPrint->setEnabled(app);
+    if(app )
     {
         ui->lblCheck->setPixmap(QPixmap(":/Resources/Accept64.png"));
     }
@@ -230,7 +234,7 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
     ui->pbRemove->setEnabled(!app);
     ui->cbshowrows->setEnabled(!app);
 
-    if(!user->getCanUpdate())
+    if(!user->get_programmi_u()>0)
     {
         ui->pbAdd->setEnabled(false);
         ui->pbModify->setEnabled(false);
@@ -405,7 +409,7 @@ void HWorkProgram::on_pbRemove_clicked()
 
 void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
 {
-  if (!ui->cbshowrows->isChecked() && user->getCanUpdate()) showModRow();
+  if (!ui->cbshowrows->isChecked() /*&& user->get_programmi_u()*/) showModRow();
 }
 
 void HWorkProgram::on_pbModify_clicked()

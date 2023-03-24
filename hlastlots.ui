@@ -3,7 +3,7 @@
  <class>HLastLots</class>
  <widget class="QWidget" name="HLastLots">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>

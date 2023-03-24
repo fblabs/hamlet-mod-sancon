@@ -68,7 +68,7 @@ public:
     {
         if (HModifyLot->objectName().isEmpty())
             HModifyLot->setObjectName(QString::fromUtf8("HModifyLot"));
-        HModifyLot->setWindowModality(Qt::ApplicationModal);
+        HModifyLot->setWindowModality(Qt::WindowModal);
         HModifyLot->resize(914, 437);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Wood-4-icon.png"), QSize(), QIcon::Normal, QIcon::Off);

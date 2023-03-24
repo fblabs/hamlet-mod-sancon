@@ -32,12 +32,13 @@ private slots:
     void on_pbNuovaPassword_clicked();
     int getGruppo();
     void getIdUtente();
-
-    void on_comboBox_currentIndexChanged(int index);
+    void emit_permissions_updated();
 
 
 
     void on_pbGroups_clicked();
+
+    void on_pbUserPermissions_clicked();
 
 private:
     Ui::HGestioneUtenti *ui;
@@ -50,6 +51,10 @@ private:
     QSqlTableModel *gtm;
     int idgruppo;
     int idutente;
+
+signals:
+
+    void permissions_updated();
 
 
 };

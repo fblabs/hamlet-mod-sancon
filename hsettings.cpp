@@ -2,6 +2,7 @@
 #include "ui_hsettings.h"
 #include <QSettings>
 #include <QMessageBox>
+#include <QFileDialog>
 
 HSettings::HSettings(QWidget *parent) :
     QWidget(parent),
@@ -16,6 +17,7 @@ HSettings::HSettings(QWidget *parent) :
     ui->leDatabase->setText(settings.value("database").toString());
     ui->lePassword->setText (settings.value("pwd").toString());
     ui->leConnessione->setText(settings.value("conn").toString());
+    ui->lePreferredDb->setText(settings.value("preferred_lots").toString());
 }
 
 HSettings::~HSettings()
@@ -36,6 +38,7 @@ void HSettings::on_pushButton_clicked()
    QString sDatabase = ui->leDatabase->text();
    QString sPassword = ui->lePassword->text();
    QString sConnessione = ui->leConnessione->text();
+   QString sPreferredDb =ui->lePreferredDb->text();
 
    settings.setValue("database",sDatabase);
    settings.setValue("user", sUser);
@@ -43,6 +46,7 @@ void HSettings::on_pushButton_clicked()
    settings.setValue("port", sPort.toInt());
    settings.setValue("pwd", sPassword);
    settings.setValue("conn",sConnessione);
+   settings.setValue("preferred_lots",sPreferredDb);
 
    QMessageBox::information(this,QApplication::applicationName(),"Impostazioni salvate",QMessageBox::Ok);
 
@@ -52,3 +56,10 @@ void HSettings::on_pushButton_2_clicked()
 {
     this->close();
 }
+
+void HSettings::on_pbSelect_clicked()
+{
+   QString filename=QFileDialog::getOpenFileName();
+   ui->lePreferredDb->setText(filename);
+}
+

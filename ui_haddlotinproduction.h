@@ -46,7 +46,7 @@ public:
     {
         if (HAddLotInProduction->objectName().isEmpty())
             HAddLotInProduction->setObjectName(QString::fromUtf8("HAddLotInProduction"));
-        HAddLotInProduction->setWindowModality(Qt::ApplicationModal);
+        HAddLotInProduction->setWindowModality(Qt::WindowModal);
         HAddLotInProduction->resize(393, 361);
         verticalLayout = new QVBoxLayout(HAddLotInProduction);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));

@@ -48,7 +48,7 @@ public:
     {
         if (HChoose_lot_to_add->objectName().isEmpty())
             HChoose_lot_to_add->setObjectName(QString::fromUtf8("HChoose_lot_to_add"));
-        HChoose_lot_to_add->setWindowModality(Qt::ApplicationModal);
+        HChoose_lot_to_add->setWindowModality(Qt::WindowModal);
         HChoose_lot_to_add->resize(361, 431);
         verticalLayout = new QVBoxLayout(HChoose_lot_to_add);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));

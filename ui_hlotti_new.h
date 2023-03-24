@@ -18,6 +18,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
@@ -43,10 +44,14 @@ public:
     QLabel *label_4;
     QCheckBox *ckbUseProduct;
     QComboBox *cbProduct;
+    QCheckBox *chb_bio;
     QSpacerItem *horizontalSpacer;
+    QLabel *label_5;
+    QLineEdit *le_search;
     QTableView *tvLotti;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbLotInfo;
+    QPushButton *pbDelete;
     QPushButton *pbPrint;
     QPushButton *pbClose;
 
@@ -54,7 +59,7 @@ public:
     {
         if (HLotti_new->objectName().isEmpty())
             HLotti_new->setObjectName(QString::fromUtf8("HLotti_new"));
-        HLotti_new->setWindowModality(Qt::ApplicationModal);
+        HLotti_new->setWindowModality(Qt::NonModal);
         HLotti_new->resize(1188, 538);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -126,9 +131,27 @@ public:
 
         horizontalLayout_4->addWidget(cbProduct);
 
+        chb_bio = new QCheckBox(HLotti_new);
+        chb_bio->setObjectName(QString::fromUtf8("chb_bio"));
+
+        horizontalLayout_4->addWidget(chb_bio);
+
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer);
+
+        label_5 = new QLabel(HLotti_new);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+
+        horizontalLayout_4->addWidget(label_5);
+
+        le_search = new QLineEdit(HLotti_new);
+        le_search->setObjectName(QString::fromUtf8("le_search"));
+        le_search->setMinimumSize(QSize(150, 0));
+        le_search->setMaximumSize(QSize(150, 16777215));
+        le_search->setClearButtonEnabled(true);
+
+        horizontalLayout_4->addWidget(le_search);
 
 
         horizontalLayout_3->addLayout(horizontalLayout_4);
@@ -146,7 +169,7 @@ public:
         tvLotti->setSortingEnabled(true);
         tvLotti->horizontalHeader()->setCascadingSectionResizes(true);
         tvLotti->horizontalHeader()->setMinimumSectionSize(150);
-        tvLotti->horizontalHeader()->setDefaultSectionSize(30);
+        tvLotti->horizontalHeader()->setDefaultSectionSize(150);
         tvLotti->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
         tvLotti->horizontalHeader()->setStretchLastSection(true);
         tvLotti->verticalHeader()->setVisible(false);
@@ -168,20 +191,29 @@ public:
 
         horizontalLayout->addWidget(pbLotInfo);
 
+        pbDelete = new QPushButton(HLotti_new);
+        pbDelete->setObjectName(QString::fromUtf8("pbDelete"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/Flag-red64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDelete->setIcon(icon2);
+        pbDelete->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pbDelete);
+
         pbPrint = new QPushButton(HLotti_new);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Resources/print-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/print-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon3);
         pbPrint->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbPrint);
 
         pbClose = new QPushButton(HLotti_new);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon4);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbClose);
@@ -204,7 +236,10 @@ public:
         ckbUseType->setText(QString());
         label_4->setText(QCoreApplication::translate("HLotti_new", "Prodotto:", nullptr));
         ckbUseProduct->setText(QString());
+        chb_bio->setText(QCoreApplication::translate("HLotti_new", "Bio", nullptr));
+        label_5->setText(QCoreApplication::translate("HLotti_new", "Cerca Lotto:", nullptr));
         pbLotInfo->setText(QCoreApplication::translate("HLotti_new", "Informazioni", nullptr));
+        pbDelete->setText(QCoreApplication::translate("HLotti_new", "Elimina lotto selezionato", nullptr));
         pbPrint->setText(QCoreApplication::translate("HLotti_new", "Stampa", nullptr));
         pbClose->setText(QCoreApplication::translate("HLotti_new", "Chiudi", nullptr));
     } // retranslateUi

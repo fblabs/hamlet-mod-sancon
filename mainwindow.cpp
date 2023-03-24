@@ -36,7 +36,8 @@
 #include "hschedeclienti.h"
 #include "hnschede.h"
 #include "hgraphicprint.h"
-#include "hcalcost.h"
+//#include "hcalcost.h"
+#include "hcalcolo_costi.h"
 #include "hrecipesforclient.h"
 #include <QCryptographicHash>
 #include "hmagazzino.h"
@@ -53,22 +54,18 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    bool bp=createPreferencesDB();
+    createPreferencesDB();
 
-    if (!bp){QMessageBox::warning(nullptr,QApplication::applicationName(),"Errore creando il database lotti preferiti, la funzionalità non sarà disponible ",QMessageBox::Ok);}
+    // if (!bp){QMessageBox::warning(nullptr,QApplication::applicationName(),"Errore creando il database lotti preferiti, la funzionalità non sarà disponible ",QMessageBox::Ok);}
 
     QSettings settings("hamletmod.ini",QSettings::IniFormat);
 
 
     ui->setupUi(this);
-    ui->pushButton->setVisible(false);
-
-    ui->pbVerifyLabels->setVisible(false);
 
     setFocusPolicy(Qt::StrongFocus);
     sConn=settings.value("conn").toString();
 
-    ui->pbOldCards->setVisible(false);
     ui->lbUser_label->setVisible(false);
     ui->tbModificaLotti->setVisible(false);
     ui->pbUnload->setVisible(false);
@@ -107,9 +104,11 @@ void MainWindow::userLogged(HUser* usr,QSqlDatabase pdb)
     user=usr;
     db=pdb;
 
+    user->get_permissions();
+
     if(usr)
     {
-       // bool b=db.isOpen();
+        // bool b=db.isOpen();
         ui->lbUser_label->setVisible(true);
         ui->lbCurrentUser->setVisible(true);
         ui->lbCurrentUser->setText(usr->getUsername()+" ("+usr->getName()+")");
@@ -144,8 +143,6 @@ void MainWindow::disableUI()
     ui->pbContacts->setEnabled(false);
     ui->pbNotifiche->setEnabled(false);
     ui->pbCkeckNotifications->setEnabled(false);
-    ui->pbVerifyLabels->setEnabled(false);
-    ui->pbOldCards->setEnabled(false);
     ui->pbExpirations->setEnabled(false);
     ui->pbCalcoloCosti->setEnabled(false);
     ui->pbC4R->setEnabled(false);
@@ -163,204 +160,39 @@ void MainWindow::enableButtonsForRole()
     }
 
 
+    qDebug()<<"EnablebottonsforRole";
 
-    //// qDebug()<<QString::number(rol);
-
-    ui->pbVerifyLabels->setEnabled(true);
-
-    switch(user->getRole())
-    {
-    case 1:
-
-        //produzione
-
-        ui->tnProduzione->setEnabled(true);
-        ui->pbUnload->setEnabled(true);
-        ui->tbLogout->setEnabled(true);
-        ui->toolButton->setEnabled(false);
-        ui->tbMagaz->setEnabled(true);
-        ui->tbLotti->setEnabled(true);
-        ui->tbAnag->setEnabled(true);
-        ui->tbClose->setEnabled(true);
-        ui->tbProdotti->setEnabled(true);
-        ui->tbRicette->setEnabled(true);
-        ui->tbModificaLotti->setEnabled(true);
-        ui->tbSettings->setEnabled(false);
-        ui->tnProduzione->setEnabled(true);
-        ui->tbAnalisi->setEnabled(true);
-        ui->pBNewOperation->setEnabled(true);
-        ui->pbSchede->setEnabled(true);
-        ui->pbOldCards->setEnabled(true);
-        ui->tbAssociazioni->setEnabled(false);
-        ui->tbUtenti->setEnabled(false);
-        ui->tbLogout->setEnabled(true);
-        ui->pbPackages->setEnabled(true);
-        ui->pbNotifiche->setEnabled(false);
-        ui->pbContacts->setEnabled(false);
-        ui->pbCkeckNotifications->setEnabled(true);
-        ui->pbExpirations->setEnabled(true);
-        ui->pbC4R->setEnabled(true);
-        if(!user->getCanUpdate())
-            ui->pbProgrammazione->setEnabled(true);
-
-
-        break;
-
-    case 2:
-        // magazzino
-
-
-        ui->tnProduzione->setEnabled(false);
-        ui->tbLogout->setEnabled(true);
-        ui->toolButton->setEnabled(true);
-        ui->tbMagaz->setEnabled(true);
-        ui->tbLotti->setEnabled(true);
-        ui->tbAnag->setEnabled(true);
-        ui->tbClose->setEnabled(true);
-        ui->tbProdotti->setEnabled(true);
-        ui->tbRicette->setEnabled(true);
-        ui->tbModificaLotti->setEnabled(true);
-        ui->tbSettings->setEnabled(false);
-        ui->tnProduzione->setEnabled(true);
-        ui->tbAnalisi->setEnabled(true);
-        ui->pBNewOperation->setEnabled(true);
-        ui->pbSchede->setEnabled(true);
-        ui->tbAssociazioni->setEnabled(true);
-        ui->pbOldCards->setEnabled(true);
-        ui->tbUtenti->setEnabled(true);
-        ui->tbLogout->setEnabled(true);
-        ui->pbPackages->setEnabled(true);
-        ui->pbUnload->setEnabled(true);
-        ui->pbContacts->setEnabled(false);
-        ui->pbNotifiche->setEnabled(false);
-        ui->pbCkeckNotifications->setEnabled(true);
-        ui->pbExpirations->setEnabled(true);
-        ui->pbC4R->setEnabled(true);
-        ui->pbProgrammazione->setEnabled(false);
+    user->get_permissions();
 
 
 
-        break;
-
-    case 3:
-        //uffici
-        ui->tbMagaz->setEnabled(true);
-        ui->pBNewOperation->setEnabled(true);
-        ui->tbAnag->setEnabled(true);
-        ui->tbLotti->setEnabled(true);
-        ui->tbProdotti->setEnabled(true);
-        ui->tbLogout->setEnabled(true);
-        ui->pbSchede->setEnabled(true);
-        ui->pbOldCards->setEnabled(true);
-        ui->tbModificaLotti->setEnabled(false);
-        ui->tnProduzione->setEnabled(true);
-        ui->tbRicette->setEnabled(true);
-        ui->tbAnalisi->setEnabled(true);
-        ui->pbUnload->setEnabled(true);
-        ui->pbContacts->setEnabled(true);
-        ui->pbNotifiche->setEnabled(true);
-        ui->pbCkeckNotifications->setEnabled(true);
-        ui->pbExpirations->setEnabled(true);
-        ui->pbC4R->setEnabled(true);
-        ui->tbSettings->setEnabled(false);
-        ui->pbProgrammazione->setEnabled(false);
+    ui->tbUtenti->setEnabled(user->get_utenti_v()>0);
+    ui->pBNewOperation->setEnabled(user->get_operazioni_u()>0);
+    ui->pbCalcoloCosti->setEnabled(user->get_costi_v()>0);
+    ui->tbAnag->setEnabled(user->get_anagrafica_v()>0);
+    ui->pbNotifiche->setEnabled(user->get_notifiche_v()>0);
+    ui->pbCkeckNotifications->setEnabled(user->get_notifiche_v()>0);
+    ui->pbContacts->setEnabled(user->get_contatti_v()>0);
+    ui->tbLotti->setEnabled(user->get_lotti_v()>0);
+    ui->tbMagaz->setEnabled(user->get_operazioni_v()>0);
+    ui->pBNewOperation->setEnabled(user->get_operazioni_u()>0);
+    ui->tbProdotti->setEnabled( user->get_prodotti_v()>0);
+    ui->pbSchede->setEnabled( user->get_schede_v()>0);
+    ui->tbRicette->setEnabled( user->get_ricette_v()>0);
+    ui->tbAssociazioni->setEnabled( user->get_ricette_v()>0);
+    ui->pbC4R->setEnabled( user->get_ricette_v()>0);
+    ui->pbProgrammazione->setEnabled(user->get_programmi_v()>0);
+    ui->tnProduzione->setEnabled(user->get_produzione_v()>0);
+    ui->pbPackages->setEnabled(user->get_packages_v()>0);
+    ui->tbAnalisi->setEnabled(user->get_analisi_v()>0);
+    ui->pbCalcoloCosti->setEnabled(user->get_lotti_v()>0);
+    ui->tbAnalisi->setEnabled(user->get_analisi_v()>0);
 
 
 
-        break;
-    case 4://simone
-        ui->tbMagaz->setEnabled(true);
-        ui->pBNewOperation->setEnabled(true);
-        ui->tbAnag->setEnabled(true);
-        ui->tbLotti->setEnabled(true);
-        ui->tbProdotti->setEnabled(true);
-        ui->tbLogout->setEnabled(true);
-        ui->pbSchede->setEnabled(true);
-        ui->pbOldCards->setEnabled(true);
-        ui->tbModificaLotti->setEnabled(false);
-        ui->tnProduzione->setEnabled(true);
-        ui->tbRicette->setEnabled(true);
-        ui->tbAnalisi->setEnabled(true);
-        ui->tbModificaLotti->setEnabled(true);
-        ui->pbUnload->setEnabled(true);
-        ui->pbContacts->setEnabled(false);
-        ui->pbNotifiche->setEnabled(false);
-        ui->pbCkeckNotifications->setEnabled(true);
-        ui->pbExpirations->setEnabled(true);
-        ui->pbC4R->setEnabled(true);
-        ui->tbSettings->setEnabled(false);
-        ui->pbProgrammazione->setEnabled(false);
-
-
-
-        break;
-    case 5://amministrativo
-        ui->toolButton->setEnabled(false);
-        ui->tbMagaz->setEnabled(true);
-        ui->tbLotti->setEnabled(true);
-        ui->tbAnag->setEnabled(true);
-        ui->tbClose->setEnabled(true);
-        ui->tbProdotti->setEnabled(true);
-        ui->tbRicette->setEnabled(true);
-        ui->tbModificaLotti->setEnabled(true);
-        ui->tbSettings->setEnabled(true);
-        ui->tnProduzione->setEnabled(true);
-        ui->tbAnalisi->setEnabled(true);
-        ui->pBNewOperation->setEnabled(true);
-        ui->pbSchede->setEnabled(true);
-        ui->pbOldCards->setEnabled(true);
-        ui->tbAssociazioni->setEnabled(true);
-        ui->tbUtenti->setEnabled(true);
-        ui->tbLogout->setEnabled(true);
-        ui->pbPackages->setEnabled(true);
-        ui->pbUnload->setEnabled(true);
-        ui->pbContacts->setEnabled(true);
-        ui->pbNotifiche->setEnabled(true);
-        ui->pbCkeckNotifications->setEnabled(true);
-        ui->pbExpirations->setEnabled(true);
-        ui->pbCalcoloCosti->setEnabled(true);
-        ui->pbC4R->setEnabled(true);
-        ui->tbSettings->setEnabled(false);
-        ui->pbProgrammazione->setEnabled(true);
-
-
-        break;
-    case 6:
-        ui->tnProduzione->setEnabled(false);
-        ui->tbLogout->setEnabled(false);
-        ui->toolButton->setEnabled(true);
-        ui->tbMagaz->setEnabled(false);
-        ui->tbLotti->setEnabled(false);
-        ui->tbAnag->setEnabled(false);
-        ui->tbClose->setEnabled(false);
-        ui->tbProdotti->setEnabled(false);
-        ui->tbRicette->setEnabled(false);
-        ui->tbModificaLotti->setEnabled(false);
-        ui->tbSettings->setEnabled(false);
-        ui->tnProduzione->setEnabled(false);
-        ui->tbAnalisi->setEnabled(false);
-        ui->pBNewOperation->setEnabled(false);
-        ui->pbSchede->setEnabled(false);
-        ui->pbOldCards->setEnabled(false);
-        ui->tbAssociazioni->setEnabled(false);
-        ui->tbUtenti->setEnabled(false);
-        ui->tbLogout->setEnabled(false);
-        ui->pbPackages->setEnabled(true);
-        ui->pbUnload->setEnabled(false);
-        ui->pbContacts->setEnabled(false);
-        ui->pbNotifiche->setEnabled(false);
-        ui->pbNotifiche->setEnabled(false);
-        ui->pbCkeckNotifications->setEnabled(false);
-        ui->pbExpirations->setEnabled(true);
-        ui->pbC4R->setEnabled(true);
-        ui->tbSettings->setEnabled(false);
-        ui->pbProgrammazione->setEnabled(false);
-
-
-
-
-
-    }
+    ui->pbExpirations->setEnabled(true);
+    ui->toolButton->setEnabled(false);
+    ui->tbLogout->setEnabled(true);
 
 
 
@@ -377,7 +209,7 @@ void MainWindow::on_tbMagaz_clicked()
 void MainWindow::on_tbLotti_clicked()
 {
 
-   /* HLotti *f = new HLotti(db,user);*/
+
     HLotti_new *f=new HLotti_new(db,user);
     f->showMaximized();
 }
@@ -526,7 +358,6 @@ void MainWindow::on_tbLogout_clicked()
 void MainWindow::on_tbAssociazioni_clicked()
 {
     HAssociazioni* f = new HAssociazioni(user,db);
-    //   connect(this,SIGNAL(onConnectionName()),f,SLOT(setConnectionName(QString)));
     f->show();
 }
 
@@ -550,6 +381,8 @@ void MainWindow::on_tbUtenti_clicked()
 {
     // int i=1;
     HGestioneUtenti *f=new HGestioneUtenti(user,db);
+    connect(f,SIGNAL(permissions_updated()),this,SLOT(enableButtonsForRole()));
+
     f->show();
 }
 
@@ -602,6 +435,7 @@ void MainWindow::on_pbContacts_clicked()
 
 void MainWindow::on_pbNotifiche_clicked()
 {
+
     HAlarm *f =new HAlarm(0,db,user);
     f->show();
 }
@@ -661,23 +495,27 @@ void MainWindow::on_pbExpirations_clicked()
 
 void MainWindow::on_pbCalcoloCosti_clicked()
 {
-    HCalcost *f= new HCalcost(db,user);
-    f->show();
+  // HCalcost *f= new HCalcost(db,user);
+   HCalcolo_costi *f=new HCalcolo_costi(user,db);
+    f->showMaximized();
 }
 
 bool MainWindow::createPreferencesDB()
 {
-    if(!QFile::exists("preferences.db"))
+    QSettings settings("hamletmod.ini",QSettings::IniFormat);
+    QString preferences_db=settings.value("preferred_lot").toString();
+
+    if(!QFile::exists(preferences_db))
     {
         QSqlDatabase prefs=QSqlDatabase::addDatabase("QSQLITE");
-        prefs.setDatabaseName("preferences.db");
-        prefs.open();
+        prefdb.setDatabaseName(preferences_db);
+        prefdb.open();
         QString sql="CREATE TABLE 'pref' ( 'prod'	TEXT, 'lot'	TEXT )";
-        QSqlQuery q(prefs);
+        QSqlQuery q(prefdb);
         q.exec(sql);
         qDebug()<<q.lastError().text();
-        prefs.close();
-        QMessageBox::information(nullptr,QApplication::applicationName(),q.lastError().text(),QMessageBox::Ok);
+        prefdb.close();
+
     }
 
     return QFile::exists("preferences.db");
@@ -699,4 +537,9 @@ void MainWindow::on_pbProgrammazione_clicked()
     HWorkProgram *f=new HWorkProgram(user,db);
     f->showMaximized();
 }
+
+
+
+
+
 

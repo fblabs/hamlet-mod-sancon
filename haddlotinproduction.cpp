@@ -8,15 +8,19 @@
 #include <QStandardItem>
 #include "hdatatopass.h"
 #include <QFile>
+#include <QSettings>
 
-HAddLotInProduction::HAddLotInProduction(QWidget *parent, HDataToPass *datapass, QSqlDatabase pdb) :
+HAddLotInProduction::HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HAddLotInProduction)
 {
     ui->setupUi(this);
 
+    QSettings settings("hamletmod.ini",QSettings::IniFormat);
+    QString preferredLotsDb=settings.value("preferred_lots").toString();
+
      prefsdb=QSqlDatabase::addDatabase("QSQLITE");
-     prefsdb.setDatabaseName("preferences.db");
+     prefsdb.setDatabaseName(preferredLotsDb);
      prefsdb.open();
 
 
@@ -48,6 +52,11 @@ HAddLotInProduction::~HAddLotInProduction()
     delete ui;
 }
 
+void HAddLotInProduction::click()
+{
+        ui->pbAdd->click();
+}
+
 void HAddLotInProduction::lastLots()
 {
     qDebug()<<"lastLots()";
@@ -62,7 +71,10 @@ void HAddLotInProduction::lastLots()
     qlots.bindValue(":quanti",QVariant(quanti));
     qlots.exec();
 
-   // qDebug()<<qlots.lastError().text()<<_idprodotto;
+
+    qDebug()<<data->productId<<quanti<<qlots.lastError().text();
+
+
     qmLots->setQuery(qlots);
 
 
@@ -75,8 +87,12 @@ void HAddLotInProduction::lastLots()
 
     for(int i=0; i<qmLots->rowCount();++i)
     {
+        qDebug()<<"FORNEXT"<<default_lot;
+
+
         if(qmLots->record(i).value(1).toString()==default_lot)
         {
+
             ui->lvLastLots->setCurrentIndex(qmLots->index(i,1));
         }
     }

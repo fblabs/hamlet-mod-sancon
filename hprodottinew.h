@@ -22,19 +22,7 @@ public:
     explicit HProdottiNew(HUser *puser=0,QSqlDatabase pdb=QSqlDatabase(),QWidget *parent=0);
     ~HProdottiNew();
 private slots:
-    void on_rbAll_toggled(bool checked);
-
-    void on_rbMaterie_toggled(bool checked);
-
-    void on_rbProdotti_toggled(bool checked);
-
-    void on_rbContenitori_toggled(bool checked);
-
-    void on_rbTappi_toggled(bool checked);
-
-    void on_rbVasi_toggled(bool checked);
-
-    void on_rbBio_toggled(bool checked);
+    void getTypes();
 
     void save();
 
@@ -59,6 +47,10 @@ private slots:
     void on_pbPrint_clicked();
 
     void on_pbLoads_clicked();
+
+    void on_cbTipiProdotto_currentIndexChanged(int index);
+
+    void on_chbBio_toggled(bool checked);
 
 private:
     Ui::HProdottiNew *ui;

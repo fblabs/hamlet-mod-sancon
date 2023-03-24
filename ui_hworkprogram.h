@@ -79,8 +79,8 @@ public:
     {
         if (HWorkProgram->objectName().isEmpty())
             HWorkProgram->setObjectName(QString::fromUtf8("HWorkProgram"));
-        HWorkProgram->setWindowModality(Qt::ApplicationModal);
-        HWorkProgram->resize(1149, 638);
+        HWorkProgram->setWindowModality(Qt::NonModal);
+        HWorkProgram->resize(1211, 638);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/3D_Icons_Icon_256.png"), QSize(), QIcon::Normal, QIcon::Off);
         HWorkProgram->setWindowIcon(icon);
@@ -98,7 +98,6 @@ public:
         label->setObjectName(QString::fromUtf8("label"));
         QFont font;
         font.setBold(true);
-        font.setWeight(75);
         label->setFont(font);
 
         gridLayout->addWidget(label, 3, 1, 1, 1);

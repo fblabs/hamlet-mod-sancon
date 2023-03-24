@@ -3,7 +3,7 @@
  <class>HModifyLot</class>
  <widget class="QWidget" name="HModifyLot">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>

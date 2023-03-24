@@ -2,6 +2,7 @@
 #include "ui_hlogin2.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
 #include <QMessageBox>
 #include <QSettings>
 #include <QSqlError>
@@ -14,6 +15,8 @@ HLogin2::HLogin2(QWidget *parent) :
 {
     Q_UNUSED(parent);
     ui->setupUi(this);
+
+    permissions_mod=new QSqlQueryModel();
 
     QShortcut *ok= new QShortcut(this);
     ok->setKey(Qt::Key_Enter);
@@ -64,7 +67,7 @@ void HLogin2::login()
     }
 
     QSqlQuery qrLogin(db);
-    HUser* usr=new HUser();
+    HUser* usr=new HUser(db);
 
 
     bool b=qrLogin.exec("Select utenti.ID,utenti.username,utenti.gruppo,gruppi.canupdate,gruppi.canupdateana,utenti.nome,utenti.attivo from utenti,gruppi where gruppi.ID=utenti.gruppo and utenti.username='" + ui->leUser->text() + "' and pwd=SHA1('" + ui->lePwd->text() + "') and utenti.attivo=1");
@@ -82,15 +85,19 @@ void HLogin2::login()
     if (qrLogin.size()==1)
     {
 
-
+        int role=qrLogin.value(2).toInt();
 
         usr->setID(qrLogin.value(0).toInt());
         usr->setUserName(qrLogin.value(1).toString());
-        usr->setRole(qrLogin.value(2).toInt());
+        usr->setRole(role);
+        //DEPRECATED
         usr->setCanUpdate(qrLogin.value(3).toBool());
         usr->setCanUpdateAnag(qrLogin.value(4).toBool());
         usr->setNome(qrLogin.value(5).toString());
-        emit userLogged(usr,db);
+
+        //NEW PERMISSIONS MODEL
+        get_permissions(usr,role);
+         emit userLogged(usr,db);
 
 
 
@@ -137,4 +144,19 @@ void HLogin2::on_checkBox_toggled(bool checked)
     {
         ui->lePwd->setEchoMode(QLineEdit::Password);
     }
+}
+
+void HLogin2::get_permissions(HUser *p_user,const int p_role)
+{
+    int role=p_role;
+
+    QSqlQuery q(db);
+    QString sql="SELECT * from gruppi where ID=:role";
+    q.prepare(sql);
+    q.bindValue(":role",role);
+    q.exec();
+    permissions_mod->setQuery(q);
+
+    p_user->set_permissions(permissions_mod);
+
 }

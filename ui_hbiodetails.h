@@ -82,7 +82,7 @@ public:
     {
         if (HBioDetails->objectName().isEmpty())
             HBioDetails->setObjectName(QString::fromUtf8("HBioDetails"));
-        HBioDetails->setWindowModality(Qt::ApplicationModal);
+        HBioDetails->setWindowModality(Qt::WindowModal);
         HBioDetails->resize(477, 380);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);

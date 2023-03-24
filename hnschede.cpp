@@ -36,7 +36,14 @@ HNSChede::HNSChede(QString spcliente, QString spprodotto, QSqlDatabase pdb, HUse
     usr=pusr;
     changed=false;
 
-    bool upd=usr->getCanUpdate();
+    ui->pbsave->setEnabled(usr->get_schede_u()>0);
+    ui->pbCopy->setEnabled(usr->get_schede_u()>0);
+    ui->pushButton_7->setEnabled(usr->get_schede_u()>0);
+    ui->pbReset->setEnabled(usr->get_schede_u()>0);
+    ui->pbInit->setEnabled(usr->get_schede_u()>0);
+
+    /*bool upd=usr->getCanUpdate();
+
 
     ui->lblLed->setVisible(false);
 
@@ -52,10 +59,10 @@ HNSChede::HNSChede(QString spcliente, QString spprodotto, QSqlDatabase pdb, HUse
         ui->pbsave->setEnabled(upd);
         ui->pbInit->setEnabled(upd);
 
-    }
+    }*/
 
     ui->textEdit->setReadOnly(!ui->pushButton_8->isChecked());
-    //ui->textEdit->setReadOnly(!ui->pbsave->isEnabled());
+
 
 
     QShortcut *shortcut =new QShortcut(QKeySequence("Ctrl+I"),this);
@@ -707,7 +714,7 @@ void HNSChede::on_pushButton_8_toggled(bool checked)
 void HNSChede::on_pushButton_9_clicked()
 {
     HCopyCard *f=new HCopyCard(0,db);
-    f->setWindowModality(Qt::ApplicationModal);
+    f->setWindowModality(Qt::WindowModal);
     QObject::connect(f,SIGNAL(copyTheCard(int,int,QString,QString,QString)),this,SLOT(copyCard(int,int,QString,QString,QString)));
     f->show();
 
@@ -765,7 +772,7 @@ void HNSChede::copyCard(int cliente, int prodotto, QString nC, QString nP, QStri
 void HNSChede::on_pbCopy_clicked()
 {
     HCopyCard *f=new HCopyCard(0,db);
-    f->setWindowModality(Qt::ApplicationModal);
+    f->setWindowModality(Qt::WindowModal);
     //connect(f,SIGNAL(copyCard(int cliente,int prodotto,QString produttore,QString product)),this,SLOT(copyCard(int cliente, int prodotto, QString produttore,QString product)));
     connect(f,SIGNAL(doCopy(int,int,QString,QString,QString)),this,SLOT(copyCard(int,int,QString,QString,QString)));
     f->show();
@@ -792,6 +799,9 @@ void HNSChede::on_pbReset_clicked()
 
     loadCard();
 }
+
+
+
 
 
 

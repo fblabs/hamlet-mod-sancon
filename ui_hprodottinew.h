@@ -13,13 +13,13 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -29,16 +29,11 @@ QT_BEGIN_NAMESPACE
 class Ui_HProdottiNew
 {
 public:
-    QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
-    QHBoxLayout *horizontalLayout;
-    QRadioButton *rbAll;
-    QRadioButton *rbMaterie;
-    QRadioButton *rbProdotti;
-    QRadioButton *rbContenitori;
-    QRadioButton *rbTappi;
-    QRadioButton *rbVasi;
-    QRadioButton *rbBio;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_2;
+    QComboBox *cbTipiProdotto;
+    QCheckBox *chbBio;
     QCheckBox *checkBox;
     QTableView *tvProdotti;
     QFormLayout *formLayout;
@@ -56,68 +51,57 @@ public:
     {
         if (HProdottiNew->objectName().isEmpty())
             HProdottiNew->setObjectName(QString::fromUtf8("HProdottiNew"));
-        HProdottiNew->setWindowModality(Qt::ApplicationModal);
+        HProdottiNew->setWindowModality(Qt::WindowModal);
         HProdottiNew->resize(1291, 643);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HProdottiNew->setWindowIcon(icon);
-        verticalLayout_2 = new QVBoxLayout(HProdottiNew);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        verticalLayout = new QVBoxLayout();
+        verticalLayout = new QVBoxLayout(HProdottiNew);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        rbAll = new QRadioButton(HProdottiNew);
-        rbAll->setObjectName(QString::fromUtf8("rbAll"));
-        rbAll->setChecked(true);
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        label_2 = new QLabel(HProdottiNew);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setMaximumSize(QSize(100, 16777215));
 
-        horizontalLayout->addWidget(rbAll);
+        horizontalLayout_3->addWidget(label_2);
 
-        rbMaterie = new QRadioButton(HProdottiNew);
-        rbMaterie->setObjectName(QString::fromUtf8("rbMaterie"));
+        cbTipiProdotto = new QComboBox(HProdottiNew);
+        cbTipiProdotto->setObjectName(QString::fromUtf8("cbTipiProdotto"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(cbTipiProdotto->sizePolicy().hasHeightForWidth());
+        cbTipiProdotto->setSizePolicy(sizePolicy);
+        cbTipiProdotto->setEditable(true);
+        cbTipiProdotto->setInsertPolicy(QComboBox::NoInsert);
+        cbTipiProdotto->setSizeAdjustPolicy(QComboBox::AdjustToContentsOnFirstShow);
+        cbTipiProdotto->setModelColumn(1);
 
-        horizontalLayout->addWidget(rbMaterie);
+        horizontalLayout_3->addWidget(cbTipiProdotto);
 
-        rbProdotti = new QRadioButton(HProdottiNew);
-        rbProdotti->setObjectName(QString::fromUtf8("rbProdotti"));
+        chbBio = new QCheckBox(HProdottiNew);
+        chbBio->setObjectName(QString::fromUtf8("chbBio"));
+        chbBio->setMaximumSize(QSize(120, 16777215));
 
-        horizontalLayout->addWidget(rbProdotti);
-
-        rbContenitori = new QRadioButton(HProdottiNew);
-        rbContenitori->setObjectName(QString::fromUtf8("rbContenitori"));
-
-        horizontalLayout->addWidget(rbContenitori);
-
-        rbTappi = new QRadioButton(HProdottiNew);
-        rbTappi->setObjectName(QString::fromUtf8("rbTappi"));
-
-        horizontalLayout->addWidget(rbTappi);
-
-        rbVasi = new QRadioButton(HProdottiNew);
-        rbVasi->setObjectName(QString::fromUtf8("rbVasi"));
-
-        horizontalLayout->addWidget(rbVasi);
-
-        rbBio = new QRadioButton(HProdottiNew);
-        rbBio->setObjectName(QString::fromUtf8("rbBio"));
-
-        horizontalLayout->addWidget(rbBio);
+        horizontalLayout_3->addWidget(chbBio);
 
         checkBox = new QCheckBox(HProdottiNew);
         checkBox->setObjectName(QString::fromUtf8("checkBox"));
+        checkBox->setMaximumSize(QSize(120, 16777215));
 
-        horizontalLayout->addWidget(checkBox);
+        horizontalLayout_3->addWidget(checkBox);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout->addLayout(horizontalLayout_3);
 
         tvProdotti = new QTableView(HProdottiNew);
         tvProdotti->setObjectName(QString::fromUtf8("tvProdotti"));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(tvProdotti->sizePolicy().hasHeightForWidth());
-        tvProdotti->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(tvProdotti->sizePolicy().hasHeightForWidth());
+        tvProdotti->setSizePolicy(sizePolicy1);
         tvProdotti->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvProdotti->setAlternatingRowColors(true);
         tvProdotti->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -145,9 +129,6 @@ public:
 
 
         verticalLayout->addLayout(formLayout);
-
-
-        verticalLayout_2->addLayout(verticalLayout);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
@@ -204,7 +185,7 @@ public:
         horizontalLayout_2->addWidget(pushButton_2);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_2);
+        verticalLayout->addLayout(horizontalLayout_2);
 
 
         retranslateUi(HProdottiNew);
@@ -215,18 +196,13 @@ public:
     void retranslateUi(QWidget *HProdottiNew)
     {
         HProdottiNew->setWindowTitle(QCoreApplication::translate("HProdottiNew", "Prodotti", nullptr));
-        rbAll->setText(QCoreApplication::translate("HProdottiNew", "Tutti", nullptr));
-        rbMaterie->setText(QCoreApplication::translate("HProdottiNew", "Materie prime", nullptr));
-        rbProdotti->setText(QCoreApplication::translate("HProdottiNew", "Prodotti", nullptr));
-        rbContenitori->setText(QCoreApplication::translate("HProdottiNew", "Conteniitori", nullptr));
-        rbTappi->setText(QCoreApplication::translate("HProdottiNew", "Capsule e tappi", nullptr));
-        rbVasi->setText(QCoreApplication::translate("HProdottiNew", "Vasi", nullptr));
-        rbBio->setText(QCoreApplication::translate("HProdottiNew", "Bio", nullptr));
+        label_2->setText(QCoreApplication::translate("HProdottiNew", "Tipo prodotto:", nullptr));
+        chbBio->setText(QCoreApplication::translate("HProdottiNew", "Bio", nullptr));
         checkBox->setText(QCoreApplication::translate("HProdottiNew", "Solo prodotti attivi", nullptr));
         label->setText(QCoreApplication::translate("HProdottiNew", "Cerca prodotto", nullptr));
         pushButton->setText(QCoreApplication::translate("HProdottiNew", "Nuovo", nullptr));
         pbMod->setText(QCoreApplication::translate("HProdottiNew", "Modifica prodotto selezionato", nullptr));
-        pbLoads->setText(QCoreApplication::translate("HProdottiNew", "Carichi", nullptr));
+        pbLoads->setText(QCoreApplication::translate("HProdottiNew", "Carichi/scarichi", nullptr));
         cbPdf->setText(QCoreApplication::translate("HProdottiNew", "Stampa su pdf", nullptr));
         pbPrint->setText(QCoreApplication::translate("HProdottiNew", "Stampa", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HProdottiNew", "Chiudi", nullptr));

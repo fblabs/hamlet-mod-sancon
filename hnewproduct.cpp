@@ -80,18 +80,45 @@ void HNewProduct::addNewProduct()
     q.bindValue(":attivo",QVariant(attivo));
     q.bindValue(":bio",QVariant(bio));
 
+    db.transaction();
+
     bool s=q.exec();
     if(s)
     {
         QMessageBox::warning(this, QApplication::applicationName(),"Prodotto salvato",QMessageBox::Ok);
+        if(tipo>2 && tipo <6)
+        {
+          addNewContainer(q.lastInsertId().toInt());
+
+        }
+
+        db.commit();
         emit done();
         close();
 
     }
     else
     {
+        db.rollback();
         QMessageBox::warning(this, QApplication::applicationName(),"Errore salvando il prodotto\n"+q.lastError().text(),QMessageBox::Ok);
+
     }
+
+
+}
+
+bool HNewProduct::addNewContainer(const int p_id)
+{
+
+        QSqlQuery q(db);
+        QString sql="INSERT INTO tags_containers(ID_Prodotto)VALUES(:id_prodotto)";
+        q.prepare(sql);
+        q.bindValue(":id_prodotto",p_id);
+
+        return q.exec();
+
+
+
 }
 
 

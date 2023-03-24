@@ -3,7 +3,7 @@
  <class>HBioDetails</class>
  <widget class="QWidget" name="HBioDetails">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>

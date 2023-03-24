@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlRelationalTableModel>
 #include <QDataWidgetMapper>
+#include "huser.h"
 
 
 namespace Ui {
@@ -16,7 +17,7 @@ class HWarehouseDetails : public QWidget
     Q_OBJECT
 
 public:
-    explicit HWarehouseDetails(QSqlDatabase pdb=QSqlDatabase(), int id=-1, int pidlotto=0, QWidget *parent = 0);
+    explicit HWarehouseDetails(HUser *p_user=new HUser(), QSqlDatabase pdb=QSqlDatabase(), int id=-1, int pidlotto=0, QWidget *parent = 0);
     ~HWarehouseDetails();
 
 private slots:
@@ -38,6 +39,7 @@ private:
     QDataWidgetMapper *mapper;
     int opid;
     int idlotto;
+    HUser* user;
 signals:
     void confirm();
 };
