@@ -76,6 +76,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *pbAggiungi_componente_costo;
     QPushButton *pbRimuovi_componente_costo;
+    QPushButton *pbJolly;
     QPushButton *pbCalcolo;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pbPrint;
@@ -339,11 +340,20 @@ public:
 
         horizontalLayout->addWidget(pbRimuovi_componente_costo);
 
+        pbJolly = new QPushButton(HCalcolo_costi);
+        pbJolly->setObjectName(QString::fromUtf8("pbJolly"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Left-align64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbJolly->setIcon(icon3);
+        pbJolly->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pbJolly);
+
         pbCalcolo = new QPushButton(HCalcolo_costi);
         pbCalcolo->setObjectName(QString::fromUtf8("pbCalcolo"));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/Line-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbCalcolo->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/Line-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbCalcolo->setIcon(icon4);
         pbCalcolo->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbCalcolo);
@@ -355,18 +365,18 @@ public:
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         pbPrint = new QPushButton(HCalcolo_costi);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Resources/print-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Resources/print-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon5);
         pbPrint->setIconSize(QSize(32, 32));
 
         horizontalLayout_4->addWidget(pbPrint);
 
         pbClose = new QPushButton(HCalcolo_costi);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon6);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout_4->addWidget(pbClose);
@@ -384,7 +394,7 @@ public:
     {
         HCalcolo_costi->setWindowTitle(QCoreApplication::translate("HCalcolo_costi", "Calcolo Costi", nullptr));
         label_4->setText(QCoreApplication::translate("HCalcolo_costi", "Formato (Kg)", nullptr));
-        leFormato->setText(QString());
+        leFormato->setText(QCoreApplication::translate("HCalcolo_costi", "1", nullptr));
         label->setText(QCoreApplication::translate("HCalcolo_costi", "Cliente:", nullptr));
         label_5->setText(QCoreApplication::translate("HCalcolo_costi", "Prodotti cliente", nullptr));
         label_3->setText(QCoreApplication::translate("HCalcolo_costi", "Componenti ricetta", nullptr));
@@ -406,6 +416,7 @@ public:
         label_12->setText(QCoreApplication::translate("HCalcolo_costi", " Prezzo/Item (\342\202\254)", nullptr));
         pbAggiungi_componente_costo->setText(QCoreApplication::translate("HCalcolo_costi", "Aggiungi componente costo", nullptr));
         pbRimuovi_componente_costo->setText(QCoreApplication::translate("HCalcolo_costi", "Rimuovi componente costo", nullptr));
+        pbJolly->setText(QCoreApplication::translate("HCalcolo_costi", "Elabora costi", nullptr));
         pbCalcolo->setText(QCoreApplication::translate("HCalcolo_costi", "Aggiorna", nullptr));
         pbPrint->setText(QCoreApplication::translate("HCalcolo_costi", "Stampa", nullptr));
         pbClose->setText(QCoreApplication::translate("HCalcolo_costi", "Chiudi", nullptr));

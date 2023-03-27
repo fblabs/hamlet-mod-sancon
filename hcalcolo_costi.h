@@ -48,6 +48,7 @@ private slots:
    void print();
    void updateComponenti_model(int row, double value);
 
+
    void on_pbPrint_clicked();
    double calculate_factor(QSqlQueryModel* model);
 
@@ -59,6 +60,8 @@ private slots:
    void on_pbAddPersonale_clicked();
 
    void on_pbGeneraleExpenses_clicked();
+
+   void on_pbJolly_clicked();
 
 signals:
    void component_added(QString p_item=QString(),QString p_costo=QString("0.00"));

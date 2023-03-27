@@ -20,6 +20,7 @@
 #include "hpdfprint.h"
 #include <QHeaderView>
 #include <QMessageBox>
+#include "hcalcolo_costi_jolly.h"
 
 //#include  "hprint.h"
 
@@ -51,6 +52,7 @@ HCalcolo_costi::HCalcolo_costi(HUser *p_user, QSqlDatabase p_db, QWidget *parent
 
     get_clienti();
     ui->leFormato->setFocus();
+    on_leFormato_returnPressed();
 
 
 
@@ -129,7 +131,7 @@ void HCalcolo_costi::get_ricetta()
     q.bindValue(":f",factor);
     q.bindValue(":idp",idp);
     q.exec();
-    // qDebug()<<"GET_RICETTA"<<q.lastError().text();
+
 
     QSqlQueryModel* ricmod=new QSqlQueryModel();
     ricmod->setQuery(q);
@@ -561,23 +563,7 @@ double HCalcolo_costi::calculate_factor(QSqlQueryModel *model)
 
     factor = tot_formato / tot_ricetta;
 
-    /* for (int j=0;j<model->rowCount();j++)
-    {
-       QModelIndex i = model->index(j,2);
-       QModelIndex i_res = model->index(j,4);
-       result =i.data().toDouble()* factor;
-      // QString resulttoadd=QString::number(result,'f',2);
-       QString resulttoadd="PIPPOO";
-
-       model->setData(i_res,QVariant(resulttoadd));
-
-    }*/
-
-
-
     return factor;
-
-
 }
 
 
@@ -642,5 +628,16 @@ void HCalcolo_costi::on_pbGeneraleExpenses_clicked()
 
     row<<new QStandardItem("SPESE GENERALI")<<new QStandardItem("")<<new QStandardItem(ui->leCosto_spese_generali->text());
     componenti_costo_model->appendRow(row);
+}
+
+
+void HCalcolo_costi::on_pbJolly_clicked()
+{
+    QString s_overview=ui->cbClienti->currentText()+" - "  +ui->lv_prodotti->currentIndex().data(0).toString() + " FORMATO: " + ui->leFormato->text();
+    QSqlQueryModel *ricetta_model=static_cast<QSqlQueryModel*>(ui->tvRicetta->model());
+
+    HCalcolo_costi_jolly *f=new HCalcolo_costi_jolly(ricetta_model,componenti_costo_model,factor,user);
+    f->setOverviewData(s_overview);
+    f->show();
 }
 
