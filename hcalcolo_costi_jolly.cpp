@@ -66,6 +66,9 @@ void HCalcolo_costi_jolly::recalculate()
    double tot_form=0.0;
    tot_form= get_total_formato();
    ui->lb_costo_formato->setText(QString::number(tot_form,'f',4));
+   QStandardItemModel *loc_componenti_mod=static_cast<QStandardItemModel*>(ui->tvComponenti->model());
+   QModelIndex ix_prodotto=loc_componenti_mod->index(0,2);
+   loc_componenti_mod->setData(ix_prodotto,QString::number(tot_form,'f',4));
 
 
 
