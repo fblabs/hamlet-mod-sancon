@@ -6,6 +6,10 @@
 #include <QSqlQueryModel>
 #include "huser.h"
 
+#include "hcosti_model.h"
+
+
+
 
 namespace Ui {
 class HCalcolo_costi_jolly;
@@ -29,11 +33,13 @@ private:
     double formato;
 
 private slots:
-    QStandardItemModel *convert_recipe_model();
+    HCosti_model* convert_recipe_model();
      void recalculate();
      double get_factor();
      double get_total_formato();
      void on_pbClose_clicked();
+     void print();
+     void on_pbReset_clicked();
 };
 
 #endif // HCALCOLO_COSTI_JOLLY_H

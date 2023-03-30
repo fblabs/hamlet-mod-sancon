@@ -332,3 +332,5 @@ ui_hcalcolo_costi_item.h
 usersinfoappdatalocaltemptmpu3hhwa
 *.user
 *.user
+*.Debug
+Makefile.Release

@@ -28,7 +28,9 @@ class Ui_HCalcolo_costi_jolly
 {
 public:
     QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout_4;
     QLabel *lb_overview;
+    QPushButton *pbReset;
     QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout;
     QTableView *tv_Recipe;
@@ -46,17 +48,28 @@ public:
     {
         if (HCalcolo_costi_jolly->objectName().isEmpty())
             HCalcolo_costi_jolly->setObjectName(QString::fromUtf8("HCalcolo_costi_jolly"));
-        HCalcolo_costi_jolly->resize(1150, 547);
+        HCalcolo_costi_jolly->resize(1386, 692);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Right-align64.png"), QSize(), QIcon::Normal, QIcon::Off);
         HCalcolo_costi_jolly->setWindowIcon(icon);
         verticalLayout_2 = new QVBoxLayout(HCalcolo_costi_jolly);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         lb_overview = new QLabel(HCalcolo_costi_jolly);
         lb_overview->setObjectName(QString::fromUtf8("lb_overview"));
         lb_overview->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
 
-        verticalLayout_2->addWidget(lb_overview);
+        horizontalLayout_4->addWidget(lb_overview);
+
+        pbReset = new QPushButton(HCalcolo_costi_jolly);
+        pbReset->setObjectName(QString::fromUtf8("pbReset"));
+        pbReset->setMaximumSize(QSize(100, 16777215));
+
+        horizontalLayout_4->addWidget(pbReset);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_4);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
@@ -140,6 +153,7 @@ public:
     {
         HCalcolo_costi_jolly->setWindowTitle(QCoreApplication::translate("HCalcolo_costi_jolly", "Elaborazione calcolo costi", nullptr));
         lb_overview->setText(QString());
+        pbReset->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Reset", nullptr));
         label_2->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Costo formato:", nullptr));
         lb_costo_formato->setText(QString());
         pbPrint->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Stampa", nullptr));

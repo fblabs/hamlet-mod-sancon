@@ -18,6 +18,7 @@ SOURCES += main.cpp\
     hbiodetails.cpp \
     hcalcolo_costi.cpp \
     hcalcolo_costi_item.cpp \
+    hcalcolo_costi_item_model.cpp \
     hcalcolo_costi_jolly.cpp \
     hchoose_lot_to_add.cpp \
     hchooselot.cpp \
@@ -25,6 +26,7 @@ SOURCES += main.cpp\
     hcontainer_cartoni.cpp \
     hcontainer_generic.cpp \
     hcontainer_generic_product.cpp \
+    hcosti_model.cpp \
     hcreategroup.cpp \
     hgroups.cpp \
     hloads.cpp \
@@ -101,6 +103,7 @@ HEADERS  += mainwindow.h \
     hbiodetails.h \
     hcalcolo_costi.h \
     hcalcolo_costi_item.h \
+    hcalcolo_costi_item_model.h \
     hcalcolo_costi_jolly.h \
     hchoose_lot_to_add.h \
     hchooselot.h \
@@ -108,6 +111,7 @@ HEADERS  += mainwindow.h \
     hcontainer_cartoni.h \
     hcontainer_generic.h \
     hcontainer_generic_product.h \
+    hcosti_model.h \
     hcreategroup.h \
     hgroups.h \
     hloads.h \

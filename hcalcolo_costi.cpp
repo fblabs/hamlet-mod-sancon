@@ -7,7 +7,7 @@
 #include <QModelIndex>
 #include "hproducts_for_calcolo_costi.h"
 #include <QFileDialog>
-#include <QDesktopServices>
+//#include <QDesktopServices>
 #include <QPrinter>
 #include <QTextDocument>
 #include <QTextStream>
@@ -36,6 +36,7 @@ HCalcolo_costi::HCalcolo_costi(HUser *p_user, QSqlDatabase p_db, QWidget *parent
 
     componenti_costo_model=build_componenti_model();
     ui->tvComponentiCosto->setModel(componenti_costo_model);
+
 
     QDoubleValidator *formato_validator=new QDoubleValidator(0,100,3);
     ui->leFormato->setValidator(formato_validator);
@@ -98,10 +99,15 @@ QSqlQueryModel *HCalcolo_costi::get_client_products()
 void HCalcolo_costi::on_cbClienti_currentIndexChanged(int index)
 {
 
-    ui->lv_prodotti->setModel(get_client_products());
+    QSqlQueryModel* mod=get_client_products();
+
+
+    ui->lv_prodotti->setModel(mod);
     ui->lv_prodotti->setModelColumn(1);
-    QModelIndex ix=ui->lv_prodotti->model()->index(0,0);
+
+    QModelIndex ix=mod->index(0,0);
     ui->lv_prodotti->setCurrentIndex(ix);
+    ui->lv_prodotti->selectionModel()->select(ix,QItemSelectionModel::SelectCurrent);
     connect(ui->lv_prodotti->selectionModel(),
             SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(get_ricetta()));
@@ -490,38 +496,8 @@ void HCalcolo_costi::print()
     out <<"</body>";
     out <<"</html>";
 
-
-
-
-
-    /*  QString filename;
-
-    // qDebug()<<"filename="<<filename;
-    filename= QFileDialog::getSaveFileName(this,"Scegli il nome del file",QString(),"Pdf (*.pdf)");
-
-    if (filename.isEmpty() && filename.isNull()){
-        //  qDebug()<<"annullato";
-        return;
-    }
-
-    QPrinter printer;
-    printer.setOrientation(QPrinter::Portrait);
-    printer.setOutputFormat(QPrinter::PdfFormat);
-    printer.setPaperSize(QPrinter::A4);
-    printer.setOutputFileName(filename);
-
-    document->print(&printer);
-    QTextDocument *doc= new QTextDocument();
-    doc->setHtml(strStream);*
-
-
-    qDebug()<<strStream;*/
     HPDFPrint *f=new HPDFPrint(user,strStream);
     f->showMaximized();
-
-    // delete doc;
-
-    // QDesktopServices::openUrl(filename);
 
 }
 
@@ -530,8 +506,6 @@ void HCalcolo_costi::updateComponenti_model(int row,double value)
     QModelIndex ix=componenti_costo_model->index(row,1);
     componenti_costo_model->setData(ix,value);
 }
-
-
 
 void HCalcolo_costi::on_pbPrint_clicked()
 {
