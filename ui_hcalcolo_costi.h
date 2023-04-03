@@ -156,6 +156,7 @@ public:
         tvRicetta->setSelectionMode(QAbstractItemView::SingleSelection);
         tvRicetta->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvRicetta->horizontalHeader()->setStretchLastSection(true);
+        tvRicetta->verticalHeader()->setVisible(false);
 
         verticalLayout_3->addWidget(tvRicetta);
 
@@ -271,6 +272,7 @@ public:
         tvComponentiCosto->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvComponentiCosto->setSortingEnabled(false);
         tvComponentiCosto->horizontalHeader()->setStretchLastSection(true);
+        tvComponentiCosto->verticalHeader()->setVisible(false);
         tvComponentiCosto->verticalHeader()->setProperty("showSortIndicator", QVariant(true));
 
         verticalLayout->addWidget(tvComponentiCosto);

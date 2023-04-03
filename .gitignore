@@ -334,3 +334,4 @@ usersinfoappdatalocaltemptmpu3hhwa
 *.user
 *.Debug
 Makefile.Release
+*.user

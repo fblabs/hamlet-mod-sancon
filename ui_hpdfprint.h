@@ -35,7 +35,7 @@ public:
         if (HPDFPrint->objectName().isEmpty())
             HPDFPrint->setObjectName(QString::fromUtf8("HPDFPrint"));
         HPDFPrint->setWindowModality(Qt::ApplicationModal);
-        HPDFPrint->resize(1048, 534);
+        HPDFPrint->resize(954, 641);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/print-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HPDFPrint->setWindowIcon(icon);
@@ -74,7 +74,7 @@ public:
 
     void retranslateUi(QWidget *HPDFPrint)
     {
-        HPDFPrint->setWindowTitle(QCoreApplication::translate("HPDFPrint", "Stsmpa", nullptr));
+        HPDFPrint->setWindowTitle(QCoreApplication::translate("HPDFPrint", "Stampa", nullptr));
         pbSave_pdf->setText(QCoreApplication::translate("HPDFPrint", "Salva PDF", nullptr));
         pbPrint->setText(QCoreApplication::translate("HPDFPrint", "Stampa", nullptr));
         pbClose->setText(QCoreApplication::translate("HPDFPrint", "Chiudi", nullptr));

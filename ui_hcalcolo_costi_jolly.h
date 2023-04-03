@@ -13,6 +13,7 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFormLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -31,16 +32,22 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QLabel *lb_overview;
     QPushButton *pbReset;
-    QHBoxLayout *horizontalLayout_3;
+    QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
     QTableView *tv_Recipe;
-    QHBoxLayout *horizontalLayout;
-    QSpacerItem *horizontalSpacer;
+    QGridLayout *gridLayout;
+    QFormLayout *formLayout_3;
+    QLabel *label_3;
+    QLabel *lb_totale_quantita;
     QFormLayout *formLayout;
+    QLabel *label;
+    QLabel *lbCosto_Ricetta;
+    QFormLayout *formLayout_2;
     QLabel *label_2;
     QLabel *lb_costo_formato;
     QTableView *tvComponenti;
     QHBoxLayout *horizontalLayout_2;
+    QSpacerItem *horizontalSpacer;
     QPushButton *pbPrint;
     QPushButton *pbClose;
 
@@ -71,8 +78,8 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_4);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         tv_Recipe = new QTableView(HCalcolo_costi_jolly);
@@ -82,46 +89,78 @@ public:
 
         verticalLayout->addWidget(tv_Recipe);
 
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        formLayout_3 = new QFormLayout();
+        formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
+        label_3 = new QLabel(HCalcolo_costi_jolly);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
 
-        horizontalLayout->addItem(horizontalSpacer);
+        formLayout_3->setWidget(0, QFormLayout::LabelRole, label_3);
+
+        lb_totale_quantita = new QLabel(HCalcolo_costi_jolly);
+        lb_totale_quantita->setObjectName(QString::fromUtf8("lb_totale_quantita"));
+        lb_totale_quantita->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+
+        formLayout_3->setWidget(0, QFormLayout::FieldRole, lb_totale_quantita);
+
+
+        gridLayout->addLayout(formLayout_3, 0, 0, 1, 1);
 
         formLayout = new QFormLayout();
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        label = new QLabel(HCalcolo_costi_jolly);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, label);
+
+        lbCosto_Ricetta = new QLabel(HCalcolo_costi_jolly);
+        lbCosto_Ricetta->setObjectName(QString::fromUtf8("lbCosto_Ricetta"));
+        lbCosto_Ricetta->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, lbCosto_Ricetta);
+
+
+        gridLayout->addLayout(formLayout, 0, 1, 1, 1);
+
+        formLayout_2 = new QFormLayout();
+        formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
         label_2 = new QLabel(HCalcolo_costi_jolly);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label_2);
+        formLayout_2->setWidget(0, QFormLayout::LabelRole, label_2);
 
         lb_costo_formato = new QLabel(HCalcolo_costi_jolly);
         lb_costo_formato->setObjectName(QString::fromUtf8("lb_costo_formato"));
         lb_costo_formato->setMinimumSize(QSize(80, 0));
         lb_costo_formato->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, lb_costo_formato);
+        formLayout_2->setWidget(0, QFormLayout::FieldRole, lb_costo_formato);
 
 
-        horizontalLayout->addLayout(formLayout);
+        gridLayout->addLayout(formLayout_2, 0, 2, 1, 1);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout->addLayout(gridLayout);
 
 
-        horizontalLayout_3->addLayout(verticalLayout);
+        horizontalLayout->addLayout(verticalLayout);
 
         tvComponenti = new QTableView(HCalcolo_costi_jolly);
         tvComponenti->setObjectName(QString::fromUtf8("tvComponenti"));
         tvComponenti->verticalHeader()->setVisible(false);
 
-        horizontalLayout_3->addWidget(tvComponenti);
+        horizontalLayout->addWidget(tvComponenti);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_3);
+        verticalLayout_2->addLayout(horizontalLayout);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer);
+
         pbPrint = new QPushButton(HCalcolo_costi_jolly);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
         QIcon icon1;
@@ -154,6 +193,10 @@ public:
         HCalcolo_costi_jolly->setWindowTitle(QCoreApplication::translate("HCalcolo_costi_jolly", "Elaborazione calcolo costi", nullptr));
         lb_overview->setText(QString());
         pbReset->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Reset", nullptr));
+        label_3->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Tot. Quantit\303\240", nullptr));
+        lb_totale_quantita->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "TextLabel", nullptr));
+        label->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Costo Ricetta", nullptr));
+        lbCosto_Ricetta->setText(QString());
         label_2->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Costo formato:", nullptr));
         lb_costo_formato->setText(QString());
         pbPrint->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Stampa", nullptr));

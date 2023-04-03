@@ -40,6 +40,7 @@ private slots:
      void on_pbClose_clicked();
      void print();
      void on_pbReset_clicked();
+     void on_pbPrint_clicked();
 };
 
 #endif // HCALCOLO_COSTI_JOLLY_H

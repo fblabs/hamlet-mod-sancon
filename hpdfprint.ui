@@ -9,12 +9,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1048</width>
-    <height>534</height>
+    <width>954</width>
+    <height>641</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Stsmpa</string>
+   <string>Stampa</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">

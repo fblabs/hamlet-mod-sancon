@@ -7,6 +7,7 @@
 #include <QDebug>
 
 #include "hcosti_model.h"
+#include "hpdfprint.h"
 
 HCalcolo_costi_jolly::HCalcolo_costi_jolly(QSqlQueryModel *p_recipe_model, QStandardItemModel *p_componenti_model, double p_formato, HUser *p_user, QWidget *parent) :
     QWidget(parent),
@@ -47,6 +48,23 @@ HCalcolo_costi_jolly::HCalcolo_costi_jolly(QSqlQueryModel *p_recipe_model, QStan
     tot_form= get_total_formato();
     ui->lb_costo_formato->setText(QString::number(tot_form,'f',4));
 
+    double tot_amount=0.0;
+    double tot_recipe=0.0;
+    QStandardItemModel *loc_mod=static_cast<QStandardItemModel*>(ui->tv_Recipe->model());
+    for(int x=0;x<loc_mod->rowCount();x++)
+    {
+       // tot_formato+=loc_mod->index(x,4).data(0).toDouble();
+        tot_amount+=loc_mod->index(x,1).data(0).toDouble();
+        tot_recipe+=loc_mod->index(x,3).data(0).toDouble();
+
+    }
+
+     ui->lb_totale_quantita->setText(QString::number(tot_amount,'f',4));
+     ui->lbCosto_Ricetta->setText(QString::number(tot_recipe,'f',4));
+
+
+
+
 
 }
 
@@ -76,12 +94,30 @@ void HCalcolo_costi_jolly::recalculate()
    double norm_formato=(costo_unitario*quant)*formato;
    loc_mod->setData(ix_cf,QString::number(norm_formato,'f',4));
 
+
+
+   double tot_amount=0.0;
+   double tot_recipe=0.0;
    double tot_form=0.0;
    tot_form= get_total_formato();
-   ui->lb_costo_formato->setText(QString::number(tot_form,'f',4));
+
    QStandardItemModel *loc_componenti_mod=static_cast<QStandardItemModel*>(ui->tvComponenti->model());
    QModelIndex ix_prodotto=loc_componenti_mod->index(0,2);
    loc_componenti_mod->setData(ix_prodotto,QString::number(tot_form,'f',4));
+
+   //QStandardItemModel *loc_mod=static_cast<QStandardItemModel*>(ui->tv_Recipe->model());
+   for(int x=0;x<loc_mod->rowCount();++x)
+   {
+       // tot_form+=loc_mod->index(x,4).data(0).toDouble();
+        tot_amount+=loc_mod->index(x,1).data(0).toDouble();
+        tot_recipe+=loc_mod->index(x,3).data(0).toDouble();
+        qDebug()<<tot_amount<<tot_recipe;
+
+   }
+
+   //ui->lb_costo_formato->setText(QString::number(tot_form,'f',4));
+   ui->lb_totale_quantita->setText(QString::number(tot_amount,'f',4));
+   ui->lbCosto_Ricetta->setText(QString::number(tot_recipe,'f',4));
 
 
 
@@ -95,7 +131,7 @@ double HCalcolo_costi_jolly::get_factor()
     double factor=0.0;
 
 /*
-    QStandardItemModel* model=static_cast<QStandardItemModel*>(ui->tvRicetta->model());
+    QStandardItemModel* model=static_cast<QStandardItemModel*>(ui->tv_Recipe->model());
 
     for (int x=0;x<model->rowCount();x++)
     {
@@ -163,7 +199,114 @@ void HCalcolo_costi_jolly::on_pbClose_clicked()
 
 void HCalcolo_costi_jolly::print()
 {
+    QString strStream;
 
+
+    QTextStream out(&strStream);
+
+
+    //   qDebug()<<filename;
+    out << "<html>";
+    out <<  "<head>\n<meta Content=\"Text/html; charset=Windows-1251\"></head>\n<body bgcolor=#ffffff link=#5000A0><table width=100% border=1 cellspacing=0 cellpadding=2>";
+    //-------------------------
+    const int c_rowCount = ui->tvComponenti->model()->rowCount();
+    const int c_columnCount = ui->tvComponenti->model()->columnCount();
+
+    QString title="COSTO: " +ui->lb_overview->text().toUpper();
+
+    out <<"<table width=100% border=1 cellspacing=0 cellpadding=2>";
+    out << "<thead><tr bgcolor='lightyellow'><th colspan='3'>"+ title +"</th></tr>";
+
+    // headers
+    out << "<tr bgcolor=#f0f0f0>";
+    for (int column = 0; column < c_columnCount; column++)
+        if (!ui->tvComponenti->isColumnHidden(column))
+           out << QString("<th>%1</th>").arg(ui->tvComponenti->model()->headerData(column, Qt::Horizontal).toString());
+    out << "</tr></thead>";
+
+    QString data=QString();
+
+    // data table
+    for (int row = 0; row < c_rowCount; row++) {
+        out << "<tr>";
+
+        for (int column = 0; column < c_columnCount; ++column) {
+
+           if (!ui->tvComponenti->isColumnHidden(column)) {
+               QString data = ui->tvComponenti->model()->data(ui->tvComponenti->model()->index(row, column)).toString().simplified();
+               out << QString("<td bkcolor=0>%1").arg((!data.isEmpty()) ? data.append("</td>") : QString("</td>"));
+           }
+
+
+        }
+
+        out <<"</tr>";
+
+    }
+
+
+
+    out << QString("<tr><td>").append("COSTO FORMATO:</td><td></td><td>"+ui->lb_costo_formato->text()+"</td></tr>");
+    //out << QString("<tr><td>").append("MARGINE:</td><td></td><td>"+ui->leMargine->text()+"</td></tr>");
+   // out << QString("<tr><td>").append("PREZZO SUGGERITO:</td><td></td><td>"+ui->leResult->text()+"</td></tr>");
+    out<<"</table>";
+    out<<"</table>";
+
+
+    //-------------------------
+
+    const int r_rowCount = ui->tv_Recipe->model()->rowCount();
+    const int r_columnCount = ui->tv_Recipe->model()->columnCount();
+
+    out<<"<br><br>";
+    out <<"<table width=100% border=1 cellspacing=0 cellpadding=2>";
+    out << "<thead></style><tr bgcolor='lightyellow'><th colspan='5'>RICETTA</th></tr>";
+
+    out << "<tr bgcolor=#f0f0f0>";
+    for (int col = 0; col < r_columnCount; col++)
+        if (!ui->tv_Recipe->isColumnHidden(col))
+           out << QString("<th>%1</th>").arg(ui->tv_Recipe->model()->headerData(col, Qt::Horizontal).toString());
+    out << "</tr></thead>\n";
+
+    // data table
+    for (int row = 0; row < r_rowCount; row++) {
+
+        out << "<tr bgcolor=#ffffff>";
+        for (int column = 0; column < r_columnCount; column++) {
+           if (!ui->tv_Recipe->isColumnHidden(column)) {
+               QString data = ui->tv_Recipe->model()->data(ui->tv_Recipe->model()->index(row, column)).toString().simplified();
+               if(column==2 || column==3)
+               {
+                   double res=0.0;
+                   res=ui->tv_Recipe->model()->data(ui->tv_Recipe->model()->index(row, column),0).toDouble();
+                   data=QString::number(res,'f',4);
+                   out << QString("<td bkcolor=0>%1").arg((!data.isEmpty()) ? data.append("</td>") : QString("</td>"));
+               } else if(column==4)
+               {
+                   double res=0.0;
+                   res=ui->tv_Recipe->model()->data(ui->tv_Recipe->model()->index(row, 4),0).toDouble();
+                   data=QString::number(res,'f',4);
+                   out << QString("<td bkcolor=0>%1").arg((!data.isEmpty()) ? data.append("</td>") : QString("</td>"));
+               }
+               else
+               {
+                   out << QString("<td bkcolor=0>%1").arg((!data.isEmpty()) ? data.append("</td>") : QString("</td>"));
+               }
+           }
+
+        }
+
+    }
+    out<<"</tr>";
+    out<<"</table><br><br>";
+
+    //------------
+
+    out <<"</body>";
+    out <<"</html>";
+
+    HPDFPrint *f=new HPDFPrint(user,strStream);
+    f->show();
 }
 
 void HCalcolo_costi_jolly::on_pbReset_clicked()
@@ -184,5 +327,11 @@ void HCalcolo_costi_jolly::on_pbReset_clicked()
    }
   //  recalculate();
 
+}
+
+
+void HCalcolo_costi_jolly::on_pbPrint_clicked()
+{
+   print();
 }
 

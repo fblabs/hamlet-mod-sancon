@@ -52,7 +52,7 @@ HCalcolo_costi::HCalcolo_costi(HUser *p_user, QSqlDatabase p_db, QWidget *parent
 
 
     get_clienti();
-    ui->leFormato->setFocus();
+  //  ui->leFormato->setFocus();
     on_leFormato_returnPressed();
 
 
@@ -91,6 +91,7 @@ QSqlQueryModel *HCalcolo_costi::get_client_products()
     q.exec();
 
     cmod->setQuery(q);
+    ui->lv_prodotti->setFocus();
 
     return cmod;
 
@@ -104,6 +105,7 @@ void HCalcolo_costi::on_cbClienti_currentIndexChanged(int index)
 
     ui->lv_prodotti->setModel(mod);
     ui->lv_prodotti->setModelColumn(1);
+
 
     QModelIndex ix=mod->index(0,0);
     ui->lv_prodotti->setCurrentIndex(ix);
@@ -497,7 +499,7 @@ void HCalcolo_costi::print()
     out <<"</html>";
 
     HPDFPrint *f=new HPDFPrint(user,strStream);
-    f->showMaximized();
+    f->show();
 
 }
 

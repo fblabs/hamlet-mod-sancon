@@ -86,11 +86,12 @@ void HCalcost::getProducts()
    ui->lvProdotti->setModel(cmod);
    ui->lvProdotti->setModelColumn(1);
 
-   ui->lvProdotti->setCurrentIndex(ui->lvProdotti->model()->index(0,0));
+  // ui->lvProdotti->setCurrentIndex(ui->lvProdotti->model()->index(0,0));
+
    connect(ui->lvProdotti->selectionModel(),SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),this,SLOT(getRecipe()));
 
- //  ui->lvProdotti->selectionModel()->setCurrentIndex(ui->lvProdotti->model()->index(0,0),QItemSelectionModel::Select|QItemSelectionModel::Rows);
- //  ui->lvProdotti->clicked(ui->lvProdotti->model()->index(0,0));
+   ui->lvProdotti->selectionModel()->setCurrentIndex(ui->lvProdotti->model()->index(0,0),QItemSelectionModel::Select|QItemSelectionModel::Rows);
+ emit  ui->lvProdotti->clicked(ui->lvProdotti->model()->index(0,0));
 }
 
 
