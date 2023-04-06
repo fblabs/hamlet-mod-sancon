@@ -167,7 +167,7 @@
          <item>
           <widget class="QLabel" name="label_16">
            <property name="text">
-            <string>Costo formato:</string>
+            <string>Costo formato (ricetta)</string>
            </property>
           </widget>
          </item>

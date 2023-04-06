@@ -108,14 +108,12 @@ void HCalcolo_costi_jolly::recalculate()
    //QStandardItemModel *loc_mod=static_cast<QStandardItemModel*>(ui->tv_Recipe->model());
    for(int x=0;x<loc_mod->rowCount();++x)
    {
-       // tot_form+=loc_mod->index(x,4).data(0).toDouble();
+        tot_form+=loc_mod->index(x,4).data(0).toDouble();
         tot_amount+=loc_mod->index(x,1).data(0).toDouble();
         tot_recipe+=loc_mod->index(x,3).data(0).toDouble();
-        qDebug()<<tot_amount<<tot_recipe;
-
    }
 
-   //ui->lb_costo_formato->setText(QString::number(tot_form,'f',4));
+   ui->lb_costo_formato->setText(QString::number(tot_form,'f',4));
    ui->lb_totale_quantita->setText(QString::number(tot_amount,'f',4));
    ui->lbCosto_Ricetta->setText(QString::number(tot_recipe,'f',4));
 
@@ -247,8 +245,8 @@ void HCalcolo_costi_jolly::print()
 
 
     out << QString("<tr><td>").append("COSTO FORMATO:</td><td></td><td>"+ui->lb_costo_formato->text()+"</td></tr>");
-    //out << QString("<tr><td>").append("MARGINE:</td><td></td><td>"+ui->leMargine->text()+"</td></tr>");
-   // out << QString("<tr><td>").append("PREZZO SUGGERITO:</td><td></td><td>"+ui->leResult->text()+"</td></tr>");
+    out << QString("<tr><td>").append("TOTALE QUANTITA':</td><td></td><td>"+ui->lb_totale_quantita->text()+"</td></tr>");
+    out << QString("<tr><td>").append("COSTO RICETTA:</td><td></td><td>"+ui->lbCosto_Ricetta->text()+"</td></tr>");
     out<<"</table>";
     out<<"</table>";
 

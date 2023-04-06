@@ -47,6 +47,7 @@ private slots:
    void on_leMargine_returnPressed();
    void print();
    void updateComponenti_model(int row, double value);
+   void updateCostoFormato();
 
 
    void on_pbPrint_clicked();

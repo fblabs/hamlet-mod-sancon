@@ -404,7 +404,7 @@ public:
         lbTotQuantita->setText(QString());
         label_14->setText(QCoreApplication::translate("HCalcolo_costi", "Costo/ricetta:", nullptr));
         lbCostoRicetta->setText(QString());
-        label_16->setText(QCoreApplication::translate("HCalcolo_costi", "Costo formato:", nullptr));
+        label_16->setText(QCoreApplication::translate("HCalcolo_costi", "Costo formato (ricetta)", nullptr));
         lbCostoFormato->setText(QString());
         label_6->setText(QCoreApplication::translate("HCalcolo_costi", "Energia:", nullptr));
         pbAddEnergy->setText(QString());

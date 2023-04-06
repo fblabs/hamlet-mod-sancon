@@ -21,6 +21,7 @@
 #include <QHeaderView>
 #include <QMessageBox>
 #include "hcalcolo_costi_jolly.h"
+#include <QCompleter>
 
 //#include  "hprint.h"
 
@@ -54,6 +55,7 @@ HCalcolo_costi::HCalcolo_costi(HUser *p_user, QSqlDatabase p_db, QWidget *parent
     get_clienti();
   //  ui->leFormato->setFocus();
     on_leFormato_returnPressed();
+    ui->cbClienti->completer()->setCompletionMode(QCompleter::PopupCompletion);
 
 
 
@@ -115,6 +117,7 @@ void HCalcolo_costi::on_cbClienti_currentIndexChanged(int index)
             this, SLOT(get_ricetta()));
 
 
+
 }
 
 void HCalcolo_costi::get_ricetta()
@@ -153,22 +156,34 @@ void HCalcolo_costi::get_ricetta()
     double costo_formato=0.0;
     double costo_ricetta=0.0;
     double tot_quantita=0.0;
+    double costo_totale=0.0;
 
     for (int r=0;r<ricmod->rowCount();r++)
     {
-        costo_formato+=ricmod->index(r,4).data(0).toDouble();
+       // costo_formato+=ricmod->index(r,4).data(0).toDouble();
         costo_ricetta+=ricmod->index(r,3).data(0).toDouble();
         tot_quantita+=ricmod->index(r,1).data(0).toDouble();
+        costo_formato=costo_ricetta*factor;
         //    qDebug()<<r<<costo_formato;
 
     }
 
     // ui->tvRicetta->setColumnHidden(2,true);
 
-    ui->leCosto_formato->setText(QString::number(costo_formato,'f',4));
+
     ui->lbCostoFormato->setText(QString::number(costo_formato,'f',4));
     ui->lbTotQuantita->setText(QString::number(tot_quantita,'f',2));
     ui->lbCostoRicetta->setText(QString::number(costo_ricetta,'f',4));
+    QModelIndex ix_p=componenti_costo_model->index(0,1);
+    QString prod=ui->lv_prodotti->model()->index(ui->lv_prodotti->currentIndex().row(),1).data(0).toString();
+    componenti_costo_model->setData(ix_p,prod);
+
+    QModelIndex ix=componenti_costo_model->index(0,2);
+    componenti_costo_model->setData(ix,costo_formato);
+
+    updateCostoFormato();
+
+
 
 
 }
@@ -295,16 +310,7 @@ void HCalcolo_costi::on_pbCalcolo_clicked()
 {
     // on_leFormato_returnPressed();
 
-    double costo_totale=0.0;
-    int rows=0;
-    rows=ui->tvComponentiCosto->model()->rowCount();
-
-    for(int i=0;i<rows;++i)
-    {
-        costo_totale += ui->tvComponentiCosto->model()->index(i,2).data(0).toDouble();
-    }
-
-    ui->leCosto_formato->setText(QString::number(costo_totale));
+    updateCostoFormato();
 }
 
 
@@ -326,6 +332,8 @@ void HCalcolo_costi::on_pbRimuovi_componente_costo_clicked()
     int row=ix.row();
 
     componenti_costo_model->removeRow(row);
+
+    updateCostoFormato();
 }
 
 
@@ -334,8 +342,9 @@ void HCalcolo_costi::on_leCosto_energia_returnPressed()
     //QModelIndex ix=componenti_costo_model->index(2,1);
     QList<QStandardItem*> row;
 
-    row<<new QStandardItem("COSTO ENERGIA")<<new QStandardItem("")<<new QStandardItem(ui->leCosto_energia->text());
-    componenti_costo_model->appendRow(row);
+    double norm=ui->leCosto_energia->text().toDouble();
+    QString s=QString::number(norm,'f',4);
+    ui->leCosto_energia->setText(s);
 }
 
 
@@ -343,17 +352,29 @@ void HCalcolo_costi::on_leCosto_personale_returnPressed()
 {
     QList<QStandardItem*> row;
 
-    row<<new QStandardItem("COSTO PERSONALE")<<new QStandardItem("")<<new QStandardItem(ui->leCosto_personale->text());
+
+    double norm=ui->leCosto_personale->text().toDouble();
+    QString s=QString::number(norm,'f',4);
+    ui->leCosto_personale->setText(s);
+
+    row<<new QStandardItem("COSTO PERSONALE")<<new QStandardItem("")<<new QStandardItem(s);
     componenti_costo_model->appendRow(row);
+     updateCostoFormato();
 }
 
 
 void HCalcolo_costi::on_leCosto_spese_generali_returnPressed()
 {
-    QList<QStandardItem*> row;
+     QList<QStandardItem*> row;
 
-    row<<new QStandardItem("SPESE GENERALI")<<new QStandardItem("")<<new QStandardItem(ui->leCosto_spese_generali->text());
-    componenti_costo_model->appendRow(row);
+
+     double norm=ui->leCosto_spese_generali->text().toDouble();
+     QString s=QString::number(norm,'f',4);
+     ui->leCosto_spese_generali->setText(s);
+
+     row<<new QStandardItem("COSTO PERSONALE")<<new QStandardItem("")<<new QStandardItem(s);
+     componenti_costo_model->appendRow(row);
+     updateCostoFormato();
 }
 
 void HCalcolo_costi::add_item(QString item, QString costo)
@@ -364,6 +385,10 @@ void HCalcolo_costi::add_item(QString item, QString costo)
 
     row<<new QStandardItem("item:")<<new QStandardItem(item)<<new QStandardItem(costo);
     componenti_costo_model->appendRow(row);
+
+    updateCostoFormato();
+
+
 }
 
 void HCalcolo_costi::update_componenti_costo_row(QString item, QString costo)
@@ -374,6 +399,8 @@ void HCalcolo_costi::update_componenti_costo_row(QString item, QString costo)
     componenti_costo_model->setData(ix_item,item);
     QModelIndex ix_costo=componenti_costo_model->index(row_index.row(),2);
     componenti_costo_model->setData(ix_costo,costo);
+
+    updateCostoFormato();
 
 }
 
@@ -509,6 +536,17 @@ void HCalcolo_costi::updateComponenti_model(int row,double value)
     componenti_costo_model->setData(ix,value);
 }
 
+void HCalcolo_costi::updateCostoFormato()
+{
+    double ncosto=0.0;
+    for (int i=0;i<componenti_costo_model->rowCount();++i)
+    {
+        ncosto=ncosto+componenti_costo_model->index(i,2).data(0).toDouble();
+    }
+
+    ui->leCosto_formato->setText(QString::number(ncosto,'f',4));
+}
+
 void HCalcolo_costi::on_pbPrint_clicked()
 {
    if(ui->tvRicetta->model()&&ui->tvComponentiCosto->model())
@@ -561,6 +599,9 @@ void HCalcolo_costi::on_tvComponentiCosto_doubleClicked(const QModelIndex &index
     case 3:
         tipology=4;
         break;
+    case 4:
+        tipology=3;
+        break;
     case 5:
         tipology=3;
         break;
@@ -582,7 +623,9 @@ void HCalcolo_costi::on_pbAddEnergy_clicked()
 {
     QList<QStandardItem*> row;
 
-    row<<new QStandardItem("COSTO ENERGIA")<<new QStandardItem("")<<new QStandardItem(ui->leCosto_energia->text());
+    double norm_cost=ui->leCosto_energia->text().toDouble();
+
+    row<<new QStandardItem("COSTO ENERGIA")<<new QStandardItem("")<<new QStandardItem(norm_cost);
     componenti_costo_model->appendRow(row);
 }
 

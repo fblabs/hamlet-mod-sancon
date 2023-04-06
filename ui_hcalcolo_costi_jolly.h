@@ -13,7 +13,6 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFormLayout>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -32,10 +31,10 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QLabel *lb_overview;
     QPushButton *pbReset;
-    QHBoxLayout *horizontalLayout;
+    QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout;
     QTableView *tv_Recipe;
-    QGridLayout *gridLayout;
+    QHBoxLayout *horizontalLayout;
     QFormLayout *formLayout_3;
     QLabel *label_3;
     QLabel *lb_totale_quantita;
@@ -78,8 +77,8 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_4);
 
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         tv_Recipe = new QTableView(HCalcolo_costi_jolly);
@@ -89,8 +88,8 @@ public:
 
         verticalLayout->addWidget(tv_Recipe);
 
-        gridLayout = new QGridLayout();
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         formLayout_3 = new QFormLayout();
         formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
         label_3 = new QLabel(HCalcolo_costi_jolly);
@@ -105,7 +104,7 @@ public:
         formLayout_3->setWidget(0, QFormLayout::FieldRole, lb_totale_quantita);
 
 
-        gridLayout->addLayout(formLayout_3, 0, 0, 1, 1);
+        horizontalLayout->addLayout(formLayout_3);
 
         formLayout = new QFormLayout();
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
@@ -121,7 +120,7 @@ public:
         formLayout->setWidget(0, QFormLayout::FieldRole, lbCosto_Ricetta);
 
 
-        gridLayout->addLayout(formLayout, 0, 1, 1, 1);
+        horizontalLayout->addLayout(formLayout);
 
         formLayout_2 = new QFormLayout();
         formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
@@ -138,22 +137,22 @@ public:
         formLayout_2->setWidget(0, QFormLayout::FieldRole, lb_costo_formato);
 
 
-        gridLayout->addLayout(formLayout_2, 0, 2, 1, 1);
+        horizontalLayout->addLayout(formLayout_2);
 
 
-        verticalLayout->addLayout(gridLayout);
+        verticalLayout->addLayout(horizontalLayout);
 
 
-        horizontalLayout->addLayout(verticalLayout);
+        horizontalLayout_3->addLayout(verticalLayout);
 
         tvComponenti = new QTableView(HCalcolo_costi_jolly);
         tvComponenti->setObjectName(QString::fromUtf8("tvComponenti"));
         tvComponenti->verticalHeader()->setVisible(false);
 
-        horizontalLayout->addWidget(tvComponenti);
+        horizontalLayout_3->addWidget(tvComponenti);
 
 
-        verticalLayout_2->addLayout(horizontalLayout);
+        verticalLayout_2->addLayout(horizontalLayout_3);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
