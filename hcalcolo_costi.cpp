@@ -22,6 +22,7 @@
 #include <QMessageBox>
 #include "hcalcolo_costi_jolly.h"
 #include <QCompleter>
+#include <QDebug>
 
 //#include  "hprint.h"
 
@@ -653,10 +654,56 @@ void HCalcolo_costi::on_pbGeneraleExpenses_clicked()
 void HCalcolo_costi::on_pbJolly_clicked()
 {
     QString s_overview=ui->cbClienti->currentText()+" - "  +ui->lv_prodotti->currentIndex().data(0).toString() + " FORMATO: " + ui->leFormato->text();
-    QSqlQueryModel *ricetta_model=static_cast<QSqlQueryModel*>(ui->tvRicetta->model());
+    QSqlQueryModel *local_recipe_from=static_cast<QSqlQueryModel*>(ui->tvRicetta->model());
+    QStandardItemModel *local_ricetta_model=QueryToStandard(local_recipe_from);
+    QStandardItemModel *local_components_mod=StandardCopy(componenti_costo_model);
 
-    HCalcolo_costi_jolly *f=new HCalcolo_costi_jolly(ricetta_model,componenti_costo_model,factor,user);
+   // HCalcolo_costi_jolly *f=new HCalcolo_costi_jolly(local_ricetta_model,local_components_mod,factor,user);
+    HCalcolo_costi_jolly *f=new HCalcolo_costi_jolly(local_ricetta_model,local_components_mod,factor,user);
+
     f->setOverviewData(s_overview);
     f->show();
 }
+
+QStandardItemModel *HCalcolo_costi::QueryToStandard(QSqlQueryModel *from)
+{
+    QStandardItemModel *to=new QStandardItemModel();
+
+    for (int r = 0 ; r < from->rowCount() ; ++r)
+    {
+        QList<QStandardItem*>row;
+        for(int c=0;c<from->columnCount();++c){
+
+            QStandardItem *item=new QStandardItem(from->index(r,c).data(0).toString());
+            row<<item;
+        }
+        to->appendRow(row);
+    }
+    qDebug()<<from->rowCount()<<from->columnCount()<<to->rowCount()<<to->columnCount();
+
+
+    return to;
+}
+
+QStandardItemModel *HCalcolo_costi::StandardCopy(QStandardItemModel *from)
+{
+    QStandardItemModel *to=new QStandardItemModel();
+
+
+    for (int r = 0 ; r < from->rowCount() ; r++)
+    {
+        QList<QStandardItem*>row;
+        for(int c=0;c<from->columnCount();c++){
+
+            QStandardItem *item=from->item(r,c)->clone();
+            row<<item;
+        }
+         to->appendRow(row);
+    }
+
+    return to;
+}
+
+
+
 

@@ -64,6 +64,10 @@ private slots:
 
    void on_pbJolly_clicked();
 
+   QStandardItemModel* QueryToStandard(QSqlQueryModel *from);
+   QStandardItemModel* StandardCopy(QStandardItemModel *from);
+
+
 signals:
    void component_added(QString p_item=QString(),QString p_costo=QString("0.00"));
 };

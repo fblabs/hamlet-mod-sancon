@@ -9,7 +9,7 @@
 #include "hcosti_model.h"
 #include "hpdfprint.h"
 
-HCalcolo_costi_jolly::HCalcolo_costi_jolly(QSqlQueryModel *p_recipe_model, QStandardItemModel *p_componenti_model, double p_formato, HUser *p_user, QWidget *parent) :
+HCalcolo_costi_jolly::HCalcolo_costi_jolly(QStandardItemModel *p_recipe_model, QStandardItemModel *p_componenti_model, double p_formato, HUser *p_user, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HCalcolo_costi_jolly)
 {
@@ -17,7 +17,9 @@ HCalcolo_costi_jolly::HCalcolo_costi_jolly(QSqlQueryModel *p_recipe_model, QStan
 
     recipe_mod=p_recipe_model;
     componenti_mod=p_componenti_model;
-    QStandardItemModel* converted_mod=convert_recipe_model();
+    HCosti_model* converted_mod=convert_recipe_model();
+    connect(recipe_mod,SIGNAL(dataChanged(QModelIndex,QModelIndex,QList)),this,SLOT(recalculate()));
+   // connect(componenti_mod,SIGNAL(dataChanged(QModelIndex,QModelIndex,QList)),this,SLOT(recalculate()));
 
     HUser *user=p_user;
     formato=p_formato;
@@ -35,6 +37,7 @@ HCalcolo_costi_jolly::HCalcolo_costi_jolly(QSqlQueryModel *p_recipe_model, QStan
 
 
     connect(ui->tv_Recipe->itemDelegate(),SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),this,SLOT(recalculate()));
+    connect(ui->tvComponenti->itemDelegate(),SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),this,SLOT(on_pbUpdate_clicked()));
     ui->tv_Recipe->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tv_Recipe->horizontalHeader()->setStretchLastSection(true);
 
@@ -59,8 +62,12 @@ HCalcolo_costi_jolly::HCalcolo_costi_jolly(QSqlQueryModel *p_recipe_model, QStan
 
     }
 
+    double tot=get_components_cost();
+
      ui->lb_totale_quantita->setText(QString::number(tot_amount,'f',4));
      ui->lbCosto_Ricetta->setText(QString::number(tot_recipe,'f',4));
+     ui->lb_costo_result->setText(QString::number(tot,'f',4));
+
 
 
 
@@ -99,7 +106,9 @@ void HCalcolo_costi_jolly::recalculate()
    double tot_amount=0.0;
    double tot_recipe=0.0;
    double tot_form=0.0;
+   double tot_costo_formato=0.0;
    tot_form= get_total_formato();
+
 
    QStandardItemModel *loc_componenti_mod=static_cast<QStandardItemModel*>(ui->tvComponenti->model());
    QModelIndex ix_prodotto=loc_componenti_mod->index(0,2);
@@ -113,14 +122,34 @@ void HCalcolo_costi_jolly::recalculate()
         tot_recipe+=loc_mod->index(x,3).data(0).toDouble();
    }
 
+   tot_costo_formato=get_components_cost();
+
    ui->lb_costo_formato->setText(QString::number(tot_form,'f',4));
    ui->lb_totale_quantita->setText(QString::number(tot_amount,'f',4));
    ui->lbCosto_Ricetta->setText(QString::number(tot_recipe,'f',4));
+   ui->lb_costo_result->setText(QString::number(tot_costo_formato));
 
 
 
 
 
+
+
+}
+
+double HCalcolo_costi_jolly::get_components_cost()
+{
+   double total=0.0;
+
+   for (int row=0 ;row <componenti_mod->rowCount();++row)
+   {
+        total+=componenti_mod->index(row,2).data(0).toDouble();
+        qDebug()<<total;
+   }
+
+
+
+   return total;
 }
 
 double HCalcolo_costi_jolly::get_factor()
@@ -166,8 +195,6 @@ HCosti_model* HCalcolo_costi_jolly::convert_recipe_model()
    int cols=recipe_mod->columnCount();
 
 
-
-
    for(int r=0;r<rows;++r)
    {
        QList<QStandardItem*> it;
@@ -186,13 +213,12 @@ HCosti_model* HCalcolo_costi_jolly::convert_recipe_model()
     mod->setHeaderData(3,Qt::Horizontal,"COSTO PER RICETTA",0);
     mod->setHeaderData(4,Qt::Horizontal,"COSTO FORMATO",0);
 
-
-   return mod;
+    return mod;
 }
 
 void HCalcolo_costi_jolly::on_pbClose_clicked()
 {
-    close();
+       close();
 }
 
 void HCalcolo_costi_jolly::print()
@@ -313,7 +339,8 @@ void HCalcolo_costi_jolly::on_pbReset_clicked()
 
   ui->tv_Recipe->setModel(rec_mod);
   ui->tvComponenti->setModel(componenti_mod);
-   double tot= get_total_formato();
+  double tot= get_total_formato();
+  ui->lb_costo_formato->setText(QString::number(tot,'f',4));
    QString s_tot=QString::number(tot,'f',4);
    QStandardItemModel *componenti_model=static_cast<QStandardItemModel*>(ui->tvComponenti->model());
    QModelIndex ix=componenti_model->index(0,2);
@@ -323,7 +350,6 @@ void HCalcolo_costi_jolly::on_pbReset_clicked()
        QModelIndex ix=rec_mod->index(i,3);
        rec_mod->setData(ix,QString::number(ix.data(0).toDouble(),'f',4));
    }
-  //  recalculate();
 
 }
 
@@ -331,5 +357,16 @@ void HCalcolo_costi_jolly::on_pbReset_clicked()
 void HCalcolo_costi_jolly::on_pbPrint_clicked()
 {
    print();
+}
+
+void HCalcolo_costi_jolly::refresh_data()
+{
+
+}
+
+
+void HCalcolo_costi_jolly::on_pbUpdate_clicked()
+{
+   recalculate();
 }
 

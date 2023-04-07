@@ -27,7 +27,7 @@ QT_BEGIN_NAMESPACE
 class Ui_HCalcolo_costi_jolly
 {
 public:
-    QVBoxLayout *verticalLayout_2;
+    QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_4;
     QLabel *lb_overview;
     QPushButton *pbReset;
@@ -44,9 +44,14 @@ public:
     QFormLayout *formLayout_2;
     QLabel *label_2;
     QLabel *lb_costo_formato;
+    QVBoxLayout *verticalLayout_2;
     QTableView *tvComponenti;
+    QFormLayout *formLayout_4;
+    QLabel *label_4;
+    QLabel *lb_costo_result;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer;
+    QPushButton *pbUpdate;
     QPushButton *pbPrint;
     QPushButton *pbClose;
 
@@ -58,8 +63,8 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Right-align64.png"), QSize(), QIcon::Normal, QIcon::Off);
         HCalcolo_costi_jolly->setWindowIcon(icon);
-        verticalLayout_2 = new QVBoxLayout(HCalcolo_costi_jolly);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_3 = new QVBoxLayout(HCalcolo_costi_jolly);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         lb_overview = new QLabel(HCalcolo_costi_jolly);
@@ -75,7 +80,7 @@ public:
         horizontalLayout_4->addWidget(pbReset);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_4);
+        verticalLayout_3->addLayout(horizontalLayout_4);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
@@ -145,14 +150,35 @@ public:
 
         horizontalLayout_3->addLayout(verticalLayout);
 
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         tvComponenti = new QTableView(HCalcolo_costi_jolly);
         tvComponenti->setObjectName(QString::fromUtf8("tvComponenti"));
         tvComponenti->verticalHeader()->setVisible(false);
 
-        horizontalLayout_3->addWidget(tvComponenti);
+        verticalLayout_2->addWidget(tvComponenti);
+
+        formLayout_4 = new QFormLayout();
+        formLayout_4->setObjectName(QString::fromUtf8("formLayout_4"));
+        label_4 = new QLabel(HCalcolo_costi_jolly);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        formLayout_4->setWidget(0, QFormLayout::LabelRole, label_4);
+
+        lb_costo_result = new QLabel(HCalcolo_costi_jolly);
+        lb_costo_result->setObjectName(QString::fromUtf8("lb_costo_result"));
+        lb_costo_result->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+
+        formLayout_4->setWidget(0, QFormLayout::FieldRole, lb_costo_result);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_3);
+        verticalLayout_2->addLayout(formLayout_4);
+
+
+        horizontalLayout_3->addLayout(verticalLayout_2);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_3);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
@@ -160,26 +186,35 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer);
 
+        pbUpdate = new QPushButton(HCalcolo_costi_jolly);
+        pbUpdate->setObjectName(QString::fromUtf8("pbUpdate"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbUpdate->setIcon(icon1);
+        pbUpdate->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pbUpdate);
+
         pbPrint = new QPushButton(HCalcolo_costi_jolly);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/Resources/print-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/print-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon2);
         pbPrint->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbPrint);
 
         pbClose = new QPushButton(HCalcolo_costi_jolly);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon3);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbClose);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_2);
+        verticalLayout_3->addLayout(horizontalLayout_2);
 
 
         retranslateUi(HCalcolo_costi_jolly);
@@ -196,8 +231,11 @@ public:
         lb_totale_quantita->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "TextLabel", nullptr));
         label->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Costo Ricetta", nullptr));
         lbCosto_Ricetta->setText(QString());
-        label_2->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Costo formato:", nullptr));
+        label_2->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Costo formato/ricetta:", nullptr));
         lb_costo_formato->setText(QString());
+        label_4->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Costo formato:", nullptr));
+        lb_costo_result->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "TextLabel", nullptr));
+        pbUpdate->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Aggiorna", nullptr));
         pbPrint->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Stampa", nullptr));
         pbClose->setText(QCoreApplication::translate("HCalcolo_costi_jolly", "Chiudi", nullptr));
     } // retranslateUi
