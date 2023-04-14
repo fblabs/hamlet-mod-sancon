@@ -35,6 +35,7 @@ private:
 private slots:
     HCosti_model* convert_recipe_model();
      void recalculate();
+    void recalculate_components();
     double get_components_cost();
      double get_factor();
      double get_total_formato();
@@ -42,7 +43,6 @@ private slots:
      void print();
      void on_pbReset_clicked();
      void on_pbPrint_clicked();
-     void refresh_data();
      void on_pbUpdate_clicked();
 };
 

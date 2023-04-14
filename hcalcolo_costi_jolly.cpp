@@ -18,11 +18,12 @@ HCalcolo_costi_jolly::HCalcolo_costi_jolly(QStandardItemModel *p_recipe_model, Q
     recipe_mod=p_recipe_model;
     componenti_mod=p_componenti_model;
     HCosti_model* converted_mod=convert_recipe_model();
-    connect(recipe_mod,SIGNAL(dataChanged(QModelIndex,QModelIndex,QList)),this,SLOT(recalculate()));
-   // connect(componenti_mod,SIGNAL(dataChanged(QModelIndex,QModelIndex,QList)),this,SLOT(recalculate()));
+    connect(converted_mod,SIGNAL(dataChanged(QModelIndex,QModelIndex,QList)),this,SLOT(recalculate()));
+    connect(componenti_mod,SIGNAL(dataChanged(QModelIndex,QModelIndex,QList)),this,SLOT(recalculate_components()));
 
     HUser *user=p_user;
     formato=p_formato;
+    qDebug()<<formato;
 
 
     ui->tv_Recipe->setModel(converted_mod);
@@ -87,53 +88,71 @@ void HCalcolo_costi_jolly::setOverviewData(QString p_overview)
 
 void HCalcolo_costi_jolly::recalculate()
 {
-   QModelIndex ix=ui->tv_Recipe->currentIndex();
-   QStandardItemModel *loc_mod=static_cast<QStandardItemModel*>(ui->tv_Recipe->model());
-   QModelIndex ix_costo_ricetta=loc_mod->index(ui->tv_Recipe->currentIndex().row(),3);
-   QModelIndex ix_cf=loc_mod->index(ui->tv_Recipe->currentIndex().row(),4);
-   double costo_ricetta=0.0;
-   double costo_unitario=loc_mod->index(ui->tv_Recipe->currentIndex().row(),2).data(0).toDouble();
-   double quant=loc_mod->index(ui->tv_Recipe->currentIndex().row(),1).data(0).toDouble();
-
-   costo_ricetta=costo_unitario*quant;
-
-   loc_mod->setData(ix_costo_ricetta,QString::number(costo_ricetta,'f',4));
-   double norm_formato=(costo_unitario*quant)*formato;
-   loc_mod->setData(ix_cf,QString::number(norm_formato,'f',4));
+    HCosti_model* loc_mod=static_cast<HCosti_model*>(ui->tv_Recipe->model());
+    QModelIndex row=ui->tv_Recipe->currentIndex();
+    QModelIndex ix_q=loc_mod->index(row.row(),1);
+    QModelIndex ix_c=loc_mod->index(row.row(),2);
+    QModelIndex ix_new_cost=loc_mod->index(row.row(),3);
+    QModelIndex ix_costo_formato=loc_mod->index(row.row(),4);
 
 
+    double upd_cost=ix_c.data(0).toDouble();
+    double upd_quant=ix_q.data(0).toDouble();
+    double upd_costo_formato=ix_c.data(0).toDouble()*formato;
+    double res_ric=upd_cost*upd_quant;
+    qDebug()<<upd_costo_formato<<upd_quant<<formato<<ix_c.data(0).toDouble()<<upd_quant*formato;
 
-   double tot_amount=0.0;
-   double tot_recipe=0.0;
-   double tot_form=0.0;
-   double tot_costo_formato=0.0;
-   tot_form= get_total_formato();
-
-
-   QStandardItemModel *loc_componenti_mod=static_cast<QStandardItemModel*>(ui->tvComponenti->model());
-   QModelIndex ix_prodotto=loc_componenti_mod->index(0,2);
-   loc_componenti_mod->setData(ix_prodotto,QString::number(tot_form,'f',4));
-
-   //QStandardItemModel *loc_mod=static_cast<QStandardItemModel*>(ui->tv_Recipe->model());
-   for(int x=0;x<loc_mod->rowCount();++x)
-   {
-        tot_form+=loc_mod->index(x,4).data(0).toDouble();
-        tot_amount+=loc_mod->index(x,1).data(0).toDouble();
-        tot_recipe+=loc_mod->index(x,3).data(0).toDouble();
-   }
-
-   tot_costo_formato=get_components_cost();
-
-   ui->lb_costo_formato->setText(QString::number(tot_form,'f',4));
-   ui->lb_totale_quantita->setText(QString::number(tot_amount,'f',4));
-   ui->lbCosto_Ricetta->setText(QString::number(tot_recipe,'f',4));
-   ui->lb_costo_result->setText(QString::number(tot_costo_formato));
+    loc_mod->setData(ix_new_cost,QString::number(res_ric,'f',4));
+    loc_mod->setData(ix_costo_formato,QString::number(upd_costo_formato,'f',4));
 
 
+    double tot_costo_ricetta=0.0;
+    double tot_quantita_ricetta=0.0;
+    double tot_costo_formato=0.0;
+    double tot_formato=0.0;
+
+   //costo=QString::number((costo_totale_formato/tot_quantita)*formato,'f',4);
+
+    for(int ix=0;ix<loc_mod->rowCount();++ix)
+    {
+        tot_quantita_ricetta+=loc_mod->index(ix,1).data(0).toDouble();
+        tot_costo_ricetta+=loc_mod->index(ix,2).data(0).toDouble();
+        tot_costo_formato+=loc_mod->index(ix,4).data(0).toDouble();
+    }
+    qDebug()<<tot_costo_ricetta;
+
+    tot_formato=(tot_costo_formato/tot_quantita_ricetta)*formato;
 
 
+    ui->lbCosto_Ricetta->setText(QString::number(tot_costo_ricetta,'f',4));
+    ui->lb_totale_quantita->setText(QString::number(tot_quantita_ricetta,'f',4));
+    ui->lb_costo_formato->setText(QString::number(tot_formato,'f',4));
 
 
+    QStandardItemModel* loc_comps=static_cast<QStandardItemModel*>(ui->tvComponenti->model());
+    QModelIndex ixc=ui->tvComponenti->model()->index(0,2);
+    loc_comps->setData(ixc,QString::number(tot_formato,'f',4));
+
+    recalculate_components();
+
+}
+
+void HCalcolo_costi_jolly::recalculate_components()
+{
+    QStandardItemModel *loc_mod=static_cast<QStandardItemModel*>(ui->tvComponenti->model());
+    QModelIndex ix=ui->tvComponenti->currentIndex();
+
+    ui->lb_costo_result->setText(ui->lb_totale_quantita->text());
+
+    double tot_costo_formato=0.0;
+
+    for(int ix=0;ix<loc_mod->rowCount();++ix)
+    {
+         tot_costo_formato+=loc_mod->index(ix,2).data(0).toDouble();
+    }
+
+    ui->lb_costo_result->setText(QString::number(tot_costo_formato,'f',4));
+   // ui->lb_costo_result->setText(QString::number(formato,'f',4));
 
 }
 
@@ -144,10 +163,8 @@ double HCalcolo_costi_jolly::get_components_cost()
    for (int row=0 ;row <componenti_mod->rowCount();++row)
    {
         total+=componenti_mod->index(row,2).data(0).toDouble();
-        qDebug()<<total;
+
    }
-
-
 
    return total;
 }
@@ -339,7 +356,7 @@ void HCalcolo_costi_jolly::on_pbReset_clicked()
 
   ui->tv_Recipe->setModel(rec_mod);
   ui->tvComponenti->setModel(componenti_mod);
-  double tot= get_total_formato();
+  /*double tot= get_total_formato();
   ui->lb_costo_formato->setText(QString::number(tot,'f',4));
    QString s_tot=QString::number(tot,'f',4);
    QStandardItemModel *componenti_model=static_cast<QStandardItemModel*>(ui->tvComponenti->model());
@@ -349,8 +366,9 @@ void HCalcolo_costi_jolly::on_pbReset_clicked()
    {
        QModelIndex ix=rec_mod->index(i,3);
        rec_mod->setData(ix,QString::number(ix.data(0).toDouble(),'f',4));
-   }
-
+   }*/
+    recalculate();
+    recalculate_components();
 }
 
 
@@ -359,10 +377,6 @@ void HCalcolo_costi_jolly::on_pbPrint_clicked()
    print();
 }
 
-void HCalcolo_costi_jolly::refresh_data()
-{
-
-}
 
 
 void HCalcolo_costi_jolly::on_pbUpdate_clicked()
