@@ -154,6 +154,7 @@ public:
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         tvComponenti = new QTableView(HCalcolo_costi_jolly);
         tvComponenti->setObjectName(QString::fromUtf8("tvComponenti"));
+        tvComponenti->horizontalHeader()->setVisible(false);
         tvComponenti->verticalHeader()->setVisible(false);
 
         verticalLayout_2->addWidget(tvComponenti);

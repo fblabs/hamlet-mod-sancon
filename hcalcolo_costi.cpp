@@ -40,13 +40,13 @@ HCalcolo_costi::HCalcolo_costi(HUser *p_user, QSqlDatabase p_db, QWidget *parent
     ui->tvComponentiCosto->setModel(componenti_costo_model);
 
 
-    QDoubleValidator *formato_validator=new QDoubleValidator(0,100,3);
+    QDoubleValidator *formato_validator=new QDoubleValidator(0,100,4);
     ui->leFormato->setValidator(formato_validator);
-    QDoubleValidator *energia_validator=new QDoubleValidator(0,100000,2);
+    QDoubleValidator *energia_validator=new QDoubleValidator(0,100000,4);
     ui->leCosto_energia->setValidator(energia_validator);
-    QDoubleValidator *personale_validator=new QDoubleValidator(0,100000,2);
+    QDoubleValidator *personale_validator=new QDoubleValidator(0,100000,4);
     ui->leCosto_personale->setValidator(personale_validator);
-    QDoubleValidator *generali_validator=new QDoubleValidator(0,100000,2);
+    QDoubleValidator *generali_validator=new QDoubleValidator(0,100000,4);
     ui->leCosto_spese_generali->setValidator(generali_validator);
 
     //ui->tvComponentiCosto->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -345,12 +345,16 @@ void HCalcolo_costi::on_pbRimuovi_componente_costo_clicked()
 
 void HCalcolo_costi::on_leCosto_energia_returnPressed()
 {
-    //QModelIndex ix=componenti_costo_model->index(2,1);
+
     QList<QStandardItem*> row;
 
     double norm=ui->leCosto_energia->text().toDouble();
     QString s=QString::number(norm,'f',4);
     ui->leCosto_energia->setText(s);
+
+    row<<new QStandardItem("COSTO ENERGIA")<<new QStandardItem("")<<new QStandardItem(s);
+    componenti_costo_model->appendRow(row);
+    updateCostoFormato();
 }
 
 
@@ -558,7 +562,7 @@ void HCalcolo_costi::on_pbPrint_clicked()
 {
    if(ui->tvRicetta->model()&&ui->tvComponentiCosto->model())
    {
-//       print();
+       print();
    }
    else
    {
