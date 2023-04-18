@@ -5,6 +5,10 @@
 #include <QSqlRelation>
 #include <QSqlRelationalDelegate>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
+
+#include <QDebug>
+#include <QSqlError>
 
 
 HLotMovements::HLotMovements(int id, QSqlDatabase pdb, QWidget *parent) :
@@ -24,7 +28,7 @@ HLotMovements::~HLotMovements()
 
 void HLotMovements::getLotMovements(int id)
 {
-    QSqlRelationalTableModel *mod = new QSqlRelationalTableModel(0,db);
+  /*  QSqlRelationalTableModel *mod = new QSqlRelationalTableModel(0,db);
     mod->setTable("operazioni");
 
     mod->setRelation(3,QSqlRelation("utenti","ID","nome"));
@@ -42,7 +46,7 @@ void HLotMovements::getLotMovements(int id)
     mod->setHeaderData(6,Qt::Horizontal,QObject::tr("U.M."));
     mod->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
 
-    mod->select();
+
     mod->setFilter("operazioni.IDlotto="+QString::number(id));
     mod->setSort(2,Qt::DescendingOrder);
     mod->select();
@@ -50,9 +54,19 @@ void HLotMovements::getLotMovements(int id)
     ui->tvMovimentiLotto->setItemDelegate(new QSqlRelationalDelegate(mod));
     ui->tvMovimentiLotto->setColumnHidden(0,true);
     ui->tvMovimentiLotto->setColumnHidden(1,true);
+    ui->tvMovimentiLotto->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);*/
+
+    QSqlQueryModel *mod=new QSqlQueryModel();
+    QSqlQuery q(db);
+    QString sql="SELECT operazioni.data as 'DATA',anagrafica.ragione_sociale as 'OPERATORE',prodotti.descrizione as 'PRODOTTO',azioni.descrizione as 'AZIONE',FORMAT(operazioni.quantita,4) as 'QUANTITA\', unita_di_misura.descrizione, operazioni.note as 'NOTE'\
+        from operazioni,anagrafica,utenti,prodotti, azioni,unita_di_misura\
+        where anagrafica.ID=operazioni.utente and prodotti.ID=operazioni.IDprodotto and azioni.ID=operazioni.azione and unita_di_misura.ID=operazioni.um and operazioni.IDLotto=25866";
+    q.exec(sql);
+    mod->setQuery(q);
+    qDebug()<<q.lastError().text();
+    ui->tvMovimentiLotto->setModel(mod);
+    ui->tvMovimentiLotto->setItemDelegate(new QSqlRelationalDelegate(mod));
     ui->tvMovimentiLotto->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-
 
 }
 
