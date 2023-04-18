@@ -271,6 +271,7 @@ public:
         tvComponentiCosto->setSelectionMode(QAbstractItemView::SingleSelection);
         tvComponentiCosto->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvComponentiCosto->setSortingEnabled(false);
+        tvComponentiCosto->horizontalHeader()->setCascadingSectionResizes(true);
         tvComponentiCosto->horizontalHeader()->setStretchLastSection(true);
         tvComponentiCosto->verticalHeader()->setVisible(false);
         tvComponentiCosto->verticalHeader()->setProperty("showSortIndicator", QVariant(true));
@@ -396,7 +397,7 @@ public:
     {
         HCalcolo_costi->setWindowTitle(QCoreApplication::translate("HCalcolo_costi", "Calcolo Costi", nullptr));
         label_4->setText(QCoreApplication::translate("HCalcolo_costi", "Formato (Kg)", nullptr));
-        leFormato->setText(QCoreApplication::translate("HCalcolo_costi", "1", nullptr));
+        leFormato->setText(QString());
         label->setText(QCoreApplication::translate("HCalcolo_costi", "Cliente:", nullptr));
         label_5->setText(QCoreApplication::translate("HCalcolo_costi", "Prodotti cliente", nullptr));
         label_3->setText(QCoreApplication::translate("HCalcolo_costi", "Componenti ricetta", nullptr));

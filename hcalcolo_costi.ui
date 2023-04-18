@@ -48,7 +48,7 @@
        <item row="0" column="3">
         <widget class="QLineEdit" name="leFormato">
          <property name="text">
-          <string>1</string>
+          <string/>
          </property>
         </widget>
        </item>
@@ -277,6 +277,9 @@
            <property name="sortingEnabled">
             <bool>false</bool>
            </property>
+           <attribute name="horizontalHeaderCascadingSectionResizes">
+            <bool>true</bool>
+           </attribute>
            <attribute name="horizontalHeaderStretchLastSection">
             <bool>true</bool>
            </attribute>

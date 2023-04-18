@@ -49,16 +49,16 @@ HCalcolo_costi::HCalcolo_costi(HUser *p_user, QSqlDatabase p_db, QWidget *parent
     QDoubleValidator *generali_validator=new QDoubleValidator(0,100000,4);
     ui->leCosto_spese_generali->setValidator(generali_validator);
 
-    //ui->tvComponentiCosto->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tvComponentiCosto->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvComponentiCosto->verticalHeader()->setSectionsMovable(true);
 
 
     get_clienti();
-  //  ui->leFormato->setFocus();
+
     on_leFormato_returnPressed();
     ui->cbClienti->completer()->setCompletionMode(QCompleter::PopupCompletion);
 
-    connect(componenti_costo_model,SIGNAL(dataChanged(QModelIndex,QModelIndex,QList)),this,SLOT(updateCostoFormato()));
+    connect(componenti_costo_model,SIGNAL(itemChanged(QStandardItem*)),this,SLOT(updateCostoFormato()));
 
 
 
@@ -132,12 +132,13 @@ void HCalcolo_costi::get_ricetta()
    // factor=0.0;
     QSqlQueryModel* raw_mod=new QSqlQueryModel();
     QSqlQuery q(db);
-    QString sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as \"QUANTITA\'\",prodotti.prezzo as 'COSTO UNITARIO (€*Kg)',righe_ricette.quantita*prodotti.prezzo as 'COSTO PER RICETTA','PIPPO' as 'COSTO FORMATO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.ID";
+   /* QString sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as \"QUANTITA\'\",prodotti.prezzo as 'COSTO UNITARIO (€*Kg)',righe_ricette.quantita*prodotti.prezzo as 'COSTO PER RICETTA','PIPPO' as 'COSTO FORMATO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.ID";
     q.prepare(sql);
     q.bindValue(":idp",idp);
     q.exec();
     raw_mod->setQuery(q);
-   // factor=calculate_factor(raw_mod);
+   // factor=calculate_factor(raw_mod);*/
+    QString sql=QString();
 
 
     //     ="select distinct prodotti.ID ,prodotti.descrizione,prodotti.allergenico,righe_ricette.quantita from prodotti,righe_ricette where righe_ricette.ID_prodotto=prodotti.ID and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
@@ -170,13 +171,8 @@ void HCalcolo_costi::get_ricetta()
         costo_formato+=ricmod->index(r,4).data(0).toDouble();
         costo_ricetta+=ricmod->index(r,3).data(0).toDouble();
         tot_quantita+=ricmod->index(r,1).data(0).toDouble();
-
-
+        qDebug()<<"CF"<<costo_formato;
     }
-
-
-    // ui->tvRicetta->setColumnHidden(2,true);
-
 
     ui->lbCostoFormato->setText(QString::number(costo_formato));
     ui->lbTotQuantita->setText(QString::number(tot_quantita,'f',2));
@@ -186,7 +182,7 @@ void HCalcolo_costi::get_ricetta()
     componenti_costo_model->setData(ix_p,prod);
 
     QModelIndex ix_c=componenti_costo_model->index(0,2);
-    componenti_costo_model->setData(ix_c,QString::number(costo_formato/tot_quantita,'f',2));
+    componenti_costo_model->setData(ix_c,QString::number(costo_formato,'f',2));
 }
 
 
@@ -253,23 +249,23 @@ void HCalcolo_costi::on_leFormato_returnPressed()
     QSqlQueryModel *ricetta_mod=static_cast<QSqlQueryModel*>(ui->tvRicetta->model());
 
 
-    for (int x=0; x<ricetta_mod->rowCount();++x)
-    {
-        costo_totale_formato+=ricetta_mod->index(x,4).data(0).toDouble();
-        tot_quantita+=ricetta_mod->index(x,1).data(0).toDouble();
-    }
 
-    // costo_totale_formato=QString::number(ui->leCosto_formato->text().toDouble(),'f',4);
+
 
     QList<QStandardItem*>row;
     QString item,costo=QString();
     int mrow=ui->lv_prodotti->currentIndex().row();
     double formato=ui->leFormato->text().toDouble();
 
+    for (int x=0; x<ricetta_mod->rowCount();++x)
+    {
+        costo_totale_formato+=ricetta_mod->index(x,4).data(0).toDouble();
+        tot_quantita+=ricetta_mod->index(x,1).data(0).toDouble();
+    }
 
-    // qDebug()<<ui->lv_prodotti->model()->index(mrow,4).data(0).toString()<<costo_totale_formato;
     item=ui->lv_prodotti->model()->index(mrow,1).data(0).toString();
-    costo=QString::number((costo_totale_formato/tot_quantita)*formato,'f',4);
+    //costo=QString::number((costo_totale_formato/tot_quantita)*formato,'f',4);
+    costo=QString::number(costo_totale_formato,'f',4);
 
     QModelIndex ix=componenti_costo_model->index(0,1);
     componenti_costo_model->setData(ix,item);
@@ -289,7 +285,7 @@ void HCalcolo_costi::calcolo_per_formato(const QSqlQueryModel *model)
 {
 
 
-      double formato=ui->leFormato->text().toDouble();
+  /*  double formato=ui->leFormato->text().toDouble();
 
     QSqlQueryModel* model_2=new QSqlQueryModel();
 
@@ -307,7 +303,7 @@ void HCalcolo_costi::calcolo_per_formato(const QSqlQueryModel *model)
 
 
     ui->tvRicetta->setModel(model_2);
-
+*/
 }
 
 
@@ -555,7 +551,7 @@ void HCalcolo_costi::updateCostoFormato()
     }
 
     ui->leCosto_formato->setText(QString::number(ncosto,'f',4));
-    qDebug()<<"PIPPO";
+
 }
 
 void HCalcolo_costi::on_pbPrint_clicked()

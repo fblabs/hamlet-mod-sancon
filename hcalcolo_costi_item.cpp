@@ -29,11 +29,6 @@ HCalcolo_costi_item::HCalcolo_costi_item(int p_tipo,QSqlDatabase p_db, QWidget *
     ui->cbProdotti->completer()->setCompletionMode(QCompleter::PopupCompletion);
     ui->cbProdotti->setCurrentIndex(-1);
     ui->cbProdotti->setFocus();
-
-
-
-
-
 }
 
 HCalcolo_costi_item::~HCalcolo_costi_item()
