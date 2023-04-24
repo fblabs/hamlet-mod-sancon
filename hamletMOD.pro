@@ -19,13 +19,16 @@ SOURCES += main.cpp\
     hcalcolo_costi.cpp \
     hcalcolo_costi_item.cpp \
     hcalcolo_costi_item_model.cpp \
+    hcalcolo_costi_item_set.cpp \
     hcalcolo_costi_jolly.cpp \
     hchoose_lot_to_add.cpp \
     hchooselot.cpp \
     hcomponenti_costo_item.cpp \
+    hcomponenti_model.cpp \
     hcontainer_cartoni.cpp \
     hcontainer_generic.cpp \
     hcontainer_generic_product.cpp \
+    hcosti.cpp \
     hcosti_model.cpp \
     hcreategroup.cpp \
     hgroups.cpp \
@@ -104,13 +107,16 @@ HEADERS  += mainwindow.h \
     hcalcolo_costi.h \
     hcalcolo_costi_item.h \
     hcalcolo_costi_item_model.h \
+    hcalcolo_costi_item_set.h \
     hcalcolo_costi_jolly.h \
     hchoose_lot_to_add.h \
     hchooselot.h \
     hcomponenti_costo_item.h \
+    hcomponenti_model.h \
     hcontainer_cartoni.h \
     hcontainer_generic.h \
     hcontainer_generic_product.h \
+    hcosti.h \
     hcosti_model.h \
     hcreategroup.h \
     hgroups.h \
@@ -181,12 +187,14 @@ HEADERS  += mainwindow.h \
     hmodifyrow.h \
     hlotmod.h \
     hnewsheet.h \
-    hworkprogram.h
+    hworkprogram.h \
+    ui_hcaloclo_costi_jolly.h
 
 
 
 FORMS    += mainwindow.ui \
     hcalcolo_costi_item.ui \
+    hcalcolo_costi_item_set.ui \
     hcalcolo_costi_jolly.ui \
     hcomponenti_costo_item.ui \
     hcontainer_cartoni.ui \
@@ -197,6 +205,7 @@ FORMS    += mainwindow.ui \
     hchooselot.ui \
     hcontainer_generic.ui \
     hcontainer_generic_product.ui \
+    hcosti.ui \
     hcreategroup.ui \
     hgroups.ui \
     hloads.ui \

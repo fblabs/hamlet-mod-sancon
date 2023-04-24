@@ -12,3 +12,12 @@ Qt::ItemFlags HCosti_model::flags(const QModelIndex &index) const
    return Qt::ItemIsEnabled|Qt::ItemIsSelectable;
 
 }
+
+QVariant HCosti_model::data(const QModelIndex &item, int role) const
+{
+  /* if(item.column() ==1 || item.column()==2)
+   {
+     return QVariant();
+   }*/
+   return QStandardItemModel::data(item,role);
+}

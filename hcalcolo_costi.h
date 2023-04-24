@@ -5,6 +5,8 @@
 #include "huser.h"
 #include <QSqlDatabase>
 #include <QStandardItemModel>
+#include "hcosti_model.h"
+
 
 namespace Ui {
 class HCalcolo_costi;
@@ -22,8 +24,9 @@ private:
     Ui::HCalcolo_costi *ui;
     HUser *user;
     QSqlDatabase db;
-    double factor;
     QStandardItemModel* componenti_costo_model;
+    QSqlQueryModel *rec_mod;
+
 
 
 private slots:
@@ -48,6 +51,7 @@ private slots:
    void print();
    void updateComponenti_model(int row, double value);
    void updateCostoFormato();
+   void recalculate();
 
 
    void on_pbPrint_clicked();
@@ -66,6 +70,7 @@ private slots:
 
    QStandardItemModel* QueryToStandard(QSqlQueryModel *from);
    QStandardItemModel* StandardCopy(QStandardItemModel *from);
+
 
 
 signals:

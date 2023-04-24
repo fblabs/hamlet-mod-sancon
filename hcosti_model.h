@@ -3,6 +3,7 @@
 
 #include <QStandardItemModel>
 #include <QObject>
+#include <QList>
 
 class HCosti_model : public QStandardItemModel
 {
@@ -10,6 +11,13 @@ class HCosti_model : public QStandardItemModel
 public:
     explicit HCosti_model(QObject *parent = nullptr) : QStandardItemModel(parent){}
     Qt::ItemFlags flags(const QModelIndex &index) const;
+    QVariant data(const QModelIndex &item, int role) const;
+
+public slots:
+
+
 };
+
+
 
 #endif // HCOSTI_MODEL_H

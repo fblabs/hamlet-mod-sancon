@@ -29,3 +29,13 @@ bool HCalcolo_costi_item_model::setData(const QModelIndex &index, const QVariant
     QStandardItemModel::setData(index,value,role);
     return true;
 }
+
+Qt::ItemFlags HCalcolo_costi_item_model::flags(const QModelIndex &index) const
+{
+    if (index.column() ==1 || index.column()==2)
+    {
+        return Qt::ItemIsEnabled|Qt::ItemIsSelectable| Qt::ItemIsEditable;
+    }
+
+    return Qt::ItemIsEnabled|Qt::ItemIsSelectable;
+}

@@ -37,7 +37,7 @@
 #include "hnschede.h"
 #include "hgraphicprint.h"
 //#include "hcalcost.h"
-#include "hcalcolo_costi.h"
+#include "hcosti.h"
 #include "hrecipesforclient.h"
 #include <QCryptographicHash>
 #include "hmagazzino.h"
@@ -496,7 +496,7 @@ void MainWindow::on_pbExpirations_clicked()
 void MainWindow::on_pbCalcoloCosti_clicked()
 {
   // HCalcost *f= new HCalcost(db,user);
-   HCalcolo_costi *f=new HCalcolo_costi(user,db);
+    HCosti  *f=new HCosti(db);
     f->showMaximized();
 }
 
