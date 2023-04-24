@@ -5,7 +5,6 @@
 #include <QStandardItemModel>
 #include <QSqlQueryModel>
 #include "huser.h"
-
 #include "hcosti_model.h"
 
 
@@ -38,7 +37,7 @@ private slots:
     void recalculate_components();
     double get_components_cost();
      double get_factor();
-     double get_total_formato();
+     void update_total_formato();
      void on_pbClose_clicked();
      void print();
      void on_pbReset_clicked();

@@ -18,6 +18,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -28,6 +29,7 @@ class Ui_HCalcolo_costi_item_set
 public:
     QVBoxLayout *verticalLayout;
     QComboBox *cbProdotti;
+    QSpacerItem *verticalSpacer;
     QFormLayout *formLayout;
     QLabel *lb_costo;
     QLineEdit *le_costo;
@@ -45,7 +47,7 @@ public:
     {
         if (HCalcolo_costi_item_set->objectName().isEmpty())
             HCalcolo_costi_item_set->setObjectName(QString::fromUtf8("HCalcolo_costi_item_set"));
-        HCalcolo_costi_item_set->resize(500, 300);
+        HCalcolo_costi_item_set->resize(500, 200);
         verticalLayout = new QVBoxLayout(HCalcolo_costi_item_set);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         cbProdotti = new QComboBox(HCalcolo_costi_item_set);
@@ -54,6 +56,10 @@ public:
         cbProdotti->setInsertPolicy(QComboBox::NoInsert);
 
         verticalLayout->addWidget(cbProdotti);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
 
         formLayout = new QFormLayout();
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
@@ -135,7 +141,7 @@ public:
 
     void retranslateUi(QWidget *HCalcolo_costi_item_set)
     {
-        HCalcolo_costi_item_set->setWindowTitle(QCoreApplication::translate("HCalcolo_costi_item_set", "Form", nullptr));
+        HCalcolo_costi_item_set->setWindowTitle(QString());
         lb_costo->setText(QCoreApplication::translate("HCalcolo_costi_item_set", "Costo/unit\303\240:", nullptr));
         lbAmount->setText(QCoreApplication::translate("HCalcolo_costi_item_set", "Quantit\303\240:", nullptr));
         lb_result->setText(QCoreApplication::translate("HCalcolo_costi_item_set", "Costo:", nullptr));

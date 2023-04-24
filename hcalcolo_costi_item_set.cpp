@@ -6,7 +6,7 @@
 #include <QDebug>
 
 
-HCalcolo_costi_item_set::HCalcolo_costi_item_set(QModelIndex p_index, int p_tipo, QSqlDatabase p_db, QWidget *parent) :
+HCalcolo_costi_item_set::HCalcolo_costi_item_set(QString s_prod, QModelIndex p_index, int p_tipo, QSqlDatabase p_db, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HCalcolo_costi_item_set)
 {
@@ -14,6 +14,7 @@ HCalcolo_costi_item_set::HCalcolo_costi_item_set(QModelIndex p_index, int p_tipo
     db=p_db;
     tipo=p_tipo;
     index=p_index;
+
 
 
 
@@ -29,12 +30,14 @@ HCalcolo_costi_item_set::HCalcolo_costi_item_set(QModelIndex p_index, int p_tipo
     ui->cbProdotti->completer()->setCompletionMode(QCompleter::PopupCompletion);
     ui->cbProdotti->setCurrentIndex(-1);
     ui->cbProdotti->setFocus();
+    ui->cbProdotti->setCurrentText(s_prod);
 }
 
 HCalcolo_costi_item_set::~HCalcolo_costi_item_set()
 {
     delete ui;
 }
+
 
 void HCalcolo_costi_item_set::on_le_costo_returnPressed()
 {

@@ -14,14 +14,16 @@ class HCalcolo_costi_item_set : public QWidget
     Q_OBJECT
 
 public:
-    explicit HCalcolo_costi_item_set(QModelIndex p_index=QModelIndex(),int p_tipo=-1, QSqlDatabase p_db=QSqlDatabase(), QWidget *parent = nullptr);
+    explicit HCalcolo_costi_item_set(QString s_prod=QString(),QModelIndex p_index=QModelIndex(),int p_tipo=-1, QSqlDatabase p_db=QSqlDatabase(), QWidget *parent = nullptr);
     ~HCalcolo_costi_item_set();
+
 
 private:
     Ui::HCalcolo_costi_item_set *ui;
     QSqlDatabase db;
     int tipo;
     QModelIndex index;
+    QString init_prod;
 
 signals:
     void item_modified(QModelIndex index,QString item,QString costo);

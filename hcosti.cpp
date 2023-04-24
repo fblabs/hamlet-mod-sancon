@@ -9,7 +9,9 @@
 #include "hcomponenti_model.h"
 #include "hcalcolo_costi_item.h"
 #include "hcalcolo_costi_item_set.h"
+#include "hcomponenti_model.h"
 #include <QDebug>
+#include <QMessageBox>
 
 
 HCosti::HCosti(QSqlDatabase p_db,HUser *p_user,QWidget *parent) :
@@ -17,13 +19,17 @@ HCosti::HCosti(QSqlDatabase p_db,HUser *p_user,QWidget *parent) :
     ui(new Ui::HCosti)
 {
     ui->setupUi(this);
+    ui->tvComponentiCosto->horizontalHeader()->sectionResizeMode(QHeaderView::Stretch);
     db=p_db;
     get_clienti();
 
 
+    componenti_costo_model=build_componenti_model();
+
     recipe_model=new HCosti_model();
 
     ui->tvComponentiCosto->setModel(componenti_costo_model);
+    ui->tvComponentiCosto->horizontalHeader()->sectionResizeMode(QHeaderView::Stretch);
 
     connect(ui->tvRicetta->itemDelegate(),SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),this,SLOT(calculate_recipe()));
     connect(ui->tvComponentiCosto->itemDelegate(),SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),this,SLOT(calculate_components_cost()));
@@ -119,14 +125,6 @@ HComponenti_model *HCosti::build_componenti_model()
     mod->setHeaderData(0,Qt::Horizontal,"VOCE");
     mod->setHeaderData(1,Qt::Horizontal,"ITEM");
     mod->setHeaderData(2,Qt::Horizontal,"COSTO");
-
-
-
-
-
-
-
-
 
     return mod;
 }
@@ -281,6 +279,7 @@ void HCosti::set_componenti_index(QModelIndex index,int column,QString value)
     QModelIndex ix=componenti_costo_model->index(index.row(),1);
     componenti_costo_model->setData(ix,value);
     calculate_components_cost();
+    ui->tvComponentiCosto->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 
@@ -549,6 +548,7 @@ void HCosti::calculate_recipe()
     ui->lbCostoFormato->setText(QString::number(tot_costo_formato,'f',4));
 
     componenti_costo_model->setData(componenti_costo_model->index(0,2),tot_costo_ricetta);
+    ui->tvComponentiCosto->horizontalHeader()->sectionResizeMode(QHeaderView::Stretch);
 
    // costo_kilo=costo_ricetta/tot_quantita;
     // costo_formato=costo_kilo*formato;
@@ -557,6 +557,8 @@ void HCosti::calculate_recipe()
 void HCosti::reset()
 {
     componenti_costo_model=build_componenti_model();
+    ui->tvComponentiCosto->setModel(componenti_costo_model);
+    ui->tvComponentiCosto->horizontalHeader()->sectionResizeMode(QHeaderView::Stretch);
 
     get_ricetta();
 
@@ -633,13 +635,13 @@ void HCosti::on_tvComponentiCosto_doubleClicked(const QModelIndex &index)
     /*qDebug()<<index.row();*/
     if(index.row()<=6)
     {
-        qDebug()<<"ITEM_SET";
 
 
 
 
-        HCalcolo_costi_item_set *f=new HCalcolo_costi_item_set(index,tipology,db);
-            connect(f,SIGNAL(item_modified(QModelIndex,QString,QString)),this,SLOT(modify_index(QModelIndex,QString,QString)));
+        QString prod=ui->tvComponentiCosto->model()->index(ui->tvComponentiCosto->currentIndex().row(),1).data(0).toString();
+        HCalcolo_costi_item_set *f=new HCalcolo_costi_item_set(prod,index,tipology,db);
+        connect(f,SIGNAL(item_modified(QModelIndex,QString,QString)),this,SLOT(modify_index(QModelIndex,QString,QString)));
         f->show();
 
 
@@ -651,6 +653,15 @@ void HCosti::on_tvComponentiCosto_doubleClicked(const QModelIndex &index)
 
 void HCosti::on_pbJolly_clicked()
 {
-    reset();
+    if(QMessageBox::question(this, QApplication::applicationName(),"Resettare i dati?",QMessageBox::Ok | QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+       reset();
+    }
+}
+
+
+void HCosti::on_leMargine_returnPressed()
+{
+    on_pbMargin_clicked();
 }
 

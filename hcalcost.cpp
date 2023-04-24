@@ -135,6 +135,9 @@ void HCalcost::getRecipe()
 
 }
 
+
+
+
 void HCalcost::on_leQuantitaProdotto_returnPressed()
 {
 

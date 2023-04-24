@@ -27,7 +27,6 @@ private:
     Ui::HCosti *ui;
     QSqlDatabase db;
     HUser *user;
-    //HCosti_model *recipe_model_work;
     HCosti_model *recipe_model;
     HComponenti_model *componenti_costo_model;
 private slots:
@@ -56,6 +55,8 @@ private slots:
     void on_pbRimuovi_componente_costo_clicked();
     void on_tvComponentiCosto_doubleClicked(const QModelIndex &index);
     void on_pbJolly_clicked();
+    void on_leMargine_returnPressed();
+
 signals:
     void item_modified();
 };

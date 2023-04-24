@@ -262,6 +262,7 @@ public:
 
         leMargine = new QLineEdit(HCosti);
         leMargine->setObjectName(QString::fromUtf8("leMargine"));
+        leMargine->setClearButtonEnabled(true);
 
         gridLayout_5->addWidget(leMargine, 1, 1, 1, 1);
 
@@ -382,7 +383,7 @@ public:
 
     void retranslateUi(QWidget *HCosti)
     {
-        HCosti->setWindowTitle(QCoreApplication::translate("HCosti", "Form", nullptr));
+        HCosti->setWindowTitle(QCoreApplication::translate("HCosti", "Calcolo costi", nullptr));
         label->setText(QCoreApplication::translate("HCosti", "Cliente:", nullptr));
         label_4->setText(QCoreApplication::translate("HCosti", "Formato (Kg)", nullptr));
         leFormato->setText(QString());
