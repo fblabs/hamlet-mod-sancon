@@ -71,11 +71,9 @@ public:
     QLineEdit *leResult;
     QSpacerItem *horizontalSpacer_5;
     QHBoxLayout *horizontalLayout;
-    QSpacerItem *horizontalSpacer_6;
     QPushButton *pbAggiungi_componente_costo;
     QPushButton *pbRimuovi_componente_costo;
     QPushButton *pbJolly;
-    QSpacerItem *horizontalSpacer_7;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pbPrint;
     QPushButton *pbClose;
@@ -118,6 +116,8 @@ public:
 
         leFormato = new QLineEdit(HCosti);
         leFormato->setObjectName(QString::fromUtf8("leFormato"));
+        leFormato->setMaximumSize(QSize(100, 16777215));
+        leFormato->setClearButtonEnabled(true);
 
         gridLayout->addWidget(leFormato, 0, 1, 1, 1);
 
@@ -298,21 +298,8 @@ public:
 
         verticalLayout_2->addLayout(gridLayout_5);
 
-
-        verticalLayout_6->addLayout(verticalLayout_2);
-
-
-        horizontalLayout_3->addLayout(verticalLayout_6);
-
-
-        verticalLayout_7->addLayout(horizontalLayout_3);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer_6);
-
         pbAggiungi_componente_costo = new QPushButton(HCosti);
         pbAggiungi_componente_costo->setObjectName(QString::fromUtf8("pbAggiungi_componente_costo"));
         pbAggiungi_componente_costo->setMaximumSize(QSize(200, 16777215));
@@ -345,12 +332,17 @@ public:
 
         horizontalLayout->addWidget(pbJolly);
 
-        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout->addItem(horizontalSpacer_7);
+        verticalLayout_2->addLayout(horizontalLayout);
 
 
-        verticalLayout_7->addLayout(horizontalLayout);
+        verticalLayout_6->addLayout(verticalLayout_2);
+
+
+        horizontalLayout_3->addLayout(verticalLayout_6);
+
+
+        verticalLayout_7->addLayout(horizontalLayout_3);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));

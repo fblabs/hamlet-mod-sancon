@@ -16,11 +16,9 @@ CONFIG(release,debug|release)
 
 SOURCES += main.cpp\
     hbiodetails.cpp \
-    hcalcolo_costi.cpp \
     hcalcolo_costi_item.cpp \
     hcalcolo_costi_item_model.cpp \
     hcalcolo_costi_item_set.cpp \
-    hcalcolo_costi_jolly.cpp \
     hchoose_lot_to_add.cpp \
     hchooselot.cpp \
     hcomponenti_costo_item.cpp \
@@ -104,11 +102,9 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     hbiodetails.h \
-    hcalcolo_costi.h \
     hcalcolo_costi_item.h \
     hcalcolo_costi_item_model.h \
     hcalcolo_costi_item_set.h \
-    hcalcolo_costi_jolly.h \
     hchoose_lot_to_add.h \
     hchooselot.h \
     hcomponenti_costo_item.h \
@@ -195,11 +191,9 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     hcalcolo_costi_item.ui \
     hcalcolo_costi_item_set.ui \
-    hcalcolo_costi_jolly.ui \
     hcomponenti_costo_item.ui \
     hcontainer_cartoni.ui \
     hbiodetails.ui \
-    hcalcolo_costi.ui \
     hcartoni.ui \
     hchoose_lot_to_add.ui \
     hchooselot.ui \

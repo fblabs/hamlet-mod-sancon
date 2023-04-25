@@ -30,7 +30,7 @@ private slots:
     void on_pbCalculate_clicked();
 
 signals:
-    void component_added(QString item,QString costo);
+    void component_added(QString item,QString amount,QString costo);
 
 
 };

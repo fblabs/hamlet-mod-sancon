@@ -44,6 +44,7 @@ void HCalcolo_costi_item::on_le_costo_returnPressed()
 
 void HCalcolo_costi_item::on_cbProdotti_currentIndexChanged(int index)
 {
+    Q_UNUSED(index);
     double costo=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),2).data(0).toDouble();
     QString s_costo=QString::number(costo,'f',4);
     ui->le_costo->setText(s_costo);

@@ -21,6 +21,7 @@ HBioDetails::HBioDetails(int p_idlotto,QSqlDatabase pdb,HUser *p_user,QWidget *p
     QWidget(parent),
     ui(new Ui::HBioDetails)
 {
+    Q_UNUSED(p_user);
     ui->setupUi(this);
     idlotto=p_idlotto;
     db=pdb;

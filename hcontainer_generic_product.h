@@ -24,8 +24,9 @@ private slots:
     void getProducts(int p_tipo=-1);
     void on_cb_prodotti_currentIndexChanged(int index);
     void data();
+
 signals:
-     void component_added(QString item,QString costo);
+    void component_added(QString item,QString costo);
 
 };
 

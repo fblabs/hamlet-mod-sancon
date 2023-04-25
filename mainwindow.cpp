@@ -401,22 +401,6 @@ void MainWindow::on_pbPackages_clicked()
     f->show();
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-
-    /* if(QMessageBox::Ok==QMessageBox::information(this,QApplication::applicationName(),"L'applicazione verrà chiusa per permettere l'aggiornamento. Continuare?",QMessageBox::Ok|QMessageBox::Cancel))
-    {
-        QString file="./EasyUpdater/EasyUpdater.exe";
-        QProcess::startDetached(file);
-        QApplication::quit();
-
-    }*/
-    HGraphicPrint *f=new HGraphicPrint(0);
-    f->show();
-
-
-}
-
 
 void MainWindow::on_pbUnload_clicked()
 {
@@ -479,13 +463,6 @@ void MainWindow::on_pbCkeckNotifications_clicked()
 {
     checkNotifications();
 }
-
-void MainWindow::on_pbVerifyLabels_clicked()
-{
-    HVerifyLabels *f = new HVerifyLabels();
-    f->show();
-}
-
 
 void MainWindow::on_pbExpirations_clicked()
 {

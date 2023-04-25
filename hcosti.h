@@ -41,7 +41,6 @@ private slots:
     void on_pbAggiungi_componente_costo_clicked();
     void add_item(QString item,QString costo);
     void calculate_components_cost();
-    void on_pbJolly_clicked(bool checked);
     void on_pbMargin_clicked();
     HCosti_model* QueryToCosti(QSqlQueryModel *from);
     QStandardItemModel* StandardCopy(QStandardItemModel *from);
@@ -49,8 +48,6 @@ private slots:
     void calculate_recipe();
     void reset();
     void modify_index(QModelIndex index,QString item,QString costo);
-
-
     void on_pbPrint_clicked();
     void on_pbRimuovi_componente_costo_clicked();
     void on_tvComponentiCosto_doubleClicked(const QModelIndex &index);

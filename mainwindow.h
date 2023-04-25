@@ -46,7 +46,6 @@ private slots:
     void disableUI();
     void on_tbAssociazioni_clicked();
     void on_pbSchede_clicked();
-    void on_pushButton_clicked();
     void on_tbUtenti_clicked();
     void on_tbModificaLotti_clicked();
     void on_pbPackages_clicked();
@@ -56,7 +55,6 @@ private slots:
     void on_pbNotifiche_clicked();
     void checkNotifications();
     void on_pbCkeckNotifications_clicked();
-    void on_pbVerifyLabels_clicked();
     void on_pbExpirations_clicked();
     void on_pbCalcoloCosti_clicked();
     bool createPreferencesDB();

@@ -43,14 +43,16 @@ void HContainer_cartoni::get_cartoni()
 
 void HContainer_cartoni::data()
 {
-     QString item,costo=QString();
+     QString item,costo,amount=QString();
      item=ui->cbCartoni->currentText().toUpper();
      costo=ui->le_costo_per_pezzo->text();
+     amount=ui->le_pezzi->text();
+
 
      qDebug()<<"emit added cartoni";
 
 
-    emit component_added(item,costo);
+    emit component_added(item,costo,amount);
 }
 
 
