@@ -44,8 +44,8 @@ HComposizioneLotto::HComposizioneLotto(int p_idlotto, QString p_descrizione, HUs
     connect(det,SIGNAL(activated()),this,SLOT(getDetails()));
 
 
-    if(tipo==4)ui->pbScarico->setVisible(true);
-    if(tipo!=4)ui->pbScarico->setVisible(false);
+    /*if(tipo==4)ui->pbScarico->setVisible(true);
+    if(tipo!=4)ui->pbScarico->setVisible(false);*/
 
 
     if(tipo!=1)

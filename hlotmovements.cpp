@@ -58,9 +58,11 @@ void HLotMovements::getLotMovements(int id)
 
     QSqlQueryModel *mod=new QSqlQueryModel();
     QSqlQuery q(db);
-    QString sql="SELECT operazioni.data as 'DATA',anagrafica.ragione_sociale as 'OPERATORE',prodotti.descrizione as 'PRODOTTO',azioni.descrizione as 'AZIONE',FORMAT(operazioni.quantita,4) as 'QUANTITA\', unita_di_misura.descrizione, operazioni.note as 'NOTE'\
-        from operazioni,anagrafica,utenti,prodotti, azioni,unita_di_misura\
-        where anagrafica.ID=operazioni.utente and prodotti.ID=operazioni.IDprodotto and azioni.ID=operazioni.azione and unita_di_misura.ID=operazioni.um and operazioni.IDLotto=25866";
+    /*QString sql="SELECT operazioni.data as 'DATA',anagrafica.ragione_sociale as 'ANAGRAFICA',prodotti.descrizione as 'PRODOTTO',azioni.descrizione as 'AZIONE',FORMAT(operazioni.quantita,4) as 'QUANTITA\', unita_di_misura.descrizione, operazioni.note as 'NOTE'\
+        from operazioni,lotdef,anagrafica,utenti,prodotti, azioni,unita_di_misura\
+                  where lotdef.ID=operazioni.IDLotto and anagrafica.ID=lotdef.anagrafica and prodotti.ID=operazioni.IDprodotto and azioni.ID=operazioni.azione and unita_di_misura.ID=operazioni.um and operazioni.IDLotto="+QString::number(id);*/
+
+    QString sql="SELECT azioni.descrizione,prodotti.descrizione,operazioni.data,operazioni.quantita FROM fbgmdb260.operazioni,fbgmdb260.azioni,fbgmdb260.prodotti where azioni.ID=operazioni.azione and prodotti.ID=operazioni.IDprodotto and IDLotto="+QString::number(id);
     q.exec(sql);
     mod->setQuery(q);
     qDebug()<<q.lastError().text();
