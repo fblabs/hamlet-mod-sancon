@@ -62,7 +62,7 @@ void HLotMovements::getLotMovements(int id)
         from operazioni,lotdef,anagrafica,utenti,prodotti, azioni,unita_di_misura\
                   where lotdef.ID=operazioni.IDLotto and anagrafica.ID=lotdef.anagrafica and prodotti.ID=operazioni.IDprodotto and azioni.ID=operazioni.azione and unita_di_misura.ID=operazioni.um and operazioni.IDLotto="+QString::number(id);*/
 
-    QString sql="SELECT azioni.descrizione,prodotti.descrizione,operazioni.data,operazioni.quantita FROM fbgmdb260.operazioni,fbgmdb260.azioni,fbgmdb260.prodotti where azioni.ID=operazioni.azione and prodotti.ID=operazioni.IDprodotto and IDLotto="+QString::number(id);
+    QString sql="SELECT operazioni.data as 'DATA',azioni.descrizione as 'AZIONE',lotdef.lot as 'LOTTO',prodotti.descrizione as 'PRODOTTO',operazioni.quantita as 'QUANTITA\\''FROM fbgmdb260.operazioni,fbgmdb260.lotdef,fbgmdb260.azioni,fbgmdb260.prodotti where azioni.ID=operazioni.azione and prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and IDLotto="+QString::number(id);
     q.exec(sql);
     mod->setQuery(q);
     qDebug()<<q.lastError().text();
