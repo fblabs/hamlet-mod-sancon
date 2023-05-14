@@ -350,7 +350,7 @@ public:
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         cbModify = new QCheckBox(HCosti);
         cbModify->setObjectName(QString::fromUtf8("cbModify"));
-        cbModify->setMaximumSize(QSize(200, 16777215));
+        cbModify->setMaximumSize(QSize(100, 16777215));
         cbModify->setFont(font);
         cbModify->setIconSize(QSize(32, 32));
 

@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[39];
-    char stringdata0[736];
+    QByteArrayData data[37];
+    char stringdata0[688];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -51,26 +51,24 @@ QT_MOC_LITERAL(15, 272, 19), // "on_tbLogout_clicked"
 QT_MOC_LITERAL(16, 292, 9), // "disableUI"
 QT_MOC_LITERAL(17, 302, 25), // "on_tbAssociazioni_clicked"
 QT_MOC_LITERAL(18, 328, 19), // "on_pbSchede_clicked"
-QT_MOC_LITERAL(19, 348, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(20, 370, 19), // "on_tbUtenti_clicked"
-QT_MOC_LITERAL(21, 390, 26), // "on_tbModificaLotti_clicked"
-QT_MOC_LITERAL(22, 417, 21), // "on_pbPackages_clicked"
-QT_MOC_LITERAL(23, 439, 10), // "userLogged"
-QT_MOC_LITERAL(24, 450, 6), // "HUser*"
-QT_MOC_LITERAL(25, 457, 3), // "usr"
-QT_MOC_LITERAL(26, 461, 12), // "QSqlDatabase"
-QT_MOC_LITERAL(27, 474, 3), // "pdb"
-QT_MOC_LITERAL(28, 478, 19), // "on_pbUnload_clicked"
-QT_MOC_LITERAL(29, 498, 21), // "on_pbContacts_clicked"
-QT_MOC_LITERAL(30, 520, 22), // "on_pbNotifiche_clicked"
-QT_MOC_LITERAL(31, 543, 18), // "checkNotifications"
-QT_MOC_LITERAL(32, 562, 31), // "on_pbCkeckNotifications_clicked"
-QT_MOC_LITERAL(33, 594, 25), // "on_pbVerifyLabels_clicked"
-QT_MOC_LITERAL(34, 620, 24), // "on_pbExpirations_clicked"
-QT_MOC_LITERAL(35, 645, 25), // "on_pbCalcoloCosti_clicked"
-QT_MOC_LITERAL(36, 671, 19), // "createPreferencesDB"
-QT_MOC_LITERAL(37, 691, 16), // "on_pbC4R_clicked"
-QT_MOC_LITERAL(38, 708, 27) // "on_pbProgrammazione_clicked"
+QT_MOC_LITERAL(19, 348, 19), // "on_tbUtenti_clicked"
+QT_MOC_LITERAL(20, 368, 26), // "on_tbModificaLotti_clicked"
+QT_MOC_LITERAL(21, 395, 21), // "on_pbPackages_clicked"
+QT_MOC_LITERAL(22, 417, 10), // "userLogged"
+QT_MOC_LITERAL(23, 428, 6), // "HUser*"
+QT_MOC_LITERAL(24, 435, 3), // "usr"
+QT_MOC_LITERAL(25, 439, 12), // "QSqlDatabase"
+QT_MOC_LITERAL(26, 452, 3), // "pdb"
+QT_MOC_LITERAL(27, 456, 19), // "on_pbUnload_clicked"
+QT_MOC_LITERAL(28, 476, 21), // "on_pbContacts_clicked"
+QT_MOC_LITERAL(29, 498, 22), // "on_pbNotifiche_clicked"
+QT_MOC_LITERAL(30, 521, 18), // "checkNotifications"
+QT_MOC_LITERAL(31, 540, 31), // "on_pbCkeckNotifications_clicked"
+QT_MOC_LITERAL(32, 572, 24), // "on_pbExpirations_clicked"
+QT_MOC_LITERAL(33, 597, 25), // "on_pbCalcoloCosti_clicked"
+QT_MOC_LITERAL(34, 623, 19), // "createPreferencesDB"
+QT_MOC_LITERAL(35, 643, 16), // "on_pbC4R_clicked"
+QT_MOC_LITERAL(36, 660, 27) // "on_pbProgrammazione_clicked"
 
     },
     "MainWindow\0login\0\0enableButtonsForRole\0"
@@ -81,14 +79,13 @@ QT_MOC_LITERAL(38, 708, 27) // "on_pbProgrammazione_clicked"
     "on_tbAnalisi_clicked\0on_toolButton_clicked\0"
     "on_pBNewOperation_clicked\0on_tbLogout_clicked\0"
     "disableUI\0on_tbAssociazioni_clicked\0"
-    "on_pbSchede_clicked\0on_pushButton_clicked\0"
-    "on_tbUtenti_clicked\0on_tbModificaLotti_clicked\0"
+    "on_pbSchede_clicked\0on_tbUtenti_clicked\0"
+    "on_tbModificaLotti_clicked\0"
     "on_pbPackages_clicked\0userLogged\0"
     "HUser*\0usr\0QSqlDatabase\0pdb\0"
     "on_pbUnload_clicked\0on_pbContacts_clicked\0"
     "on_pbNotifiche_clicked\0checkNotifications\0"
     "on_pbCkeckNotifications_clicked\0"
-    "on_pbVerifyLabels_clicked\0"
     "on_pbExpirations_clicked\0"
     "on_pbCalcoloCosti_clicked\0createPreferencesDB\0"
     "on_pbC4R_clicked\0on_pbProgrammazione_clicked"
@@ -101,7 +98,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      33,   14, // methods
+      31,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -109,39 +106,37 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  179,    2, 0x08 /* Private */,
-       3,    0,  180,    2, 0x08 /* Private */,
-       4,    0,  181,    2, 0x08 /* Private */,
-       5,    0,  182,    2, 0x08 /* Private */,
-       6,    0,  183,    2, 0x08 /* Private */,
-       7,    0,  184,    2, 0x08 /* Private */,
-       8,    0,  185,    2, 0x08 /* Private */,
-       9,    0,  186,    2, 0x08 /* Private */,
-      10,    0,  187,    2, 0x08 /* Private */,
-      11,    0,  188,    2, 0x08 /* Private */,
-      12,    0,  189,    2, 0x08 /* Private */,
-      13,    0,  190,    2, 0x08 /* Private */,
-      14,    0,  191,    2, 0x08 /* Private */,
-      15,    0,  192,    2, 0x08 /* Private */,
-      16,    0,  193,    2, 0x08 /* Private */,
-      17,    0,  194,    2, 0x08 /* Private */,
-      18,    0,  195,    2, 0x08 /* Private */,
-      19,    0,  196,    2, 0x08 /* Private */,
-      20,    0,  197,    2, 0x08 /* Private */,
-      21,    0,  198,    2, 0x08 /* Private */,
-      22,    0,  199,    2, 0x08 /* Private */,
-      23,    2,  200,    2, 0x08 /* Private */,
-      28,    0,  205,    2, 0x08 /* Private */,
-      29,    0,  206,    2, 0x08 /* Private */,
-      30,    0,  207,    2, 0x08 /* Private */,
-      31,    0,  208,    2, 0x08 /* Private */,
-      32,    0,  209,    2, 0x08 /* Private */,
-      33,    0,  210,    2, 0x08 /* Private */,
-      34,    0,  211,    2, 0x08 /* Private */,
-      35,    0,  212,    2, 0x08 /* Private */,
-      36,    0,  213,    2, 0x08 /* Private */,
-      37,    0,  214,    2, 0x08 /* Private */,
-      38,    0,  215,    2, 0x08 /* Private */,
+       1,    0,  169,    2, 0x08 /* Private */,
+       3,    0,  170,    2, 0x08 /* Private */,
+       4,    0,  171,    2, 0x08 /* Private */,
+       5,    0,  172,    2, 0x08 /* Private */,
+       6,    0,  173,    2, 0x08 /* Private */,
+       7,    0,  174,    2, 0x08 /* Private */,
+       8,    0,  175,    2, 0x08 /* Private */,
+       9,    0,  176,    2, 0x08 /* Private */,
+      10,    0,  177,    2, 0x08 /* Private */,
+      11,    0,  178,    2, 0x08 /* Private */,
+      12,    0,  179,    2, 0x08 /* Private */,
+      13,    0,  180,    2, 0x08 /* Private */,
+      14,    0,  181,    2, 0x08 /* Private */,
+      15,    0,  182,    2, 0x08 /* Private */,
+      16,    0,  183,    2, 0x08 /* Private */,
+      17,    0,  184,    2, 0x08 /* Private */,
+      18,    0,  185,    2, 0x08 /* Private */,
+      19,    0,  186,    2, 0x08 /* Private */,
+      20,    0,  187,    2, 0x08 /* Private */,
+      21,    0,  188,    2, 0x08 /* Private */,
+      22,    2,  189,    2, 0x08 /* Private */,
+      27,    0,  194,    2, 0x08 /* Private */,
+      28,    0,  195,    2, 0x08 /* Private */,
+      29,    0,  196,    2, 0x08 /* Private */,
+      30,    0,  197,    2, 0x08 /* Private */,
+      31,    0,  198,    2, 0x08 /* Private */,
+      32,    0,  199,    2, 0x08 /* Private */,
+      33,    0,  200,    2, 0x08 /* Private */,
+      34,    0,  201,    2, 0x08 /* Private */,
+      35,    0,  202,    2, 0x08 /* Private */,
+      36,    0,  203,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -164,9 +159,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 24, 0x80000000 | 26,   25,   27,
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 23, 0x80000000 | 25,   24,   26,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -204,29 +197,27 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 14: _t->disableUI(); break;
         case 15: _t->on_tbAssociazioni_clicked(); break;
         case 16: _t->on_pbSchede_clicked(); break;
-        case 17: _t->on_pushButton_clicked(); break;
-        case 18: _t->on_tbUtenti_clicked(); break;
-        case 19: _t->on_tbModificaLotti_clicked(); break;
-        case 20: _t->on_pbPackages_clicked(); break;
-        case 21: _t->userLogged((*reinterpret_cast< HUser*(*)>(_a[1])),(*reinterpret_cast< QSqlDatabase(*)>(_a[2]))); break;
-        case 22: _t->on_pbUnload_clicked(); break;
-        case 23: _t->on_pbContacts_clicked(); break;
-        case 24: _t->on_pbNotifiche_clicked(); break;
-        case 25: _t->checkNotifications(); break;
-        case 26: _t->on_pbCkeckNotifications_clicked(); break;
-        case 27: _t->on_pbVerifyLabels_clicked(); break;
-        case 28: _t->on_pbExpirations_clicked(); break;
-        case 29: _t->on_pbCalcoloCosti_clicked(); break;
-        case 30: { bool _r = _t->createPreferencesDB();
+        case 17: _t->on_tbUtenti_clicked(); break;
+        case 18: _t->on_tbModificaLotti_clicked(); break;
+        case 19: _t->on_pbPackages_clicked(); break;
+        case 20: _t->userLogged((*reinterpret_cast< HUser*(*)>(_a[1])),(*reinterpret_cast< QSqlDatabase(*)>(_a[2]))); break;
+        case 21: _t->on_pbUnload_clicked(); break;
+        case 22: _t->on_pbContacts_clicked(); break;
+        case 23: _t->on_pbNotifiche_clicked(); break;
+        case 24: _t->checkNotifications(); break;
+        case 25: _t->on_pbCkeckNotifications_clicked(); break;
+        case 26: _t->on_pbExpirations_clicked(); break;
+        case 27: _t->on_pbCalcoloCosti_clicked(); break;
+        case 28: { bool _r = _t->createPreferencesDB();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 31: _t->on_pbC4R_clicked(); break;
-        case 32: _t->on_pbProgrammazione_clicked(); break;
+        case 29: _t->on_pbC4R_clicked(); break;
+        case 30: _t->on_pbProgrammazione_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 21:
+        case 20:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -266,13 +257,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 33)
+        if (_id < 31)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 33;
+        _id -= 31;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 33)
+        if (_id < 31)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 33;
+        _id -= 31;
     }
     return _id;
 }

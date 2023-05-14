@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HCalcolo_costi_jolly_t {
     QByteArrayData data[14];
-    char stringdata0[224];
+    char stringdata0[227];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,18 +40,18 @@ QT_MOC_LITERAL(4, 57, 11), // "recalculate"
 QT_MOC_LITERAL(5, 69, 22), // "recalculate_components"
 QT_MOC_LITERAL(6, 92, 19), // "get_components_cost"
 QT_MOC_LITERAL(7, 112, 10), // "get_factor"
-QT_MOC_LITERAL(8, 123, 17), // "get_total_formato"
-QT_MOC_LITERAL(9, 141, 18), // "on_pbClose_clicked"
-QT_MOC_LITERAL(10, 160, 5), // "print"
-QT_MOC_LITERAL(11, 166, 18), // "on_pbReset_clicked"
-QT_MOC_LITERAL(12, 185, 18), // "on_pbPrint_clicked"
-QT_MOC_LITERAL(13, 204, 19) // "on_pbUpdate_clicked"
+QT_MOC_LITERAL(8, 123, 20), // "update_total_formato"
+QT_MOC_LITERAL(9, 144, 18), // "on_pbClose_clicked"
+QT_MOC_LITERAL(10, 163, 5), // "print"
+QT_MOC_LITERAL(11, 169, 18), // "on_pbReset_clicked"
+QT_MOC_LITERAL(12, 188, 18), // "on_pbPrint_clicked"
+QT_MOC_LITERAL(13, 207, 19) // "on_pbUpdate_clicked"
 
     },
     "HCalcolo_costi_jolly\0convert_recipe_model\0"
     "HCosti_model*\0\0recalculate\0"
     "recalculate_components\0get_components_cost\0"
-    "get_factor\0get_total_formato\0"
+    "get_factor\0update_total_formato\0"
     "on_pbClose_clicked\0print\0on_pbReset_clicked\0"
     "on_pbPrint_clicked\0on_pbUpdate_clicked"
 };
@@ -89,7 +89,7 @@ static const uint qt_meta_data_HCalcolo_costi_jolly[] = {
     QMetaType::Void,
     QMetaType::Double,
     QMetaType::Double,
-    QMetaType::Double,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -113,8 +113,7 @@ void HCalcolo_costi_jolly::qt_static_metacall(QObject *_o, QMetaObject::Call _c,
             if (_a[0]) *reinterpret_cast< double*>(_a[0]) = std::move(_r); }  break;
         case 4: { double _r = _t->get_factor();
             if (_a[0]) *reinterpret_cast< double*>(_a[0]) = std::move(_r); }  break;
-        case 5: { double _r = _t->get_total_formato();
-            if (_a[0]) *reinterpret_cast< double*>(_a[0]) = std::move(_r); }  break;
+        case 5: _t->update_total_formato(); break;
         case 6: _t->on_pbClose_clicked(); break;
         case 7: _t->print(); break;
         case 8: _t->on_pbReset_clicked(); break;
