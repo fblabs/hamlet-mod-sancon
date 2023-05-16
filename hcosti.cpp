@@ -83,50 +83,51 @@ HComponenti_model *HCosti::build_componenti_model()
 
     QList<QStandardItem*> row;
 
-    row<<new QStandardItem("PRODOTTO")<<new QStandardItem("")<<new QStandardItem("");
+    row<<new QStandardItem("PRODOTTO")<<new QStandardItem("")<<new QStandardItem("1")<<new QStandardItem("");
     mod->appendRow(row);
     row.clear();
 
-    row<<new QStandardItem("OLIO DI COLMATURA")<<new QStandardItem("")<<new QStandardItem("");
+    row<<new QStandardItem("OLIO DI COLMATURA")<<new QStandardItem("")<<new QStandardItem("")<<new QStandardItem("");
     mod->appendRow(row);
      row.clear();
 
-    row<<new QStandardItem("VASO:")<<new QStandardItem("")<<new QStandardItem("");
+    row<<new QStandardItem("VASO:")<<new QStandardItem("")<<new QStandardItem("")<<new QStandardItem("");
     mod->appendRow(row);
     row.clear();
 
-    row<<new QStandardItem("CAPSULA:")<<new QStandardItem("")<<new QStandardItem("");
+    row<<new QStandardItem("CAPSULA:")<<new QStandardItem("")<<new QStandardItem("")<<new QStandardItem("");
     mod->appendRow(row);
     row.clear();
 
-    row<<new QStandardItem("ETICHETTA:")<<new QStandardItem("")<<new QStandardItem("");
+    row<<new QStandardItem("ETICHETTA:")<<new QStandardItem("")<<new QStandardItem("")<<new QStandardItem("");
     mod->appendRow(row);
     row.clear();
 
-    row<<new QStandardItem("VASSOIO:")<<new QStandardItem("")<<new QStandardItem("");
+    row<<new QStandardItem("VASSOIO:")<<new QStandardItem("")<<new QStandardItem("")<<new QStandardItem("");
     mod->appendRow(row);
     row.clear();
 
-    row<<new QStandardItem("SCATOLA:")<<new QStandardItem("")<<new QStandardItem("");
+    row<<new QStandardItem("SCATOLA:")<<new QStandardItem("")<<new QStandardItem("")<<new QStandardItem("");
     mod->appendRow(row);
     row.clear();
 
-    row<<new QStandardItem("SPESE FISSE:")<<new QStandardItem("ENERGIA")<<new QStandardItem("0.0000");
+    row<<new QStandardItem("SPESE FISSE:")<<new QStandardItem("COSTO ELETTRICITA'")<<new QStandardItem("--")<<new QStandardItem("0.0000");
     mod->appendRow(row);
     row.clear();
 
-    row<<new QStandardItem("SPESE FISSE:")<<new QStandardItem("COSTO PERSONALE:")<<new QStandardItem("0.0000");
+    row<<new QStandardItem("SPESE FISSE:")<<new QStandardItem("COSTO PERSONALE:")<<new QStandardItem("--")<<new QStandardItem("0.0000");
     mod->appendRow(row);
     row.clear();
 
-    row<<new QStandardItem("SPESE FISSE::")<<new QStandardItem("SPESE GENERALI")<<new QStandardItem("0.0000");
+    row<<new QStandardItem("SPESE FISSE::")<<new QStandardItem("SPESE GENERALI")<<new QStandardItem("--")<<new QStandardItem("0.0000");
     mod->appendRow(row);
     row.clear();
 
 
     mod->setHeaderData(0,Qt::Horizontal,"VOCE");
     mod->setHeaderData(1,Qt::Horizontal,"ITEM");
-    mod->setHeaderData(2,Qt::Horizontal,"COSTO");
+    mod->setHeaderData(2,Qt::Horizontal,"QUANTITA'");
+    mod->setHeaderData(3,Qt::Horizontal,"COSTO");
 
     return mod;
 }
@@ -217,7 +218,7 @@ void HCosti::get_ricetta()
 
 
     ui->lbCostoFormato->setText(QString::number(costo_formato,'f',4));
-    ui->lbTotQuantita->setText(QString::number(tot_quantita,'f',2));
+    ui->lbTotQuantita->setText(QString::number(tot_quantita,'f',4));
     ui->lbCostoRicetta->setText(QString::number(costo_ricetta,'f',4));
     calculate_recipe();
     calculate_components_cost();
@@ -241,8 +242,8 @@ void HCosti::get_ricetta()
     set_componenti_index(index,1,value);
 
 
-    QString value2=ui->lbCostoFormato->text();
-    set_componenti_index(index,2,value2);
+    QString value2=QString::number(costo_formato,'f',4);
+    set_componenti_index(index,3,value2);
     ui->tvComponentiCosto->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
@@ -273,9 +274,6 @@ void HCosti::on_leFormato_returnPressed()
 {
 
 
-
-
-
     connect(ui->tvComponentiCosto->itemDelegate(),SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),this,SLOT(calculate_components_cost()));
 
 
@@ -286,14 +284,16 @@ void HCosti::on_leFormato_returnPressed()
      ui->tvRicetta->horizontalHeader()->sectionResizeMode(QHeaderView::Stretch);
 
     QModelIndex index=componenti_costo_model->index(0,0);
+
     QString value=ui->lv_prodotti->model()->index(ui->lv_prodotti->currentIndex().row(),1).data(0).toString();
     set_componenti_index(index,1,value);
 
 
-    QString value2=ui->lbCostoFormato->text();
+    QString value2=ui->leFormato->text();
     set_componenti_index(index,2,value2);
 
-
+    QString value3=ui->lbCostoFormato->text();
+    set_componenti_index(index,3,value3);
 }
 
 
@@ -317,17 +317,17 @@ void HCosti::on_pbAggiungi_componente_costo_clicked()
 {
     HProducts_for_calcolo_costi *f=new HProducts_for_calcolo_costi(-1,user,db);
 
-    connect(f,SIGNAL(sg_item_added(QString,QString)),this,SLOT(add_item(QString,QString)));
+    connect(f,SIGNAL(sg_item_added(QString,QString,QString)),this,SLOT(add_item(QString,QString,QString)));
     f->show();
 }
 
-void HCosti::add_item(QString item, QString costo)
+void HCosti::add_item(QString item, QString quantita,QString costo)
 {
-    qDebug()<<"addItem";
+
 
     QList<QStandardItem*> row;
 
-    row<<new QStandardItem("COMPONENTE COSTO:")<<new QStandardItem(item)<<new QStandardItem(costo);
+    row<<new QStandardItem("COMPONENTE COSTO:")<<new QStandardItem(item)<<new QStandardItem(quantita)<<new QStandardItem(costo);
     componenti_costo_model->appendRow(row);
 
     ui->tvComponentiCosto->horizontalHeader()->sectionResizeMode(QHeaderView::ResizeToContents);
@@ -344,7 +344,7 @@ void HCosti::calculate_components_cost()
 
         for (int r=0;r<componenti_costo_model->rowCount();++r)
         {
-            cost+=componenti_costo_model->index(r,2).data(0).toDouble();
+            cost+=componenti_costo_model->index(r,3).data(0).toDouble();
         }
 
 
@@ -582,6 +582,7 @@ void HCosti::calculate_recipe()
 
 
     componenti_costo_model->setData(componenti_costo_model->index(0,2),tot_costo_formato);
+    calculate_components_cost();
 
 
 }
@@ -605,15 +606,18 @@ void HCosti::reset()
 
 }
 
-void HCosti::modify_index(QModelIndex index, QString item, QString costo)
+void HCosti::modify_index(QModelIndex index, QString item,QString amount, QString costo)
 {
     QModelIndex ix_prod;
+    QModelIndex ix_quant;
     QModelIndex ix_cost;
 
 
     ix_prod=componenti_costo_model->index(index.row(),1);
-    ix_cost=componenti_costo_model->index(index.row(),2);
+    ix_quant=componenti_costo_model->index(index.row(),2);
+    ix_cost=componenti_costo_model->index(index.row(),3);
     componenti_costo_model->setData(ix_prod,item);
+    componenti_costo_model->setData(ix_quant,amount);
     componenti_costo_model->setData(ix_cost,costo);
 
 
@@ -685,7 +689,7 @@ void HCosti::on_tvComponentiCosto_doubleClicked(const QModelIndex &index)
 
         QString prod=ui->tvComponentiCosto->model()->index(ui->tvComponentiCosto->currentIndex().row(),1).data(0).toString();
         HCalcolo_costi_item_set *f=new HCalcolo_costi_item_set(prod,index,tipology,db);
-        connect(f,SIGNAL(item_modified(QModelIndex,QString,QString)),this,SLOT(modify_index(QModelIndex,QString,QString)));
+        connect(f,SIGNAL(item_modified(QModelIndex,QString,QString,QString)),this,SLOT(modify_index(QModelIndex,QString,QString,QString)));
         f->show();
 
 

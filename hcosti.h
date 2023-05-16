@@ -44,7 +44,7 @@ private:
     void on_pbClose_clicked();
     void set_componenti_index(QModelIndex index, int column=0, QString value=QString());
     void on_pbAggiungi_componente_costo_clicked();
-    void add_item(QString item,QString costo);
+    void add_item(QString item, QString quantita, QString costo);
     void calculate_components_cost();
     void on_pbMargin_clicked();
     HCosti_model* QueryToCosti(QSqlQueryModel *from);
@@ -52,7 +52,7 @@ private:
     void print();
     void calculate_recipe();
     void reset();
-    void modify_index(QModelIndex index,QString item,QString costo);
+    void modify_index(QModelIndex index, QString item=QString(), QString amount="1", QString costo="0.000");
     void on_pbPrint_clicked();
     void on_pbRimuovi_componente_costo_clicked();
     void on_tvComponentiCosto_doubleClicked(const QModelIndex &index);

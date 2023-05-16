@@ -96,7 +96,7 @@ void HCalcolo_costi_item_set::on_leResult_returnPressed()
 {
 
 
-    emit item_modified(index,ui->cbProdotti->currentText(), ui->leResult->text());
+    emit item_modified(index,ui->cbProdotti->currentText(),ui->leAmount->text(), ui->leResult->text());
 
 
     close();

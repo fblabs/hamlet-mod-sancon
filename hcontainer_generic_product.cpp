@@ -13,7 +13,13 @@ HContainer_generic_product::HContainer_generic_product(const int p_tipo, QSqlDat
 {
     ui->setupUi(this);
     db=p_db;
+    tipo=p_tipo;
     getProducts(p_tipo);
+
+    QDoubleValidator *costo_validator=new QDoubleValidator(0,100,3);
+    ui->leCosto->setValidator(costo_validator);
+    QIntValidator *amount_validator=new QIntValidator(0,32564);
+    ui->leAmount->setValidator(amount_validator);
 
 }
 
@@ -50,11 +56,30 @@ void HContainer_generic_product::on_cb_prodotti_currentIndexChanged(int index)
 
 void HContainer_generic_product::data()
 {
-   qDebug()<<"data";
+
 
     QString item=ui->cb_prodotti->currentText().toUpper();
     QString costo=ui->leCosto->text();
+    QString amount=ui->leAmount->text();
 
-    emit component_added(item,costo);
+    emit component_added(item,amount,costo);
+}
+
+
+void HContainer_generic_product::on_leAmount_returnPressed()
+{
+    double amount=ui->leAmount->text().toDouble();
+    double cost=ui->leCosto->text().toDouble();
+    double cost_result=amount * cost;
+
+    if(tipo==3)
+    {
+        cost_result=cost/amount;
+    }
+    else{
+        cost_result=cost*amount;
+    }
+
+     ui->leCosto->setText(QString::number(cost_result,'f',4));
 }
 

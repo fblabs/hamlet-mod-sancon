@@ -26,7 +26,7 @@ private:
     QString init_prod;
 
 signals:
-    void item_modified(QModelIndex index,QString item,QString costo);
+    void item_modified(QModelIndex index,QString item,QString amount,QString costo);
 private slots:
     void on_le_costo_returnPressed();
     void on_cbProdotti_currentIndexChanged(int index);

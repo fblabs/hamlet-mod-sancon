@@ -52,7 +52,7 @@ void HContainer_cartoni::data()
      qDebug()<<"emit added cartoni";
 
 
-    emit component_added(item,costo,amount);
+    emit component_added(item,amount,costo);
 }
 
 

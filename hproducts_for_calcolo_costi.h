@@ -42,7 +42,7 @@ private slots:
 
 signals:
     void sg_data();
-    void sg_item_added(QString item, QString costo);
+    void sg_item_added(QString item, QString quantita,QString costo);
 };
 
 #endif // HPRODUCTS_FOR_CALCOLO_COSTI_H

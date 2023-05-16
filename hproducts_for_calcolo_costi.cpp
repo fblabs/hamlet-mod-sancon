@@ -201,7 +201,7 @@ void HProducts_for_calcolo_costi::on_chkGeneric_toggled(bool checked)
         HContainer_generic *f=new HContainer_generic();
         f->setParent(ui->container_widget);
         connect (this,SIGNAL(sg_data()),f,SLOT(data()));
-        connect(f,SIGNAL(component_added(QString,QString)),this,SIGNAL(sg_item_added(QString,QString)));
+        connect(f,SIGNAL(component_added(QString,QString,QString)),this,SIGNAL(sg_item_added(QString,QString,QString)));
         f->showMaximized();
     }else
     {
@@ -214,7 +214,7 @@ void HProducts_for_calcolo_costi::on_chkGeneric_toggled(bool checked)
         HContainer_generic_product *f=new HContainer_generic_product(t,db);
         f->setParent(ui->container_widget);
         connect (this,SIGNAL(sg_data()),f,SLOT(data()));
-        connect(f,SIGNAL(component_added(QString,QString)),this,SIGNAL(sg_item_added(QString,QString)));
+        connect(f,SIGNAL(component_added(QString,QString,QString)),this,SIGNAL(sg_item_added(QString,QString,QString)));
         f->showMaximized();
 
     }

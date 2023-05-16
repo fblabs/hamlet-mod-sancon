@@ -20,11 +20,10 @@ private:
 
 private slots:
     void data();
-
-
+    void on_leAmount_returnPressed();
 
 signals:
-    void component_added(QString item,QString costo);
+    void component_added(QString item,QString quantita,QString costo);
 
 };
 

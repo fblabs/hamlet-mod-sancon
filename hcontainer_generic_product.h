@@ -20,13 +20,15 @@ public:
 private:
     Ui::HContainer_generic_product *ui;
     QSqlDatabase db;
+    int tipo;
 private slots:
     void getProducts(int p_tipo=-1);
     void on_cb_prodotti_currentIndexChanged(int index);
     void data();
+    void on_leAmount_returnPressed();
 
 signals:
-    void component_added(QString item,QString costo);
+    void component_added(QString item,QString amount, QString costo);
 
 };
 
