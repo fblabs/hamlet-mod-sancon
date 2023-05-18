@@ -32,6 +32,7 @@ private:
     QSqlQueryModel *reecipe_org_model;
     HComponenti_model *componenti_costo_model;
     QSqlQueryModel *recipe_org_model;
+    double tot_recipe;
 
 
  private slots:
@@ -60,6 +61,7 @@ private:
     void on_leMargine_returnPressed();
     void on_cbModify_toggled(bool checked);
     void change_modify_state(bool set_modifiable=false);
+    double get_peso_totale_ricetta();
 
 signals:
     void item_modified();
