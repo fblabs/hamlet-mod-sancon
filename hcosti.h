@@ -62,6 +62,7 @@ private:
     void on_cbModify_toggled(bool checked);
     void change_modify_state(bool set_modifiable=false);
     double get_peso_totale_ricetta();
+    void toggle_modify();
 
 signals:
     void item_modified();

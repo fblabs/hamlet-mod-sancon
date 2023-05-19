@@ -4,7 +4,7 @@
 Qt::ItemFlags HCosti_model::flags(const QModelIndex &index) const
 {
 
-   if (index.column() ==1 || index.column()==2)
+   if (index.column() ==1 || index.column()==3)
    {
      return Qt::ItemIsEnabled|Qt::ItemIsSelectable| Qt::ItemIsEditable;
    }
