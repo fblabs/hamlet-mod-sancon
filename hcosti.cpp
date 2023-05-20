@@ -45,6 +45,8 @@ HCosti::HCosti(QSqlDatabase p_db,HUser *p_user,QWidget *parent) :
 
     ui->tvComponentiCosto->horizontalHeader()->sectionResizeMode(QHeaderView::Stretch);
     ui->cbClienti->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    ui->cbClienti->setCurrentIndex(-1);
+    ui->cbClienti->setFocus();
 
 }
 
@@ -162,9 +164,8 @@ void HCosti::get_ricetta()
     double tot_peso_ricetta=get_peso_totale_ricetta();
 
     recipe_org_model=new QSqlQueryModel();
-    recipe_model=new HCosti_model();
     recipe_model=QueryToCosti(recipe_org_model);
-
+    recipe_model=new HCosti_model();
 
     sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as 'QUANTITA',@p:=(righe_ricette.quantita/:tot_q)*100 as '%', prodotti.prezzo as 'COSTO UNITARIO (€*Kg)',FORMAT(righe_ricette.quantita*prodotti.prezzo,4) as 'COSTO PER RICETTA',FORMAT ((prodotti.prezzo*:f)*(@p/100),4) as 'COSTO FORMATO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.Id";
 
@@ -219,14 +220,14 @@ void HCosti::get_ricetta()
         recipe_org_model->setHeaderData(5,Qt::Horizontal,"COSTO FORMATO");
 
          for (int r=0;r<recipe_org_model->rowCount();r++)
-         {
+        {
 
-              quantita_riga=recipe_org_model->index(r,1).data(0).toDouble();
-              percent_riga=recipe_org_model->index(r,2).data(0).toDouble()/100;
-              costo_riga=tot_costo_ricetta* percent_riga;
-              tot_costo_ricetta+=costo_riga;
-              tot_costo_formato+=costo_riga*percent_riga;
-            }
+             quantita_riga=recipe_org_model->index(r,1).data(0).toDouble();
+             percent_riga=recipe_org_model->index(r,2).data(0).toDouble()/100;
+             costo_riga=tot_costo_ricetta* percent_riga;
+             tot_costo_ricetta+=costo_riga;
+             tot_costo_formato+=costo_riga*percent_riga;
+        }
 
     }
 
@@ -238,7 +239,7 @@ void HCosti::get_ricetta()
 
     ui->tvComponentiCosto->horizontalHeader()->sectionResizeMode(QHeaderView::Stretch);
     ui->tvRicetta->horizontalHeader()->sectionResizeMode(QHeaderView::Stretch);
-    ui->tvRicetta->setColumnHidden(2,true);
+   // ui->tvRicetta->setColumnHidden(2,true);
 
     connect(ui->tvComponentiCosto->itemDelegate(),SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),this,SLOT(calculate_components_cost()));
     ui->tvComponentiCosto->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -253,9 +254,11 @@ void HCosti::get_ricetta()
     QString value2=QString::number(tot_costo_formato,'f',4);
     set_componenti_index(index,3,value2);
     ui->tvComponentiCosto->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tvRicetta->setColumnHidden(2,true);
 
     calculate_recipe();
     ui->leFormato->setFocus();
+    on_leMargine_returnPressed();
 
 
 
@@ -291,7 +294,7 @@ void HCosti::on_leFormato_returnPressed()
     connect(ui->tvComponentiCosto->itemDelegate(),SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),this,SLOT(calculate_components_cost()));
 
 
-    get_ricetta();
+    if(!modify){get_ricetta();}
 
 
      ui->tvComponentiCosto->setModel(componenti_costo_model);
@@ -551,18 +554,14 @@ void HCosti::print()
 
 void HCosti::calculate_recipe()
 {
-
-    double peso_totale=get_peso_totale_ricetta();
     double tot_quantita=0.0;
     double tot_costo_ricetta=0.0;
     double tot_costo_formato=0.0;
     double formato=ui->leFormato->text().toDouble();
-    double costo_formato=0.0;
     double c_row=0.0;
     double q_row=0.0;
-  //  double costo_row=0.0;
-    double costo_formato_row;
- //   double costo_kilo=0.0;
+    double costo_formato_row=0.0;
+    double costo_row=0.0;
     double percentile=0.0;
 
     //----------formato/tot_quantita
@@ -570,42 +569,68 @@ void HCosti::calculate_recipe()
     int idp=ui->lv_prodotti->model()->index(ui->lv_prodotti->currentIndex().row(),0).data(0).toInt();
 
 
+     tot_quantita=get_peso_totale_ricetta();
 
-    tot_quantita=get_peso_totale_ricetta();
     qDebug()<<tot_quantita;
-
-
 
 
    if(modify){
 
-
+     tot_quantita=0.0;
+     tot_costo_ricetta=0.0;
 
         for(int row=0;row<recipe_model->rowCount();++row)
         {
-                c_row=recipe_model->index(row,3).data(0).toDouble();
-                q_row=recipe_model->index(row,1).data(0).toDouble();
-                percentile=recipe_model->index(row,2).data(0).toDouble()/100;
-                costo_formato_row=c_row*percentile;
-                tot_costo_formato+=costo_formato_row;
-                tot_costo_ricetta+=c_row;
-                recipe_model->setData(recipe_model->index(row,4),QString::number(c_row*q_row,'f',4));
-                //recipe_model->setData(recipe_model->index(row,4),QString::number(c_row,'f',4));
-                recipe_model->setData(recipe_model->index(row,5),QString::number(costo_formato_row,'f',4));
+
+            c_row=recipe_model->index(row,3).data(0).toDouble();
+            q_row=recipe_model->index(row,1).data(0).toDouble();
+
+
+            percentile=recipe_model->index(row,2).data(0).toDouble()/100;
+            costo_formato_row=(c_row*formato)*percentile;
+            costo_row=c_row * q_row;
+            tot_quantita+=recipe_model->index(row,1).data(0).toDouble();
+            tot_costo_formato+=costo_formato_row;
+            qDebug()<<"TOT_CR"<<recipe_model->index(row,4).data(0).toDouble()<<tot_costo_ricetta;
+            tot_costo_ricetta+=recipe_model->index(row,4).data(0).toDouble();
+             ui->lbCostoRicetta->setText(QString::number(tot_costo_ricetta,'f',4));
+            // recipe_model->setData(recipe_model->index(row,3),QString::number(c_row,'f',4));
+            //recipe_model->setData(recipe_model->index(row,3),QString::number(costo_row*q_row,'f',4));
+            recipe_model->setData(recipe_model->index(row,4),QString::number(costo_row,'f',4));
+            recipe_model->setData(recipe_model->index(row,5),QString::number(costo_formato_row,'f',4));
+
+            ui->lbTotQuantita->setText(QString::number(tot_quantita,'f',4));
+
+            ui->lbCostoFormato->setText(QString::number(tot_costo_formato,'f',4));
+
+
 
          }
    }else{
 
+
+
        for(int row=0;row<recipe_org_model->rowCount();++row)
         {
-                c_row=recipe_org_model->index(row,3).data(0).toDouble();
-                q_row=recipe_org_model->index(row,1).data(0).toDouble();
-                percentile=recipe_org_model->index(row,2).data(0).toDouble()/100;
-                costo_formato_row=c_row*percentile;
-                tot_costo_formato+=costo_formato_row;
-                tot_costo_ricetta+=c_row;
-              /*  recipe_org_model->setData(recipe_org_model->index(row,4),QString::number(c_row,'f',4));
-                recipe_org_model->setData(recipe_org_model->index(row,5),QString::number(costo_formato_row,'f',4));*/
+            c_row=recipe_org_model->index(row,3).data(0).toDouble();
+            q_row=recipe_org_model->index(row,1).data(0).toDouble();
+
+
+            percentile=recipe_org_model->index(row,2).data(0).toDouble()/100;
+            costo_formato_row=(c_row*formato)*percentile;
+            costo_row=c_row * q_row;
+            tot_costo_formato+=costo_formato_row;
+
+            // recipe_model->setData(recipe_model->index(row,3),QString::number(c_row,'f',4));
+            //recipe_org_model->setData(recipe_org_model->index(row,3),QString::number(costo_row*q_row,'f',4));
+            recipe_org_model->setData(recipe_org_model->index(row,4),QString::number(costo_row,'f',4));
+            recipe_org_model->setData(recipe_org_model->index(row,5),QString::number(costo_formato_row,'f',4));
+            tot_costo_ricetta+=recipe_org_model->index(row,4).data(0).toDouble();
+
+            ui->lbTotQuantita->setText(QString::number(tot_quantita,'f',4));
+            ui->lbCostoRicetta->setText(QString::number(tot_costo_ricetta,'f',4));
+            ui->lbCostoFormato->setText(QString::number(tot_costo_formato,'f',4));
+
 
         }
 
@@ -614,9 +639,6 @@ void HCosti::calculate_recipe()
 
 
 
-   ui->lbTotQuantita->setText(QString::number(tot_quantita,'f',4));
-   ui->lbCostoRicetta->setText(QString::number(tot_costo_ricetta,'f',4));
-   ui->lbCostoFormato->setText(QString::number(tot_costo_formato,'f',4));
 
    set_componenti_index(componenti_costo_model->index(0,2),2,ui->leFormato->text());
    set_componenti_index(componenti_costo_model->index(0,3),3,QString::number(tot_costo_formato,'f',4));
@@ -770,9 +792,7 @@ void HCosti::on_cbModify_toggled(bool checked)
 void HCosti::change_modify_state(bool set_modifiable)
 {
     modify=set_modifiable;
-  /*  QModelIndex ix_prod;
-    QModelIndex ix_cost;
-    QModelIndex current=ui->tvComponentiCosto->currentIndex();*/
+
 
 
 
@@ -790,6 +810,7 @@ void HCosti::change_modify_state(bool set_modifiable)
         ui->tvRicetta->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
         ui->tvComponentiCosto->setModel(componenti_costo_model);
         ui->cbModify->setText("DATI MODIFICATI (F4)");
+
 
     }else{
         disconnect(ui->tvRicetta->itemDelegate(),SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),this,SLOT(calculate_recipe()));
@@ -809,15 +830,9 @@ void HCosti::change_modify_state(bool set_modifiable)
         ui->cbModify->setText("DATI ORIGINALI (F4)");
     }
 
-  /*  calculate_recipe();
-    calculate_components_cost();*/
-
-      /*/  ix_prod=componenti_costo_model->index(current.row(),1);
-        ix_cost=componenti_costo_model->index(current.row(),2);*/
-
-
-
-
+    calculate_recipe();
+    calculate_components_cost();
+    on_leMargine_returnPressed();
 
 }
 
@@ -844,6 +859,10 @@ void HCosti::toggle_modify()
 {
     ui->cbModify->toggle();
 }
+
+
+
+
 
 
 

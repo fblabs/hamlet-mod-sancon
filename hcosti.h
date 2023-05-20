@@ -64,6 +64,7 @@ private:
     double get_peso_totale_ricetta();
     void toggle_modify();
 
+
 signals:
     void item_modified();
     void modify_toggled(bool is_modifiable=false);
