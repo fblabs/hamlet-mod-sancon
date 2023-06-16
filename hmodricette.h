@@ -26,7 +26,7 @@ private slots:
     void findProduct();
     void removeItem();
     void save();
-    void creatNewRecipe();
+    void creatNewRecipe(const int p_tipo=-1);
     bool duplicateRecipe();
     void getRicette();
     void printRecipe();
@@ -78,6 +78,8 @@ private:
     QSqlQueryModel *qmric;
     QList<int> *writeRed;
     HUser *user;
+signals:
+    void go_calc();
 
 };
 

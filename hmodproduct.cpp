@@ -65,7 +65,7 @@ bool HModProduct::getProductData()
 
 
     map->toFirst();
-    map->setSubmitPolicy(QDataWidgetMapper::AutoSubmit);
+    map->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
    // connect(ui->cbType,SIGNAL(currentIndexChanged(int)),productsmodel,SLOT(submit()));
 
 

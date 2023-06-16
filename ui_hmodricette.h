@@ -172,7 +172,7 @@ public:
         leTotal = new QLineEdit(HModRicette);
         leTotal->setObjectName(QString::fromUtf8("leTotal"));
         leTotal->setMaximumSize(QSize(120, 16777215));
-        leTotal->setClearButtonEnabled(true);
+        leTotal->setClearButtonEnabled(false);
 
         horizontalLayout_3->addWidget(leTotal);
 

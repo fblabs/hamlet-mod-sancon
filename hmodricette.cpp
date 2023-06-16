@@ -19,6 +19,7 @@
 #include <QDebug>
 #include "hrecipesforclient.h"
 #include "hrecipesforingredient.h"
+#include "hnew_recipe_main.h"
 
 HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
@@ -89,6 +90,7 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     ui->checkBox->setVisible(false);
     QShortcut *shortcut =new QShortcut(QKeySequence("F5"),this);
     connect(shortcut,SIGNAL(activated()),this,SLOT(showAssociatedCustomers()));
+    connect(this,SIGNAL(go_calc()),this,SLOT(calculateTotal()));
 
 }
 
@@ -135,7 +137,7 @@ void HModRicette::showAssociatedCustomers()
 
 void HModRicette::on_pushButton_2_clicked()
 {
-    if (QMessageBox::question(this,QApplication::applicationName(),"Chiudere?",QMessageBox::Ok|QMessageBox::Cancel))
+    if (QMessageBox::question(this,QApplication::applicationName(),"Chiudere?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         this->close();
     }
@@ -149,7 +151,7 @@ void HModRicette::getRicette()
     QCompleter *comp=new QCompleter();
     qmric=new  QSqlQueryModel();
     QSqlQuery q(db);
-    q.exec("SELECT ricette.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto ORDER BY prodotti.descrizione ASC");
+    q.exec("SELECT ricette.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto and prodotti.id in (SELECT id_prodotto FROM ricette) ORDER BY prodotti.descrizione ASC");
     qmric->setQuery(q);
 
     ui->cbRicette->setModel(qmric);
@@ -163,10 +165,11 @@ void HModRicette::getRicette()
 
 }
 
-void HModRicette::creatNewRecipe()
+void HModRicette::creatNewRecipe(const int p_tipo)
 {
     bool b;
     bool ok;
+    int tipo=p_tipo;
     //nuova ricetta
     QString text=QInputDialog::getText(this,"Nuova Ricetta","Inserire il nome\nVerrà creato un nuovo prodotto",QLineEdit::Normal,"",&ok);
     text=text.toUpper();
@@ -177,16 +180,17 @@ void HModRicette::creatNewRecipe()
     {
         db.transaction();
 
-        QString sql="INSERT INTO `prodotti`(`descrizione`,`tipo`,`allergenico`)VALUES(:descrizione,2,0)";
+        QString sql="INSERT INTO `prodotti`(`descrizione`,`tipo`,`allergenico`)VALUES(:descrizione,:tipo,0)";
         QSqlQuery q(db);
         q.prepare(sql);
         q.bindValue(":descrizione",QVariant(text));
+        q.bindValue(":tipo",tipo);
 
         b=q.exec();
         if(!b)
         {
             db.rollback();
-            //// qDebug()<<q.lastError().text();
+            qDebug()<<q.lastError().text();
             QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO IL PRODOTTO!!!",QMessageBox::Ok);
 
             return;
@@ -207,6 +211,7 @@ void HModRicette::creatNewRecipe()
             int ix =ui->cbRicette->findText(ui->cbRicette->currentText());
             ui->cbRicette->setCurrentIndex(ix);
             QMessageBox::information(this,QApplication::applicationName(),"RICETTA CREATA",QMessageBox::Ok);
+
         }
         else
         {
@@ -240,11 +245,22 @@ void HModRicette::creatNewRecipe()
 
 void HModRicette::addRiga(QList<QStandardItem*>list)
 {
+
+
     QStandardItemModel* model = static_cast<QStandardItemModel*>(ui->tableView->model());
 
     model->appendRow(list);
 
-    // loadRicetta();
+    model->setHeaderData(3,Qt::Horizontal,"INGREDIENTE");
+    model->setHeaderData(4,Qt::Horizontal,"QUANTITA\'");
+
+
+    ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setColumnHidden(1,true);
+    ui->tableView->setColumnHidden(2,true);
+    ui->tableView->setColumnHidden(5,true);
+
+    emit go_calc();
 
 
 
@@ -408,9 +424,13 @@ void HModRicette::loadRicetta()
     ui->tableView->setModel(mod);
 
 
-    mod->setHeaderData(3,Qt::Horizontal,"Ingrediente");
-    mod->setHeaderData(4,Qt::Horizontal,"Quantità");
+    mod->setHeaderData(3,Qt::Horizontal,"INGREDIENTE");
+    mod->setHeaderData(4,Qt::Horizontal,"QUANTITA\'");
     mod->setHeaderData(5,Qt::Horizontal,"Mostra in Produzione");
+
+    ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setColumnHidden(1,true);
+    ui->tableView->setColumnHidden(2,true);
 
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
@@ -470,7 +490,7 @@ void HModRicette::updateTotals()
 
     }
 
-    ui->tableView->resizeColumnsToContents();
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 
 }
@@ -489,6 +509,7 @@ void HModRicette::findProduct()
 
 void HModRicette::calculateTotal()
 {
+    qDebug()<<"calc_total call";
     double total=0.0;
     int rows=0;
 
@@ -503,29 +524,19 @@ void HModRicette::calculateTotal()
         total+=mod->index(i,4).data(0).toDouble();
     }
 
-    ui->leTotal->setText(QString::number(total,'f',2));
+    ui->leTotal->setText(QString::number(total,'f',4));
 
 
 }
 
 void HModRicette::removeItem()
 {
-    /*QSqlQuery q(db);
-    QString sql="DELETE FROM `righe_ricette` WHERE ID=:idriga";
-    q.prepare(sql);
-   // q.bindValue(":idricetta",ui->tableView->model()->index(ui->tableView->currentIndex().row(),0).data(0));
-  //  q.bindValue(":idprodotto",ui->tableView->model()->index(ui->tableView->currentIndex().row(),1).data(0));
-    q.bindValue(":idriga",QVariant(ui->tableView->model()->index(ui->tableView->currentIndex().row(),0).data(0)));
-    q.exec();
-    qDebug()<<q.lastError()<<q.lastQuery()<<q.boundValue(0).toString()<<q.boundValue(1).toString();
-    loadRicetta();*/
-
     QStandardItemModel *mod=static_cast<QStandardItemModel*>(ui->tableView->model());
 
     int row=ui->tableView->selectionModel()->currentIndex().row();
 
     mod->removeRow(row);
-
+    calculateTotal();
 
 
 }
@@ -535,11 +546,12 @@ void HModRicette::save()
     QSqlQuery q(db);
     QString sql;
 
-    int idriga=ui->tableView->model()->index(ui->tableView->currentIndex().row(),0).data(0).toInt();
+    //int idriga=ui->tableView->model()->index(ui->tableView->currentIndex().row(),0).data(0).toInt();
     int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
     int rows=ui->tableView->model()->rowCount();
 
     db.transaction();
+    saveNote();
     //cancello la ricetta
 
     sql="delete from righe_ricette where ID_ricetta=:idricetta";
@@ -585,6 +597,7 @@ void HModRicette::save()
 
 
     }
+
 
     db.commit();
     QMessageBox::information(this,QApplication::applicationName(),"Ricetta salvata",QMessageBox::Ok);
@@ -664,17 +677,7 @@ void HModRicette::saveNote()
     q.prepare(sql);
     q.bindValue (":note",QVariant(note));
     q.bindValue(":id",QVariant(idricetta));
-    if(q.exec())
-    {
-
-    }
-    else
-    {
-        //// qDebug()<<q.lastError().text()<<q.lastQuery()<<QString::number(idricetta)<<note;
-    }
-
-
-
+    q.exec();
 
 }
 
@@ -683,7 +686,10 @@ void HModRicette::on_pbAddRow_clicked()
     int idr=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
     HRecipeAddRow *f=new HRecipeAddRow(idr,db);
     connect(f,SIGNAL(rowadded(QList<QStandardItem*>)),this,SLOT(addRiga( QList<QStandardItem*>)));
+    connect(this,SIGNAL(go_calc()),this,SLOT(calculateTotal()));
     f->show();
+    qDebug()<<"addrow_call";
+    //calculateTotal();
 }
 
 void HModRicette::on_pbDeleteRow_clicked()
@@ -696,17 +702,21 @@ void HModRicette::on_pbDeleteRow_clicked()
 
 void HModRicette::on_pushButton_3_clicked()
 {
-    creatNewRecipe();
+    HNew_recipe_main *f=new HNew_recipe_main(db);
+    //connect (f,SIGNAL(sig_add_recipe())
+    connect(f,SIGNAL(sig_add_recipe_and_product(int)),SLOT(creatNewRecipe(int)));
+  //  connect(f,SIGNAL(sig_add_recipe()),this,SLOT(createNewRecipe()));
+    f->show();
+    //TODO aggiungere segnale
+    //creatNewRecipe();
 }
 
 void HModRicette::on_pushButton_clicked()
 {
 
     save();
-    saveNote();
-
     loadRicetta();
-    calculateTotal();
+
 }
 
 void HModRicette::on_pushButton_5_clicked()
@@ -737,11 +747,10 @@ void HModRicette::on_leTotal_returnPressed()
 
 void HModRicette::on_leTotal_textChanged(const QString &arg1)
 {
-    if (ui->leTotal->text().length()>5)
+ /*   if (ui->leTotal->text().length()>5)
     {
         loadRicetta();
-        calculateTotal();
-    }
+    }*/
 }
 
 void HModRicette::on_pushButton_6_clicked()

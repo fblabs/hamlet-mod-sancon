@@ -4,7 +4,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
-// #include <QDebug>
+#include <QDebug>
 #include <QSqlError>
 #include <QDateTime>
 #include <QStandardItem>
@@ -68,9 +68,10 @@ HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
 
     tmTipiLotti=new QSqlTableModel(0,db);
     tmTipiLotti->setTable("tipi_lot");
-    tmTipiLotti->select();
-    tmTipiLotti->setFilter("ID=3");
+
+    tmTipiLotti->setFilter("ID IN (2,3)");
     tmTipiLotti->setSort(1,Qt::AscendingOrder);
+    tmTipiLotti->select();
 
     ui->cbTipoLotto->setModel(tmTipiLotti);
     ui->cbTipoLotto->setModelColumn(1);
@@ -145,7 +146,7 @@ void HProduction::getSubclients()
 }
 
 
-void HProduction::getLotModel()
+/*void HProduction::getLotModel()
 {
     QSqlTableModel *lm=new QSqlTableModel(0,db);
     lm->setTable("lotdef");
@@ -156,7 +157,7 @@ void HProduction::getLotModel()
     lm->select();
     //   ui->leLotToEdit->setCompleter(comp);
 
-}
+}*/
 
 void HProduction::recalculateTotal()
 {
@@ -388,17 +389,34 @@ void HProduction::getRecipesForClient()
 
 
     //   QString qs="SELECT select prodotti.ID,ricette.ID,prodotti.descrizione from ricette,associazioni,prodotti,anagrafica where prodotti.ID=ricette.ID_prodotto and ricette.ID=associazioni.ID_ricetta and associazioni.ID_cliente=anagrafica.ID and associazioni.ID_cliente="+idcliente;
-    QString qs="select ricette.ID,prodotti.ID,prodotti.descrizione from prodotti, ricette, associazioni where ricette.ID=associazioni.ID_ricetta and prodotti.ID=ricette.ID_prodotto and associazioni.visualizza=1 and associazioni.visualizza=1 and associazioni.ID_cliente=:idcliente";
+    int id_tipo_lotto=ui->cbTipoLotto->model()->index(ui->cbTipoLotto->currentIndex(),0).data(0).toInt();
+
+
+    int id_tipo_prodotto=-1;
+
+    if(id_tipo_lotto==3)
+    {
+        id_tipo_prodotto=2;
+    }
+    else if (id_tipo_lotto==2)
+    {
+        id_tipo_prodotto=6;
+    }
+
+    qDebug()<<id_tipo_lotto<<id_tipo_prodotto;
+
+    QString qs="select ricette.ID,prodotti.ID,prodotti.descrizione from prodotti, ricette, associazioni where ricette.ID=associazioni.ID_ricetta and prodotti.ID=ricette.ID_prodotto and prodotti.tipo =:tipo and associazioni.visualizza=1 and associazioni.ID_cliente=:idcliente";
     QSqlQuery q(db);
     q.prepare(qs);
     q.bindValue(":idcliente",QVariant(idcliente));
+    q.bindValue(":tipo",id_tipo_prodotto);
 
-    qmRicette=new QSqlQueryModel();
+
 
     q.exec();
 
-    // qDebug()<<q.lastError().text();
 
+    qmRicette=new QSqlQueryModel();
     qmRicette->setQuery(q);
 
     ui->lvRicette->setModel(qmRicette);
@@ -1784,5 +1802,11 @@ void HProduction::addLot(QModelIndex index,bool show_window)
 void HProduction::on_pbPreferredLots_clicked()
 {
     addPreferredLots();
+}
+
+
+void HProduction::on_cbTipoLotto_currentIndexChanged(int index)
+{
+    getRecipesForClient();
 }
 

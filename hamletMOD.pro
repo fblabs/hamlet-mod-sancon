@@ -33,6 +33,7 @@ SOURCES += main.cpp\
     hloads.cpp \
     hlotcomposition.cpp \
     hlotti_new.cpp \
+    hnew_recipe_main.cpp \
     hpdfprint.cpp \
     hproducts_for_calcolo_costi.cpp \
     hrecipesforingredient.cpp \
@@ -119,6 +120,7 @@ HEADERS  += mainwindow.h \
     hloads.h \
     hlotcomposition.h \
     hlotti_new.h \
+    hnew_recipe_main.h \
     hpdfprint.h \
     hproducts_for_calcolo_costi.h \
     hrecipesforingredient.h \
@@ -205,6 +207,7 @@ FORMS    += mainwindow.ui \
     hloads.ui \
     hlotcomposition.ui \
     hlotti_new.ui \
+    hnew_recipe_main.ui \
     hpdfprint.ui \
     hproducts_for_calcolo_costi.ui \
     hrecipesforingredient.ui \

@@ -57,7 +57,7 @@ private slots:
     void getRecipesForClient();
     void getRecipe();
     void productSelected();
-    void getLotModel();
+    //void getLotModel();
     void addLotProd();
     void addLotFuoriRicettaN(QList<QStandardItem *> row);
     void addLotFuoriRicetta();
@@ -100,6 +100,7 @@ private slots:
 
 
     void on_pbPreferredLots_clicked();
+    void on_cbTipoLotto_currentIndexChanged(int index);
 };
 
 #endif // HPRODUCTION_H

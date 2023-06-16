@@ -123,11 +123,8 @@ void HAlarm::setUI()
 
 void HAlarm::filterTargets()
 {
-   // setUI();
 
-   // seleziono le righe del modello
     bool usaidgruppo=ui->tvMain->model()->index(ui->tvMain->selectionModel()->currentIndex().row(),6).data(0).toBool();
-    qDebug()<<"usaidgruppo: "<<QString::number(usaidgruppo);
     int colonnaconids;
     int number=0;
     QString idsindb;
@@ -147,16 +144,14 @@ void HAlarm::filterTargets()
 
 
     idsindb=ui->tvMain->model()->index(ui->tvMain->selectionModel()->currentIndex().row(),colonnaconids).data(0).toString();
- qDebug()<<"idsindb"<<idsindb<<ui->tvMain->model()->index(ui->tvMain->selectionModel()->currentIndex().row(),colonnaconids).data(0).toString();
     QStringList indexes=getIndexes(idsindb);
-
     QString filter;
     if(action =="n")
     {
 
     indexes=getIndexes(idsindb);
     number=indexes.count();
-qDebug()<<"indexes,count: "<<number;
+
 
          if (number>=1)
          {
@@ -167,9 +162,6 @@ qDebug()<<"indexes,count: "<<number;
                        QString fid=indexes.at(f);
 
                        fid=fid.replace("-",",");
-
-                       qDebug()<<"fid: "<<fid;
-
                        filter += fid;
 
                        if(f<indexes.count()-1)
@@ -191,16 +183,9 @@ qDebug()<<"indexes,count: "<<number;
        // filter="";
     }
 
-
-    qDebug()<<"filtertargets: action: "<<action<<"filter: "<<filter<<"number: "<<number;
-
     QSqlTableModel* lvmod=static_cast<QSqlTableModel*> (ui->lvTarget->model());
     lvmod->setFilter(filter);
     lvmod->select();
-
-
-
-
 
 }
 
@@ -268,26 +253,6 @@ bool HAlarm::addAlarm()
    ids=buildFilterString(selectedIndexes);
 
 
-  /* int size=selectedIndexes.count();
-
-   qDebug()<<size;
-
-    for (int is=0;is<size; is++)
-    {
-       ids += selectedIndexes.at(is).data(0).toString();
-
-       if (is<selectedIndexes.count()-1)
-       {
-           ids+="-";
-       }
-    }
-
-
-
-   qDebug()<<ids;*/
-
-
-
    q.prepare(sql);
    q.bindValue(":tipo",ui->cbTipo->currentText());
 
@@ -349,25 +314,6 @@ bool HAlarm::updateAlarm()
     //costrisco la stringa da salvare (es. 1-2-5)
 
     ids =buildFilterString(selectedIndexes);
-
-
-  /*  int size=selectedIndexes.count();
-
-    qDebug()<<size;
-
-     for (int is=0;is<size; is++)
-     {
-        ids += selectedIndexes.at(is).data(0).toString();
-
-        if (is<selectedIndexes.count()-1)
-        {
-            ids+="-";
-        }
-     }*/
-
-
-
-    qDebug()<<ids;
 
 
 
