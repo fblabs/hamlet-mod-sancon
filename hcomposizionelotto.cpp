@@ -415,7 +415,21 @@ double HComposizioneLotto::recalculateAmount()
     double dafare = ui->leNewAmount->text().toDouble();
     double sommarighe=ui->leCurrentAmount->text().toDouble();
 
-    double factor= dafare / sommarighe;
+
+   double factor=0.0;
+   factor= dafare / sommarighe;
+
+    if(dafare==0)
+    {
+        factor=1;
+    }
+    if(sommarighe==0){
+
+        factor=1;
+
+    }
+
+
 
     QString sql=QString();
     QSqlQuery q(db);
@@ -449,8 +463,10 @@ double HComposizioneLotto::recalculateAmount()
     {
 
         QModelIndex i = mod->index(j,7);
-        double current=i.data().toDouble();
-        double updaterow =i.data().toDouble() * factor;
+        double current=i.data(0).toDouble();
+        if(current<=0){ current=ui->leNewAmount->text().toDouble();}
+        double updaterow =current * factor;
+        qDebug()<<"recalculateamount"<<current<<factor;
         result+=updaterow;
         int row=mod->index(j,1).data(0).toInt();
 
@@ -758,12 +774,14 @@ void HComposizioneLotto::on_pbModifyAmount_clicked()
         {
             db.commit();
             getLotComposition();
+            emit updated();
         }else{
             db.rollback();
         }
 
         ui->leCurrentAmount->setText(QString::number(amount,'f',3));
         ui->tableView->setModel(getLotComposition());
+        ;
     }
 }
 

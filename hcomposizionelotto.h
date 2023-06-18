@@ -58,6 +58,7 @@ private slots:
 
 signals:
    void unloaded();
+   void updated();
 
 };
 

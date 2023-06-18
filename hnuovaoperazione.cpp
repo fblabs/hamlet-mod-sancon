@@ -665,6 +665,7 @@ void HnuovaOperazione::on_pushButton_clicked()
 
 
         emit trigger();
+        tbm->select();
         QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
 
 
@@ -716,6 +717,7 @@ void HnuovaOperazione::on_leProdotti_textChanged(const QString &arg1)
     filter="descrizione LIKE '%";
     filter.append(ui->leProdotti->text());
     filter.append("%'");
+    listaProdotti->setFilter(filter);
 }
 
 void HnuovaOperazione::on_leLotto_textChanged(const QString &arg1)
@@ -802,21 +804,21 @@ void HnuovaOperazione::on_cbShowPackages_toggled(bool checked)
 void HnuovaOperazione::on_cbtipo_currentIndexChanged(int index)
 {
     Q_UNUSED(index);
-    QString tipo;
-    tipo=ui->cbtipo->currentText();
+    int tipo;
+    tipo=ui->cbtipo->model()->index(ui->cbtipo->currentIndex(),0).data(0).toInt();
    // // qDebug()<<"tipo:"+tipo;
-    QSqlQuery q(db);
-    QString sql="SELECT ID from tipi_prodotto where descrizione=:tipo";
+   /* QSqlQuery q(db);
+    QString sql="SELECT ID from tipi_prodotto where ID=:tipo";
     q.prepare(sql);
-    q.bindValue(0,QVariant(tipo));
+    q.bindValue(":tipo",tipo);
     q.exec();
     q.first();
-    tipo=q.value(0).toString();
+    tipo=q.value(0).toString();*/
 
 
-   QString filter = "tipo=" + tipo;
+    QString filter = "tipo=" +QString::number(tipo);
 
 
     listaProdotti->setFilter(filter);
-   // // qDebug()<<"cbtipo->ixc"<<listaProdotti->filter()<<listaProdotti->query().lastQuery();
+    qDebug()<<"cbtipo->ixc"<<listaProdotti->filter()<<listaProdotti->query().lastError().text();
 }

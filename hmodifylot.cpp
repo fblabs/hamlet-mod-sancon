@@ -11,6 +11,8 @@
 #include "hlotmovements.h"
 #include "huser.h"
 
+#include <QCompleter>
+
 
 HModifyLot::HModifyLot(int pidlotto, HUser *p_user, QSqlDatabase pdb, const QString p_descrizione, QWidget *parent) :
     QWidget(parent),
@@ -54,14 +56,31 @@ HModifyLot::HModifyLot(int pidlotto, HUser *p_user, QSqlDatabase pdb, const QStr
     mtipi->setSort(1,Qt::AscendingOrder);
     mtipi->select();
 
-    ui->cbAnag->setModelColumn(1);
     ui->cbAnag->setModel(mang);
+    ui->cbAnag->setModelColumn(1);
+    ui->cbAnag->completer()->setModel(mang);
+    ui->cbAnag->completer()->setCompletionColumn(1);
+    ui->cbAnag->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    ui->cbAnag->setMaxCount(10);
 
-    ui->cbUm->setModelColumn(1);
+
+
     ui->cbUm->setModel(mum);
+    ui->cbUm->setModelColumn(1);
+    ui->cbUm->completer()->setModel(mum);
+    ui->cbUm->completer()->setCompletionColumn(1);
+    ui->cbUm->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    ui->cbUm->setMaxCount(10);
 
-    ui->cbtipo->setModelColumn(1);
+
+
     ui->cbtipo->setModel(mtipi);
+    ui->cbtipo->setModelColumn(1);
+    ui->cbtipo->completer()->setModel(mtipi);
+    ui->cbtipo->completer()->setCompletionColumn(1);
+    ui->cbtipo->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    ui->cbtipo->setMaxCount(10);
+
 
     loadLotData();
     getLoadAmount();
@@ -296,6 +315,7 @@ void HModifyLot::loadLotData()
 
     int ium=ui->cbUm->findText(q.value(0).toString());
     ui->cbUm->setCurrentIndex(ium);
+    emit updatedLot();
 }
 
 
