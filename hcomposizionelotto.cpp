@@ -260,7 +260,7 @@ void HComposizioneLotto::unloadAll()
             {
                 db.commit();
                 QMessageBox::information(this,QApplication::applicationName(),"Giacenza azzerata",QMessageBox::Ok);
-                emit unloaded();
+                emit sig_lot_updated();
             }
             else
             {
@@ -756,6 +756,7 @@ void HComposizioneLotto::on_pbModify_clicked()
 
     HWarehouseDetails *f=new HWarehouseDetails(user,db,idop);
     connect(f,SIGNAL(confirm()),this,SLOT(refresh_data()));
+    connect(f,SIGNAL(updated()),this,SIGNAL(sig_lot_updated()));
     f->show();
 
 }
@@ -768,20 +769,25 @@ void HComposizioneLotto::on_pbModifyAmount_clicked()
     if(QMessageBox::question(this,QApplication::applicationName(),"Modificare la quantità iniziale del lotto?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
 
+
         db.transaction();
         amount=recalculateAmount();
         if (amount >-1)
         {
             db.commit();
+            QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
             getLotComposition();
-            emit updated();
+            QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+            emit sig_lot_updated();
         }else{
             db.rollback();
         }
 
         ui->leCurrentAmount->setText(QString::number(amount,'f',3));
         ui->tableView->setModel(getLotComposition());
-        ;
+
     }
 }
+
+
 

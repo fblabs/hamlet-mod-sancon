@@ -28,47 +28,18 @@ HLotMovements::~HLotMovements()
 
 void HLotMovements::getLotMovements(int id)
 {
-  /*  QSqlRelationalTableModel *mod = new QSqlRelationalTableModel(0,db);
-    mod->setTable("operazioni");
-
-    mod->setRelation(3,QSqlRelation("utenti","ID","nome"));
-    mod->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
-    mod->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
-    mod->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
-
-    mod->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
-    mod->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
-    mod->setHeaderData(2,Qt::Horizontal,QObject::tr("Data"));
-    mod->setHeaderData(3,Qt::Horizontal,QObject::tr("Operatore"));
-    mod->setHeaderData(4,Qt::Horizontal,QObject::tr("Prodotto"));
-    mod->setHeaderData(5,Qt::Horizontal,QObject::tr("Azione"));
-    mod->setHeaderData(7,Qt::Horizontal,QObject::tr("Quantità"));
-    mod->setHeaderData(6,Qt::Horizontal,QObject::tr("U.M."));
-    mod->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
-
-
-    mod->setFilter("operazioni.IDlotto="+QString::number(id));
-    mod->setSort(2,Qt::DescendingOrder);
-    mod->select();
-    ui->tvMovimentiLotto->setModel(mod);
-    ui->tvMovimentiLotto->setItemDelegate(new QSqlRelationalDelegate(mod));
-    ui->tvMovimentiLotto->setColumnHidden(0,true);
-    ui->tvMovimentiLotto->setColumnHidden(1,true);
-    ui->tvMovimentiLotto->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);*/
 
     QSqlQueryModel *mod=new QSqlQueryModel();
     QSqlQuery q(db);
-    /*QString sql="SELECT operazioni.data as 'DATA',anagrafica.ragione_sociale as 'ANAGRAFICA',prodotti.descrizione as 'PRODOTTO',azioni.descrizione as 'AZIONE',FORMAT(operazioni.quantita,4) as 'QUANTITA\', unita_di_misura.descrizione, operazioni.note as 'NOTE'\
-        from operazioni,lotdef,anagrafica,utenti,prodotti, azioni,unita_di_misura\
-                  where lotdef.ID=operazioni.IDLotto and anagrafica.ID=lotdef.anagrafica and prodotti.ID=operazioni.IDprodotto and azioni.ID=operazioni.azione and unita_di_misura.ID=operazioni.um and operazioni.IDLotto="+QString::number(id);*/
+    QString sql="SELECT operazioni.data as 'DATA',azioni.descrizione as 'AZIONE',lotdef.lot as 'LOTTO',prodotti.descrizione as 'PRODOTTO',operazioni.quantita as \"QUANTITA'\",lotdef.giacenza as 'GIACENZA' FROM fbgmdb260.operazioni,fbgmdb260.lotdef,fbgmdb260.azioni,fbgmdb260.prodotti where azioni.ID=operazioni.azione and prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and IDLotto="+QString::number(id);
 
-    QString sql="SELECT operazioni.data as 'DATA',azioni.descrizione as 'AZIONE',lotdef.lot as 'LOTTO',prodotti.descrizione as 'PRODOTTO',operazioni.quantita as 'QUANTITA\\''FROM fbgmdb260.operazioni,fbgmdb260.lotdef,fbgmdb260.azioni,fbgmdb260.prodotti where azioni.ID=operazioni.azione and prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and IDLotto="+QString::number(id);
     q.exec(sql);
     mod->setQuery(q);
     qDebug()<<q.lastError().text();
     ui->tvMovimentiLotto->setModel(mod);
     ui->tvMovimentiLotto->setItemDelegate(new QSqlRelationalDelegate(mod));
     ui->tvMovimentiLotto->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
 
 }
 

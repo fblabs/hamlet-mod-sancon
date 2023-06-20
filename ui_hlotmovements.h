@@ -50,6 +50,7 @@ public:
         tvMovimentiLotto->setAlternatingRowColors(true);
         tvMovimentiLotto->setSelectionMode(QAbstractItemView::SingleSelection);
         tvMovimentiLotto->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvMovimentiLotto->verticalHeader()->setVisible(false);
 
         verticalLayout->addWidget(tvMovimentiLotto);
 

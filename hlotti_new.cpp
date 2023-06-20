@@ -41,7 +41,7 @@ HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     ui->cbProduct->setModelColumn(1);
 
     ui->tvLotti->setColumnHidden(0,true);
-    ui->tvLotti->setModel(loadLotsData());
+    loadLotsData();
 
     QModelIndex index=ui->tvLotti->model()->index(0,0);
     if(index.isValid())  ui->tvLotti->selectionModel()->setCurrentIndex(index,QItemSelectionModel::Select);
@@ -60,7 +60,7 @@ HLotti_new::~HLotti_new()
     delete ui;
 }
 
-QSqlQueryModel* HLotti_new::loadLotsData()
+void HLotti_new::loadLotsData()
 {
     QSqlQueryModel * local_mod=new QSqlQueryModel();
     QString sql=QString();
@@ -104,10 +104,11 @@ QSqlQueryModel* HLotti_new::loadLotsData()
 
     q.exec();
 
-    qDebug()<<q.lastError();
+
 
     local_mod->setQuery(q);
-    return local_mod;
+    local_mod->setHeaderData(5,Qt::Horizontal,"GIACENZA");
+    ui->tvLotti->setModel(local_mod);
 }
 
 
@@ -119,14 +120,14 @@ QSqlQueryModel* HLotti_new::loadLotsData()
 void HLotti_new::on_deFrom_userDateChanged(const QDate &date)
 {
     ui->tvLotti->setColumnHidden(0,true);
-    ui->tvLotti->setModel(loadLotsData());
+    loadLotsData();
 }
 
 
 void HLotti_new::on_deTo_userDateChanged(const QDate &date)
 {
     ui->tvLotti->setColumnHidden(0,true);
-    ui->tvLotti->setModel(loadLotsData());
+   loadLotsData();
 
 }
 
@@ -142,7 +143,7 @@ void HLotti_new::on_tvLotti_doubleClicked(const QModelIndex &index)
     int idlotto=ui->tvLotti->model()->index(ui->tvLotti->currentIndex().row(),0).data(0).toInt();
 
     HModifyLot *f=new HModifyLot(idlotto,user,db);
-    //   connect(f,SIGNAL(updatedLot()),this,SLOT(updateTableView()));
+    connect(f,SIGNAL(sig_updated_lot()),this,SLOT(refresh_data()));
     f->show();
 }
 
@@ -151,6 +152,7 @@ void HLotti_new::on_pbLotInfo_clicked()
 {
     int idlotto=ui->tvLotti->model()->index(ui->tvLotti->currentIndex().row(),0).data(0).toInt();
     HModifyLot *f=new HModifyLot(idlotto,user,db);
+    connect(f,SIGNAL(sig_updated_lot()),this,SLOT(refresh_data()));
     f->show();
 }
 
@@ -167,13 +169,13 @@ void HLotti_new::getLotTypes()
 
 void HLotti_new::on_ckbUseType_toggled(bool checked)
 {
-    ui->tvLotti->setModel(loadLotsData());
+    loadLotsData();
 }
 
 
 void HLotti_new::on_cbType_currentIndexChanged(int index)
 {
-    ui->tvLotti->setModel(loadLotsData());
+    loadLotsData();
 }
 
 void HLotti_new::print()
@@ -382,13 +384,13 @@ QSqlQueryModel* HLotti_new::getProducts()
 
 void HLotti_new::on_cbProduct_currentIndexChanged(int index)
 {
-    ui->tvLotti->setModel(loadLotsData());
+   loadLotsData();
 }
 
 
 void HLotti_new::on_ckbUseProduct_toggled(bool checked)
 {
-    ui->tvLotti->setModel(loadLotsData());
+   loadLotsData();
 }
 
 
@@ -455,7 +457,7 @@ void HLotti_new::on_pbDelete_clicked()
         int id=ui->tvLotti->model()->index(ui->tvLotti->currentIndex().row(),0).data(0).toInt();
         deleteLot(id);
         QModelIndex ix=ui->tvLotti->currentIndex();
-        ui->tvLotti->setModel(loadLotsData());
+        loadLotsData();
         ui->tvLotti->setCurrentIndex(ix);
     }
 }
@@ -562,7 +564,7 @@ void HLotti_new::deleteLot(const int p_id)
 void HLotti_new::on_chb_bio_toggled(bool checked)
 {
 
-     ui->tvLotti->setModel(loadLotsData());
+     loadLotsData();
 }
 
 
@@ -571,7 +573,13 @@ void HLotti_new::on_chb_bio_toggled(bool checked)
 
 void HLotti_new::on_le_search_returnPressed()
 {
-     ui->tvLotti->setModel(loadLotsData());
+    loadLotsData();
      //ui->le_search->setText(QString());
+}
+
+void HLotti_new::refresh_data()
+{
+     qDebug()<<"REFRESC";
+     loadLotsData();
 }
 

@@ -136,22 +136,23 @@ void HModifyLot::updateLot()
     }
 
 
-    q.bindValue(":anag",ui->cbAnag->model()->index(ui->cbAnag->currentIndex(),0).data(0));
+    q.bindValue(":anag",ui->cbAnag->model()->index(ui->cbAnag->currentIndex(),0).data(0).toInt());
     q.bindValue(":lotf",QVariant(ui->leLotFornitore->text()));
     q.bindValue(":ean",QVariant(ui->leEan->text()));
-    q.bindValue(":tipo",ui->cbtipo->model()->index(ui->cbtipo->currentIndex(),0).data(0));
+    q.bindValue(":tipo",ui->cbtipo->model()->index(ui->cbtipo->currentIndex(),0).data(0).toInt());
     q.bindValue(":note",QVariant(ui->plainTextEdit->toPlainText()));
     q.bindValue(":oper",QVariant(ui->leOperatore->text()));
     q.bindValue(":lotid",QVariant(lot));
 
     db.transaction();
     b=q.exec();
-   // // qDebug()<<q.lastQuery()<<q.lastError().text();
+
     if(b)
     {
         db.commit();
-        emit updatedLot();
+        emit sig_updated_lot();
         QMessageBox::information(this,QApplication::applicationName(),"modifiche salvate",QMessageBox::Ok);
+
 
 
     }
@@ -160,7 +161,7 @@ void HModifyLot::updateLot()
 
         QMessageBox::warning(this,QApplication::applicationName(),"modifiche salvate",QMessageBox::Ok);
         db.rollback();
-        QMessageBox::information(this,QApplication::applicationName(),"Errore salvando le modifiche",QMessageBox::Ok);
+        QMessageBox::information(this,QApplication::applicationName(),"Errore salvando le modifiche:\n"+q.lastError().text(),QMessageBox::Ok);
 
 
     }
@@ -171,8 +172,10 @@ void HModifyLot::on_pushButton_clicked()
 {
     if (QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Salvare le modifiche?",QMessageBox::Ok|QMessageBox::Cancel))
     {
-         updateLot();
+        updateLot();
+
     }
+
 }
 
 void HModifyLot::on_pbComposizione_clicked()
@@ -181,7 +184,8 @@ void HModifyLot::on_pbComposizione_clicked()
     QString desc=ui->leLot->text()+" - "+ui->leProd->text();
 
     HComposizioneLotto *f=new HComposizioneLotto(lot,desc,user,db);
-    connect(f,SIGNAL(unloaded()),this,SLOT(loadLotData()));
+    connect(f,SIGNAL(sig_lot_updated()),this,SIGNAL(sig_updated_lot()));
+     connect(f,SIGNAL(sig_lot_updated()),this,SLOT(loadLotData()));
 
     f->show();
 
@@ -315,7 +319,7 @@ void HModifyLot::loadLotData()
 
     int ium=ui->cbUm->findText(q.value(0).toString());
     ui->cbUm->setCurrentIndex(ium);
-    emit updatedLot();
+    emit sig_updated_lot();
 }
 
 

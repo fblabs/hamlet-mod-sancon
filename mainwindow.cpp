@@ -167,7 +167,7 @@ void MainWindow::enableButtonsForRole()
 
 
     ui->tbUtenti->setEnabled(user->get_utenti_v()>0);
-    ui->pBNewOperation->setEnabled(user->get_operazioni_u()>0);
+    ui->pBNewOperation->setEnabled(user->get_operazioni_v()>0);
     ui->pbCalcoloCosti->setEnabled(user->get_costi_v()>0);
     ui->tbAnag->setEnabled(user->get_anagrafica_v()>0);
     ui->pbNotifiche->setEnabled(user->get_notifiche_v()>0);
@@ -175,7 +175,7 @@ void MainWindow::enableButtonsForRole()
     ui->pbContacts->setEnabled(user->get_contatti_v()>0);
     ui->tbLotti->setEnabled(user->get_lotti_v()>0);
     ui->tbMagaz->setEnabled(user->get_operazioni_v()>0);
-    ui->pBNewOperation->setEnabled(user->get_operazioni_u()>0);
+    ui->pBNewOperation->setEnabled(user->get_operazioni_v()>0);
     ui->tbProdotti->setEnabled( user->get_prodotti_v()>0);
     ui->pbSchede->setEnabled( user->get_schede_v()>0);
     ui->tbRicette->setEnabled( user->get_ricette_v()>0);

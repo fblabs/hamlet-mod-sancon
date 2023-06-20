@@ -174,13 +174,14 @@ void HCosti::get_ricetta()
     q.bindValue(":tot_q",tot_peso_ricetta);
     q.bindValue(":idp",idp);
     q.exec();
+    qDebug()<<q.lastError().text();
     recipe_org_model->setQuery(q);
     recipe_model=QueryToCosti(recipe_org_model);
 
 
     double percent_riga=0.0;
 
-
+\
     tot_quantita=get_peso_totale_ricetta();
 
     if(modify)

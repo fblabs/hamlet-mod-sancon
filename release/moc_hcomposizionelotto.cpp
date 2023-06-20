@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HComposizioneLotto_t {
     QByteArrayData data[28];
-    char stringdata0[416];
+    char stringdata0[423];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,36 +33,36 @@ struct qt_meta_stringdata_HComposizioneLotto_t {
 static const qt_meta_stringdata_HComposizioneLotto_t qt_meta_stringdata_HComposizioneLotto = {
     {
 QT_MOC_LITERAL(0, 0, 18), // "HComposizioneLotto"
-QT_MOC_LITERAL(1, 19, 8), // "unloaded"
-QT_MOC_LITERAL(2, 28, 0), // ""
-QT_MOC_LITERAL(3, 29, 17), // "getLotComposition"
-QT_MOC_LITERAL(4, 47, 15), // "QSqlQueryModel*"
-QT_MOC_LITERAL(5, 63, 9), // "getLotUse"
-QT_MOC_LITERAL(6, 73, 12), // "refresh_data"
-QT_MOC_LITERAL(7, 86, 16), // "findLotFirstLoad"
-QT_MOC_LITERAL(8, 103, 17), // "recalculateAmount"
-QT_MOC_LITERAL(9, 121, 26), // "on_tableView_doubleClicked"
-QT_MOC_LITERAL(10, 148, 11), // "QModelIndex"
-QT_MOC_LITERAL(11, 160, 5), // "index"
-QT_MOC_LITERAL(12, 166, 23), // "on_pushButton_3_clicked"
-QT_MOC_LITERAL(13, 190, 5), // "print"
-QT_MOC_LITERAL(14, 196, 23), // "on_pushButton_2_clicked"
-QT_MOC_LITERAL(15, 220, 16), // "on_pbUse_clicked"
-QT_MOC_LITERAL(16, 237, 8), // "printUse"
-QT_MOC_LITERAL(17, 246, 16), // "printComposition"
-QT_MOC_LITERAL(18, 263, 7), // "getTipo"
-QT_MOC_LITERAL(19, 271, 3), // "idl"
-QT_MOC_LITERAL(20, 275, 10), // "getDetails"
-QT_MOC_LITERAL(21, 286, 15), // "deleteComponent"
-QT_MOC_LITERAL(22, 302, 9), // "unloadAll"
-QT_MOC_LITERAL(23, 312, 16), // "on_pbAdd_clicked"
-QT_MOC_LITERAL(24, 329, 19), // "on_pbRemove_clicked"
-QT_MOC_LITERAL(25, 349, 20), // "on_pbScarico_clicked"
-QT_MOC_LITERAL(26, 370, 19), // "on_pbModify_clicked"
-QT_MOC_LITERAL(27, 390, 25) // "on_pbModifyAmount_clicked"
+QT_MOC_LITERAL(1, 19, 15), // "sig_lot_updated"
+QT_MOC_LITERAL(2, 35, 0), // ""
+QT_MOC_LITERAL(3, 36, 17), // "getLotComposition"
+QT_MOC_LITERAL(4, 54, 15), // "QSqlQueryModel*"
+QT_MOC_LITERAL(5, 70, 9), // "getLotUse"
+QT_MOC_LITERAL(6, 80, 12), // "refresh_data"
+QT_MOC_LITERAL(7, 93, 16), // "findLotFirstLoad"
+QT_MOC_LITERAL(8, 110, 17), // "recalculateAmount"
+QT_MOC_LITERAL(9, 128, 26), // "on_tableView_doubleClicked"
+QT_MOC_LITERAL(10, 155, 11), // "QModelIndex"
+QT_MOC_LITERAL(11, 167, 5), // "index"
+QT_MOC_LITERAL(12, 173, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(13, 197, 5), // "print"
+QT_MOC_LITERAL(14, 203, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(15, 227, 16), // "on_pbUse_clicked"
+QT_MOC_LITERAL(16, 244, 8), // "printUse"
+QT_MOC_LITERAL(17, 253, 16), // "printComposition"
+QT_MOC_LITERAL(18, 270, 7), // "getTipo"
+QT_MOC_LITERAL(19, 278, 3), // "idl"
+QT_MOC_LITERAL(20, 282, 10), // "getDetails"
+QT_MOC_LITERAL(21, 293, 15), // "deleteComponent"
+QT_MOC_LITERAL(22, 309, 9), // "unloadAll"
+QT_MOC_LITERAL(23, 319, 16), // "on_pbAdd_clicked"
+QT_MOC_LITERAL(24, 336, 19), // "on_pbRemove_clicked"
+QT_MOC_LITERAL(25, 356, 20), // "on_pbScarico_clicked"
+QT_MOC_LITERAL(26, 377, 19), // "on_pbModify_clicked"
+QT_MOC_LITERAL(27, 397, 25) // "on_pbModifyAmount_clicked"
 
     },
-    "HComposizioneLotto\0unloaded\0\0"
+    "HComposizioneLotto\0sig_lot_updated\0\0"
     "getLotComposition\0QSqlQueryModel*\0"
     "getLotUse\0refresh_data\0findLotFirstLoad\0"
     "recalculateAmount\0on_tableView_doubleClicked\0"
@@ -150,7 +150,7 @@ void HComposizioneLotto::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         auto *_t = static_cast<HComposizioneLotto *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->unloaded(); break;
+        case 0: _t->sig_lot_updated(); break;
         case 1: { QSqlQueryModel* _r = _t->getLotComposition();
             if (_a[0]) *reinterpret_cast< QSqlQueryModel**>(_a[0]) = std::move(_r); }  break;
         case 2: { QSqlQueryModel* _r = _t->getLotUse();
@@ -184,7 +184,7 @@ void HComposizioneLotto::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (HComposizioneLotto::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&HComposizioneLotto::unloaded)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&HComposizioneLotto::sig_lot_updated)) {
                 *result = 0;
                 return;
             }
@@ -233,7 +233,7 @@ int HComposizioneLotto::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void HComposizioneLotto::unloaded()
+void HComposizioneLotto::sig_lot_updated()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }

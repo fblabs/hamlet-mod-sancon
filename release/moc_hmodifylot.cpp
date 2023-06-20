@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HModifyLot_t {
     QByteArrayData data[12];
-    char stringdata0[179];
+    char stringdata0[184];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,20 +33,20 @@ struct qt_meta_stringdata_HModifyLot_t {
 static const qt_meta_stringdata_HModifyLot_t qt_meta_stringdata_HModifyLot = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "HModifyLot"
-QT_MOC_LITERAL(1, 11, 10), // "updatedLot"
-QT_MOC_LITERAL(2, 22, 0), // ""
-QT_MOC_LITERAL(3, 23, 9), // "updateLot"
-QT_MOC_LITERAL(4, 33, 17), // "on_cbScad_toggled"
-QT_MOC_LITERAL(5, 51, 7), // "checked"
-QT_MOC_LITERAL(6, 59, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(7, 81, 25), // "on_pbComposizione_clicked"
-QT_MOC_LITERAL(8, 107, 18), // "on_pbClose_clicked"
-QT_MOC_LITERAL(9, 126, 26), // "on_pbLotOperations_clicked"
-QT_MOC_LITERAL(10, 153, 13), // "getLoadAmount"
-QT_MOC_LITERAL(11, 167, 11) // "loadLotData"
+QT_MOC_LITERAL(1, 11, 15), // "sig_updated_lot"
+QT_MOC_LITERAL(2, 27, 0), // ""
+QT_MOC_LITERAL(3, 28, 9), // "updateLot"
+QT_MOC_LITERAL(4, 38, 17), // "on_cbScad_toggled"
+QT_MOC_LITERAL(5, 56, 7), // "checked"
+QT_MOC_LITERAL(6, 64, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(7, 86, 25), // "on_pbComposizione_clicked"
+QT_MOC_LITERAL(8, 112, 18), // "on_pbClose_clicked"
+QT_MOC_LITERAL(9, 131, 26), // "on_pbLotOperations_clicked"
+QT_MOC_LITERAL(10, 158, 13), // "getLoadAmount"
+QT_MOC_LITERAL(11, 172, 11) // "loadLotData"
 
     },
-    "HModifyLot\0updatedLot\0\0updateLot\0"
+    "HModifyLot\0sig_updated_lot\0\0updateLot\0"
     "on_cbScad_toggled\0checked\0"
     "on_pushButton_clicked\0on_pbComposizione_clicked\0"
     "on_pbClose_clicked\0on_pbLotOperations_clicked\0"
@@ -102,7 +102,7 @@ void HModifyLot::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<HModifyLot *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->updatedLot(); break;
+        case 0: _t->sig_updated_lot(); break;
         case 1: _t->updateLot(); break;
         case 2: _t->on_cbScad_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 3: _t->on_pushButton_clicked(); break;
@@ -117,7 +117,7 @@ void HModifyLot::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (HModifyLot::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&HModifyLot::updatedLot)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&HModifyLot::sig_updated_lot)) {
                 *result = 0;
                 return;
             }
@@ -166,7 +166,7 @@ int HModifyLot::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void HModifyLot::updatedLot()
+void HModifyLot::sig_updated_lot()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }

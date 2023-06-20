@@ -27,10 +27,10 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
     db=pdb;
     user=pusr;
 
-    ui->pushButton->setEnabled(false);
+   /* ui->pushButton->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
     ui->pushButton_3->setEnabled(false);
-    ui->tnote->setReadOnly(true);
+    ui->tnote->setReadOnly(true);*/
 
 
 
@@ -42,6 +42,12 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
         ui->pushButton_2->setEnabled(true);
         ui->pushButton_3->setEnabled(true);
         ui->tnote->setReadOnly(false);
+    }else{
+        ui->pushButton->setEnabled(false);
+        ui->pushButton_2->setEnabled(false);
+        ui->pushButton_3->setEnabled(false);
+        ui->tnote->setReadOnly(true);
+
     }
 
 

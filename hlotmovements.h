@@ -23,6 +23,7 @@ private slots:
     void getLotMovements(int id);
     void on_pushButton_clicked();
     void getGiacenzaLotto(int id);
+
 };
 
 #endif // HLOTMOVEMENTS_H
