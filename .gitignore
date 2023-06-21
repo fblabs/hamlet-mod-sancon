@@ -452,3 +452,4 @@ release/qrc_icons.cpp
 Makefile.Debug
 Makefile.Release
 *.user
+*.user
