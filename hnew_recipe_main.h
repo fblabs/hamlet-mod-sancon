@@ -25,7 +25,6 @@ private:
 
 private slots:
     void get_products();
-    void on_pbCreaRicetta_clicked();
 
     void on_pbAddRecipeAndproduct_clicked();
 
@@ -37,7 +36,7 @@ private slots:
 
 signals:
     void sig_add_recipe_and_product(const int p_tipo );
-    void sig_add_recipe(const int id_prodotto=-1);
+    void sig_add_recipe_to_product(const int id_prodotto);
 };
 
 #endif // HNEW_RECIPE_MAIN_H

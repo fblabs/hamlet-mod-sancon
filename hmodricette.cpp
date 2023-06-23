@@ -27,6 +27,7 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     ui->setupUi(this);
     db=pdb;
     user=pusr;
+    current_id=-1;
 
     ui->pushButton->setEnabled(user->get_ricette_u()>0);
     ui->pushButton_6->setEnabled(user->get_ricette_u()>0);
@@ -47,7 +48,7 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     ui->cbRicette->setModelColumn(1);
 
 
-    ui->cbRicette->setCurrentIndex(0);
+    ui->cbRicette->setCurrentIndex(-1);
 
     connect(ui->cbRicette,SIGNAL(currentIndexChanged(int)),this,SLOT(loadRicetta()));
 
@@ -128,6 +129,7 @@ void HModRicette::getRicette()
     QSqlQuery q(db);
     QString sql=QString();
 
+
     if(ui->rb_con->isChecked())
     {
         ui->pushButton_3->setEnabled(false);
@@ -137,7 +139,8 @@ void HModRicette::getRicette()
     else
     {
          ui->pushButton_3->setEnabled(true);
-        sql="SELECT prodotti.ID,prodotti.descrizione from prodotti WHERE prodotti.ID not in (SELECT ID_prodotto from ricette) AND prodotti.tipo in (2,6) ORDER BY prodotti.descrizione ASC";
+      //  sql="SELECT prodotti.ID,prodotti.descrizione from prodotti WHERE prodotti.ID not in (SELECT ID_prodotto from ricette) AND prodotti.tipo in (2,6) ORDER BY prodotti.descrizione ASC";
+         sql="select distinctrow prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID NOT IN (SELECT ricette.ID_prodotto from ricette) and prodotti.tipo in (2,6)  ";
     }
     q.exec(sql);
     qmric->setQuery(q);
@@ -149,7 +152,7 @@ void HModRicette::getRicette()
     comp->setCompletionMode(QCompleter::PopupCompletion);
     comp->setCaseSensitivity(Qt::CaseInsensitive);
     ui->cbRicette->setCompleter(comp);
-   // ui->cbRicette->setCurrentIndex(-1);
+    ui->cbRicette->setCurrentIndex(0);
 
 
 }
@@ -197,7 +200,7 @@ void HModRicette::creatNewRecipe(const int p_tipo)
             getRicette();
             int ix =ui->cbRicette->findText(ui->cbRicette->currentText());
             ui->cbRicette->setCurrentIndex(ix);
-            QMessageBox::information(this,QApplication::applicationName(),"RICETTA CREATA",QMessageBox::Ok);
+            //QMessageBox::information(this,QApplication::applicationName(),"RICETTA CREATA",QMessageBox::Ok);
             ui->rb_con->toggle();
 
         }
@@ -228,6 +231,32 @@ void HModRicette::creatNewRecipe(const int p_tipo)
 
 
 
+}
+
+void HModRicette::add_recipe_to_product(const int p_product)
+{
+    QSqlQuery q(db);
+    db.transaction();
+    int id=p_product;
+
+    QString sql="INSERT INTO ricette (ID_prodotto,note) VALUES (:id,'')";
+    q.prepare(sql);
+    q.bindValue(":id",id);
+
+    bool b=q.exec();
+    if(b)
+    {
+        db.commit();
+        getRicette();
+        QMessageBox::information(this,QApplication::applicationName(),"RICETTA INIZIALIZZATA",QMessageBox::Ok);
+    }
+    else
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO LA RICETTA!"+q.lastError().text(),QMessageBox::Ok);
+        qDebug()<<q.lastError().text();
+        db.rollback();
+        return;
+    }
 }
 
 void HModRicette::addRiga(QList<QStandardItem*>list)
@@ -689,11 +718,12 @@ void HModRicette::on_pushButton_3_clicked()
 
     ui->cbRicette->model()->rowCount()<1? id_prodotto=-1:id_prodotto=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
 
-    if (id_prodotto<0){
+
     HNew_recipe_main *f=new HNew_recipe_main(id_prodotto,db);
     connect(f,SIGNAL(sig_add_recipe_and_product(int)),this,SLOT(creatNewRecipe(int)));
+    connect(f,SIGNAL(sig_add_recipe_to_product(int)),this,SLOT(add_recipe_to_product(int)));
     f->show();
-    }
+
 
 
 

@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QSqlError>
 #include <QMessageBox>
+#include <QDoubleValidator>
 
 HLastLots::HLastLots(QWidget *parent, QSqlDatabase pdb, double qrecipe, QString product) :
     QWidget(parent),
@@ -39,6 +40,9 @@ HLastLots::HLastLots(QWidget *parent, QSqlDatabase pdb, double qrecipe, QString 
     cmp->setCompletionMode(QCompleter::InlineCompletion);
     cmp->setCaseSensitivity(Qt::CaseInsensitive);
     ui->leSearch->setCompleter(cmp);
+
+    QValidator *iv=new QDoubleValidator(0.000,999999,3);
+    ui->leQua->setValidator(iv);
 
 
 

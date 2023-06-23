@@ -17,7 +17,7 @@ HNew_recipe_main::HNew_recipe_main(int p_id_prodotto, QSqlDatabase p_db, QWidget
     prod_mod = new QSqlQueryModel();
     id_prodotto_main=p_id_prodotto;
 
-   /* setMinimumSize(0,0);
+    /* setMinimumSize(0,0);
     update();
     QMetaObject::invokeMethod(this, [=](){ resize(minimumSize()); });*/
 
@@ -27,7 +27,8 @@ HNew_recipe_main::HNew_recipe_main(int p_id_prodotto, QSqlDatabase p_db, QWidget
     }
     else
     {
-         ui->cb_what->setChecked(false);
+        ui->cb_what->setChecked(false);
+        get_products();
     }
 
 
@@ -47,9 +48,8 @@ void HNew_recipe_main::get_products()
 
     if(ui->cb_what->isChecked()){
 
-
         return;
-       // sql= "SELECT prodotti.ID,prodotti.descrizione FROM prodotti,ricette WHERE ricette.ID_prodotto=prodotti.ID";
+        // sql= "SELECT prodotti.ID,prodotti.descrizione FROM prodotti,ricette WHERE ricette.ID_prodotto=prodotti.ID";
 
     }
     else
@@ -57,14 +57,14 @@ void HNew_recipe_main::get_products()
         sql="select prodotti.id, prodotti.descrizione from prodotti where prodotti.tipo in (2,6) and prodotti.ID not in (SELECT ricette.ID_prodotto from ricette)";
 
 
-    q.prepare(sql);
-    q.exec();
+        q.prepare(sql);
+        q.exec();
 
-    prod_mod->setQuery(q);
+        prod_mod->setQuery(q);
 
-    ui->lvProducts->setModel(prod_mod);
-    ui->lvProducts->setModelColumn(1);
-    qDebug()<<"NON E' CECCATO";
+        ui->lvProducts->setModel(prod_mod);
+        ui->lvProducts->setModelColumn(1);
+        qDebug()<<"NON E' CECCATO";
 
     }
 
@@ -78,11 +78,7 @@ void HNew_recipe_main::get_products()
 }
 
 
-void HNew_recipe_main::on_pbCreaRicetta_clicked()
-{
-    int idProdotto=ui->lvProducts->model()->index(ui->lvProducts->currentIndex().row(),0).data(0).toInt();
 
-}
 
 
 void HNew_recipe_main::on_pbAddRecipeAndproduct_clicked()
@@ -92,38 +88,18 @@ void HNew_recipe_main::on_pbAddRecipeAndproduct_clicked()
         if(QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Creare nuovo prodotto e relativa ricetta?",QMessageBox::Ok|QMessageBox::Cancel))
         {
 
-        int tipo=-1;
-         ui->rbProdotto_finito->isChecked()? tipo=2: tipo=6;
+            int tipo=-1;
+            ui->rbProdotto_finito->isChecked()? tipo=2: tipo=6;
 
-        emit sig_add_recipe_and_product(tipo);
-        close();
+            emit sig_add_recipe_and_product(tipo);
+            close();
         }
 
     }else{
-        QSqlQuery q(db);
-        db.transaction();
-        //int id_prodotto_main=ui->lvProducts->model()->index(ui->lvProducts->currentIndex().row(),0).data(0).toInt();
-        QString sql="INSERT INTO ricette (ID_prodotto,note) VALUES (:id,'')";
-        q.prepare(sql);
-        q.bindValue(":id",id_prodotto_main);
-
-        bool b=q.exec();
-        if(b)
-        {
-        db.commit();
-        get_products();
-        QMessageBox::information(this,QApplication::applicationName(),"RICETTA INIZIALIZZATA",QMessageBox::Ok);
-        }
-        else
-        {
-        QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO LA RICETTA!"+q.lastError().text(),QMessageBox::Ok);
-        qDebug()<<q.lastError().text();
-        db.rollback();
-        return;
-        }
 
 
 
+        emit sig_add_recipe_to_product(id_prodotto_main);
         //QMessageBox::information(this,QApplication::applicationName(),"RICETTA CREATA",QMessageBox::Ok);
 
 
@@ -139,11 +115,11 @@ void HNew_recipe_main::on_leSearchProduct_returnPressed()
 
     if(ui->cb_what->isChecked())
     {
-    sql="SELECT prodotti.ID,prodotti.descrizione FROM prodotti,ricette WHERE ricette.ID_prodotto=prodotti.ID and prodotti.descrizione LIKE '%" + ui->leSearchProduct->text() + "%'";
+        sql="SELECT prodotti.ID,prodotti.descrizione FROM prodotti,ricette WHERE ricette.ID_prodotto=prodotti.ID and prodotti.descrizione LIKE '%" + ui->leSearchProduct->text() + "%'";
     }
     else
     {
-    sql="select prodotti.id, prodotti.descrizione from prodotti where  prodotti.descrizione LIKE '%" + ui->leSearchProduct->text() + "%' and prodotti.tipo in (2,6) and prodotti.tipo not in (SELECT ricette.ID_prodotto from ricette)";
+        sql="select prodotti.id, prodotti.descrizione from prodotti where  prodotti.descrizione LIKE '%" + ui->leSearchProduct->text() + "%' and prodotti.tipo in (2,6) and prodotti.tipo not in (SELECT ricette.ID_prodotto from ricette)";
     }
     q.prepare(sql);
     q.bindValue(":s",ui->leSearchProduct->text());
@@ -169,35 +145,30 @@ void HNew_recipe_main::on_cb_what_toggled(bool checked)
 
 
 
-
     if(!checked)
     {
 
-    get_products();
-    ui->lvProducts->setVisible(true);
-    ui->leSearchProduct->setVisible(true);
-    ui->label->setVisible(true);
-    ui->rbProdotto_finito->setVisible(false);
-    ui->rbSemilavorato->setVisible(false);
-    setMinimumSize(500,300);
+        get_products();
+        ui->lvProducts->setVisible(true);
+        ui->leSearchProduct->setVisible(true);
+        ui->label->setVisible(true);
+        ui->rbProdotto_finito->setVisible(false);
+        ui->rbSemilavorato->setVisible(false);
+        setMinimumSize(500,300);
 
 
     }
     else
     {
-
-       ui->lvProducts->setVisible(false);
-       ui->leSearchProduct->setVisible(false);
-       ui->label->setVisible(false);
-       ui->rbProdotto_finito->setVisible(true);
-       ui->rbSemilavorato->setVisible(true);
-       setMinimumSize(500,70);
+        get_products();
+        ui->lvProducts->setVisible(false);
+        ui->leSearchProduct->setVisible(false);
+        ui->label->setVisible(false);
+        ui->rbProdotto_finito->setVisible(true);
+        ui->rbSemilavorato->setVisible(true);
+        setMinimumSize(500,70);
 
     }
-
-
-
-
 
     update();
     QMetaObject::invokeMethod(this, [=](){ resize(minimumSize()); });

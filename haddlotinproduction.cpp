@@ -44,6 +44,7 @@ HAddLotInProduction::HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb
 
     ui->dsbQt->setValue(data->quantity);
 
+
     connect(ui->cbLastLots,SIGNAL(currentIndexChanged(int)),this,SLOT(lastLots()));
 }
 

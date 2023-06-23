@@ -54,6 +54,7 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pbAddRow;
     QPushButton *pbDeleteRow;
+    QSpacerItem *horizontalSpacer_4;
     QLabel *lbQtot;
     QLineEdit *leTotal;
     QPushButton *pbReset;
@@ -212,6 +213,10 @@ public:
 
         horizontalLayout_3->addWidget(pbDeleteRow);
 
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_4);
+
         lbQtot = new QLabel(HModRicette);
         lbQtot->setObjectName(QString::fromUtf8("lbQtot"));
         lbQtot->setMaximumSize(QSize(100, 16777215));
@@ -294,7 +299,10 @@ public:
         label_2->setText(QCoreApplication::translate("HModRicette", "Prodotti:", nullptr));
         rb_con->setText(QCoreApplication::translate("HModRicette", "Visualizza prodotti con ricetta gi\303\240 impostata", nullptr));
         rb_senza->setText(QCoreApplication::translate("HModRicette", "Visualzza prodotti senza ricetta", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("HModRicette", "Rricetta", nullptr));
+#if QT_CONFIG(tooltip)
+        pushButton_3->setToolTip(QCoreApplication::translate("HModRicette", "Inizi<liza o crea una ricetta a seconda che il prodotto esista o meno, nel qual cso crea un nuovo prodotto finito o semilavorato", nullptr));
+#endif // QT_CONFIG(tooltip)
+        pushButton_3->setText(QCoreApplication::translate("HModRicette", "Ricetta", nullptr));
         pbduplica->setText(QCoreApplication::translate("HModRicette", "Duplica Ricetta", nullptr));
         pbC4R->setText(QCoreApplication::translate("HModRicette", "Clienti associati", nullptr));
         pushButton_4->setText(QCoreApplication::translate("HModRicette", "Associazioni ricette-clienti", nullptr));
@@ -311,7 +319,7 @@ public:
 #endif // QT_CONFIG(tooltip)
         pbReset->setText(QString());
         pushButton->setText(QCoreApplication::translate("HModRicette", "Salva", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("HModRicette", "Annnula", nullptr));
+        pushButton_6->setText(QCoreApplication::translate("HModRicette", "Annulla", nullptr));
         pushButton_5->setText(QCoreApplication::translate("HModRicette", "Stampa", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HModRicette", "Chiudi", nullptr));
     } // retranslateUi

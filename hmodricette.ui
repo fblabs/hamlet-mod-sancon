@@ -104,8 +104,11 @@
      </item>
      <item row="0" column="1">
       <widget class="QPushButton" name="pushButton_3">
+       <property name="toolTip">
+        <string>Inizi&lt;liza o crea una ricetta a seconda che il prodotto esista o meno, nel qual cso crea un nuovo prodotto finito o semilavorato</string>
+       </property>
        <property name="text">
-        <string>Rricetta</string>
+        <string>Ricetta</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -283,6 +286,19 @@
         </widget>
        </item>
        <item>
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <widget class="QLabel" name="lbQtot">
          <property name="maximumSize">
           <size>
@@ -363,7 +379,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_6">
        <property name="text">
-        <string>Annnula</string>
+        <string>Annulla</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
