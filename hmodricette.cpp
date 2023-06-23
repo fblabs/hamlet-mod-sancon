@@ -133,14 +133,16 @@ void HModRicette::getRicette()
     if(ui->rb_con->isChecked())
     {
         ui->pushButton_3->setEnabled(false);
-        sql="SELECT prodotti.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto ORDER BY prodotti.descrizione ASC";
+       // sql="SELECT prodotti.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto ORDER BY prodotti.descrizione ASC";
+        sql="select distinctrow prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID IN (SELECT ricette.ID_prodotto from ricette) and prodotti.tipo in (2,6) order by prodotti.descrizione asc ";
+
 
     }
     else
     {
          ui->pushButton_3->setEnabled(true);
       //  sql="SELECT prodotti.ID,prodotti.descrizione from prodotti WHERE prodotti.ID not in (SELECT ID_prodotto from ricette) AND prodotti.tipo in (2,6) ORDER BY prodotti.descrizione ASC";
-         sql="select distinctrow prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID NOT IN (SELECT ricette.ID_prodotto from ricette) and prodotti.tipo in (2,6)  ";
+         sql="select distinctrow prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID NOT IN (SELECT ricette.ID_prodotto from ricette) and prodotti.tipo in (2,6) order by prodotti.descrizione ASC ";
     }
     q.exec(sql);
     qmric->setQuery(q);
