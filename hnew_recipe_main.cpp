@@ -8,24 +8,27 @@
 #include <QSqlError>
 #include <QDebug>
 
-HNew_recipe_main::HNew_recipe_main(QSqlDatabase p_db, QWidget *parent) :
+HNew_recipe_main::HNew_recipe_main(int p_id_prodotto, QSqlDatabase p_db, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HNew_recipe_main)
 {
     ui->setupUi(this);
     db=p_db;
     prod_mod = new QSqlQueryModel();
+    id_prodotto_main=p_id_prodotto;
 
    /* setMinimumSize(0,0);
     update();
     QMetaObject::invokeMethod(this, [=](){ resize(minimumSize()); });*/
 
-
-    ui->cb_what->toggle();
-
-
-
-  //  get_products();
+    if(id_prodotto_main<0)
+    {
+        ui->cb_what->setChecked(true);
+    }
+    else
+    {
+         ui->cb_what->setChecked(false);
+    }
 
 
 
@@ -84,13 +87,13 @@ void HNew_recipe_main::on_pbCreaRicetta_clicked()
 
 void HNew_recipe_main::on_pbAddRecipeAndproduct_clicked()
 {
-    if(ui->cb_what->isChecked())
+    if(id_prodotto_main<0)
     {
-        if(QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Creare nuov0 prodotto e relativa ricetta?",QMessageBox::Ok|QMessageBox::Cancel))
+        if(QMessageBox::Ok==QMessageBox::question(this,QApplication::applicationName(),"Creare nuovo prodotto e relativa ricetta?",QMessageBox::Ok|QMessageBox::Cancel))
         {
 
         int tipo=-1;
-            ui->rbProdotto_finito->isChecked()? tipo=2: tipo=6;
+         ui->rbProdotto_finito->isChecked()? tipo=2: tipo=6;
 
         emit sig_add_recipe_and_product(tipo);
         close();
@@ -99,22 +102,21 @@ void HNew_recipe_main::on_pbAddRecipeAndproduct_clicked()
     }else{
         QSqlQuery q(db);
         db.transaction();
-        int id_prodotto=ui->lvProducts->model()->index(ui->lvProducts->currentIndex().row(),0).data(0).toInt();
+        //int id_prodotto_main=ui->lvProducts->model()->index(ui->lvProducts->currentIndex().row(),0).data(0).toInt();
         QString sql="INSERT INTO ricette (ID_prodotto,note) VALUES (:id,'')";
         q.prepare(sql);
-        q.bindValue(":id",QVariant(id_prodotto));
+        q.bindValue(":id",id_prodotto_main);
 
         bool b=q.exec();
         if(b)
         {
         db.commit();
-
         get_products();
-        QMessageBox::information(this,QApplication::applicationName(),"RICETTA CREATA",QMessageBox::Ok);
+        QMessageBox::information(this,QApplication::applicationName(),"RICETTA INIZIALIZZATA",QMessageBox::Ok);
         }
         else
         {
-        QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO LA RICETTA!",QMessageBox::Ok);
+        QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO LA RICETTA!"+q.lastError().text(),QMessageBox::Ok);
         qDebug()<<q.lastError().text();
         db.rollback();
         return;
@@ -125,7 +127,7 @@ void HNew_recipe_main::on_pbAddRecipeAndproduct_clicked()
         //QMessageBox::information(this,QApplication::applicationName(),"RICETTA CREATA",QMessageBox::Ok);
 
 
-       // close();
+        close();
     }
 }
 

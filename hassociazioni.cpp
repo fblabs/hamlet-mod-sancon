@@ -75,7 +75,9 @@ void HAssociazioni::getRecipes()
 
     ui->cbRicette->setModel(qm);
     ui->cbRicette->setModelColumn(1);
-
+    ui->cbRicette->completer()->setModel(qm);
+    ui->cbRicette->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    ui->cbRicette->completer()->setCompletionColumn(1);
 
 
 }

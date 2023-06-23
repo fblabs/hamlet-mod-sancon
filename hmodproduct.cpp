@@ -45,7 +45,7 @@ bool HModProduct::getProductData()
     productsmodel->setTable("prodotti");
     productsmodel->setRelation(2,QSqlRelation("tipi_prodotto","ID","descrizione"));
     productsmodel->setFilter("prodotti.ID="+QString::number(ID));
-    productsmodel->setEditStrategy(QSqlRelationalTableModel::OnFieldChange);
+    productsmodel->setEditStrategy(QSqlRelationalTableModel::OnManualSubmit);
     productsmodel->select();
 
 
@@ -66,11 +66,8 @@ bool HModProduct::getProductData()
 
     map->toFirst();
     map->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
-   // connect(ui->cbType,SIGNAL(currentIndexChanged(int)),productsmodel,SLOT(submit()));
-
 
     return true;
-
 }
 
 
@@ -88,7 +85,10 @@ void HModProduct::on_pbSave_clicked()
     {
 
         bool b= map->submit();
+
+        b=productsmodel->submitAll();
         qDebug()<<productsmodel->lastError().text();
+
         if(b){
             productsmodel->select();
             emit done();

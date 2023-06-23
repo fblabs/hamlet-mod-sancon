@@ -152,7 +152,7 @@ void MainWindow::enableButtonsForRole()
 {
 
 
-    if (user->getID()==-1)
+    if (user->getID()<1)
     {
         //disabilito tutto>logout
         disableUI();
@@ -217,7 +217,7 @@ void MainWindow::on_tbLotti_clicked()
 void MainWindow::on_tbRicette_clicked()
 {
     HModRicette*f = new HModRicette(user,db);
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_tbAnag_clicked()
@@ -225,7 +225,7 @@ void MainWindow::on_tbAnag_clicked()
     HUtenti* f = new HUtenti(user,db);
 
 
-    //connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
+    connect(f,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
     //emit onConnectionName();
 
     // f->setWindowModality(Qt::ApplicationModal);

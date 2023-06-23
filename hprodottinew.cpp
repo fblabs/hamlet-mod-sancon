@@ -63,7 +63,7 @@ HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     comp->setModel(tmProdotti);
     ui->lineEdit->setCompleter(comp);
 
-    // // qDebug()<<tmProdotti->query().lastError();
+    qDebug()<<tmProdotti->query().lastError();
 
     connect(tmProdotti,SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)),this,SLOT(save()));
 
@@ -421,4 +421,6 @@ void HProdottiNew::on_chbBio_toggled(bool checked)
 
 
 }
+
+
 

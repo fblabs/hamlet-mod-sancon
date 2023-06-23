@@ -14,13 +14,14 @@ class HNew_recipe_main : public QWidget
     Q_OBJECT
 
 public:
-    explicit HNew_recipe_main(QSqlDatabase p_db=QSqlDatabase(),QWidget *parent = nullptr);
+    explicit HNew_recipe_main(int p_id_prodotto=-1,QSqlDatabase p_db=QSqlDatabase(),QWidget *parent = nullptr);
     ~HNew_recipe_main();
 
 private:
     Ui::HNew_recipe_main *ui;
     QSqlDatabase db;
     QSqlQueryModel *prod_mod;
+    int id_prodotto_main;
 
 private slots:
     void get_products();

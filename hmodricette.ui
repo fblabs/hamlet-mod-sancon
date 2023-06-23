@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>890</width>
-    <height>700</height>
+    <width>1261</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
@@ -35,29 +35,91 @@
         </size>
        </property>
        <property name="text">
-        <string>Ricette:</string>
+        <string>Prodotti:</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QComboBox" name="cbRicette">
+       <property name="minimumSize">
+        <size>
+         <width>500</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="editable">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QRadioButton" name="rb_con">
        <property name="text">
-        <string>Nuova Ricetta</string>
+        <string>Visualizza prodotti con ricetta già impostata</string>
        </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Plus.PNG</normaloff>:/Resources/Plus.PNG</iconset>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
+      <widget class="QRadioButton" name="rb_senza">
+       <property name="text">
+        <string>Visualzza prodotti senza ricetta</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="text">
+        <string>Rricetta</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Cube.PNG</normaloff>:/Resources/Cube.PNG</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
       <widget class="QPushButton" name="pbduplica">
        <property name="text">
         <string>Duplica Ricetta</string>
@@ -66,9 +128,15 @@
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/Notepad.PNG</normaloff>:/Resources/Notepad.PNG</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="3">
       <widget class="QPushButton" name="pbC4R">
        <property name="text">
         <string>Clienti associati</string>
@@ -77,9 +145,15 @@
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/Link64.png</normaloff>:/Resources/Link64.png</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="4">
       <widget class="QPushButton" name="pushButton_4">
        <property name="text">
         <string>Associazioni ricette-clienti</string>
@@ -88,9 +162,15 @@
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/Map.PNG</normaloff>:/Resources/Map.PNG</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="5">
       <widget class="QPushButton" name="pbRicingredient">
        <property name="text">
         <string>Ricette per ingrediente</string>
@@ -99,7 +179,26 @@
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/Note64.png</normaloff>:/Resources/Note64.png</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
       </widget>
+     </item>
+     <item row="0" column="6">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
@@ -158,6 +257,12 @@
           <iconset resource="icons.qrc">
            <normaloff>:/Resources/Plus.PNG</normaloff>:/Resources/Plus.PNG</iconset>
          </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
         </widget>
        </item>
        <item>
@@ -168,6 +273,12 @@
          <property name="icon">
           <iconset resource="icons.qrc">
            <normaloff>:/Resources/Minus.PNG</normaloff>:/Resources/Minus.PNG</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -192,8 +303,37 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Una volta inseriti gli ingredienti inserire la quantità totale da produrre </string>
+         </property>
          <property name="clearButtonEnabled">
           <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pbReset">
+         <property name="minimumSize">
+          <size>
+           <width>48</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>48</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>reset</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Counterclockwise-arrow64.png</normaloff>:/Resources/Counterclockwise-arrow64.png</iconset>
          </property>
         </widget>
        </item>

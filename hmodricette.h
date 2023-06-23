@@ -45,10 +45,7 @@ private slots:
 
     void on_pushButton_3_clicked();
 
-   // void on_pbModRow_clicked();
-
     void on_pushButton_clicked();
-
 
     void on_pushButton_5_clicked();
 
@@ -58,17 +55,18 @@ private slots:
 
     void on_leTotal_returnPressed();
 
-    void on_leTotal_textChanged(const QString &arg1);
-
     void on_pushButton_6_clicked();
-
-
 
     void on_pbC4R_clicked();
 
-
-
     void on_pbRicingredient_clicked();
+
+    void on_rb_senza_toggled(bool checked);
+
+    void on_rb_con_toggled(bool checked);
+
+
+    void on_pbReset_clicked();
 
 private:
     Ui::HModRicette *ui;
@@ -80,6 +78,7 @@ private:
     HUser *user;
 signals:
     void go_calc();
+
 
 };
 

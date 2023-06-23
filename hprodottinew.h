@@ -30,8 +30,6 @@ private slots:
 
     void reloadProduct();
 
-
-
     void on_pushButton_2_clicked();
 
     void on_pushButton_clicked();
@@ -51,6 +49,7 @@ private slots:
     void on_cbTipiProdotto_currentIndexChanged(int index);
 
     void on_chbBio_toggled(bool checked);
+
 
 private:
     Ui::HProdottiNew *ui;

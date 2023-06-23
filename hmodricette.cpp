@@ -16,7 +16,6 @@
 #include "hrecipeaddrow.h"
 #include "hclientiassociati.h"
 #include <QShortcut>
-#include <QDebug>
 #include "hrecipesforclient.h"
 #include "hrecipesforingredient.h"
 #include "hnew_recipe_main.h"
@@ -35,30 +34,6 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     ui->pbDeleteRow->setEnabled(user->get_ricette_u()>0);
     ui->pushButton_3->setEnabled(user->get_ricette_u()>0);
     ui->pbduplica->setEnabled(user->get_ricette_u()>0);
-
-
-
-
-    /*  update=user->getCanUpdate();
-    if (!update)
-    {
-        ui->pushButton->setEnabled(false);
-        ui->pbAddRow->setEnabled(false);
-        ui->pbDeleteRow->setEnabled(false);
-        ui->pushButton_4->setEnabled(false);
-        ui->pushButton_3->setEnabled(false);
-        ui->pbduplica->setEnabled(false);
-
-   }
-   else{
-        ui->pushButton->setEnabled(true);
-        ui->pbAddRow->setEnabled(true);
-        ui->pbDeleteRow->setEnabled(true);
-        ui->pushButton_4->setEnabled(true);
-        ui->pushButton_3->setEnabled(true);
-        ui->pbduplica->setEnabled(true);
-
-    }*/
 
     getRicette();
 
@@ -151,7 +126,20 @@ void HModRicette::getRicette()
     QCompleter *comp=new QCompleter();
     qmric=new  QSqlQueryModel();
     QSqlQuery q(db);
-    q.exec("SELECT ricette.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto and prodotti.id in (SELECT id_prodotto FROM ricette) ORDER BY prodotti.descrizione ASC");
+    QString sql=QString();
+
+    if(ui->rb_con->isChecked())
+    {
+        ui->pushButton_3->setEnabled(false);
+        sql="SELECT ricette.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto ORDER BY prodotti.descrizione ASC";
+
+    }
+    else
+    {
+         ui->pushButton_3->setEnabled(true);
+        sql="SELECT prodotti.ID,prodotti.descrizione from prodotti WHERE prodotti.ID not in (SELECT ID_prodotto from ricette) AND prodotti.tipo in (2,6) ORDER BY prodotti.descrizione ASC";
+    }
+    q.exec(sql);
     qmric->setQuery(q);
 
     ui->cbRicette->setModel(qmric);
@@ -161,7 +149,8 @@ void HModRicette::getRicette()
     comp->setCompletionMode(QCompleter::PopupCompletion);
     comp->setCaseSensitivity(Qt::CaseInsensitive);
     ui->cbRicette->setCompleter(comp);
-    // // qDebug()<<q.lastQuery()<<q.lastError().text();
+   // ui->cbRicette->setCurrentIndex(-1);
+
 
 }
 
@@ -190,12 +179,10 @@ void HModRicette::creatNewRecipe(const int p_tipo)
         if(!b)
         {
             db.rollback();
-            qDebug()<<q.lastError().text();
             QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO IL PRODOTTO!!!",QMessageBox::Ok);
-
             return;
         }
-        //// qDebug()<<q.lastError().text();
+
 
         int idnuovoprodotto=q.lastInsertId().toInt();
 
@@ -211,12 +198,12 @@ void HModRicette::creatNewRecipe(const int p_tipo)
             int ix =ui->cbRicette->findText(ui->cbRicette->currentText());
             ui->cbRicette->setCurrentIndex(ix);
             QMessageBox::information(this,QApplication::applicationName(),"RICETTA CREATA",QMessageBox::Ok);
+            ui->rb_con->toggle();
 
         }
         else
         {
             QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO LA RICETTA!",QMessageBox::Ok);
-            //// qDebug()<<q.lastError().text();
             db.rollback();
             return;
         }
@@ -295,9 +282,7 @@ bool HModRicette::duplicateRecipe()
         if(!b)
         {
             db.rollback();
-            //// qDebug()<<q.lastError().text()<<q.lastQuery();
             QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO IL PRODOTTO!:",QMessageBox::Ok);
-
             return b;
         }
 
@@ -339,7 +324,6 @@ bool HModRicette::duplicateRecipe()
         else
         {
             db.rollback();
-            //// qDebug()<<q.lastError().text()<<QString::number(idnuovaricetta);
             QMessageBox::warning(this,QApplication::applicationName(),"ERRORE DUPLICANDO LA RICETTA!",QMessageBox::Ok);
         }
 
@@ -365,6 +349,8 @@ bool HModRicette::duplicateRecipe()
 
 void HModRicette::loadRicetta()
 {
+
+    if(ui->cbRicette->model()->rowCount()<1){return;}
 
     int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
     QSqlQuery q(db);
@@ -509,7 +495,7 @@ void HModRicette::findProduct()
 
 void HModRicette::calculateTotal()
 {
-    qDebug()<<"calc_total call";
+
     double total=0.0;
     int rows=0;
 
@@ -592,8 +578,6 @@ void HModRicette::save()
             QMessageBox::warning(this,QApplication::applicationName(),"Si è verificato un errore (riga 554)",QMessageBox::Ok);
             return;
         }
-        //// qDebug()<<"save(for)="<<q.lastError().text()<<QString::number(show);
-
 
 
     }
@@ -601,9 +585,6 @@ void HModRicette::save()
 
     db.commit();
     QMessageBox::information(this,QApplication::applicationName(),"Ricetta salvata",QMessageBox::Ok);
-
-
-
 
 }
 
@@ -702,13 +683,22 @@ void HModRicette::on_pbDeleteRow_clicked()
 
 void HModRicette::on_pushButton_3_clicked()
 {
-    HNew_recipe_main *f=new HNew_recipe_main(db);
-    //connect (f,SIGNAL(sig_add_recipe())
-    connect(f,SIGNAL(sig_add_recipe_and_product(int)),SLOT(creatNewRecipe(int)));
-  //  connect(f,SIGNAL(sig_add_recipe()),this,SLOT(createNewRecipe()));
+    int id_prodotto=-1;
+
+
+
+    ui->cbRicette->model()->rowCount()<1? id_prodotto=-1:id_prodotto=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
+
+    if (id_prodotto<0){
+    HNew_recipe_main *f=new HNew_recipe_main(id_prodotto,db);
+    connect(f,SIGNAL(sig_add_recipe_and_product(int)),this,SLOT(creatNewRecipe(int)));
     f->show();
-    //TODO aggiungere segnale
-    //creatNewRecipe();
+    }
+
+
+
+    getRicette();
+
 }
 
 void HModRicette::on_pushButton_clicked()
@@ -745,14 +735,6 @@ void HModRicette::on_leTotal_returnPressed()
 
 }
 
-void HModRicette::on_leTotal_textChanged(const QString &arg1)
-{
- /*   if (ui->leTotal->text().length()>5)
-    {
-        loadRicetta();
-    }*/
-}
-
 void HModRicette::on_pushButton_6_clicked()
 {
     loadRicetta();
@@ -781,5 +763,28 @@ void HModRicette::on_pbRicingredient_clicked()
 
     f->show();
 
+}
+
+
+void HModRicette::on_rb_senza_toggled(bool checked)
+{
+    getRicette();
+     ui->pushButton_3->setEnabled(true);
+}
+
+
+void HModRicette::on_rb_con_toggled(bool checked)
+{
+    getRicette();
+    ui->pushButton_3->setEnabled(false);
+}
+
+
+
+
+
+void HModRicette::on_pbReset_clicked()
+{
+    loadRicetta();
 }
 
