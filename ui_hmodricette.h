@@ -300,7 +300,7 @@ public:
         rb_con->setText(QCoreApplication::translate("HModRicette", "Visualizza prodotti con ricetta gi\303\240 impostata", nullptr));
         rb_senza->setText(QCoreApplication::translate("HModRicette", "Visualzza prodotti senza ricetta", nullptr));
 #if QT_CONFIG(tooltip)
-        pushButton_3->setToolTip(QCoreApplication::translate("HModRicette", "Inizi<liza o crea una ricetta a seconda che il prodotto esista o meno, nel qual cso crea un nuovo prodotto finito o semilavorato", nullptr));
+        pushButton_3->setToolTip(QCoreApplication::translate("HModRicette", "Inizializza o crea una ricetta a seconda che il prodotto esista o meno, nel qual caso crea un nuovo prodotto finito o semilavorato", nullptr));
 #endif // QT_CONFIG(tooltip)
         pushButton_3->setText(QCoreApplication::translate("HModRicette", "Ricetta", nullptr));
         pbduplica->setText(QCoreApplication::translate("HModRicette", "Duplica Ricetta", nullptr));

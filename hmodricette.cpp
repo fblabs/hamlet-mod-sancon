@@ -133,7 +133,7 @@ void HModRicette::getRicette()
     if(ui->rb_con->isChecked())
     {
         ui->pushButton_3->setEnabled(false);
-        sql="SELECT ricette.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto ORDER BY prodotti.descrizione ASC";
+        sql="SELECT prodotti.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto ORDER BY prodotti.descrizione ASC";
 
     }
     else
