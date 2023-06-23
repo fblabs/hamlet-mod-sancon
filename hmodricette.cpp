@@ -5,7 +5,7 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QMessageBox>
-// #include <QDebug>
+#include <QDebug>
 #include <QSqlError>
 #include <QInputDialog>
 #include "hprint.h"
@@ -154,7 +154,7 @@ void HModRicette::getRicette()
     comp->setCompletionMode(QCompleter::PopupCompletion);
     comp->setCaseSensitivity(Qt::CaseInsensitive);
     ui->cbRicette->setCompleter(comp);
-    ui->cbRicette->setCurrentIndex(0);
+    //ui->cbRicette->setCurrentIndex(0);
 
 
 }
@@ -383,12 +383,15 @@ void HModRicette::loadRicetta()
 
     if(ui->cbRicette->model()->rowCount()<1){return;}
 
-    int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
+    int idprodotto=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
+    qDebug()<<idprodotto;
     QSqlQuery q(db);
-    QString sql = "SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta ORDER BY righe_ricette.quantita DESC";
+   // QString sql = "SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_prodotto=:idprodotto ORDER BY righe_ricette.quantita DESC";
+    QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM ricette,righe_ricette,prodotti WHERE ricette.ID=righe_ricette.ID_ricetta and righe_ricette.id_prodotto=prodotti.ID and ricette.ID_prodotto=:idprodotto ORDER BY righe_ricette.quantita DESC";
     q.prepare(sql);
-    q.bindValue(":idricetta",QVariant(idricetta));
+    q.bindValue(":idprodotto",idprodotto);
     q.exec();
+    qDebug()<<q.lastError().text();
 
     writeRed=new QList<int>();
 
@@ -460,9 +463,9 @@ void HModRicette::loadRicetta()
 
     QSqlQuery n(db);
     QString sql2;
-    sql2="SELECT ricette.note from prodotti,ricette where prodotti.ID=ricette.ID_prodotto and ricette.ID=:idricetta";
+    sql2="SELECT ricette.note from prodotti,ricette where prodotti.ID=ricette.ID_prodotto and ricette.ID_prodotto=:idprodotto";
     n.prepare(sql2);
-    n.bindValue(":idricetta",QVariant(idricetta));
+    n.bindValue(":idprodotto",QVariant(idprodotto));
     n.exec();
     n.first();
     ui->tbnote->setText(n.value(0).toString());
