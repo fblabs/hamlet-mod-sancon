@@ -66,7 +66,7 @@ void HAddLotInProduction::lastLots()
 
     int quanti=ui->cbLastLots->currentData().toInt();
 
-    QString sql="select lotdef.ID,lotdef.lot,lotdef.prodotto,prodotti.allergenico from lotdef,prodotti where prodotti.ID=lotdef.prodotto and lotdef.prodotto=:prd and lotdef.attivo>0 ORDER by lotdef.data DESC LIMIT :quanti";
+    QString sql="select lotdef.ID,lotdef.lot,lotdef.prodotto,prodotti.allergenico,lotdef.giacenza from lotdef,prodotti where prodotti.ID=lotdef.prodotto and lotdef.prodotto=:prd and lotdef.attivo>0 ORDER by lotdef.data DESC LIMIT :quanti";
     qlots.prepare(sql);
     qlots.bindValue(":prd",QVariant(data->productId));
     qlots.bindValue(":quanti",QVariant(quanti));
@@ -78,9 +78,14 @@ void HAddLotInProduction::lastLots()
     qmLots->setQuery(qlots);
 
 
-    ui->lvLastLots->clearSelection();
-    ui->lvLastLots->setModel(qmLots);
-    ui->lvLastLots->setModelColumn(1);
+    ui->tvLots->clearSelection();
+    ui->tvLots->setModel(qmLots);
+    ui->tvLots->setColumnHidden(0,true);
+    ui->tvLots->setColumnHidden(2,true);
+    ui->tvLots->setColumnHidden(3,true);
+    ui->tvLots->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
+    ui->tvLots->horizontalHeader()->setSectionResizeMode(4,QHeaderView::Stretch);
+
 
     QString default_lot=findDefaultLot(QString::number(data->productId));
     if (default_lot==QString()) return;
@@ -91,7 +96,7 @@ void HAddLotInProduction::lastLots()
         if(qmLots->record(i).value(1).toString()==default_lot)
         {
 
-            ui->lvLastLots->setCurrentIndex(qmLots->index(i,1));
+            ui->tvLots->setCurrentIndex(qmLots->index(i,1));
         }
     }
 
@@ -110,8 +115,8 @@ void HAddLotInProduction::addLot()
     QStandardItemModel* mod= data->mod;
     int nrow=data->row;
     bool ballergene=data->allergene;
-    int lotid=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),0).data(0).toInt();
-    QString lot=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
+    int lotid=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
+    QString lot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),1).data(0).toString();
 
 
 
@@ -153,7 +158,7 @@ void HAddLotInProduction::on_pbAdd_clicked()
     close();
 }
 
-void HAddLotInProduction::on_lvLastLots_doubleClicked(const QModelIndex &index)
+void HAddLotInProduction::on_tvLots_doubleClicked(const QModelIndex &index)
 {
     Q_UNUSED(index);
     addLot();
@@ -190,8 +195,8 @@ void HAddLotInProduction::on_pbDefaultLot_clicked()
     QSqlQuery qp(prefsdb);
     QSqlQuery qpm(prefsdb);
     QString psql=QString();
-    QString lot=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString();
-    QString prod=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),2).data(0).toString();
+    QString lot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),1).data(0).toString();
+    QString prod=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),2).data(0).toString();
     QString sqlprep="SELECT COUNT(*) from pref WHERE prod=:idp";
     qp.prepare(sqlprep);
     qp.bindValue(":idp",prod);
@@ -227,14 +232,14 @@ void HAddLotInProduction::on_pbDefaultLot_clicked()
 void HAddLotInProduction::on_pbCancel_clicked()
 {
     QSqlQuery q(prefsdb);
-    QString prod=ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),2).data(0).toString();
+    QString prod=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),2).data(0).toString();
     QString msql="UPDATE pref SET lot='' where prod=:idp";
 
     q.prepare(msql);
     q.bindValue(":idp",prod);
     q.exec();
-    ui->lvLastLots->selectionModel()->clearSelection();
-    ui->lvLastLots->selectionModel()->clearCurrentIndex();
+    ui->tvLots->selectionModel()->clearSelection();
+    ui->tvLots->selectionModel()->clearCurrentIndex();
 
 
 }

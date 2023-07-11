@@ -48,13 +48,6 @@ HGestioneUtenti::HGestioneUtenti(HUser *p_user, QSqlDatabase pdb, QWidget *paren
     utm->setEditStrategy(QSqlRelationalTableModel::OnManualSubmit);
    // gtm->select();
     utm->select();
-
-    qDebug()<<utm->query().executedQuery();
-
-
-
-
-
     ui->lvUtenti->setModel(utm);
     ui->lvUtenti->setModelColumn(4);
 
@@ -63,25 +56,13 @@ HGestioneUtenti::HGestioneUtenti(HUser *p_user, QSqlDatabase pdb, QWidget *paren
     mapper->addMapping(ui->leUsername,1);
     mapper->addMapping(ui->lenome,4);
     mapper->addMapping(ui->cbAttivo,5);
-   // mapper->addMapping(ui->comboBox,3, "currentIndex");
-
-  // // // qDebug()<<QString::number(mapper->mappedSection(ui->comboBox));
     mapper->setItemDelegate(new QSqlRelationalDelegate(this));
-
     mapper->toFirst();
-
-
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), mapper, SLOT(setCurrentModelIndex(QModelIndex)));
-
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(getGruppo()));
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(getIdUtente()));
-
     ui->lvUtenti->setCurrentIndex(utm->index(0,0));
 
-
-
-
-  //  connect(ui->lvUtenti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,slot(loadDetails()));
 }
 
 HGestioneUtenti::~HGestioneUtenti()

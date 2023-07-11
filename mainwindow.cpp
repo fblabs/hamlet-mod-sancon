@@ -159,12 +159,7 @@ void MainWindow::enableButtonsForRole()
 
     }
 
-
-    qDebug()<<"EnablebottonsforRole";
-
     user->get_permissions();
-
-
 
     ui->tbUtenti->setEnabled(user->get_utenti_v()>0);
     ui->pBNewOperation->setEnabled(user->get_operazioni_v()>0);
@@ -187,14 +182,9 @@ void MainWindow::enableButtonsForRole()
     ui->tbAnalisi->setEnabled(user->get_analisi_v()>0);
     ui->pbCalcoloCosti->setEnabled(user->get_lotti_v()>0);
     ui->tbAnalisi->setEnabled(user->get_analisi_v()>0);
-
-
-
     ui->pbExpirations->setEnabled(true);
     ui->toolButton->setEnabled(false);
     ui->tbLogout->setEnabled(true);
-
-
 
 }
 

@@ -44,7 +44,7 @@ HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->pushButton_5->setEnabled(user->get_produzione_u()>0);
     ui->pushButton_2->setEnabled(user->get_produzione_u()>0);
     ui->pushButton_3->setEnabled(false);
-    ui->pushButton_7->setEnabled(user->get_produzione_u()>0);
+    ui->pushButton_7->setEnabled(false);
     ui->pushButton_11->setEnabled(user->get_produzione_u()>0);
 
 
@@ -1067,6 +1067,7 @@ void HProduction::on_pushButton_6_clicked()
     resetForm(false);
 
     ui->pushButton_3->setEnabled(false);
+    ui->pushButton_7->setEnabled(false);
 
 
 

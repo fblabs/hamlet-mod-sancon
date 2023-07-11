@@ -37,15 +37,10 @@ private slots:
     void addLot();
     void on_pdClose_clicked();
     void on_pbAdd_clicked();
-    void on_lvLastLots_doubleClicked(const QModelIndex &index);
     QString findDefaultLot(const QString p_prod=QString());
-
- //  void searchByLot();
- //   void on_leSearch_returnPressed();
-
- //   void on_leSearch_textChanged(const QString &arg1);
     void on_pbDefaultLot_clicked();
     void on_pbCancel_clicked();
+    void on_tvLots_doubleClicked(const QModelIndex &index);
 };
 
 #endif // HADDLOTINPRODUCTION_H

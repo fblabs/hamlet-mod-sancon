@@ -27,14 +27,6 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
     db=pdb;
     user=pusr;
 
-   /* ui->pushButton->setEnabled(false);
-    ui->pushButton_2->setEnabled(false);
-    ui->pushButton_3->setEnabled(false);
-    ui->tnote->setReadOnly(true);*/
-
-
-
-
 
     if(user->get_anagrafica_u()>0)
     {
@@ -51,33 +43,9 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
     }
 
 
-
-
-
-   //notifiche
- /*   int g=user->getRole();
-    if (g==3 || g==5)
-    {
-        ui->pushButton_5->setEnabled(true);
-    }
-    else
-    {
-        ui->pushButton_5->setEnabled(false);
-    }
-
-    if(!upd)
-    {
-        ui->pushButton->setVisible(false);
-        ui->pushButton_2->setVisible(false);
-        ui->pushButton_3->setVisible(false);
-        ui->tnote->setReadOnly(true);
-    }*/
-
-
    QSqlTableModel *cmod=new QSqlTableModel(0,db);
    cmod->setTable("anagrafica");
    cmod->setSort(1,Qt::AscendingOrder);
-  // cmod->setFilter("cliente=1");
    cmod->select();
 
    tm = new QSqlRelationalTableModel(0,db);
@@ -248,11 +216,9 @@ bool HUtenti::save()
 
        bool b= tm->submitAll();
 
-  db.commit();
+    db.commit();
 
     qDebug()<<b;
-
-
 
     return b;
 

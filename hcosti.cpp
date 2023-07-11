@@ -160,18 +160,21 @@ void HCosti::get_ricetta()
     QSqlQuery q(db);
     QString sql=QString();
 
-    double tot_peso_ricetta=get_peso_totale_ricetta();
+   // double tot_peso_ricetta=get_peso_totale_ricetta();
+
+    tot_quantita=get_peso_totale_ricetta();
 
     recipe_org_model=new QSqlQueryModel();
     recipe_model=QueryToCosti(recipe_org_model);
     recipe_model=new HCosti_model();
 
+   // sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as 'QUANTITA',@p:=(righe_ricette.quantita/:tot_q)*100 as 'PERCENT', prodotti.prezzo as 'COSTO UNITARIO (€*Kg)',FORMAT(righe_ricette.quantita*prodotti.prezzo,4) as 'COSTO PER RICETTA',FORMAT ((prodotti.prezzo*:f)*(@p/100),4) as 'COSTO FORMATO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.Id";
     sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as 'QUANTITA',@p:=(righe_ricette.quantita/:tot_q)*100 as '%', prodotti.prezzo as 'COSTO UNITARIO (€*Kg)',FORMAT(righe_ricette.quantita*prodotti.prezzo,4) as 'COSTO PER RICETTA',FORMAT ((prodotti.prezzo*:f)*(@p/100),4) as 'COSTO FORMATO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.Id";
 
 
     q.prepare(sql);
     q.bindValue(":f",formato);
-    q.bindValue(":tot_q",tot_peso_ricetta);
+    q.bindValue(":tot_q",tot_quantita);
     q.bindValue(":idp",idp);
     q.exec();
     qDebug()<<q.lastError().text();
@@ -182,7 +185,7 @@ void HCosti::get_ricetta()
     double percent_riga=0.0;
 
 \
-    tot_quantita=get_peso_totale_ricetta();
+    ///tot_quantita=get_peso_totale_ricetta();
 
     if(modify)
     {
@@ -208,7 +211,7 @@ void HCosti::get_ricetta()
         }
     }else {
 
-        disconnect(ui->tvRicetta->itemDelegate(),SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),this,SLOT(calculate_recipe()));
+       // disconnect(ui->tvRicetta->itemDelegate(),SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),this,SLOT(calculate_recipe()));
         ui->tvRicetta->setModel(recipe_org_model);
         ui->tvRicetta->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
         recipe_org_model->setHeaderData(0,Qt::Horizontal,"MATERIALE");
@@ -221,11 +224,14 @@ void HCosti::get_ricetta()
          for (int r=0;r<recipe_org_model->rowCount();r++)
         {
 
+
              quantita_riga=recipe_org_model->index(r,1).data(0).toDouble();
              percent_riga=recipe_org_model->index(r,2).data(0).toDouble()/100;
-             costo_riga=tot_costo_ricetta* percent_riga;
+             costo_riga=tot_costo_ricetta*percent_riga;
              tot_costo_ricetta+=costo_riga;
              tot_costo_formato+=costo_riga*percent_riga;
+
+             qDebug()<<"COSTO_RIGA"<<costo_riga<<"PEWRCENT_RIGA"<<percent_riga;
         }
 
     }
@@ -840,6 +846,7 @@ double HCosti::get_peso_totale_ricetta()
     q.exec();
     q.first();
     result=q.value(0).toDouble();
+    qDebug()<<idp<<result;
 
     return result;
 

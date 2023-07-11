@@ -46,28 +46,19 @@ private slots:
     void print();
     bool save();
     void refresh();
-
-
-
     void on_pushButton_clicked();
-
     void on_cbxMasterCli_currentIndexChanged(int index);
     void on_pushButton_5_clicked();
-
     void on_rbAll_toggled(bool checked);
     void on_rbClients_toggled(bool checked);
     void on_rbSuppliers_toggled(bool checked);
-
-
     void on_rbTrasports_toggled(bool checked);
     void on_cbVisible_2_toggled(bool checked);
     void on_pbPrint_clicked();
-
-
-
     void on_lsearch_returnPressed();
     void on_pushButton_6_clicked();
     void on_rbGraphics_toggled(bool checked);
+
 
 };
 
