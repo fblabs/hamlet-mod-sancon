@@ -80,9 +80,9 @@ void HAddLotInProduction::lastLots()
 
     ui->tvLots->clearSelection();
     ui->tvLots->setModel(qmLots);
-    ui->tvLots->setColumnHidden(0,true);
+  /*  ui->tvLots->setColumnHidden(0,true);
     ui->tvLots->setColumnHidden(2,true);
-    ui->tvLots->setColumnHidden(3,true);
+    ui->tvLots->setColumnHidden(3,true);*/
     ui->tvLots->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
     ui->tvLots->horizontalHeader()->setSectionResizeMode(4,QHeaderView::Stretch);
 
@@ -100,10 +100,6 @@ void HAddLotInProduction::lastLots()
         }
     }
 
-
-
-
-
 }
 
 
@@ -117,7 +113,7 @@ void HAddLotInProduction::addLot()
     bool ballergene=data->allergene;
     int lotid=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
     QString lot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),1).data(0).toString();
-
+    double giacenza=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),4).data(0).toDouble();
 
 
     mod->setData(mod->index(nrow,0),data->productId);
@@ -126,6 +122,7 @@ void HAddLotInProduction::addLot()
     //  mod->setData(mod->index(nrow,2),data->quantity);
     mod->setData(mod->index(nrow,3),lotid);
     mod->setData(mod->index(nrow,4),lot);
+    mod->setData(mod->index(nrow,7),QString::number(giacenza,'f',2));
     QString val=QString::number(ui->dsbQt->value(),'f',3);
     mod->setData(mod->index(nrow,5),val);
     if (ballergene){

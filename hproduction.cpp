@@ -313,7 +313,7 @@ void HProduction::getLotToModify(QString lot)
     k.exec();
     // qDebug()<< k.lastError().text()<<k.lastQuery();
 
-    model = new QStandardItemModel(0,7);
+    model = new QStandardItemModel(0,8);
 
     model->setHeaderData(0,Qt::Horizontal,"ID prodotto",0);
     model->setHeaderData(1,Qt::Horizontal,"Prodotto",0);
@@ -356,7 +356,7 @@ void HProduction::getLotToModify(QString lot)
         model->appendRow(columns);
 
     }
-    QString qta=QString::number(quantitatotale,'f',3);
+  //QString qta=QString::number(quantitatotale,'f',3);
 
     //   ui->leQtyTotal->setText(qta);
 
@@ -485,7 +485,7 @@ void HProduction::getRecipe()
 
 
 
-    model = new QStandardItemModel(0,7);
+    model = new QStandardItemModel(0,8);
 
     model->setHeaderData(0,Qt::Horizontal,"ID Prodotto",0);
     model->setHeaderData(1,Qt::Horizontal,"Prodotto",0);
@@ -494,7 +494,7 @@ void HProduction::getRecipe()
     model->setHeaderData(4,Qt::Horizontal,"Lotto",0);
     model->setHeaderData(5,Qt::Horizontal,"Quantità effettiva",0);
     model->setHeaderData(6,Qt::Horizontal,"Allergene",0);
-
+    model->setHeaderData(7,Qt::Horizontal,"Giacenza",0);
     double quantitatot=0.0;
 
 
@@ -522,6 +522,7 @@ void HProduction::getRecipe()
         QStandardItem* lotto=new QStandardItem("");
         QStandardItem* quadd=new QStandardItem(QString::number(0.0,'f',3));
         QStandardItem* allergene=new QStandardItem(QString::number(qmod->index(row,2).data(0).toBool()));
+        QStandardItem* giacenza=new QStandardItem("n/a");
 
         if (qmod->index(row,2).data(0).toBool())
         {
@@ -546,6 +547,7 @@ void HProduction::getRecipe()
         columns.append(lotto);
         columns.append(quadd);
         columns.append(allergene);
+        columns.append(giacenza);
 
 
         model->appendRow(columns);
@@ -1765,6 +1767,14 @@ const QString HProduction::findPreferredLot(const int id_prod)
 void HProduction::addLot(QModelIndex index,bool show_window)
 {
     HDataToPass *data=new HDataToPass(0);
+    double giacenza=0.0;
+    QSqlQuery q(db);
+    QString sql="SELECT getgiacenza(:id)";
+    q.prepare(sql);
+    q.bindValue(":id",ui->tableView->model()->index(index.row(),0));
+    q.exec();
+    q.next();
+    giacenza=q.value(0).toDouble();
 
 
     data->allergene=ui->tableView->model()->index(index.row(),6).data(0).toBool();
@@ -1773,6 +1783,7 @@ void HProduction::addLot(QModelIndex index,bool show_window)
     data->row=index.row();
     data->quantity=ui->tableView->model()->index(index.row(),5).data(0).toDouble();
     data->mod=static_cast<QStandardItemModel*>(ui->tableView->model());
+    data->giacenza=giacenza;
 
 
     HAddLotInProduction *f= new HAddLotInProduction(data,db);
@@ -1782,14 +1793,9 @@ void HProduction::addLot(QModelIndex index,bool show_window)
     f->move(10+ui->tableView->x()-f->width()-10,QCursor::pos().y());
     f->show();
 
-
-    // f->setWindowFlags(Qt::FramelessWindowHint);
-
-
-
-
-
-    }else{
+    }
+    else
+    {
         f->click();
         f->close();
     }
