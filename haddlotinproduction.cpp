@@ -80,9 +80,9 @@ void HAddLotInProduction::lastLots()
 
     ui->tvLots->clearSelection();
     ui->tvLots->setModel(qmLots);
-  /*  ui->tvLots->setColumnHidden(0,true);
+    ui->tvLots->setColumnHidden(0,true);
     ui->tvLots->setColumnHidden(2,true);
-    ui->tvLots->setColumnHidden(3,true);*/
+    ui->tvLots->setColumnHidden(3,true);
     ui->tvLots->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
     ui->tvLots->horizontalHeader()->setSectionResizeMode(4,QHeaderView::Stretch);
 
