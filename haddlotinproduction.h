@@ -19,17 +19,13 @@ class HAddLotInProduction : public QWidget
 
     QStandardItemModel *model;
     HDataToPass *data;
-
     QSqlDatabase db;
     QSqlDatabase prefsdb;
     QStandardItemModel *qmLots;
 
-
 public:
     explicit HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent=nullptr);
     ~HAddLotInProduction();
-    void click();
-
 private:
     Ui::HAddLotInProduction *ui;
 private slots:
@@ -41,6 +37,11 @@ private slots:
     void on_pbDefaultLot_clicked();
     void on_pbCancel_clicked();
     void on_tvLots_doubleClicked(const QModelIndex &index);
+    void clean();
+public slots:
+     void click();
+signals:
+    void lot_added();
 };
 
 #endif // HADDLOTINPRODUCTION_H

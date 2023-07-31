@@ -47,7 +47,7 @@ public:
     {
         if (HAddLotInProduction->objectName().isEmpty())
             HAddLotInProduction->setObjectName(QString::fromUtf8("HAddLotInProduction"));
-        HAddLotInProduction->setWindowModality(Qt::WindowModal);
+        HAddLotInProduction->setWindowModality(Qt::ApplicationModal);
         HAddLotInProduction->resize(393, 361);
         verticalLayout = new QVBoxLayout(HAddLotInProduction);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
@@ -77,7 +77,7 @@ public:
         dsbQt = new QDoubleSpinBox(HAddLotInProduction);
         dsbQt->setObjectName(QString::fromUtf8("dsbQt"));
         dsbQt->setInputMethodHints(Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly);
-        dsbQt->setButtonSymbols(QAbstractSpinBox::NoButtons);
+        dsbQt->setButtonSymbols(QAbstractSpinBox::UpDownArrows);
         dsbQt->setProperty("showGroupSeparator", QVariant(true));
         dsbQt->setDecimals(3);
         dsbQt->setMaximum(10000000.000000000000000);

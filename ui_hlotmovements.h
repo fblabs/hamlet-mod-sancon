@@ -41,7 +41,7 @@ public:
         if (HLotMovements->objectName().isEmpty())
             HLotMovements->setObjectName(QString::fromUtf8("HLotMovements"));
         HLotMovements->setWindowModality(Qt::ApplicationModal);
-        HLotMovements->resize(880, 443);
+        HLotMovements->resize(1259, 737);
         verticalLayout = new QVBoxLayout(HLotMovements);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         tvMovimentiLotto = new QTableView(HLotMovements);

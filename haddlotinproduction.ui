@@ -3,7 +3,7 @@
  <class>HAddLotInProduction</class>
  <widget class="QWidget" name="HAddLotInProduction">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::ApplicationModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -48,7 +48,7 @@
         <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly</set>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::UpDownArrows</enum>
        </property>
        <property name="specialValueText">
         <string/>

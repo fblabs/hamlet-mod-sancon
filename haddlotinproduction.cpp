@@ -16,17 +16,20 @@ HAddLotInProduction::HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb
 {
     ui->setupUi(this);
 
+
     QSettings settings("hamletmod.ini",QSettings::IniFormat);
     QString preferredLotsDb=settings.value("preferred_lots").toString();
+    //setWindowFlag();
+
 
     prefsdb=QSqlDatabase::addDatabase("QSQLITE");
     prefsdb.setDatabaseName(preferredLotsDb);
     prefsdb.open();
-
-
     db=pdb;
 
+  //  data=datapass;
     data=datapass;
+    //data=&d;
     model=data->mod;
 
 
@@ -44,18 +47,28 @@ HAddLotInProduction::HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb
 
     ui->dsbQt->setValue(data->quantity);
 
+    connect(this,SIGNAL(lot_added()),this,SLOT(clean()));
+    connect(ui->cbLastLots,SIGNAL(currentIndexChanged(int)),this,SLOT(addLot()));
 
-    connect(ui->cbLastLots,SIGNAL(currentIndexChanged(int)),this,SLOT(lastLots()));
 }
 
 HAddLotInProduction::~HAddLotInProduction()
 {
+    prefsdb.close();
+    data=nullptr;
+    delete data;
     delete ui;
+
 }
 
 void HAddLotInProduction::click()
 {
-    ui->pbAdd->click();
+    addLot();
+    prefsdb.close();
+    data=nullptr;
+    delete data;
+    close();
+
 }
 
 void HAddLotInProduction::lastLots()
@@ -107,33 +120,44 @@ void HAddLotInProduction::lastLots()
 void HAddLotInProduction::addLot()
 {
 
-    // here I want to add a lot's component
-    QStandardItemModel* mod= data->mod;
+    qDebug()<<"addLot";// here I want to add a lot's component
+
     int nrow=data->row;
     bool ballergene=data->allergene;
     int lotid=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
     QString lot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),1).data(0).toString();
     double giacenza=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),4).data(0).toDouble();
+    if(!model) {
+        qDebug()<<"NULL";
+        return;
+    }
 
 
-    mod->setData(mod->index(nrow,0),data->productId);
-    mod->setData(mod->index(nrow,1),data->description);
 
-    //  mod->setData(mod->index(nrow,2),data->quantity);
-    mod->setData(mod->index(nrow,3),lotid);
-    mod->setData(mod->index(nrow,4),lot);
-    mod->setData(mod->index(nrow,7),QString::number(giacenza,'f',2));
+    model->setData(model->index(nrow,0),data->productId);
+    model->setData(model->index(nrow,1),data->description);
+    model->setData(model->index(nrow,3),lotid);
+    model->setData(model->index(nrow,4),lot);
+    model->setData(model->index(nrow,7),QString::number(giacenza,'f',2));
     QString val=QString::number(ui->dsbQt->value(),'f',3);
-    mod->setData(mod->index(nrow,5),val);
+    model->setData(model->index(nrow,5),val);
+
     if (ballergene){
-        mod->setData(mod->index(nrow,6),QString("1"));
+
+
+        model->setData(model->index(nrow,6),QString("1"));
     }
     else
     {
-        mod->setData(mod->index(nrow,6),QString("0"));
+        model->setData(model->index(nrow,6),QString("0"));
     }
 
-    close();
+
+    emit lot_added();
+
+
+
+
 
 
 }
@@ -144,22 +168,35 @@ void HAddLotInProduction::addLot()
 
 void HAddLotInProduction::on_pdClose_clicked()
 {
-    prefsdb.close();
-    close();
+
+    clean();
+
+
+
 }
 
 void HAddLotInProduction::on_pbAdd_clicked()
 {
     addLot();
-    prefsdb.close();
-    close();
+    ui->pdClose->click();
+
 }
 
 void HAddLotInProduction::on_tvLots_doubleClicked(const QModelIndex &index)
 {
     Q_UNUSED(index);
+
     addLot();
+
+}
+
+void HAddLotInProduction::clean()
+{
     prefsdb.close();
+    data=nullptr;
+    qmLots=nullptr;
+    delete data;
+    delete qmLots;
     close();
 
 }
@@ -169,7 +206,7 @@ QString HAddLotInProduction::findDefaultLot(const QString p_prod)
     QString defaultLot=QString();
     QString sql("SELECT lot FROM pref WHERE prod=:prod");
 
-    QSqlQuery q(prefsdb);
+   QSqlQuery q(prefsdb);
     q.prepare(sql);
     q.bindValue(":prod",p_prod);
     if (q.exec())
@@ -178,7 +215,8 @@ QString HAddLotInProduction::findDefaultLot(const QString p_prod)
         defaultLot=q.value(0).toString();
     }
 
-    qDebug()<<q.lastError().text()<<defaultLot<<p_prod;
+    q.clear();
+
 
     return defaultLot;
 

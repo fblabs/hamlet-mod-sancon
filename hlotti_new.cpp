@@ -39,6 +39,8 @@ HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     getLotTypes();
     ui->cbProduct->setModel(getProducts());
     ui->cbProduct->setModelColumn(1);
+    ui->cbProduct->completer()->setCompletionColumn(1);
+    ui->cbProduct->completer()->setCompletionMode(QCompleter::PopupCompletion);
 
     ui->tvLotti->setColumnHidden(0,true);
     loadLotsData();
@@ -119,14 +121,14 @@ void HLotti_new::loadLotsData()
 
 void HLotti_new::on_deFrom_userDateChanged(const QDate &date)
 {
-    ui->tvLotti->setColumnHidden(0,true);
+   // ui->tvLotti->setColumnHidden(0,true);
     loadLotsData();
 }
 
 
 void HLotti_new::on_deTo_userDateChanged(const QDate &date)
 {
-    ui->tvLotti->setColumnHidden(0,true);
+   // ui->tvLotti->setColumnHidden(0,true);
    loadLotsData();
 
 }

@@ -39,24 +39,25 @@ HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
 
     user=puser;
     db=pdb;
-    qDebug()<<"GETPRODUZIONE_U"<<QString::number(user->get_produzione_u()>0);
 
     ui->pushButton_5->setEnabled(user->get_produzione_u()>0);
     ui->pushButton_2->setEnabled(user->get_produzione_u()>0);
     ui->pushButton_3->setEnabled(false);
     ui->pushButton_7->setEnabled(false);
+    ui->pushButton_6->setVisible(false);
     ui->pushButton_11->setEnabled(user->get_produzione_u()>0);
+    ui->pbPreferredLots->setEnabled(false);
 
 
 
-    QSettings settings("hamletmod.ini",QSettings::IniFormat);
+   /* QSettings settings("hamletmod.ini",QSettings::IniFormat);
     preferred_db=settings.value("preferred_lots").toString();
 
 
 
      prefdb=QSqlDatabase::addDatabase("QSQLITE");
      prefdb.setDatabaseName(preferred_db);
-     prefdb.open();
+     prefdb.open();*/
 
     ui->dateEdit->setVisible(false);
     ui->label_9->setVisible(false);
@@ -84,24 +85,11 @@ HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
 
     ui->cbUm->setModel(tmUm);
     ui->cbUm->setModelColumn(1);
-
-
-
     getClients();
     ui->cbClienti->setCurrentIndex(ui->cbClienti->model()->rowCount());
     ui->cbClienti->setCurrentIndex(0);
-
     ui->lvRicette->setEnabled(true);
     ui->lvSubclienti->setVisible(false);
-
-  /*  ui->leQtyTotal->setEnabled(true);
-    ui->pushButton_5->setVisible(true);
-    ui->pushButton_6->setVisible(false);
-    ui->pushButton->setEnabled(false);
-    ui->pushButton_2->setEnabled(false);
-    ui->pushButton_7->setEnabled(false);
-    ui->leNuovoLot->setText("");
-    ui->label_6->setVisible(true);*/
     ui->dateEdit->setDate(QDate::currentDate().addYears(2));
 
     setAddProductFuoriRicettaUI(false);
@@ -459,31 +447,13 @@ void HProduction::getRecipe()
     ui->textBrowser->setText(n.value(0).toString());
     ui->lbRicetta->setText(ui->lvRicette->model()->index(ui->lvRicette->currentIndex().row(),2).data(0).toString());
 
-
-    //--------------------
-
-
-
-
-    //QString idprodotto,descrizione,quantita,lotto,quantitaeffettivadaaggiungere;
-
-
-
-
     QString sql="select distinct prodotti.ID ,prodotti.descrizione,prodotti.allergenico,righe_ricette.quantita from prodotti,righe_ricette where righe_ricette.ID_prodotto=prodotti.ID and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
-    //writeRed=new QList<int>();
     QSqlQuery q(db);
     qmod=new QSqlQueryModel();
-
-
     q.prepare(sql);
     q.bindValue(":idricetta",QVariant(idricetta));
-
     q.exec();
     qmod->setQuery(q);
-
-
-
 
     model = new QStandardItemModel(0,8);
 
@@ -574,12 +544,14 @@ void HProduction::getRecipe()
 
     // qmrighe->setQuery(q);
     ui->tableView->setModel(model);
+
+
     //ui->tableView->horizontalHeader()->setStretchLastSection(true);
     // ui->tableView->resizeColumnsToContents();
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(calculateActualTotal()));
-    connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(productSelected()));
+   // connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(productSelected()));
     connect(model,SIGNAL(dataChanged(QModelIndex,QModelIndex)),this,SLOT(calculateActualTotal()));
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
@@ -798,16 +770,6 @@ void HProduction::printRecipe()
 
 }
 
-void HProduction::productSelected()
-{
-
-    // lastFiveLots();
-    //  connect (ui->lvLastLots->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(addLotProd()));
-
-
-}
-
-
 
 void HProduction::on_pushButton_clicked()
 {
@@ -995,6 +957,7 @@ void HProduction::addLotFuoriRicettaN(QList<QStandardItem*> row)
 
 void HProduction::on_pushButton_5_clicked()
 {
+    connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
     ui->pushButton_3->setEnabled(user->get_produzione_u()>0);
     ui->lvRicette->setEnabled(false);
     ui->leOperatore->setEnabled(false);
@@ -1005,14 +968,11 @@ void HProduction::on_pushButton_5_clicked()
 
 
     ui->pushButton_5->setVisible(false);
+    ui->pbPreferredLots->setEnabled(true);
     ui->pushButton_6->setVisible(true);
     ui->pushButton->setEnabled(true);
     ui->pushButton_2->setEnabled(true);
     ui->pushButton_7->setEnabled(true);
-    //ui->label->setVisible(true);
-    // ui->cbQuanti->setVisible(true);
-    // ui->lvLastLots->setVisible(true);
-    // ui->leQtyTotal->setReadOnly(true);
     ui->leQtyTotal->setEnabled(true);
     ui->cbTipoLotto->setEnabled(false);
     ui->checkBox->setEnabled(false);
@@ -1025,7 +985,6 @@ void HProduction::on_pushButton_5_clicked()
 
     //QModelIndex tindex=ui->tableView->selectionModel()->currentIndex();
     ui->tableView->setEnabled(true);
-    connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
 
 
 
@@ -1042,46 +1001,19 @@ void HProduction::on_pushButton_5_clicked()
 
 void HProduction::on_pushButton_6_clicked()
 {
-    /* ui->pushButton_3->setEnabled(false);
-    ui->lvRicette->setEnabled(true);
-    ui->tableView->setEnabled(false);
-    ui->pushButton_5->setVisible(true);
-    ui->leOperatore->setEnabled(true);
-
-    ui->pushButton_6->setVisible(false);
-    ui->pushButton->setEnabled(false);
-    ui->pushButton_2->setEnabled(false);
-    ui->pushButton_7->setEnabled(false);*/
-
-    //ui->label->setVisible(false);
-    // ui->cbQuanti->setVisible(false);
-    // ui->lvLastLots->setVisible(false);
-    /*   ui->leNuovoLot->setText("");
-    ui->leQtyTotal->setReadOnly(false);
-    ui->cbTipoLotto->setEnabled(true);
-    ui->checkBox->setEnabled(true);
-    ui->cbClienti->setEnabled(true);*/
-    // ui->leQtyTotal->setText("0.0");
-    //ui->leQtyTotal->setReadOnly(true);
-    //   getRecipe();
-    //   updateTotals();
 
     resetForm(false);
 
     ui->pushButton_3->setEnabled(false);
     ui->pushButton_7->setEnabled(false);
+    ui->pbPreferredLots->setEnabled(false);
+
+
+    disconnect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
 
 
 
 
-    //  modifyLot=false;
-    //  ui->tableView->setModel(0);
-    // getRecipe();
-    /* ui->pushButton_10->setEnabled(false);
-    ui->lvRicette->setCurrentIndex(ui->lvRicette->model()->index(0,0));
-    ui->lvRicette->selectionModel()->select(ui->lvRicette->model()->index(0,0),QItemSelectionModel::Select);*/
-    //  ui->tableView->setEnabled(false);
-    //  disconnect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
 
 }
 
@@ -1490,12 +1422,7 @@ void HProduction::on_pushButton_2_clicked()
     if(QMessageBox::question(this,QApplication::applicationName(),"Eliminare la riga?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         QModelIndex ix=ui->tableView->currentIndex();
-        //  QModelIndex xx=ui->tableView->model()->index(ix.row(),2);
-        // QModelIndex xy=ui->tableView->model()->index(ix.row(),5);
-
         ui->tableView->model()->removeRow(ix.row());
-        //  ui->tableView->model()->setData(xx,QVariant(0),Qt::EditRole);
-        //  ui->tableView->model()->setData(xy,QVariant(0),Qt::EditRole);
         recalculateTotal();
 
     }
@@ -1509,11 +1436,6 @@ void HProduction::on_pushButton_7_toggled(bool checked)
 void HProduction::setAddProductFuoriRicettaUI(bool visible)
 {
     ui->label_6->setVisible(visible);
-    /* ui->label_2->setVisible(visible);
-    ui->label_4->setVisible(visible);
-    ui->leqtytoAdd->setVisible(visible);
-    ui->leLotToadd->setVisible(visible);*/
-    //  ui->cbTipoLotto->setVisible(visible);
     ui->pbAddLottoFuoriRicetta->setVisible(visible);
     ui->pbAnnulla->setVisible(visible);
 
@@ -1732,13 +1654,26 @@ void HProduction::ui_enable(int arg)
 
 void HProduction::addPreferredLots()
 {
+    QSettings settings("hamletmod.ini",QSettings::IniFormat);
+    preferred_db=settings.value("preferred_lots").toString();
+
+
+    QSqlDatabase prefdb=QSqlDatabase::addDatabase("QSQLITE","PREFERENCES");
+    prefdb.setDatabaseName(preferred_db);
+
+    prefdb.open();
+
    int rows=ui->tableView->model()->rowCount();
 
    for(int row=0;row<rows;++row)
    {
        QModelIndex ix=ui->tableView->model()->index(row,0);
+      // ui->tableView->model()->setData(ui->tableView->model()->index(ix.row(),4),findPreferredLot(ui->tableView->model()->index(ix.row(),0).data(0).toInt()));
+      // ui->tableView->model()->setData(ui->tableView->model()->index(ix.row(),7),"PIPPO");
        addLot(ix,false);
    }
+
+   prefdb.close();
 }
 
 const QString HProduction::findPreferredLot(const int id_prod)
@@ -1766,7 +1701,7 @@ const QString HProduction::findPreferredLot(const int id_prod)
 
 void HProduction::addLot(QModelIndex index,bool show_window)
 {
-    HDataToPass *data=new HDataToPass(0);
+    HDataToPass *data=new HDataToPass();
     double giacenza=0.0;
     QSqlQuery q(db);
     QString sql="SELECT getgiacenza(:id)";
@@ -1780,6 +1715,7 @@ void HProduction::addLot(QModelIndex index,bool show_window)
     data->allergene=ui->tableView->model()->index(index.row(),6).data(0).toBool();
     data->description=ui->tableView->model()->index(index.row(),1).data(0).toString();
     data->productId=ui->tableView->model()->data(ui->tableView->model()->index(index.row(),0)).toInt();
+    data->lot=findPreferredLot();
     data->row=index.row();
     data->quantity=ui->tableView->model()->index(index.row(),5).data(0).toDouble();
     data->mod=static_cast<QStandardItemModel*>(ui->tableView->model());
@@ -1816,4 +1752,7 @@ void HProduction::on_cbTipoLotto_currentIndexChanged(int index)
 {
     getRecipesForClient();
 }
+
+
+
 

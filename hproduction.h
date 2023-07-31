@@ -33,19 +33,13 @@ private:
     QSqlDatabase db;
     HUser *user;
     QString preferred_db;
-    QSqlDatabase prefdb;
-
+   // QSqlDatabase prefdb;
     QSqlQueryModel *qmClienti;
     QSqlQueryModel *qmRicette;
     QStandardItemModel *model;
     QSqlTableModel *tmTipiLotti;
     QSqlTableModel *tmUm;
-    //   QList<int> *writeRed;
-    //   QStandardItemModel *tableModel;
     QSqlQueryModel* qmod;
-
-
-
     bool modifyLot;
     int lottomodifica;
 
@@ -56,7 +50,7 @@ private slots:
     void getSubclients();
     void getRecipesForClient();
     void getRecipe();
-    void productSelected();
+   // void productSelected();
     //void getLotModel();
     void addLotProd();
     void addLotFuoriRicettaN(QList<QStandardItem *> row);
@@ -96,9 +90,6 @@ private slots:
     void ui_enable(int arg);
     void addPreferredLots();
     const QString findPreferredLot(const int id_prod=-1);
-
-
-
     void on_pbPreferredLots_clicked();
     void on_cbTipoLotto_currentIndexChanged(int index);
 };
