@@ -553,10 +553,14 @@ void HProduction::getRecipe()
     connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(calculateActualTotal()));
     // connect(ui->tableView->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(productSelected()));
     connect(model,SIGNAL(dataChanged(QModelIndex,QModelIndex)),this,SLOT(calculateActualTotal()));
+
+
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
     ui->tableView->setColumnHidden(6,true);
     ui->pushButton_10->setEnabled(true);
+
+
 
 
 
@@ -957,7 +961,7 @@ void HProduction::addLotFuoriRicettaN(QList<QStandardItem*> row)
 
 void HProduction::on_pushButton_5_clicked()
 {
-    connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
+
     ui->pushButton_3->setEnabled(user->get_produzione_u()>0);
     ui->lvRicette->setEnabled(false);
     ui->leOperatore->setEnabled(false);
@@ -993,6 +997,9 @@ void HProduction::on_pushButton_5_clicked()
         QMessageBox::warning(this,QApplication::applicationName(),"Inserire la quantità totale da produrre",QMessageBox::Ok);
 
     }
+
+
+    connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
 
 
 
@@ -1392,6 +1399,8 @@ void HProduction::on_pushButton_3_clicked()
 
     ui->pushButton_3->setEnabled(false);
     ui->pbPreferredLots->setEnabled(false);
+    disconnect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
+
 
 
 }
@@ -1598,6 +1607,7 @@ void HProduction::resetForm(bool pcomplete)
 
     modifyLot=false;
 
+
 }
 
 void HProduction::on_pushButton_10_clicked()
@@ -1675,6 +1685,7 @@ void HProduction::addPreferredLots()
     {
         QModelIndex ix=ui->tableView->model()->index(row,0);
         addLot(ix,false);
+
     }
 
     prefdb.close();
@@ -1725,18 +1736,23 @@ void HProduction::addLot(QModelIndex index,bool show_window)
     data->mod=static_cast<QStandardItemModel*>(ui->tableView->model());
     data->giacenza=giacenza;
 
-    HAddLotInProduction *f= new HAddLotInProduction(data,db);
-    if(show_window){
-        // f->setWindowModality(Qt::ApplicationModal);
-        f->move(10+ui->tableView->x()-f->width()-10,QCursor::pos().y());
-        f->show();
 
+    HAddLotInProduction *f= new HAddLotInProduction(data,db);
+
+    if(show_window)
+    {
+        f->show();
+        f->setWindowModality(Qt::ApplicationModal);
+        //f->move(10+ui->tableView->x()-f->width()-10,QCursor::pos().y());
+        f->move(width()/2-f->width()/2,height()/2-f->height()/2);
+        f->show();
     }
     else
     {
         f->click();
-        //f->close();
+        delete f;
     }
+
 
 }
 

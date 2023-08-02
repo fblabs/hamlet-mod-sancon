@@ -17,17 +17,18 @@ class HAddLotInProduction : public QWidget
 {
     Q_OBJECT
 
+public:
+    explicit HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent=nullptr);
+    ~HAddLotInProduction();
+
+
+private:
+    Ui::HAddLotInProduction *ui;
     QStandardItemModel *model;
     HDataToPass *data;
     QSqlDatabase db;
     QSqlDatabase prefsdb;
     QStandardItemModel *qmLots;
-
-public:
-    explicit HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent=nullptr);
-    ~HAddLotInProduction();
-private:
-    Ui::HAddLotInProduction *ui;
 private slots:
     void lastLots();
     void addLot();

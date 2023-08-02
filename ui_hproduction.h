@@ -68,7 +68,6 @@ public:
     QPlainTextEdit *tNote;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_7;
-    QPushButton *pushButton_8;
     QPushButton *pushButton_2;
     QPushButton *pbPreferredLots;
     QPushButton *pushButton_3;
@@ -96,7 +95,7 @@ public:
             HProduction->setObjectName(QString::fromUtf8("HProduction"));
         HProduction->setWindowModality(Qt::NonModal);
         HProduction->setEnabled(true);
-        HProduction->resize(1025, 605);
+        HProduction->resize(1133, 605);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Gears.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HProduction->setWindowIcon(icon);
@@ -313,29 +312,20 @@ public:
 
         horizontalLayout->addWidget(pushButton_7);
 
-        pushButton_8 = new QPushButton(HProduction);
-        pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_8->setIcon(icon6);
-        pushButton_8->setIconSize(QSize(32, 32));
-
-        horizontalLayout->addWidget(pushButton_8);
-
         pushButton_2 = new QPushButton(HProduction);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon7);
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon6);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_2);
 
         pbPreferredLots = new QPushButton(HProduction);
         pbPreferredLots->setObjectName(QString::fromUtf8("pbPreferredLots"));
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/Resources/Center64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPreferredLots->setIcon(icon8);
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/Resources/Center64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPreferredLots->setIcon(icon7);
         pbPreferredLots->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbPreferredLots);
@@ -343,18 +333,18 @@ public:
         pushButton_3 = new QPushButton(HProduction);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
         pushButton_3->setEnabled(false);
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon9);
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon8);
         pushButton_3->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_3);
 
         pushButton_11 = new QPushButton(HProduction);
         pushButton_11->setObjectName(QString::fromUtf8("pushButton_11"));
-        QIcon icon10;
-        icon10.addFile(QString::fromUtf8(":/Resources/Arrow-Left.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_11->setIcon(icon10);
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/Resources/Arrow-Left.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_11->setIcon(icon9);
         pushButton_11->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton_11);
@@ -446,18 +436,18 @@ public:
         pushButton_10 = new QPushButton(HProduction);
         pushButton_10->setObjectName(QString::fromUtf8("pushButton_10"));
         pushButton_10->setEnabled(true);
-        QIcon icon11;
-        icon11.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_10->setIcon(icon11);
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_10->setIcon(icon10);
         pushButton_10->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_10);
 
         pushButton_4 = new QPushButton(HProduction);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        QIcon icon12;
-        icon12.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon12);
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon11);
         pushButton_4->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_4);
@@ -506,7 +496,6 @@ public:
         lbRicetta->setText(QString());
         label_10->setText(QCoreApplication::translate("HProduction", "Note produzione:", nullptr));
         pushButton_7->setText(QCoreApplication::translate("HProduction", "Aggiungi lotto fuori ricetta", nullptr));
-        pushButton_8->setText(QCoreApplication::translate("HProduction", "Modifica produzione", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HProduction", "Rimuovi riga", nullptr));
         pbPreferredLots->setText(QCoreApplication::translate("HProduction", "Mostra Lotti predefinti", nullptr));
         pushButton_3->setText(QCoreApplication::translate("HProduction", "Salva", nullptr));

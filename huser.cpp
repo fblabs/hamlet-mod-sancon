@@ -119,11 +119,11 @@ void HUser::set_permissions(const QSqlQueryModel *p_perms)
     anagrafica_u=perm_rec.value(7).toInt();
     notifiche_v=perm_rec.value(8).toInt();
     notifiche_u=perm_rec.value(9).toInt();
-    contatti_v==perm_rec.value(10).toInt();
+    contatti_v=perm_rec.value(10).toInt();
     contatti_u=perm_rec.value(11).toInt();
     lotti_v=perm_rec.value(12).toInt();
     lotti_u=perm_rec.value(13).toInt();
-    operazioni_v==perm_rec.value(14).toInt();
+    operazioni_v=perm_rec.value(14).toInt();
     operazioni_u=perm_rec.value(15).toInt();
     prodotti_v=perm_rec.value(16).toInt();
     prodotti_u=perm_rec.value(17).toInt();
@@ -164,24 +164,24 @@ int HUser::get_anagrafica_u()
     return anagrafica_u;
 }
 
-int HUser::get_notifiche_u()
-{
-    return notifiche_u;
-}
-
 int HUser::get_notifiche_v()
 {
     return notifiche_v;
 }
 
-int HUser::get_contatti_u()
+int HUser::get_notifiche_u()
 {
-    return contatti_u;
+    return notifiche_u;
 }
 
 int HUser::get_contatti_v()
 {
     return contatti_v;
+}
+
+int HUser::get_contatti_u()
+{
+    return contatti_u;
 }
 
 int HUser::get_lotti_v()

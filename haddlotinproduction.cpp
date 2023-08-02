@@ -10,7 +10,7 @@
 #include <QFile>
 #include <QSettings>
 
-HAddLotInProduction::HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb,QWidget *parent) :
+HAddLotInProduction::HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HAddLotInProduction)
 {
@@ -165,10 +165,6 @@ void HAddLotInProduction::addLot()
 
 
     emit lot_added();
-    clean();
-
-
-
 
 
 
