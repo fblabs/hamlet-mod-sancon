@@ -370,6 +370,23 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="pushButton_8">
+           <property name="text">
+            <string>Modifica produzione</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="pushButton_2">
            <property name="text">
             <string>Rimuovi riga</string>

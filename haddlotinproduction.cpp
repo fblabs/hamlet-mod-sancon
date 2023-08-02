@@ -57,6 +57,11 @@ HAddLotInProduction::~HAddLotInProduction()
     prefsdb.close();
     data=nullptr;
     delete data;
+    model=nullptr;
+    delete model;
+    qmLots=nullptr;
+    delete qmLots;
+    delete ui->cbLastLots->model();
     delete ui;
 
 }
@@ -67,6 +72,11 @@ void HAddLotInProduction::click()
     prefsdb.close();
     data=nullptr;
     delete data;
+    model=nullptr;
+    delete model;
+    qmLots=nullptr;
+    delete qmLots;
+    delete ui->cbLastLots->model();
     close();
 
 }
@@ -153,7 +163,9 @@ void HAddLotInProduction::addLot()
     }
 
 
+
     emit lot_added();
+    clean();
 
 
 
@@ -178,8 +190,7 @@ void HAddLotInProduction::on_pdClose_clicked()
 void HAddLotInProduction::on_pbAdd_clicked()
 {
     addLot();
-    ui->pdClose->click();
-
+    clean();
 }
 
 void HAddLotInProduction::on_tvLots_doubleClicked(const QModelIndex &index)
@@ -192,11 +203,15 @@ void HAddLotInProduction::on_tvLots_doubleClicked(const QModelIndex &index)
 
 void HAddLotInProduction::clean()
 {
+
     prefsdb.close();
     data=nullptr;
-    qmLots=nullptr;
     delete data;
+    qmLots=nullptr;
     delete qmLots;
+    model=nullptr;
+    delete model;
+    delete ui->cbLastLots->model();
     close();
 
 }

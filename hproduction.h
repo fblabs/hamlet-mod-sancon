@@ -42,6 +42,7 @@ private:
     QSqlQueryModel* qmod;
     bool modifyLot;
     int lottomodifica;
+    int recipe_row_count;
 
 private slots:
     void addLot(QModelIndex index, bool show_window=true);
