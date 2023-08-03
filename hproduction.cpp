@@ -1027,7 +1027,7 @@ void HProduction::on_pushButton_6_clicked()
 
 bool HProduction::saveNewLot(QString lot, int prodotto)
 {
-    bool b;
+    bool b=false;
     QSqlQuery q(db);
     QString sql="INSERT INTO `lotdef`(`lot`,`prodotto`,`data`,`giacenza`,`um`,`scadenza`,`anagrafica`,`lot_fornitore`, `EAN`, `tipo`, `attivo`,`note`,`operatore`) VALUES(:lot,:prodotto,:data,:giacenza,:um,:scadenza ,:anagrafica,:lotf,:ean,:tipo,:attivo,:note,:operatore)";
     QString giacenza=ui->leQtyTotal->text();
@@ -1051,13 +1051,13 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
     QDateTime data=QDateTime::currentDateTime();
     QString oper=ui->leOperatore->text();
 
-    b=false;
-
-    if(QMessageBox::question(this,QApplication::applicationName(),"Confermare la produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    if(QMessageBox::question(this,QApplication::applicationName(),"Confermare la produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)
     {
+        return false;
+    }
 
+        QApplication::setOverrideCursor(Qt::WaitCursor);
         q.prepare(sql);
-
         q.bindValue(":lot",QVariant(lot));
         q.bindValue(":prodotto",QVariant(prodotto));
         q.bindValue(":data",QVariant(data));
@@ -1072,23 +1072,18 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
         q.bindValue(":note",QVariant(note));
         q.bindValue(":operatore",QVariant(oper));
         b = q.exec();
+        qDebug()<<"B"<<b;
 
         if(!b){
 
-            QApplication::restoreOverrideCursor();
-            QMessageBox::warning(this,QApplication::applicationName(),"errore ell'inserimento nuovo lotto"+db.lastError().text(),QMessageBox::Ok);
+        db.rollback();
+        QApplication::restoreOverrideCursor();
+            QMessageBox::warning(this,QApplication::applicationName(),"errore nell'inserimento nuovo lotto"+db.lastError().text(),QMessageBox::Ok);
             return b;
-
         }
 
-    }else{
 
-        QApplication::restoreOverrideCursor();
-        QMessageBox::warning(this,QApplication::applicationName(),"Produzione annullata"+db.lastError().text(),QMessageBox::Ok);
         return b;
-
-    }
-
 
 }
 //--saveNewLot()-------------------------------
@@ -1176,7 +1171,7 @@ bool HProduction::saveOperation(int row,int action)//carico=1 - scarico= 2
     if(!b)
     {
         qDebug() << q.lastError().text();
-        // QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveOperazione(" + QString::number(row) +")\nIDlotto:"+idlotto,QMessageBox::Ok);
+        QMessageBox::warning(this,QApplication::applicationName(),"SaveOperation "+q.lastError().text(),QMessageBox::Ok);
 
     }
 
@@ -1208,7 +1203,7 @@ bool HProduction::saveComposizione(int lottotarget,int operazione)
     b=q.exec();
     // qDebug()<< "savecomposizione"<<q.lastError().text();
 
-    if(!b){QApplication::restoreOverrideCursor();}
+    //if(!b){QApplication::restoreOverrideCursor();}
 
     return b;
 
@@ -1227,38 +1222,39 @@ bool HProduction::saveProduction()
     QDate scadenza;
     int op;
 
+    db.transaction();
+
     bool fb=false;
 
     data=QDateTime::currentDateTime();
     scadenza=ui->dateEdit->date();
     idprodotto=ui->lvRicette->model()->index(ui->lvRicette->currentIndex().row(),1).data(0).toInt();
 
-    if(model->rowCount()<recipe_row_count)
+   /* if(model->rowCount()<recipe_row_count)
     {
-        QMessageBox::warning(this,QApplication::applicationName(),"Righe produzione inferiori alle righe ricetta",QMessageBox::Ok);
-        return false;
-    }
+        if(QMessageBox::warning(this,QApplication::applicationName(),"Righe produzione inferiori alle righe ricetta OK(Esegui) o Cancel (Annulla)",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel);
+        {
+
+            return false;
+        }
+    }*/
 
 
 
     //creo un nuovo lotto
 
-    db.transaction();
 
     lotto=getNewLot(idprodotto);
 
 
     if(QMessageBox::warning(this,QApplication::applicationName(),"Avviare il salvataggio della produzione?\n verificare",QMessageBox::Ok| QMessageBox::Cancel)==QMessageBox::Cancel)
     {
-        db.rollback();
+
         ui_enable(ACTION::WAIT);
         QApplication::restoreOverrideCursor();
+        db.rollback();
         return false;
     }
-
-   // QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-
-
 
 
     fb=saveNewLot(lotto,idprodotto);
@@ -1269,14 +1265,16 @@ bool HProduction::saveProduction()
         db.rollback();
         QApplication::restoreOverrideCursor();
         QMessageBox::warning(this,QApplication::applicationName(),"Il nuovo lotto non è stato creato\nOperazione annullata o fallita"+db.lastError().text(),QMessageBox::Ok);
+       // QMessageBox::warning(this,QApplication::applicationName(),"SaveNewLot errore"+db.lastError().text(),QMessageBox::Ok);
 
-            return fb;
+        return false;
     }
 
 
     newlotid=lastInsertId();
 
     //carico il nuovo lotto
+    qDebug()<<"savelot load";
     fb=saveLotLoad(newlotid,idprodotto);
     if(!fb)
     {
@@ -1292,7 +1290,7 @@ bool HProduction::saveProduction()
     bool bop=false;
     for (int x=0;x<rows;x++)
     {
-
+        qDebug()<<"saveoperation";
         bop=saveOperation(x,2);
 
         if (bop)
@@ -1301,8 +1299,9 @@ bool HProduction::saveProduction()
             bool j=saveComposizione(newlotid,op);
             if (!j)
             {
-                QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveComposizione",QMessageBox::Ok);
                 db.rollback();
+                QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveComposizione",QMessageBox::Ok);
+
                 QApplication::restoreOverrideCursor();
                 return j;
             }
@@ -1310,9 +1309,8 @@ bool HProduction::saveProduction()
         }
         else
         {
-
-            QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveOperation("+ QString::number(x) +")",QMessageBox::Ok);
             db.rollback();
+            QMessageBox::warning(this,QApplication::applicationName(),"Errore in saveOperation("+ QString::number(x) +")",QMessageBox::Ok);
             QApplication::restoreOverrideCursor();
             return bop;
         } //se saveoperazione
@@ -1387,12 +1385,15 @@ void HProduction::on_pushButton_3_clicked()
 
     if (!modifyLot){
 
-        saveProduction();
+
+    bool  b= saveProduction();
+        if(!b){db.rollback();}
 
     }
     else
     {
-        updateComposition();
+       updateComposition();
+
     }
 
     resetForm(true);
