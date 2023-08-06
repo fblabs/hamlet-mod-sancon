@@ -12,4 +12,5 @@ release/moc_haddlotinproduction.cpp
 LICENSEKEY
 hamletMOD.pro.user
 Makefile
-hamletMOD.pro.user
+usersinfo*
+*.db

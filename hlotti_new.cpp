@@ -423,12 +423,14 @@ void HLotti_new::showContextMenu(const QPoint &pos)
     QAction *copyAction=menu->addAction("Copia il testo sotto il cursore");
     //  QAction *editAction=menu->addAction("Modifica/Copia dati ...");
     QAction *bioAction=menu->addAction("Dati Biologici ...");
+    QAction *deleteLot=menu->addAction("Elimina il lotto");
 
 
     // connect(detailsAction,SIGNAL(triggered(bool)),this,SLOT(getDetails()));
     connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyField()));
     //  connect(editAction,SIGNAL(triggered(bool)),this,SLOT(editLot()));
     connect(bioAction,SIGNAL(triggered(bool)),this,SLOT(datiBio()));
+    connect(deleteLot,SIGNAL(triggered(bool)),this,SLOT(on_pbDelete_clicked()));
 
 
 
@@ -474,7 +476,6 @@ void HLotti_new::deleteLot(const int p_id)
     QString sql="SELECT COUNT(id) FROM operazioni WHERE IDlotto=:idlot";
     q.prepare(sql);
     q.bindValue(":idlot",QVariant(idlotto));
-    bool b=q.exec();
     q.next();
     bool ok=false;
     int cnt=q.value(0).toInt(&ok);
@@ -489,6 +490,7 @@ void HLotti_new::deleteLot(const int p_id)
     else
     {
         bool ba=false;
+
         db.transaction();
 
         QSqlQueryModel* cmod=new QSqlQueryModel();

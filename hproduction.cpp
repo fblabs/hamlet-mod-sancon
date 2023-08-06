@@ -1051,10 +1051,10 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
     QDateTime data=QDateTime::currentDateTime();
     QString oper=ui->leOperatore->text();
 
-    if(QMessageBox::question(this,QApplication::applicationName(),"Confermare la produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)
+   /* if(QMessageBox::question(this,QApplication::applicationName(),"Confermare la produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)
     {
         return false;
-    }
+    }*/
 
         QApplication::setOverrideCursor(Qt::WaitCursor);
         q.prepare(sql);
@@ -1222,7 +1222,6 @@ bool HProduction::saveProduction()
     QDate scadenza;
     int op;
 
-    db.transaction();
 
     bool fb=false;
 
@@ -1323,7 +1322,6 @@ bool HProduction::saveProduction()
     if(bop)
     {
         QApplication::restoreOverrideCursor();
-        db.commit();
         QMessageBox::information(this,QApplication::applicationName(),"Produzione salvata",QMessageBox::Ok);
         ui->lvRicette->setEnabled(true);
         ui->pushButton_5->setVisible(true);
@@ -1385,14 +1383,16 @@ void HProduction::on_pushButton_3_clicked()
 
     if (!modifyLot){
 
-
+    db.transaction();
     bool  b= saveProduction();
-        if(!b){db.rollback();}
+    if(b){db.commit();}else{db.rollback();}
 
     }
     else
     {
-       updateComposition();
+
+       bool b= updateComposition();
+       if(b){db.commit();}else{db.rollback();}
 
     }
 
