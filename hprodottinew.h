@@ -51,6 +51,8 @@ private slots:
     void on_chbBio_toggled(bool checked);
 
 
+    void on_pbPreferredLots_clicked();
+
 private:
     Ui::HProdottiNew *ui;
     QString sConn;

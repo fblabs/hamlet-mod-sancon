@@ -35,6 +35,7 @@ SOURCES += main.cpp\
     hlotti_new.cpp \
     hnew_recipe_main.cpp \
     hpdfprint.cpp \
+    hpreferred_lots.cpp \
     hproducts_for_calcolo_costi.cpp \
     hrecipesforingredient.cpp \
     hworksheetmodel.cpp \
@@ -122,6 +123,7 @@ HEADERS  += mainwindow.h \
     hlotti_new.h \
     hnew_recipe_main.h \
     hpdfprint.h \
+    hpreferred_lots.h \
     hproducts_for_calcolo_costi.h \
     hrecipesforingredient.h \
     huser.h \
@@ -209,6 +211,7 @@ FORMS    += mainwindow.ui \
     hlotti_new.ui \
     hnew_recipe_main.ui \
     hpdfprint.ui \
+    hpreferred_lots.ui \
     hproducts_for_calcolo_costi.ui \
     hrecipesforingredient.ui \
     hutenti.ui \

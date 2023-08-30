@@ -237,7 +237,7 @@ public:
         tbSettings->setObjectName(QString::fromUtf8("tbSettings"));
         tbSettings->setEnabled(true);
         tbSettings->setMinimumSize(QSize(140, 0));
-        tbSettings->setMaximumSize(QSize(125, 16777215));
+        tbSettings->setMaximumSize(QSize(140, 16777215));
         tbSettings->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/Resources/Computer.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -251,6 +251,7 @@ public:
         tbProdotti->setObjectName(QString::fromUtf8("tbProdotti"));
         tbProdotti->setEnabled(false);
         tbProdotti->setMinimumSize(QSize(140, 0));
+        tbProdotti->setMaximumSize(QSize(140, 16777215));
         tbProdotti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/Resources/Wood-4-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -264,6 +265,7 @@ public:
         tbMagaz->setObjectName(QString::fromUtf8("tbMagaz"));
         tbMagaz->setEnabled(false);
         tbMagaz->setMinimumSize(QSize(140, 0));
+        tbMagaz->setMaximumSize(QSize(140, 16777215));
         tbMagaz->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/Resources/fork-1-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -277,6 +279,7 @@ public:
         pbC4R->setObjectName(QString::fromUtf8("pbC4R"));
         pbC4R->setEnabled(false);
         pbC4R->setMinimumSize(QSize(140, 0));
+        pbC4R->setMaximumSize(QSize(140, 16777215));
         pbC4R->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon4;
         icon4.addFile(QString::fromUtf8(":/Resources/Link64.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -289,6 +292,7 @@ public:
         pbProgrammazione->setObjectName(QString::fromUtf8("pbProgrammazione"));
         pbProgrammazione->setEnabled(false);
         pbProgrammazione->setMinimumSize(QSize(140, 0));
+        pbProgrammazione->setMaximumSize(QSize(140, 16777215));
         pbProgrammazione->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon5;
         icon5.addFile(QString::fromUtf8(":/Resources/3D_Icons_Icon_256.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -301,6 +305,7 @@ public:
         pBNewOperation->setObjectName(QString::fromUtf8("pBNewOperation"));
         pBNewOperation->setEnabled(false);
         pBNewOperation->setMinimumSize(QSize(140, 0));
+        pBNewOperation->setMaximumSize(QSize(140, 16777215));
         pBNewOperation->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon6;
         icon6.addFile(QString::fromUtf8(":/Resources/Actions-configure-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -315,7 +320,7 @@ public:
         tbAnag->setObjectName(QString::fromUtf8("tbAnag"));
         tbAnag->setEnabled(false);
         tbAnag->setMinimumSize(QSize(140, 0));
-        tbAnag->setMaximumSize(QSize(120, 16777215));
+        tbAnag->setMaximumSize(QSize(140, 16777215));
         tbAnag->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon7;
         icon7.addFile(QString::fromUtf8(":/Resources/Users64.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -328,7 +333,7 @@ public:
         tbLotti->setObjectName(QString::fromUtf8("tbLotti"));
         tbLotti->setEnabled(false);
         tbLotti->setMinimumSize(QSize(140, 0));
-        tbLotti->setMaximumSize(QSize(120, 16777215));
+        tbLotti->setMaximumSize(QSize(140, 16777215));
         tbLotti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon8;
         icon8.addFile(QString::fromUtf8(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -348,7 +353,7 @@ public:
         sizePolicy.setHeightForWidth(tbAnalisi->sizePolicy().hasHeightForWidth());
         tbAnalisi->setSizePolicy(sizePolicy);
         tbAnalisi->setMinimumSize(QSize(140, 0));
-        tbAnalisi->setMaximumSize(QSize(120, 16777215));
+        tbAnalisi->setMaximumSize(QSize(140, 16777215));
         tbAnalisi->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon9;
         icon9.addFile(QString::fromUtf8(":/Resources/Chart.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -363,7 +368,7 @@ public:
         tbLogout->setObjectName(QString::fromUtf8("tbLogout"));
         tbLogout->setEnabled(false);
         tbLogout->setMinimumSize(QSize(140, 0));
-        tbLogout->setMaximumSize(QSize(120, 16777215));
+        tbLogout->setMaximumSize(QSize(140, 16777215));
         tbLogout->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon10;
         icon10.addFile(QString::fromUtf8(":/Resources/User-red64.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -391,7 +396,7 @@ public:
         tnProduzione->setObjectName(QString::fromUtf8("tnProduzione"));
         tnProduzione->setEnabled(false);
         tnProduzione->setMinimumSize(QSize(140, 0));
-        tnProduzione->setMaximumSize(QSize(120, 16777215));
+        tnProduzione->setMaximumSize(QSize(140, 16777215));
         tnProduzione->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon12;
         icon12.addFile(QString::fromUtf8(":/Resources/Gears.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -404,7 +409,7 @@ public:
         toolButton = new QPushButton(centralWidget);
         toolButton->setObjectName(QString::fromUtf8("toolButton"));
         toolButton->setMinimumSize(QSize(140, 0));
-        toolButton->setMaximumSize(QSize(16777215, 16777215));
+        toolButton->setMaximumSize(QSize(140, 16777215));
         toolButton->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon13;
         icon13.addFile(QString::fromUtf8(":/Resources/User-green64.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -418,6 +423,7 @@ public:
         pbExpirations->setObjectName(QString::fromUtf8("pbExpirations"));
         pbExpirations->setEnabled(false);
         pbExpirations->setMinimumSize(QSize(140, 0));
+        pbExpirations->setMaximumSize(QSize(140, 16777215));
         pbExpirations->setAutoFillBackground(true);
         pbExpirations->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon14;
@@ -431,6 +437,7 @@ public:
         pbCalcoloCosti->setObjectName(QString::fromUtf8("pbCalcoloCosti"));
         pbCalcoloCosti->setEnabled(false);
         pbCalcoloCosti->setMinimumSize(QSize(130, 0));
+        pbCalcoloCosti->setMaximumSize(QSize(140, 16777215));
         pbCalcoloCosti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon15;
         icon15.addFile(QString::fromUtf8(":/Resources/Cash-register-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -445,7 +452,7 @@ public:
         sizePolicy.setHeightForWidth(pbPackages->sizePolicy().hasHeightForWidth());
         pbPackages->setSizePolicy(sizePolicy);
         pbPackages->setMinimumSize(QSize(140, 0));
-        pbPackages->setMaximumSize(QSize(125, 16777215));
+        pbPackages->setMaximumSize(QSize(140, 16777215));
         pbPackages->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon16;
         icon16.addFile(QString::fromUtf8(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -458,7 +465,7 @@ public:
         tbRicette->setObjectName(QString::fromUtf8("tbRicette"));
         tbRicette->setEnabled(false);
         tbRicette->setMinimumSize(QSize(140, 0));
-        tbRicette->setMaximumSize(QSize(16777215, 16777215));
+        tbRicette->setMaximumSize(QSize(140, 16777215));
         tbRicette->setBaseSize(QSize(0, 0));
         tbRicette->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon17;
@@ -473,7 +480,7 @@ public:
         tbModificaLotti->setObjectName(QString::fromUtf8("tbModificaLotti"));
         tbModificaLotti->setEnabled(false);
         tbModificaLotti->setMinimumSize(QSize(140, 0));
-        tbModificaLotti->setMaximumSize(QSize(120, 16777215));
+        tbModificaLotti->setMaximumSize(QSize(140, 16777215));
         tbModificaLotti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon18;
         icon18.addFile(QString::fromUtf8(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -487,7 +494,7 @@ public:
         pbSchede->setObjectName(QString::fromUtf8("pbSchede"));
         pbSchede->setEnabled(false);
         pbSchede->setMinimumSize(QSize(140, 0));
-        pbSchede->setMaximumSize(QSize(16777215, 16777215));
+        pbSchede->setMaximumSize(QSize(140, 16777215));
         pbSchede->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon19;
         icon19.addFile(QString::fromUtf8(":/Resources/Folder.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -500,7 +507,7 @@ public:
         tbUtenti->setObjectName(QString::fromUtf8("tbUtenti"));
         tbUtenti->setEnabled(false);
         tbUtenti->setMinimumSize(QSize(140, 0));
-        tbUtenti->setMaximumSize(QSize(120, 16777215));
+        tbUtenti->setMaximumSize(QSize(140, 16777215));
         tbUtenti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon20;
         icon20.addFile(QString::fromUtf8(":/Resources/Warning-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -513,7 +520,7 @@ public:
         tbAssociazioni->setObjectName(QString::fromUtf8("tbAssociazioni"));
         tbAssociazioni->setEnabled(false);
         tbAssociazioni->setMinimumSize(QSize(140, 0));
-        tbAssociazioni->setMaximumSize(QSize(134, 16777215));
+        tbAssociazioni->setMaximumSize(QSize(140, 16777215));
         tbAssociazioni->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon21;
         icon21.addFile(QString::fromUtf8(":/Resources/Map.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -527,6 +534,7 @@ public:
         pbUnload->setObjectName(QString::fromUtf8("pbUnload"));
         pbUnload->setEnabled(false);
         pbUnload->setMinimumSize(QSize(140, 0));
+        pbUnload->setMaximumSize(QSize(140, 16777215));
         pbUnload->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon22;
         icon22.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -539,6 +547,7 @@ public:
         pbContacts->setObjectName(QString::fromUtf8("pbContacts"));
         pbContacts->setEnabled(false);
         pbContacts->setMinimumSize(QSize(140, 0));
+        pbContacts->setMaximumSize(QSize(140, 16777215));
         pbContacts->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon23;
         icon23.addFile(QString::fromUtf8(":/Resources/user-group-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -552,6 +561,7 @@ public:
         pbNotifiche->setObjectName(QString::fromUtf8("pbNotifiche"));
         pbNotifiche->setEnabled(false);
         pbNotifiche->setMinimumSize(QSize(140, 0));
+        pbNotifiche->setMaximumSize(QSize(140, 16777215));
         pbNotifiche->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon24;
         icon24.addFile(QString::fromUtf8(":/Resources/Chat.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -564,6 +574,7 @@ public:
         pbCkeckNotifications->setObjectName(QString::fromUtf8("pbCkeckNotifications"));
         pbCkeckNotifications->setEnabled(false);
         pbCkeckNotifications->setMinimumSize(QSize(140, 0));
+        pbCkeckNotifications->setMaximumSize(QSize(140, 16777215));
         pbCkeckNotifications->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon25;
         icon25.addFile(QString::fromUtf8(":/Resources/Search.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -607,7 +618,7 @@ public:
         lbCurrentUser->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 3.4</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 3.4.7.2.003</span></p><p><br/><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza: LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2023</span></p><p><a href=\"https://github.com/fblabs/hamlet-mod-sancon/blob/master/release/hamletMOD.exe\"><span style=\" text-decoration: underline; color:#007af4;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 3.4</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 3.4.8.1.001</span></p><p><br/><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza: LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2023</span></p><p><a href=\"https://github.com/fblabs/hamlet-mod-sancon/blob/master/release/hamletMOD.exe\"><span style=\" text-decoration: underline; color:#007af4;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
         tbSettings->setText(QCoreApplication::translate("MainWindow", "Impostazioni   ", nullptr));
         tbProdotti->setText(QCoreApplication::translate("MainWindow", "Prodotti", nullptr));
 #if QT_CONFIG(tooltip)

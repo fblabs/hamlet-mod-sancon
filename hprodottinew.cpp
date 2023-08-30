@@ -16,6 +16,7 @@
 #include "hloads.h"
 #include <QFileDialog>
 #include <QSqlQueryModel>
+#include "hpreferred_lots.h"
 
 HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
@@ -423,4 +424,11 @@ void HProdottiNew::on_chbBio_toggled(bool checked)
 }
 
 
+
+
+void HProdottiNew::on_pbPreferredLots_clicked()
+{
+    HPreferred_Lots *f=new HPreferred_Lots(db);
+    f->show();
+}
 

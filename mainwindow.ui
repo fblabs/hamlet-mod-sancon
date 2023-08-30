@@ -531,7 +531,7 @@
          <enum>QFrame::NoFrame</enum>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Hamlet Mod 3.4&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Versione: 3.4.7.2.003&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza: LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.15.2 - MinGW 64&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;© FBLABS 2015-2023&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/fblabs/hamlet-mod-sancon/blob/master/release/hamletMOD.exe&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Sorgenti (github)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Hamlet Mod 3.4&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Versione: 3.4.8.1.001&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza: LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.15.2 - MinGW 64&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;© FBLABS 2015-2023&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/fblabs/hamlet-mod-sancon/blob/master/release/hamletMOD.exe&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Sorgenti (github)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -579,7 +579,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>125</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -615,6 +615,12 @@
             <height>0</height>
            </size>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">color:rgb(0, 0, 0)</string>
           </property>
@@ -645,6 +651,12 @@
            <size>
             <width>140</width>
             <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="toolTip">
@@ -685,6 +697,12 @@
             <height>0</height>
            </size>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">color:rgb(0, 0, 0)</string>
           </property>
@@ -714,6 +732,12 @@
             <height>0</height>
            </size>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">color:rgb(0, 0, 0)</string>
           </property>
@@ -741,6 +765,12 @@
            <size>
             <width>140</width>
             <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -784,7 +814,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -819,7 +849,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -869,7 +899,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -913,7 +943,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -989,7 +1019,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -1027,7 +1057,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>16777215</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -1066,6 +1096,12 @@
             <height>0</height>
            </size>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="autoFillBackground">
            <bool>true</bool>
           </property>
@@ -1096,6 +1132,12 @@
            <size>
             <width>130</width>
             <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -1138,7 +1180,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>125</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -1176,7 +1218,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>16777215</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -1223,7 +1265,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -1261,7 +1303,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>16777215</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -1299,7 +1341,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -1334,7 +1376,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>134</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -1370,6 +1412,12 @@
             <height>0</height>
            </size>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">color:rgb(0, 0, 0)</string>
           </property>
@@ -1397,6 +1445,12 @@
            <size>
             <width>140</width>
             <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -1431,6 +1485,12 @@
             <height>0</height>
            </size>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">color:rgb(0, 0, 0)</string>
           </property>
@@ -1458,6 +1518,12 @@
            <size>
             <width>140</width>
             <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
