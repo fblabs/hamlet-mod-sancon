@@ -24,6 +24,10 @@
 #include <QStandardItem>
 #include <QDesktopServices>
 
+#include <QMimeData>
+#include <QClipboard>
+#include <QMenu>
+
 
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
@@ -53,8 +57,8 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->pbDisapprova->setEnabled(user->get_programmi_u()>0);
     ui->pbPrint->setEnabled(user->get_programmi_u()>0);
 
-
-
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
 
 
 }
@@ -409,7 +413,7 @@ void HWorkProgram::on_pbRemove_clicked()
 
 void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
 {
-  if (!ui->cbshowrows->isChecked() /*&& user->get_programmi_u()*/) showModRow();
+  if (!ui->cbshowrows->isChecked()) showModRow();
 }
 
 void HWorkProgram::on_pbModify_clicked()
@@ -787,5 +791,34 @@ void HWorkProgram::on_pbDisapprova_clicked()
     getSheets(false);
     ui->tvStorico->setCurrentIndex(current);
     ui->tvStorico->selectRow(current.row());
+}
+
+void HWorkProgram::showContextMenu(const QPoint &pos)
+{
+    QPoint globalPos =mapToGlobal(pos);
+    QMenu *menu=new QMenu(0);
+
+    //  QAction *detailsAction=menu->addAction("Composizione/uso lotto");
+    menu->addSeparator();
+    QAction *copyAction=menu->addAction("Copia la riga sotto il cursore");
+    //  QAction *editAction=menu->addAction("Modifica/Copia dati ...");
+   // QAction *bioAction=menu->addAction("Dati Biologici ...");
+   // QAction *deleteLot=menu->addAction("Elimina il lotto");
+
+
+    // connect(detailsAction,SIGNAL(triggered(bool)),this,SLOT(getDetails()));
+    connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyRow()));
+    //  connect(editAction,SIGNAL(triggered(bool)),this,SLOT(editLot()));
+   /*connect(bioAction,SIGNAL(triggered(bool)),this,SLOT(datiBio()));
+    connect(deleteLot,SIGNAL(triggered(bool)),this,SLOT(on_pbDelete_clicked()));*/
+
+    menu->popup(globalPos);
+}
+
+void HWorkProgram::copyRow()
+{
+    QMimeData *row_data=new QMimeData();
+
+
 }
 

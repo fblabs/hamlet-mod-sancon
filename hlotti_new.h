@@ -39,7 +39,7 @@ private slots:
     QSqlQueryModel *getProducts();
     void on_cbProduct_currentIndexChanged(int index);
     void on_ckbUseProduct_toggled(bool checked);
-    void on_tvLotti_customContextMenuRequested(const QPoint &pos);
+    //void on_tvLotti_customContextMenuRequested(const QPoint &pos);
     void showContextMenu(const QPoint& pos);
     void copyField();
     void datiBio();

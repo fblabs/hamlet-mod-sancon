@@ -60,7 +60,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="cbProdotto"/>
+      <widget class="QComboBox" name="cbProdotto">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <property name="insertPolicy">
+        <enum>QComboBox::NoInsert</enum>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

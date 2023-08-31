@@ -50,7 +50,11 @@
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QComboBox" name="cbProdotto"/>
+      <widget class="QComboBox" name="cbProdotto">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item row="0" column="1">
       <widget class="QComboBox" name="cbCliente">

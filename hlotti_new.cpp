@@ -396,7 +396,7 @@ void HLotti_new::on_ckbUseProduct_toggled(bool checked)
 }
 
 
-void HLotti_new::on_tvLotti_customContextMenuRequested(const QPoint &pos)
+/*void HLotti_new::on_tvLotti_customContextMenuRequested(const QPoint &pos)
 {
     QPoint globalPos =mapToGlobal(pos);
     QMenu *menu=new QMenu(0);
@@ -405,13 +405,13 @@ void HLotti_new::on_tvLotti_customContextMenuRequested(const QPoint &pos)
     // menu->addSeparator();
     //  QAction *copyAction=menu->addAction("Copia il testo sotto il cursore");
     /*  QAction *editAction=menu->addAction("Modifica/Copia dati ...");
-    QAction *bioAction=menu->addAction("Dati Biologici ...");*/
+    QAction *bioAction=menu->addAction("Dati Biologici ...");
 
 
     // connect(detailsAction,SIGNAL(triggered(bool)),this,SLOT(getDetails()));
     // connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyField()));
 
-}
+}*/
 
 void HLotti_new::showContextMenu(const QPoint &pos)
 {

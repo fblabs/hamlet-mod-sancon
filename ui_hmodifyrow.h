@@ -107,6 +107,8 @@ public:
 
         cbProdotto = new QComboBox(HModifyRow);
         cbProdotto->setObjectName(QString::fromUtf8("cbProdotto"));
+        cbProdotto->setEditable(true);
+        cbProdotto->setInsertPolicy(QComboBox::NoInsert);
 
         horizontalLayout_4->addWidget(cbProdotto);
 

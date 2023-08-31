@@ -101,6 +101,7 @@ public:
 
         cbProdotto = new QComboBox(HWpManager);
         cbProdotto->setObjectName(QString::fromUtf8("cbProdotto"));
+        cbProdotto->setEditable(true);
 
         gridLayout->addWidget(cbProdotto, 0, 3, 1, 1);
 

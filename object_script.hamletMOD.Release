@@ -19,6 +19,7 @@ release/hlotcomposition.o
 release/hlotti_new.o
 release/hnew_recipe_main.o
 release/hpdfprint.o
+release/hpreferred_lots.o
 release/hproducts_for_calcolo_costi.o
 release/hrecipesforingredient.o
 release/hworksheetmodel.o
@@ -106,6 +107,7 @@ release/moc_hlotcomposition.o
 release/moc_hlotti_new.o
 release/moc_hnew_recipe_main.o
 release/moc_hpdfprint.o
+release/moc_hpreferred_lots.o
 release/moc_hproducts_for_calcolo_costi.o
 release/moc_hrecipesforingredient.o
 release/moc_huser.o

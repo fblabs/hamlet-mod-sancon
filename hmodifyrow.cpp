@@ -41,7 +41,7 @@ void HModifyRow::setPermissions(HUser *p_user)
 {
 
     ui->cbCliente->setEnabled(p_user->get_programmi_u()>0);
-    ui->cbProdotto->setEnabled(p_user->get_programmi_u()<0);
+    ui->cbProdotto->setEnabled(p_user->get_programmi_u()>0);
     ui->pbSave->setEnabled(p_user->get_programmi_u()>0);
 
 }

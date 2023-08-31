@@ -70,6 +70,10 @@ private slots:
 
     void on_pbDisapprova_clicked();
 
+    void showContextMenu(const QPoint& pos);
+
+    void copyRow();
+
 private:
     Ui::HWorkProgram *ui;
     HUser* user;
