@@ -46,6 +46,7 @@ public:
         tvPreferredLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvPreferredLots->setAlternatingRowColors(true);
         tvPreferredLots->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvPreferredLots->setSortingEnabled(true);
         tvPreferredLots->horizontalHeader()->setStretchLastSection(true);
         tvPreferredLots->verticalHeader()->setVisible(false);
 

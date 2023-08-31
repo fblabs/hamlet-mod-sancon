@@ -82,6 +82,7 @@ void HPreferred_Lots::loadPreferredLots()
     mod->setHeaderData(0,Qt::Horizontal,"ID PRODOTTO");
     mod->setHeaderData(1,Qt::Horizontal,"PRODOTTO");
     mod->setHeaderData(2,Qt::Horizontal,"LOTTO PREDEFINITO");
+    mod->sort(1,Qt::AscendingOrder);
     ui->tvPreferredLots->setModel(mod);
 
     ui->tvPreferredLots->horizontalHeader()->setSectionResizeMode(0,QHeaderView::ResizeToContents);
