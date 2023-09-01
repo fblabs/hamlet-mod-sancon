@@ -135,7 +135,8 @@ qDebug()<<"loadRow";
    }
 
    qDebug()<<"prodotto"<<sxp;
-   ui->cbProdotto->setCurrentText(sxp);
+   int x=ui->cbProdotto->findText(sxp);
+   ui->cbProdotto->setCurrentIndex(x);
 
 
 
@@ -207,6 +208,7 @@ void HModifyRow::saveRow(){
 
     int idcliente=ui->cbCliente->model()->index(ui->cbCliente->currentIndex(),0).data(0).toInt();
     int idprodotto=ui->cbProdotto->model()->index(ui->cbProdotto->currentIndex(),1).data(0).toInt();
+    qDebug()<<idprodotto;
     QString numord=ui->leNumOrd->text();
     QString vaso=ui->leVaso->text();
     QString qua=ui->leQuant->text();
