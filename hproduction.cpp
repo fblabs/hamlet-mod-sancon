@@ -46,7 +46,7 @@ HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->pushButton_7->setEnabled(false);
     ui->pushButton_6->setVisible(false);
     ui->pushButton_11->setEnabled(user->get_produzione_u()>0);
-    ui->pbPreferredLots->setEnabled(false);
+   // ui->pbPreferredLots->setEnabled(false);
 
 
 
@@ -972,7 +972,7 @@ void HProduction::on_pushButton_5_clicked()
 
 
     ui->pushButton_5->setVisible(false);
-    ui->pbPreferredLots->setEnabled(true);
+   // ui->pbPreferredLots->setEnabled(true);
     ui->pushButton_6->setVisible(true);
     ui->pushButton->setEnabled(true);
     ui->pushButton_2->setEnabled(true);
@@ -1013,7 +1013,7 @@ void HProduction::on_pushButton_6_clicked()
 
     ui->pushButton_3->setEnabled(false);
     ui->pushButton_7->setEnabled(false);
-    ui->pbPreferredLots->setEnabled(false);
+    //ui->pbPreferredLots->setEnabled(false);
     QApplication::restoreOverrideCursor();
 
 
@@ -1399,7 +1399,7 @@ void HProduction::on_pushButton_3_clicked()
     resetForm(true);
 
     ui->pushButton_3->setEnabled(false);
-    ui->pbPreferredLots->setEnabled(false);
+    //ui->pbPreferredLots->setEnabled(false);
     disconnect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
 
 
