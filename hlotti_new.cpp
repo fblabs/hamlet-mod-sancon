@@ -1,6 +1,6 @@
 #include "hlotti_new.h"
 #include "ui_hlotti_new.h"
-#include <QSqlQueryModel>
+#include "hquerymodel_lotti.h"
 #include <QSqlTableModel>
 #include <QSqlQuery>
 #include <QDebug>
@@ -21,6 +21,7 @@
 #include <QClipboard>
 #include "hbiodetails.h"
 #include <QDebug>
+
 
 
 HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
@@ -64,7 +65,7 @@ HLotti_new::~HLotti_new()
 
 void HLotti_new::loadLotsData()
 {
-    QSqlQueryModel * local_mod=new QSqlQueryModel();
+    HQueryModel_lotti * local_mod=new HQueryModel_lotti();
     QString sql=QString();
 
     int tipo=-1;
@@ -196,7 +197,7 @@ void HLotti_new::print()
 
     out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
 
-    out << "<thead><tr bgcolor='lightyellow'><th colspan='5'>"+ title +"</th></tr>";
+    out << "<thead><tr bgcolor='lightyellow'><th colspan='9'>"+ title +"</th></tr>";
     // headers
     out << "<tr bgcolor=#f0f0f0>";
     for (int column = 0; column < columnCount; column++)
@@ -206,11 +207,31 @@ void HLotti_new::print()
 
     // data table
     for (int row = 0; row < rowCount; row++) {
+
+        bool colorred=false;
+        if(ui->tvLotti->model()->data(ui->tvLotti->model()->index(row, 8)).toInt()<=0)
+        {
+            colorred=true;
+        }
+
+
         out << "<tr>";
         for (int column = 0; column < columnCount; column++) {
             if (!ui->tvLotti->isColumnHidden(column)) {
-                QString data = ui->tvLotti->model()->data(ui->tvLotti->model()->index(row, column)).toString().simplified();
-                out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                QString data = ui->tvLotti->model()->data(ui->tvLotti->model()->index(row, column)).toString()/*.simplified()*/;
+
+                QString color = QString();
+                if(colorred)
+                {
+                    color="<td bgcolor='orange'>%1</td>";
+                }
+                else
+                {
+                   color="<td bgcolor='white'>%1</td>";
+                }
+
+                 out << QString(color).arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+
             }
         }
         out << "</tr>\n";
@@ -367,10 +388,10 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
 }
 
 
-QSqlQueryModel* HLotti_new::getProducts()
+HQueryModel_lotti* HLotti_new::getProducts()
 {
     QSqlQuery q(db);
-    QSqlQueryModel *mod=new QSqlQueryModel();
+    HQueryModel_lotti *mod=new HQueryModel_lotti();
     QString sql="select ID,descrizione FROM prodotti ORDER BY descrizione asc;";
 
     q.prepare(sql);
@@ -493,7 +514,7 @@ void HLotti_new::deleteLot(const int p_id)
 
         db.transaction();
 
-        QSqlQueryModel* cmod=new QSqlQueryModel();
+        HQueryModel_lotti* cmod=new HQueryModel_lotti();
         sql= "select operazione from composizione_lot where id_lotto=:idlot";
         q.prepare(sql);
         q.bindValue(":idlot",QVariant(idlotto));

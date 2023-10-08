@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
 #include "huser.h"
+#include "hquerymodel_lotti.h"
 
 namespace Ui {
 class HLotti_new;
@@ -36,7 +37,7 @@ private slots:
     void print();
     void on_pbPrint_clicked();
     QString buildLotsQuery(int tipo=-1, int prodotto=-1);
-    QSqlQueryModel *getProducts();
+    HQueryModel_lotti *getProducts();
     void on_cbProduct_currentIndexChanged(int index);
     void on_ckbUseProduct_toggled(bool checked);
     //void on_tvLotti_customContextMenuRequested(const QPoint &pos);
