@@ -84,7 +84,7 @@ void HLotti_new::loadLotsData()
 
 
     sql=buildLotsQuery(tipo,prodotto);
-    qDebug()<<sql;
+
 
 
     QSqlQuery q(db);
@@ -106,11 +106,11 @@ void HLotti_new::loadLotsData()
 
 
     q.exec();
+    qDebug()<<q.lastError().text();
 
 
 
     local_mod->setQuery(q);
-    local_mod->setHeaderData(5,Qt::Horizontal,"GIACENZA");
     ui->tvLotti->setModel(local_mod);
 }
 
@@ -308,7 +308,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
     {
         if(tipo>-1 && prodotto<0)
         {
-            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'GIACENZA',lotdef.scadenza AS 'SCADENZA',lotdef.note AS 'NOTE'\
+            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note AS 'NOTE'\
                     FROM lotdef,prodotti,anagrafica, tipi_lot\
                     WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and prodotti.bio >0 and lotdef.tipo=:tipo and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
             return lots_query;
@@ -316,7 +316,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
 
         if(tipo<0 && prodotto>-1)
         {
-            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'GIACENZA',lotdef.scadenza AS 'SCADENZA',lotdef.note as 'NOTE'\
+            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note as 'NOTE'\
                     FROM lotdef,prodotti,anagrafica, tipi_lot WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and prodotti.bio>0 and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
             return lots_query;
         }
@@ -330,17 +330,17 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
         }
         if(tipo>-1 && prodotto > -1)
         {
-            qDebug()<<"TIPO E PRODOTTO";
-            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'Giacenza',lotdef.scadenza AS 'SCADENZA',lotdef.note as 'NOTE'\
+
+            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note as 'NOTE'\
                     from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and prodotti.bio>0 and lotdef.tipo=:tipo and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
-             return lots_query;
+            return lots_query;
         }
 
 
         lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore AS 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note as 'NOTE'\
                 from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto\
                 AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and prodotti.bio>0 and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
-        return lots_query;
+            return lots_query;
 
 
     }
@@ -357,7 +357,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
 
     if(tipo>-1 && prodotto<0)
     {
-        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'GIACENZA',lotdef.scadenza AS 'SCADENZA',lotdef.note AS 'NOTE'\
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note AS 'NOTE'\
                 FROM lotdef,prodotti,anagrafica, tipi_lot\
                 WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.tipo=:tipo and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
         return lots_query;
@@ -367,7 +367,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
 
     if(tipo<0 && prodotto>-1)
     {
-        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'GIACENZA',lotdef.scadenza AS 'SCADENZA',lotdef.note as 'NOTE'\
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note as 'NOTE'\
                 FROM lotdef,prodotti,anagrafica, tipi_lot WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
         return lots_query;
     }
@@ -377,11 +377,12 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
     if(tipo>-1 && prodotto > -1)
     {
 
-        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'Giacenza',lotdef.scadenza AS 'SCADENZA',lotdef.note as 'NOTE'\
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note as 'NOTE'\
                 from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.tipo=:tipo and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
          return lots_query;
     }
 
+    qDebug()<<lots_query;
 
 
     return lots_query;

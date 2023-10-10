@@ -9,6 +9,7 @@
 #include "hdatatopass.h"
 #include <QFile>
 #include <QSettings>
+#include "hquerymodel_lastlots.h"
 
 HAddLotInProduction::HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
@@ -85,7 +86,7 @@ void HAddLotInProduction::lastLots()
 {
 
     QSqlQuery qlots(db);
-    QSqlQueryModel *qmLots=new QSqlQueryModel(0);
+    HQueryModel_lastlots *qmLots=new HQueryModel_lastlots(0);
 
     int quanti=ui->cbLastLots->currentData().toInt();
 
@@ -151,6 +152,19 @@ void HAddLotInProduction::addLot()
     model->setData(model->index(nrow,7),QString::number(giacenza,'f',2));
     QString val=QString::number(ui->dsbQt->value(),'f',3);
     model->setData(model->index(nrow,5),val);
+
+
+
+    if(giacenza <=0){
+        for(int col=0;col<model->columnCount();col++)
+        {
+        model->item(nrow,col)->setData(QVariant(QBrush(Qt::red)),Qt::BackgroundRole);
+        model->item(nrow,col)->setData(QVariant(QColor(Qt::white)),Qt::ForegroundRole);
+        }
+    }
+
+
+
 
     if (ballergene){
 

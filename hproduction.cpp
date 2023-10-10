@@ -500,6 +500,8 @@ void HProduction::getRecipe()
             prodotto->setIcon(QIcon(":/Resources/Flag-red64.png"));
         }
 
+
+
         prodotto->setEditable(false);
         lotto->setEditable(false);
 
@@ -1736,6 +1738,19 @@ void HProduction::addLot(QModelIndex index,bool show_window)
     data->quantity=ui->tableView->model()->index(index.row(),5).data(0).toDouble();
     data->mod=static_cast<QStandardItemModel*>(ui->tableView->model());
     data->giacenza=giacenza;
+    if(giacenza<=0)
+    {
+
+
+        for (int i=0; i<model->rowCount();i++)
+        {
+
+            model->item(i,0)->setData(QVariant(QBrush(Qt::red)),Qt::BackgroundRole);
+//QColor(Qt::red)),Qt::BackgroundRole);
+            model->item(i,0)->setData(QVariant(QColor(Qt::white)),Qt::ForegroundRole);
+
+        }
+    }
 
 
     HAddLotInProduction *f= new HAddLotInProduction(data,db);
