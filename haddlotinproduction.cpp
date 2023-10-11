@@ -51,6 +51,7 @@ HAddLotInProduction::HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb
     connect(this,SIGNAL(lot_added()),this,SLOT(clean()));
     connect(ui->cbLastLots,SIGNAL(currentIndexChanged(int)),this,SLOT(addLot()));
 
+
 }
 
 HAddLotInProduction::~HAddLotInProduction()
@@ -161,6 +162,14 @@ void HAddLotInProduction::addLot()
         model->item(nrow,col)->setData(QVariant(QBrush(Qt::red)),Qt::BackgroundRole);
         model->item(nrow,col)->setData(QVariant(QColor(Qt::white)),Qt::ForegroundRole);
         }
+    }else{
+
+        for(int col=0;col<model->columnCount();col++)
+        {
+        model->item(nrow,col)->setData(QVariant(QBrush(Qt::white)),Qt::BackgroundRole);
+        model->item(nrow,col)->setData(QVariant(QColor(Qt::black)),Qt::ForegroundRole);
+        }
+
     }
 
 
@@ -178,11 +187,15 @@ void HAddLotInProduction::addLot()
 
 
 
+
+
     emit lot_added();
 
 
 
 }
+
+
 
 
 
@@ -225,6 +238,7 @@ void HAddLotInProduction::clean()
     close();
 
 }
+
 
 QString HAddLotInProduction::findDefaultLot(const QString p_prod)
 {

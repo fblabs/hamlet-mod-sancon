@@ -46,7 +46,7 @@ HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->pushButton_7->setEnabled(false);
     ui->pushButton_6->setVisible(false);
     ui->pushButton_11->setEnabled(user->get_produzione_u()>0);
-   // ui->pbPreferredLots->setEnabled(false);
+    // ui->pbPreferredLots->setEnabled(false);
 
 
 
@@ -410,7 +410,7 @@ void HProduction::getRecipesForClient()
     ui->lvRicette->setModel(qmRicette);
     ui->lvRicette->setModelColumn(2);
 
-    
+
     connect(ui->lvRicette->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(getRecipe()));
 
 
@@ -496,7 +496,7 @@ void HProduction::getRecipe()
 
         if (qmod->index(row,2).data(0).toBool())
         {
-            prodotto->setForeground(Qt::red);
+          //  prodotto->setForeground(Qt::red);
             prodotto->setIcon(QIcon(":/Resources/Flag-red64.png"));
         }
 
@@ -974,7 +974,7 @@ void HProduction::on_pushButton_5_clicked()
 
 
     ui->pushButton_5->setVisible(false);
-   // ui->pbPreferredLots->setEnabled(true);
+    // ui->pbPreferredLots->setEnabled(true);
     ui->pushButton_6->setVisible(true);
     ui->pushButton->setEnabled(true);
     ui->pushButton_2->setEnabled(true);
@@ -1011,6 +1011,8 @@ void HProduction::on_pushButton_5_clicked()
 void HProduction::on_pushButton_6_clicked()
 {
 
+    if(QMessageBox::warning(this,QApplication::applicationName(),"Attenzione, riavviare la produzione comporta la perdita di tutte le modifiche effettuate finora",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
     resetForm(false);
 
     ui->pushButton_3->setEnabled(false);
@@ -1020,6 +1022,8 @@ void HProduction::on_pushButton_6_clicked()
 
 
     disconnect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addLot(QModelIndex)));
+
+    }
 
 
 
@@ -1053,39 +1057,39 @@ bool HProduction::saveNewLot(QString lot, int prodotto)
     QDateTime data=QDateTime::currentDateTime();
     QString oper=ui->leOperatore->text();
 
-   /* if(QMessageBox::question(this,QApplication::applicationName(),"Confermare la produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)
+    /* if(QMessageBox::question(this,QApplication::applicationName(),"Confermare la produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)
     {
         return false;
     }*/
 
-        QApplication::setOverrideCursor(Qt::WaitCursor);
-        q.prepare(sql);
-        q.bindValue(":lot",QVariant(lot));
-        q.bindValue(":prodotto",QVariant(prodotto));
-        q.bindValue(":data",QVariant(data));
-        q.bindValue(":giacenza",QVariant(giacenza));
-        q.bindValue(":um",QVariant(um));
-        q.bindValue(":scadenza",QVariant(scadenza));
-        q.bindValue(":anagrafica",QVariant(anagrafica));
-        q.bindValue(":lotf",QVariant(lotf));
-        q.bindValue(":ean",QVariant(ean));
-        q.bindValue(":tipo",QVariant(tipo));
-        q.bindValue(":attivo",QVariant(attivo));
-        q.bindValue(":note",QVariant(note));
-        q.bindValue(":operatore",QVariant(oper));
-        b = q.exec();
-        qDebug()<<"B"<<b;
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    q.prepare(sql);
+    q.bindValue(":lot",QVariant(lot));
+    q.bindValue(":prodotto",QVariant(prodotto));
+    q.bindValue(":data",QVariant(data));
+    q.bindValue(":giacenza",QVariant(giacenza));
+    q.bindValue(":um",QVariant(um));
+    q.bindValue(":scadenza",QVariant(scadenza));
+    q.bindValue(":anagrafica",QVariant(anagrafica));
+    q.bindValue(":lotf",QVariant(lotf));
+    q.bindValue(":ean",QVariant(ean));
+    q.bindValue(":tipo",QVariant(tipo));
+    q.bindValue(":attivo",QVariant(attivo));
+    q.bindValue(":note",QVariant(note));
+    q.bindValue(":operatore",QVariant(oper));
+    b = q.exec();
+    qDebug()<<"B"<<b;
 
-        if(!b){
+    if(!b){
 
         db.rollback();
         QApplication::restoreOverrideCursor();
-            QMessageBox::warning(this,QApplication::applicationName(),"errore nell'inserimento nuovo lotto"+db.lastError().text(),QMessageBox::Ok);
-            return b;
-        }
-
-
+        QMessageBox::warning(this,QApplication::applicationName(),"errore nell'inserimento nuovo lotto"+db.lastError().text(),QMessageBox::Ok);
         return b;
+    }
+
+
+    return b;
 
 }
 //--saveNewLot()-------------------------------
@@ -1231,7 +1235,7 @@ bool HProduction::saveProduction()
     scadenza=ui->dateEdit->date();
     idprodotto=ui->lvRicette->model()->index(ui->lvRicette->currentIndex().row(),1).data(0).toInt();
 
-   /* if(model->rowCount()<recipe_row_count)
+    /* if(model->rowCount()<recipe_row_count)
     {
         if(QMessageBox::warning(this,QApplication::applicationName(),"Righe produzione inferiori alle righe ricetta OK(Esegui) o Cancel (Annulla)",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel);
         {
@@ -1266,9 +1270,9 @@ bool HProduction::saveProduction()
         db.rollback();
         QApplication::restoreOverrideCursor();
         QMessageBox::warning(this,QApplication::applicationName(),"Il nuovo lotto non è stato creato\nOperazione annullata o fallita"+db.lastError().text(),QMessageBox::Ok);
-       // QMessageBox::warning(this,QApplication::applicationName(),"SaveNewLot errore"+db.lastError().text(),QMessageBox::Ok);
+            // QMessageBox::warning(this,QApplication::applicationName(),"SaveNewLot errore"+db.lastError().text(),QMessageBox::Ok);
 
-        return false;
+            return false;
     }
 
 
@@ -1385,16 +1389,16 @@ void HProduction::on_pushButton_3_clicked()
 
     if (!modifyLot){
 
-    db.transaction();
-    bool  b= saveProduction();
-    if(b){db.commit();}else{db.rollback();}
+        db.transaction();
+        bool  b= saveProduction();
+        if(b){db.commit();}else{db.rollback();}
 
     }
     else
     {
 
-       bool b= updateComposition();
-       if(b){db.commit();}else{db.rollback();}
+        bool b= updateComposition();
+        if(b){db.commit();}else{db.rollback();}
 
     }
 
@@ -1640,7 +1644,7 @@ void HProduction::on_pbAnnulla_clicked()
 
 void HProduction::on_pushButton_11_clicked()
 {
-    if(QMessageBox::question(0,QApplication::applicationDisplayName(),"Resettare la ricetta?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    if(QMessageBox::question(0,QApplication::applicationDisplayName(),"Resettare la ricetta? Questo comporterà la perdita di tutte le modifiche effettuate",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         getRecipe();
     }
@@ -1746,7 +1750,7 @@ void HProduction::addLot(QModelIndex index,bool show_window)
         {
 
             model->item(i,0)->setData(QVariant(QBrush(Qt::red)),Qt::BackgroundRole);
-//QColor(Qt::red)),Qt::BackgroundRole);
+            //QColor(Qt::red)),Qt::BackgroundRole);
             model->item(i,0)->setData(QVariant(QColor(Qt::white)),Qt::ForegroundRole);
 
         }
@@ -1786,7 +1790,6 @@ void HProduction::on_cbTipoLotto_currentIndexChanged(int index)
 {
     getRecipesForClient();
 }
-
 
 
 

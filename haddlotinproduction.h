@@ -39,6 +39,7 @@ private slots:
     void on_pbCancel_clicked();
     void on_tvLots_doubleClicked(const QModelIndex &index);
     void clean();
+
 public slots:
      void click();
 signals:

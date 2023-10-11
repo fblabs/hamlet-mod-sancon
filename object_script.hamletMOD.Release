@@ -21,6 +21,8 @@ release/hnew_recipe_main.o
 release/hpdfprint.o
 release/hpreferred_lots.o
 release/hproducts_for_calcolo_costi.o
+release/hquerymodel_lastlots.o
+release/hquerymodel_lotti.o
 release/hrecipesforingredient.o
 release/hworksheetmodel.o
 release/mainwindow.o
@@ -109,6 +111,7 @@ release/moc_hnew_recipe_main.o
 release/moc_hpdfprint.o
 release/moc_hpreferred_lots.o
 release/moc_hproducts_for_calcolo_costi.o
+release/moc_hquerymodel_lotti.o
 release/moc_hrecipesforingredient.o
 release/moc_huser.o
 release/moc_hutenti.o
