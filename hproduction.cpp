@@ -27,6 +27,7 @@
 #include <QSettings>
 #include <QFileDialog>
 #include <QDesktopServices>
+#include <QPrintDialog>
 
 enum ACTION{
     RESET=0,
@@ -705,13 +706,15 @@ void HProduction::print(bool pdf)
     const int rowCount = ui->tableView->model()->rowCount();
     const int columnCount = ui->tableView->model()->columnCount();
 
-    QString title="Produzione " + ui->lbRicetta->text().toUpper()+QDate::currentDate().toString("yyyy-MM-dd");
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    QString title="Produzione " + ui->lbRicetta->text().toUpper()+ " - " +QDate::currentDate().toString("yyyy-MM-dd");
 
     //   qDebug()<<filename;
 
-    out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
+    out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>";
 
-    out << "<thead><tr bgcolor='lightyellow'><th colspan='6'>"+ title +"</th></tr>";
+    out << "<table width:100% <thead><tr bgcolor='lightyellow'><th colspan='6'>"+ title +"</th></tr>";
     // headers
     out << "<tr bgcolor=#f0f0f0>";
     for (int column = 0; column < columnCount; column++)
@@ -735,6 +738,8 @@ void HProduction::print(bool pdf)
         if(ui->tableView->model()->data(ui->tableView->model()->index(row, 7)).toDouble()<=0)
         {
             colorred=true;
+        qDebug()<< ui->tableView->model()->data(ui->tableView->model()->index(row, 7)).toDouble();
+
 
         }
 
@@ -774,27 +779,41 @@ void HProduction::print(bool pdf)
     {
         QString filename;
 
-        // qDebug()<<"filename="<<filename;
-        filename= QFileDialog::getSaveFileName(this,"Scegli il nome del file",QString(),"Pdf (*.pdf)");
 
-        if (filename.isEmpty() && filename.isNull()){
+       //filename= QFileDialog::getSaveFileName(this,"Scegli il nome del file",QString(),"Pdf (*.pdf)");
+
+        filename="test.pdf";
+
+      /*  if (filename.isEmpty() && filename.isNull()){
             //  qDebug()<<"annullato";
             return;
-        }
+        }*/
+
+
+
 
         QPrinter printer;
-        printer.setOrientation(QPrinter::Landscape);
-        printer.setOutputFormat(QPrinter::PdfFormat);
+        printer.setOrientation(QPrinter::Portrait);
+       // printer.setOutputFormat(QPrinter::PdfFormat);
         printer.setPaperSize(QPrinter::A4);
-        printer.setOutputFileName(filename);
+       // printer.setOutputFileName(filename);
 
-        document->print(&printer);
+        QPrintDialog dialog( &printer);
 
+        if (dialog.exec()==QDialog::Accepted)
+        {
+            document->print(&printer);
+
+        }
+
+
+        QFile(filename).remove();
         delete document;
+        QApplication::restoreOverrideCursor();
 
-        QDesktopServices::openUrl(filename);
     }else{
 
+        QApplication::restoreOverrideCursor();
         HPrint *f =new HPrint();
         f->setHtml(strStream);
         f->show();
