@@ -25,6 +25,8 @@
 #include "hlastlots.h"
 #include "huser.h"
 #include <QSettings>
+#include <QFileDialog>
+#include <QDesktopServices>
 
 enum ACTION{
     RESET=0,
@@ -460,10 +462,10 @@ void HProduction::getRecipe()
     model->setHeaderData(0,Qt::Horizontal,"ID Prodotto",0);
     model->setHeaderData(1,Qt::Horizontal,"Prodotto",0);
     model->setHeaderData(2,Qt::Horizontal,"Quantità ricetta",0);
-        model->setHeaderData(3,Qt::Horizontal,"ID Lotto",0);
+    model->setHeaderData(3,Qt::Horizontal,"ID Lotto",0);
     model->setHeaderData(4,Qt::Horizontal,"Lotto",0);
     model->setHeaderData(5,Qt::Horizontal,"Quantità effettiva",0);
-        model->setHeaderData(6,Qt::Horizontal,"Allergene",0);
+    model->setHeaderData(6,Qt::Horizontal,"Allergene",0);
     model->setHeaderData(7,Qt::Horizontal,"Giacenza",0);
     double quantitatot=0.0;
 
@@ -691,6 +693,115 @@ void HProduction::printProduction()
     f->append("\n..............................................................................",false);
 
     f->showMaximized();
+}
+
+void HProduction::print(bool pdf)
+{
+    QString strStream;
+
+
+    QTextStream out(&strStream);
+
+    const int rowCount = ui->tableView->model()->rowCount();
+    const int columnCount = ui->tableView->model()->columnCount();
+
+    QString title="Produzione " + ui->lbRicetta->text().toUpper()+QDate::currentDate().toString("yyyy-MM-dd");
+
+    //   qDebug()<<filename;
+
+    out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
+
+    out << "<thead><tr bgcolor='lightyellow'><th colspan='6'>"+ title +"</th></tr>";
+    // headers
+    out << "<tr bgcolor=#f0f0f0>";
+    for (int column = 0; column < columnCount; column++)
+    {
+        if (!ui->tableView->isColumnHidden(column)){
+            out << QString("<th>%1</th>").arg(ui->tableView->model()->headerData(column, Qt::Horizontal).toString());
+        }
+
+        if (column==7){
+        out <<QString("<th>Visto</th>");
+        }
+    }
+
+    out << "</tr></thead>\n";
+
+
+    // data table
+    for (int row = 0; row < rowCount; row++) {
+
+        bool colorred=false;
+        if(ui->tableView->model()->data(ui->tableView->model()->index(row, 7)).toDouble()<=0)
+        {
+            colorred=true;
+
+        }
+
+
+        out << "<tr>";
+        for (int column = 0; column < columnCount+1; column++) {
+            if (!ui->tableView->isColumnHidden(column)) {
+                QString data = ui->tableView->model()->data(ui->tableView->model()->index(row, column)).toString()/*.simplified()*/;
+
+                QString color = QString();
+                if(colorred)
+                {
+                    color="<td bgcolor='orange'>%1</td>";
+                }
+                else
+                {
+                    color="<td bgcolor='white'>%1</td>";
+                }
+
+
+                out << QString(color).arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+
+            }
+        }
+        out << "</tr>\n";
+    }
+    out <<  "</table>\n"
+           "</body>\n"
+           "</html>\n";
+
+    QTextDocument *document = new QTextDocument();
+    document->setHtml(strStream);
+
+
+
+    if (pdf)
+    {
+        QString filename;
+
+        // qDebug()<<"filename="<<filename;
+        filename= QFileDialog::getSaveFileName(this,"Scegli il nome del file",QString(),"Pdf (*.pdf)");
+
+        if (filename.isEmpty() && filename.isNull()){
+            //  qDebug()<<"annullato";
+            return;
+        }
+
+        QPrinter printer;
+        printer.setOrientation(QPrinter::Landscape);
+        printer.setOutputFormat(QPrinter::PdfFormat);
+        printer.setPaperSize(QPrinter::A4);
+        printer.setOutputFileName(filename);
+
+        document->print(&printer);
+
+        delete document;
+
+        QDesktopServices::openUrl(filename);
+    }else{
+
+        HPrint *f =new HPrint();
+        f->setHtml(strStream);
+        f->show();
+
+    }
+
+
 }
 
 void HProduction::printRecipe()
@@ -1619,7 +1730,8 @@ void HProduction::resetForm(bool pcomplete)
 
 void HProduction::on_pushButton_10_clicked()
 {
-    printProduction();
+   // printProduction();
+    print();
 }
 
 void HProduction::on_checkBox_toggled(bool checked)

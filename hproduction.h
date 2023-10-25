@@ -68,6 +68,7 @@ private slots:
     bool updateComposition();
     void printRecipe();
     void printProduction();
+    void print(bool pdf=true);
     int lastInsertId();
     void getLotToModify(QString lot);
     QString getNewLot(int prod);
