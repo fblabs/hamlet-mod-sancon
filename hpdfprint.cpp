@@ -64,7 +64,7 @@ void HPDFPrint::on_pbPrint_clicked()
     printer.setPaperSize(QPrinter::A4);
 
      QPrintDialog dialog( &printer);
-    // dlg->show();
+     dialog.show();
      if (dialog.exec()==QDialog::Accepted)
      {
          ui->tb_Viewport->print(&printer);

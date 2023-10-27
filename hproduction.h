@@ -37,6 +37,7 @@ private:
     QSqlQueryModel *qmClienti;
     QSqlQueryModel *qmRicette;
     QStandardItemModel *model;
+    QStandardItemModel *printmodel;
     QSqlTableModel *tmTipiLotti;
     QSqlTableModel *tmUm;
     QSqlQueryModel* qmod;
@@ -45,7 +46,7 @@ private:
     int recipe_row_count;
 
 private slots:
-    void addLot(QModelIndex index, bool show_window=true);
+    void addLot(QModelIndex index, const bool allergene=false, const bool show_window=true);
     void getNewRow(QList<QStandardItem *> list);
     void getClients();
     void getSubclients();
@@ -68,7 +69,7 @@ private slots:
     bool updateComposition();
     void printRecipe();
     void printProduction();
-    void print(bool pdf=true);
+    void print(const QStandardItemModel *prtmod=nullptr, bool pdf=true);
     int lastInsertId();
     void getLotToModify(QString lot);
     QString getNewLot(int prod);
@@ -94,6 +95,8 @@ private slots:
     const QString findPreferredLot(const int id_prod=-1);
     void on_pbPreferredLots_clicked();
     void on_cbTipoLotto_currentIndexChanged(int index);
+    QStandardItemModel *getrecipeForPrinting(const int idricetta=-1);
+
 };
 
 #endif // HPRODUCTION_H

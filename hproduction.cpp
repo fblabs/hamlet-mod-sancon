@@ -494,7 +494,11 @@ void HProduction::getRecipe()
         QStandardItem* IDLotto=new QStandardItem("");
         QStandardItem* lotto=new QStandardItem("");
         QStandardItem* quadd=new QStandardItem(QString::number(0.0,'f',3));
-        QStandardItem* allergene=new QStandardItem(QString::number(qmod->index(row,2).data(0).toBool()));
+        QString sal;
+
+        sal=qmod->index(row,2).data(0).toBool()?"[X]":"";
+        QStandardItem* allergene=new QStandardItem(sal);
+        allergene->setTextAlignment(Qt::AlignCenter);
         QStandardItem* giacenza=new QStandardItem("n/a");
 
         if (qmod->index(row,2).data(0).toBool())
@@ -562,7 +566,7 @@ void HProduction::getRecipe()
 
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
-    ui->tableView->setColumnHidden(6,true);
+    /*ui->tableView->setColumnHidden(6,true);*/
     ui->pushButton_10->setEnabled(true);
 
 
@@ -696,82 +700,94 @@ void HProduction::printProduction()
     f->showMaximized();
 }
 
-void HProduction::print(bool pdf)
+void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
 {
     QString strStream;
-
+    QStandardItemModel* tbmod=static_cast<QStandardItemModel*>(ui->tableView->model());
 
     QTextStream out(&strStream);
 
-    const int rowCount = ui->tableView->model()->rowCount();
-    const int columnCount = ui->tableView->model()->columnCount();
+    const int rowCount = prtmod->rowCount();
+    const int columnCount = prtmod->columnCount();
+     qDebug()<<"rowcount"<<rowCount<<"columncount"<<columnCount;
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    QString title="Produzione " + ui->lbRicetta->text().toUpper()+ " - " +QDate::currentDate().toString("yyyy-MM-dd");
+    QString title="Produzione del " +QDate::currentDate().toString("dd-MM-yyyy") + " - " + ui->lbRicetta->text().toUpper();
 
-    //   qDebug()<<filename;
 
     out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>";
 
-    out << "<table width:100% <thead><tr bgcolor='lightyellow'><th colspan='6'>"+ title +"</th></tr>";
+    out << "<table width='100%' border=1> <thead><tr bgcolor='lightyellow'><th colspan='5'>"+ title +"</th></tr></thead>";
     // headers
     out << "<tr bgcolor=#f0f0f0>";
-    for (int column = 0; column < columnCount; column++)
-    {
-        if (!ui->tableView->isColumnHidden(column)){
-            out << QString("<th>%1</th>").arg(ui->tableView->model()->headerData(column, Qt::Horizontal).toString());
-        }
-
-        if (column==7){
-        out <<QString("<th>Visto</th>");
-        }
-    }
-
-    out << "</tr></thead>\n";
+    out << "<th>Prodotto</th><th>Lotto</th><th>Allergene</th><th>Quantita'</th><th>Visto</th>";
+    out << "</tr>\n";
 
 
     // data table
+    QString data=QString();
+
     for (int row = 0; row < rowCount; row++) {
-
-        bool colorred=false;
-        if(ui->tableView->model()->data(ui->tableView->model()->index(row, 7)).toDouble()<=0)
-        {
-            colorred=true;
-        qDebug()<< ui->tableView->model()->data(ui->tableView->model()->index(row, 7)).toDouble();
-
-
-        }
 
 
         out << "<tr>";
         for (int column = 0; column < columnCount+1; column++) {
-            if (!ui->tableView->isColumnHidden(column)) {
-                QString data = ui->tableView->model()->data(ui->tableView->model()->index(row, column)).toString()/*.simplified()*/;
 
-                QString color = QString();
-                if(colorred)
-                {
-                    color="<td bgcolor='orange'>%1</td>";
-                }
-                else
-                {
-                    color="<td bgcolor='white'>%1</td>";
-                }
+            if (column !=2)
+                out<<"<td >";
+            else
+                out<<"<td align='center'>";
+
+            if(column==3){
+                data=tbmod->index(row,5).data(0).toString();
+            }
+            else {
+                data=prtmod->index(row,column).data().toString();
+            }
+
+            if(column==5)
+            {
+                data="&nbsp;";
+            }
 
 
-                out << QString(color).arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+            if(!data.isEmpty())
+            {
+                out<<data;
+                out<<"&nbsp;";
 
             }
+            else
+            {
+                out<<"&nbsp;";
+            }
+            out<<"</td>";
+
         }
-        out << "</tr>\n";
+
+   out << "</tr>";
+
+
     }
-    out <<  "</table>\n"
+
+    out <<  "</table></table>\n";
+
+    out<<"\n";
+    out << "<table width='100%' border=1> <thead><tr bgcolor='lightyellow'><th>NOTE</th></tr></thead>";
+  /*  out << "<tr bgcolor=#f0f0f0>";
+    out << "</tr>";*/
+    out <<"<tr>"<<"<td>"+ui->textBrowser->toPlainText()+"</td></tr>";
+    out <<"<tr>"<<"<td>"+ui->tNote->toPlainText()+"</td></tr>";
+    out <<  "</table>\n";
            "</body>\n"
            "</html>\n";
 
+
+
     QTextDocument *document = new QTextDocument();
     document->setHtml(strStream);
+
 
 
 
@@ -780,14 +796,10 @@ void HProduction::print(bool pdf)
         QString filename;
 
 
-       //filename= QFileDialog::getSaveFileName(this,"Scegli il nome del file",QString(),"Pdf (*.pdf)");
+
 
         filename="test.pdf";
 
-      /*  if (filename.isEmpty() && filename.isNull()){
-            //  qDebug()<<"annullato";
-            return;
-        }*/
 
 
 
@@ -807,7 +819,7 @@ void HProduction::print(bool pdf)
         }
 
 
-        QFile(filename).remove();
+       // QFile(filename).remove();
         delete document;
         QApplication::restoreOverrideCursor();
 
@@ -819,6 +831,7 @@ void HProduction::print(bool pdf)
         f->show();
 
     }
+
 
 
 }
@@ -925,26 +938,10 @@ void HProduction::addLotProd()
 {
 
 
-    //  int idlot;
-    //  int prod;
-    //  QString descprod;
-    //   QString peso;
+
     QString lotToadd;
-    //   QString qty;
-    //  QString qp="SELECT descrizione from prodotti where ID="+prod;
-    // QList<QString> list;
 
-    //  QStandardItemModel *qm=static_cast<QStandardItemModel*>(ui->tableView->model());
-
-    //lotToadd=ui->leLotToadd->text();
-
-    //   QModelIndex idProdotto =qm->index(ui->tableView->currentIndex().row(),0);
-    //  QModelIndex prodotto =qm->index(ui->tableView->currentIndex().row(),1);
-    //   QModelIndex quantita =qm->index(ui->tableView->currentIndex().row(),2);
-    //  QModelIndex idlotto =model->index(ui->tableView->currentIndex().row(),3);
-    //   QModelIndex lotto =model->index(ui->tableView->currentIndex().row(),4);
-    //  QModelIndex quanteff =model->index(ui->tableView->currentIndex().row(),5);
-    QModelIndex allergene=model->index(ui->tableView->currentIndex().row(),6);
+    QModelIndex i_allergene=model->index(ui->tableView->currentIndex().row(),6);
 
     int row=ui->tableView->currentIndex().row();
     if(row==-1)
@@ -959,18 +956,9 @@ void HProduction::addLotProd()
         return;
     }
 
-    /*  model->setData(idlotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),0).data(0).toString());
-    model->setData(lotto,ui->lvLastLots->model()->index(ui->lvLastLots->currentIndex().row(),1).data(0).toString());*/
-    //  model->setData(quanteff,model->index(row,2).data(0).toString());
-    model->setData(allergene,model->index(row,6).data(0).toString());
 
 
-
-    //   ui->leLotToadd->setText("");
-    //   ui->leqtytoAdd->setText("");
-    //   qmLots->appendRow(createRecipeRow(prod));
-
-
+    model->setData(i_allergene,model->index(row,6).data(0).toString()+"*");
 
 
 }
@@ -1750,7 +1738,11 @@ void HProduction::resetForm(bool pcomplete)
 void HProduction::on_pushButton_10_clicked()
 {
    // printProduction();
-    print();
+    int idricetta=ui->lvRicette->model()->index(ui->lvRicette->currentIndex().row(),0).data(0).toInt();
+    printmodel=getrecipeForPrinting(idricetta);
+    print(printmodel,false);
+
+
 }
 
 void HProduction::on_checkBox_toggled(bool checked)
@@ -1822,7 +1814,9 @@ void HProduction::addPreferredLots()
     for(int row=0;row<rows;++row)
     {
         QModelIndex ix=ui->tableView->model()->index(row,0);
-        addLot(ix,false);
+        bool b_allergene=ui->tableView->model()->index(row,6).data(0).toBool();
+        qDebug()<<"add"<<b_allergene;
+        addLot(ix,b_allergene,false);
 
     }
 
@@ -1852,14 +1846,14 @@ const QString HProduction::findPreferredLot(const int id_prod)
 }
 
 
-void HProduction::addLot(QModelIndex index,bool show_window)
+void HProduction::addLot(QModelIndex index, const bool allergene, const bool show_window)
 {
     HDataToPass *data=new HDataToPass();
     double giacenza=0.0;
     QSqlQuery q(db);
     QString sql="SELECT getgiacenza(:id)";
     q.prepare(sql);
-    q.bindValue(":id",ui->tableView->model()->index(index.row(),0));
+    q.bindValue(":id",ui->tableView->model()->index(index.row(),0).data(0).toInt());
     q.exec();
     q.next();
     giacenza=q.value(0).toDouble();
@@ -1873,26 +1867,37 @@ void HProduction::addLot(QModelIndex index,bool show_window)
     data->quantity=ui->tableView->model()->index(index.row(),5).data(0).toDouble();
     data->mod=static_cast<QStandardItemModel*>(ui->tableView->model());
     data->giacenza=giacenza;
-    if(giacenza<=0)
-    {
 
 
-        for (int i=0; i<model->rowCount();i++)
-        {
-
-            model->item(i,0)->setData(QVariant(QBrush(Qt::red)),Qt::BackgroundRole);
-            //QColor(Qt::red)),Qt::BackgroundRole);
-            model->item(i,0)->setData(QVariant(QColor(Qt::white)),Qt::ForegroundRole);
-
-        }
-    }
 
 
-    HAddLotInProduction *f= new HAddLotInProduction(data,db);
+     qDebug()<<"if"<<allergene;
+
+     int i=index.row();
+
+
+
+
+     if(giacenza<=0)
+     {
+
+
+        model->item(i,0)->setData(QVariant(QBrush(Qt::yellow)),Qt::BackgroundRole);
+        //QColor(Qt::red)),Qt::BackgroundRole);
+        model->item(i,0)->setData(QVariant(QColor(Qt::white)),Qt::ForegroundRole);
+
+
+     }
+
+
+
+        HAddLotInProduction *f= new HAddLotInProduction(data,db);
+
+
 
     if(show_window)
     {
-        f->show();
+
         f->setWindowModality(Qt::ApplicationModal);
         //f->move(10+ui->tableView->x()-f->width()-10,QCursor::pos().y());
         f->move(width()/2-f->width()/2,height()/2-f->height()/2);
@@ -1921,6 +1926,57 @@ void HProduction::on_cbTipoLotto_currentIndexChanged(int index)
 {
     getRecipesForClient();
 }
+
+QStandardItemModel* HProduction::getrecipeForPrinting(const int idricetta)
+{
+
+    ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
+
+    QStandardItemModel* locmod=new QStandardItemModel();
+    QStandardItemModel* tbmod=static_cast<QStandardItemModel*>(ui->tableView->model());
+
+
+    locmod->setHeaderData(0,Qt::Horizontal,"Prodotto",0);
+    locmod->setHeaderData(1,Qt::Horizontal,"Lotto",0);
+    locmod->setHeaderData(2,Qt::Horizontal,"Allergene",0);
+    locmod->setHeaderData(3,Qt::Horizontal,"Quantità",0);
+    locmod->setHeaderData(4,Qt::Horizontal,"Visto",0);
+
+
+    double quantitatot=0.0;
+
+
+    for(int row=0; row<tbmod->rowCount();row++)
+    {
+        QString sal;
+        sal=tbmod->index(row,6).data(0).toBool()?"[X]":"";
+        QStandardItem* prodotto=new QStandardItem(tbmod->index(row,1).data(0).toString());
+        QStandardItem* lotto=new QStandardItem(tbmod->index(row,4).data(0).toString());
+        QStandardItem* allergene=new QStandardItem(sal);
+        QStandardItem* quantita=new QStandardItem(QString::number(tbmod->index(row,5).data(0).toDouble(),'f',3));
+
+        QList<QStandardItem*> rows;
+        rows.append(prodotto);
+        rows.append(lotto);
+        rows.append(allergene);
+        rows.append(quantita);
+
+        locmod->appendRow(rows);
+
+    }
+
+    qDebug()<<"getRecipe"<<tbmod->rowCount()<<tbmod->columnCount()<<locmod->rowCount()<<locmod->columnCount();
+
+
+     return locmod;
+
+
+
+
+}
+
+
+
 
 
 

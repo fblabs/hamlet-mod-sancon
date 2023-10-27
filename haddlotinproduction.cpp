@@ -178,11 +178,11 @@ void HAddLotInProduction::addLot()
     if (ballergene){
 
 
-        model->setData(model->index(nrow,6),QString("1"));
+        model->setData(model->index(nrow,6),QString("[X]"));
     }
     else
     {
-        model->setData(model->index(nrow,6),QString("0"));
+        model->setData(model->index(nrow,6),QString(""));
     }
 
 

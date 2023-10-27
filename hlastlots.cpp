@@ -178,8 +178,10 @@ void HLastLots::on_pushButton_clicked()
     QString idprodotto=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),2).data(0).toString();
     QString descprodotto=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),3).data(0).toString();
     bool ballergene =ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),5).data(0).toBool();
+    QString sgiacenza=QString::number(ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),4).data(0).toDouble(),'f',3);
     bool ok;
     double quantitaeff=ui->leQua->text().toDouble(&ok);
+    double dgiacenza=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),4).data(0).toDouble();
 
     if (!ok)
     {
@@ -192,9 +194,9 @@ void HLastLots::on_pushButton_clicked()
      QString sallergene;
 
      if(ballergene)
-     {sallergene="1";}
+     {sallergene="[X]";}
      else
-     {sallergene="0";}
+     {sallergene="";}
 
 
     QStandardItem* sidProdotto=new QStandardItem(idprodotto);
@@ -204,11 +206,32 @@ void HLastLots::on_pushButton_clicked()
     QStandardItem* sLotto=new QStandardItem(desclotto);
     QStandardItem* quaEff=new QStandardItem(QString::number(quantitaeff,'f',3));
     QStandardItem* allergene=new QStandardItem(sallergene);
+    QStandardItem* giacenza=new QStandardItem(sgiacenza);
 
     if(ballergene)
     {
+
         sdescprodotto->setForeground(QColor("red"));
         sdescprodotto->setIcon(QIcon(":/Resources/Flag-red64.png"));
+        allergene->setTextAlignment(Qt::AlignCenter);
+
+    }
+    if(dgiacenza<=0)
+    {
+        sidProdotto->setBackground(Qt::red);
+        sidProdotto->setForeground(Qt::white);
+        sdescprodotto->setBackground(Qt::red);
+        sdescprodotto->setForeground(Qt::white);
+        squaRicetta->setBackground(Qt::red);
+        squaRicetta->setForeground(Qt::white);
+        sLotto->setBackground(Qt::red);
+        sLotto->setForeground(Qt::white);
+        quaEff->setBackground(Qt::red);
+        quaEff->setForeground(Qt::white);
+        allergene->setBackground(Qt::red);
+        allergene->setForeground(Qt::white);
+        giacenza->setBackground(Qt::red);
+        giacenza->setForeground(Qt::white);
     }
 
     QList<QStandardItem*> list;
@@ -220,6 +243,7 @@ void HLastLots::on_pushButton_clicked()
     list.append(sLotto);
     list.append(quaEff);
     list.append(allergene);
+    list.append(giacenza);
 
     emit rowAdded(list);
 
