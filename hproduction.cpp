@@ -716,9 +716,11 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
     QString title="Produzione del " +QDate::currentDate().toString("dd-MM-yyyy") + " - " + ui->lbRicetta->text().toUpper();
 
 
-    out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>";
+    out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head><table width=100% border=1 cellspacing=0 cellpadding=2> <thead><tr bgcolor='lightyellow'><th colspan='5'>"+ title +"</th></tr></thead>";
 
-    out << "<table width='100%' border=1> <thead><tr bgcolor='lightyellow'><th colspan='5'>"+ title +"</th></tr></thead>";
+    //out << "<table width='100%' border=1> <thead><tr bgcolor='lightyellow'><th colspan='5'>"+ title +"</th></tr></thead>";
+
+
     // headers
     out << "<tr bgcolor=#f0f0f0>";
     out << "<th>Prodotto</th><th>Lotto</th><th>Allergene</th><th>Quantita'</th><th>Visto</th>";
@@ -731,7 +733,13 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
     for (int row = 0; row < rowCount; row++) {
 
 
+
+        if(tbmod->index(row,6).data(0).toString().trimmed()=="[X]")
+        {
+            out<<"<tr style ='color: red'>";
+        }else{
         out << "<tr>";
+        }
         for (int column = 0; column < columnCount+1; column++) {
 
             if (column !=2)
@@ -771,14 +779,16 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
 
     }
 
-    out <<  "</table></table>\n";
+    out <<  "</table></table>\n<br\><br\>";
 
     out<<"\n";
-    out << "<table width='100%' border=1> <thead><tr bgcolor='lightyellow'><th>NOTE</th></tr></thead>";
+    out << "<table width=100% border=1 cellspacing=0 cellpadding=3> <thead><tr bgcolor='lightyellow'><th>NOTE</th></tr></thead>";
   /*  out << "<tr bgcolor=#f0f0f0>";
     out << "</tr>";*/
-    out <<"<tr>"<<"<td>"+ui->textBrowser->toPlainText()+"</td></tr>";
-    out <<"<tr>"<<"<td>"+ui->tNote->toPlainText()+"</td></tr>";
+    out <<"<tr>"<<"<td><b>NOTE RICETTA</b></td></tr>";
+    out <<"<tr>"<<"<td><i>"+ui->textBrowser->toPlainText()+"</i></td></tr>";
+    out <<"<tr>"<<"<td><b>NOTE PRODUZIONE</b></td></tr>";
+    out <<"<tr>"<<"<td><i>"+ui->tNote->toPlainText()+"</i></td></tr>";
     out <<  "</table>\n";
            "</body>\n"
            "</html>\n";
