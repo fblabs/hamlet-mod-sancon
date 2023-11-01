@@ -46,7 +46,7 @@ private:
     int recipe_row_count;
 
 private slots:
-    void addLot(QModelIndex index, const bool allergene=false, const bool show_window=true);
+    void addLot(QModelIndex index, const bool p_allergene=false, const bool show_window=true);
     void getNewRow(QList<QStandardItem *> list);
     void getClients();
     void getSubclients();

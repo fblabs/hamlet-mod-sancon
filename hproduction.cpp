@@ -494,7 +494,7 @@ void HProduction::getRecipe()
         QStandardItem* IDLotto=new QStandardItem("");
         QStandardItem* lotto=new QStandardItem("");
         QStandardItem* quadd=new QStandardItem(QString::number(0.0,'f',3));
-        QString sal;
+        QString sal=QString();
 
         sal=qmod->index(row,2).data(0).toBool()?"[X]":"";
         QStandardItem* allergene=new QStandardItem(sal);
@@ -709,21 +709,22 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
 
     const int rowCount = prtmod->rowCount();
     const int columnCount = prtmod->columnCount();
+    double amount=0.0;
      qDebug()<<"rowcount"<<rowCount<<"columncount"<<columnCount;
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    QString title="Produzione del " +QDate::currentDate().toString("dd-MM-yyyy") + " - " + ui->lbRicetta->text().toUpper();
+     QString title="Produzione del " +QDate::currentDate().toString("dd-MM-yyyy") + " [ " +ui->cbClienti->currentText()+" ]  - " + ui->lbRicetta->text().toUpper();
 
 
-    out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head><table width=100% border=1 cellspacing=0 cellpadding=2> <thead><tr bgcolor='lightyellow'><th colspan='5'>"+ title +"</th></tr></thead>";
+    out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head><table width=100% border=1 cellspacing=0 cellpadding=2> <thead><tr bgcolor='lightyellow'><th colspan='4'>"+ title +"</th></tr></thead>";
 
     //out << "<table width='100%' border=1> <thead><tr bgcolor='lightyellow'><th colspan='5'>"+ title +"</th></tr></thead>";
 
 
     // headers
     out << "<tr bgcolor=#f0f0f0>";
-    out << "<th>Prodotto</th><th>Lotto</th><th>Allergene</th><th>Quantita'</th><th>Visto</th>";
+    out << "<th>Prodotto</th><th>Lotto</th><th>Quantita'</th><th>Visto</th>";
     out << "</tr>\n";
 
 
@@ -732,7 +733,7 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
 
     for (int row = 0; row < rowCount; row++) {
 
-
+        amount =amount + tbmod->index(row,5).data(0).toDouble();
 
         if(tbmod->index(row,6).data(0).toString().trimmed()=="[X]")
         {
@@ -740,11 +741,11 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
         }else{
         out << "<tr>";
         }
-        for (int column = 0; column < columnCount+1; column++) {
+        for (int column = 0; column < columnCount; column++) {
 
             if (column !=2)
                 out<<"<td >";
-            else
+           else
                 out<<"<td align='center'>";
 
             if(column==3){
@@ -779,7 +780,7 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
 
     }
 
-    out <<  "</table></table>\n<br\><br\>";
+    out <<  "</table></table>\n<br/><p align='right'><b>Quantità:</b>&nbsp;Kg.&nbsp;"+QString::number(amount,'f',3)+"&nbsp;&nbsp;&nbsp;</p><br/>";
 
     out<<"\n";
     out << "<table width=100% border=1 cellspacing=0 cellpadding=3> <thead><tr bgcolor='lightyellow'><th>NOTE</th></tr></thead>";
@@ -1825,7 +1826,9 @@ void HProduction::addPreferredLots()
     {
         QModelIndex ix=ui->tableView->model()->index(row,0);
         bool b_allergene=ui->tableView->model()->index(row,6).data(0).toBool();
-        qDebug()<<"add"<<b_allergene;
+
+
+
         addLot(ix,b_allergene,false);
 
     }
@@ -1856,7 +1859,7 @@ const QString HProduction::findPreferredLot(const int id_prod)
 }
 
 
-void HProduction::addLot(QModelIndex index, const bool allergene, const bool show_window)
+void HProduction::addLot(QModelIndex index, const bool p_allergene, const bool show_window)
 {
     HDataToPass *data=new HDataToPass();
     double giacenza=0.0;
@@ -1869,7 +1872,7 @@ void HProduction::addLot(QModelIndex index, const bool allergene, const bool sho
     giacenza=q.value(0).toDouble();
 
 
-    data->allergene=ui->tableView->model()->index(index.row(),6).data(0).toBool();
+    data->allergene=p_allergene;
     data->description=ui->tableView->model()->index(index.row(),1).data(0).toString();
     data->productId=ui->tableView->model()->data(ui->tableView->model()->index(index.row(),0)).toInt();
     data->lot=findPreferredLot();
@@ -1881,27 +1884,18 @@ void HProduction::addLot(QModelIndex index, const bool allergene, const bool sho
 
 
 
-     qDebug()<<"if"<<allergene;
+    qDebug()<<"if"<<p_allergene<<giacenza;
 
      int i=index.row();
 
 
-
-
-     if(giacenza<=0)
-     {
-
-
-        model->item(i,0)->setData(QVariant(QBrush(Qt::yellow)),Qt::BackgroundRole);
-        //QColor(Qt::red)),Qt::BackgroundRole);
-        model->item(i,0)->setData(QVariant(QColor(Qt::white)),Qt::ForegroundRole);
-
-
-     }
+     model->item(i,7)->setData(QVariant(giacenza),Qt::DisplayRole);
 
 
 
-        HAddLotInProduction *f= new HAddLotInProduction(data,db);
+
+
+    HAddLotInProduction *f= new HAddLotInProduction(data,db);
 
 
 
@@ -1948,9 +1942,9 @@ QStandardItemModel* HProduction::getrecipeForPrinting(const int idricetta)
 
     locmod->setHeaderData(0,Qt::Horizontal,"Prodotto",0);
     locmod->setHeaderData(1,Qt::Horizontal,"Lotto",0);
-    locmod->setHeaderData(2,Qt::Horizontal,"Allergene",0);
-    locmod->setHeaderData(3,Qt::Horizontal,"Quantità",0);
-    locmod->setHeaderData(4,Qt::Horizontal,"Visto",0);
+    //locmod->setHeaderData(2,Qt::Horizontal,"Allergene",0);
+    locmod->setHeaderData(2,Qt::Horizontal,"Quantità",0);
+    locmod->setHeaderData(3,Qt::Horizontal,"Visto",0);
 
 
     double quantitatot=0.0;
@@ -1962,13 +1956,13 @@ QStandardItemModel* HProduction::getrecipeForPrinting(const int idricetta)
         sal=tbmod->index(row,6).data(0).toBool()?"[X]":"";
         QStandardItem* prodotto=new QStandardItem(tbmod->index(row,1).data(0).toString());
         QStandardItem* lotto=new QStandardItem(tbmod->index(row,4).data(0).toString());
-        QStandardItem* allergene=new QStandardItem(sal);
+       // QStandardItem* allergene=new QStandardItem(sal);
         QStandardItem* quantita=new QStandardItem(QString::number(tbmod->index(row,5).data(0).toDouble(),'f',3));
 
         QList<QStandardItem*> rows;
         rows.append(prodotto);
         rows.append(lotto);
-        rows.append(allergene);
+      //  rows.append(allergene);
         rows.append(quantita);
 
         locmod->appendRow(rows);

@@ -136,6 +136,7 @@ void HAddLotInProduction::addLot()
 
     int nrow=data->row;
     bool ballergene=data->allergene;
+    qDebug()<<"addlot"<<ballergene;
     int lotid=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
     QString lot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),1).data(0).toString();
     double giacenza=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),4).data(0).toDouble();
@@ -143,16 +144,22 @@ void HAddLotInProduction::addLot()
         qDebug()<<"NULL";
         return;
     }
-
+    QString al=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),6).data(0).toString();
+    QString val=QString::number(ui->dsbQt->value(),'f',3);
 
 
     model->setData(model->index(nrow,0),data->productId);
     model->setData(model->index(nrow,1),data->description);
     model->setData(model->index(nrow,3),lotid);
     model->setData(model->index(nrow,4),lot);
-    model->setData(model->index(nrow,7),QString::number(giacenza,'f',2));
-    QString val=QString::number(ui->dsbQt->value(),'f',3);
     model->setData(model->index(nrow,5),val);
+    model->setData(model->index(nrow,6),al);
+    model->setData(model->index(nrow,7),giacenza);
+
+
+
+
+
 
 
 
@@ -172,18 +179,15 @@ void HAddLotInProduction::addLot()
 
     }
 
-
-
-
-    if (ballergene){
-
-
-        model->setData(model->index(nrow,6),QString("[X]"));
-    }
-    else
+    if(ballergene)
     {
-        model->setData(model->index(nrow,6),QString(""));
+        model->item(nrow,6)->setData("[X]",Qt::DisplayRole);
+        model->item(nrow,6)->setTextAlignment(Qt::AlignCenter);
     }
+
+
+
+
 
 
 

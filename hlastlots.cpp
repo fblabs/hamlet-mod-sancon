@@ -215,6 +215,8 @@ void HLastLots::on_pushButton_clicked()
         sdescprodotto->setIcon(QIcon(":/Resources/Flag-red64.png"));
         allergene->setTextAlignment(Qt::AlignCenter);
 
+
+
     }
     if(dgiacenza<=0)
     {
