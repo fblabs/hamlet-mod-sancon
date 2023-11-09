@@ -32,6 +32,7 @@ private slots:
     void updateSheet(int newrow, int oldrow);
     void setHeaders();
     void print(bool pdf=true);
+    void get_sheet_details(const int p_id=-1 );
 
 
     void on_pbSave_clicked();
@@ -73,6 +74,8 @@ private slots:
     void showContextMenu(const QPoint& pos);
 
     void copyRow();
+
+    void on_pbDetails_clicked();
 
 private:
     Ui::HWorkProgram *ui;

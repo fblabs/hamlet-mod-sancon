@@ -156,8 +156,8 @@ public:
         label->setText(QCoreApplication::translate("HLoads", "Tra il:", nullptr));
         label_2->setText(QCoreApplication::translate("HLoads", "e il:", nullptr));
         pbSearch->setText(QCoreApplication::translate("HLoads", "Cerca", nullptr));
-        rbLoads->setText(QCoreApplication::translate("HLoads", "Carichi", nullptr));
-        rbUnloads->setText(QCoreApplication::translate("HLoads", "Scarichi", nullptr));
+        rbLoads->setText(QCoreApplication::translate("HLoads", "Totale carichi", nullptr));
+        rbUnloads->setText(QCoreApplication::translate("HLoads", "Totale scarichi", nullptr));
         label_3->setText(QCoreApplication::translate("HLoads", "Totale::", nullptr));
         pbClose->setText(QCoreApplication::translate("HLoads", "Chiudi", nullptr));
     } // retranslateUi

@@ -75,7 +75,7 @@
      <item>
       <widget class="QRadioButton" name="rbLoads">
        <property name="text">
-        <string>Carichi</string>
+        <string>Totale carichi</string>
        </property>
        <property name="checked">
         <bool>true</bool>
@@ -85,7 +85,7 @@
      <item>
       <widget class="QRadioButton" name="rbUnloads">
        <property name="text">
-        <string>Scarichi</string>
+        <string>Totale scarichi</string>
        </property>
       </widget>
      </item>

@@ -144,7 +144,11 @@ void HWorkProgram::getSheets(bool create)
     ui->tvStorico->setColumnHidden(0,true);
     ui->tvStorico->setColumnHidden(2,true);
     ui->tvStorico->setColumnHidden(4,true);
-    ui->tvStorico->horizontalHeader()->setStretchLastSection(true);
+    //ui->tvStorico->horizontalHeader()->setStretchLastSection(true);
+    for (int i=0;i<6;++i)
+    {
+       ui->tvStorico->horizontalHeader()->setSectionResizeMode(i,QHeaderView::ResizeToContents);
+    }
     ui->tvGeneral->verticalHeader()->setSectionsMovable(true);
     if (ui->tvGeneral->model()->rowCount()>0)
     {
@@ -215,7 +219,6 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
 {
 
     id=ui->tvStorico->model()->index(index.row(),0).data(0).toInt();
-    qDebug()<<id<<ui->tvStorico->model()->index(index.row(),5).data(0).toInt();
     ui->deDal->setDate(ui->tvStorico->model()->index(index.row(),1).data(0).toDate());
     ui->deAl->setDate(ui->tvStorico->model()->index(index.row(),2).data(0).toDate());
     ui->spLinea->setValue(ui->tvStorico->model()->index(index.row(),3).data(0).toInt());
@@ -223,7 +226,7 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
     ui->pbApprova->setEnabled(!app);
     ui->pbDisapprova->setEnabled(app);
     ui->pbPrint->setEnabled(app);
-  //  ui->pbPrint->setEnabled(app);
+
     if(app )
     {
         ui->lblCheck->setPixmap(QPixmap(":/Resources/Accept64.png"));
@@ -725,7 +728,32 @@ void HWorkProgram::print(bool pdf)
 
             f->show();
 
-   }
+    }
+}
+
+void HWorkProgram::get_sheet_details(const int p_id)
+{
+    QSqlQuery q(db);
+    QSqlQueryModel *mod=new QSqlQueryModel();
+    QString sql="SELECT id_prodotto ,prodotti.descrizione as 'PRODOTTO', sum(quantita) as q from righe_ricette,prodotti where ID_prodotto=prodotti.ID and ID_ricetta in ( select ID as 'id ricetta' FROM ricette WHERE ID_prodotto IN (select idprodotto from righe_produzione where IDProduzione=:id)) GROUP BY ID_prodotto ORDER BY q DESC";
+
+    int id=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
+    qDebug()<<"id"<<id;
+
+    q.prepare(sql);
+    q.bindValue(":id",id);
+    q.exec();
+    mod->setQuery(q);
+    mod->setHeaderData(1,Qt::Horizontal,"PRODOTTO",Qt::DisplayRole);
+    mod->setHeaderData(2,Qt::Horizontal,"QUANTITA'");
+
+    qDebug()<<mod->rowCount()<<q.size()<<q.lastError().text();
+    ui->tvGeneral->setModel(mod);
+    ui->tvGeneral->setColumnHidden(0,true);
+    ui->tvGeneral->setColumnHidden(1,false);
+    ui->tvGeneral->setColumnHidden(2,false);
+    ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tvGeneral->horizontalHeader()->setStretchLastSection(true);
 }
 
 
@@ -820,5 +848,14 @@ void HWorkProgram::copyRow()
     QMimeData *row_data=new QMimeData();
 
 
+}
+
+
+void HWorkProgram::on_pbDetails_clicked()
+{
+    int  id=-1;
+
+    id=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
+    get_sheet_details(id);
 }
 

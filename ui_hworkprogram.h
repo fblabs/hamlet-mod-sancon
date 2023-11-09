@@ -70,6 +70,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *pbNewSheet;
     QPushButton *pbSave;
+    QPushButton *pbDetails;
     QPushButton *pbDeleteSheet;
     QCheckBox *cbPdf;
     QPushButton *pbPrint;
@@ -187,7 +188,7 @@ public:
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         tvStorico = new QTableView(HWorkProgram);
         tvStorico->setObjectName(QString::fromUtf8("tvStorico"));
-        tvStorico->setMaximumSize(QSize(300, 16777215));
+        tvStorico->setMaximumSize(QSize(200, 16777215));
         tvStorico->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvStorico->setAlternatingRowColors(true);
         tvStorico->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -339,11 +340,20 @@ public:
 
         horizontalLayout->addWidget(pbSave);
 
+        pbDetails = new QPushButton(HWorkProgram);
+        pbDetails->setObjectName(QString::fromUtf8("pbDetails"));
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDetails->setIcon(icon8);
+        pbDetails->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pbDetails);
+
         pbDeleteSheet = new QPushButton(HWorkProgram);
         pbDeleteSheet->setObjectName(QString::fromUtf8("pbDeleteSheet"));
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbDeleteSheet->setIcon(icon8);
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDeleteSheet->setIcon(icon9);
         pbDeleteSheet->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbDeleteSheet);
@@ -358,18 +368,18 @@ public:
         pbPrint = new QPushButton(HWorkProgram);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
         pbPrint->setEnabled(true);
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon9);
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon10);
         pbPrint->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbPrint);
 
         pbClose = new QPushButton(HWorkProgram);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon10;
-        icon10.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon10);
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon11);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbClose);
@@ -408,6 +418,7 @@ public:
         pbRemove->setText(QCoreApplication::translate("HWorkProgram", "Rimuovi riga", nullptr));
         pbNewSheet->setText(QCoreApplication::translate("HWorkProgram", "Nuovo", nullptr));
         pbSave->setText(QCoreApplication::translate("HWorkProgram", "Salva", nullptr));
+        pbDetails->setText(QCoreApplication::translate("HWorkProgram", "Dettagli", nullptr));
         pbDeleteSheet->setText(QCoreApplication::translate("HWorkProgram", "Elimina foglio selezionato", nullptr));
         cbPdf->setText(QCoreApplication::translate("HWorkProgram", "Stampa su pdf", nullptr));
         pbPrint->setText(QCoreApplication::translate("HWorkProgram", "Stampa", nullptr));

@@ -97,6 +97,7 @@ private slots:
     void on_cbTipoLotto_currentIndexChanged(int index);
     QStandardItemModel *getrecipeForPrinting(const int idricetta=-1);
 
+
 };
 
 #endif // HPRODUCTION_H
