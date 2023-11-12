@@ -15,13 +15,13 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFrame>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -32,23 +32,20 @@ class Ui_HWorkProgram
 {
 public:
     QVBoxLayout *verticalLayout;
-    QGridLayout *gridLayout;
-    QDateEdit *deAl;
+    QHBoxLayout *horizontalLayout_3;
     QLabel *label;
     QLabel *label_4;
-    QLabel *label_3;
-    QPushButton *pbApprova;
     QDateEdit *deDal;
-    QSpinBox *spLinea;
-    QPushButton *pbDisapprova;
     QLabel *label_5;
-    QSpacerItem *horizontalSpacer;
+    QDateEdit *deAl;
+    QLabel *label_3;
+    QSpinBox *spLinea;
     QLabel *label_9;
     QLabel *lblCheck;
-    QHBoxLayout *horizontalLayout_4;
-    QLabel *label_2;
-    QLabel *lbSheet;
-    QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *pbApprova;
+    QPushButton *pbDisapprova;
+    QSplitter *splitter;
     QTableView *tvStorico;
     QTableView *tvGeneral;
     QHBoxLayout *horizontalLayout_2;
@@ -63,7 +60,7 @@ public:
     QDateEdit *deSearchTo;
     QPushButton *pbSearch;
     QPushButton *pbReset;
-    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *horizontalSpacer_3;
     QPushButton *pbAdd;
     QPushButton *pbModify;
     QPushButton *pbRemove;
@@ -87,75 +84,55 @@ public:
         HWorkProgram->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(HWorkProgram);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        gridLayout = new QGridLayout();
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        deAl = new QDateEdit(HWorkProgram);
-        deAl->setObjectName(QString::fromUtf8("deAl"));
-        deAl->setCalendarPopup(true);
-
-        gridLayout->addWidget(deAl, 3, 6, 1, 1);
-
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         label = new QLabel(HWorkProgram);
         label->setObjectName(QString::fromUtf8("label"));
         QFont font;
         font.setBold(true);
         label->setFont(font);
 
-        gridLayout->addWidget(label, 3, 1, 1, 1);
+        horizontalLayout_3->addWidget(label);
 
         label_4 = new QLabel(HWorkProgram);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setFont(font);
 
-        gridLayout->addWidget(label_4, 3, 3, 1, 1);
-
-        label_3 = new QLabel(HWorkProgram);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-
-        gridLayout->addWidget(label_3, 3, 7, 1, 1);
-
-        pbApprova = new QPushButton(HWorkProgram);
-        pbApprova->setObjectName(QString::fromUtf8("pbApprova"));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/Resources/Accept64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbApprova->setIcon(icon1);
-
-        gridLayout->addWidget(pbApprova, 3, 12, 1, 1);
+        horizontalLayout_3->addWidget(label_4);
 
         deDal = new QDateEdit(HWorkProgram);
         deDal->setObjectName(QString::fromUtf8("deDal"));
         deDal->setCalendarPopup(true);
 
-        gridLayout->addWidget(deDal, 3, 4, 1, 1);
+        horizontalLayout_3->addWidget(deDal);
+
+        label_5 = new QLabel(HWorkProgram);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+
+        horizontalLayout_3->addWidget(label_5);
+
+        deAl = new QDateEdit(HWorkProgram);
+        deAl->setObjectName(QString::fromUtf8("deAl"));
+        deAl->setCalendarPopup(true);
+
+        horizontalLayout_3->addWidget(deAl);
+
+        label_3 = new QLabel(HWorkProgram);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        horizontalLayout_3->addWidget(label_3);
 
         spLinea = new QSpinBox(HWorkProgram);
         spLinea->setObjectName(QString::fromUtf8("spLinea"));
         spLinea->setMinimum(1);
         spLinea->setMaximum(2);
 
-        gridLayout->addWidget(spLinea, 3, 8, 1, 1);
-
-        pbDisapprova = new QPushButton(HWorkProgram);
-        pbDisapprova->setObjectName(QString::fromUtf8("pbDisapprova"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbDisapprova->setIcon(icon2);
-
-        gridLayout->addWidget(pbDisapprova, 3, 13, 1, 1);
-
-        label_5 = new QLabel(HWorkProgram);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-
-        gridLayout->addWidget(label_5, 3, 5, 1, 1);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer, 3, 10, 1, 1);
+        horizontalLayout_3->addWidget(spLinea);
 
         label_9 = new QLabel(HWorkProgram);
         label_9->setObjectName(QString::fromUtf8("label_9"));
 
-        gridLayout->addWidget(label_9, 3, 11, 1, 1);
+        horizontalLayout_3->addWidget(label_9);
 
         lblCheck = new QLabel(HWorkProgram);
         lblCheck->setObjectName(QString::fromUtf8("lblCheck"));
@@ -163,30 +140,35 @@ public:
         lblCheck->setPixmap(QPixmap(QString::fromUtf8(":/Resources/Accept64.png")));
         lblCheck->setScaledContents(true);
 
-        gridLayout->addWidget(lblCheck, 3, 9, 1, 1);
+        horizontalLayout_3->addWidget(lblCheck);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer);
+
+        pbApprova = new QPushButton(HWorkProgram);
+        pbApprova->setObjectName(QString::fromUtf8("pbApprova"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/Resources/Accept64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbApprova->setIcon(icon1);
+
+        horizontalLayout_3->addWidget(pbApprova);
+
+        pbDisapprova = new QPushButton(HWorkProgram);
+        pbDisapprova->setObjectName(QString::fromUtf8("pbDisapprova"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDisapprova->setIcon(icon2);
+
+        horizontalLayout_3->addWidget(pbDisapprova);
 
 
-        verticalLayout->addLayout(gridLayout);
+        verticalLayout->addLayout(horizontalLayout_3);
 
-        horizontalLayout_4 = new QHBoxLayout();
-        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        label_2 = new QLabel(HWorkProgram);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setMaximumSize(QSize(300, 16777215));
-
-        horizontalLayout_4->addWidget(label_2);
-
-        lbSheet = new QLabel(HWorkProgram);
-        lbSheet->setObjectName(QString::fromUtf8("lbSheet"));
-
-        horizontalLayout_4->addWidget(lbSheet);
-
-
-        verticalLayout->addLayout(horizontalLayout_4);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        tvStorico = new QTableView(HWorkProgram);
+        splitter = new QSplitter(HWorkProgram);
+        splitter->setObjectName(QString::fromUtf8("splitter"));
+        splitter->setOrientation(Qt::Horizontal);
+        tvStorico = new QTableView(splitter);
         tvStorico->setObjectName(QString::fromUtf8("tvStorico"));
         tvStorico->setMaximumSize(QSize(200, 16777215));
         tvStorico->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -194,13 +176,11 @@ public:
         tvStorico->setSelectionMode(QAbstractItemView::SingleSelection);
         tvStorico->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvStorico->setSortingEnabled(true);
+        splitter->addWidget(tvStorico);
         tvStorico->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
         tvStorico->verticalHeader()->setVisible(false);
         tvStorico->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
-
-        horizontalLayout_3->addWidget(tvStorico);
-
-        tvGeneral = new QTableView(HWorkProgram);
+        tvGeneral = new QTableView(splitter);
         tvGeneral->setObjectName(QString::fromUtf8("tvGeneral"));
         tvGeneral->setEditTriggers(QAbstractItemView::DoubleClicked);
         tvGeneral->setDragEnabled(true);
@@ -210,14 +190,12 @@ public:
         tvGeneral->setSelectionMode(QAbstractItemView::SingleSelection);
         tvGeneral->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvGeneral->setSortingEnabled(false);
+        splitter->addWidget(tvGeneral);
         tvGeneral->horizontalHeader()->setStretchLastSection(true);
         tvGeneral->verticalHeader()->setDefaultSectionSize(40);
         tvGeneral->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
 
-        horizontalLayout_3->addWidget(tvGeneral);
-
-
-        verticalLayout->addLayout(horizontalLayout_3);
+        verticalLayout->addWidget(splitter);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
@@ -293,9 +271,9 @@ public:
 
         horizontalLayout_2->addWidget(pbReset);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_2->addItem(horizontalSpacer_2);
+        horizontalLayout_2->addItem(horizontalSpacer_3);
 
         pbAdd = new QPushButton(HWorkProgram);
         pbAdd->setObjectName(QString::fromUtf8("pbAdd"));
@@ -346,6 +324,7 @@ public:
         icon8.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
         pbDetails->setIcon(icon8);
         pbDetails->setIconSize(QSize(32, 32));
+        pbDetails->setCheckable(true);
 
         horizontalLayout->addWidget(pbDetails);
 
@@ -398,14 +377,12 @@ public:
         HWorkProgram->setWindowTitle(QCoreApplication::translate("HWorkProgram", "Programmazione Lavorazione", nullptr));
         label->setText(QCoreApplication::translate("HWorkProgram", "PROGRAMMA DI LAVORO", nullptr));
         label_4->setText(QCoreApplication::translate("HWorkProgram", "del", nullptr));
-        label_3->setText(QCoreApplication::translate("HWorkProgram", "Linea", nullptr));
-        pbApprova->setText(QCoreApplication::translate("HWorkProgram", "Approva", nullptr));
-        pbDisapprova->setText(QCoreApplication::translate("HWorkProgram", "Modifica", nullptr));
         label_5->setText(QCoreApplication::translate("HWorkProgram", "Al:", nullptr));
+        label_3->setText(QCoreApplication::translate("HWorkProgram", "Linea", nullptr));
         label_9->setText(QCoreApplication::translate("HWorkProgram", "Stato: ", nullptr));
         lblCheck->setText(QString());
-        label_2->setText(QCoreApplication::translate("HWorkProgram", "Storico:", nullptr));
-        lbSheet->setText(QCoreApplication::translate("HWorkProgram", "Foglio produzione", nullptr));
+        pbApprova->setText(QCoreApplication::translate("HWorkProgram", "Approva", nullptr));
+        pbDisapprova->setText(QCoreApplication::translate("HWorkProgram", "Modifica", nullptr));
         checkBox->setText(QCoreApplication::translate("HWorkProgram", "Nascondi Storico", nullptr));
         cbshowrows->setText(QCoreApplication::translate("HWorkProgram", "Mostra i numeri di riga", nullptr));
         label_6->setText(QCoreApplication::translate("HWorkProgram", "Filtra per linea:", nullptr));

@@ -40,6 +40,8 @@ SOURCES += main.cpp\
     hquerymodel_lastlots.cpp \
     hquerymodel_lotti.cpp \
     hrecipesforingredient.cpp \
+    hworkprogram.cpp \
+    hworkprogramdetailmodel.cpp \
     hworksheetmodel.cpp \
     mainwindow.cpp \
     huser.cpp \
@@ -101,8 +103,7 @@ SOURCES += main.cpp\
     hworkprogressmodel.cpp \
     hmodifyrow.cpp \
     hlotmod.cpp \
-    hnewsheet.cpp \
-    hworkprogram.cpp
+    hnewsheet.cpp
 
 HEADERS  += mainwindow.h \
     hbiodetails.h \
@@ -173,6 +174,8 @@ HEADERS  += mainwindow.h \
     hcopycard.h \
     hcomposizionelotto.h \
     hgraphicprint.h \
+    hworkprogram.h \
+    hworkprogramdetailmodel.h \
     hworksheetmodel.h \
     nouse.h \
     haddlotinproduction.h \
@@ -191,7 +194,6 @@ HEADERS  += mainwindow.h \
     hmodifyrow.h \
     hlotmod.h \
     hnewsheet.h \
-    hworkprogram.h \
     ui_hcaloclo_costi_jolly.h
 
 
@@ -222,6 +224,7 @@ FORMS    += mainwindow.ui \
     hsettings.ui \
     hprint.ui \
     hnewproduct.ui \
+    hworkprogram.ui \
     lognew.ui \
     hclientfiles.ui \
     hlogin2.ui \
@@ -271,8 +274,7 @@ FORMS    += mainwindow.ui \
     hwpmanager.ui \
     hmodifyrow.ui \
     hlotmod.ui \
-    hnewsheet.ui \
-    hworkprogram.ui
+    hnewsheet.ui
 
 
 

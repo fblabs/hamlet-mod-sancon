@@ -15,7 +15,7 @@ Qt::ItemFlags HWorkSheetModel::flags(const QModelIndex & item ) const
 
 
 
-      /*if (item.column()==5)
+      if (item.column()==5)
        {
 
            flags |= Qt::ItemIsUserCheckable;
@@ -24,9 +24,10 @@ Qt::ItemFlags HWorkSheetModel::flags(const QModelIndex & item ) const
            return flags;
        }
        else
-       {*/
+       {
           flags=QSqlTableModel::flags(item) & ~Qt::ItemIsEditable;
           return flags;
+       }
 
 
 

@@ -153,14 +153,14 @@ void HProdottiNew::print(bool pdf)
         const int columnCount = ui->tvProdotti->model()->columnCount();
         title ="STAMPA ANAGRAFICA PRODOTTI";
 
-        out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
+        out <<  "<html>\n<thead>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
 
         // headers
         QStringList coltit=QStringList();
         coltit <<"ID"<<"DESCRIZIONE"<<"TIPO"<< "ALLERGENE"<<"ATTIVO"<<"BIO"<<"PREZZO"<<"DATA ULTIMO AGGIORNAMENTO PREZZO";
 
 
-        out << "<thead><tr bgcolor='#5cabff'><th colspan='8'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
+        out << "<tr bgcolor='#5cabff'><th colspan='8'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
 
 
         for (int column = 0 ; column < columnCount; column++)
@@ -175,7 +175,7 @@ void HProdottiNew::print(bool pdf)
 
         }
 
-        out << "</tr></th></thead>\n";
+        out << "</thead></tr>\n";
 
         // data table
         for (int row = 0; row < rowCount; row++) {

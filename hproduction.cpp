@@ -710,11 +710,11 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
     const int rowCount = prtmod->rowCount();
     const int columnCount = prtmod->columnCount();
     double amount=0.0;
-     qDebug()<<"rowcount"<<rowCount<<"columncount"<<columnCount;
+    qDebug()<<"rowcount"<<rowCount<<"columncount"<<columnCount;
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-     QString title="Produzione del " +QDate::currentDate().toString("dd-MM-yyyy") + " [ " +ui->cbClienti->currentText()+" ]  - " + ui->lbRicetta->text().toUpper();
+    QString title="Produzione del " +QDate::currentDate().toString("dd-MM-yyyy") + " [ " +ui->cbClienti->currentText()+" ]  - " + ui->lbRicetta->text().toUpper();
 
 
     out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head><table width=100% border=1 cellspacing=0 cellpadding=2> <thead><tr bgcolor='lightyellow'><th colspan='4'>"+ title +"</th></tr></thead>";
@@ -739,13 +739,13 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
         {
             out<<"<tr style ='color: red'>";
         }else{
-        out << "<tr>";
+            out << "<tr>";
         }
         for (int column = 0; column < columnCount; column++) {
 
             if (column !=2)
                 out<<"<td >";
-           else
+            else
                 out<<"<td align='center'>";
 
             if(column==3){
@@ -775,24 +775,24 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
 
         }
 
-   out << "</tr>";
+        out << "</tr>";
 
 
     }
 
     out <<  "</table></table>\n<br/><p align='right'><b>Quantità:</b>&nbsp;Kg.&nbsp;"+QString::number(amount,'f',3)+"&nbsp;&nbsp;&nbsp;</p><br/>";
 
-    out<<"\n";
+               out<<"\n";
     out << "<table width=100% border=1 cellspacing=0 cellpadding=3> <thead><tr bgcolor='lightyellow'><th>NOTE</th></tr></thead>";
-  /*  out << "<tr bgcolor=#f0f0f0>";
+    /*  out << "<tr bgcolor=#f0f0f0>";
     out << "</tr>";*/
     out <<"<tr>"<<"<td><b>NOTE RICETTA</b></td></tr>";
     out <<"<tr>"<<"<td><i>"+ui->textBrowser->toPlainText()+"</i></td></tr>";
     out <<"<tr>"<<"<td><b>NOTE PRODUZIONE</b></td></tr>";
     out <<"<tr>"<<"<td><i>"+ui->tNote->toPlainText()+"</i></td></tr>";
     out <<  "</table>\n";
-           "</body>\n"
-           "</html>\n";
+    "</body>\n"
+    "</html>\n";
 
 
 
@@ -817,9 +817,9 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
 
         QPrinter printer;
         printer.setOrientation(QPrinter::Portrait);
-       // printer.setOutputFormat(QPrinter::PdfFormat);
+        // printer.setOutputFormat(QPrinter::PdfFormat);
         printer.setPaperSize(QPrinter::A4);
-       // printer.setOutputFileName(filename);
+        // printer.setOutputFileName(filename);
 
         QPrintDialog dialog( &printer);
 
@@ -830,7 +830,7 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
         }
 
 
-       // QFile(filename).remove();
+        // QFile(filename).remove();
         delete document;
         QApplication::restoreOverrideCursor();
 

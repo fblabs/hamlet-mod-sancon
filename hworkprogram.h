@@ -7,7 +7,10 @@
 #include "hworkprogressmodel.h"
 #include <QDate>
 #include <QHeaderView>
+#include <QSqlQueryModel>
+#include <QStandardItemModel>
 #include  "hworksheetmodel.h"
+#include "hworkprogramdetailmodel.h"
 
 namespace Ui {
 class HWorkProgram;
@@ -27,12 +30,13 @@ private slots:
     void getSheets(bool create=false);
 
     void on_tvStorico_clicked(const QModelIndex &index);
+    void storicoindexchange();
     void on_pbNewSheet_clicked();
     void refreshSheet();
     void updateSheet(int newrow, int oldrow);
     void setHeaders();
     void print(bool pdf=true);
-    void get_sheet_details(const int p_id=-1 );
+    void get_sheet_details(const int p_id_produzione=-1 );
 
 
     void on_pbSave_clicked();
@@ -77,13 +81,16 @@ private slots:
 
     void on_pbDetails_clicked();
 
+    void on_pbDetails_toggled(bool checked);
+
 private:
     Ui::HWorkProgram *ui;
     HUser* user;
     QSqlDatabase db;
     int id;
-    HWorkSheetModel *wsmod;
-    HWorkProgressModel *wpmod;
+    HWorkSheetModel *wsmod; //modello del foglio([produzione]
+    HWorkProgramDetailModel *wpmod; //modello [righe_produzione]
+    QStandardItemModel *vmod;
 
 
 
