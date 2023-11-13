@@ -111,6 +111,7 @@ qDebug()<<"loadRow";
     rows_model->setTable("righe_produzione");
     rows_model->setFilter("IDProduzione="+QString::number(idp)+" and num_riga="+QString::number(row));
     rows_model->select();
+    qDebug()<<idp<<row<<rows_model->lastError().text();
     qDebug()<<rows_model->rowCount();
 //setup controls
    QSqlTableModel *clientimod=static_cast<QSqlTableModel*>(ui->cbCliente->model());

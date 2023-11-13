@@ -73,10 +73,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
 
 
-
-
-
-
     this->showMaximized();
 
 
@@ -462,7 +458,7 @@ void MainWindow::on_pbExpirations_clicked()
 
 void MainWindow::on_pbCalcoloCosti_clicked()
 {
-  // HCalcost *f= new HCalcost(db,user);
+    // HCalcost *f= new HCalcost(db,user);
     HCosti  *f=new HCosti(db);
     f->showMaximized();
 }

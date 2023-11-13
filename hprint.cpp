@@ -32,6 +32,7 @@ HPrint::HPrint(QWidget *parent, bool altColors) :
     ui->setupUi(this);
 
     printer=new QPrinter();
+
     ui->spCharSize->setValue(10);
     doc=ui->textEdit->document();
     QTextCursor cursor=ui->textEdit->textCursor();
@@ -444,13 +445,6 @@ int HPrint::getHeightImg1()
 
 }
 
-/*
-int HPrint::getFontsize()
-{
-
-    return ui->spCharSize->value();
-
-}*/
 
 
 void HPrint::setsbHValue(int val)

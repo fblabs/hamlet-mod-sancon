@@ -69,7 +69,6 @@ public:
     QPushButton *pbSave;
     QPushButton *pbDetails;
     QPushButton *pbDeleteSheet;
-    QCheckBox *cbPdf;
     QPushButton *pbPrint;
     QPushButton *pbClose;
 
@@ -170,7 +169,7 @@ public:
         splitter->setOrientation(Qt::Horizontal);
         tvStorico = new QTableView(splitter);
         tvStorico->setObjectName(QString::fromUtf8("tvStorico"));
-        tvStorico->setMaximumSize(QSize(200, 16777215));
+        tvStorico->setMaximumSize(QSize(190, 16777215));
         tvStorico->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvStorico->setAlternatingRowColors(true);
         tvStorico->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -337,13 +336,6 @@ public:
 
         horizontalLayout->addWidget(pbDeleteSheet);
 
-        cbPdf = new QCheckBox(HWorkProgram);
-        cbPdf->setObjectName(QString::fromUtf8("cbPdf"));
-        cbPdf->setMinimumSize(QSize(100, 0));
-        cbPdf->setMaximumSize(QSize(100, 16777215));
-
-        horizontalLayout->addWidget(cbPdf);
-
         pbPrint = new QPushButton(HWorkProgram);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
         pbPrint->setEnabled(true);
@@ -397,7 +389,6 @@ public:
         pbSave->setText(QCoreApplication::translate("HWorkProgram", "Salva", nullptr));
         pbDetails->setText(QCoreApplication::translate("HWorkProgram", "Dettagli", nullptr));
         pbDeleteSheet->setText(QCoreApplication::translate("HWorkProgram", "Elimina foglio selezionato", nullptr));
-        cbPdf->setText(QCoreApplication::translate("HWorkProgram", "Stampa su pdf", nullptr));
         pbPrint->setText(QCoreApplication::translate("HWorkProgram", "Stampa", nullptr));
         pbClose->setText(QCoreApplication::translate("HWorkProgram", "Chiudi", nullptr));
     } // retranslateUi

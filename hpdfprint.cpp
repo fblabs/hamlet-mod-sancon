@@ -15,12 +15,18 @@ HPDFPrint::HPDFPrint(HUser *p_user, QString p_html, QWidget *parent) :
     user=p_user;
     html=p_html;
     ui->tb_Viewport->document()->setHtml(html);
+    orientation=QPrinter::Portrait;
 
 }
 
 HPDFPrint::~HPDFPrint()
 {
     delete ui;
+}
+
+void HPDFPrint::set_orientation(QPrinter::Orientation p_orientation)
+{
+    orientation=p_orientation;
 }
 
 
@@ -59,7 +65,7 @@ void HPDFPrint::on_pbSave_pdf_clicked()
 void HPDFPrint::on_pbPrint_clicked()
 {
     QPrinter printer;
-    printer.setOrientation(QPrinter::Portrait);
+    printer.setOrientation(orientation);
    // printer.setOutputFormat();
     printer.setPaperSize(QPrinter::A4);
 

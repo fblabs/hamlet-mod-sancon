@@ -19,8 +19,13 @@ debug/hlotcomposition.o
 debug/hlotti_new.o
 debug/hnew_recipe_main.o
 debug/hpdfprint.o
+debug/hpreferred_lots.o
 debug/hproducts_for_calcolo_costi.o
+debug/hquerymodel_lastlots.o
+debug/hquerymodel_lotti.o
 debug/hrecipesforingredient.o
+debug/hworkprogram.o
+debug/hworkprogramdetailmodel.o
 debug/hworksheetmodel.o
 debug/mainwindow.o
 debug/huser.o
@@ -83,7 +88,6 @@ debug/hworkprogressmodel.o
 debug/hmodifyrow.o
 debug/hlotmod.o
 debug/hnewsheet.o
-debug/hworkprogram.o
 debug/qrc_icons.o
 debug/moc_mainwindow.o
 debug/moc_hbiodetails.o
@@ -106,7 +110,9 @@ debug/moc_hlotcomposition.o
 debug/moc_hlotti_new.o
 debug/moc_hnew_recipe_main.o
 debug/moc_hpdfprint.o
+debug/moc_hpreferred_lots.o
 debug/moc_hproducts_for_calcolo_costi.o
+debug/moc_hquerymodel_lotti.o
 debug/moc_hrecipesforingredient.o
 debug/moc_huser.o
 debug/moc_hutenti.o
@@ -150,6 +156,8 @@ debug/moc_hmodimage.o
 debug/moc_hcopycard.o
 debug/moc_hcomposizionelotto.o
 debug/moc_hgraphicprint.o
+debug/moc_hworkprogram.o
+debug/moc_hworkprogramdetailmodel.o
 debug/moc_hworksheetmodel.o
 debug/moc_nouse.o
 debug/moc_haddlotinproduction.o
@@ -167,4 +175,3 @@ debug/moc_hworkprogressmodel.o
 debug/moc_hmodifyrow.o
 debug/moc_hlotmod.o
 debug/moc_hnewsheet.o
-debug/moc_hworkprogram.o
