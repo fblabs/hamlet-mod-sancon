@@ -8,7 +8,7 @@
 #include <QSqlQueryModel>
 #include <QSqlRelationalTableModel>
 #include "huser.h"
-#include "hproductsmodel.h"
+#include "hmodprodotti.h"
 
 namespace Ui {
 class HProdottiNew;
@@ -28,6 +28,8 @@ private slots:
 
     void print(bool pdf=false);
 
+    void load(const QString tosearch=QString());
+
     void reloadProduct();
 
     void on_pushButton_2_clicked();
@@ -35,8 +37,6 @@ private slots:
     void on_pushButton_clicked();
 
     void on_checkBox_toggled(bool checked);
-
-    void on_lineEdit_textChanged(const QString &arg1);
 
     void on_tvProdotti_doubleClicked(const QModelIndex &index);
 
@@ -50,15 +50,18 @@ private slots:
 
     void on_chbBio_toggled(bool checked);
 
-
     void on_pbPreferredLots_clicked();
+
+
+
+    void on_lineEdit_returnPressed();
 
 private:
     Ui::HProdottiNew *ui;
     QString sConn;
     QSqlDatabase db;
-    HProductsModel *tmProdotti;
-    QSqlRelationalTableModel *tmTipi;
+    HModProdotti *tmProdotti;
+    QSqlQueryModel *tmTipi;
     HUser *user;
 
 

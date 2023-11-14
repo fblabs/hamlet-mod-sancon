@@ -8,15 +8,17 @@
 #include <QSqlRelationalDelegate>
 #include <QCompleter>
 #include "hnewproduct.h"
+#include "hmodproduct.h"
 #include <QDebug>
 #include <QSqlError>
-#include "hmodproduct.h"
+#include "hmodprodotti.h"
 #include <QMessageBox>
-#include "hprint.h"
 #include "hloads.h"
 #include <QFileDialog>
 #include <QSqlQueryModel>
 #include "hpreferred_lots.h"
+#include <QSqlQuery>
+#include "hpdfprint.h"
 
 HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
@@ -38,21 +40,22 @@ HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
         ui->tvProdotti->setEditTriggers(QTableView::NoEditTriggers);
 
     }
+    tmProdotti=new HModProdotti();
+    getTypes();
+    load();
 
-    tmProdotti=new HProductsModel(0,db);
-
-    tmProdotti->setTable("prodotti");
+  /*  tmProdotti->setTable("prodotti");
     tmProdotti->setSort(1,Qt::AscendingOrder);
     tmProdotti->setEditStrategy(QSqlRelationalTableModel::OnFieldChange);
 
 
     tmProdotti->setRelation(2,QSqlRelation("tipi_prodotto","ID","descrizione"));
     ui->tvProdotti->setItemDelegate(new QSqlRelationalDelegate(tmProdotti));
-    tmProdotti->select();
+    tmProdotti->select();*/
 
-    ui->tvProdotti->setModel(tmProdotti);
 
-    ui->tvProdotti->setColumnHidden(0,false);
+
+   // ui->tvProdotti->setColumnHidden(0,true);
     ui->tvProdotti->horizontalHeader()->stretchLastSection();
     //  ui->tvProdotti->horizontalHeader()->res
     ui->tvProdotti->resizeColumnsToContents();
@@ -78,7 +81,7 @@ HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     tmProdotti->setHeaderData(6,Qt::Horizontal,"Prezzo");
     tmProdotti->setHeaderData(7,Qt::Horizontal,"Ultimo aggiornamento prezzo");
 
-    getTypes();
+
 }
 
 HProdottiNew::~HProdottiNew()
@@ -90,13 +93,14 @@ void HProdottiNew::getTypes()
 {
     //if(!db.isOpen()){qDebug()<<db.lastError().text();}
 
-    QSqlQueryModel *mod_types=new QSqlQueryModel();
+    tmTipi=new QSqlQueryModel();
     QSqlQuery q(db);
     QString sql="SELECT ID,descrizione from tipi_prodotto order by descrizione asc";
-    q.prepare(sql);
-    q.exec();
-    mod_types->setQuery(q);
-    ui->cbTipiProdotto->setModel(mod_types);
+   // q.prepare(sql);
+    q.exec(sql);
+    tmTipi->setQuery(q);
+    qDebug()<<"get_types"<<q.lastQuery()<<q.lastError().text();
+    ui->cbTipiProdotto->setModel(tmTipi);
     ui->cbTipiProdotto->setModelColumn(1);
 
 
@@ -105,7 +109,7 @@ void HProdottiNew::getTypes()
 void HProdottiNew::reloadProduct()
 {
 
-    tmProdotti->select();
+  //  tmProdotti->select();
 }
 
 
@@ -121,29 +125,23 @@ void HProdottiNew::reloadProduct()
 
 void HProdottiNew::save()
 {
-    if(user->getCanUpdate())
+   /* if(user->getCanUpdate())
     {
         tmProdotti->submitAll();
 
     }
 
-    tmProdotti->select();
+    tmProdotti->select();*/
 }
 
 void HProdottiNew::print(bool pdf)
 {
-    if (pdf)
-    {
+
 
         QString strStream;
-        QString filename=QFileDialog::getSaveFileName(0,"Scegli nome del file",QString(),"Pdf (*.pdf)");
-        if(filename.isEmpty() || filename.isNull())
-        {
-            qDebug()<<filename<<"cancellato";
-            return;
-        }
 
-        QApplication::setOverrideCursor(Qt::WaitCursor);
+
+
         QTextStream out(&strStream);
         QString bgcol=QString();
         QString title=QString();
@@ -212,66 +210,40 @@ void HProdottiNew::print(bool pdf)
                 "</html>\n";
 
 
-        QTextDocument *document = new QTextDocument();
-        document->setHtml(strStream);
 
 
-        QPrinter printer;
-        printer.setOrientation(QPrinter::Landscape);
-        printer.setOutputFormat(QPrinter::PdfFormat);
-        printer.setPaperSize(QPrinter::A4);
-        printer.setOutputFileName(filename);
 
-        document->print(&printer);
+    HPDFPrint *f=new HPDFPrint(nullptr,strStream);
+    f->set_orientation(QPrinter::Portrait);
+    f->show();
 
-        delete document;
-    }
-    else
+
+}
+
+void HProdottiNew::load(const QString tosearch)
+{
+    QString sql=QString();
+    if(tosearch.length()>0)
     {
-
-        HPrint *f =new HPrint();
-        QTextDocument* doc=new QTextDocument();
-
-
-
-        int rows=ui->tvProdotti->model()->rowCount();
-        int cols=ui->tvProdotti->model()->columnCount();
-
-        QApplication::setOverrideCursor(Qt::WaitCursor);
-
-        f->append("STAMPA ANAGRAFICA PRODOTTI",true);
-        f->toggleImageUI(false);
-
-        QTextTable *tb=f->addTable(rows,cols,QTextTableFormat());
-        QString txt;
-
-        int r,c;
-
-        f->showMaximized();
-
-
-
-        for (r=0;r<rows;r++)
-        {
-
-
-            for (c=0; c<cols; c++)
-            {
-                txt=ui->tvProdotti->model()->index(r,c).data(0).toString();
-                f->writeTableContent(tb,r,c,QTextCharFormat(),txt);
-                QApplication::processEvents();
-
-            }
-            //  QApplication::processEvents();
-
-        }
-
-
+        sql="SELECT id,descrizione from prodotti where descrizione LIKE '%"+ tosearch +"%' AND tipo=:idtipo order by descrizione ASC";
 
     }
+    else{
 
-    QApplication::setOverrideCursor(Qt::ArrowCursor);
+        sql="SELECT id,descrizione from prodotti where tipo=:idtipo order by descrizione ASC";
+    }
 
+
+
+    QSqlQuery q(db);
+    q.prepare(sql);
+    int idtipo=tmTipi->index(ui->cbTipiProdotto->currentIndex(),0).data(0).toInt();
+    qDebug()<<idtipo;
+    q.bindValue(":idtipo",idtipo);
+    q.exec();
+    tmProdotti->setQuery(q);
+    ui->tvProdotti->setModel(tmProdotti);
+    qDebug()<<idtipo<<q.lastError().text();
 }
 
 
@@ -291,51 +263,8 @@ void HProdottiNew::on_pushButton_clicked()
 void HProdottiNew::on_checkBox_toggled(bool checked)
 {
 
-    QString attivo;
-    attivo="attivo > 0";
-
-    QString filter=tmProdotti->filter();
 
 
-    if(checked)
-    {
-
-        filter.length() >0 ?  filter.append(" and "+attivo): filter.append(attivo);
-
-
-    }
-    else
-    {
-        if(filter.contains(" and "+attivo))
-        {
-            filter.remove(" and "+attivo);
-
-        }
-
-        if(filter.contains(attivo))
-        {
-            filter.remove(attivo);
-        }
-
-
-
-    }
-
-
-
-    qDebug()<<filter;
-
-    tmProdotti->setFilter(filter);
-
-}
-
-void HProdottiNew::on_lineEdit_textChanged(const QString &arg1)
-{
-    QString filter;
-
-    filter ="prodotti.descrizione LIKE '%"+ ui->lineEdit->text()+"%'";
-
-    tmProdotti->setFilter(filter);
 }
 
 
@@ -392,32 +321,31 @@ void HProdottiNew::on_pbLoads_clicked()
 
 void HProdottiNew::on_cbTipiProdotto_currentIndexChanged(int index)
 {
-    qDebug()<<"CURRENT_CHANGED";
+    qDebug()<<"CURRENT_CHANGED"<<index;
 
-    int tipo=ui->cbTipiProdotto->model()->index(index,0).data(0).toInt();
+    load();
 
-    qDebug()<<tipo;
 
-    tmProdotti->setFilter("tipo="+QString::number(tipo));
+
 
 }
 
 
 void HProdottiNew::on_chbBio_toggled(bool checked)
 {
-    QString filter=tmProdotti->filter();
+    QString filter=QString();
     QString filter2=filter += " and bio>0";
 
     if (checked)
     {
 
-        tmProdotti->setFilter(filter2);
+
     }
     else
     {
 
-        filter.replace(" and bio>0","");
-        tmProdotti->setFilter(filter);
+
+
     }
 
 
@@ -430,5 +358,15 @@ void HProdottiNew::on_pbPreferredLots_clicked()
 {
     HPreferred_Lots *f=new HPreferred_Lots(db);
     f->show();
+}
+
+
+
+
+
+void HProdottiNew::on_lineEdit_returnPressed()
+{
+    QString tosearch=ui->lineEdit->text();
+    load(tosearch);
 }
 

@@ -1,8 +1,9 @@
 #include "hproductsmodel.h"
-#include <QSqlRelationalTableModel>
+#include <QSqlQueryModel>
 #include <QDebug>
 
-HProductsModel::HProductsModel(QObject *parent,QSqlDatabase db ): QSqlRelationalTableModel(parent,db)
+HProductsModel::HProductsModel(QObject *parent)
+    : QSqlQueryModel{parent}
 {
 
 }
@@ -14,13 +15,13 @@ Qt::ItemFlags HProductsModel::flags(const QModelIndex & item ) const
 
     //// qDebug()<<item.column();
 
-    Qt::ItemFlags flags=QSqlRelationalTableModel::flags(item);
+    Qt::ItemFlags flags=QSqlQueryModel::flags(item);
 
 
       /* if (item.column() != 3)
        {
 
-          return QSqlRelationalTableModel::flags(item) & ~Qt::ItemIsEditable;
+          return QSqlQueryModel::flags(item) & ~Qt::ItemIsEditable;
 
        }
        else */if (item.column()==3)
@@ -54,12 +55,12 @@ Qt::ItemFlags HProductsModel::flags(const QModelIndex & item ) const
        }
        else
        {
-          return QSqlRelationalTableModel::flags(item)  ;
+          return QSqlQueryModel::flags(item)  ;
 
        }
 
 
-     return QSqlRelationalTableModel::flags(item) ;
+     return QSqlQueryModel::flags(item) ;
 }
 
 QVariant HProductsModel::data( const QModelIndex & item, int role /*= Qt::DisplayRole*/ ) const
@@ -69,20 +70,20 @@ QVariant HProductsModel::data( const QModelIndex & item, int role /*= Qt::Displa
     {
 
 
-        QVariant value=QSqlRelationalTableModel::data(item);
+        QVariant value=QSqlQueryModel::data(item);
         if (role==Qt::CheckStateRole)
-            return (QSqlRelationalTableModel::data(item).toInt() != 0) ? Qt::Checked :Qt::Unchecked;
+            return (QSqlQueryModel::data(item).toInt() != 0) ? Qt::Checked :Qt::Unchecked;
         else
             return QVariant();
 
 
     }
 
-   return QSqlRelationalTableModel::data(item,role);
+   return QSqlQueryModel::data(item,role);
 }
 
 bool HProductsModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-     QSqlRelationalTableModel::setData(index,value,role);
+     QSqlQueryModel::setData(index,value,role);
      return true;
 }

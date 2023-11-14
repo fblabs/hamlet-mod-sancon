@@ -33,6 +33,7 @@ SOURCES += main.cpp\
     hloads.cpp \
     hlotcomposition.cpp \
     hlotti_new.cpp \
+    hmodprodotti.cpp \
     hnew_recipe_main.cpp \
     hpdfprint.cpp \
     hpreferred_lots.cpp \
@@ -124,6 +125,7 @@ HEADERS  += mainwindow.h \
     hloads.h \
     hlotcomposition.h \
     hlotti_new.h \
+    hmodprodotti.h \
     hnew_recipe_main.h \
     hpdfprint.h \
     hpreferred_lots.h \

@@ -9,24 +9,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>339</width>
-    <height>282</height>
+    <width>708</width>
+    <height>408</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Carichi</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLineEdit" name="leProduct">
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 127);</string>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -58,6 +48,19 @@
       </widget>
      </item>
      <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbSearch">
        <property name="text">
         <string>Cerca</string>
@@ -71,7 +74,33 @@
     </layout>
    </item>
    <item>
+    <widget class="QComboBox" name="cbTipi"/>
+   </item>
+   <item>
+    <widget class="QComboBox" name="cbProdotti">
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+     <property name="insertPolicy">
+      <enum>QComboBox::NoInsert</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
      <item>
       <widget class="QRadioButton" name="rbLoads">
        <property name="text">
@@ -88,6 +117,19 @@
         <string>Totale scarichi</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item>
       <spacer name="verticalSpacer">

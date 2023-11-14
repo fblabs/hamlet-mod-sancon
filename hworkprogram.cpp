@@ -162,6 +162,8 @@ void HWorkProgram::getSheets(bool create)
     p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
     ui->tvStorico->setPalette(p);
 
+    qDebug()<<wsmod->lastError().text()<<wsmod->query().lastQuery();
+
 
 }
 
@@ -260,7 +262,8 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
 
     }
 
-    refreshSheet();
+    ui->pbDetails->isChecked()? get_sheet_details():refreshSheet();
+   // refreshSheet();
 
 
 
@@ -645,9 +648,14 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
     vmod= new QStandardItemModel();
     int id_produzione=wsmod->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
     QSqlQuery q(db);
-    QString sql="select distinct prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione=:id_p)group by righe_ricette.ID_prodotto";
+      QString sql="select distinct prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione=:id_p)group by righe_ricette.ID_prodotto";
+   // QString sql="select distinct prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione in (SELECT id from produzione WHERE dal between :dal and :al))group by righe_ricette.ID_prodotto";
+   // dal=ui->deDal->date().toString("yyyy-MM-dd");
+   // al=ui->deAl->date().toString("yyyy-MM-dd");*/
     q.prepare(sql);
     q.bindValue(":id_p",id_produzione);
+   /* q.bindValue(":dal",ui->deDal->date());
+    q.bindValue(":al",ui->deAl->date());*/
     q.exec();
     qmod->setQuery(q);
 
@@ -671,7 +679,7 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
 
     double factor= q_to_do/tot_ricetta;
 
-    qDebug()<<"factor"<<factor;
+    qDebug()<<"factor"<<factor<<q.lastError().text()<<q.lastQuery();
 
     for(int qx=0;qx<qmod->rowCount();++qx)
     {
