@@ -47,7 +47,7 @@ void HPDFPrint::on_pbSave_pdf_clicked()
        }
 
        QPrinter printer;
-       printer.setOrientation(QPrinter::Portrait);
+       printer.setOrientation(orientation);
        printer.setOutputFormat(QPrinter::PdfFormat);
        printer.setPaperSize(QPrinter::A4);
        printer.setOutputFileName(filename);

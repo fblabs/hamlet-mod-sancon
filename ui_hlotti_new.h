@@ -53,6 +53,7 @@ public:
     QPushButton *pbLotInfo;
     QPushButton *pbDelete;
     QPushButton *pbPrint;
+    QPushButton *pbToPdf;
     QPushButton *pbClose;
 
     void setupUi(QWidget *HLotti_new)
@@ -209,11 +210,20 @@ public:
 
         horizontalLayout->addWidget(pbPrint);
 
+        pbToPdf = new QPushButton(HLotti_new);
+        pbToPdf->setObjectName(QString::fromUtf8("pbToPdf"));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/PDF.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbToPdf->setIcon(icon4);
+        pbToPdf->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pbToPdf);
+
         pbClose = new QPushButton(HLotti_new);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon5);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbClose);
@@ -241,6 +251,7 @@ public:
         pbLotInfo->setText(QCoreApplication::translate("HLotti_new", "Informazioni", nullptr));
         pbDelete->setText(QCoreApplication::translate("HLotti_new", "Elimina lotto selezionato", nullptr));
         pbPrint->setText(QCoreApplication::translate("HLotti_new", "Stampa", nullptr));
+        pbToPdf->setText(QCoreApplication::translate("HLotti_new", "Esporta", nullptr));
         pbClose->setText(QCoreApplication::translate("HLotti_new", "Chiudi", nullptr));
     } // retranslateUi
 

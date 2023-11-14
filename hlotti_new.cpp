@@ -181,7 +181,7 @@ void HLotti_new::on_cbType_currentIndexChanged(int index)
     loadLotsData();
 }
 
-void HLotti_new::print()
+void HLotti_new::print(bool pdf)
 {
     QString strStream;
 
@@ -242,8 +242,6 @@ void HLotti_new::print()
 
     QTextDocument *document = new QTextDocument();
     document->setHtml(strStream);
-
-    bool pdf=true; //magic!
 
     if (pdf)
     {
@@ -607,5 +605,11 @@ void HLotti_new::refresh_data()
 {
      qDebug()<<"REFRESC";
      loadLotsData();
+}
+
+
+void HLotti_new::on_pbToPdf_clicked()
+{
+     print(true);
 }
 

@@ -34,7 +34,7 @@ private slots:
     void getLotTypes();
     void on_ckbUseType_toggled(bool checked);
     void on_cbType_currentIndexChanged(int index);
-    void print();
+    void print(bool pdf=false);
     void on_pbPrint_clicked();
     QString buildLotsQuery(int tipo=-1, int prodotto=-1);
     HQueryModel_lotti *getProducts();
@@ -49,6 +49,7 @@ private slots:
     void on_chb_bio_toggled(bool checked);
     void on_le_search_returnPressed();
     void refresh_data();
+    void on_pbToPdf_clicked();
 };
 
 #endif // HLOTTI_NEW_H

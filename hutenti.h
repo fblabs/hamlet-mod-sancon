@@ -60,6 +60,7 @@ private slots:
     void on_rbGraphics_toggled(bool checked);
 
 
+
 };
 
 

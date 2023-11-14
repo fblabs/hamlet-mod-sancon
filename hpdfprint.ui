@@ -31,6 +31,10 @@
        <property name="text">
         <string>Salva PDF</string>
        </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/PDF.png</normaloff>:/Resources/PDF.png</iconset>
+       </property>
       </widget>
      </item>
      <item>
@@ -38,12 +42,20 @@
        <property name="text">
         <string>Stampa</string>
        </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/print-icon.png</normaloff>:/Resources/print-icon.png</iconset>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pbClose">
        <property name="text">
         <string>Chiudi</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Actions-window-close-icon.png</normaloff>:/Resources/Actions-window-close-icon.png</iconset>
        </property>
       </widget>
      </item>

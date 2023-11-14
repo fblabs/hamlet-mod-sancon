@@ -50,16 +50,23 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         pbSave_pdf = new QPushButton(HPDFPrint);
         pbSave_pdf->setObjectName(QString::fromUtf8("pbSave_pdf"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/Resources/PDF.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSave_pdf->setIcon(icon1);
 
         horizontalLayout->addWidget(pbSave_pdf);
 
         pbPrint = new QPushButton(HPDFPrint);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
+        pbPrint->setIcon(icon);
 
         horizontalLayout->addWidget(pbPrint);
 
         pbClose = new QPushButton(HPDFPrint);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon2);
 
         horizontalLayout->addWidget(pbClose);
 

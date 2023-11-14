@@ -292,7 +292,7 @@ void HUtenti::on_rbSuppliers_toggled(bool checked)
     {
 
         // tm->setFilter("cliente<1 and fornitore>0");
-        setFilter();
+
 
     }
 }
@@ -334,7 +334,7 @@ void HUtenti::setFilter()
 
     if(ui->rbAll->isChecked())
     {
-        filter=visible;
+        filter=""+visible;
     }
     else if (ui->rbClients->isChecked())
     {
@@ -426,6 +426,9 @@ void HUtenti::on_rbGraphics_toggled(bool checked)
         setFilter();
     }
 }
+
+
+
 
 
 
