@@ -28,11 +28,14 @@ private slots:
 
     void on_pbClose_clicked();
 
+
 private:
     Ui::HPDFPrint *ui;
     HUser *user;
     QString html;
     QPrinter::Orientation orientation;
+    QTextDocument* doc;
+
 
 
 

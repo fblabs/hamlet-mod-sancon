@@ -7,6 +7,7 @@
 #include <QDesktopServices>
 
 
+
 HPDFPrint::HPDFPrint(HUser *p_user, QString p_html, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HPDFPrint)
@@ -64,17 +65,19 @@ void HPDFPrint::on_pbSave_pdf_clicked()
 
 void HPDFPrint::on_pbPrint_clicked()
 {
+
+    doc=ui->tb_Viewport->document();
     QPrinter printer;
+    doc=ui->tb_Viewport->document();
     printer.setOrientation(orientation);
-   // printer.setOutputFormat();
+
     printer.setPaperSize(QPrinter::A4);
 
      QPrintDialog dialog( &printer);
-     dialog.show();
+    // dialog.show();
      if (dialog.exec()==QDialog::Accepted)
      {
-         ui->tb_Viewport->print(&printer);
-
+           doc->print(&printer);
      }
 
 }
@@ -84,4 +87,7 @@ void HPDFPrint::on_pbClose_clicked()
 {
     close();
 }
+
+
+
 
