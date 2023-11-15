@@ -35,8 +35,8 @@ private slots:
     void refreshSheet();
     void updateSheet(int newrow, int oldrow);
     void setHeaders();
-    void print(bool pdf=true);
-    void get_sheet_details(const int p_id_produzione=-1 );
+    void print();
+    void get_sheet_details(const bool singlesheet=true, const int p_id_produzione=-1);
 
 
     void on_pbSave_clicked();
@@ -79,9 +79,10 @@ private slots:
 
     void copyRow();
 
-    void on_pbDetails_clicked();
 
     void on_pbDetails_toggled(bool checked);
+
+    void on_pbAll_clicked();
 
 private:
     Ui::HWorkProgram *ui;
@@ -91,6 +92,7 @@ private:
     HWorkSheetModel *wsmod; //modello del foglio([produzione]
     HWorkProgramDetailModel *wpmod; //modello [righe_produzione]
     QStandardItemModel *vmod;
+    bool b_all;
 
 
 

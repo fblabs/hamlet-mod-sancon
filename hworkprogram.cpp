@@ -41,6 +41,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->setupUi(this);
     user=p_user;
     db=p_db;
+    b_all=false;
 
     getSheets(true);
     ui->deDal->setDate(QDate::currentDate());
@@ -233,10 +234,8 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
     ui->deAl->setDate(ui->tvStorico->model()->index(index.row(),2).data(0).toDate());
     ui->spLinea->setValue(ui->tvStorico->model()->index(index.row(),3).data(0).toInt());
     bool app=ui->tvStorico->model()->index(index.row(),5).data(0).toInt()>0?true:false;
-    /*ui->pbApprova->setEnabled(!app);
-    ui->pbDisapprova->setEnabled(app);
-    ui->pbPrint->setEnabled(app);*/
 
+    ui->pbDetails->setChecked(false);
     if(app )
     {
         ui->lblCheck->setPixmap(QPixmap(":/Resources/Accept64.png"));
@@ -262,8 +261,8 @@ void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
 
     }
 
-    ui->pbDetails->isChecked()? get_sheet_details():refreshSheet();
-   // refreshSheet();
+   refreshSheet();
+    // refreshSheet();
 
 
 
@@ -321,7 +320,7 @@ void HWorkProgram::refreshSheet()
     QString sql="SELECT righe_produzione.ID,IDProduzione,num_riga,quantita,vaso_gr,specificaolio,idprodotto,prodotti.descrizione,olio,tappo,righe_produzione.idcliente,anagrafica.ragione_sociale,totale,sanificazione,numero_ordine,fresco,pastorizzato,allergeni,righe_produzione.note,lotto_scadenza\
         FROM righe_produzione,prodotti,anagrafica\
                       where prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id";
-                                                                                                                                         q.prepare(sql);
+    q.prepare(sql);
     q.bindValue(":id",wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
 
     q.exec();
@@ -333,9 +332,9 @@ void HWorkProgram::refreshSheet()
     ui->tvGeneral->setModel(wpmod);
     ui->tvGeneral->setColumnHidden(0,true);
     ui->tvGeneral->setColumnHidden(1,true);
-    ui->tvGeneral->setColumnHidden(2,true);
+    // ui->tvGeneral->setColumnHidden(2,true);
     ui->tvGeneral->setItemDelegate(rdel);
-    ui->tvGeneral->resizeColumnsToContents();
+    ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
     ui->tvGeneral->verticalHeader()->setVisible(true);
     setHeaders();
@@ -536,11 +535,11 @@ void HWorkProgram::setHeaders()
 
 void HWorkProgram::on_pbPrint_clicked()
 {
-    print(false);
+    print();
 
 }
 
-void HWorkProgram::print(bool pdf)
+void HWorkProgram::print()
 {
 
     QString strStream;
@@ -554,8 +553,16 @@ void HWorkProgram::print(bool pdf)
 
     const int rowCount = mod->rowCount();
     const int columnCount = mod->columnCount();
-    ui->pbDetails->isChecked()?title ="PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy")+" - LINEA " + QString::number(linea)+" - QUANTITA\' INGREDIENTI" :title="PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy")+" - LINEA " + QString::number(linea);
 
+    if(b_all)
+    {
+
+        title="QUANTITA\' INGREDIENTI NECESSARIE PER LAVORAZIONE TRA IL "+ui->deSearch->date().toString("dd-MM-yyyy")+" E IL "+ui->deSearchTo->date().toString("dd-MM-yyyy");
+    }
+    else
+    {
+    ui->pbDetails->isChecked()?title ="PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy")+" - LINEA " + QString::number(linea)+" - QUANTITA\' INGREDIENTI" :title="PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy")+" - LINEA " + QString::number(linea);
+    }
     out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
 
     // headers
@@ -641,23 +648,44 @@ void HWorkProgram::print(bool pdf)
 
 }
 
-void HWorkProgram::get_sheet_details(const int p_id_produzione)
+void HWorkProgram::get_sheet_details(const bool singlesheet, const int p_id_produzione)
 {
 
     QSqlQueryModel *qmod=new QSqlQueryModel();
     vmod= new QStandardItemModel();
-    int id_produzione=wsmod->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
+
     QSqlQuery q(db);
-      QString sql="select distinct prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione=:id_p)group by righe_ricette.ID_prodotto";
-   // QString sql="select distinct prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione in (SELECT id from produzione WHERE dal between :dal and :al))group by righe_ricette.ID_prodotto";
-   // dal=ui->deDal->date().toString("yyyy-MM-dd");
-   // al=ui->deAl->date().toString("yyyy-MM-dd");*/
-    q.prepare(sql);
-    q.bindValue(":id_p",id_produzione);
-   /* q.bindValue(":dal",ui->deDal->date());
-    q.bindValue(":al",ui->deAl->date());*/
+
+
+    QString sql=QString();
+    if (!singlesheet)
+    {
+        QDate dal=ui->deSearch->date();
+        QDate al=ui->deSearchTo->date();
+        sql="select distinct prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita)\
+            from ricette,righe_ricette,prodotti \
+            where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto\
+            in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione\
+            in (select ID from produzione where dal between :dal and :al)) group by righe_ricette.ID_prodotto";
+        q.prepare(sql);
+        q.bindValue(":dal",dal);
+        q.bindValue(":al",al);
+        qDebug()<<sql;
+    }
+    else{
+        int id_produzione=wsmod->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
+        sql="select distinct prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione=:id_p)group by righe_ricette.ID_prodotto";
+        q.prepare(sql);
+        q.bindValue(":id_p",id_produzione);
+    qDebug()<<id_produzione;
+
+    }
+
+
     q.exec();
+
     qmod->setQuery(q);
+
 
     QList<QStandardItem*>row;
 
@@ -679,7 +707,6 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
 
     double factor= q_to_do/tot_ricetta;
 
-    qDebug()<<"factor"<<factor<<q.lastError().text()<<q.lastQuery();
 
     for(int qx=0;qx<qmod->rowCount();++qx)
     {
@@ -817,18 +844,16 @@ void HWorkProgram::copyRow()
 }
 
 
-void HWorkProgram::on_pbDetails_clicked()
-{
-
-}
-
-
 void HWorkProgram::on_pbDetails_toggled(bool checked)
 {
+    b_all=false;
     if(checked)
     {
         int  id=-1;
         ui->pbDetails->setText("Panoramica");
+        ui->pbDetails->setToolTip("Quantità totali minime necessarie");
+
+      //  ui->lb_what->setText("");
 
         id=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
         get_sheet_details(id);
@@ -836,7 +861,17 @@ void HWorkProgram::on_pbDetails_toggled(bool checked)
     else
     {
         ui->pbDetails->setText("Dettagli");
-        ui->tvGeneral->setModel(wpmod);
+        ui->pbDetails->setToolTip("Foglio di lavoro");
+      //  ui->lb_what->setText("Quantità totali minime necessarie per foglio");
+        refreshSheet();
+
     }
+}
+
+
+void HWorkProgram::on_pbAll_clicked()
+{
+    b_all=true;
+    get_sheet_details(false);
 }
 

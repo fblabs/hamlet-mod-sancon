@@ -438,6 +438,23 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pbAll">
+       <property name="text">
+        <string>Complessivo</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/modlots.png</normaloff>:/Resources/modlots.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbDeleteSheet">
        <property name="text">
         <string>Elimina foglio selezionato</string>
