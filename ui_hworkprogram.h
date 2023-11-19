@@ -67,8 +67,9 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *pbNewSheet;
     QPushButton *pbSave;
+    QPushButton *pbSingleSheet;
     QPushButton *pbDetails;
-    QPushButton *pbAll;
+    QCheckBox *cbAll;
     QPushButton *pbDeleteSheet;
     QPushButton *pbPrint;
     QPushButton *pbClose;
@@ -318,24 +319,29 @@ public:
 
         horizontalLayout->addWidget(pbSave);
 
+        pbSingleSheet = new QPushButton(HWorkProgram);
+        pbSingleSheet->setObjectName(QString::fromUtf8("pbSingleSheet"));
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/Resources/Text-columns64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSingleSheet->setIcon(icon8);
+        pbSingleSheet->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pbSingleSheet);
+
         pbDetails = new QPushButton(HWorkProgram);
         pbDetails->setObjectName(QString::fromUtf8("pbDetails"));
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbDetails->setIcon(icon8);
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDetails->setIcon(icon9);
         pbDetails->setIconSize(QSize(32, 32));
         pbDetails->setCheckable(true);
 
         horizontalLayout->addWidget(pbDetails);
 
-        pbAll = new QPushButton(HWorkProgram);
-        pbAll->setObjectName(QString::fromUtf8("pbAll"));
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/Resources/modlots.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbAll->setIcon(icon9);
-        pbAll->setIconSize(QSize(32, 32));
+        cbAll = new QCheckBox(HWorkProgram);
+        cbAll->setObjectName(QString::fromUtf8("cbAll"));
 
-        horizontalLayout->addWidget(pbAll);
+        horizontalLayout->addWidget(cbAll);
 
         pbDeleteSheet = new QPushButton(HWorkProgram);
         pbDeleteSheet->setObjectName(QString::fromUtf8("pbDeleteSheet"));
@@ -397,8 +403,9 @@ public:
         pbRemove->setText(QCoreApplication::translate("HWorkProgram", "Rimuovi riga", nullptr));
         pbNewSheet->setText(QCoreApplication::translate("HWorkProgram", "Nuovo", nullptr));
         pbSave->setText(QCoreApplication::translate("HWorkProgram", "Salva", nullptr));
+        pbSingleSheet->setText(QCoreApplication::translate("HWorkProgram", "Foglio", nullptr));
         pbDetails->setText(QCoreApplication::translate("HWorkProgram", "Dettagli", nullptr));
-        pbAll->setText(QCoreApplication::translate("HWorkProgram", "Complessivo", nullptr));
+        cbAll->setText(QCoreApplication::translate("HWorkProgram", "Dettaglio complessivo intervallo", nullptr));
         pbDeleteSheet->setText(QCoreApplication::translate("HWorkProgram", "Elimina foglio selezionato", nullptr));
         pbPrint->setText(QCoreApplication::translate("HWorkProgram", "Stampa", nullptr));
         pbClose->setText(QCoreApplication::translate("HWorkProgram", "Chiudi", nullptr));

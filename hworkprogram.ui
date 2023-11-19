@@ -418,6 +418,23 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pbSingleSheet">
+       <property name="text">
+        <string>Foglio</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Text-columns64.png</normaloff>:/Resources/Text-columns64.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbDetails">
        <property name="text">
         <string>Dettagli</string>
@@ -438,19 +455,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbAll">
+      <widget class="QCheckBox" name="cbAll">
        <property name="text">
-        <string>Complessivo</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/modlots.png</normaloff>:/Resources/modlots.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
+        <string>Dettaglio complessivo intervallo</string>
        </property>
       </widget>
      </item>
