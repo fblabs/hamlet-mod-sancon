@@ -21,6 +21,8 @@ HWpManager::HWpManager(int p_id,HUser* p_user, QSqlDatabase p_db, QWidget *paren
     user=p_user;
     id=p_id;
 
+    qDebug()<<"ID_P"<<id;
+
     getClients();
     getProducts();
     //getTappi();
