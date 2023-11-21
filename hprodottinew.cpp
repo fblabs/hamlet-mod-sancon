@@ -51,8 +51,8 @@ HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
 
     tmProdotti->setRelation(2,QSqlRelation("tipi_prodotto","ID","descrizione"));
     ui->tvProdotti->setItemDelegate(new QSqlRelationalDelegate(tmProdotti));
-    tmProdotti->select();*/
-
+    tmProdotti->select();
+*/
 
 
    // ui->tvProdotti->setColumnHidden(0,true);
@@ -109,7 +109,7 @@ void HProdottiNew::getTypes()
 void HProdottiNew::reloadProduct()
 {
 
-  //  tmProdotti->select();
+    load();
 }
 
 
@@ -223,16 +223,25 @@ void HProdottiNew::print(bool pdf)
 void HProdottiNew::load(const QString tosearch)
 {
     QString sql=QString();
+    sql="SELECT * from prodotti,tipi_prodotto where tipi_prodotto.ID=prodotti.tipo and tipo=:idtipo";
+
     if(tosearch.length()>0)
     {
-        sql="SELECT id,descrizione from prodotti where descrizione LIKE '%"+ tosearch +"%' AND tipo=:idtipo order by descrizione ASC";
+            sql="SELECT * from prodotti,tipi_prodotto where tipi_prodotto.ID=prodotti.tipo and prodotti.descrizione LIKE '%"+ tosearch +"%' AND tipo=:idtipo";
 
     }
-    else{
+  /*  else{
 
-        sql="SELECT id,descrizione from prodotti where tipo=:idtipo order by descrizione ASC";
-    }
+        sql="SELECT prodotti.id,prodotti.descrizione,tipi_prodotto.descrizione, allergenico, prezzo, data_aggiornamento from prodotti,tipi_prodotto where tipi_prodotto.ID=prodotti.tipo and tipo=:idtipo order by prodotti.descrizione ASC";
+    }*/
 
+
+    ui->chbBio->isChecked()?sql+=" and bio=1":sql+="";
+    ui->checkBox->isChecked()?sql+=" and attivo=1":sql+="";
+    qDebug()<<sql;
+
+    QString s_order=" order by prodotti.descrizione ASC";
+    sql+=s_order;
 
 
     QSqlQuery q(db);
@@ -244,6 +253,7 @@ void HProdottiNew::load(const QString tosearch)
     tmProdotti->setQuery(q);
     ui->tvProdotti->setModel(tmProdotti);
     qDebug()<<idtipo<<q.lastError().text();
+    ui->tvProdotti->setColumnHidden(0,true);
 }
 
 
@@ -263,7 +273,7 @@ void HProdottiNew::on_pushButton_clicked()
 void HProdottiNew::on_checkBox_toggled(bool checked)
 {
 
-
+    load();
 
 }
 
@@ -333,20 +343,7 @@ void HProdottiNew::on_cbTipiProdotto_currentIndexChanged(int index)
 
 void HProdottiNew::on_chbBio_toggled(bool checked)
 {
-    QString filter=QString();
-    QString filter2=filter += " and bio>0";
-
-    if (checked)
-    {
-
-
-    }
-    else
-    {
-
-
-
-    }
+    load();
 
 
 }

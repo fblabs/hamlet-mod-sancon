@@ -17,50 +17,43 @@ Qt::ItemFlags HProductsModel::flags(const QModelIndex & item ) const
 
     Qt::ItemFlags flags=QSqlQueryModel::flags(item);
 
+    if (item.column()==3)
+    {
+        //return flags | Qt::ItemIsEnabled|Qt::ItemIsEditable | Qt::ItemIsUserCheckable;
 
-      /* if (item.column() != 3)
-       {
+        flags |= Qt::ItemIsUserCheckable;
+        flags |= Qt::ItemIsEditable;
+        flags |= Qt::ItemIsEnabled;
 
-          return QSqlQueryModel::flags(item) & ~Qt::ItemIsEditable;
+        return flags;
+    }
+    else if (item.column()==4)
+    {
+        //return flags | Qt::ItemIsEnabled|Qt::ItemIsEditable | Qt::ItemIsUserCheckable;
 
-       }
-       else */if (item.column()==3)
-       {
-           //return flags | Qt::ItemIsEnabled|Qt::ItemIsEditable | Qt::ItemIsUserCheckable;
+        flags |= Qt::ItemIsUserCheckable;
+        flags |= Qt::ItemIsEditable;
+        flags |= Qt::ItemIsEnabled;
 
-           flags |= Qt::ItemIsUserCheckable;
-           flags |= Qt::ItemIsEditable;
-           flags |= Qt::ItemIsEnabled;
+        return flags;
+    }
+    else if (item.column()==5)
+    {
+        //return flags | Qt::ItemIsEnabled|Qt::ItemIsEditable | Qt::ItemIsUserCheckable;
+        flags |= Qt::ItemIsUserCheckable;
+        flags |= Qt::ItemIsEditable;
+        flags |= Qt::ItemIsEnabled;
 
-           return flags;
-       }
-       else if (item.column()==4)
-       {
-           //return flags | Qt::ItemIsEnabled|Qt::ItemIsEditable | Qt::ItemIsUserCheckable;
+        return flags;
+    }
+    else
+    {
+        return QSqlQueryModel::flags(item)  ;
 
-           flags |= Qt::ItemIsUserCheckable;
-           flags |= Qt::ItemIsEditable;
-           flags |= Qt::ItemIsEnabled;
-
-           return flags;
-       }
-       else if (item.column()==5)
-       {
-          //return flags | Qt::ItemIsEnabled|Qt::ItemIsEditable | Qt::ItemIsUserCheckable;
-           flags |= Qt::ItemIsUserCheckable;
-           flags |= Qt::ItemIsEditable;
-           flags |= Qt::ItemIsEnabled;
-
-           return flags;
-       }
-       else
-       {
-          return QSqlQueryModel::flags(item)  ;
-
-       }
+    }
 
 
-     return QSqlQueryModel::flags(item) ;
+    return QSqlQueryModel::flags(item) ;
 }
 
 QVariant HProductsModel::data( const QModelIndex & item, int role /*= Qt::DisplayRole*/ ) const
@@ -79,11 +72,11 @@ QVariant HProductsModel::data( const QModelIndex & item, int role /*= Qt::Displa
 
     }
 
-   return QSqlQueryModel::data(item,role);
+    return QSqlQueryModel::data(item,role);
 }
 
 bool HProductsModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-     QSqlQueryModel::setData(index,value,role);
-     return true;
+    QSqlQueryModel::setData(index,value,role);
+    return true;
 }

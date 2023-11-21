@@ -173,6 +173,7 @@ void MainWindow::enableButtonsForRole()
     ui->tbAssociazioni->setEnabled( user->get_ricette_v()>0);
     ui->pbC4R->setEnabled( user->get_ricette_v()>0);
     ui->pbProgrammazione->setEnabled(user->get_programmi_v()>0);
+  //  ui->pbProgrammazione->setEnabled(false);
     ui->tnProduzione->setEnabled(user->get_produzione_v()>0);
     ui->pbPackages->setEnabled(user->get_packages_v()>0);
     ui->tbAnalisi->setEnabled(user->get_analisi_v()>0);
