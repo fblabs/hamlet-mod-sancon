@@ -89,6 +89,8 @@ private slots:
 
     void  set_items( QSqlQueryModel *basemod=nullptr);
 
+
+
 private:
     Ui::HWorkProgram *ui;
     HUser* user;
@@ -97,6 +99,7 @@ private:
     HWorkSheetModel *wsmod; //modello del foglio([produzione]
     HWorkProgramDetailModel *wpmod; //modello [righe_produzione]
     QStandardItemModel *vmod;
+    bool dets=false;
 
 
 
