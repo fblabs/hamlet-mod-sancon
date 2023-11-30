@@ -37,6 +37,7 @@ private slots:
     void setHeaders();
     void print();
     void get_sheet_details(const int p_id_produzione=-1);
+    void add_row(QStandardItemModel *mod, QList<QStandardItem*> row);
 
 
     void on_pbSave_clicked();

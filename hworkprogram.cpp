@@ -41,6 +41,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->setupUi(this);
     user=p_user;
     db=p_db;
+    dets=false;
 
 
     getSheets(true);
@@ -259,15 +260,19 @@ void HWorkProgram::storicoindexchange()
     qDebug()<<dets;
 
     int id_produzione=wsmod->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
+    qDebug()<<id_produzione<<dets;;
 
     if(dets)
     {
-        get_sheet_details(id_produzione);
+        on_pbDetails_clicked();
+
     }
     else
     {
+        on_pbSingleSheet_clicked();
         refreshSheet();
     }
+
 
 
     //dets?get_sheet_details(id_produzione):refreshSheet();
@@ -287,8 +292,8 @@ void HWorkProgram::refreshSheet()
     // QString sql="SELECT * FROM righe_produzione where IDProduzione=:id";
     QString sql="SELECT righe_produzione.ID,IDProduzione,num_riga,quantita,vaso_gr,specificaolio,idprodotto,prodotti.descrizione,olio,tappo,righe_produzione.idcliente,anagrafica.ragione_sociale,totale,sanificazione,numero_ordine,fresco,pastorizzato,allergeni,righe_produzione.note,lotto_scadenza,ricette.q_tot\
         FROM righe_produzione,prodotti,anagrafica,ricette\
-                                  where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p";
-                                                                                                                                                                                   q.prepare(sql);
+                                  where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by num_riga asc;";
+        q.prepare(sql);
     q.bindValue(":id_p",wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
 
     q.exec();
@@ -297,12 +302,12 @@ void HWorkProgram::refreshSheet()
 
     QItemDelegate *rdel=new QItemDelegate();
 
-    /*  ui->tvGeneral->setModel(wpmod);*/
+    ui->tvGeneral->setModel(wpmod);
     /*  ui->tvGeneral->setColumnHidden(0,true);*/
-     ui->tvGeneral->setColumnHidden(0,true);
-     ui->tvGeneral->setColumnHidden(1,true);
-     ui->tvGeneral->setColumnHidden(6,true);
-     ui->tvGeneral->setColumnHidden(10,true);
+    ui->tvGeneral->setColumnHidden(0,true);
+    ui->tvGeneral->setColumnHidden(1,true);
+    ui->tvGeneral->setColumnHidden(6,true);
+    ui->tvGeneral->setColumnHidden(10,true);
     ui->tvGeneral->setItemDelegate(rdel);
     ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
@@ -623,6 +628,7 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
     //  QSqlQueryModel *qmod=new QSqlQueryModel();
     vmod= new QStandardItemModel();
 
+
     QSqlQuery q(db);
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -633,52 +639,24 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
     QString sql=QString();
     if (ui->cbAll->isChecked())
     {
-        QDate dal=ui->deSearch->date();
-        QDate al=ui->deSearchTo->date();
+
 
         QSqlQueryModel *qmod=new QSqlQueryModel();
 
-        // qDebug()<<wsmod->rowCount();
-
-
-
         sql="select prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) as q from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione in (select id from produzione where dal between :dal and :al)) group by righe_ricette.ID_prodotto order by q desc";
-        double factor=0.0;
-        double q_to_do=0.0;
-        double tot_ricetta=0.0;
-        for(int x=0;x<wpmod->rowCount();++x)
-        {
-            q_to_do+=wpmod->index(x,12).data().toDouble();
-            tot_ricetta=wpmod->index(x,20).data().toDouble();
-        }
-
-        for(int x=0;x<wpmod->rowCount();++x)
-        {
-            q_to_do+=wpmod->index(x,12).data().toDouble();
-            tot_ricetta=wpmod->index(x,20).data().toDouble();
-        }
-
-        factor=q_to_do;
+        q.prepare(sql);
+        QDate dal=ui->deSearch->date();
+        QDate al=ui->deSearchTo->date();
 
         q.prepare(sql);
-        q.bindValue(":factor",factor);
         q.bindValue(":dal",dal);
         q.bindValue(":al",al);
 
         q.exec();
-
-
-        qmod->setQuery(q);
         qDebug()<<q.lastError().text();
-
+        qmod->setQuery(q);
         set_items(qmod);
-
-
-
-
-
-
-
+      // ui->tvGeneral->setModel(qmod);
 
 
 
@@ -691,9 +669,9 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         QSqlQueryModel *qmod=new QSqlQueryModel();
         // int id_produzione=wsmod->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
         //qDebug()<<p_id_produzione;
-        sql="select id_prodotto,prodotti.descrizione,sum(quantita)*:factor from righe_ricette,prodotti where prodotti.id=righe_ricette.ID_prodotto and ID_ricetta in\
+        sql="select id_prodotto,prodotti.descrizione,sum(quantita) as q from righe_ricette,prodotti where prodotti.id=righe_ricette.ID_prodotto and ID_ricetta in\
               (select id from ricette where ID_prodotto in\
-               (select idprodotto from righe_produzione where IDProduzione =:id_p)) group by id_prodotto order by prodotti.descrizione asc";
+               (select idprodotto from righe_produzione where IDProduzione =:id_p)) group by id_prodotto order by q desc";
 
 
 
@@ -701,19 +679,19 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
 
 
 
-        double factor=0.0;
-        double q_to_do=0.0;
+
+              double q_to_do=0.0;
         double tot_ricetta=0.0;
         for(int x=0;x<wpmod->rowCount();++x)
         {
-        q_to_do+=wpmod->index(x,12).data().toDouble();
-        tot_ricetta=wpmod->index(x,20).data().toDouble();
+            q_to_do+=wpmod->index(x,12).data().toDouble();
+            tot_ricetta=wpmod->index(x,20).data().toDouble();
         }
 
-        factor=q_to_do/tot_ricetta;
+
         q.prepare(sql);
         q.bindValue(":id_p",p_id_produzione);
-        q.bindValue(":factor",factor);
+
 
 
         qDebug()<<p_id_produzione<<q.lastError().text();
@@ -721,23 +699,23 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         qmod->setQuery(q);
         qDebug()<<q.lastError().text();
 
-
+        //ui->tvGeneral->setModel(qmod);
 
         set_items(qmod);
 
 
 
-       ;
-       // ui->tvGeneral->setColumnHidden(10,false);
+
+        // ui->tvGeneral->setColumnHidden(10,false);
         // ui->tvGeneral->setColumnHidden(3,true);
 
 
     }
 
 
-    ui->tvGeneral->setColumnHidden(0,true);
+    /** ui->tvGeneral->setColumnHidden(0,true);
     ui->tvGeneral->setColumnHidden(1,false);
-    ui->tvGeneral->setColumnHidden(2,false);
+    ui->tvGeneral->setColumnHidden(2,false);*/
 
 
 
@@ -757,6 +735,11 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
 
 }
 
+void HWorkProgram::add_row(QStandardItemModel *mod, QList<QStandardItem *> row)
+{
+    mod->appendRow(row);
+}
+
 
 void HWorkProgram::on_checkBox_toggled(bool checked)
 {
@@ -765,9 +748,9 @@ void HWorkProgram::on_checkBox_toggled(bool checked)
 
 void HWorkProgram::on_pbDeleteSheet_clicked()
 {
-    /*  deleteSheet();
-    getSheets();
-    refreshSheet();*/
+     deleteSheet();
+    /*getSheets();
+    refreshSheet();**/
 
 
 }
@@ -857,7 +840,7 @@ void HWorkProgram::copyRow()
 
 void HWorkProgram::on_cbAll_toggled(bool checked)
 {
-    // get_sheet_details();
+    on_pbDetails_clicked();
 }
 
 
@@ -876,6 +859,7 @@ void HWorkProgram::on_pbDetails_clicked()
 
 
 
+
 }
 
 
@@ -887,45 +871,108 @@ void HWorkProgram::on_pbSingleSheet_clicked()
 
     dets=false;
     refreshSheet();
+
 }
 
 void HWorkProgram::set_items(QSqlQueryModel* basemod)
 {
 
-    double factor=0.0;
-    double q_to_do=0.0;
-    double tot_ricetta=0.0;
 
-    double q_t=0.0;
-
-
-    qDebug()<<"setitems";
+    QStandardItemModel *emod=new QStandardItemModel();
+    QStandardItemModel *rmod=new QStandardItemModel();
+    QVector<int>app;
+    QString cpr=QString();
+    double tot_q=0.0;
 
 
 
+    for(int k=0;k<wpmod->rowCount();++k)
+    {
+
+        double factor=0.0;
+        double q_to_do=0.0;
+        double tot_ricetta=0.0;
+
+        q_to_do=wpmod->index(k,12).data().toDouble();
+        tot_ricetta=wpmod->index(k,20).data().toDouble();
+        factor=q_to_do/tot_ricetta;
+
+        double q=0.0;
+        double lq=0;
+        int cp=0;
+        QString pro=QString();
+
+        int cid=0;
+        int p=0;
 
 
-        for(int r=0;r<basemod->rowCount();++r)
+
+
+
+
+
+
+        for(int i=0;i<basemod->rowCount();++i)
         {
-
-            int idpro=basemod->index(r,0).data(0).toInt();
-            QString s_p=basemod->index(r,1).data(0).toString();
-            double q=basemod->index(r,2).data().toDouble();
-
-            QStandardItem *s_id;
-            QStandardItem *s_pro;
-            QStandardItem *s_qua;
-
-
-            QList<QStandardItem*>row;
+            cp=basemod->index(i,0).data().toInt();
+            pro=basemod->index(i,1).data().toString();
+            q=basemod->index(i,2).data().toDouble();
+            lq=q*factor;
+            QVector<int> idp;
+            if(!idp.contains(cp))
+            {
+                idp.append(cp);
 
 
-            s_id=new QStandardItem(QString::number(idpro));
-            s_pro=new QStandardItem(s_p);
-            s_qua=new QStandardItem(QString::number(q,'f',2));
-            row<<s_id<<s_pro<<s_qua;
 
-            vmod->appendRow(row);
+                QStandardItem *sid;
+                QStandardItem *spro;
+                QStandardItem *squa;
+
+                sid=new QStandardItem(QString::number(cp));
+                spro=new QStandardItem(pro);
+                squa=new QStandardItem(QString::number(lq,'f',2));
+                QList<QStandardItem*>row;
+
+                row<<sid<<spro<<squa;
+                emod->appendRow(row);
+
+
+            }
+
+
+
+
+            QVectorIterator<int>it(idp);
+
+
+            while(it.hasNext())
+            {
+
+                tot_q=0.0;
+                cid=it.next();
+                p=0;
+
+                qDebug()<<"CID"<<cid;
+
+                for (int x=0;x<emod->rowCount();++x)
+                {
+                    p=emod->index(x,0).data().toInt();
+                    cpr=emod->index(x,1).data().toString();
+                    if(p==cid)
+                    {
+                        tot_q+= emod->index(x,2).data().toDouble();
+                        if(!app.contains(cid))
+                        {
+                            app.append(cid);
+                        }
+                    }
+
+
+
+
+                }
+            }
 
 
 
@@ -934,7 +981,59 @@ void HWorkProgram::set_items(QSqlQueryModel* basemod)
         }
 
 
-         ui->tvGeneral->setModel(vmod);
+
+
+    }
+
+
+    QVectorIterator<int>ita(app);
+    int x=0;
+
+
+    while(ita.hasNext())
+    {
+
+        int pid=ita.next();
+        QString ld=QString();
+        double lt=0.0;
+        qDebug()<<"pid"<<pid<<app.count();
+        for(int i=0;i<emod->rowCount();++i)
+        {
+            if(pid==emod->index(i,0).data().toInt())
+            {
+                ld=emod->index(i,1).data().toString();
+                lt+=emod->index(i,2).data(0).toDouble();
+
+            }
+        }
+        QList<QStandardItem*> row;
+        QStandardItem *ctid=new QStandardItem(QString::number(pid));
+        QStandardItem *ctpro=new QStandardItem(ld);
+        QStandardItem *ctqua=new QStandardItem(QString::number(lt,'f',2));;
+
+
+        row<<ctid<<ctpro<<ctqua;
+
+        add_row(rmod,row);
+
+        x=x+1;
+
+
+    }
+
+
+
+
+    ui->tvGeneral->setColumnHidden(0,true);
+    ui->tvGeneral->setColumnHidden(1,false);
+    ui->tvGeneral->setColumnHidden(2,false);
+
+     ui->tvGeneral->setModel(rmod);
+    rmod->setHeaderData(0,Qt::Horizontal,"ID INGREDIENTE");
+    rmod->setHeaderData(1,Qt::Horizontal,"INGREDIENTE");
+    rmod->setHeaderData(2,Qt::Horizontal,"QUANTITA' TOTALE PRODUZIONE");
+
+
 
 
 
@@ -944,6 +1043,27 @@ void HWorkProgram::set_items(QSqlQueryModel* basemod)
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
