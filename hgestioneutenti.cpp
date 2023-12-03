@@ -21,10 +21,19 @@ HGestioneUtenti::HGestioneUtenti(HUser *p_user, QSqlDatabase pdb, QWidget *paren
     db=pdb;
     user=p_user;
 
-    user->get_utenti_u()>0?ui->pushButton->setEnabled(true):ui->pushButton->setEnabled(false);
+    /*user->get_utenti_u()>0?ui->pushButton->setEnabled(true):ui->pushButton->setEnabled(false);
     user->get_utenti_u()>0?ui->pushButton_2->setEnabled(true):ui->pushButton_2->setEnabled(false);
     user->get_utenti_u()>0?ui->pbGroups->setEnabled(true):ui->pbGroups->setEnabled(false);
-    user->get_utenti_u()>0?ui->pbNuovaPassword->setEnabled(true):ui->pbNuovaPassword->setEnabled(false);
+    user->get_utenti_u()>0?ui->pbNuovaPassword->setEnabled(true):ui->pbNuovaPassword->setEnabled(false);*/
+
+
+    ui->pushButton->setEnabled(user->get_utenti_u()>0);
+    ui->pushButton_2->setEnabled(user->get_utenti_u()>0);
+    ui->pbGroups->setEnabled(user->get_utenti_u()>0);
+    ui->pbNuovaPassword->setEnabled(user->get_utenti_u()>0);
+    ui->pbUserPermissions->setEnabled(user->get_utenti_u()>0);
+
+
 
     utm=new QSqlRelationalTableModel(0,db);
     gtm=new QSqlTableModel(0,db);

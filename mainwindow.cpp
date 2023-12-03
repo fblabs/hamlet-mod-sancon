@@ -20,7 +20,7 @@
 #include "hgestioneutenti.h"
 #include "hassociazioni.h"
 #include "hproduction.h"
-#include "hprodottinew.h"
+#include "hprodottinew.h".h"
 #include "hnuovaricetta.h"
 #include "hwarehouse.h"
 #include "hexpirations.h"
@@ -272,7 +272,7 @@ void MainWindow::on_tbSettings_clicked()
 
 void MainWindow::on_tbProdotti_clicked()
 {
-    HProdottiNew* f = new HProdottiNew(user,db);
+    HProdottiNew *f = new HProdottiNew(user,db);
     f->show();
 
 }

@@ -21,6 +21,12 @@ class HProdottiNew : public QWidget
 public:
     explicit HProdottiNew(HUser *puser=0,QSqlDatabase pdb=QSqlDatabase(),QWidget *parent=0);
     ~HProdottiNew();
+private:
+    Ui::HProdottiNew *ui;
+    QSqlDatabase db;
+    HModProdotti *tmProdotti;
+    QSqlQueryModel *tmTipi;
+    HUser *user;
 private slots:
     void getTypes();
 
@@ -56,13 +62,7 @@ private slots:
 
     void on_lineEdit_returnPressed();
 
-private:
-    Ui::HProdottiNew *ui;
-    QString sConn;
-    QSqlDatabase db;
-    HModProdotti *tmProdotti;
-    QSqlQueryModel *tmTipi;
-    HUser *user;
+
 
 
 };

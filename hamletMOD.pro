@@ -196,7 +196,7 @@ HEADERS  += mainwindow.h \
     hmodifyrow.h \
     hlotmod.h \
     hnewsheet.h \
-    ui_hcaloclo_costi_jolly.h
+
 
 
 

@@ -376,7 +376,7 @@ void HUtenti::print()
     QTextCharFormat cf=QTextCharFormat();
     QString txt;
 
-   int r,c;
+   int r;
 
 
     f->showMaximized();

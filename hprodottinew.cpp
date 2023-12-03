@@ -254,7 +254,9 @@ void HProdottiNew::load(const QString tosearch)
     ui->tvProdotti->setModel(tmProdotti);
     qDebug()<<idtipo<<q.lastError().text();
     ui->tvProdotti->setColumnHidden(0,true);
+    ui->tvProdotti->setColumnHidden(2,true);
     ui->tvProdotti->setColumnHidden(8,true);
+    ui->tvProdotti->setColumnHidden(9,true);
 }
 
 

@@ -38,6 +38,8 @@ private slots:
     void print();
     void get_sheet_details(const int p_id_produzione=-1);
     void add_row(QStandardItemModel *mod, QList<QStandardItem*> row);
+    void process(const QSqlQueryModel *mod=nullptr);
+    void process_by_date(const QSqlQueryModel *mod=nullptr);
 
 
     void on_pbSave_clicked();
@@ -82,13 +84,10 @@ private slots:
 
    // void on_pbAll_clicked();
 
-    void on_cbAll_toggled(bool checked);
-
     void on_pbDetails_clicked();
 
     void on_pbSingleSheet_clicked();
 
-    void  set_items( QSqlQueryModel *basemod=nullptr);
 
 
 
@@ -99,7 +98,6 @@ private:
     int id;
     HWorkSheetModel *wsmod; //modello del foglio([produzione]
     HWorkProgramDetailModel *wpmod; //modello [righe_produzione]
-    QStandardItemModel *vmod;
     bool dets=false;
 
 

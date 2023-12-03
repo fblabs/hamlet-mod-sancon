@@ -53,7 +53,7 @@ void HNewProduct::addNewProduct()
     tipo=ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toString();
     if (ui->cbAllergenico->isChecked())
     {
-       allergenico="1";
+        allergenico="1";
     }
     else
     {
@@ -61,7 +61,7 @@ void HNewProduct::addNewProduct()
     }
     if (ui->cbBio->isChecked())
     {
-       bio="1";
+        bio="1";
     }
     else
     {
@@ -88,7 +88,7 @@ void HNewProduct::addNewProduct()
         QMessageBox::warning(this, QApplication::applicationName(),"Prodotto salvato",QMessageBox::Ok);
         if(tipo>2 && tipo <6)
         {
-          addNewContainer(q.lastInsertId().toInt());
+            addNewContainer(q.lastInsertId().toInt());
 
         }
 
@@ -110,12 +110,12 @@ void HNewProduct::addNewProduct()
 bool HNewProduct::addNewContainer(const int p_id)
 {
 
-        QSqlQuery q(db);
-        QString sql="INSERT INTO tags_containers(ID_Prodotto)VALUES(:id_prodotto)";
-        q.prepare(sql);
-        q.bindValue(":id_prodotto",p_id);
+    QSqlQuery q(db);
+    QString sql="INSERT INTO tags_containers(ID_Prodotto)VALUES(:id_prodotto)";
+    q.prepare(sql);
+    q.bindValue(":id_prodotto",p_id);
 
-        return q.exec();
+    return q.exec();
 
 
 
