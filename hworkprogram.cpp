@@ -306,13 +306,13 @@ void HWorkProgram::refreshSheet()
 
 
 
-    /* ui->tvGeneral->setColumnHidden(0,true);
+     ui->tvGeneral->setColumnHidden(0,true);
     ui->tvGeneral->setColumnHidden(1,true);
     ui->tvGeneral->setColumnHidden(2,true);
-    ui->tvGeneral->setColumnHidden(6,true);
+    ui->tvGeneral->setColumnHidden(6,false);
     ui->tvGeneral->setColumnHidden(10,true);
     ui->tvGeneral->setColumnHidden(20,true);
-    ui->tvGeneral->setColumnHidden(21,true);*/
+    ui->tvGeneral->setColumnHidden(21,true);
     ui->tvGeneral->setItemDelegate(rdel);
     ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
@@ -631,7 +631,7 @@ void HWorkProgram::print()
     HPDFPrint *f =new HPDFPrint(nullptr,strStream);
 
     QPrinter::Orientation orientation;
-    ui->pbDetails->isChecked()?orientation=QPrinter::Portrait:orientation=QPrinter::Landscape;
+    dets?orientation=QPrinter::Portrait:orientation=QPrinter::Landscape;
     f->set_orientation(orientation);
     f->show();
 
@@ -644,16 +644,16 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
 
     QSqlQuery q(db);
 
-    //QApplication::setOverrideCursor(Qt::WaitCursor);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    qDebug()<<"getsheetdetails";
+
 
 
     QString sql=QString();
     if (ui->cbAll->isChecked())
     {
 
-        QApplication::setOverrideCursor(Qt::WaitCursor);
+
         QSqlQueryModel *qmod=new QSqlQueryModel();
 
         // sql="select prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) as q from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione in (select id from produzione where dal between :dal and :al)) group by righe_ricette.ID_prodotto order by q desc";
@@ -854,7 +854,7 @@ void HWorkProgram::process(const QSqlQueryModel *mod)
 
     ui->tvGeneral->setModel(emod);
 
-    ui->tvGeneral->setColumnHidden(0,true);
+    ui->tvGeneral->setColumnHidden(0,false);
     ui->tvGeneral->setColumnHidden(1,false);
     ui->tvGeneral->setColumnHidden(2,false);
     /* ui->tvGeneral->setColumnHidden(3,true);
