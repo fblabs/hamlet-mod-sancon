@@ -195,7 +195,7 @@ HEADERS  += mainwindow.h \
     hworkprogressmodel.h \
     hmodifyrow.h \
     hlotmod.h \
-    hnewsheet.h \
+    hnewsheet.h
 
 
 

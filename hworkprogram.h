@@ -80,7 +80,7 @@ private slots:
 
     void showContextMenu(const QPoint& pos);
 
-    void copyRow();
+    void copyRow(const int row=-1);
 
    // void on_pbAll_clicked();
 

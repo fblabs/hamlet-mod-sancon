@@ -61,7 +61,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->pbModify->setEnabled(user->get_programmi_u()>0);
     ui->pbApprova->setEnabled(user->get_programmi_u()>0);
     ui->pbDisapprova->setEnabled(user->get_programmi_u()>0);
-    ui->pbPrint->setEnabled(user->get_programmi_u()>0);
+    ui->pbPrint->setEnabled(true);
 
     /* this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));*/
@@ -304,9 +304,27 @@ void HWorkProgram::refreshSheet()
 
     ui->tvGeneral->setModel(wpmod);
 
+    wpmod->setHeaderData(3,Qt::Horizontal,"Q:tà");
+        wpmod->setHeaderData(4,Qt::Horizontal,"Peso prod.");
+    wpmod->setHeaderData(5,Qt::Horizontal,"Peso olio");
+    wpmod->setHeaderData(6,Qt::Horizontal,"ID prod.");
+    wpmod->setHeaderData(7,Qt::Horizontal,"Prodotto");
+    wpmod->setHeaderData(8,Qt::Horizontal,"Olio");
+    wpmod->setHeaderData(9,Qt::Horizontal,"Tappo");
+    wpmod->setHeaderData(10,Qt::Horizontal,"ID cliente");
+    wpmod->setHeaderData(11,Qt::Horizontal,"Cliente");
+    wpmod->setHeaderData(12,Qt::Horizontal,"Kg");
+    wpmod->setHeaderData(13,Qt::Horizontal,"Sanif.");
+    wpmod->setHeaderData(14,Qt::Horizontal,"Num. ordine");
+    wpmod->setHeaderData(15,Qt::Horizontal,"Fresco");
+    wpmod->setHeaderData(16,Qt::Horizontal,"Past.");
+    wpmod->setHeaderData(17,Qt::Horizontal,"Allergeni");
+    wpmod->setHeaderData(18,Qt::Horizontal,"Note");
+    wpmod->setHeaderData(19,Qt::Horizontal,"Lot/scadenza");
 
 
-     ui->tvGeneral->setColumnHidden(0,true);
+
+    ui->tvGeneral->setColumnHidden(0,true);
     ui->tvGeneral->setColumnHidden(1,true);
     ui->tvGeneral->setColumnHidden(2,true);
     ui->tvGeneral->setColumnHidden(6,false);
@@ -455,7 +473,7 @@ void HWorkProgram::on_pbRemove_clicked()
 
 
 
-    if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+   if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         db.transaction();
 
@@ -470,6 +488,10 @@ void HWorkProgram::on_pbRemove_clicked()
         refreshSheet();
 
     }
+
+
+
+
 
 
 }
@@ -659,13 +681,13 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         // sql="select prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) as q from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione in (select id from produzione where dal between :dal and :al)) group by righe_ricette.ID_prodotto order by q desc";
 
 
-         sql="select righe_ricette.ID_prodotto,righe_produzione.totale as rptot,ricette.q_tot as ricetteqtot,righe_produzione.totale/ricette.q_tot  as factor,i.ID,i.descrizione,righe_ricette.quantita * (righe_produzione.totale/ricette.q_tot) as res\
-          from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
-          where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and produzione.dal between :dal and :al";
+        sql="select righe_ricette.ID_prodotto,righe_produzione.totale as rptot,ricette.q_tot as ricetteqtot,righe_produzione.totale/ricette.q_tot  as factor,i.ID,i.descrizione,righe_ricette.quantita * (righe_produzione.totale/ricette.q_tot) as res\
+            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
+                                                              where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and produzione.dal between :dal and :al";
 
 
 
-                                                                                                                                             q.prepare(sql);
+                                                                                                                                                                                                                                                                          q.prepare(sql);
         QDate dal=ui->deSearch->date();
         QDate al=ui->deSearchTo->date();
 
@@ -678,7 +700,7 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         qDebug()<<q.lastError().text();
         qmod->setQuery(q);
         process(qmod);
-       // ui->tvGeneral->setModel(qmod);
+        // ui->tvGeneral->setModel(qmod);
         // process(qmod);
 
 
@@ -959,9 +981,24 @@ void HWorkProgram::showContextMenu(const QPoint &pos)
     menu->popup(globalPos);
 }
 
-void HWorkProgram::copyRow()
+void HWorkProgram::copyRow(const int row)
 {
-    /* QMimeData *row_data=new QMimeData();*/
+    /*QList<QStandardItem*>rowtocopy;
+
+    qDebug()<<"copy"<<row;
+    HWorkProgramDetailModel *mod=static_cast<HWorkProgramDetailModel*>(ui->tvGeneral->model());
+
+    qDebug()<<"mod"<<mod->rowCount();
+
+
+        for(int c=0;c<wpmod->columnCount();++c)
+        {
+        rowtocopy<<mod->index(row,c).data().toString();
+        }
+        qDebug()<<"rowtocopy"<<rowtocopy.count();
+
+        mod->appendRow(rowtocopy);*/
+
 
 
 }

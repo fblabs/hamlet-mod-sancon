@@ -187,7 +187,7 @@
      </widget>
      <widget class="QTableView" name="tvGeneral">
       <property name="editTriggers">
-       <set>QAbstractItemView::DoubleClicked</set>
+       <set>QAbstractItemView::NoEditTriggers</set>
       </property>
       <property name="dragEnabled">
        <bool>true</bool>
