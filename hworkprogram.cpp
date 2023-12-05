@@ -146,9 +146,16 @@ void HWorkProgram::getSheets(bool create)
         refreshSheet();
   }*/
 
-    /*  ui->tvStorico->setColumnHidden(0,true);
+    ui->tvStorico->setColumnHidden(0,true);
     ui->tvStorico->setColumnHidden(2,true);
-    ui->tvStorico->setColumnHidden(4,true);*/
+    ui->tvStorico->setColumnHidden(4,true);
+
+    wsmod->setHeaderData(1,Qt::Horizontal,"Data");
+    wsmod->setHeaderData(3,Qt::Horizontal,"Linea");
+    wsmod->setHeaderData(5,Qt::Horizontal,"Approvato");
+
+
+
     //ui->tvStorico->horizontalHeader()->setStretchLastSection(true);
     for (int i=0;i<6;++i)
     {
@@ -304,7 +311,7 @@ void HWorkProgram::refreshSheet()
 
     ui->tvGeneral->setModel(wpmod);
 
-    wpmod->setHeaderData(3,Qt::Horizontal,"Q:tà");
+    wpmod->setHeaderData(3,Qt::Horizontal,"Q.tà");
         wpmod->setHeaderData(4,Qt::Horizontal,"Peso prod.");
     wpmod->setHeaderData(5,Qt::Horizontal,"Peso olio");
     wpmod->setHeaderData(6,Qt::Horizontal,"ID prod.");
@@ -473,7 +480,7 @@ void HWorkProgram::on_pbRemove_clicked()
 
 
 
-   if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         db.transaction();
 
