@@ -183,7 +183,7 @@ public:
         tvStorico->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
         tvGeneral = new QTableView(splitter);
         tvGeneral->setObjectName(QString::fromUtf8("tvGeneral"));
-        tvGeneral->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tvGeneral->setEditTriggers(QAbstractItemView::DoubleClicked);
         tvGeneral->setDragEnabled(true);
         tvGeneral->setDragDropMode(QAbstractItemView::InternalMove);
         tvGeneral->setDefaultDropAction(Qt::MoveAction);
