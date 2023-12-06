@@ -5,7 +5,7 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QMessageBox>
-#include <QDebug>
+//nclude <QDebug>
 #include <QSqlError>
 #include <QInputDialog>
 #include "hprint.h"
@@ -133,16 +133,16 @@ void HModRicette::getRicette()
     if(ui->rb_con->isChecked())
     {
         ui->pushButton_3->setEnabled(false);
-       // sql="SELECT prodotti.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto ORDER BY prodotti.descrizione ASC";
-      //  sql="select distinctrow prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID IN (SELECT ricette.ID_prodotto from ricette) and prodotti.tipo in (2,6) order by prodotti.descrizione asc ";
+        // sql="SELECT prodotti.ID,prodotti.descrizione from prodotti,ricette WHERE prodotti.ID=ricette.ID_prodotto ORDER BY prodotti.descrizione ASC";
+        //  sql="select distinctrow prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID IN (SELECT ricette.ID_prodotto from ricette) and prodotti.tipo in (2,6) order by prodotti.descrizione asc ";
         sql="select ricette.ID, prodotti.descrizione from ricette,prodotti where ricette.ID_prodotto=prodotti.id order by prodotti.descrizione asc";
 
     }
     else
     {
-         ui->pushButton_3->setEnabled(true);
-      //  sql="SELECT prodotti.ID,prodotti.descrizione from prodotti WHERE prodotti.ID not in (SELECT ID_prodotto from ricette) AND prodotti.tipo in (2,6) ORDER BY prodotti.descrizione ASC";
-         sql="select distinctrow prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID NOT IN (SELECT ricette.ID_prodotto from ricette) and prodotti.tipo in (2,6) order by prodotti.descrizione ASC ";
+        ui->pushButton_3->setEnabled(true);
+        //  sql="SELECT prodotti.ID,prodotti.descrizione from prodotti WHERE prodotti.ID not in (SELECT ID_prodotto from ricette) AND prodotti.tipo in (2,6) ORDER BY prodotti.descrizione ASC";
+        sql="select distinctrow prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID NOT IN (SELECT ricette.ID_prodotto from ricette) and prodotti.tipo in (2,6) order by prodotti.descrizione ASC ";
     }
     q.exec(sql);
     qmric->setQuery(q);
@@ -166,7 +166,7 @@ void HModRicette::creatNewRecipe(const int p_tipo)
     int tipo=p_tipo;
     //nuova ricetta
     QString text=QInputDialog::getText(this,"Nuova Ricetta","Inserire il nome\nVerrà creato un nuovo prodotto",QLineEdit::Normal,"",&ok);
-    text=text.toUpper();
+        text=text.toUpper();
 
 
 
@@ -255,7 +255,6 @@ void HModRicette::add_recipe_to_product(const int p_product)
     else
     {
         QMessageBox::warning(this,QApplication::applicationName(),"ERRORE CREANDO LA RICETTA!"+q.lastError().text(),QMessageBox::Ok);
-        qDebug()<<q.lastError().text();
         db.rollback();
         return;
     }
@@ -295,7 +294,7 @@ bool HModRicette::duplicateRecipe()
     //text=text.toUpper();
 
     QString text=QInputDialog::getText(this,"Nuova Ricetta","Inserire il nome\nVerrà creata una nuova ricetta copiata da quella corrente",QLineEdit::Normal,"",&ok);
-    text=text.toUpper();
+        text=text.toUpper();
 
     if(ok)
     {
@@ -384,15 +383,15 @@ void HModRicette::loadRicetta()
     if(ui->cbRicette->model()->rowCount()<1){return;}
 
     int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
-    qDebug()<<"IDRICETTA"<<idricetta;
+
     QSqlQuery q(db);
-   // QString sql = "SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_prodotto=:idprodotto ORDER BY righe_ricette.quantita DESC";
-   // QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM ricette,righe_ricette,prodotti WHERE ricette.ID=righe_ricette.ID_ricetta and righe_ricette.id_prodotto=prodotti.ID and ricette.ID_prodotto=:idprodotto ORDER BY righe_ricette.quantita DESC";
-    QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione' from righe_ricette,prodotti  where prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta";
-    q.prepare(sql);
+    // QString sql = "SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_prodotto=:idprodotto ORDER BY righe_ricette.quantita DESC";
+    // QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM ricette,righe_ricette,prodotti WHERE ricette.ID=righe_ricette.ID_ricetta and righe_ricette.id_prodotto=prodotti.ID and ricette.ID_prodotto=:idprodotto ORDER BY righe_ricette.quantita DESC";
+    QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico from righe_ricette,prodotti  where prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
+                  q.prepare(sql);
     q.bindValue(":idricetta",idricetta);
     q.exec();
-    qDebug()<<q.lastError().text();
+
 
     writeRed=new QList<int>();
 
@@ -474,7 +473,7 @@ void HModRicette::loadRicetta()
     ui->tableView->setColumnHidden(1,true);
     ui->tableView->setColumnHidden(2,true);
     ui->tableView->setColumnHidden(5,true);
-    ui->tableView->setColumnHidden(6,true);
+    // ui->tableView->setColumnHidden(6,true);
 
     //  ui->tvRecipe->horizontalHeader()->resizeSections(QHeaderView::Stretch);
 
@@ -567,10 +566,12 @@ void HModRicette::save()
     QSqlQuery q(db);
     QString sql;
 
-    //int idriga=ui->tableView->model()->index(ui->tableView->currentIndex().row(),0).data(0).toInt();
+
     int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
     int rows=ui->tableView->model()->rowCount();
-    qDebug()<<"ROWS"<<rows<<idricetta;
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
 
     db.transaction();
     saveNote();
@@ -585,38 +586,33 @@ void HModRicette::save()
 
     //la ricreo modificata
 
-    int idprod;
-    double quant;
-    int show;
+    int idpro=-1;;
+    double quant=0.0;
+    int show=0;
 
     sql="insert into righe_ricette (ID_ricetta,ID_prodotto,quantita,show_prod) VALUES (:idricetta,:idprodotto,:quantita,:show)";
-    //// qDebug()<<"save IDricetta:"<<QString::number(idricetta);
 
     for (int i=0; i< rows;i++)
     {
 
-        idprod=ui->tableView->model()->index(i,2).data(0).toInt();
+        idpro=ui->tableView->model()->index(i,2).data(0).toInt();
         quant=ui->tableView->model()->index(i,4).data(0).toDouble();
         show=ui->tableView->model()->index(i,5).data(0).toInt();
-        qDebug()<<idprod;
-
-        qDebug()<<"SAVE"<<idricetta<<idprod<<quant<<show;
 
 
 
         q.prepare(sql);
         q.bindValue(":idricetta",QVariant(idricetta));
-        q.bindValue(":idprodotto",QVariant(idprod));
+        q.bindValue(":idprodotto",QVariant(idpro));
         q.bindValue(":quantita",QVariant(quant));
         q.bindValue(":show",QVariant(show));
         bool c=q.exec();
-        qDebug()<<"C"<<c;
 
         if(!c)
         {
             db.rollback();
             QMessageBox::warning(this,QApplication::applicationName(),"Si è verificato un errore (riga 554)",QMessageBox::Ok);
-            return;
+                return;
         }
         else
         {
@@ -625,7 +621,9 @@ void HModRicette::save()
 
 
     }
-    db.commit();
+
+    QApplication::restoreOverrideCursor();
+
 
 
 
@@ -790,7 +788,7 @@ void HModRicette::on_pushButton_6_clicked()
 void HModRicette::on_pbC4R_clicked()
 {
     int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
-    qDebug()<<"idricetta:"<<idricetta;
+
 
     HRecipesForClient *f=new HRecipesForClient(db,idricetta);
     f->show();
@@ -814,7 +812,7 @@ void HModRicette::on_pbRicingredient_clicked()
 void HModRicette::on_rb_senza_toggled(bool checked)
 {
     getRicette();
-     ui->pushButton_3->setEnabled(true);
+    ui->pushButton_3->setEnabled(true);
 }
 
 

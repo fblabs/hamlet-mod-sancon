@@ -40,13 +40,12 @@ public:
     QRadioButton *rb_senza;
     QSpacerItem *horizontalSpacer;
     QGridLayout *gridLayout;
-    QSpacerItem *horizontalSpacer_3;
-    QPushButton *pushButton_3;
-    QPushButton *pbduplica;
     QPushButton *pbC4R;
-    QPushButton *pushButton_4;
+    QSpacerItem *horizontalSpacer_5;
     QPushButton *pbRicingredient;
-    QSpacerItem *horizontalSpacer_2;
+    QPushButton *pbduplica;
+    QPushButton *pushButton_4;
+    QPushButton *pushButton_3;
     QTextBrowser *tbnote;
     QTableView *tableView;
     QVBoxLayout *verticalLayout;
@@ -112,36 +111,36 @@ public:
 
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_3, 0, 0, 1, 1);
-
-        pushButton_3 = new QPushButton(HModRicette);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_3->setIcon(icon1);
-        pushButton_3->setIconSize(QSize(32, 32));
-
-        gridLayout->addWidget(pushButton_3, 0, 1, 1, 1);
-
-        pbduplica = new QPushButton(HModRicette);
-        pbduplica->setObjectName(QString::fromUtf8("pbduplica"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Resources/Notepad.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbduplica->setIcon(icon2);
-        pbduplica->setIconSize(QSize(32, 32));
-
-        gridLayout->addWidget(pbduplica, 0, 2, 1, 1);
-
         pbC4R = new QPushButton(HModRicette);
         pbC4R->setObjectName(QString::fromUtf8("pbC4R"));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/Link64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbC4R->setIcon(icon3);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/Resources/Link64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbC4R->setIcon(icon1);
         pbC4R->setIconSize(QSize(32, 32));
 
         gridLayout->addWidget(pbC4R, 0, 3, 1, 1);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_5, 0, 2, 1, 1);
+
+        pbRicingredient = new QPushButton(HModRicette);
+        pbRicingredient->setObjectName(QString::fromUtf8("pbRicingredient"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/Note64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbRicingredient->setIcon(icon2);
+        pbRicingredient->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(pbRicingredient, 0, 5, 1, 1);
+
+        pbduplica = new QPushButton(HModRicette);
+        pbduplica->setObjectName(QString::fromUtf8("pbduplica"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Notepad.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbduplica->setIcon(icon3);
+        pbduplica->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(pbduplica, 0, 1, 1, 1);
 
         pushButton_4 = new QPushButton(HModRicette);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
@@ -152,18 +151,14 @@ public:
 
         gridLayout->addWidget(pushButton_4, 0, 4, 1, 1);
 
-        pbRicingredient = new QPushButton(HModRicette);
-        pbRicingredient->setObjectName(QString::fromUtf8("pbRicingredient"));
+        pushButton_3 = new QPushButton(HModRicette);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
         QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/Resources/Note64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbRicingredient->setIcon(icon5);
-        pbRicingredient->setIconSize(QSize(32, 32));
+        icon5.addFile(QString::fromUtf8(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_3->setIcon(icon5);
+        pushButton_3->setIconSize(QSize(32, 32));
 
-        gridLayout->addWidget(pbRicingredient, 0, 5, 1, 1);
-
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_2, 0, 6, 1, 1);
+        gridLayout->addWidget(pushButton_3, 0, 0, 1, 1);
 
 
         verticalLayout_2->addLayout(gridLayout);
@@ -299,14 +294,14 @@ public:
         label_2->setText(QCoreApplication::translate("HModRicette", "Prodotti:", nullptr));
         rb_con->setText(QCoreApplication::translate("HModRicette", "Visualizza prodotti con ricetta gi\303\240 impostata", nullptr));
         rb_senza->setText(QCoreApplication::translate("HModRicette", "Visualzza prodotti senza ricetta", nullptr));
+        pbC4R->setText(QCoreApplication::translate("HModRicette", "Clienti associati", nullptr));
+        pbRicingredient->setText(QCoreApplication::translate("HModRicette", "Ricette per ingrediente", nullptr));
+        pbduplica->setText(QCoreApplication::translate("HModRicette", "Duplica Ricetta", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("HModRicette", "Associazioni ricette-clienti", nullptr));
 #if QT_CONFIG(tooltip)
         pushButton_3->setToolTip(QCoreApplication::translate("HModRicette", "Inizializza o crea una ricetta a seconda che il prodotto esista o meno, nel qual caso crea un nuovo prodotto finito o semilavorato", nullptr));
 #endif // QT_CONFIG(tooltip)
         pushButton_3->setText(QCoreApplication::translate("HModRicette", "Ricetta", nullptr));
-        pbduplica->setText(QCoreApplication::translate("HModRicette", "Duplica Ricetta", nullptr));
-        pbC4R->setText(QCoreApplication::translate("HModRicette", "Clienti associati", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("HModRicette", "Associazioni ricette-clienti", nullptr));
-        pbRicingredient->setText(QCoreApplication::translate("HModRicette", "Ricette per ingrediente", nullptr));
         checkBox->setText(QCoreApplication::translate("HModRicette", "Mostra in produzione", nullptr));
         pbAddRow->setText(QCoreApplication::translate("HModRicette", "Aggiungi ingrediente", nullptr));
         pbDeleteRow->setText(QCoreApplication::translate("HModRicette", "Rimuovi ingrediente", nullptr));

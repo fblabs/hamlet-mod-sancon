@@ -455,9 +455,9 @@ void HWorkProgram::updateSheet(int newrow, int oldrow)
 
 void HWorkProgram::on_pbSave_clicked()
 {
-
-    refreshSheet();
-    ui->cbshowrows->setChecked(false);
+    save();
+   /* refreshSheet();
+    ui->cbshowrows->setChecked(false);*/
 
 }
 
@@ -892,11 +892,24 @@ void HWorkProgram::process(const QSqlQueryModel *mod)
 
 }
 
-void HWorkProgram::process_by_date(const QSqlQueryModel *mod)
+
+
+void HWorkProgram::save()
 {
+   /* for(int r=0;r<wpmod->rowCount();++r)
+    {
+        QSqlQuery q(db);
+
+        QString sql="update righe_produzione SET num_riga=:n where ID=:id";
+
+        q.prepare(sql);
+        q.bindValue(":n",ui->tvGeneral->verticalHeader()->logicalIndex(r));
+        q.bindValue(":id",wpmod->index(r,0).data().toInt());
+        q.exec();
+        qDebug()<<q.lastError().text()<<wpmod->index(r,2).data().toInt()<<ui->tvGeneral->verticalHeader()->visualIndex(r);
 
 
-
+    }*/
 }
 
 
@@ -908,8 +921,8 @@ void HWorkProgram::on_checkBox_toggled(bool checked)
 void HWorkProgram::on_pbDeleteSheet_clicked()
 {
     deleteSheet();
-    /*getSheets();
-    refreshSheet();**/
+    /*getSheets();*/
+    refreshSheet();
 
 
 }
