@@ -44,6 +44,7 @@ SOURCES += main.cpp\
     hworkprogram.cpp \
     hworkprogramdetailmodel.cpp \
     hworksheetmodel.cpp \
+    hwpmod.cpp \
     mainwindow.cpp \
     huser.cpp \
     hutenti.cpp \
@@ -179,6 +180,7 @@ HEADERS  += mainwindow.h \
     hworkprogram.h \
     hworkprogramdetailmodel.h \
     hworksheetmodel.h \
+    hwpmod.h \
     nouse.h \
     haddlotinproduction.h \
     hdatatopass.h \

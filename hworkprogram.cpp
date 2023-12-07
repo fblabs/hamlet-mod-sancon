@@ -31,6 +31,7 @@
 #include <QTextDocument>
 #include <QPrintDialog>
 #include <QTextStream>
+#include "hwpmod.h"
 
 
 
@@ -63,9 +64,17 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->pbDisapprova->setEnabled(user->get_programmi_u()>0);
     ui->pbPrint->setEnabled(true);
 
+    ui->tvGeneral->verticalHeader()->setSectionsMovable(true);
+    ui->tvGeneral->verticalHeader()->setDragEnabled(true);
+    ui->tvGeneral->verticalHeader()->setDragDropMode(QAbstractItemView::InternalMove);
+
+
+
     /* this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));*/
     connect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
+    //connect(ui->tvGeneral->verticalHeader(),SIGNAL(sectionMoved(int,int,int)),this,SLOT(save(int,int,int)));
+
 
 }
 
@@ -258,7 +267,7 @@ void HWorkProgram::storicoindexchange()
         ui->pbAdd->setEnabled(false);
         ui->pbModify->setEnabled(false);
         ui->pbRemove->setEnabled(false);
-        ui->cbshowrows->setEnabled(false);
+       // ui->cbshowrows->setEnabled(false);
         ui->pbApprova->setEnabled(false);
         ui->pbDisapprova->setEnabled(false);
 
@@ -291,9 +300,10 @@ void HWorkProgram::storicoindexchange()
 
 void HWorkProgram::refreshSheet()
 {
-    wpmod=0;
-    wpmod = new HWorkProgramDetailModel();
-    ui->tvGeneral->setModel(wpmod);
+
+
+    QSqlQueryModel *mod=new QSqlQueryModel();
+
     // QSqlRelationalDelegate *rdel=new QSqlRelationalDelegate();
     QSqlQuery q(db);
     // QString sql="SELECT * FROM righe_produzione where IDProduzione=:id";
@@ -305,14 +315,17 @@ void HWorkProgram::refreshSheet()
 
     q.exec();
 
-    wpmod->setQuery(q);
+    mod->setQuery(q);
+
+    wpmod=convert_to_wp(mod);
 
     QItemDelegate *rdel=new QItemDelegate();
 
     ui->tvGeneral->setModel(wpmod);
 
+    wpmod->setHeaderData(2,Qt::Horizontal,"N. riga");
     wpmod->setHeaderData(3,Qt::Horizontal,"Q.tà");
-        wpmod->setHeaderData(4,Qt::Horizontal,"Peso prod.");
+    wpmod->setHeaderData(4,Qt::Horizontal,"Peso prod.");
     wpmod->setHeaderData(5,Qt::Horizontal,"Peso olio");
     wpmod->setHeaderData(6,Qt::Horizontal,"ID prod.");
     wpmod->setHeaderData(7,Qt::Horizontal,"Prodotto");
@@ -333,7 +346,7 @@ void HWorkProgram::refreshSheet()
 
     ui->tvGeneral->setColumnHidden(0,true);
     ui->tvGeneral->setColumnHidden(1,true);
-    ui->tvGeneral->setColumnHidden(2,true);
+    ui->cbshowrows->isChecked()?ui->tvGeneral->setColumnHidden(2,false):ui->tvGeneral->setColumnHidden(2,true);
     ui->tvGeneral->setColumnHidden(6,false);
     ui->tvGeneral->setColumnHidden(10,true);
     ui->tvGeneral->setColumnHidden(20,true);
@@ -343,7 +356,9 @@ void HWorkProgram::refreshSheet()
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
     ui->tvGeneral->verticalHeader()->setVisible(true);
 
-    // setHeaders();
+
+
+   // setHeaders();
 
     /* for(int c=0;c<ui->tvGeneral->model()->columnCount();++c)
     {
@@ -456,8 +471,8 @@ void HWorkProgram::updateSheet(int newrow, int oldrow)
 void HWorkProgram::on_pbSave_clicked()
 {
     save();
-   /* refreshSheet();
-    ui->cbshowrows->setChecked(false);*/
+    refreshSheet();
+
 
 }
 
@@ -506,7 +521,7 @@ void HWorkProgram::on_pbRemove_clicked()
 
 void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
 {
-    if (!ui->cbshowrows->isChecked()) showModRow();
+   /* if (!ui->cbshowrows->isChecked())*/ showModRow();
 }
 
 void HWorkProgram::on_pbModify_clicked()
@@ -659,8 +674,8 @@ void HWorkProgram::print()
 
     HPDFPrint *f =new HPDFPrint(nullptr,strStream);
 
-    QPrinter::Orientation orientation;
-    dets?orientation=QPrinter::Portrait:orientation=QPrinter::Landscape;
+    QPageLayout::Orientation orientation;
+    dets?orientation=QPageLayout::Portrait:orientation=QPageLayout::Landscape;
     f->set_orientation(orientation);
     f->show();
 
@@ -896,20 +911,30 @@ void HWorkProgram::process(const QSqlQueryModel *mod)
 
 void HWorkProgram::save()
 {
-   /* for(int r=0;r<wpmod->rowCount();++r)
+
+
+
+
+    int idriga,numriga=0;
+
+
+
+    for (int r=0;r<wpmod->rowCount();++r)
     {
+        idriga=wpmod->index(r,0).data().toInt();
+        numriga=r+1;/*wpmod->index(r,2).data().toInt();*/
+
+        QString sql="UPDATE righe_produzione set num_riga=:num where id=:id";
         QSqlQuery q(db);
-
-        QString sql="update righe_produzione SET num_riga=:n where ID=:id";
-
         q.prepare(sql);
-        q.bindValue(":n",ui->tvGeneral->verticalHeader()->logicalIndex(r));
-        q.bindValue(":id",wpmod->index(r,0).data().toInt());
+        q.bindValue(":num",numriga);
+        q.bindValue(":id",idriga);
+
         q.exec();
-        qDebug()<<q.lastError().text()<<wpmod->index(r,2).data().toInt()<<ui->tvGeneral->verticalHeader()->visualIndex(r);
+
+    }
 
 
-    }*/
 }
 
 
@@ -1066,4 +1091,30 @@ void HWorkProgram::on_pbSingleSheet_clicked()
 
 
 }
+
+HWpMod *HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
+{
+    HWpMod *wmod=new HWpMod();
+
+    for (int r=0;r<mod->rowCount();++r)
+    {
+        QList<QStandardItem*> row;
+
+        for(int c=0;c<mod->columnCount();++c)
+        {
+            QStandardItem *it=new QStandardItem(mod->index(r,c).data().toString());
+            row.append(it);
+        }
+
+        wmod->appendRow(row);
+    }
+
+
+    return wmod;
+
+
+}
+
+
+
 

@@ -28,6 +28,7 @@ debug/hrecipesforingredient.o
 debug/hworkprogram.o
 debug/hworkprogramdetailmodel.o
 debug/hworksheetmodel.o
+debug/hwpmod.o
 debug/mainwindow.o
 debug/huser.o
 debug/hutenti.o
@@ -161,6 +162,7 @@ debug/moc_hgraphicprint.o
 debug/moc_hworkprogram.o
 debug/moc_hworkprogramdetailmodel.o
 debug/moc_hworksheetmodel.o
+debug/moc_hwpmod.o
 debug/moc_nouse.o
 debug/moc_haddlotinproduction.o
 debug/moc_hdatatopass.o

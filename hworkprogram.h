@@ -11,6 +11,7 @@
 #include <QStandardItemModel>
 #include  "hworksheetmodel.h"
 #include "hworkprogramdetailmodel.h"
+#include "hwpmod.h"
 
 namespace Ui {
 class HWorkProgram;
@@ -88,6 +89,10 @@ private slots:
 
     void on_pbSingleSheet_clicked();
 
+    HWpMod* convert_to_wp(const QSqlQueryModel *qmod=nullptr);
+
+
+
 
 
 
@@ -97,7 +102,7 @@ private:
     QSqlDatabase db;
     int id;
     HWorkSheetModel *wsmod; //modello del foglio([produzione]
-    HWorkProgramDetailModel *wpmod; //modello [righe_produzione]
+    HWpMod *wpmod; //modello [righe_produzione]
     bool dets=false;
 
 

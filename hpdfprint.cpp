@@ -4,6 +4,7 @@
 #include <QPrinter>
 #include <QFileDialog>
 #include <QPrintDialog>
+#include <QPrintPreviewDialog>
 #include <QDesktopServices>
 
 
@@ -16,7 +17,8 @@ HPDFPrint::HPDFPrint(HUser *p_user, QString p_html, QWidget *parent) :
     user=p_user;
     html=p_html;
     ui->tb_Viewport->document()->setHtml(html);
-    orientation=QPrinter::Portrait;
+    layout.setOrientation(QPageLayout::Portrait);
+
 
 }
 
@@ -25,9 +27,13 @@ HPDFPrint::~HPDFPrint()
     delete ui;
 }
 
-void HPDFPrint::set_orientation(QPrinter::Orientation p_orientation)
+void HPDFPrint::set_orientation(QPageLayout::Orientation p_orientation)
 {
-    orientation=p_orientation;
+    layout.setOrientation(p_orientation);
+
+    layout.orientation()==QPageLayout::Portrait?ui->rbPortrait->setChecked(true):ui->rbPortrait->setChecked(false);
+
+
 }
 
 
@@ -46,10 +52,11 @@ void HPDFPrint::on_pbSave_pdf_clicked()
            return;
        }
 
-       QPrinter printer;
-       printer.setOrientation(orientation);
-       printer.setOutputFormat(QPrinter::PdfFormat);
-       printer.setPaperSize(QPrinter::A4);
+
+
+
+
+       printer.setPageLayout(layout);
        printer.setOutputFileName(filename);
 
 
@@ -57,6 +64,8 @@ void HPDFPrint::on_pbSave_pdf_clicked()
        doc->setHtml(html);
        doc->print(&printer);
        QDesktopServices::openUrl(filename);
+
+       layout.orientation()==QPageLayout::Portrait  ? ui->rbPortrait->setChecked(true):ui->rbPortrait->setChecked(false);
 
 
 
@@ -66,12 +75,16 @@ void HPDFPrint::on_pbSave_pdf_clicked()
 void HPDFPrint::on_pbPrint_clicked()
 {
 
+   // QPrinter printer;
     doc=ui->tb_Viewport->document();
-    QPrinter printer;
-    doc=ui->tb_Viewport->document();
-    printer.setOrientation(orientation);
 
-    printer.setPaperSize(QPrinter::A4);
+    layout.setMode(QPageLayout::FullPageMode);
+
+
+    layout.setPageSize(QPageSize(QPageSize::A4));
+
+
+
 
      QPrintDialog dialog( &printer);
     // dialog.show();
@@ -90,4 +103,46 @@ void HPDFPrint::on_pbClose_clicked()
 
 
 
+
+
+void HPDFPrint::on_sbFontSize_valueChanged(int arg1)
+{
+    QFont font=ui->tb_Viewport->font();
+    font.setPointSize(arg1);
+
+    ui->tb_Viewport->setFont(font);
+}
+
+
+
+
+
+void HPDFPrint::on_pbPreview_clicked()
+{
+   // printer(QPrinter::HighResolution);
+
+
+
+
+    QPrintPreviewDialog *dlg=new QPrintPreviewDialog(&printer);
+
+    connect(dlg,SIGNAL(paintRequested(QPrinter*)),this,SLOT(print_preview(QPrinter*)));
+
+    dlg->exec();
+}
+
+
+
+
+
+void HPDFPrint::on_rbPortrait_toggled(bool checked)
+{
+
+    checked?layout.setOrientation(QPageLayout::Portrait):layout.setOrientation(QPageLayout::Landscape);
+}
+
+void HPDFPrint::print_preview(QPrinter* p_printer)
+{
+    ui->tb_Viewport->document()->print(&printer);
+}
 

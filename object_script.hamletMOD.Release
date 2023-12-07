@@ -28,6 +28,7 @@ release/hrecipesforingredient.o
 release/hworkprogram.o
 release/hworkprogramdetailmodel.o
 release/hworksheetmodel.o
+release/hwpmod.o
 release/mainwindow.o
 release/huser.o
 release/hutenti.o
@@ -161,6 +162,7 @@ release/moc_hgraphicprint.o
 release/moc_hworkprogram.o
 release/moc_hworkprogramdetailmodel.o
 release/moc_hworksheetmodel.o
+release/moc_hwpmod.o
 release/moc_nouse.o
 release/moc_haddlotinproduction.o
 release/moc_hdatatopass.o

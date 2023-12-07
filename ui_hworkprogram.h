@@ -183,10 +183,10 @@ public:
         tvStorico->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
         tvGeneral = new QTableView(splitter);
         tvGeneral->setObjectName(QString::fromUtf8("tvGeneral"));
-        tvGeneral->setEditTriggers(QAbstractItemView::DoubleClicked);
-        tvGeneral->setDragEnabled(true);
-        tvGeneral->setDragDropMode(QAbstractItemView::InternalMove);
-        tvGeneral->setDefaultDropAction(Qt::MoveAction);
+        tvGeneral->setEditTriggers(QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked);
+        tvGeneral->setDragEnabled(false);
+        tvGeneral->setDragDropMode(QAbstractItemView::NoDragDrop);
+        tvGeneral->setDefaultDropAction(Qt::IgnoreAction);
         tvGeneral->setAlternatingRowColors(true);
         tvGeneral->setSelectionMode(QAbstractItemView::SingleSelection);
         tvGeneral->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -211,6 +211,7 @@ public:
         cbshowrows->setObjectName(QString::fromUtf8("cbshowrows"));
         cbshowrows->setMinimumSize(QSize(125, 0));
         cbshowrows->setMaximumSize(QSize(300, 16777215));
+        cbshowrows->setChecked(false);
 
         horizontalLayout_2->addWidget(cbshowrows);
 

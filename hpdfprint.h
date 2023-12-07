@@ -19,7 +19,7 @@ class HPDFPrint : public QWidget
 public:
     explicit HPDFPrint(HUser *p_user=nullptr,QString p_html=QString(), QWidget *parent = nullptr);
     ~HPDFPrint();
-    void set_orientation(QPrinter::Orientation p_orientation);
+    void set_orientation(QPageLayout::Orientation p_orientation);
 
 private slots:
     void on_pbSave_pdf_clicked();
@@ -28,13 +28,22 @@ private slots:
 
     void on_pbClose_clicked();
 
+    void on_sbFontSize_valueChanged(int arg1);
+
+    void on_pbPreview_clicked();
+
+
+    void on_rbPortrait_toggled(bool checked);
+
+    void print_preview(QPrinter *p_printer);
 
 private:
     Ui::HPDFPrint *ui;
     HUser *user;
     QString html;
-    QPrinter::Orientation orientation;
+    QPageLayout layout;
     QTextDocument* doc;
+    QPrinter printer;
 
 
 

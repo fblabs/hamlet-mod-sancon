@@ -214,7 +214,7 @@ void HProdottiNew::print(bool pdf)
 
 
     HPDFPrint *f=new HPDFPrint(nullptr,strStream);
-    f->set_orientation(QPrinter::Portrait);
+    f->set_orientation(QPageLayout::Portrait);
     f->show();
 
 
