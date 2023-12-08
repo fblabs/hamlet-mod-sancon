@@ -73,7 +73,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     /* this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));*/
     connect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
-    //connect(ui->tvGeneral->verticalHeader(),SIGNAL(sectionMoved(int,int,int)),this,SLOT(save(int,int,int)));
+    connect(ui->tvGeneral->verticalHeader(),SIGNAL(sectionMoved(int,int,int)),this,SLOT(test(int,int,int)));
 
 
 }
@@ -302,6 +302,7 @@ void HWorkProgram::refreshSheet()
 {
 
 
+
     QSqlQueryModel *mod=new QSqlQueryModel();
 
     // QSqlRelationalDelegate *rdel=new QSqlRelationalDelegate();
@@ -310,7 +311,7 @@ void HWorkProgram::refreshSheet()
     QString sql="SELECT righe_produzione.ID,IDProduzione,num_riga,quantita,vaso_gr,specificaolio,idprodotto,prodotti.descrizione,olio,tappo,righe_produzione.idcliente,anagrafica.ragione_sociale,totale,sanificazione,numero_ordine,fresco,pastorizzato,allergeni,righe_produzione.note,lotto_scadenza,ricette.q_tot, righe_produzione.totale/ricette.q_tot as factor\
         FROM righe_produzione,prodotti,anagrafica,ricette\
                                   where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by num_riga asc;";
-        q.prepare(sql);
+    q.prepare(sql);
     q.bindValue(":id_p",wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
 
     q.exec();
@@ -320,6 +321,8 @@ void HWorkProgram::refreshSheet()
     wpmod=convert_to_wp(mod);
 
     QItemDelegate *rdel=new QItemDelegate();
+
+    ui->tvGeneral->setModel(nullptr);
 
     ui->tvGeneral->setModel(wpmod);
 
@@ -913,7 +916,7 @@ void HWorkProgram::save()
 {
 
 
-
+    QApplication::setOverrideCursor(Qt::WaitCursor);
 
     int idriga,numriga=0;
 
@@ -922,8 +925,7 @@ void HWorkProgram::save()
     for (int r=0;r<wpmod->rowCount();++r)
     {
         idriga=wpmod->index(r,0).data().toInt();
-        numriga=r+1;/*wpmod->index(r,2).data().toInt();*/
-
+        numriga=ui->tvGeneral->verticalHeader()->visualIndex(r)+1;
         QString sql="UPDATE righe_produzione set num_riga=:num where id=:id";
         QSqlQuery q(db);
         q.prepare(sql);
@@ -933,6 +935,8 @@ void HWorkProgram::save()
         q.exec();
 
     }
+
+    QApplication::restoreOverrideCursor();
 
 
 }
@@ -1077,9 +1081,6 @@ void HWorkProgram::on_pbDetails_clicked()
 
 void HWorkProgram::on_pbSingleSheet_clicked()
 {
-    /* int id=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
-
-    get_sheet_details(id);*/
 
     dets=false;
     refreshSheet();
@@ -1114,6 +1115,13 @@ HWpMod *HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
 
 
 }
+
+void HWorkProgram::test(int logical, int oldx, int newx)
+{
+    qDebug()<<logical<<oldx<<newx;
+}
+
+
 
 
 

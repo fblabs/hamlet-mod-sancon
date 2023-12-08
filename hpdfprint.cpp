@@ -146,3 +146,5 @@ void HPDFPrint::print_preview(QPrinter* p_printer)
     ui->tb_Viewport->document()->print(&printer);
 }
 
+
+

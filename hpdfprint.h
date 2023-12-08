@@ -37,6 +37,7 @@ private slots:
 
     void print_preview(QPrinter *p_printer);
 
+
 private:
     Ui::HPDFPrint *ui;
     HUser *user;

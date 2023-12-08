@@ -183,17 +183,21 @@ public:
         tvStorico->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
         tvGeneral = new QTableView(splitter);
         tvGeneral->setObjectName(QString::fromUtf8("tvGeneral"));
-        tvGeneral->setEditTriggers(QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked);
+        tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
         tvGeneral->setDragEnabled(false);
+        tvGeneral->setDragDropOverwriteMode(false);
         tvGeneral->setDragDropMode(QAbstractItemView::NoDragDrop);
         tvGeneral->setDefaultDropAction(Qt::IgnoreAction);
         tvGeneral->setAlternatingRowColors(true);
         tvGeneral->setSelectionMode(QAbstractItemView::SingleSelection);
         tvGeneral->setSelectionBehavior(QAbstractItemView::SelectRows);
-        tvGeneral->setSortingEnabled(true);
+        tvGeneral->setSortingEnabled(false);
         splitter->addWidget(tvGeneral);
+        tvGeneral->horizontalHeader()->setVisible(true);
         tvGeneral->horizontalHeader()->setStretchLastSection(true);
+        tvGeneral->verticalHeader()->setVisible(true);
         tvGeneral->verticalHeader()->setDefaultSectionSize(40);
+        tvGeneral->verticalHeader()->setHighlightSections(false);
         tvGeneral->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
 
         verticalLayout->addWidget(splitter);
