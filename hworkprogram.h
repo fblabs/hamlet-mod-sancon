@@ -91,13 +91,6 @@ private slots:
 
     HWpMod* convert_to_wp(const QSqlQueryModel *qmod=nullptr);
 
-    void test(int logical,int oldx,int newx );
-
-
-
-
-
-
 private:
     Ui::HWorkProgram *ui;
     HUser* user;

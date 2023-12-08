@@ -32,6 +32,7 @@
 #include <QPrintDialog>
 #include <QTextStream>
 #include "hwpmod.h"
+#include <QModelIndex>
 
 
 
@@ -46,6 +47,8 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
 
 
     getSheets(true);
+    connect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
+    ui->tvStorico->selectRow(0);
     ui->deDal->setDate(QDate::currentDate());
     ui->deAl->setDate(QDate::currentDate());
     ui->deAl->setVisible(false);
@@ -72,8 +75,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
 
     /* this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));*/
-    connect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
-    connect(ui->tvGeneral->verticalHeader(),SIGNAL(sectionMoved(int,int,int)),this,SLOT(test(int,int,int)));
+
 
 
 }
@@ -126,6 +128,7 @@ bool HWorkProgram::createSheet(int p_line, QDate p_date)
 void HWorkProgram::getSheets(bool create)
 {
     //  QSqlTableModel *mod=new QSqlTableModel(0,db);
+
     QModelIndex ix;
 
     /*  if(create){*/
@@ -134,26 +137,19 @@ void HWorkProgram::getSheets(bool create)
     wsmod->setSort(1,Qt::DescendingOrder);
     wsmod->select();
     ui->tvStorico->setModel(wsmod);
+    //disconnect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
     ix=wsmod->index(0,0);
     ui->tvStorico->setCurrentIndex(ix);
-    if(wsmod->rowCount()>0)
+
+    /*if(wsmod->rowCount()>0)
     {
         ui->tvStorico->selectRow(0);
         emit ui->tvStorico->clicked(ui->tvStorico->model()->index(ix.row(),ix.column()));
-        refreshSheet();
+        //  refreshSheet();
 
-    }
+    }*/
 
-    /*   }
-    else
-    {
-        ix=ui->tvStorico->currentIndex();
-        wsmod->select();
-        ui->tvStorico->setCurrentIndex(ix);
-        ui->tvStorico->selectRow(ix.row());
-        emit ui->tvStorico->clicked(ui->tvStorico->model()->index(ix.row(),ix.column()));
-        refreshSheet();
-  }*/
+
 
     ui->tvStorico->setColumnHidden(0,true);
     ui->tvStorico->setColumnHidden(2,true);
@@ -171,10 +167,7 @@ void HWorkProgram::getSheets(bool create)
         ui->tvStorico->horizontalHeader()->setSectionResizeMode(i,QHeaderView::ResizeToContents);
     }
     ui->tvGeneral->verticalHeader()->setSectionsMovable(true);
-    if (ui->tvGeneral->model()->rowCount()>0)
-    {
-        ui->tvGeneral->selectRow(0);
-    }
+
     QPalette p = ui->tvStorico->palette();
     p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
     ui->tvStorico->setPalette(p);
@@ -267,16 +260,16 @@ void HWorkProgram::storicoindexchange()
         ui->pbAdd->setEnabled(false);
         ui->pbModify->setEnabled(false);
         ui->pbRemove->setEnabled(false);
-       // ui->cbshowrows->setEnabled(false);
+        // ui->cbshowrows->setEnabled(false);
         ui->pbApprova->setEnabled(false);
         ui->pbDisapprova->setEnabled(false);
 
     }
 
-    qDebug()<<dets;
+
 
     int id_produzione=wsmod->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
-    qDebug()<<id_produzione<<dets;;
+
 
     if(dets)
     {
@@ -291,7 +284,7 @@ void HWorkProgram::storicoindexchange()
 
 
 
-    //dets?get_sheet_details(id_produzione):refreshSheet();
+
 
 
 
@@ -301,7 +294,7 @@ void HWorkProgram::storicoindexchange()
 void HWorkProgram::refreshSheet()
 {
 
-
+    qDebug()<<"refresh";
 
     QSqlQueryModel *mod=new QSqlQueryModel();
 
@@ -311,7 +304,7 @@ void HWorkProgram::refreshSheet()
     QString sql="SELECT righe_produzione.ID,IDProduzione,num_riga,quantita,vaso_gr,specificaolio,idprodotto,prodotti.descrizione,olio,tappo,righe_produzione.idcliente,anagrafica.ragione_sociale,totale,sanificazione,numero_ordine,fresco,pastorizzato,allergeni,righe_produzione.note,lotto_scadenza,ricette.q_tot, righe_produzione.totale/ricette.q_tot as factor\
         FROM righe_produzione,prodotti,anagrafica,ricette\
                                   where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by num_riga asc;";
-    q.prepare(sql);
+        q.prepare(sql);
     q.bindValue(":id_p",wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
 
     q.exec();
@@ -319,6 +312,7 @@ void HWorkProgram::refreshSheet()
     mod->setQuery(q);
 
     wpmod=convert_to_wp(mod);
+    delete mod;
 
     QItemDelegate *rdel=new QItemDelegate();
 
@@ -328,7 +322,7 @@ void HWorkProgram::refreshSheet()
 
     wpmod->setHeaderData(2,Qt::Horizontal,"N. riga");
     wpmod->setHeaderData(3,Qt::Horizontal,"Q.tà");
-    wpmod->setHeaderData(4,Qt::Horizontal,"Peso prod.");
+        wpmod->setHeaderData(4,Qt::Horizontal,"Peso prod.");
     wpmod->setHeaderData(5,Qt::Horizontal,"Peso olio");
     wpmod->setHeaderData(6,Qt::Horizontal,"ID prod.");
     wpmod->setHeaderData(7,Qt::Horizontal,"Prodotto");
@@ -357,19 +351,11 @@ void HWorkProgram::refreshSheet()
     ui->tvGeneral->setItemDelegate(rdel);
     ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
-    ui->tvGeneral->verticalHeader()->setVisible(true);
+//ui->tvGeneral->verticalHeader()->setVisible(true);
 
 
 
-   // setHeaders();
 
-    /* for(int c=0;c<ui->tvGeneral->model()->columnCount();++c)
-    {
-
-
-        ui->tvGeneral->setColumnHidden(c,false);
-
-    }*/
 
 
 
@@ -413,7 +399,7 @@ void HWorkProgram::deleteSheet()
         }
 
     }
-    refreshSheet();
+
 
 }
 
@@ -474,6 +460,8 @@ void HWorkProgram::updateSheet(int newrow, int oldrow)
 void HWorkProgram::on_pbSave_clicked()
 {
     save();
+
+
     refreshSheet();
 
 
@@ -524,7 +512,7 @@ void HWorkProgram::on_pbRemove_clicked()
 
 void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
 {
-   /* if (!ui->cbshowrows->isChecked())*/ showModRow();
+    /* if (!ui->cbshowrows->isChecked())*/ showModRow();
 }
 
 void HWorkProgram::on_pbModify_clicked()
@@ -1114,11 +1102,6 @@ HWpMod *HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
     return wmod;
 
 
-}
-
-void HWorkProgram::test(int logical, int oldx, int newx)
-{
-    qDebug()<<logical<<oldx<<newx;
 }
 
 
