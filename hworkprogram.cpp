@@ -322,7 +322,7 @@ void HWorkProgram::refreshSheet()
 
     wpmod->setHeaderData(2,Qt::Horizontal,"N. riga");
     wpmod->setHeaderData(3,Qt::Horizontal,"Q.tà");
-        wpmod->setHeaderData(4,Qt::Horizontal,"Peso prod.");
+    wpmod->setHeaderData(4,Qt::Horizontal,"Peso prod.");
     wpmod->setHeaderData(5,Qt::Horizontal,"Peso olio");
     wpmod->setHeaderData(6,Qt::Horizontal,"ID prod.");
     wpmod->setHeaderData(7,Qt::Horizontal,"Prodotto");
@@ -351,7 +351,8 @@ void HWorkProgram::refreshSheet()
     ui->tvGeneral->setItemDelegate(rdel);
     ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
-//ui->tvGeneral->verticalHeader()->setVisible(true);
+    ui->tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
+
 
 
 
@@ -680,6 +681,7 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
     QSqlQuery q(db);
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
+    ui->tvGeneral->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 
 
