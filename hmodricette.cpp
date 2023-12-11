@@ -38,19 +38,17 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
 
     getRicette();
 
-    tric=new QSqlTableModel(0,db);
-    tric->setTable("prodotti");
-    tric->setFilter("tipo=2");
-    tric->setSort(1,Qt::AscendingOrder);
-    tric->select();
+
 
     ui->cbRicette->setModel(qmric);
     ui->cbRicette->setModelColumn(1);
 
 
+
+
     ui->cbRicette->setCurrentIndex(-1);
 
-    connect(ui->cbRicette,SIGNAL(currentIndexChanged(int)),this,SLOT(loadRicetta()));
+
 
 
     //  ui->cbRicette->findData()
@@ -67,6 +65,8 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     QShortcut *shortcut =new QShortcut(QKeySequence("F5"),this);
     connect(shortcut,SIGNAL(activated()),this,SLOT(showAssociatedCustomers()));
     connect(this,SIGNAL(go_calc()),this,SLOT(calculateTotal()));
+    connect(ui->cbRicette,SIGNAL(currentIndexChanged(int)),this,SLOT(loadRicetta()));
+    ui->cbRicette->setFocus();
 
 }
 
@@ -142,7 +142,7 @@ void HModRicette::getRicette()
     {
         ui->pushButton_3->setEnabled(true);
         //  sql="SELECT prodotti.ID,prodotti.descrizione from prodotti WHERE prodotti.ID not in (SELECT ID_prodotto from ricette) AND prodotti.tipo in (2,6) ORDER BY prodotti.descrizione ASC";
-        sql="select distinctrow prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID NOT IN (SELECT ricette.ID_prodotto from ricette) and prodotti.tipo in (2,6) order by prodotti.descrizione ASC ";
+        sql="select prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID NOT IN (SELECT ricette.ID_prodotto from ricette) and prodotti.tipo in (2,6) order by prodotti.descrizione ASC ";
     }
     q.exec(sql);
     qmric->setQuery(q);
@@ -154,8 +154,7 @@ void HModRicette::getRicette()
     comp->setCompletionMode(QCompleter::PopupCompletion);
     comp->setCaseSensitivity(Qt::CaseInsensitive);
     ui->cbRicette->setCompleter(comp);
-    //ui->cbRicette->setCurrentIndex(0);
-
+    ui->cbRicette->setCurrentIndex(-1);
 
 }
 
@@ -380,9 +379,13 @@ bool HModRicette::duplicateRecipe()
 void HModRicette::loadRicetta()
 {
 
-    if(ui->cbRicette->model()->rowCount()<1){return;}
+
 
     int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
+
+    qDebug()<<idricetta;
+
+    if(idricetta<1) return;
 
     QSqlQuery q(db);
     // QString sql = "SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_prodotto=:idprodotto ORDER BY righe_ricette.quantita DESC";
@@ -574,7 +577,7 @@ void HModRicette::save()
 
 
     db.transaction();
-    saveNote();
+
     //cancello la ricetta
 
     sql="delete from righe_ricette where ID_ricetta=:idricetta";
@@ -592,7 +595,7 @@ void HModRicette::save()
 
     sql="insert into righe_ricette (ID_ricetta,ID_prodotto,quantita,show_prod) VALUES (:idricetta,:idprodotto,:quantita,:show)";
 
-    for (int i=0; i< rows;i++)
+    for (int i=0; i< rows;++i)
     {
 
         idpro=ui->tableView->model()->index(i,2).data(0).toInt();
@@ -607,11 +610,14 @@ void HModRicette::save()
         q.bindValue(":quantita",QVariant(quant));
         q.bindValue(":show",QVariant(show));
         bool c=q.exec();
+        qDebug()<<i;
+
+         saveNote();
 
         if(!c)
         {
             db.rollback();
-            QMessageBox::warning(this,QApplication::applicationName(),"Si è verificato un errore (riga 554)",QMessageBox::Ok);
+            QMessageBox::warning(this,QApplication::applicationName(),"Si è verificato un errore ",QMessageBox::Ok);
                 return;
         }
         else
@@ -626,8 +632,9 @@ void HModRicette::save()
 
 
 
-
+    loadRicetta();
     QMessageBox::information(this,QApplication::applicationName(),"Ricetta salvata",QMessageBox::Ok);
+
 
 }
 

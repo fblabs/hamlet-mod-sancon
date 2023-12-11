@@ -73,7 +73,6 @@ private:
     Ui::HModRicette *ui;
     bool update;
     QSqlDatabase db;
-    QSqlTableModel *tric;
     QSqlQueryModel *qmric;
     QList<int> *writeRed;
     HUser *user;
