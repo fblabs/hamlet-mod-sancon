@@ -578,6 +578,8 @@ void HModRicette::save()
 
     db.transaction();
 
+     saveNote();
+
     //cancello la ricetta
 
     sql="delete from righe_ricette where ID_ricetta=:idricetta";
@@ -612,7 +614,7 @@ void HModRicette::save()
         bool c=q.exec();
         qDebug()<<i;
 
-         saveNote();
+
 
         if(!c)
         {
