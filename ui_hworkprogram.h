@@ -184,7 +184,7 @@ public:
         tvGeneral = new QTableView(splitter);
         tvGeneral->setObjectName(QString::fromUtf8("tvGeneral"));
         tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
-        tvGeneral->setDragEnabled(false);
+        tvGeneral->setDragEnabled(true);
         tvGeneral->setDragDropOverwriteMode(false);
         tvGeneral->setDragDropMode(QAbstractItemView::NoDragDrop);
         tvGeneral->setDefaultDropAction(Qt::IgnoreAction);

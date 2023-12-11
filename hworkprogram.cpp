@@ -177,7 +177,6 @@ void HWorkProgram::getSheets(bool create)
 
 void HWorkProgram::approve(bool approve)
 {
-    qDebug()<<"approve";
     QSqlQuery q(db);
     QString sql="update produzione set approvato=:approvato where ID=:id";
 
@@ -294,7 +293,6 @@ void HWorkProgram::storicoindexchange()
 void HWorkProgram::refreshSheet()
 {
 
-    qDebug()<<"refresh";
 
     QSqlQueryModel *mod=new QSqlQueryModel();
 
@@ -437,7 +435,7 @@ void HWorkProgram::updateSheet(int newrow, int oldrow)
     q.bindValue(":oldnum",oldrow);
 
 
-    qDebug()<<q.lastQuery()<<newrow<<oldrow;
+
 
     b=q.exec();
 
@@ -624,7 +622,7 @@ void HWorkProgram::print()
 
     // data table
     for (int row = 0; row < rowCount; row++) {
-        qDebug()<<row;
+
         out << "<tr>";
         if(row%2)
         {
@@ -712,7 +710,7 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
 
         q.exec();
 
-        qDebug()<<q.lastError().text();
+
         qmod->setQuery(q);
         process(qmod);
         // ui->tvGeneral->setModel(qmod);
@@ -741,14 +739,6 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
             vpr.append(r);
         }
 
-        // int id_produzione=wsmod->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
-        //qDebug()<<p_id_produzione;
-        /*  sql="select id_prodotto,prodotti.descrizione,sum(quantita) as q from righe_ricette,prodotti where prodotti.id=righe_ricette.ID_prodotto and ID_ricetta in\
-            (select id from ricette where ID_prodotto in\
-             (select idprodotto from righe_produzione where IDProduzione =:id_p)) group by id_prodotto order by q desc";*/
-        /* sql="select righe_ricette.ID_prodotto,righe_produzione.totale as rptot,ricette.q_tot as ricetteqtot,righe_produzione.totale/ricette.q_tot  as factor,i.ID,i.descrizione,righe_ricette.quantita * (righe_produzione.totale/ricette.q_tot) as res\
-            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
-             where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and produzione.ID =:id_p";*/
 
         sql="select righe_ricette.ID_prodotto,righe_produzione.totale as rptot,ricette.q_tot as ricetteqtot,righe_produzione.totale/ricette.q_tot  as factor,i.ID,i.descrizione,righe_ricette.quantita * (righe_produzione.totale/ricette.q_tot) as res\
             from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
@@ -804,11 +794,6 @@ void HWorkProgram::add_row(QStandardItemModel *mod, QList<QStandardItem *> row)
 
 void HWorkProgram::process(const QSqlQueryModel *mod)
 {
-    // qDebug()<<"process";
-
-
-
-
     QLocale loc;
     QVector<int> vp;
 
@@ -910,7 +895,7 @@ void HWorkProgram::save()
 
     int idriga,numriga=0;
 
-
+    db.transaction();
 
     for (int r=0;r<wpmod->rowCount();++r)
     {
@@ -925,8 +910,18 @@ void HWorkProgram::save()
         q.exec();
 
     }
+     QApplication::restoreOverrideCursor();
 
-    QApplication::restoreOverrideCursor();
+    if(QMessageBox::question(this,QApplication::applicationName(),"Confermi il salvataggio?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        db.commit();
+    }
+    else
+    {
+        db.rollback();
+    }
+
+
 
 
 }
@@ -962,7 +957,7 @@ void HWorkProgram::search()
     if(ui->spSearchLinea->value()==0)
     {
         static_cast<QSqlTableModel*>(ui->tvStorico->model())->setFilter("dal between '"+ui->deSearch->date().toString("yyyy-MM-dd")+"' and '"+ ui->deSearchTo->date().toString("yyyy-MM-dd") +"'");
-        qDebug()<<static_cast<QSqlTableModel*>(ui->tvStorico->model())->filter();
+
     }
     else if(ui->spSearchLinea->value()>0)
     {

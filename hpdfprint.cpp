@@ -16,6 +16,11 @@ HPDFPrint::HPDFPrint(HUser *p_user, QString p_html, QWidget *parent) :
     ui->setupUi(this);
     user=p_user;
     html=p_html;
+    QFont font=ui->tb_Viewport->font();
+    font.setPointSize(9);
+    ui->sbFontSize->setValue(9);
+
+    ui->tb_Viewport->setFont(font);
     ui->tb_Viewport->document()->setHtml(html);
     layout.setOrientation(QPageLayout::Portrait);
 
@@ -128,6 +133,8 @@ void HPDFPrint::on_pbPreview_clicked()
 
     connect(dlg,SIGNAL(paintRequested(QPrinter*)),this,SLOT(print_preview(QPrinter*)));
 
+    ui->rbPortrait->isChecked()?printer.setOrientation(QPrinter::Portrait):printer.setOrientation(QPrinter::Landscape);
+
     dlg->exec();
 }
 
@@ -138,11 +145,13 @@ void HPDFPrint::on_pbPreview_clicked()
 void HPDFPrint::on_rbPortrait_toggled(bool checked)
 {
 
-    checked?layout.setOrientation(QPageLayout::Portrait):layout.setOrientation(QPageLayout::Landscape);
+
 }
 
 void HPDFPrint::print_preview(QPrinter* p_printer)
 {
+    ui->rbPortrait->isChecked()?layout.setOrientation(QPageLayout::Portrait):layout.setOrientation(QPageLayout::Landscape);
+
     ui->tb_Viewport->document()->print(&printer);
 }
 
