@@ -62,11 +62,11 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->pbDeleteSheet->setEnabled(user->get_programmi_u()>0);
     ui->pbAdd->setEnabled(user->get_programmi_u()>0);
     ui->pbRemove->setEnabled(user->get_programmi_u()>0);
-    ui->pbModify->setEnabled(user->get_programmi_u()>0);
+    ui->pbModify->setEnabled(user->get_wp_u()>0);
     ui->pbApprova->setEnabled(user->get_programmi_u()>0);
     ui->pbDisapprova->setEnabled(user->get_programmi_u()>0);
     ui->pbPrint->setEnabled(true);
-    ui->pbAdd->setEnabled(user->get_wp_u()>0);
+   // ui->pbAdd->setEnabled(user->get_wp_u()>0);
 
 
 
@@ -518,7 +518,7 @@ void HWorkProgram::on_pbRemove_clicked()
 
 void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
 {
-    if(user->get_programmi_u()>0) showModRow();
+    if(user->get_wp_u()>0) showModRow();
 }
 
 void HWorkProgram::on_pbModify_clicked()
