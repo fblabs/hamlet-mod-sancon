@@ -141,6 +141,9 @@ void HUser::set_permissions(const QSqlQueryModel *p_perms)
     costi_u=perm_rec.value(29).toInt();
     analisi_v=perm_rec.value(30).toInt();
     analisi_u=perm_rec.value(31).toInt();
+    wp_v=perm_rec.value(32).toInt();
+    wp_u=perm_rec.value(33).toInt();
+
 
 }
 
@@ -282,6 +285,16 @@ int HUser::get_analisi_v()
 int HUser::get_analisi_u()
 {
     return analisi_u;
+}
+
+int HUser::get_wp_v()
+{
+    return wp_v;
+}
+
+int HUser::get_wp_u()
+{
+    return wp_u;
 }
 
 

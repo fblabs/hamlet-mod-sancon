@@ -12,12 +12,13 @@
 #include <QCompleter>
 #include <QStringListModel>
 
-HModifyRow::HModifyRow(int p_id, int p_row, HUser *p_user, QSqlDatabase p_db, QWidget *parent) :
+HModifyRow::HModifyRow(const int p_id,const int p_idrow,const int p_row, HUser *p_user, QSqlDatabase p_db, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HModifyRow)
 {
     ui->setupUi(this);
     idp=p_id;
+    idrow=p_idrow;
     row=p_row;
     user=p_user;
     db=p_db;
@@ -43,6 +44,8 @@ void HModifyRow::setPermissions(HUser *p_user)
     ui->cbCliente->setEnabled(p_user->get_programmi_u()>0);
     ui->cbProdotto->setEnabled(p_user->get_programmi_u()>0);
     ui->pbSave->setEnabled(p_user->get_programmi_u()>0);
+    ui->ptLotti->setEnabled(p_user->get_wp_u()>0);
+    ui->pbSaveLots->setEnabled(p_user->get_wp_u()>0);
 
 }
 
@@ -153,6 +156,10 @@ qDebug()<<"loadRow";
    ui->leLotScad->setText(rows_model->index(0,17).data(0).toString());
    int fresco=rows_model->index(0,13).data(0).toInt();
    int pastorizzato=rows_model->index(0,14).data(0).toInt();
+   QString lotti=rows_model->index(0,17).data(0).toString();
+   QString lotScad=rows_model->index(0,18).data(0).toString();
+   QString note=rows_model->index(0,16).data(0).toString();
+
 
    qDebug()<<fresco<<pastorizzato;
    if(fresco>0)
@@ -167,13 +174,16 @@ qDebug()<<"loadRow";
    {
        ui->rbNone->setChecked(true);
    }
-   QString note=rows_model->index(0,16).data(0).toString();
+
    ui->ptNote->setPlainText(note);
+   ui->ptLotti->setPlainText(lotti);
+   ui->leLotScad->setText(lotScad);
 
    bool vok=false;
    double tot=rows_model->index(0,10).data(0).toDouble(&vok);
    ui->leTotal->setText(QString::number(tot,'f',3));
-   QString lotScad=rows_model->index(0,17).data(0).toString();
+
+
 
 
 
@@ -230,7 +240,7 @@ void HModifyRow::saveRow(){
     }
 
     QSqlQuery q(db);
-    QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,lotto_scadenza=:lotscad,totale=:tot where IDproduzione=:idproduzione and num_riga=:num";
+    QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,lotti=:lotti,lotto_scadenza=:lotscad,totale=:tot where IDproduzione=:idproduzione and num_riga=:num";
     db.transaction();
     q.prepare(sql);
     q.bindValue(":idcliente",idcliente);
@@ -246,7 +256,9 @@ void HModifyRow::saveRow(){
     q.bindValue(":fresco",fresco);
     q.bindValue(":pasto",pastorizzato);
     q.bindValue(":note",ui->ptNote->toPlainText());
+    q.bindValue(":lotti",ui->ptLotti->toPlainText());
     q.bindValue(":lotscad",lotScad);
+
     bool ok=false;
     q.bindValue(":tot",ui->leTotal->text().toDouble(&ok));
     if(!ok)
@@ -303,5 +315,25 @@ void HModifyRow::on_leTotal_returnPressed()
     ui->leTotal->setText(QString::number(totale,'f',3));
 
 
+}
+
+
+void HModifyRow::on_pbSaveLots_clicked()
+{
+    QSqlQuery q(db);
+
+    QString sql="update righe_produzione set lotti=:lotti where id=:id";
+    q.prepare(sql);
+    q.bindValue(":lotti",ui->ptLotti->toPlainText());
+    q.bindValue(":id",idrow);
+    qDebug()<<"IDROWP"<<idrow;
+
+    if(QMessageBox::question(this,QApplication::applicationName(),"Salvare i lotti produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+       bool b= q.exec();
+
+        if(!b)QMessageBox::warning(this,QApplication::applicationName(),"Errore durante il salvataggio\n"+q.lastError().text(),QMessageBox::Ok);
+        emit done();
+    }
 }
 

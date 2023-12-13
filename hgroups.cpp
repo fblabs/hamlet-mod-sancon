@@ -110,6 +110,11 @@ void HGroups::setup_permissions_ui(QSqlTableModel *mod)
     current_record.value(29).toInt()>0?ui->cbUpdateCalcoloCosti->setChecked(true):ui->cbUpdateCalcoloCosti->setChecked(false);
     current_record.value(30).toInt()>0?ui->cbVistaAnalisi->setChecked(true):ui->cbVistaAnalisi->setChecked(false);
     current_record.value(31).toInt()>0?ui->cbUpdateAnalisi->setChecked(true):ui->cbUpdateAnalisi->setChecked(false);
+    current_record.value(32).toInt()>0?ui->cbVistaFoglilavoro->setChecked(true):ui->cbVistaFoglilavoro->setChecked(false);
+    current_record.value(33).toInt()>0?ui->cbAggiornaFogliLavoro->setChecked(true):ui->cbAggiornaFogliLavoro->setChecked(false);
+
+
+
     ui->leDesc->setText( current_record.value(32).toString());
 
 
@@ -122,13 +127,13 @@ void HGroups::update_permissions(const int gruppo)
     QSqlQuery q(db);
 
     int utenti_v,utenti_u,anagrafica_v,anagrafica_u,notifiche_v,notifiche_u,contatti_v,contatti_u,lotti_v,lotti_u,operazioni_v,operazioni_u,prodotti_v,prodotti_u,schede_v,schede_u,ricette_v,ricette_u,programmi_v,programmi_u,produzione_v,produzione_u,packages_v,packages_u =0;
-    int costi_v, costi_u,analisi_v,analisi_u=0;
+    int costi_v, costi_u,analisi_v,wp_v,wp_u,analisi_u=0;
 
 
 
     QString sql="update gruppi set utenti_v=:utenti_v, utenti_u=:utenti_u, anagrafica_v=:anagrafica_v, anagrafica_u=:anagrafica_u, notifiche_v=:notifiche_v, notifiche_u=:notifiche_u,contatti_v=:contatti_v,contatti_u=:contatti_u,lotti_v=:lotti_v,lotti_u=:lotti_u,\
             operazioni_v=:operazioni_v,operazioni_u=:operazioni_u,prodotti_v=:prodotti_v,prodotti_u=:prodotti_u,schede_v=:schede_v,schede_u=:schede_u,ricette_v=:ricette_v,ricette_u=:ricette_u,programmi_v=:programmi_v,programmi_u=:programmi_u,produzione_v=:produzione_v,produzione_u=:produzione_u,packages_v=:packages_v,packages_u=:packages_u,\
-            costi_v=:costi_v,costi_u=:costi_u,analisi_v=:analisi_v,analisi_u=:analisi_u,note=:note where ID=:id";
+            costi_v=:costi_v,costi_u=:costi_u,analisi_v=:analisi_v,analisi_u=:analisi_u,wp_v=:wp_v,wp_u=:wp_u,note=:note where ID=:id";
 
             ui->cbVistaUtenti->isChecked()?utenti_v=1:utenti_v=0;
     ui->cbUpdateUtenti->isChecked()?utenti_u=1:utenti_u=0;
@@ -158,6 +163,8 @@ void HGroups::update_permissions(const int gruppo)
     ui->cbUpdatePackages->isChecked()?costi_u=1:costi_u=0;
     ui->cbVistaAnalisi->isChecked()?analisi_v=1:analisi_v=0;
     ui->cbUpdateAnalisi->isChecked()?analisi_u=1:analisi_u=0;
+    ui->cbVistaFoglilavoro->isChecked()?wp_v=1:wp_v=0;
+    ui->cbAggiornaFogliLavoro->isChecked()?wp_u=1:wp_u=0;
 
 
     q.prepare(sql);
@@ -189,6 +196,8 @@ void HGroups::update_permissions(const int gruppo)
     q.bindValue(":costi_u",costi_u);
     q.bindValue(":analisi_v",analisi_v);
     q.bindValue(":analisi_u",analisi_u);
+    q.bindValue(":wp_v",wp_v);
+    q.bindValue(":wp_u",wp_u);
     q.bindValue(":note",ui->leDesc->text());
     q.bindValue(":id",gruppo);
 
@@ -199,6 +208,7 @@ void HGroups::update_permissions(const int gruppo)
         db.commit();
         QMessageBox::information(this,QApplication::applicationName(),"Permessi aggiornati",QMessageBox::Ok);
     }else{
+        QMessageBox::information(this,QApplication::applicationName(),"Errore"+q.lastError().text()+QString::number(wp_v)+" "+QString::number(wp_u),QMessageBox::Ok);
         db.rollback();
     }
 

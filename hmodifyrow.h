@@ -14,13 +14,14 @@ class HModifyRow : public QWidget
     Q_OBJECT
 
 public:
-    explicit HModifyRow(int p_id=-1, int p_row=-1, HUser *p_user=0, QSqlDatabase p_db=QSqlDatabase(),QWidget* parent=0);
+    explicit HModifyRow(const int p_id=-1, const int p_idrow=-1, const int p_row=-1, HUser *p_user=0, QSqlDatabase p_db=QSqlDatabase(), QWidget* parent=0);
     ~HModifyRow();
 
 private:
     Ui::HModifyRow *ui;
     int idp;
     int row;
+    int idrow;
     HUser* user;
     QSqlDatabase db;
 private slots:
@@ -37,6 +38,8 @@ private slots:
     void saveRow();
     void setPermissions(HUser *p_user=0);
 
+
+    void on_pbSaveLots_clicked();
 
 signals:
     void done();

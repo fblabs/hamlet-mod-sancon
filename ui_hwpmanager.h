@@ -60,16 +60,19 @@ public:
     QRadioButton *rbFresh;
     QRadioButton *rbPastorized;
     QRadioButton *rbNone;
-    QHBoxLayout *horizontalLayout;
-    QHBoxLayout *horizontalLayout_2;
+    QFormLayout *formLayout_4;
+    QLabel *label_14;
+    QPlainTextEdit *ptLotti;
+    QFormLayout *formLayout_3;
     QLabel *label_11;
     QPlainTextEdit *ptNote;
     QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer;
     QLabel *label_13;
     QLineEdit *leLotScad;
     QLabel *label_7;
     QLineEdit *leTotal;
-    QSpacerItem *horizontalSpacer;
+    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pbSave;
     QPushButton *pbClose;
@@ -79,7 +82,7 @@ public:
         if (HWpManager->objectName().isEmpty())
             HWpManager->setObjectName(QString::fromUtf8("HWpManager"));
         HWpManager->setWindowModality(Qt::ApplicationModal);
-        HWpManager->resize(747, 415);
+        HWpManager->resize(747, 462);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HWpManager->setWindowIcon(icon);
@@ -243,28 +246,44 @@ public:
 
         verticalLayout->addLayout(gridLayout_2);
 
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        formLayout_4 = new QFormLayout();
+        formLayout_4->setObjectName(QString::fromUtf8("formLayout_4"));
+        label_14 = new QLabel(HWpManager);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
 
-        verticalLayout->addLayout(horizontalLayout);
+        formLayout_4->setWidget(0, QFormLayout::LabelRole, label_14);
 
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        ptLotti = new QPlainTextEdit(HWpManager);
+        ptLotti->setObjectName(QString::fromUtf8("ptLotti"));
+        ptLotti->setMaximumSize(QSize(16777215, 80));
+
+        formLayout_4->setWidget(0, QFormLayout::FieldRole, ptLotti);
+
+
+        verticalLayout->addLayout(formLayout_4);
+
+        formLayout_3 = new QFormLayout();
+        formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
         label_11 = new QLabel(HWpManager);
         label_11->setObjectName(QString::fromUtf8("label_11"));
 
-        horizontalLayout_2->addWidget(label_11);
+        formLayout_3->setWidget(0, QFormLayout::LabelRole, label_11);
 
         ptNote = new QPlainTextEdit(HWpManager);
         ptNote->setObjectName(QString::fromUtf8("ptNote"));
+        ptNote->setMaximumSize(QSize(16777215, 80));
 
-        horizontalLayout_2->addWidget(ptNote);
+        formLayout_3->setWidget(0, QFormLayout::FieldRole, ptNote);
 
 
-        verticalLayout->addLayout(horizontalLayout_2);
+        verticalLayout->addLayout(formLayout_3);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer);
+
         label_13 = new QLabel(HWpManager);
         label_13->setObjectName(QString::fromUtf8("label_13"));
 
@@ -286,12 +305,12 @@ public:
 
         horizontalLayout_3->addWidget(leTotal);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_3->addItem(horizontalSpacer);
-
 
         verticalLayout->addLayout(horizontalLayout_3);
+
+        verticalSpacer = new QSpacerItem(20, 11, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
@@ -354,6 +373,7 @@ public:
         rbFresh->setText(QCoreApplication::translate("HWpManager", "Fresco", nullptr));
         rbPastorized->setText(QCoreApplication::translate("HWpManager", "Pastorizzato", nullptr));
         rbNone->setText(QCoreApplication::translate("HWpManager", "Nessuna", nullptr));
+        label_14->setText(QCoreApplication::translate("HWpManager", "Lotti:", nullptr));
         label_11->setText(QCoreApplication::translate("HWpManager", "Note:", nullptr));
         label_13->setText(QCoreApplication::translate("HWpManager", "Lotto/scadenza:", nullptr));
         label_7->setText(QCoreApplication::translate("HWpManager", "Totale:", nullptr));

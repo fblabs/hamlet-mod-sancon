@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>964</width>
-    <height>451</height>
+    <height>386</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -111,23 +111,32 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="font">
-          <font>
-           <bold>true</bold>
-          </font>
-         </property>
+       <item row="5" column="1">
+        <widget class="QCheckBox" name="cbVistaOperazioni">
          <property name="text">
-          <string>Utenti</string>
+          <string>Visualizzazione</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QCheckBox" name="cbVistaUtenti">
+       <item row="2" column="2">
+        <widget class="QCheckBox" name="cbUpdateNotifiche">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="cbVistaAnagrafica">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QCheckBox" name="cbVistaProdotti">
          <property name="text">
           <string>Visualizzazione</string>
          </property>
@@ -135,6 +144,13 @@
        </item>
        <item row="0" column="2">
         <widget class="QCheckBox" name="cbUpdateUtenti">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QCheckBox" name="cbUpdateProdotti">
          <property name="text">
           <string>Aggiornamento</string>
          </property>
@@ -152,10 +168,15 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QCheckBox" name="cbVistaAnagrafica">
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
-          <string>Visualizzazione</string>
+          <string>Prodotti:</string>
          </property>
         </widget>
        </item>
@@ -178,41 +199,20 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QCheckBox" name="cbVistaNotifiche">
-         <property name="text">
-          <string>Visualizzazione</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QCheckBox" name="cbUpdateNotifiche">
-         <property name="text">
-          <string>Aggiornamento</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_6">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_2">
          <property name="font">
           <font>
            <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>Contatti:</string>
+          <string>Utenti</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QCheckBox" name="cbVistacontatti">
-         <property name="text">
-          <string>Visualizzazione</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
-        <widget class="QCheckBox" name="cbUpdateContatti">
+       <item row="5" column="2">
+        <widget class="QCheckBox" name="cbUpdateOperazioni">
          <property name="text">
           <string>Aggiornamento</string>
          </property>
@@ -230,17 +230,22 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QCheckBox" name="cbVistaLotti">
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
-          <string>Visualizzazione</string>
+          <string>Contatti:</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="2">
-        <widget class="QCheckBox" name="cbUpdateLotti">
+       <item row="0" column="1">
+        <widget class="QCheckBox" name="cbVistaUtenti">
          <property name="text">
-          <string>Aggiornamento</string>
+          <string>Visualizzazione</string>
          </property>
         </widget>
        </item>
@@ -256,41 +261,62 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
-        <widget class="QCheckBox" name="cbVistaOperazioni">
+       <item row="4" column="1">
+        <widget class="QCheckBox" name="cbVistaLotti">
          <property name="text">
           <string>Visualizzazione</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="2">
-        <widget class="QCheckBox" name="cbUpdateOperazioni">
+       <item row="4" column="2">
+        <widget class="QCheckBox" name="cbUpdateLotti">
          <property name="text">
           <string>Aggiornamento</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="label_8">
+       <item row="3" column="1">
+        <widget class="QCheckBox" name="cbVistacontatti">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QCheckBox" name="cbUpdateContatti">
+         <property name="text">
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QCheckBox" name="cbVistaNotifiche">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label">
          <property name="font">
           <font>
            <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>Prodotti:</string>
+          <string>Fogli lavoro:</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="1">
-        <widget class="QCheckBox" name="cbVistaProdotti">
+       <item row="7" column="1">
+        <widget class="QCheckBox" name="cbVistaFoglilavoro">
          <property name="text">
           <string>Visualizzazione</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="2">
-        <widget class="QCheckBox" name="cbUpdateProdotti">
+       <item row="7" column="2">
+        <widget class="QCheckBox" name="cbAggiornaFogliLavoro">
          <property name="text">
           <string>Aggiornamento</string>
          </property>
@@ -300,29 +326,34 @@
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_9">
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_15">
          <property name="font">
           <font>
            <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>Schede Clienti:</string>
+          <string>Analisi:</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QCheckBox" name="cbVistaSchede">
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_13">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Packages:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="cbVistaRicette">
          <property name="text">
           <string>Visualizzazione</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QCheckBox" name="cbUpdateSchede">
-         <property name="text">
-          <string>Aggiornamento</string>
          </property>
         </widget>
        </item>
@@ -338,41 +369,15 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QCheckBox" name="cbVistaRicette">
-         <property name="text">
-          <string>Visualizzazione</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QCheckBox" name="cbUpdateRicette">
+       <item row="5" column="2">
+        <widget class="QCheckBox" name="cbUpdateCalcoloCosti">
          <property name="text">
           <string>Aggiornamento</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_11">
-         <property name="font">
-          <font>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Programmi:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QCheckBox" name="cbVistaProgrammi">
-         <property name="text">
-          <string>Visualizzazione</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QCheckBox" name="cbUpdateProgrammi">
+       <item row="6" column="2">
+        <widget class="QCheckBox" name="cbUpdateAnalisi">
          <property name="text">
           <string>Aggiornamento</string>
          </property>
@@ -390,8 +395,20 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QCheckBox" name="cbVistaProduzione">
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_11">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Programmi:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QCheckBox" name="cbVistaCalcoloCosti">
          <property name="text">
           <string>Visualizzazione</string>
          </property>
@@ -404,15 +421,24 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_13">
-         <property name="font">
-          <font>
-           <bold>true</bold>
-          </font>
-         </property>
+       <item row="1" column="2">
+        <widget class="QCheckBox" name="cbUpdateRicette">
          <property name="text">
-          <string>Packages:</string>
+          <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QCheckBox" name="cbVistaProgrammi">
+         <property name="text">
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QCheckBox" name="cbUpdateSchede">
+         <property name="text">
+          <string>Aggiornamento</string>
          </property>
         </widget>
        </item>
@@ -420,13 +446,6 @@
         <widget class="QCheckBox" name="cbVistaPackages">
          <property name="text">
           <string>Visualizzazione</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="2">
-        <widget class="QCheckBox" name="cbUpdatePackages">
-         <property name="text">
-          <string>Aggiornamento</string>
          </property>
         </widget>
        </item>
@@ -442,29 +461,24 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
-        <widget class="QCheckBox" name="cbVistaCalcoloCosti">
-         <property name="text">
-          <string>Visualizzazione</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="2">
-        <widget class="QCheckBox" name="cbUpdateCalcoloCosti">
+       <item row="4" column="2">
+        <widget class="QCheckBox" name="cbUpdatePackages">
          <property name="text">
           <string>Aggiornamento</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="label_15">
-         <property name="font">
-          <font>
-           <bold>true</bold>
-          </font>
-         </property>
+       <item row="3" column="1">
+        <widget class="QCheckBox" name="cbVistaProduzione">
          <property name="text">
-          <string>Analisi:</string>
+          <string>Visualizzazione</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QCheckBox" name="cbVistaSchede">
+         <property name="text">
+          <string>Visualizzazione</string>
          </property>
         </widget>
        </item>
@@ -475,16 +489,48 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="2">
-        <widget class="QCheckBox" name="cbUpdateAnalisi">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Schede Clienti:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QCheckBox" name="cbUpdateProgrammi">
          <property name="text">
           <string>Aggiornamento</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </item>
       </layout>
      </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">

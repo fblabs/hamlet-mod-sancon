@@ -21,12 +21,16 @@ HWpManager::HWpManager(int p_id,HUser* p_user, QSqlDatabase p_db, QWidget *paren
     user=p_user;
     id=p_id;
 
-    qDebug()<<"ID_P"<<id;
 
     getClients();
     getProducts();
     //getTappi();
     initSanityModel();
+
+    if(!user->get_wp_u()>0)
+    {
+        ui->ptLotti->setEnabled(false);
+    }
 
 
 }
@@ -147,6 +151,7 @@ void HWpManager::addSheetRow()
     }
 
     QString note=ui->ptNote->toPlainText();
+    QString lotti=ui->ptLotti->toPlainText();
     bool ok=false;
     double totale=ui->leTotal->text().toDouble(&ok);
     QString lotscad=ui->leLotScad->text();
@@ -154,8 +159,8 @@ void HWpManager::addSheetRow()
 
 
 
-    QString sql="insert into righe_produzione(IDProduzione,num_riga, idcliente,idprodotto,numero_ordine,vaso_gr,quantita,specificaolio,olio,tappo,sanificazione,allergeni,fresco,pastorizzato,note,totale,lotto_scadenza)"
-                " VALUES(:idproduzione,:numriga,:idcliente,:idprodotto,:numord,:vaso,:quantita,:specolio,:olio,:tappo,:sanificazione,:allergeni,:fresco,:pastorizzato,:note,:totale,:lot_scad)";
+    QString sql="insert into righe_produzione(IDProduzione,num_riga, idcliente,idprodotto,numero_ordine,vaso_gr,quantita,specificaolio,olio,tappo,sanificazione,allergeni,fresco,pastorizzato,lotti,note,totale,lotto_scadenza)"
+                " VALUES(:idproduzione,:numriga,:idcliente,:idprodotto,:numord,:vaso,:quantita,:specolio,:olio,:tappo,:sanificazione,:allergeni,:fresco,:pastorizzato,:lotti,:note,:totale,:lot_scad)";
     q.prepare(sql);
     q.bindValue(":idproduzione",id);
     q.bindValue(":numriga",row);
@@ -165,12 +170,13 @@ void HWpManager::addSheetRow()
     q.bindValue(":vaso",vaso);
     q.bindValue(":quantita",quant);
     q.bindValue(":specolio",specolio);
-    q.bindValue(":olio",ui->leOlio->text());
+    q.bindValue(":olio",olio);
     q.bindValue(":tappo",tappo);
     q.bindValue(":sanificazione",sanificazione);
     q.bindValue(":allergeni",allergeni);
     q.bindValue(":fresco",fresco);
     q.bindValue(":pastorizzato",pastorizzato);
+    q.bindValue(":lotti",lotti);
     q.bindValue(":note",note);
     q.bindValue(":totale",totale);
     q.bindValue(":lot_scad",lotscad);

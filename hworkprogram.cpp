@@ -66,10 +66,14 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->pbApprova->setEnabled(user->get_programmi_u()>0);
     ui->pbDisapprova->setEnabled(user->get_programmi_u()>0);
     ui->pbPrint->setEnabled(true);
+    ui->pbAdd->setEnabled(user->get_wp_u()>0);
+
+
 
     ui->tvGeneral->verticalHeader()->setSectionsMovable(true);
     ui->tvGeneral->verticalHeader()->setDragEnabled(true);
     ui->tvGeneral->verticalHeader()->setDragDropMode(QAbstractItemView::InternalMove);
+
 
 
 
@@ -299,7 +303,7 @@ void HWorkProgram::refreshSheet()
     // QSqlRelationalDelegate *rdel=new QSqlRelationalDelegate();
     QSqlQuery q(db);
     // QString sql="SELECT * FROM righe_produzione where IDProduzione=:id";
-    QString sql="SELECT righe_produzione.ID,IDProduzione,num_riga,quantita,vaso_gr,specificaolio,idprodotto,prodotti.descrizione,olio,tappo,righe_produzione.idcliente,anagrafica.ragione_sociale,totale,sanificazione,numero_ordine,fresco,pastorizzato,allergeni,righe_produzione.note,lotto_scadenza,ricette.q_tot, righe_produzione.totale/ricette.q_tot as factor\
+    QString sql="SELECT righe_produzione.ID,IDProduzione,num_riga,quantita,vaso_gr,specificaolio,idprodotto,prodotti.descrizione,olio,tappo,righe_produzione.idcliente,anagrafica.ragione_sociale,totale,sanificazione,numero_ordine,fresco,pastorizzato,allergeni,righe_produzione.note,lotto_scadenza,ricette.q_tot, righe_produzione.totale/ricette.q_tot as factor,lotti as 'Lotti produzione'\
         FROM righe_produzione,prodotti,anagrafica,ricette\
                                   where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by num_riga asc;";
         q.prepare(sql);
@@ -336,6 +340,8 @@ void HWorkProgram::refreshSheet()
     wpmod->setHeaderData(17,Qt::Horizontal,"Allergeni");
     wpmod->setHeaderData(18,Qt::Horizontal,"Note");
     wpmod->setHeaderData(19,Qt::Horizontal,"Lot/scadenza");
+    wpmod->setHeaderData(22,Qt::Horizontal,"Lotti produzione");
+
 
 
 
@@ -349,6 +355,7 @@ void HWorkProgram::refreshSheet()
     ui->tvGeneral->setItemDelegate(rdel);
     ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
+    ui->tvGeneral->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
 
 
@@ -511,7 +518,7 @@ void HWorkProgram::on_pbRemove_clicked()
 
 void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
 {
-    /* if (!ui->cbshowrows->isChecked())*/ showModRow();
+    if(user->get_programmi_u()>0) showModRow();
 }
 
 void HWorkProgram::on_pbModify_clicked()
@@ -521,10 +528,11 @@ void HWorkProgram::on_pbModify_clicked()
 
 void HWorkProgram::showModRow()
 {
+    int pidrow=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data(0).toInt();
     int pid=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),1).data(0).toInt();
     int currentrow=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),2).data(0).toInt();
 
-    HModifyRow *f=new HModifyRow(pid,currentrow,user,db);
+    HModifyRow *f=new HModifyRow(pid,pidrow,currentrow,user,db);
     connect(f,SIGNAL(done()),this,SLOT(refreshSheet()));
     f->show();
 }
@@ -538,7 +546,7 @@ void HWorkProgram::setHeaders()
 {
     wpmod->setHeaderData(2,Qt::Horizontal,QObject::tr("Num. Riga"));
     wpmod->setHeaderData(3,Qt::Horizontal,QObject::tr("Quantità"));
-        wpmod->setHeaderData(4,Qt::Horizontal,QObject::tr("Peso prod."));
+    wpmod->setHeaderData(4,Qt::Horizontal,QObject::tr("Peso prod."));
     wpmod->setHeaderData(5,Qt::Horizontal,QObject::tr("Peso olio"));
     wpmod->setHeaderData(6,Qt::Horizontal,QObject::tr("ID Prodotto"));
     wpmod->setHeaderData(7,Qt::Horizontal,QObject::tr("Prodotto"));
@@ -554,6 +562,7 @@ void HWorkProgram::setHeaders()
     wpmod->setHeaderData(17,Qt::Horizontal,QObject::tr("Allergeni"));
     wpmod->setHeaderData(18,Qt::Horizontal,QObject::tr("Note)"));
     wpmod->setHeaderData(19,Qt::Horizontal,QObject::tr("Lotto - Scadenza"));
+    wpmod->setHeaderData(23,Qt::Horizontal,QObject::tr("Lotti produzione"));
 
 }
 
@@ -1089,6 +1098,7 @@ HWpMod *HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
         for(int c=0;c<mod->columnCount();++c)
         {
             QStandardItem *it=new QStandardItem(mod->index(r,c).data().toString());
+            it->setTextAlignment(Qt::AlignTop);
             row.append(it);
         }
 

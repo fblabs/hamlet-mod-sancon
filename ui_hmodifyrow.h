@@ -30,7 +30,7 @@ QT_BEGIN_NAMESPACE
 class Ui_HModifyRow
 {
 public:
-    QVBoxLayout *verticalLayout;
+    QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_2;
     QComboBox *cbCliente;
@@ -60,15 +60,23 @@ public:
     QRadioButton *rbFresh;
     QRadioButton *rbPastorized;
     QRadioButton *rbNone;
+    QVBoxLayout *verticalLayout;
+    QFormLayout *formLayout_4;
+    QLabel *label_14;
+    QPlainTextEdit *ptLotti;
     QHBoxLayout *horizontalLayout_2;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *pbSaveLots;
+    QFormLayout *formLayout_3;
     QLabel *label_11;
     QPlainTextEdit *ptNote;
+    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer;
     QLabel *label_13;
     QLineEdit *leLotScad;
     QLabel *label_7;
     QLineEdit *leTotal;
-    QSpacerItem *horizontalSpacer;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbSave;
     QPushButton *pbClose;
@@ -78,12 +86,12 @@ public:
         if (HModifyRow->objectName().isEmpty())
             HModifyRow->setObjectName(QString::fromUtf8("HModifyRow"));
         HModifyRow->setWindowModality(Qt::ApplicationModal);
-        HModifyRow->resize(747, 414);
+        HModifyRow->resize(747, 505);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HModifyRow->setWindowIcon(icon);
-        verticalLayout = new QVBoxLayout(HModifyRow);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout_2 = new QVBoxLayout(HModifyRow);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         label_2 = new QLabel(HModifyRow);
@@ -113,7 +121,7 @@ public:
         horizontalLayout_4->addWidget(cbProdotto);
 
 
-        verticalLayout->addLayout(horizontalLayout_4);
+        verticalLayout_2->addLayout(horizontalLayout_4);
 
         formLayout = new QFormLayout();
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
@@ -128,7 +136,7 @@ public:
         formLayout->setWidget(0, QFormLayout::FieldRole, leNumOrd);
 
 
-        verticalLayout->addLayout(formLayout);
+        verticalLayout_2->addLayout(formLayout);
 
         gridLayout_4 = new QGridLayout();
         gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
@@ -153,7 +161,7 @@ public:
         gridLayout_4->addWidget(leVaso, 0, 6, 1, 1);
 
 
-        verticalLayout->addLayout(gridLayout_4);
+        verticalLayout_2->addLayout(gridLayout_4);
 
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
@@ -203,7 +211,7 @@ public:
         gridLayout_3->addWidget(leTappo, 0, 5, 1, 1);
 
 
-        verticalLayout->addLayout(gridLayout_3);
+        verticalLayout_2->addLayout(gridLayout_3);
 
         formLayout_2 = new QFormLayout();
         formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
@@ -218,7 +226,7 @@ public:
         formLayout_2->setWidget(0, QFormLayout::FieldRole, leAllergeni);
 
 
-        verticalLayout->addLayout(formLayout_2);
+        verticalLayout_2->addLayout(formLayout_2);
 
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
@@ -240,25 +248,69 @@ public:
         gridLayout_2->addWidget(rbNone, 0, 2, 1, 1);
 
 
-        verticalLayout->addLayout(gridLayout_2);
+        verticalLayout_2->addLayout(gridLayout_2);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        formLayout_4 = new QFormLayout();
+        formLayout_4->setObjectName(QString::fromUtf8("formLayout_4"));
+        label_14 = new QLabel(HModifyRow);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+
+        formLayout_4->setWidget(0, QFormLayout::LabelRole, label_14);
+
+        ptLotti = new QPlainTextEdit(HModifyRow);
+        ptLotti->setObjectName(QString::fromUtf8("ptLotti"));
+        ptLotti->setMaximumSize(QSize(16777215, 80));
+
+        formLayout_4->setWidget(0, QFormLayout::FieldRole, ptLotti);
+
+
+        verticalLayout->addLayout(formLayout_4);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        label_11 = new QLabel(HModifyRow);
-        label_11->setObjectName(QString::fromUtf8("label_11"));
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_2->addWidget(label_11);
+        horizontalLayout_2->addItem(horizontalSpacer_2);
 
-        ptNote = new QPlainTextEdit(HModifyRow);
-        ptNote->setObjectName(QString::fromUtf8("ptNote"));
+        pbSaveLots = new QPushButton(HModifyRow);
+        pbSaveLots->setObjectName(QString::fromUtf8("pbSaveLots"));
 
-        horizontalLayout_2->addWidget(ptNote);
+        horizontalLayout_2->addWidget(pbSaveLots);
 
 
         verticalLayout->addLayout(horizontalLayout_2);
 
+
+        verticalLayout_2->addLayout(verticalLayout);
+
+        formLayout_3 = new QFormLayout();
+        formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
+        label_11 = new QLabel(HModifyRow);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+
+        formLayout_3->setWidget(0, QFormLayout::LabelRole, label_11);
+
+        ptNote = new QPlainTextEdit(HModifyRow);
+        ptNote->setObjectName(QString::fromUtf8("ptNote"));
+        ptNote->setMaximumSize(QSize(16777215, 80));
+
+        formLayout_3->setWidget(0, QFormLayout::FieldRole, ptNote);
+
+
+        verticalLayout_2->addLayout(formLayout_3);
+
+        verticalSpacer = new QSpacerItem(20, 11, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_2->addItem(verticalSpacer);
+
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer);
+
         label_13 = new QLabel(HModifyRow);
         label_13->setObjectName(QString::fromUtf8("label_13"));
 
@@ -281,12 +333,8 @@ public:
 
         horizontalLayout_3->addWidget(leTotal);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_3->addItem(horizontalSpacer);
-
-
-        verticalLayout->addLayout(horizontalLayout_3);
+        verticalLayout_2->addLayout(horizontalLayout_3);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -309,7 +357,7 @@ public:
         horizontalLayout->addWidget(pbClose);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout_2->addLayout(horizontalLayout);
 
         QWidget::setTabOrder(cbCliente, cbProdotto);
         QWidget::setTabOrder(cbProdotto, leNumOrd);
@@ -349,6 +397,8 @@ public:
         rbFresh->setText(QCoreApplication::translate("HModifyRow", "Fresco", nullptr));
         rbPastorized->setText(QCoreApplication::translate("HModifyRow", "Pastorizzato", nullptr));
         rbNone->setText(QCoreApplication::translate("HModifyRow", "Nessuna", nullptr));
+        label_14->setText(QCoreApplication::translate("HModifyRow", "Lotti:", nullptr));
+        pbSaveLots->setText(QCoreApplication::translate("HModifyRow", "Salva lotti", nullptr));
         label_11->setText(QCoreApplication::translate("HModifyRow", "Note:", nullptr));
         label_13->setText(QCoreApplication::translate("HModifyRow", "Lot/Scadenza", nullptr));
         label_7->setText(QCoreApplication::translate("HModifyRow", "Totale Kg:", nullptr));
