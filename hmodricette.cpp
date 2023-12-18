@@ -142,7 +142,7 @@ void HModRicette::getRicette()
     {
         ui->pushButton_3->setEnabled(true);
         //  sql="SELECT prodotti.ID,prodotti.descrizione from prodotti WHERE prodotti.ID not in (SELECT ID_prodotto from ricette) AND prodotti.tipo in (2,6) ORDER BY prodotti.descrizione ASC";
-        sql="select prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID NOT IN (SELECT ricette.ID_prodotto from ricette) and prodotti.tipo in (2,6) order by prodotti.descrizione ASC ";
+        sql="select  prodotti.id,prodotti.descrizione from prodotti,ricette Where prodotti.ID=ricette.ID_prodotto=prodotti.ID and prodotti.ID NOT IN (SELECT ID_prodotto from ricette) and prodotti.tipo in (2,6) order by prodotti.descrizione ASC";
     }
     q.exec(sql);
     qmric->setQuery(q);

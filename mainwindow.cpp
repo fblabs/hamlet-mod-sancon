@@ -285,7 +285,9 @@ void MainWindow::on_tbClose_clicked()
     {
 
         db.close();
+        db=QSqlDatabase();
         QSqlDatabase::removeDatabase(sConn);
+        delete user;
         this->close();
 
         QApplication::quit();
