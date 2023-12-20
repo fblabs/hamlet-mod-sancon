@@ -92,8 +92,8 @@ public:
         if (HnuovaOperazione->objectName().isEmpty())
             HnuovaOperazione->setObjectName(QString::fromUtf8("HnuovaOperazione"));
         HnuovaOperazione->setWindowModality(Qt::NonModal);
-        HnuovaOperazione->resize(991, 652);
-        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        HnuovaOperazione->resize(1126, 666);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(HnuovaOperazione->sizePolicy().hasHeightForWidth());

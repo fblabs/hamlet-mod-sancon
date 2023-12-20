@@ -291,7 +291,7 @@ void HUtenti::on_rbSuppliers_toggled(bool checked)
     if(checked)
     {
 
-        // tm->setFilter("cliente<1 and fornitore>0");
+       setFilter();
 
 
     }
@@ -338,11 +338,11 @@ void HUtenti::setFilter()
     }
     else if (ui->rbClients->isChecked())
     {
-       filter="cliente>0 and fornitore <1 and " + visible;
+       filter="cliente>0 and " + visible;
     }
     else if (ui->rbSuppliers->isChecked())
     {
-        filter="cliente<1 and fornitore>0 and " + visible;
+        filter="fornitore>0 and " + visible;
     }
     else if (ui->rbTrasports->isChecked())
     {

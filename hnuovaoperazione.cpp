@@ -95,17 +95,17 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     lots=new QSqlTableModel(0,db);
 
     lots->setTable("lotdef");
-    lots->select();
+   // lots->select();
 
 
-    basefilter="attivo=2 and year(data)>year(data)-3";
-    lots->setFilter(basefilter);
+    basefilter="attivo>0 and year(data)>year(data)-3";
+    //lots->setFilter(basefilter);
 
     ui->cbtipo->setModel(listaTipologie);
     ui->cbtipo->setModelColumn(1);
 
     ui->cbAnagrafica->setModel(listaFornitori);
-     ui->cbAnagrafica->setModelColumn(1);
+    ui->cbAnagrafica->setModelColumn(1);
 
 
      ui->lvProdotti->setModel(listaProdotti);
@@ -271,6 +271,7 @@ void HnuovaOperazione::setUiForScarico()
     ui->leQuantita->clear();
     ui->leLotto->clear();
 //    setListaLots();
+     //lots->select();
     setLotsFilter();
 
 
@@ -321,8 +322,6 @@ void HnuovaOperazione::setLotsFilter()
 
 
    lots->select();
-
-
    lots->setSort(3,Qt::DescendingOrder);
    QCompleter *com = new QCompleter(lots);
    com->setCompletionColumn(1);
@@ -369,6 +368,8 @@ bool HnuovaOperazione::saveNewLot(QString nl)
     int anagrafica;
     int attivo=2;
     QString note=ui->tNote->toPlainText();
+
+    qDebug()<<"NL"<<nl;
 
 
     idprod=ui->lvProdotti->model()->index(ui->lvProdotti->currentIndex().row(),0).data(0).toInt();

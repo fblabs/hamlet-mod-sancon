@@ -20,7 +20,7 @@
 #include "hgestioneutenti.h"
 #include "hassociazioni.h"
 #include "hproduction.h"
-#include "hprodottinew.h".h"
+#include "hprodottinew.h"
 #include "hnuovaricetta.h"
 #include "hwarehouse.h"
 #include "hexpirations.h"
