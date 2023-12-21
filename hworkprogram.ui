@@ -211,7 +211,7 @@
        <enum>QAbstractItemView::SelectRows</enum>
       </property>
       <property name="sortingEnabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <attribute name="horizontalHeaderVisible">
        <bool>true</bool>

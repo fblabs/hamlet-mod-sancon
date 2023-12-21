@@ -191,7 +191,7 @@ public:
         tvGeneral->setAlternatingRowColors(true);
         tvGeneral->setSelectionMode(QAbstractItemView::SingleSelection);
         tvGeneral->setSelectionBehavior(QAbstractItemView::SelectRows);
-        tvGeneral->setSortingEnabled(false);
+        tvGeneral->setSortingEnabled(true);
         splitter->addWidget(tvGeneral);
         tvGeneral->horizontalHeader()->setVisible(true);
         tvGeneral->horizontalHeader()->setStretchLastSection(true);
