@@ -13,7 +13,8 @@
 #include <QSqlError>
 #include "hmodprodotti.h"
 #include <QMessageBox>
-#include "hloads.h"
+//#include "hloads.h"
+#include "hloadsreport.h"
 #include <QFileDialog>
 #include <QSqlQueryModel>
 #include "hpreferred_lots.h"
@@ -99,7 +100,7 @@ void HProdottiNew::getTypes()
    // q.prepare(sql);
     q.exec(sql);
     tmTipi->setQuery(q);
-    qDebug()<<"get_types"<<q.lastQuery()<<q.lastError().text();
+   // qDebug()<<"get_types"<<q.lastQuery()<<q.lastError().text();
     ui->cbTipiProdotto->setModel(tmTipi);
     ui->cbTipiProdotto->setModelColumn(1);
 
@@ -149,16 +150,16 @@ void HProdottiNew::print(bool pdf)
 
         const int rowCount = ui->tvProdotti->model()->rowCount();
         const int columnCount = ui->tvProdotti->model()->columnCount();
+        qDebug()<<columnCount;
         title ="STAMPA ANAGRAFICA PRODOTTI";
-
-        out <<  "<html>\n<thead>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
+        out <<  "<html <meta Content=\"Text/html; charset=Windows-1251\"><body bgcolor=#ffffff link=#5000A0><table width=100% border=1 cellspacing=0 cellpadding=2>><table><thead>";
 
         // headers
         QStringList coltit=QStringList();
         coltit <<"ID"<<"DESCRIZIONE"<<"TIPO"<< "ALLERGENE"<<"ATTIVO"<<"BIO"<<"PREZZO"<<"DATA ULTIMO AGGIORNAMENTO PREZZO";
 
 
-        out << "<tr bgcolor='#5cabff'><th colspan='8'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
+        out << "<tr bgcolor='#5cabff'><th colspan='7'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
 
 
         for (int column = 0 ; column < columnCount; column++)
@@ -173,12 +174,12 @@ void HProdottiNew::print(bool pdf)
 
         }
 
-        out << "</thead></tr>\n";
+        out << "</thead></tr><tbody>";
 
         // data table
         for (int row = 0; row < rowCount; row++) {
-            qDebug()<<row;
-            out << "<tr>";
+
+
             if(row%2)
             {
                 bgcol="lightgreen";
@@ -187,9 +188,12 @@ void HProdottiNew::print(bool pdf)
             {
                 bgcol="white";
             }
+            out << "<tr>";
             for (int column = 0; column < columnCount; column++) {
-                if (!ui->tvProdotti->isColumnHidden(column)) {
+                if (!ui->tvProdotti->isColumnHidden(column) && column<8) {
                     QString data = ui->tvProdotti->model()->index(row, column).data().toString().simplified();
+
+
 
                     if (column>=3 && column<=5)
                     {
@@ -203,11 +207,13 @@ void HProdottiNew::print(bool pdf)
                     }
                 }
             }
-            out << "</tr>\n";
+            out << "</tr>";
         }
-        out <<  "</table>\n"
-                "</body>\n"
-                "</html>\n";
+        out <<  "</tbody></table>"
+                "</body>"
+                "</html>";
+
+        qDebug()<<strStream;
 
 
 
@@ -324,31 +330,23 @@ void HProdottiNew::on_pbPrint_clicked()
 
 void HProdottiNew::on_pbLoads_clicked()
 {
-    int id=ui->tvProdotti->model()->index(ui->tvProdotti->selectionModel()->currentIndex().row(),0).data(0).toInt();
-    QString title=ui->tvProdotti->model()->index(ui->tvProdotti->selectionModel()->currentIndex().row(),1).data(0).toString();
+    //int id=ui->tvProdotti->model()->index(ui->tvProdotti->selectionModel()->currentIndex().row(),0).data(0).toInt();
+    //QString title=ui->tvProdotti->model()->index(ui->tvProdotti->selectionModel()->currentIndex().row(),1).data(0).toString();
 
-    HLoads *f=new HLoads(id,title,db);
+    HLoadsReport *f=new HLoadsReport(db);
     f->show();
 }
 
 
 void HProdottiNew::on_cbTipiProdotto_currentIndexChanged(int index)
 {
-    qDebug()<<"CURRENT_CHANGED"<<index;
-
-    load();
-
-
-
-
+   load();
 }
 
 
 void HProdottiNew::on_chbBio_toggled(bool checked)
 {
     load();
-
-
 }
 
 

@@ -17,6 +17,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
@@ -37,7 +38,7 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QPushButton *pbSearch;
     QComboBox *cbTipi;
-    QComboBox *cbProdotti;
+    QListView *lvProducts;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer;
     QRadioButton *rbLoads;
@@ -102,12 +103,12 @@ public:
 
         verticalLayout->addWidget(cbTipi);
 
-        cbProdotti = new QComboBox(HLoads);
-        cbProdotti->setObjectName(QString::fromUtf8("cbProdotti"));
-        cbProdotti->setEditable(true);
-        cbProdotti->setInsertPolicy(QComboBox::NoInsert);
+        lvProducts = new QListView(HLoads);
+        lvProducts->setObjectName(QString::fromUtf8("lvProducts"));
+        lvProducts->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        lvProducts->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-        verticalLayout->addWidget(cbProdotti);
+        verticalLayout->addWidget(lvProducts);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
@@ -174,7 +175,7 @@ public:
 
     void retranslateUi(QWidget *HLoads)
     {
-        HLoads->setWindowTitle(QCoreApplication::translate("HLoads", "Carichi", nullptr));
+        HLoads->setWindowTitle(QCoreApplication::translate("HLoads", "Carichi \\ scarichi prodotti", nullptr));
         label->setText(QCoreApplication::translate("HLoads", "Tra il:", nullptr));
         label_2->setText(QCoreApplication::translate("HLoads", "e il:", nullptr));
         pbSearch->setText(QCoreApplication::translate("HLoads", "Cerca", nullptr));

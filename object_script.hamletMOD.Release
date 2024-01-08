@@ -15,6 +15,7 @@ release/hcosti_model.o
 release/hcreategroup.o
 release/hgroups.o
 release/hloads.o
+release/hloadsreport.o
 release/hlotcomposition.o
 release/hlotti_new.o
 release/hmodprodotti.o
@@ -108,6 +109,7 @@ release/moc_hcosti_model.o
 release/moc_hcreategroup.o
 release/moc_hgroups.o
 release/moc_hloads.o
+release/moc_hloadsreport.o
 release/moc_hlotcomposition.o
 release/moc_hlotti_new.o
 release/moc_hmodprodotti.o

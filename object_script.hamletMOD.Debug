@@ -15,6 +15,7 @@ debug/hcosti_model.o
 debug/hcreategroup.o
 debug/hgroups.o
 debug/hloads.o
+debug/hloadsreport.o
 debug/hlotcomposition.o
 debug/hlotti_new.o
 debug/hmodprodotti.o
@@ -108,6 +109,7 @@ debug/moc_hcosti_model.o
 debug/moc_hcreategroup.o
 debug/moc_hgroups.o
 debug/moc_hloads.o
+debug/moc_hloadsreport.o
 debug/moc_hlotcomposition.o
 debug/moc_hlotti_new.o
 debug/moc_hmodprodotti.o

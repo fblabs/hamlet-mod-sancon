@@ -19,6 +19,7 @@
 #include "hrecipesforclient.h"
 #include "hrecipesforingredient.h"
 #include "hnew_recipe_main.h"
+#include "hpdfprint.h"
 
 HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
@@ -269,6 +270,7 @@ void HModRicette::addRiga(QList<QStandardItem*>list)
 
     model->setHeaderData(3,Qt::Horizontal,"INGREDIENTE");
     model->setHeaderData(4,Qt::Horizontal,"QUANTITA\'");
+    model->setHeaderData(6,Qt::Horizontal,"%");
 
 
     ui->tableView->setColumnHidden(0,true);
@@ -383,15 +385,18 @@ void HModRicette::loadRicetta()
 
     int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
 
-    qDebug()<<idricetta;
 
     if(idricetta<1) return;
 
     QSqlQuery q(db);
     // QString sql = "SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_prodotto=:idprodotto ORDER BY righe_ricette.quantita DESC";
     // QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM ricette,righe_ricette,prodotti WHERE ricette.ID=righe_ricette.ID_ricetta and righe_ricette.id_prodotto=prodotti.ID and ricette.ID_prodotto=:idprodotto ORDER BY righe_ricette.quantita DESC";
+   // sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as 'QUANTITA',@p:=(righe_ricette.quantita/:tot_q)*100 as '%', prodotti.prezzo as 'COSTO UNITARIO (€*Kg)',FORMAT(righe_ricette.quantita*prodotti.prezzo,4) as 'COSTO PER RICETTA',FORMAT ((prodotti.prezzo*:f)*(@p/100),4) as 'COSTO FORMATO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.Id";
+
+  //  QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',@p:=(righe_ricette.quantita/:tot_q)*100 as '%',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico from righe_ricette,prodotti  where prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
     QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico from righe_ricette,prodotti  where prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
-                  q.prepare(sql);
+
+    q.prepare(sql);
     q.bindValue(":idricetta",idricetta);
     q.exec();
 
@@ -415,6 +420,7 @@ void HModRicette::loadRicetta()
         QStandardItem *idprodotto =new QStandardItem(q.value(2).toString());
         QStandardItem *descrizione =new QStandardItem(q.value(3).toString());
         QStandardItem *quantita =new QStandardItem(QString::number(q.value(4).toDouble(),'f',4));
+        QStandardItem *perc =new QStandardItem("");
         QString sh=q.value(5).toString();
         QStandardItem *show = new QStandardItem(sh);
 
@@ -437,6 +443,7 @@ void HModRicette::loadRicetta()
         list.append(descrizione);
         list.append(quantita);
         list.append(show);
+        list.append(perc);
 
         mod->appendRow(list);
 
@@ -450,6 +457,7 @@ void HModRicette::loadRicetta()
     mod->setHeaderData(3,Qt::Horizontal,"INGREDIENTE");
     mod->setHeaderData(4,Qt::Horizontal,"QUANTITA\'");
     mod->setHeaderData(5,Qt::Horizontal,"Mostra in Produzione");
+    mod->setHeaderData(6,Qt::Horizontal,"%");
 
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(1,true);
@@ -549,6 +557,13 @@ void HModRicette::calculateTotal()
 
     ui->leTotal->setText(QString::number(total,'f',4));
 
+    for(int r=0;r<mod->rowCount();++r)
+    {
+        double p=0.0;
+        p=(mod->index(r,4).data().toDouble()/total)*100;
+        mod->setData(mod->index(r,6), QString::number(p,'f',2));
+    }
+
 
 }
 
@@ -642,60 +657,104 @@ void HModRicette::save()
 
 void HModRicette::printRecipe()
 {
-    //stampa Ricetta
 
-    HPrint *f=new HPrint(0);
+    QString strStream;
 
-    f->toggleImageUI(false);
+    QAbstractItemModel *mod=ui->tableView->model();
 
-
-    f->append("=============================================\n");
-
-    f->append(ui->cbRicette->currentText(),true);
-
-    f->append("\n=============================================\n",false);
+    QTextStream out(&strStream);
+    QString bgcol=QString();
+    QString title=QString();
 
 
-
-    int righe = ui->tableView->model()->rowCount();
-    int colonne=ui->tableView->model()->columnCount();
-
-    f->cursorToEnd();
-    f->append("\nNOTE:\n",true);
-    f->append(ui->tbnote->toPlainText(),false);
-    f->append("\n\n");
+    const int rowCount = mod->rowCount();
+    const int columnCount = mod->columnCount();
 
 
-    f->cursorToEnd();
+    title="STAMPA RICETTA "+ui->cbRicette->currentText();
 
-    QTextTable* table=f->addTable(righe,colonne-4,QTextTableFormat());
 
-    QTextCharFormat format;
+    out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
 
-    for (int i=0;i<righe;i++)
+    // headers
+
+
+
+    QList<int> column_indexes;
+    for (int column = 0 ; column < columnCount; column++)
     {
-        // f->append(ui->tvRecipe->model()->index(i,1).data(Qt::DisplayRole).toString() + " - " + ui->tvRecipe->model()->index(i,2).data(Qt::DisplayRole).toString(),false);
-
-        if(writeRed->at(i)>0)
+        if (!ui->tableView->isColumnHidden(column))
         {
-            f->writeTableContentRed(table,i,0,format,ui->tableView->model()->index(i,3).data(0).toString());
-            f->writeTableContentRed(table,i,1,format,QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
-        }
-        else
-        {
-            f->writeTableContent(table,i,0,QTextCharFormat(),ui->tableView->model()->index(i,3).data(0).toString());
-            f->writeTableContent(table,i,1,QTextCharFormat(),QString::number(ui->tableView->model()->index(i,4).data(0).toDouble(),'f',2));
+            column_indexes.append(column);
         }
 
+    }
+
+
+
+
+    out << "<thead><tr bgcolor='#5cabff'><th colspan='"+QString::number(column_indexes.size())+"'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
+
+
+    for (int column = 0 ; column < column_indexes.size(); column++)
+    {
+
+
+        out << QString("<th>%1</th>").arg(mod->headerData(column_indexes.at(column),Qt::Horizontal).toString());
 
 
     }
-    f->append("\n\nQuantità: " + ui->leTotal->text(),false);
+
+    out << "</tr></th></thead>\n";
+
+    // data table
+    for (int row = 0; row < rowCount; row++) {
+
+        out << "<tr>";
+        if(row%2)
+        {
+            bgcol="lightgreen";
+        }
+        else
+        {
+            bgcol="white";
+        }
+        for (int column = 0; column < columnCount; column++) {
+            if (!ui->tableView->isColumnHidden(column)) {
+                QString data = mod->index(row, column).data().toString().simplified();
+
+                if (column==15 || column==16)
+                {
+
+                    out << QString("<td bgcolor='"+bgcol+"' align='center'>%1</td>").arg((mod->index(row,column).data(Qt::CheckStateRole)==Qt::Checked)? QString("[X]") : QString("&nbsp;"));
+                    //out << QString("<td bgcolor='"+bgcol+"' align='center'>%1</td>").arg(mod->index(row,column).data(Qt::CheckStateRole)==Qt::Checked)? QString("[X]") : QString("&nbsp;");
+
+                }
+                else if(column==17)
+                {
+                    out << QString("<td style='color:red' bgcolor='"+bgcol+"'};>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                }
+                else
+                {
+                    out << QString("<td bgcolor='"+bgcol+"'>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                }
+            }
+        }
+        out << "</tr>\n";
+    }
+    out <<  "</table>\n"
+           "</body>\n"
+           "</html>\n";
 
 
+    HPDFPrint *f=new HPDFPrint(nullptr,strStream);
+
+    QPageLayout::Orientation orientation;
+    orientation=QPageLayout::Portrait;
+    f->set_orientation(orientation);
     f->show();
 
-    //f->append(ui->tbnote->toPlainText(),false);
+
 }
 
 void HModRicette::saveNote()

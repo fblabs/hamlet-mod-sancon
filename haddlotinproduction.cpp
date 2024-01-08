@@ -132,16 +132,16 @@ void HAddLotInProduction::lastLots()
 void HAddLotInProduction::addLot()
 {
 
-    qDebug()<<"addLot";// here I want to add a lot's component
+   // qDebug()<<"addLot";// here I want to add a lot's component
 
     int nrow=data->row;
     bool ballergene=data->allergene;
-    qDebug()<<"addlot"<<ballergene;
+    //qDebug()<<"addlot"<<ballergene;
     int lotid=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
     QString lot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),1).data(0).toString();
     double giacenza=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),4).data(0).toDouble();
     if(!model) {
-        qDebug()<<"NULL";
+        //qDebug()<<"NULL";
         return;
     }
     QString al=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),6).data(0).toString();

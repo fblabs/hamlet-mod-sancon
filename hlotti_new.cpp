@@ -43,6 +43,9 @@ HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     ui->cbProduct->completer()->setCompletionColumn(1);
     ui->cbProduct->completer()->setCompletionMode(QCompleter::PopupCompletion);
 
+    QLocale loc;
+    ui->tvLotti->setLocale(loc);
+
     ui->tvLotti->setColumnHidden(0,true);
     loadLotsData();
 

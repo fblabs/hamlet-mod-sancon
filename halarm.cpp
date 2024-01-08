@@ -277,7 +277,7 @@ bool HAlarm::addAlarm()
 
     b=q.exec();
 
-   qDebug()<<q.lastError().text();
+   //qDebug()<<q.lastError().text();
 
    return b;
 
@@ -342,7 +342,7 @@ bool HAlarm::updateAlarm()
 
      b=q.exec();
 
-    qDebug()<<q.lastError().text();
+    //qDebug()<<q.lastError().text();
 
     return b;
 

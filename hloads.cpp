@@ -16,8 +16,7 @@ HLoads::HLoads(const int pid_prodotto=-1, const QString p_title, QSqlDatabase p_
     db=p_db;
     id_prodotto=pid_prodotto;
     getTypes();
-    load();
-    // getLoads();
+
 }
 
 HLoads::~HLoads()
@@ -31,14 +30,21 @@ void HLoads::getLoads()
     QDate from=ui->deFrom->date();
     QDate to=ui->deTo->date();
     // QString sql="SELECT SUM(quantita) from operazioni,lotdef where operazioni.IDlotto=lotdef.ID and lotdef.tipo=1 and operazioni.IDprodotto=:idp and operazioni.azione=1 and operazioni.data >= :from and operazioni.data <=:to";
-    QString sql="SELECT SUM(quantita) from operazioni,lotdef where operazioni.IDlotto=lotdef.ID and operazioni.IDprodotto=:idp and operazioni.azione=1 and operazioni.data >= :from and operazioni.data <=:to";
-    id_prodotto=ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data().toInt();
+  //  QString sql="SELECT SUM(quantita) from operazioni,lotdef where operazioni.IDlotto=lotdef.ID and operazioni.IDprodotto=:idp and operazioni.azione=1 and operazioni.data >= :from and operazioni.data <=:to";
+    QSqlQueryModel *mod=static_cast<QSqlQueryModel*>(ui->lvProducts->model());
+
+    id_prodotto=mod->index(ui->lvProducts->currentIndex().row(),0).data().toInt();
+
+    QString sql="SELECT SUM(quantita) from operazioni where operazioni.IDprodotto=:idp and operazioni.azione=1 and operazioni.data between :from and :to";
+
+
     q.prepare(sql);
     q.bindValue(":idp", id_prodotto);
     q.bindValue(":from",from);
     q.bindValue(":to",to);
     q.exec();
     q.next();
+    qDebug()<<q.lastError().text();
 
     double amount=q.value(0).toDouble();
 
@@ -51,7 +57,10 @@ void HLoads::getUnloads()
     QSqlQuery q(db);
     QDate from=ui->deFrom->date();
     QDate to=ui->deTo->date();
-    QString sql="SELECT SUM(quantita) from operazioni,lotdef where operazioni.IDlotto=lotdef.ID and lotdef.tipo=1 and operazioni.IDprodotto=:idp and operazioni.azione=2 and operazioni.data >= :from and operazioni.data <=:to";
+    QSqlQueryModel *mod=static_cast<QSqlQueryModel*>(ui->lvProducts->model());
+
+    id_prodotto=mod->index(ui->lvProducts->currentIndex().row(),0).data().toInt();
+    QString sql="SELECT SUM(quantita) from operazioni where operazioni.IDprodotto=:idp and operazioni.azione=2 and operazioni.data between :from and :to";
     q.prepare(sql);
     q.bindValue(":idp", id_prodotto);
     q.bindValue(":from",from);
@@ -89,31 +98,29 @@ void HLoads::on_rbLoads_toggled(bool checked)
 
 void HLoads::on_pbSearch_clicked()
 {
+    if(ui->rbLoads->isChecked())
     getLoads();
+    else
+    getUnloads();
 }
 
-void HLoads::get_prodotti(const int idtipo)
-{
-
-}
 
 void HLoads::getTypes()
 {
     QSqlQueryModel *tmTipi=new QSqlQueryModel();
     QSqlQuery q(db);
     QString sql="SELECT ID,descrizione from tipi_prodotto order by descrizione asc";
-    // q.prepare(sql);
-    q.exec(sql);
+    q.prepare(sql);
+    q.exec();
     tmTipi->setQuery(q);
     qDebug()<<"get_types"<<q.lastQuery()<<q.lastError().text();
     ui->cbTipi->setModel(tmTipi);
     ui->cbTipi->setModelColumn(1);
-    connect(ui->cbTipi,SIGNAL(currentIndexChanged(int)),this,SLOT(load()));
-    connect(ui->cbProdotti,SIGNAL(currentIndexChanged(int)),this,SLOT(get_data()));
+    connect(ui->cbTipi,SIGNAL(currentIndexChanged(int)),this,SLOT(loadProducts()));
 
 }
 
-void HLoads::load(const QString tosearch)
+void HLoads::loadProducts(const QString tosearch)
 {
     QString sql=QString();
     QSqlQueryModel *qmprodotti=new QSqlQueryModel();
@@ -136,9 +143,12 @@ void HLoads::load(const QString tosearch)
     q.bindValue(":idtipo",idtipo);
     q.exec();
     qmprodotti->setQuery(q);
-    ui->cbProdotti->setModel(qmprodotti);
-    ui->cbProdotti->setModelColumn(1);
-    qDebug()<<idtipo<<q.lastError().text();
+    ui->lvProducts->setModel(qmprodotti);
+    ui->lvProducts->setModelColumn(1);
+    connect(ui->lvProducts->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),this,SLOT(get_data()));
+
+    ui->lvProducts->setCurrentIndex(qmprodotti->index(0,0));
+
 }
 
 void HLoads::get_data()
@@ -151,12 +161,12 @@ void HLoads::get_data()
 
 void HLoads::on_deFrom_userDateChanged(const QDate &date)
 {
-    get_data();
+   //on_pbSearch_clicked();
 }
 
 
 void HLoads::on_deTo_userDateChanged(const QDate &date)
 {
-    get_data();
+   // on_pbSearch_clicked();
 }
 

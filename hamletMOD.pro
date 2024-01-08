@@ -31,6 +31,7 @@ SOURCES += main.cpp\
     hcreategroup.cpp \
     hgroups.cpp \
     hloads.cpp \
+    hloadsreport.cpp \
     hlotcomposition.cpp \
     hlotti_new.cpp \
     hmodprodotti.cpp \
@@ -124,6 +125,7 @@ HEADERS  += mainwindow.h \
     hcreategroup.h \
     hgroups.h \
     hloads.h \
+    hloadsreport.h \
     hlotcomposition.h \
     hlotti_new.h \
     hmodprodotti.h \
@@ -217,6 +219,7 @@ FORMS    += mainwindow.ui \
     hcreategroup.ui \
     hgroups.ui \
     hloads.ui \
+    hloadsreport.ui \
     hlotcomposition.ui \
     hlotti_new.ui \
     hnew_recipe_main.ui \

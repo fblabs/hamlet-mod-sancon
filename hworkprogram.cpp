@@ -765,18 +765,6 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         QApplication::restoreOverrideCursor();
 
 
@@ -1062,9 +1050,13 @@ void HWorkProgram::on_pbDetails_clicked()
     else
         get_sheet_details(id_produzione);
 
+    ui->tvGeneral->setSortingEnabled(true);
+
     ui->pbAdd->setEnabled(false);
     ui->pbModify->setEnabled(false);
     ui->pbRemove->setEnabled(false);
+
+
 
 
 
@@ -1077,11 +1069,13 @@ void HWorkProgram::on_pbSingleSheet_clicked()
 {
 
     dets=false;
+    ui->tvGeneral->setSortingEnabled(false);
     refreshSheet();
 
     ui->pbAdd->setEnabled(user->get_programmi_u()>0);
     ui->pbModify->setEnabled(user->get_programmi_u()>0);
     ui->pbRemove->setEnabled(user->get_programmi_u()>0);
+
 
 
 
