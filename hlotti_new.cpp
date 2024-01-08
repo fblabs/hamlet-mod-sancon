@@ -22,6 +22,8 @@
 #include "hbiodetails.h"
 #include <QDebug>
 
+#include <QSortFilterProxyModel>
+
 
 
 HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
@@ -114,7 +116,10 @@ void HLotti_new::loadLotsData()
 
 
     local_mod->setQuery(q);
-    ui->tvLotti->setModel(local_mod);
+    QSortFilterProxyModel *proxy=new QSortFilterProxyModel();
+    proxy->setSourceModel(local_mod);
+    ui->tvLotti->setModel(proxy);
+
 }
 
 
