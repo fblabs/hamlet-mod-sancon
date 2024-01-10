@@ -30,7 +30,7 @@ HGestioneUtenti::HGestioneUtenti(HUser *p_user, QSqlDatabase pdb, QWidget *paren
     ui->pushButton->setEnabled(user->get_utenti_u()>0);
     ui->pushButton_2->setEnabled(user->get_utenti_u()>0);
     ui->pbGroups->setEnabled(user->get_utenti_u()>0);
-    ui->pbNuovaPassword->setEnabled(user->get_utenti_u()>0);
+   // ui->pbNuovaPassword->setEnabled(user->get_utenti_u()>0);
     ui->pbUserPermissions->setEnabled(user->get_utenti_u()>0);
 
 
@@ -71,6 +71,8 @@ HGestioneUtenti::HGestioneUtenti(HUser *p_user, QSqlDatabase pdb, QWidget *paren
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(getGruppo()));
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(getIdUtente()));
     ui->lvUtenti->setCurrentIndex(utm->index(0,0));
+    ui->pbUserPermissions->setVisible(false);
+
 
 }
 
@@ -234,5 +236,15 @@ void HGestioneUtenti::on_pbUserPermissions_clicked()
     HGroups *f=new HGroups(user,id_gruppo,utente,db);
     connect(f,SIGNAL(permissions_updated()),this,SLOT(emit_permissions_updated()));
     f->show();
+}
+
+
+
+
+void HGestioneUtenti::on_leNewPass_textChanged(const QString &arg1)
+{
+
+    bool e=arg1.length()>0 && (user->get_utenti_u()>0);
+    ui->pbNuovaPassword->setEnabled(e);
 }
 

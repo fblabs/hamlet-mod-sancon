@@ -30,7 +30,7 @@ private slots:
     bool createSheet(int p_line, QDate p_date);
     void getSheets(bool create=false);
 
-   // void on_tvStorico_clicked(const QModelIndex &index);
+    // void on_tvStorico_clicked(const QModelIndex &index);
     void storicoindexchange();
     void on_pbNewSheet_clicked();
     void refreshSheet();
@@ -40,7 +40,11 @@ private slots:
     void get_sheet_details(const int p_id_produzione=-1);
     void add_row(QStandardItemModel *mod, QList<QStandardItem*> row);
     void process(const QSqlQueryModel *mod=nullptr);
-    void save();
+    void save(bool ins=false);
+    void rowaddb(const int row=-1);
+    void pasteRow();
+    void modify_row();
+
 
 
     void on_pbSave_clicked();
@@ -81,15 +85,22 @@ private slots:
 
     void showContextMenu(const QPoint& pos);
 
-    void copyRow(const int row=-1);
+    void copyRow();
 
-   // void on_pbAll_clicked();
+    // void on_pbAll_clicked();
 
     void on_pbDetails_clicked();
 
     void on_pbSingleSheet_clicked();
 
     HWpMod* convert_to_wp(const QSqlQueryModel *qmod=nullptr);
+
+
+
+
+    void on_pbCopy_clicked();
+
+    void on_pbPaste_clicked();
 
 private:
     Ui::HWorkProgram *ui;
@@ -99,11 +110,7 @@ private:
     HWorkSheetModel *wsmod; //modello del foglio([produzione]
     HWpMod *wpmod; //modello [righe_produzione]
     bool dets=false;
-
-
-
-
-
+    QList<QStandardItem*>rowcp;
 
 
 

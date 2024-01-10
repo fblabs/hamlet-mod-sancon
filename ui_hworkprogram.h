@@ -63,6 +63,8 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QPushButton *pbAdd;
     QPushButton *pbModify;
+    QPushButton *pbCopy;
+    QPushButton *pbPaste;
     QPushButton *pbRemove;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbNewSheet;
@@ -183,6 +185,7 @@ public:
         tvStorico->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
         tvGeneral = new QTableView(splitter);
         tvGeneral->setObjectName(QString::fromUtf8("tvGeneral"));
+        tvGeneral->setEnabled(true);
         tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
         tvGeneral->setDragEnabled(true);
         tvGeneral->setDragDropOverwriteMode(false);
@@ -295,11 +298,29 @@ public:
 
         horizontalLayout_2->addWidget(pbModify);
 
+        pbCopy = new QPushButton(HWorkProgram);
+        pbCopy->setObjectName(QString::fromUtf8("pbCopy"));
+        pbCopy->setEnabled(true);
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/Resources/fork-1-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbCopy->setIcon(icon6);
+
+        horizontalLayout_2->addWidget(pbCopy);
+
+        pbPaste = new QPushButton(HWorkProgram);
+        pbPaste->setObjectName(QString::fromUtf8("pbPaste"));
+        pbPaste->setEnabled(true);
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPaste->setIcon(icon7);
+
+        horizontalLayout_2->addWidget(pbPaste);
+
         pbRemove = new QPushButton(HWorkProgram);
         pbRemove->setObjectName(QString::fromUtf8("pbRemove"));
-        QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbRemove->setIcon(icon6);
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbRemove->setIcon(icon8);
 
         horizontalLayout_2->addWidget(pbRemove);
 
@@ -317,27 +338,27 @@ public:
 
         pbSave = new QPushButton(HWorkProgram);
         pbSave->setObjectName(QString::fromUtf8("pbSave"));
-        QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSave->setIcon(icon7);
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSave->setIcon(icon9);
         pbSave->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbSave);
 
         pbSingleSheet = new QPushButton(HWorkProgram);
         pbSingleSheet->setObjectName(QString::fromUtf8("pbSingleSheet"));
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/Resources/Text-columns64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSingleSheet->setIcon(icon8);
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/Resources/Text-columns64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSingleSheet->setIcon(icon10);
         pbSingleSheet->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbSingleSheet);
 
         pbDetails = new QPushButton(HWorkProgram);
         pbDetails->setObjectName(QString::fromUtf8("pbDetails"));
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbDetails->setIcon(icon9);
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDetails->setIcon(icon11);
         pbDetails->setIconSize(QSize(32, 32));
         pbDetails->setCheckable(true);
 
@@ -350,9 +371,9 @@ public:
 
         pbDeleteSheet = new QPushButton(HWorkProgram);
         pbDeleteSheet->setObjectName(QString::fromUtf8("pbDeleteSheet"));
-        QIcon icon10;
-        icon10.addFile(QString::fromUtf8(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbDeleteSheet->setIcon(icon10);
+        QIcon icon12;
+        icon12.addFile(QString::fromUtf8(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDeleteSheet->setIcon(icon12);
         pbDeleteSheet->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbDeleteSheet);
@@ -360,18 +381,18 @@ public:
         pbPrint = new QPushButton(HWorkProgram);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
         pbPrint->setEnabled(true);
-        QIcon icon11;
-        icon11.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon11);
+        QIcon icon13;
+        icon13.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon13);
         pbPrint->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbPrint);
 
         pbClose = new QPushButton(HWorkProgram);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon12;
-        icon12.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon12);
+        QIcon icon14;
+        icon14.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon14);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbClose);
@@ -405,6 +426,8 @@ public:
         pbReset->setText(QCoreApplication::translate("HWorkProgram", "Reset", nullptr));
         pbAdd->setText(QCoreApplication::translate("HWorkProgram", "Aggiungi riga", nullptr));
         pbModify->setText(QCoreApplication::translate("HWorkProgram", "Modifica riga", nullptr));
+        pbCopy->setText(QCoreApplication::translate("HWorkProgram", "Copia riga", nullptr));
+        pbPaste->setText(QCoreApplication::translate("HWorkProgram", "Incolla riga", nullptr));
         pbRemove->setText(QCoreApplication::translate("HWorkProgram", "Rimuovi riga", nullptr));
         pbNewSheet->setText(QCoreApplication::translate("HWorkProgram", "Nuovo", nullptr));
         pbSave->setText(QCoreApplication::translate("HWorkProgram", "Salva", nullptr));

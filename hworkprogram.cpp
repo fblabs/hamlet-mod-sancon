@@ -66,7 +66,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->pbApprova->setEnabled(user->get_programmi_u()>0);
     ui->pbDisapprova->setEnabled(user->get_programmi_u()>0);
     ui->pbPrint->setEnabled(true);
-   // ui->pbAdd->setEnabled(user->get_wp_u()>0);
+    ui->pbAdd->setEnabled(user->get_wp_u()>0);
 
 
 
@@ -77,8 +77,8 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
 
 
 
-    /* this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));*/
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
 
 
 
@@ -271,7 +271,7 @@ void HWorkProgram::storicoindexchange()
 
 
 
-    int id_produzione=wsmod->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
+  //  int id_produzione=wsmod->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
 
 
     if(dets)
@@ -345,8 +345,8 @@ void HWorkProgram::refreshSheet()
 
 
 
-    ui->tvGeneral->setColumnHidden(0,true);
-    ui->tvGeneral->setColumnHidden(1,true);
+    ui->tvGeneral->setColumnHidden(0,false);
+    ui->tvGeneral->setColumnHidden(1,false);
     ui->cbshowrows->isChecked()?ui->tvGeneral->setColumnHidden(2,false):ui->tvGeneral->setColumnHidden(2,true);
     ui->tvGeneral->setColumnHidden(6,false);
     ui->tvGeneral->setColumnHidden(10,true);
@@ -357,6 +357,11 @@ void HWorkProgram::refreshSheet()
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
     ui->tvGeneral->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
+
+   /* for(int c=0;0<wpmod->columnCount();++c)
+    {
+        ui->tvGeneral->setColumnHidden(c,false);
+    }*/
 
 
 
@@ -465,7 +470,7 @@ void HWorkProgram::updateSheet(int newrow, int oldrow)
 
 void HWorkProgram::on_pbSave_clicked()
 {
-    save();
+    save(false);
 
 
     refreshSheet();
@@ -884,7 +889,7 @@ void HWorkProgram::process(const QSqlQueryModel *mod)
 
 
 
-void HWorkProgram::save()
+void HWorkProgram::save(const bool ins )
 {
 
 
@@ -894,12 +899,26 @@ void HWorkProgram::save()
 
     db.transaction();
 
+    QSqlQuery q(db);
+    QString sql=QString();
+
+
+    if(ins)
+    {
+        sql="";
+    }
+    else
+    {
+        sql=sql="UPDATE righe_produzione set num_riga=:num where id=:id";
+        q.prepare(sql);
+    }
+
     for (int r=0;r<wpmod->rowCount();++r)
     {
         idriga=wpmod->index(r,0).data().toInt();
         numriga=ui->tvGeneral->verticalHeader()->visualIndex(r)+1;
-        QString sql="UPDATE righe_produzione set num_riga=:num where id=:id";
-        QSqlQuery q(db);
+        sql="UPDATE righe_produzione set num_riga=:num where id=:id";
+
         q.prepare(sql);
         q.bindValue(":num",numriga);
         q.bindValue(":id",idriga);
@@ -907,7 +926,7 @@ void HWorkProgram::save()
         q.exec();
 
     }
-     QApplication::restoreOverrideCursor();
+    QApplication::restoreOverrideCursor();
 
     if(QMessageBox::question(this,QApplication::applicationName(),"Confermi il salvataggio?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
@@ -922,6 +941,80 @@ void HWorkProgram::save()
 
 
 }
+
+void HWorkProgram::rowaddb(const int row)
+{
+    qDebug()<<"ROWADDB";
+
+    QSqlQuery q(db);
+    QString sql="INSERT INTO `fbgmdb260`.`righe_produzione`(`IDProduzione`,`num_riga`,`quantita`,`vaso_gr`,`specificaolio`,`idprodotto`,`olio`,`tappo`,`idcliente`,`totale`,`sanificazione`,`numero_ordine`,`fresco`,`pastorizzato`,`allergeni`,`note`,`lotti`,`lotto_scadenza`)\
+        VALUES\
+        (:IDProduzione,:num_riga,:quantita,:vaso_gr,:specificaolio,:idprodotto,:olio ,:tappo,:idc,:totale,:sanificazione,:numero_ordine,:fresco,:pastorizzato,:allergeni,:note, :lotti,:lotto_scadenza)";
+    q.prepare(sql);
+    q.bindValue(":IDProduzione", wpmod->index(0,1).data().toInt());
+    q.bindValue(":num_riga",wpmod->index(row,2).data().toString());
+    q.bindValue(":quantita",wpmod->index(row,3).data().toDouble());
+    q.bindValue(":vaso_gr",wpmod->index(row,4).data().toString());
+    q.bindValue(":specificaolio",wpmod->index(row,5).data().toString());
+    q.bindValue(":idprodotto",wpmod->index(row,6).data().toInt());
+    q.bindValue(":olio",wpmod->index(row,8).data().toString());
+    q.bindValue(":tappo",wpmod->index(row,9).data().toString());
+    q.bindValue(":idc",wpmod->index(row,10).data().toString());
+    qDebug()<<"idc"<<wpmod->index(row,10).data().toString();
+    q.bindValue(":totale",wpmod->index(row,12).data().toString());
+    q.bindValue(":sanificazione",wpmod->index(row,13).data().toString());
+    qDebug()<<"san"<<wpmod->index(row,13).data().toString();
+    q.bindValue(":numero_ordine,",wpmod->index(row,14).data().toString());
+    q.bindValue(":fresco",wpmod->index(row,15).data().toString());
+    q.bindValue(":pastorizzato",wpmod->index(row,16).data().toString());
+    q.bindValue(":allergeni",wpmod->index(row,17).data().toString());
+    q.bindValue(":note",wpmod->index(row,18).data().toString());
+    q.bindValue(":lotti",wpmod->index(row,19).data().toString());
+    q.bindValue(":lotto_scadenza",wpmod->index(row,20).data().toString());
+
+    q.exec();
+
+    qDebug()<<q.lastError().text()<<wpmod->index(row,15).data().toString();
+
+    refreshSheet();
+
+
+
+}
+
+
+
+void HWorkProgram::pasteRow()
+{
+    QList<QStandardItem*> cr;
+
+
+    for(int r=0;r<rowcp.size();++r)
+    {
+        QStandardItem *it=new QStandardItem(rowcp.at(r)->data().toString());
+
+        cr.append(it);
+
+    }
+
+
+    wpmod->appendRow(cr);
+
+    qDebug()<<"afterrowcp"<<wpmod->index(0,6).data().toString()<<rowcp.size()<<wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt();
+
+    wpmod->setData(wpmod->index(wpmod->rowCount()-1,1),wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
+    wpmod->setData(wpmod->index(wpmod->rowCount()-1,2),wpmod->rowCount());
+
+    rowaddb(wpmod->rowCount()-1);
+
+
+}
+
+void HWorkProgram::modify_row()
+{
+    if(user->get_wp_u()>0) showModRow();
+}
+
 
 
 void HWorkProgram::on_checkBox_toggled(bool checked)
@@ -998,37 +1091,91 @@ void HWorkProgram::showContextMenu(const QPoint &pos)
     //  QAction *detailsAction=menu->addAction("Composizione/uso lotto");
     menu->addSeparator();
     QAction *copyAction=menu->addAction("Copia la riga sotto il cursore");
-    //  QAction *editAction=menu->addAction("Modifica/Copia dati ...");
+    QAction *pasteAction=menu->addAction("Incolla riga");
+    QAction *editAction=menu->addAction("Modifica riga ...");
     // QAction *bioAction=menu->addAction("Dati Biologici ...");
     // QAction *deleteLot=menu->addAction("Elimina il lotto");
 
 
     // connect(detailsAction,SIGNAL(triggered(bool)),this,SLOT(getDetails()));
+    int row=ui->tvGeneral->currentIndex().row();
     connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyRow()));
-    //  connect(editAction,SIGNAL(triggered(bool)),this,SLOT(editLot()));
+    connect(pasteAction,SIGNAL(triggered(bool)),this,SLOT(pasteRow()));
+    connect(editAction,SIGNAL(triggered(bool)),this,SLOT(modify_row()));
     /*connect(bioAction,SIGNAL(triggered(bool)),this,SLOT(datiBio()));
     connect(deleteLot,SIGNAL(triggered(bool)),this,SLOT(on_pbDelete_clicked()));*/
 
     menu->popup(globalPos);
 }
 
-void HWorkProgram::copyRow(const int row)
+void HWorkProgram::copyRow()
 {
-    /*QList<QStandardItem*>rowtocopy;
 
-    qDebug()<<"copy"<<row;
-    HWorkProgramDetailModel *mod=static_cast<HWorkProgramDetailModel*>(ui->tvGeneral->model());
-
-    qDebug()<<"mod"<<mod->rowCount();
+    int row=ui->tvGeneral->currentIndex().row();
 
 
-        for(int c=0;c<wpmod->columnCount();++c)
-        {
-        rowtocopy<<mod->index(row,c).data().toString();
-        }
-        qDebug()<<"rowtocopy"<<rowtocopy.count();
 
-        mod->appendRow(rowtocopy);*/
+   rowcp.clear();
+
+
+    int inr=wpmod->rowCount();
+
+    inr+=1;
+
+
+
+
+    QStandardItem *rpid=new QStandardItem();
+    QStandardItem *pid=new QStandardItem();
+    QStandardItem *nr=new QStandardItem();
+    QStandardItem *qt=new QStandardItem();
+    QStandardItem *vg=new QStandardItem();
+    QStandardItem *sol=new QStandardItem();
+    QStandardItem *idpro=new QStandardItem();
+    QStandardItem *prodesc=new QStandardItem();
+    QStandardItem *olio=new QStandardItem();
+    QStandardItem *tappo=new QStandardItem();
+    QStandardItem *idclie=new QStandardItem();
+    QStandardItem *clidesc=new QStandardItem();
+    QStandardItem *kg=new QStandardItem();
+    QStandardItem *san=new QStandardItem();
+    QStandardItem *no=new QStandardItem();
+    QStandardItem *fr=new QStandardItem();
+    QStandardItem *pst=new QStandardItem();
+    QStandardItem *alg=new QStandardItem();
+    QStandardItem *note=new QStandardItem();
+    QStandardItem *lotsca=new QStandardItem();
+    QStandardItem *rqt=new QStandardItem();
+    QStandardItem *factor=new QStandardItem();
+    QStandardItem *lotti=new QStandardItem();
+
+    rpid->setData(wpmod->index(row,0).data().toString());
+    pid->setData(wpmod->index(row,1).data().toString());
+    nr->setData(wpmod->index(row,2).data().toString());
+    qt->setData(wpmod->index(row,3).data().toString());
+    vg->setData(wpmod->index(row,4).data().toString());
+    sol->setData(wpmod->index(row,5).data().toString());
+    idpro->setData(wpmod->index(row,6).data().toString());
+    prodesc->setData(wpmod->index(row,7).data().toString());
+    olio->setData(wpmod->index(row,8).data().toString());
+    tappo->setData(wpmod->index(row,9).data().toString());
+    idclie->setData(wpmod->index(row,10).data().toString());
+    clidesc->setData(wpmod->index(row,11).data().toString());
+    kg->setData(wpmod->index(row,12).data().toString());
+    san->setData(wpmod->index(row,13).data().toString());
+    no->setData(wpmod->index(row,14).data().toString());
+    fr->setData(wpmod->index(row,15).data().toString());
+    pst->setData(wpmod->index(row,16).data().toString());
+    alg->setData(wpmod->index(row,17).data().toString());
+    note->setData(wpmod->index(row,18).data().toString());
+    lotsca->setData(wpmod->index(row,19).data().toString());
+    rqt->setData(wpmod->index(row,20).data().toString());
+    factor->setData(wpmod->index(row,21).data().toString());
+    lotti->setData(wpmod->index(row,22).data().toString());
+
+
+    rowcp<<rpid<<pid<<nr<<qt<<vg<<sol<<idpro<<prodesc<<olio<<tappo<<idclie<<clidesc<<kg<<san<<no<<fr<<pst<<alg<<note<<lotsca<<rqt<<factor<<lotti;
+    qDebug()<<"INR"<<inr<<wpmod->index(row,6).data().toString()<<idpro->data().toString()<<pst->data().toString()<<wpmod->index(row,16).data().toString();
 
 
 
@@ -1107,6 +1254,14 @@ HWpMod *HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
 
 
 
+void HWorkProgram::on_pbCopy_clicked()
+{
+    copyRow();
+}
 
 
+void HWorkProgram::on_pbPaste_clicked()
+{
+  pasteRow();
+}
 

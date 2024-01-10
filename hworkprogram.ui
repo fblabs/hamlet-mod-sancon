@@ -186,6 +186,9 @@
       </attribute>
      </widget>
      <widget class="QTableView" name="tvGeneral">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="editTriggers">
        <set>QAbstractItemView::SelectedClicked</set>
       </property>
@@ -380,6 +383,34 @@
        <property name="icon">
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbCopy">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>Copia riga</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/fork-1-icon.png</normaloff>:/Resources/fork-1-icon.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbPaste">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>Incolla riga</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/App-ark-2-icon.png</normaloff>:/Resources/App-ark-2-icon.png</iconset>
        </property>
       </widget>
      </item>

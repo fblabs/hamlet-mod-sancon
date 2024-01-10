@@ -128,6 +128,7 @@ public:
 
         pbUserPermissions = new QPushButton(HGestioneUtenti);
         pbUserPermissions->setObjectName(QString::fromUtf8("pbUserPermissions"));
+        pbUserPermissions->setEnabled(false);
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
         pbUserPermissions->setIcon(icon1);
@@ -149,6 +150,7 @@ public:
 
         pbNuovaPassword = new QPushButton(HGestioneUtenti);
         pbNuovaPassword->setObjectName(QString::fromUtf8("pbNuovaPassword"));
+        pbNuovaPassword->setEnabled(false);
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pbNuovaPassword->setIcon(icon2);

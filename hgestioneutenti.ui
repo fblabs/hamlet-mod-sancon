@@ -84,6 +84,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="pbUserPermissions">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Gestione permessi</string>
            </property>
@@ -113,6 +116,9 @@
            </item>
            <item>
             <widget class="QPushButton" name="pbNuovaPassword">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>Salva nuova password</string>
              </property>
