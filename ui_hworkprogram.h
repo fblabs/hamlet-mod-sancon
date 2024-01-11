@@ -67,10 +67,10 @@ public:
     QPushButton *pbPaste;
     QPushButton *pbRemove;
     QHBoxLayout *horizontalLayout;
+    QPushButton *pbDetails;
     QPushButton *pbNewSheet;
     QPushButton *pbSave;
     QPushButton *pbSingleSheet;
-    QPushButton *pbDetails;
     QCheckBox *cbAll;
     QPushButton *pbDeleteSheet;
     QPushButton *pbPrint;
@@ -81,7 +81,7 @@ public:
         if (HWorkProgram->objectName().isEmpty())
             HWorkProgram->setObjectName(QString::fromUtf8("HWorkProgram"));
         HWorkProgram->setWindowModality(Qt::NonModal);
-        HWorkProgram->resize(1211, 638);
+        HWorkProgram->resize(1391, 638);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/3D_Icons_Icon_256.png"), QSize(), QIcon::Normal, QIcon::Off);
         HWorkProgram->setWindowIcon(icon);
@@ -329,6 +329,16 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        pbDetails = new QPushButton(HWorkProgram);
+        pbDetails->setObjectName(QString::fromUtf8("pbDetails"));
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDetails->setIcon(icon9);
+        pbDetails->setIconSize(QSize(32, 32));
+        pbDetails->setCheckable(true);
+
+        horizontalLayout->addWidget(pbDetails);
+
         pbNewSheet = new QPushButton(HWorkProgram);
         pbNewSheet->setObjectName(QString::fromUtf8("pbNewSheet"));
         pbNewSheet->setIcon(icon5);
@@ -338,31 +348,21 @@ public:
 
         pbSave = new QPushButton(HWorkProgram);
         pbSave->setObjectName(QString::fromUtf8("pbSave"));
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSave->setIcon(icon9);
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSave->setIcon(icon10);
         pbSave->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbSave);
 
         pbSingleSheet = new QPushButton(HWorkProgram);
         pbSingleSheet->setObjectName(QString::fromUtf8("pbSingleSheet"));
-        QIcon icon10;
-        icon10.addFile(QString::fromUtf8(":/Resources/Text-columns64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSingleSheet->setIcon(icon10);
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/Resources/Text-columns64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSingleSheet->setIcon(icon11);
         pbSingleSheet->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbSingleSheet);
-
-        pbDetails = new QPushButton(HWorkProgram);
-        pbDetails->setObjectName(QString::fromUtf8("pbDetails"));
-        QIcon icon11;
-        icon11.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbDetails->setIcon(icon11);
-        pbDetails->setIconSize(QSize(32, 32));
-        pbDetails->setCheckable(true);
-
-        horizontalLayout->addWidget(pbDetails);
 
         cbAll = new QCheckBox(HWorkProgram);
         cbAll->setObjectName(QString::fromUtf8("cbAll"));
@@ -416,7 +416,7 @@ public:
         label_9->setText(QCoreApplication::translate("HWorkProgram", "Stato: ", nullptr));
         lblCheck->setText(QString());
         pbApprova->setText(QCoreApplication::translate("HWorkProgram", "Approva", nullptr));
-        pbDisapprova->setText(QCoreApplication::translate("HWorkProgram", "Modifica", nullptr));
+        pbDisapprova->setText(QCoreApplication::translate("HWorkProgram", "Revoca approvazione", nullptr));
         checkBox->setText(QCoreApplication::translate("HWorkProgram", "Nascondi Storico", nullptr));
         cbshowrows->setText(QCoreApplication::translate("HWorkProgram", "Mostra i numeri di riga", nullptr));
         label_6->setText(QCoreApplication::translate("HWorkProgram", "Filtra per linea:", nullptr));
@@ -429,13 +429,19 @@ public:
         pbCopy->setText(QCoreApplication::translate("HWorkProgram", "Copia riga", nullptr));
         pbPaste->setText(QCoreApplication::translate("HWorkProgram", "Incolla riga", nullptr));
         pbRemove->setText(QCoreApplication::translate("HWorkProgram", "Rimuovi riga", nullptr));
-        pbNewSheet->setText(QCoreApplication::translate("HWorkProgram", "Nuovo", nullptr));
-        pbSave->setText(QCoreApplication::translate("HWorkProgram", "Salva", nullptr));
-        pbSingleSheet->setText(QCoreApplication::translate("HWorkProgram", "Foglio", nullptr));
         pbDetails->setText(QCoreApplication::translate("HWorkProgram", "Dettagli", nullptr));
+        pbNewSheet->setText(QCoreApplication::translate("HWorkProgram", "Nuovo", nullptr));
+        pbSave->setText(QCoreApplication::translate("HWorkProgram", "Salva (Ctrl+S)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbSave->setShortcut(QCoreApplication::translate("HWorkProgram", "Return", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbSingleSheet->setText(QCoreApplication::translate("HWorkProgram", "Foglio", nullptr));
         cbAll->setText(QCoreApplication::translate("HWorkProgram", "Dettaglio complessivo intervallo", nullptr));
         pbDeleteSheet->setText(QCoreApplication::translate("HWorkProgram", "Elimina foglio selezionato", nullptr));
-        pbPrint->setText(QCoreApplication::translate("HWorkProgram", "Stampa", nullptr));
+        pbPrint->setText(QCoreApplication::translate("HWorkProgram", " Stampa (Ctrl+P)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbPrint->setShortcut(QCoreApplication::translate("HWorkProgram", "Ctrl+P", nullptr));
+#endif // QT_CONFIG(shortcut)
         pbClose->setText(QCoreApplication::translate("HWorkProgram", "Chiudi", nullptr));
     } // retranslateUi
 

@@ -152,8 +152,13 @@ void HWpManager::addSheetRow()
 
     QString note=ui->ptNote->toPlainText();
     QString lotti=ui->ptLotti->toPlainText();
-    bool ok=false;
-    double totale=ui->leTotal->text().toDouble(&ok);
+    bool tok=false;
+    double totale=ui->leTotal->text().toDouble(&tok);
+    if(!tok)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore di formato della quantità totale",QMessageBox::Ok);
+        return;
+    }
     QString lotscad=ui->leLotScad->text();
 
 

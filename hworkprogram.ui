@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1211</width>
+    <width>1391</width>
     <height>638</height>
    </rect>
   </property>
@@ -138,7 +138,7 @@
      <item>
       <widget class="QPushButton" name="pbDisapprova">
        <property name="text">
-        <string>Modifica</string>
+        <string>Revoca approvazione</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -430,6 +430,26 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
+      <widget class="QPushButton" name="pbDetails">
+       <property name="text">
+        <string>Dettagli</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Pie-chart64.png</normaloff>:/Resources/Pie-chart64.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbNewSheet">
        <property name="text">
         <string>Nuovo</string>
@@ -449,7 +469,7 @@
      <item>
       <widget class="QPushButton" name="pbSave">
        <property name="text">
-        <string>Salva</string>
+        <string>Salva (Ctrl+S)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -460,6 +480,9 @@
          <width>32</width>
          <height>32</height>
         </size>
+       </property>
+       <property name="shortcut">
+        <string>Return</string>
        </property>
       </widget>
      </item>
@@ -477,26 +500,6 @@
          <width>32</width>
          <height>32</height>
         </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbDetails">
-       <property name="text">
-        <string>Dettagli</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Pie-chart64.png</normaloff>:/Resources/Pie-chart64.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -530,7 +533,7 @@
         <bool>true</bool>
        </property>
        <property name="text">
-        <string>Stampa</string>
+        <string> Stampa (Ctrl+P)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -541,6 +544,9 @@
          <width>32</width>
          <height>32</height>
         </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+P</string>
        </property>
       </widget>
      </item>

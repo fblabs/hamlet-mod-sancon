@@ -46,9 +46,9 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     dets=false;
 
 
-    getSheets(true);
-    connect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
-    ui->tvStorico->selectRow(0);
+    getSheets();
+
+    //ui->tvStorico->selectRow(0);
     ui->deDal->setDate(QDate::currentDate());
     ui->deAl->setDate(QDate::currentDate());
     ui->deAl->setVisible(false);
@@ -60,13 +60,17 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->pbSave->setEnabled(user->get_programmi_u()>0);
     ui->pbNewSheet->setEnabled(user->get_programmi_u()>0);
     ui->pbDeleteSheet->setEnabled(user->get_programmi_u()>0);
-    ui->pbAdd->setEnabled(user->get_programmi_u()>0);
     ui->pbRemove->setEnabled(user->get_programmi_u()>0);
-    ui->pbModify->setEnabled(user->get_wp_u()>0);
-    ui->pbApprova->setEnabled(user->get_programmi_u()>0);
-    ui->pbDisapprova->setEnabled(user->get_programmi_u()>0);
-    ui->pbPrint->setEnabled(true);
+    //ui->pbModify->setEnabled(user->get_wp_u()>0);
+    // ui->pbApprova->setEnabled(user->get_programmi_u()>0);
+    //ui->pbDisapprova->setEnabled(user->get_programmi_u()>0);
+    //ui->pbPrint->setEnabled(user->get_programmi_u()>0);
     ui->pbAdd->setEnabled(user->get_wp_u()>0);
+    ui->pbAdd->setEnabled(user->get_programmi_u()>0);
+    ui->pbCopy->setEnabled(user->get_programmi_u()>0);
+    ui->pbPaste->setEnabled(user->get_programmi_u()>0);
+    ui->pbModify->setEnabled(user->get_wp_u()>0);
+    ui->pbRemove->setEnabled(user->get_programmi_u()>0);
 
 
 
@@ -78,7 +82,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
 
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+    if(user->get_programmi_u()>0) connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
 
 
 
@@ -129,29 +133,19 @@ bool HWorkProgram::createSheet(int p_line, QDate p_date)
     return b;
 }
 
-void HWorkProgram::getSheets(bool create)
+void HWorkProgram::getSheets()
 {
     //  QSqlTableModel *mod=new QSqlTableModel(0,db);
 
     QModelIndex ix;
+    // HWorkSheetModel *wsmod=new HWorkSheetModel(nullptr,db);
 
-    /*  if(create){*/
+
     wsmod=new HWorkSheetModel(0,db);
     wsmod->setTable("produzione");
     wsmod->setSort(1,Qt::DescendingOrder);
     wsmod->select();
     ui->tvStorico->setModel(wsmod);
-    //disconnect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
-    ix=wsmod->index(0,0);
-    ui->tvStorico->setCurrentIndex(ix);
-
-    /*if(wsmod->rowCount()>0)
-    {
-        ui->tvStorico->selectRow(0);
-        emit ui->tvStorico->clicked(ui->tvStorico->model()->index(ix.row(),ix.column()));
-        //  refreshSheet();
-
-    }*/
 
 
 
@@ -162,6 +156,8 @@ void HWorkProgram::getSheets(bool create)
     wsmod->setHeaderData(1,Qt::Horizontal,"Data");
     wsmod->setHeaderData(3,Qt::Horizontal,"Linea");
     wsmod->setHeaderData(5,Qt::Horizontal,"Approvato");
+
+
 
 
 
@@ -176,10 +172,29 @@ void HWorkProgram::getSheets(bool create)
     p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
     ui->tvStorico->setPalette(p);
 
+    connect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
+
+    ix=wsmod->index(0,0);
+
+
+    if(wsmod->rowCount()>0)
+    {
+
+        // ui->tvStorico->setCurrentIndex(i);
+        ui->tvStorico->selectionModel()->setCurrentIndex(ix,QItemSelectionModel::ClearAndSelect);
+
+
+
+    }
+
+    ui->tvStorico->setCurrentIndex(ix);
+
+
+
 
 }
 
-void HWorkProgram::approve(bool approve)
+void HWorkProgram::approve(const bool app)
 {
     QSqlQuery q(db);
     QString sql="update produzione set approvato=:approvato where ID=:id";
@@ -190,11 +205,11 @@ void HWorkProgram::approve(bool approve)
         int id=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
 
         q.prepare(sql);
-        q.bindValue(":approvato",approve?1:0);
+        q.bindValue(":approvato",app?1:0);
         q.bindValue(":id",id);
         if(q.exec())
         {
-            if(approve)
+            if(app)
             {
                 QMessageBox::information(this,"UPDATE","Foglio lavoro approvato",QMessageBox::Ok);
                 ui->lblCheck->setPixmap(QPixmap(":/Resources/Accept64.png"));
@@ -218,10 +233,12 @@ void HWorkProgram::approve(bool approve)
     else
     {
         QMessageBox::information(this,"UPDATE","Aggiornamento annullato",QMessageBox::Ok);
+        if(user->get_programmi_u()) ui->pbApprova->setEnabled(app);
+        if(user->get_programmi_u())ui->pbDisapprova->setEnabled(!app);
 
     }
 
-    getSheets(false);
+    getSheets();
 
     /* if(user->get_programmi_u()<1)
    {
@@ -229,20 +246,36 @@ void HWorkProgram::approve(bool approve)
   }*/
 
 
+
+
 }
 
 
 void HWorkProgram::storicoindexchange()
 {
-    QModelIndex index=ui->tvStorico->currentIndex();
+    QModelIndex index=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0);
+
     id=ui->tvStorico->model()->index(index.row(),0).data(0).toInt();
     ui->deDal->setDate(ui->tvStorico->model()->index(index.row(),1).data(0).toDate());
     ui->deAl->setDate(ui->tvStorico->model()->index(index.row(),2).data(0).toDate());
     ui->spLinea->setValue(ui->tvStorico->model()->index(index.row(),3).data(0).toInt());
-    bool app=ui->tvStorico->model()->index(index.row(),5).data(0).toInt()>0?true:false;
-    ui->pbApprova->setEnabled(!app);
-    ui->pbDisapprova->setEnabled(app);
-    /* ui->pbPrint->setEnabled(app);*/
+    qDebug()<<id<<wsmod->data(index,Qt::CheckStateRole).toInt()<<wsmod->index(index.row(),5).data(Qt::CheckStateRole).toString();
+
+
+    bool app=wsmod->index(index.row(),5).data(Qt::CheckStateRole).toInt()>0?true:false;
+
+    if(user->get_programmi_u())
+    {
+        ui->pbApprova->setEnabled(!app);
+        ui->pbDisapprova->setEnabled(app);
+        ui->pbPrint->setEnabled(app);
+    }else
+    {
+
+        ui->pbApprova->setEnabled(!false);
+        ui->pbDisapprova->setEnabled(false);
+        ui->pbPrint->setEnabled(false);
+    }
 
     if(app )
     {
@@ -253,25 +286,7 @@ void HWorkProgram::storicoindexchange()
         ui->lblCheck->setPixmap(QPixmap(":/Resources/Pencil.PNG"));
     }
 
-    /*  ui->pbAdd->setEnabled(!app);
-    ui->pbModify->setEnabled(!app);
-    ui->pbRemove->setEnabled(!app);
-    ui->cbshowrows->setEnabled(!app);*/
 
-    if(user->get_programmi_u()<1)
-    {
-        ui->pbAdd->setEnabled(false);
-        ui->pbModify->setEnabled(false);
-        ui->pbRemove->setEnabled(false);
-        // ui->cbshowrows->setEnabled(false);
-        ui->pbApprova->setEnabled(false);
-        ui->pbDisapprova->setEnabled(false);
-
-    }
-
-
-
-  //  int id_produzione=wsmod->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
 
 
     if(dets)
@@ -284,6 +299,8 @@ void HWorkProgram::storicoindexchange()
         on_pbSingleSheet_clicked();
 
     }
+
+
 
 
 
@@ -318,7 +335,7 @@ void HWorkProgram::refreshSheet()
 
     QItemDelegate *rdel=new QItemDelegate();
 
-    ui->tvGeneral->setModel(nullptr);
+
 
     ui->tvGeneral->setModel(wpmod);
 
@@ -345,10 +362,10 @@ void HWorkProgram::refreshSheet()
 
 
 
-    ui->tvGeneral->setColumnHidden(0,false);
-    ui->tvGeneral->setColumnHidden(1,false);
+    ui->tvGeneral->setColumnHidden(0,true);
+    ui->tvGeneral->setColumnHidden(1,true);
     ui->cbshowrows->isChecked()?ui->tvGeneral->setColumnHidden(2,false):ui->tvGeneral->setColumnHidden(2,true);
-    ui->tvGeneral->setColumnHidden(6,false);
+    ui->tvGeneral->setColumnHidden(6,true);
     ui->tvGeneral->setColumnHidden(10,true);
     ui->tvGeneral->setColumnHidden(20,true);
     ui->tvGeneral->setColumnHidden(21,true);
@@ -358,10 +375,14 @@ void HWorkProgram::refreshSheet()
     ui->tvGeneral->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
 
-   /* for(int c=0;0<wpmod->columnCount();++c)
+    /* for(int c=0;0<wpmod->columnCount();++c)
     {
         ui->tvGeneral->setColumnHidden(c,false);
     }*/
+
+    QPalette p = ui->tvGeneral->palette();
+    p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
+    ui->tvGeneral->setPalette(p);
 
 
 
@@ -493,31 +514,7 @@ void HWorkProgram::on_cbshowrows_toggled(bool checked)
 
 void HWorkProgram::on_pbRemove_clicked()
 {
-
-
-
-
-    if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
-    {
-        db.transaction();
-
-        QSqlQuery q(db);
-        QString sql="DELETE FROM righe_produzione WHERE ID=:id";
-        int row= wpmod->index(ui->tvGeneral->currentIndex().row(),0).data(0).toInt();
-        q.prepare(sql);
-        q.bindValue(":id",row);
-        q.exec();
-
-        db.commit();
-        refreshSheet();
-
-    }
-
-
-
-
-
-
+    removeRow();
 }
 
 
@@ -948,9 +945,9 @@ void HWorkProgram::rowaddb(const int row)
 
     QSqlQuery q(db);
     QString sql="INSERT INTO `fbgmdb260`.`righe_produzione`(`IDProduzione`,`num_riga`,`quantita`,`vaso_gr`,`specificaolio`,`idprodotto`,`olio`,`tappo`,`idcliente`,`totale`,`sanificazione`,`numero_ordine`,`fresco`,`pastorizzato`,`allergeni`,`note`,`lotti`,`lotto_scadenza`)\
-        VALUES\
-        (:IDProduzione,:num_riga,:quantita,:vaso_gr,:specificaolio,:idprodotto,:olio ,:tappo,:idc,:totale,:sanificazione,:numero_ordine,:fresco,:pastorizzato,:allergeni,:note, :lotti,:lotto_scadenza)";
-    q.prepare(sql);
+                  VALUES\
+                  (:IDProduzione,:num_riga,:quantita,:vaso_gr,:specificaolio,:idprodotto,:olio ,:tappo,:idc,:totale,:sanificazione,:numero_ordine,:fresco,:pastorizzato,:allergeni,:note, :lotti,:lotto_scadenza)";
+                  q.prepare(sql);
     q.bindValue(":IDProduzione", wpmod->index(0,1).data().toInt());
     q.bindValue(":num_riga",wpmod->index(row,2).data().toString());
     q.bindValue(":quantita",wpmod->index(row,3).data().toDouble());
@@ -965,12 +962,18 @@ void HWorkProgram::rowaddb(const int row)
     q.bindValue(":sanificazione",wpmod->index(row,13).data().toString());
     qDebug()<<"san"<<wpmod->index(row,13).data().toString();
     q.bindValue(":numero_ordine,",wpmod->index(row,14).data().toString());
-    q.bindValue(":fresco",wpmod->index(row,15).data().toString());
-    q.bindValue(":pastorizzato",wpmod->index(row,16).data().toString());
+    QString fl=QString();
+    wpmod->index(row,15).data(Qt::CheckStateRole).toInt()>0?fl="1":fl="0";
+    qDebug()<< wpmod->itemFromIndex(wpmod->index(row,15))->checkState();
+    q.bindValue(":fresco",fl);
+    QString fp=QString();
+    // wpmod->itemFromIndex(wpmod->index(row,16))->checkState()==Qt::Checked?fp="1":fp="0";
+    wpmod->index(row,16).data(Qt::CheckStateRole).toInt()>0?fp="1":fp="0";
+    q.bindValue(":pastorizzato",fp);
     q.bindValue(":allergeni",wpmod->index(row,17).data().toString());
     q.bindValue(":note",wpmod->index(row,18).data().toString());
-    q.bindValue(":lotti",wpmod->index(row,19).data().toString());
-    q.bindValue(":lotto_scadenza",wpmod->index(row,20).data().toString());
+    q.bindValue(":lotto_scadenza",wpmod->index(row,(19)).data().toString());
+    q.bindValue(":lotti",wpmod->index(row,22).data().toString());
 
     q.exec();
 
@@ -1000,7 +1003,7 @@ void HWorkProgram::pasteRow()
 
     wpmod->appendRow(cr);
 
-    qDebug()<<"afterrowcp"<<wpmod->index(0,6).data().toString()<<rowcp.size()<<wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt();
+
 
     wpmod->setData(wpmod->index(wpmod->rowCount()-1,1),wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
     wpmod->setData(wpmod->index(wpmod->rowCount()-1,2),wpmod->rowCount());
@@ -1013,6 +1016,33 @@ void HWorkProgram::pasteRow()
 void HWorkProgram::modify_row()
 {
     if(user->get_wp_u()>0) showModRow();
+}
+
+void HWorkProgram::removeRow()
+{
+    if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        db.transaction();
+
+
+        QSqlQuery q(db);
+        QString sql="DELETE FROM righe_produzione WHERE ID=:id";
+        int row= wpmod->index(ui->tvGeneral->currentIndex().row(),0).data(0).toInt();
+        q.prepare(sql);
+        q.bindValue(":id",row);
+        q.exec();
+
+        db.commit();
+        refreshSheet();
+        QMessageBox::information(this,QApplication::applicationName(),"Riga rimossa",QMessageBox::Ok);
+
+    }
+    else
+    {
+        db.rollback();
+        QMessageBox::information(this,QApplication::applicationName(),"Cancellazione annullata",QMessageBox::Ok);
+
+    }
 }
 
 
@@ -1067,7 +1097,7 @@ void HWorkProgram::on_pbApprova_clicked()
 {
     QModelIndex current=ui->tvStorico->currentIndex();
     approve(true);
-    getSheets(false);
+
     ui->tvStorico->setCurrentIndex(current);
     ui->tvStorico->selectRow(current.row());
 
@@ -1078,13 +1108,15 @@ void HWorkProgram::on_pbDisapprova_clicked()
 {
     QModelIndex current=ui->tvStorico->currentIndex();
     approve(false);
-    getSheets(false);
+
     ui->tvStorico->setCurrentIndex(current);
     ui->tvStorico->selectRow(current.row());
 }
 
 void HWorkProgram::showContextMenu(const QPoint &pos)
 {
+
+
     QPoint globalPos =mapToGlobal(pos);
     QMenu *menu=new QMenu(0);
 
@@ -1093,17 +1125,11 @@ void HWorkProgram::showContextMenu(const QPoint &pos)
     QAction *copyAction=menu->addAction("Copia la riga sotto il cursore");
     QAction *pasteAction=menu->addAction("Incolla riga");
     QAction *editAction=menu->addAction("Modifica riga ...");
-    // QAction *bioAction=menu->addAction("Dati Biologici ...");
-    // QAction *deleteLot=menu->addAction("Elimina il lotto");
-
-
-    // connect(detailsAction,SIGNAL(triggered(bool)),this,SLOT(getDetails()));
-    int row=ui->tvGeneral->currentIndex().row();
+    QAction *deleteAction=menu->addAction("Elimina riga ...");
     connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyRow()));
     connect(pasteAction,SIGNAL(triggered(bool)),this,SLOT(pasteRow()));
     connect(editAction,SIGNAL(triggered(bool)),this,SLOT(modify_row()));
-    /*connect(bioAction,SIGNAL(triggered(bool)),this,SLOT(datiBio()));
-    connect(deleteLot,SIGNAL(triggered(bool)),this,SLOT(on_pbDelete_clicked()));*/
+    connect(deleteAction,SIGNAL(triggered(bool)),this,SLOT(on_pbRemove_clicked()));
 
     menu->popup(globalPos);
 }
@@ -1115,7 +1141,7 @@ void HWorkProgram::copyRow()
 
 
 
-   rowcp.clear();
+    rowcp.clear();
 
 
     int inr=wpmod->rowCount();
@@ -1164,8 +1190,8 @@ void HWorkProgram::copyRow()
     kg->setData(wpmod->index(row,12).data().toString());
     san->setData(wpmod->index(row,13).data().toString());
     no->setData(wpmod->index(row,14).data().toString());
-    fr->setData(wpmod->index(row,15).data().toString());
-    pst->setData(wpmod->index(row,16).data().toString());
+    fr->setData(wpmod->index(row,15).data(Qt::CheckStateRole).toInt());
+    pst->setData(wpmod->index(row,16).data(Qt::CheckStateRole).toInt());
     alg->setData(wpmod->index(row,17).data().toString());
     note->setData(wpmod->index(row,18).data().toString());
     lotsca->setData(wpmod->index(row,19).data().toString());
@@ -1175,7 +1201,6 @@ void HWorkProgram::copyRow()
 
 
     rowcp<<rpid<<pid<<nr<<qt<<vg<<sol<<idpro<<prodesc<<olio<<tappo<<idclie<<clidesc<<kg<<san<<no<<fr<<pst<<alg<<note<<lotsca<<rqt<<factor<<lotti;
-    qDebug()<<"INR"<<inr<<wpmod->index(row,6).data().toString()<<idpro->data().toString()<<pst->data().toString()<<wpmod->index(row,16).data().toString();
 
 
 
@@ -1262,6 +1287,12 @@ void HWorkProgram::on_pbCopy_clicked()
 
 void HWorkProgram::on_pbPaste_clicked()
 {
-  pasteRow();
+    pasteRow();
+}
+
+
+void HWorkProgram::on_tvStorico_clicked(const QModelIndex &index)
+{
+
 }
 

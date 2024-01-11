@@ -28,7 +28,7 @@ public:
 private slots:
     void on_pbAdd_clicked();
     bool createSheet(int p_line, QDate p_date);
-    void getSheets(bool create=false);
+    void getSheets();
 
     // void on_tvStorico_clicked(const QModelIndex &index);
     void storicoindexchange();
@@ -44,6 +44,7 @@ private slots:
     void rowaddb(const int row=-1);
     void pasteRow();
     void modify_row();
+    void removeRow();
 
 
 
@@ -77,7 +78,7 @@ private slots:
 
     void on_pbReset_clicked();
 
-    void approve(bool checked);
+    void approve(const bool app);
 
     void on_pbApprova_clicked();
 
@@ -101,6 +102,8 @@ private slots:
     void on_pbCopy_clicked();
 
     void on_pbPaste_clicked();
+
+    void on_tvStorico_clicked(const QModelIndex &index);
 
 private:
     Ui::HWorkProgram *ui;
