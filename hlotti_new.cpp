@@ -162,6 +162,11 @@ void HLotti_new::on_tvLotti_doubleClicked(const QModelIndex &index)
 void HLotti_new::on_pbLotInfo_clicked()
 {
     int idlotto=ui->tvLotti->model()->index(ui->tvLotti->currentIndex().row(),0).data(0).toInt();
+    if(idlotto<1)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Selezionare una riga",QMessageBox::Ok);
+        return;
+    }
     HModifyLot *f=new HModifyLot(idlotto,user,db);
     connect(f,SIGNAL(sig_updated_lot()),this,SLOT(refresh_data()));
     f->show();

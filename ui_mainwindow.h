@@ -618,7 +618,7 @@ public:
         lbCurrentUser->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 3.6</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 3.6.1 </span><span style=\" font-size:8pt; font-weight:600;\">003</span></p><p><br/><br/><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza: LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2024</span></p><p><a href=\"https://github.com/fblabs/hamlet-mod-sancon/blob/master/release/hamletMOD.exe\"><span style=\" text-decoration: underline; color:#007af4;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 3.6</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 3.6.2 </span><span style=\" font-size:8pt; font-weight:600;\">001</span></p><p><br/><br/><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza: LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2024</span></p><p><a href=\"https://github.com/fblabs/hamlet-mod-sancon/blob/master/release/hamletMOD.exe\"><span style=\" text-decoration: underline; color:#007af4;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
         tbSettings->setText(QCoreApplication::translate("MainWindow", "Impostazioni   ", nullptr));
         tbProdotti->setText(QCoreApplication::translate("MainWindow", "Prodotti (F12)", nullptr));
 #if QT_CONFIG(shortcut)
@@ -641,7 +641,10 @@ public:
 #if QT_CONFIG(shortcut)
         pBNewOperation->setShortcut(QCoreApplication::translate("MainWindow", "F6", nullptr));
 #endif // QT_CONFIG(shortcut)
-        tbAnag->setText(QCoreApplication::translate("MainWindow", "Anagrafica      ", nullptr));
+        tbAnag->setText(QCoreApplication::translate("MainWindow", "Anagrafica  (A)    ", nullptr));
+#if QT_CONFIG(shortcut)
+        tbAnag->setShortcut(QCoreApplication::translate("MainWindow", "A", nullptr));
+#endif // QT_CONFIG(shortcut)
         tbLotti->setText(QCoreApplication::translate("MainWindow", "Lotti (F5)", nullptr));
 #if QT_CONFIG(shortcut)
         tbLotti->setShortcut(QCoreApplication::translate("MainWindow", "F5", nullptr));
@@ -650,7 +653,10 @@ public:
 #if QT_CONFIG(shortcut)
         tbAnalisi->setShortcut(QCoreApplication::translate("MainWindow", "F8", nullptr));
 #endif // QT_CONFIG(shortcut)
-        tbLogout->setText(QCoreApplication::translate("MainWindow", "Logout", nullptr));
+        tbLogout->setText(QCoreApplication::translate("MainWindow", "Logout (AltGr+U", nullptr));
+#if QT_CONFIG(shortcut)
+        tbLogout->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Alt+U", nullptr));
+#endif // QT_CONFIG(shortcut)
         tbClose->setText(QCoreApplication::translate("MainWindow", "Chiudi", nullptr));
         tnProduzione->setText(QCoreApplication::translate("MainWindow", "Produzione (F4)", nullptr));
 #if QT_CONFIG(shortcut)
@@ -675,7 +681,10 @@ public:
 #if QT_CONFIG(shortcut)
         pbSchede->setShortcut(QCoreApplication::translate("MainWindow", "F3", nullptr));
 #endif // QT_CONFIG(shortcut)
-        tbUtenti->setText(QCoreApplication::translate("MainWindow", "Utenti", nullptr));
+        tbUtenti->setText(QCoreApplication::translate("MainWindow", "Utenti (U)", nullptr));
+#if QT_CONFIG(shortcut)
+        tbUtenti->setShortcut(QCoreApplication::translate("MainWindow", "U", nullptr));
+#endif // QT_CONFIG(shortcut)
         tbAssociazioni->setText(QCoreApplication::translate("MainWindow", "Associa Ricette", nullptr));
         pbUnload->setText(QCoreApplication::translate("MainWindow", "Scarico Packages", nullptr));
         pbContacts->setText(QCoreApplication::translate("MainWindow", "Contatti", nullptr));

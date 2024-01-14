@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1391</width>
+    <width>1457</width>
     <height>638</height>
    </rect>
   </property>
@@ -245,7 +245,10 @@
      <item>
       <widget class="QCheckBox" name="checkBox">
        <property name="text">
-        <string>Nascondi Storico</string>
+        <string>Nascondi Storico (S)</string>
+       </property>
+       <property name="shortcut">
+        <string>S</string>
        </property>
        <property name="checked">
         <bool>false</bool>
@@ -270,7 +273,10 @@
         </size>
        </property>
        <property name="text">
-        <string>Mostra i numeri di riga</string>
+        <string>Mostra i numeri di riga (R)</string>
+       </property>
+       <property name="shortcut">
+        <string>R</string>
        </property>
        <property name="checked">
         <bool>false</bool>
@@ -381,11 +387,14 @@
      <item>
       <widget class="QPushButton" name="pbModify">
        <property name="text">
-        <string>Modifica riga</string>
+        <string>Modifica riga (Ctrl+M)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+M</string>
        </property>
       </widget>
      </item>
@@ -435,7 +444,7 @@
      <item>
       <widget class="QPushButton" name="pbNewSheet">
        <property name="text">
-        <string>Nuovo</string>
+        <string>Nuovo (Ctrl+N)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -447,12 +456,15 @@
          <height>32</height>
         </size>
        </property>
+       <property name="shortcut">
+        <string>Ctrl+N</string>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pbSingleSheet">
        <property name="text">
-        <string>Foglio</string>
+        <string>Foglio (F)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -464,12 +476,15 @@
          <height>32</height>
         </size>
        </property>
+       <property name="shortcut">
+        <string>F</string>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pbDetails">
        <property name="text">
-        <string>Dettagli</string>
+        <string>Dettagli (D)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -480,6 +495,9 @@
          <width>32</width>
          <height>32</height>
         </size>
+       </property>
+       <property name="shortcut">
+        <string>D</string>
        </property>
        <property name="checkable">
         <bool>true</bool>

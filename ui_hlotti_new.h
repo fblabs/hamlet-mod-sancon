@@ -248,10 +248,19 @@ public:
         ckbUseProduct->setText(QString());
         chb_bio->setText(QCoreApplication::translate("HLotti_new", "Bio", nullptr));
         label_5->setText(QCoreApplication::translate("HLotti_new", "Cerca Lotto:", nullptr));
-        pbLotInfo->setText(QCoreApplication::translate("HLotti_new", "Informazioni", nullptr));
+        pbLotInfo->setText(QCoreApplication::translate("HLotti_new", "Informazioni (Ctrl+I)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbLotInfo->setShortcut(QCoreApplication::translate("HLotti_new", "Ctrl+I", nullptr));
+#endif // QT_CONFIG(shortcut)
         pbDelete->setText(QCoreApplication::translate("HLotti_new", "Elimina lotto selezionato", nullptr));
-        pbPrint->setText(QCoreApplication::translate("HLotti_new", "Stampa", nullptr));
-        pbToPdf->setText(QCoreApplication::translate("HLotti_new", "Esporta", nullptr));
+        pbPrint->setText(QCoreApplication::translate("HLotti_new", "Stampa (Ctrl+P)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbPrint->setShortcut(QCoreApplication::translate("HLotti_new", "Ctrl+P", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbToPdf->setText(QCoreApplication::translate("HLotti_new", "Esporta (Ctrl+E)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbToPdf->setShortcut(QCoreApplication::translate("HLotti_new", "Ctrl+E", nullptr));
+#endif // QT_CONFIG(shortcut)
         pbClose->setText(QCoreApplication::translate("HLotti_new", "Chiudi", nullptr));
     } // retranslateUi
 

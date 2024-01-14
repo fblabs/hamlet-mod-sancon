@@ -538,6 +538,12 @@ void HWorkProgram::showModRow()
     int pid=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),1).data(0).toInt();
     int currentrow=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),2).data(0).toInt();
 
+    if(pidrow<1)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Selezionare una riga",QMessageBox::Ok);
+        return;
+    }
+
     HModifyRow *f=new HModifyRow(pid,pidrow,currentrow,user,db);
     connect(f,SIGNAL(done()),this,SLOT(refreshSheet()));
     f->show();
@@ -693,7 +699,7 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
 
     QSqlQuery q(db);
 
-    QApplication::setOverrideCursor(Qt::WaitCursor);
+
     ui->tvGeneral->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 
@@ -722,6 +728,8 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         q.prepare(sql);
         q.bindValue(":dal",dal);
         q.bindValue(":al",al);
+
+        QApplication::setOverrideCursor(Qt::WaitCursor);
 
         q.exec();
 
@@ -774,20 +782,11 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         QApplication::restoreOverrideCursor();
 
 
-        // ui->tvGeneral->setModel(vmod);
-        // ui->tvGeneral->model()->setHeaderData(0,Qt::Horizontal,"ID INGREDIENTE");
-        // ui->tvGeneral->model()->setHeaderData(1,Qt::Horizontal,"INGREDIENTE");
-        // ui->tvGeneral->model()->setHeaderData(2,Qt::Horizontal,"QUANTITA' TOTALE PRODUZIONE");
-        // ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-        //ui->tvGeneral->setColumnHidden(0,true);
-        /* ui->tvGeneral->setColumnHidden(1,false);
-    ui->tvGeneral->verticalHeader()->setVisible(false);
-    ui->tvGeneral->setColumnHidden(2,false);*/
 
 
     }
 
-    ;
+
 }
 
 void HWorkProgram::add_row(QStandardItemModel *mod, QList<QStandardItem *> row)
@@ -1249,15 +1248,9 @@ void HWorkProgram::on_pbDetails_clicked()
 
     ui->tvGeneral->setSortingEnabled(true);
 
-    ui->pbAdd->setEnabled(false);
+  /*  ui->pbAdd->setEnabled(false);
     ui->pbModify->setEnabled(false);
-    ui->pbRemove->setEnabled(false);
-
-
-
-
-
-
+    ui->pbRemove->setEnabled(false);*/
 
 }
 
@@ -1269,9 +1262,15 @@ void HWorkProgram::on_pbSingleSheet_clicked()
     ui->tvGeneral->setSortingEnabled(false);
     refreshSheet();
 
-    ui->pbAdd->setEnabled(user->get_programmi_u()>0);
-    ui->pbModify->setEnabled(user->get_programmi_u()>0);
-    ui->pbRemove->setEnabled(user->get_programmi_u()>0);
+    if(user->get_programmi_u()>0)
+    {
+        ui->pbAdd->setEnabled(user->get_wp_u());
+        ui->pbModify->setEnabled(user->get_wp_u());
+        ui->pbCopy->setEnabled(user->get_wp_u());
+        ui->pbPaste->setEnabled(user->get_wp_u());
+        ui->pbRemove->setEnabled(user->get_wp_u());
+    }
+
 
 
 

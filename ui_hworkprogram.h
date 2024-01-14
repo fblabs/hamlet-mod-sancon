@@ -81,7 +81,7 @@ public:
         if (HWorkProgram->objectName().isEmpty())
             HWorkProgram->setObjectName(QString::fromUtf8("HWorkProgram"));
         HWorkProgram->setWindowModality(Qt::NonModal);
-        HWorkProgram->resize(1391, 638);
+        HWorkProgram->resize(1457, 638);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/3D_Icons_Icon_256.png"), QSize(), QIcon::Normal, QIcon::Off);
         HWorkProgram->setWindowIcon(icon);
@@ -418,21 +418,39 @@ public:
         lblCheck->setText(QString());
         pbApprova->setText(QCoreApplication::translate("HWorkProgram", "Approva", nullptr));
         pbDisapprova->setText(QCoreApplication::translate("HWorkProgram", "Revoca approvazione", nullptr));
-        checkBox->setText(QCoreApplication::translate("HWorkProgram", "Nascondi Storico", nullptr));
-        cbshowrows->setText(QCoreApplication::translate("HWorkProgram", "Mostra i numeri di riga", nullptr));
+        checkBox->setText(QCoreApplication::translate("HWorkProgram", "Nascondi Storico (S)", nullptr));
+#if QT_CONFIG(shortcut)
+        checkBox->setShortcut(QCoreApplication::translate("HWorkProgram", "S", nullptr));
+#endif // QT_CONFIG(shortcut)
+        cbshowrows->setText(QCoreApplication::translate("HWorkProgram", "Mostra i numeri di riga (R)", nullptr));
+#if QT_CONFIG(shortcut)
+        cbshowrows->setShortcut(QCoreApplication::translate("HWorkProgram", "R", nullptr));
+#endif // QT_CONFIG(shortcut)
         label_6->setText(QCoreApplication::translate("HWorkProgram", "Filtra per linea:", nullptr));
         label_7->setText(QCoreApplication::translate("HWorkProgram", "Ricerca per data tra il:", nullptr));
         label_8->setText(QCoreApplication::translate("HWorkProgram", "e il:", nullptr));
         pbSearch->setText(QCoreApplication::translate("HWorkProgram", "Cerca", nullptr));
         pbReset->setText(QCoreApplication::translate("HWorkProgram", "Reset", nullptr));
         pbAdd->setText(QCoreApplication::translate("HWorkProgram", "Aggiungi riga", nullptr));
-        pbModify->setText(QCoreApplication::translate("HWorkProgram", "Modifica riga", nullptr));
+        pbModify->setText(QCoreApplication::translate("HWorkProgram", "Modifica riga (Ctrl+M)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbModify->setShortcut(QCoreApplication::translate("HWorkProgram", "Ctrl+M", nullptr));
+#endif // QT_CONFIG(shortcut)
         pbCopy->setText(QCoreApplication::translate("HWorkProgram", "Copia riga", nullptr));
         pbPaste->setText(QCoreApplication::translate("HWorkProgram", "Incolla riga", nullptr));
         pbRemove->setText(QCoreApplication::translate("HWorkProgram", "Rimuovi riga", nullptr));
-        pbNewSheet->setText(QCoreApplication::translate("HWorkProgram", "Nuovo", nullptr));
-        pbSingleSheet->setText(QCoreApplication::translate("HWorkProgram", "Foglio", nullptr));
-        pbDetails->setText(QCoreApplication::translate("HWorkProgram", "Dettagli", nullptr));
+        pbNewSheet->setText(QCoreApplication::translate("HWorkProgram", "Nuovo (Ctrl+N)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbNewSheet->setShortcut(QCoreApplication::translate("HWorkProgram", "Ctrl+N", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbSingleSheet->setText(QCoreApplication::translate("HWorkProgram", "Foglio (F)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbSingleSheet->setShortcut(QCoreApplication::translate("HWorkProgram", "F", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbDetails->setText(QCoreApplication::translate("HWorkProgram", "Dettagli (D)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbDetails->setShortcut(QCoreApplication::translate("HWorkProgram", "D", nullptr));
+#endif // QT_CONFIG(shortcut)
         cbAll->setText(QCoreApplication::translate("HWorkProgram", "Dettaglio complessivo intervallo (Alt+D)", nullptr));
 #if QT_CONFIG(shortcut)
         cbAll->setShortcut(QCoreApplication::translate("HWorkProgram", "Alt+D", nullptr));
