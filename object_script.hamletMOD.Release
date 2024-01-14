@@ -23,6 +23,7 @@ release/hnew_recipe_main.o
 release/hpdfprint.o
 release/hpreferred_lots.o
 release/hproducts_for_calcolo_costi.o
+release/hprogramstableview.o
 release/hquerymodel_lastlots.o
 release/hquerymodel_lotti.o
 release/hrecipesforingredient.o

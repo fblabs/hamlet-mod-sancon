@@ -569,7 +569,7 @@ void HCosti::calculate_recipe()
 
     //----------formato/tot_quantita
 
-    int idp=ui->lv_prodotti->model()->index(ui->lv_prodotti->currentIndex().row(),0).data(0).toInt();
+   // int idp=ui->lv_prodotti->model()->index(ui->lv_prodotti->currentIndex().row(),0).data(0).toInt();
 
 
     tot_quantita=get_peso_totale_ricetta();

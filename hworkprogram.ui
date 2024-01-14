@@ -192,8 +192,11 @@
       <property name="editTriggers">
        <set>QAbstractItemView::SelectedClicked</set>
       </property>
+      <property name="showDropIndicator" stdset="0">
+       <bool>false</bool>
+      </property>
       <property name="dragEnabled">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="dragDropOverwriteMode">
        <bool>false</bool>
@@ -430,26 +433,6 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pbDetails">
-       <property name="text">
-        <string>Dettagli</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Pie-chart64.png</normaloff>:/Resources/Pie-chart64.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="pbNewSheet">
        <property name="text">
         <string>Nuovo</string>
@@ -463,26 +446,6 @@
          <width>32</width>
          <height>32</height>
         </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbSave">
-       <property name="text">
-        <string>Salva (Ctrl+S)</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/save-icon.png</normaloff>:/Resources/save-icon.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="shortcut">
-        <string>Return</string>
        </property>
       </widget>
      </item>
@@ -504,9 +467,52 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pbDetails">
+       <property name="text">
+        <string>Dettagli</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Pie-chart64.png</normaloff>:/Resources/Pie-chart64.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QCheckBox" name="cbAll">
        <property name="text">
-        <string>Dettaglio complessivo intervallo</string>
+        <string>Dettaglio complessivo intervallo (Alt+D)</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+D</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbSave">
+       <property name="text">
+        <string>Salva (Ctrl+S)</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/save-icon.png</normaloff>:/Resources/save-icon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+S</string>
        </property>
       </widget>
      </item>

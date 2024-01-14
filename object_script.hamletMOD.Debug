@@ -23,6 +23,7 @@ debug/hnew_recipe_main.o
 debug/hpdfprint.o
 debug/hpreferred_lots.o
 debug/hproducts_for_calcolo_costi.o
+debug/hprogramstableview.o
 debug/hquerymodel_lastlots.o
 debug/hquerymodel_lotti.o
 debug/hrecipesforingredient.o

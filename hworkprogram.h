@@ -40,7 +40,7 @@ private slots:
     void get_sheet_details(const int p_id_produzione=-1);
     void add_row(QStandardItemModel *mod, QList<QStandardItem*> row);
     void process(const QSqlQueryModel *mod=nullptr);
-    void save(bool ins=false);
+    void save(bool show_dlg=false);
     void rowaddb(const int row=-1);
     void pasteRow();
     void modify_row();
@@ -96,14 +96,12 @@ private slots:
 
     HWpMod* convert_to_wp(const QSqlQueryModel *qmod=nullptr);
 
-
-
-
     void on_pbCopy_clicked();
 
     void on_pbPaste_clicked();
 
-    void on_tvStorico_clicked(const QModelIndex &index);
+
+    void on_cbAll_toggled(bool checked);
 
 private:
     Ui::HWorkProgram *ui;

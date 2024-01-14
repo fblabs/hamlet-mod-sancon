@@ -98,8 +98,6 @@ bool HWpMod::setData(const QModelIndex &index, const QVariant &value, int role)
     return true;
 }
 
-Qt::DropActions HWpMod::supportedDropActions() const
-{
-    return Qt::MoveAction;
-}
+
+
 

@@ -55,9 +55,9 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
     tm->setSort(1, Qt::AscendingOrder);
     tm->select();
 
-
     ui->lvUtenti->setModel(tm);
     ui->lvUtenti->setModelColumn(1);
+
 
 
     QCompleter *completer=new QCompleter(cmod);
@@ -94,9 +94,15 @@ HUtenti::HUtenti(HUser *pusr,QSqlDatabase pdb, QWidget *parent) :
 
     dwMapper->toFirst();
 
+    /*QModelIndex ix=ui->lvUtenti->model()->index(ui->lvUtenti->currentIndex().row(),0);
+    ui->lvUtenti->selectionModel()->setCurrentIndex(ix,QItemSelectionModel::ClearAndSelect);*/
+
 
      connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), dwMapper, SLOT(setCurrentModelIndex(QModelIndex)));
      connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectMasterClient()));
+
+
+
     // connect(ui->lsearch,SIGNAL(textChanged(QString)) , this, SLOT(productSearch()));
      connect(ui->cbsub,SIGNAL(stateChanged(int)),this,SLOT(hidesubclienti()));
      //connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(addreset()));
@@ -199,7 +205,7 @@ void HUtenti::on_pushButton_3_clicked()
    }
    else
    {
-       QMessageBox::warning(this,QApplication::applicationName(),"ERRORE!!! Contattare l'assistenza",QMessageBox::Ok);
+       QMessageBox::warning(this,QApplication::applicationName(),"ERRORE!!! Contattare l'assistenza\n"+tm->lastError().text(),QMessageBox::Ok);
    }
 }
 
@@ -208,6 +214,7 @@ bool HUtenti::save()
     if(!db.isOpen())
     {
         QMessageBox::information(0,"ERRORE","il database è chiuso...perchè mai?",QMessageBox::Ok);
+        return false;
     }
 
     db.transaction();
@@ -216,9 +223,10 @@ bool HUtenti::save()
 
        bool b= tm->submitAll();
 
-    db.commit();
 
-    qDebug()<<b;
+       b?db.commit():db.rollback();
+
+       qDebug()<<tm->query().lastError().text();
 
     return b;
 
@@ -427,9 +435,18 @@ void HUtenti::on_rbGraphics_toggled(bool checked)
     }
 }
 
+void HUtenti::checkText(QString pt)
+{
+   /* pt.truncate(2);
+
+    ui->tcon->setPlainText(pt);*/
+
+}
 
 
 
-
-
+void HUtenti::on_tcon_textChanged()
+{
+   // checkText(ui->tcon->toPlainText());
+}
 

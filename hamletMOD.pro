@@ -39,6 +39,7 @@ SOURCES += main.cpp\
     hpdfprint.cpp \
     hpreferred_lots.cpp \
     hproducts_for_calcolo_costi.cpp \
+    hprogramstableview.cpp \
     hquerymodel_lastlots.cpp \
     hquerymodel_lotti.cpp \
     hrecipesforingredient.cpp \
@@ -133,6 +134,7 @@ HEADERS  += mainwindow.h \
     hpdfprint.h \
     hpreferred_lots.h \
     hproducts_for_calcolo_costi.h \
+    hprogramstableview.h \
     hquerymodel_lastlots.h \
     hquerymodel_lotti.h \
     hrecipesforingredient.h \
