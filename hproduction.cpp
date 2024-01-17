@@ -1866,7 +1866,7 @@ void HProduction::addLot(QModelIndex index, const bool p_allergene, const bool s
     QSqlQuery q(db);
     QString sql="SELECT getgiacenza(:id)";
     q.prepare(sql);
-    q.bindValue(":id",ui->tableView->model()->index(index.row(),0).data(0).toInt());
+    q.bindValue(":id",ui->tableView->model()->index(index.row(),3).data(0).toInt());
     q.exec();
     q.next();
     giacenza=q.value(0).toDouble();
@@ -1882,9 +1882,6 @@ void HProduction::addLot(QModelIndex index, const bool p_allergene, const bool s
     data->giacenza=giacenza;
 
 
-
-
-    qDebug()<<"if"<<p_allergene<<giacenza;
 
      int i=index.row();
 

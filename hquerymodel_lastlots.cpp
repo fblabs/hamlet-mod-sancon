@@ -17,7 +17,7 @@ QVariant HQueryModel_lastlots::data(const QModelIndex &index, int role) const
     if(role==Qt::BackgroundRole && ix.data(0).toInt()<0)
     {
 
-        return QColor(Qt::red);
+        return QColor(QColor(255,150,150));
 
 
     }
@@ -25,7 +25,7 @@ QVariant HQueryModel_lastlots::data(const QModelIndex &index, int role) const
 
     if(role==Qt::ForegroundRole &&ix.data().toInt() <0)
     {
-        return QColor(QColor(255,255,255));
+        return QColor(Qt::black);
     }
 
 
