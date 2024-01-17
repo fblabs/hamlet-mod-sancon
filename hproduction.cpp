@@ -1,9 +1,7 @@
 #include "hproduction.h"
 #include "ui_hproduction.h"
-
 #include <QSqlDatabase>
 #include <QSqlQuery>
-
 #include <QDebug>
 #include <QSqlError>
 #include <QDateTime>
@@ -52,15 +50,14 @@ HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     // ui->pbPreferredLots->setEnabled(false);
 
 
-
-    /* QSettings settings("hamletmod.ini",QSettings::IniFormat);
-    preferred_db=settings.value("preferred_lots").toString();
-
+     QSettings settings("hamletmod.ini",QSettings::IniFormat);
+     preferred_db=settings.value("preferred_lots").toString();
 
 
-     prefdb=QSqlDatabase::addDatabase("QSQLITE");
+
+     prefdb=QSqlDatabase::addDatabase("QSQLITE","PREF");
      prefdb.setDatabaseName(preferred_db);
-     prefdb.open();*/
+     prefdb.open();
 
     ui->dateEdit->setVisible(false);
     ui->label_9->setVisible(false);
@@ -1815,8 +1812,8 @@ void HProduction::addPreferredLots()
     preferred_db=settings.value("preferred_lots").toString();
 
 
-    QSqlDatabase prefdb=QSqlDatabase::addDatabase("QSQLITE","PREFERENCES");
-    prefdb.setDatabaseName(preferred_db);
+   /* QSqlDatabase prefdb=QSqlDatabase::addDatabase("QSQLITE","PREFERENCES");
+    prefdb.setDatabaseName(preferred_db);*/
 
     prefdb.open();
 
@@ -1840,8 +1837,8 @@ const QString HProduction::findPreferredLot(const int id_prod)
 {
     QString default_lot=QString();
     QString sql("SELECT lot FROM pref WHERE prod=:prod");
-    QSqlDatabase prefdb=QSqlDatabase::addDatabase("QSQLITE");
-    prefdb.setDatabaseName("preferences.db");
+    /*QSqlDatabase prefdb=QSqlDatabase::addDatabase("QSQLITE");
+    prefdb.setDatabaseName("preferences.db");*/
     prefdb.open();
 
     QSqlQuery q(prefdb);

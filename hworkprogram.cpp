@@ -1015,11 +1015,29 @@ void HWorkProgram::modify_row()
     if(user->get_wp_u()>0) showModRow();
 }
 
-void HWorkProgram::removeRow()
+void HWorkProgram::removeRow(bool show)
 {
+    bool go=false;
+
+    if(show)
+    {
+
+
     if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel|QMessageBox::Cancel)==QMessageBox::Ok)
     {
-        db.transaction();
+            go=true;
+    }
+
+    }else{
+
+        go=true;
+    }
+
+
+
+
+    if(go)
+    {   db.transaction();
 
 
         QSqlQuery q(db);
@@ -1032,12 +1050,15 @@ void HWorkProgram::removeRow()
         db.commit();
         refreshSheet();
         save();
+
+        if(show)
         QMessageBox::information(this,QApplication::applicationName(),"Riga rimossa",QMessageBox::Ok);
 
     }
     else
     {
         db.rollback();
+        if(show)
         QMessageBox::information(this,QApplication::applicationName(),"Cancellazione annullata",QMessageBox::Ok);
 
     }
@@ -1122,10 +1143,12 @@ void HWorkProgram::showContextMenu(const QPoint &pos)
     //  QAction *detailsAction=menu->addAction("Composizione/uso lotto");
     menu->addSeparator();
     QAction *copyAction=menu->addAction("Copia la riga sotto il cursore");
+    QAction *cutAction=menu->addAction("Taglia riga");
     QAction *pasteAction=menu->addAction("Incolla riga");
     QAction *editAction=menu->addAction("Modifica riga ...");
     QAction *deleteAction=menu->addAction("Elimina riga ...");
     connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyRow()));
+    connect(cutAction,SIGNAL(triggered(bool)),this,SLOT(cutRow()));
     connect(pasteAction,SIGNAL(triggered(bool)),this,SLOT(pasteRow()));
     connect(editAction,SIGNAL(triggered(bool)),this,SLOT(modify_row()));
     connect(deleteAction,SIGNAL(triggered(bool)),this,SLOT(on_pbRemove_clicked()));
@@ -1230,6 +1253,12 @@ void HWorkProgram::copyRow()
 
 }
 
+void HWorkProgram::cutRow(const bool show)
+{
+        copyRow();
+        removeRow(false);
+}
+
 
 
 
@@ -1324,5 +1353,11 @@ void HWorkProgram::on_cbAll_toggled(bool checked)
     }else{
         on_pbSingleSheet_clicked();
     }
+}
+
+
+void HWorkProgram::on_pbCutRow_clicked()
+{
+    cutRow();
 }
 

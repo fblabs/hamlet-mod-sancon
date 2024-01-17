@@ -427,6 +427,17 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pbCutRow">
+       <property name="text">
+        <string>Taglia riga</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/cut.png</normaloff>:/Resources/cut.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbRemove">
        <property name="text">
         <string>Rimuovi riga</string>

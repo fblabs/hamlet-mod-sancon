@@ -33,7 +33,7 @@ private:
     QSqlDatabase db;
     HUser *user;
     QString preferred_db;
-   // QSqlDatabase prefdb;
+    QSqlDatabase prefdb;
     QSqlQueryModel *qmClienti;
     QSqlQueryModel *qmRicette;
     QStandardItemModel *model;

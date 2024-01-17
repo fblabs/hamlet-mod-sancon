@@ -65,6 +65,7 @@ public:
     QPushButton *pbModify;
     QPushButton *pbCopy;
     QPushButton *pbPaste;
+    QPushButton *pbCutRow;
     QPushButton *pbRemove;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbNewSheet;
@@ -317,11 +318,19 @@ public:
 
         horizontalLayout_2->addWidget(pbPaste);
 
+        pbCutRow = new QPushButton(HWorkProgram);
+        pbCutRow->setObjectName(QString::fromUtf8("pbCutRow"));
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/Resources/cut.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbCutRow->setIcon(icon8);
+
+        horizontalLayout_2->addWidget(pbCutRow);
+
         pbRemove = new QPushButton(HWorkProgram);
         pbRemove->setObjectName(QString::fromUtf8("pbRemove"));
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbRemove->setIcon(icon8);
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbRemove->setIcon(icon9);
 
         horizontalLayout_2->addWidget(pbRemove);
 
@@ -339,18 +348,18 @@ public:
 
         pbSingleSheet = new QPushButton(HWorkProgram);
         pbSingleSheet->setObjectName(QString::fromUtf8("pbSingleSheet"));
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/Resources/Text-columns64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSingleSheet->setIcon(icon9);
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/Resources/Text-columns64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSingleSheet->setIcon(icon10);
         pbSingleSheet->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbSingleSheet);
 
         pbDetails = new QPushButton(HWorkProgram);
         pbDetails->setObjectName(QString::fromUtf8("pbDetails"));
-        QIcon icon10;
-        icon10.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbDetails->setIcon(icon10);
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDetails->setIcon(icon11);
         pbDetails->setIconSize(QSize(32, 32));
         pbDetails->setCheckable(true);
 
@@ -363,18 +372,18 @@ public:
 
         pbSave = new QPushButton(HWorkProgram);
         pbSave->setObjectName(QString::fromUtf8("pbSave"));
-        QIcon icon11;
-        icon11.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSave->setIcon(icon11);
+        QIcon icon12;
+        icon12.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSave->setIcon(icon12);
         pbSave->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbSave);
 
         pbDeleteSheet = new QPushButton(HWorkProgram);
         pbDeleteSheet->setObjectName(QString::fromUtf8("pbDeleteSheet"));
-        QIcon icon12;
-        icon12.addFile(QString::fromUtf8(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbDeleteSheet->setIcon(icon12);
+        QIcon icon13;
+        icon13.addFile(QString::fromUtf8(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDeleteSheet->setIcon(icon13);
         pbDeleteSheet->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbDeleteSheet);
@@ -382,18 +391,18 @@ public:
         pbPrint = new QPushButton(HWorkProgram);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
         pbPrint->setEnabled(true);
-        QIcon icon13;
-        icon13.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon13);
+        QIcon icon14;
+        icon14.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon14);
         pbPrint->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbPrint);
 
         pbClose = new QPushButton(HWorkProgram);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon14;
-        icon14.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon14);
+        QIcon icon15;
+        icon15.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon15);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbClose);
@@ -438,6 +447,7 @@ public:
 #endif // QT_CONFIG(shortcut)
         pbCopy->setText(QCoreApplication::translate("HWorkProgram", "Copia riga", nullptr));
         pbPaste->setText(QCoreApplication::translate("HWorkProgram", "Incolla riga", nullptr));
+        pbCutRow->setText(QCoreApplication::translate("HWorkProgram", "Taglia riga", nullptr));
         pbRemove->setText(QCoreApplication::translate("HWorkProgram", "Rimuovi riga", nullptr));
         pbNewSheet->setText(QCoreApplication::translate("HWorkProgram", "Nuovo (Ctrl+N)", nullptr));
 #if QT_CONFIG(shortcut)

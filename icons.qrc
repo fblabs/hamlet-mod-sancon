@@ -129,5 +129,6 @@
         <file>hamlet.ico</file>
         <file>Resources/fblabs.png</file>
         <file>Resources/PDF.png</file>
+        <file>Resources/cut.png</file>
     </qresource>
 </RCC>

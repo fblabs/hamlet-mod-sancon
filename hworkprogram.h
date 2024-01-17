@@ -44,7 +44,7 @@ private slots:
     void rowaddb(const int row=-1);
     void pasteRow();
     void modify_row();
-    void removeRow();
+    void removeRow(bool show=true);
 
 
 
@@ -88,7 +88,7 @@ private slots:
 
     void copyRow();
 
-    // void on_pbAll_clicked();
+    void cutRow(const bool show=true);
 
     void on_pbDetails_clicked();
 
@@ -102,6 +102,8 @@ private slots:
 
 
     void on_cbAll_toggled(bool checked);
+
+    void on_pbCutRow_clicked();
 
 private:
     Ui::HWorkProgram *ui;
