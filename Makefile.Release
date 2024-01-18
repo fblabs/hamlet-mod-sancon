@@ -756,6 +756,7 @@ release/qrc_icons.cpp: icons.qrc \
 		Resources/User-Female.PNG \
 		Resources/Downleft64.png \
 		Resources/Text-align-left64.png \
+		Resources/cut.png \
 		Resources/Chat.PNG \
 		Resources/hamlet_graphics.png \
 		Resources/Calendar.PNG \
