@@ -65,6 +65,8 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->pbRemove->setEnabled(user->get_programmi_u()>0);
     ui->pbAdd->setEnabled(user->get_wp_u()>0);
     ui->pbAdd->setEnabled(user->get_programmi_u()>0);
+    ui->pbCutRow->setEnabled(user->get_wp_u()>0);
+    ui->pbCutRow->setEnabled(user->get_programmi_u()>0);
     ui->pbCopy->setEnabled(user->get_programmi_u()>0);
     ui->pbPaste->setEnabled(user->get_programmi_u()>0);
     ui->pbModify->setEnabled(user->get_wp_u()>0);
@@ -87,6 +89,8 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     if(user->get_programmi_u()>0) connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+
+    ui->tvStorico->setFocus();
 
 
 
@@ -332,6 +336,7 @@ void HWorkProgram::refreshSheet()
         q.prepare(sql);
     q.bindValue(":id_p",wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
 
+    QApplication::setOverrideCursor(Qt::WaitCursor);
     q.exec();
 
     mod->setQuery(q);
@@ -380,6 +385,8 @@ void HWorkProgram::refreshSheet()
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
     ui->tvGeneral->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
+
+    QApplication::restoreOverrideCursor();
 
 
     QPalette p = ui->tvGeneral->palette();
@@ -701,6 +708,9 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
 
 
     ui->tvGeneral->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    ui->cbshowrows->setChecked(false);
+    ui->cbshowrows->setEnabled(false);
 
 
 
@@ -1280,6 +1290,8 @@ void HWorkProgram::on_pbDetails_clicked()
   /*  ui->pbAdd->setEnabled(false);
     ui->pbModify->setEnabled(false);
     ui->pbRemove->setEnabled(false);*/
+    ui->cbshowrows->setChecked(false);
+    ui->cbshowrows->setEnabled(false);
 
 }
 
@@ -1299,6 +1311,9 @@ void HWorkProgram::on_pbSingleSheet_clicked()
         ui->pbPaste->setEnabled(user->get_wp_u());
         ui->pbRemove->setEnabled(user->get_wp_u());
     }
+
+    ui->cbshowrows->setChecked(true);
+    ui->cbshowrows->setEnabled(true);
 
 
 
@@ -1349,8 +1364,13 @@ void HWorkProgram::on_cbAll_toggled(bool checked)
 {
     if(checked)
     {
+        ui->cbshowrows->setChecked(false);
+        ui->cbshowrows->setEnabled(false);
         on_pbDetails_clicked();
     }else{
+
+        ui->cbshowrows->setChecked(true);
+        ui->cbshowrows->setEnabled(true);
         on_pbSingleSheet_clicked();
     }
 }
