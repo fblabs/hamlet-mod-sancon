@@ -496,6 +496,7 @@ void HLotti_new::deleteLot(const int p_id)
     q.bindValue(":idlot",QVariant(idlotto));
     q.next();
     bool ok=false;
+
     int cnt=q.value(0).toInt(&ok);
     if(cnt>1)
     {
@@ -509,45 +510,14 @@ void HLotti_new::deleteLot(const int p_id)
     {
         bool ba=false;
 
-        db.transaction();
+
 
         HQueryModel_lotti* cmod=new HQueryModel_lotti();
-        sql= "select operazione from composizione_lot where id_lotto=:idlot";
-        q.prepare(sql);
-        q.bindValue(":idlot",QVariant(idlotto));
-        q.exec();
-        cmod->setQuery(q);
 
-
-
-        sql="delete from composizione_lot where id_lotto=:idlot";
-
-        q.prepare(sql);
-        q.bindValue(":idlot",QVariant(idlotto));
-
-        ba=q.exec();
-
-        qDebug()<<"delete from composizione"<<q.lastError().text();
-
-        for(int r=0; r<cmod->rowCount();r++)
+        if (QMessageBox::question(this,QApplication::applicationName(),"Attenzione erranno eliminate tuitte le referenze a quasto lotto\nin composizione e operazioni\nOperazione irreversibile, procedere?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
         {
-            sql="delete FROM operazioni WHERE id =:idrow";
-            q.prepare(sql);
-            q.bindValue(":idrow",QVariant(cmod->record(r).value(r)));
-            ba=q.exec();
-        }
+            QApplication::setOverrideCursor(Qt::WaitCursor);
 
-        //qDebug()<<q.lastQuery()<<q.lastError().text()<<q.boundValue(0).toString();
-
-        if(!ba)
-        {
-            //qDebug()<<q.lastError().text();
-            db.rollback();
-            QMessageBox::warning(this,QApplication::applicationName(),"Attenzione,impossibile cancellare il lotto in quanto già utilizzato",QMessageBox::Ok);
-            return;
-        }
-        if (QMessageBox::question(this,QApplication::applicationName(),"Confermare cancellazione?\nAttenzione operazione irreversibile",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
-        {
             sql="delete from operazioni where IDlotto=:id";
             q.prepare(sql);
             q.bindValue(":id",idlotto);
@@ -557,6 +527,7 @@ void HLotti_new::deleteLot(const int p_id)
             q.prepare(sql);
             q.bindValue(":id",idlotto);
 
+            db.transaction();
             bool k=q.exec();
             if(k){
                 db.commit();
@@ -577,6 +548,7 @@ void HLotti_new::deleteLot(const int p_id)
 
     }
 
+    QApplication::restoreOverrideCursor();
 
 
 
