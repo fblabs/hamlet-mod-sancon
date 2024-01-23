@@ -58,6 +58,10 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     loadRicetta();
 
     ui->tableView->resizeColumnsToContents();
+
+    QPalette p = ui->tableView->palette();
+    p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
+    ui->tableView->setPalette(p);
     // ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
 
 
@@ -67,7 +71,7 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     connect(shortcut,SIGNAL(activated()),this,SLOT(showAssociatedCustomers()));
     connect(this,SIGNAL(go_calc()),this,SLOT(calculateTotal()));
     connect(ui->cbRicette,SIGNAL(currentIndexChanged(int)),this,SLOT(loadRicetta()));
-    ui->cbRicette->setFocus();
+    ui->tableView->setFocus();
 
 }
 

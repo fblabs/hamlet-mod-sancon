@@ -292,19 +292,43 @@ public:
     {
         HModRicette->setWindowTitle(QCoreApplication::translate("HModRicette", "Ricette", nullptr));
         label_2->setText(QCoreApplication::translate("HModRicette", "Prodotti:", nullptr));
-        rb_con->setText(QCoreApplication::translate("HModRicette", "Visualizza prodotti con ricetta gi\303\240 impostata", nullptr));
-        rb_senza->setText(QCoreApplication::translate("HModRicette", "Visualzza prodotti senza ricetta", nullptr));
-        pbC4R->setText(QCoreApplication::translate("HModRicette", "Clienti associati", nullptr));
+        rb_con->setText(QCoreApplication::translate("HModRicette", "Visualizza prodotti con ricetta gi\303\240 impostata (i)", nullptr));
+#if QT_CONFIG(shortcut)
+        rb_con->setShortcut(QCoreApplication::translate("HModRicette", "I", nullptr));
+#endif // QT_CONFIG(shortcut)
+        rb_senza->setText(QCoreApplication::translate("HModRicette", "Visualzza prodotti senza ricetta (N)", nullptr));
+#if QT_CONFIG(shortcut)
+        rb_senza->setShortcut(QCoreApplication::translate("HModRicette", "N", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbC4R->setText(QCoreApplication::translate("HModRicette", "Clienti associati (C)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbC4R->setShortcut(QCoreApplication::translate("HModRicette", "C", nullptr));
+#endif // QT_CONFIG(shortcut)
         pbRicingredient->setText(QCoreApplication::translate("HModRicette", "Ricette per ingrediente", nullptr));
-        pbduplica->setText(QCoreApplication::translate("HModRicette", "Duplica Ricetta", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("HModRicette", "Associazioni ricette-clienti", nullptr));
+        pbduplica->setText(QCoreApplication::translate("HModRicette", "Duplica Ricetta (D)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbduplica->setShortcut(QCoreApplication::translate("HModRicette", "D", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pushButton_4->setText(QCoreApplication::translate("HModRicette", "Associazioni ricette-clienti (A)", nullptr));
+#if QT_CONFIG(shortcut)
+        pushButton_4->setShortcut(QCoreApplication::translate("HModRicette", "A", nullptr));
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         pushButton_3->setToolTip(QCoreApplication::translate("HModRicette", "Inizializza o crea una ricetta a seconda che il prodotto esista o meno, nel qual caso crea un nuovo prodotto finito o semilavorato", nullptr));
 #endif // QT_CONFIG(tooltip)
-        pushButton_3->setText(QCoreApplication::translate("HModRicette", "Ricetta", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("HModRicette", "Ricetta (R)", nullptr));
+#if QT_CONFIG(shortcut)
+        pushButton_3->setShortcut(QCoreApplication::translate("HModRicette", "R", nullptr));
+#endif // QT_CONFIG(shortcut)
         checkBox->setText(QCoreApplication::translate("HModRicette", "Mostra in produzione", nullptr));
-        pbAddRow->setText(QCoreApplication::translate("HModRicette", "Aggiungi ingrediente", nullptr));
-        pbDeleteRow->setText(QCoreApplication::translate("HModRicette", "Rimuovi ingrediente", nullptr));
+        pbAddRow->setText(QCoreApplication::translate("HModRicette", "Aggiungi ingrediente (Ctrrl + A)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbAddRow->setShortcut(QCoreApplication::translate("HModRicette", "Ctrl+A", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbDeleteRow->setText(QCoreApplication::translate("HModRicette", "Rimuovi ingrediente (Ctrl + R)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbDeleteRow->setShortcut(QCoreApplication::translate("HModRicette", "Ctrl+R", nullptr));
+#endif // QT_CONFIG(shortcut)
         lbQtot->setText(QCoreApplication::translate("HModRicette", "Quantit\303\240 totale:", nullptr));
 #if QT_CONFIG(tooltip)
         leTotal->setToolTip(QCoreApplication::translate("HModRicette", "Una volta inseriti gli ingredienti inserire la quantit\303\240 totale da produrre ", nullptr));

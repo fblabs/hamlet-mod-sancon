@@ -166,16 +166,16 @@ void HAddLotInProduction::addLot()
     if(giacenza <=0){
         for(int col=0;col<model->columnCount();col++)
         {
-        model->item(nrow,col)->setData(QVariant(QBrush(Qt::red)),Qt::BackgroundRole);
-        model->item(nrow,col)->setData(QVariant(QColor(Qt::white)),Qt::ForegroundRole);
+        model->item(nrow,col)->setData(QBrush(QColor(255,150,150)),Qt::BackgroundRole);
+       // model->item(nrow,col)->setData(QVariant(QColor(Qt::white)),Qt::ForegroundRole);
         }
-    }else{
+    /*}else{
 
         for(int col=0;col<model->columnCount();col++)
         {
         model->item(nrow,col)->setData(QVariant(QBrush(Qt::white)),Qt::BackgroundRole);
         model->item(nrow,col)->setData(QVariant(QColor(Qt::black)),Qt::ForegroundRole);
-        }
+        }*/
 
     }
 

@@ -55,7 +55,10 @@
      <item>
       <widget class="QRadioButton" name="rb_con">
        <property name="text">
-        <string>Visualizza prodotti con ricetta già impostata</string>
+        <string>Visualizza prodotti con ricetta già impostata (i)</string>
+       </property>
+       <property name="shortcut">
+        <string>I</string>
        </property>
        <property name="checked">
         <bool>true</bool>
@@ -65,7 +68,10 @@
      <item>
       <widget class="QRadioButton" name="rb_senza">
        <property name="text">
-        <string>Visualzza prodotti senza ricetta</string>
+        <string>Visualzza prodotti senza ricetta (N)</string>
+       </property>
+       <property name="shortcut">
+        <string>N</string>
        </property>
        <property name="checked">
         <bool>false</bool>
@@ -92,7 +98,7 @@
      <item row="0" column="3">
       <widget class="QPushButton" name="pbC4R">
        <property name="text">
-        <string>Clienti associati</string>
+        <string>Clienti associati (C)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -103,6 +109,9 @@
          <width>32</width>
          <height>32</height>
         </size>
+       </property>
+       <property name="shortcut">
+        <string>C</string>
        </property>
       </widget>
      </item>
@@ -139,7 +148,7 @@
      <item row="0" column="1">
       <widget class="QPushButton" name="pbduplica">
        <property name="text">
-        <string>Duplica Ricetta</string>
+        <string>Duplica Ricetta (D)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -151,12 +160,15 @@
          <height>32</height>
         </size>
        </property>
+       <property name="shortcut">
+        <string>D</string>
+       </property>
       </widget>
      </item>
      <item row="0" column="4">
       <widget class="QPushButton" name="pushButton_4">
        <property name="text">
-        <string>Associazioni ricette-clienti</string>
+        <string>Associazioni ricette-clienti (A)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -168,6 +180,9 @@
          <height>32</height>
         </size>
        </property>
+       <property name="shortcut">
+        <string>A</string>
+       </property>
       </widget>
      </item>
      <item row="0" column="0">
@@ -176,7 +191,7 @@
         <string>Inizializza o crea una ricetta a seconda che il prodotto esista o meno, nel qual caso crea un nuovo prodotto finito o semilavorato</string>
        </property>
        <property name="text">
-        <string>Ricetta</string>
+        <string>Ricetta (R)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -187,6 +202,9 @@
          <width>32</width>
          <height>32</height>
         </size>
+       </property>
+       <property name="shortcut">
+        <string>R</string>
        </property>
       </widget>
      </item>
@@ -241,7 +259,7 @@
        <item>
         <widget class="QPushButton" name="pbAddRow">
          <property name="text">
-          <string>Aggiungi ingrediente</string>
+          <string>Aggiungi ingrediente (Ctrrl + A)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -253,12 +271,15 @@
            <height>32</height>
           </size>
          </property>
+         <property name="shortcut">
+          <string>Ctrl+A</string>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pbDeleteRow">
          <property name="text">
-          <string>Rimuovi ingrediente</string>
+          <string>Rimuovi ingrediente (Ctrl + R)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -269,6 +290,9 @@
            <width>32</width>
            <height>32</height>
           </size>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+R</string>
          </property>
         </widget>
        </item>

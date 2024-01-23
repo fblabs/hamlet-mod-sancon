@@ -18,7 +18,7 @@ QVariant HQueryModel_lotti::data(const QModelIndex &index, int role) const
     if(role==Qt::BackgroundRole && ix.data(0).toInt()<0)
     {
 
-        return QColor(Qt::red);
+        return QColor(255,150,150);
 
 
     }
@@ -28,10 +28,10 @@ QVariant HQueryModel_lotti::data(const QModelIndex &index, int role) const
         return QColor(Qt::lightGray);
     }
 
-    if(role==Qt::ForegroundRole &&ix.data().toInt() <0 &&  ix.data(0).toInt()<0)
+   /* if(role==Qt::ForegroundRole &&ix.data().toInt() <0 &&  ix.data(0).toInt()<0)
     {
         return QColor(QColor(255,255,255));
-    }
+    }*/
 
 
     return QSqlQueryModel::data(index, role);
