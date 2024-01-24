@@ -44,7 +44,7 @@ void HWpManager::getClients()
 {
     QSqlTableModel *cmod=new QSqlTableModel(0,db);
     cmod->setTable("anagrafica");
-    cmod->setFilter("cliente >0");
+    cmod->setFilter("cliente >0 and visibile > 0");
     cmod->setSort(1,Qt::AscendingOrder);
     cmod->select();
 

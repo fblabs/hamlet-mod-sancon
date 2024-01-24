@@ -42,24 +42,6 @@ HNSChede::HNSChede(QString spcliente, QString spprodotto, QSqlDatabase pdb, HUse
     ui->pbReset->setEnabled(usr->get_schede_u()>0);
     ui->pbInit->setEnabled(usr->get_schede_u()>0);
 
-    /*bool upd=usr->getCanUpdate();
-
-
-    ui->lblLed->setVisible(false);
-
-    if (!upd)
-    {
-        ui->pbsave->setVisible(upd);
-        ui->pbReset->setVisible(upd);
-        ui->pbCopy->setVisible(upd);
-        ui->textEdit->setReadOnly(upd);
-        ui->pushButton_8->setEnabled(upd);
-        ui->pushButton_7->setEnabled(upd);
-        ui->pushButton_9->setEnabled(upd);
-        ui->pbsave->setEnabled(upd);
-        ui->pbInit->setEnabled(upd);
-
-    }*/
 
     ui->textEdit->setReadOnly(!ui->pushButton_8->isChecked());
 
@@ -90,7 +72,7 @@ HNSChede::HNSChede(QString spcliente, QString spprodotto, QSqlDatabase pdb, HUse
 
     QSqlTableModel *clientmod =new QSqlTableModel(0,db);
     clientmod->setTable("anagrafica");
-    clientmod->setFilter("cliente=1");
+    clientmod->setFilter("cliente>0 and visibile >0");
     clientmod->setSort(1,Qt::AscendingOrder);
     clientmod->select();
 

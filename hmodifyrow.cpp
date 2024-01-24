@@ -27,7 +27,7 @@ HModifyRow::HModifyRow(const int p_id,const int p_idrow,const int p_row, HUser *
 
     getClients();
     getProducts();
-   // getTappi();
+    // getTappi();
     initSanityModel();
     loadRow();
 
@@ -108,7 +108,7 @@ void HModifyRow::initSanityModel()
 
 void HModifyRow::loadRow()
 {
-qDebug()<<"loadRow";
+    qDebug()<<"loadRow";
 
     QSqlTableModel *rows_model=new QSqlTableModel(0,db);
     rows_model->setTable("righe_produzione");
@@ -116,72 +116,73 @@ qDebug()<<"loadRow";
     rows_model->select();
     qDebug()<<idp<<row<<rows_model->lastError().text();
     qDebug()<<rows_model->rowCount();
-//setup controls
-   QSqlTableModel *clientimod=static_cast<QSqlTableModel*>(ui->cbCliente->model());
-   clientimod->setFilter("ID="+rows_model->index(0,9).data(0).toString());
-   ui->cbCliente->setCurrentIndex(0);
-   QString texttofind=ui->cbCliente->currentText();
-   clientimod->setFilter("cliente >0");
-   int ixc=ui->cbCliente->findText(texttofind);
-   ui->cbCliente->setCurrentIndex(ixc);
+    //setup controls
+    QSqlTableModel *clientimod=static_cast<QSqlTableModel*>(ui->cbCliente->model());
+    clientimod->setFilter("ID="+rows_model->index(0,9).data(0).toString());
+       ui->cbCliente->setCurrentIndex(0);
+    QString texttofind=ui->cbCliente->currentText();
+    clientimod->setFilter("cliente >0 and visibile >0");
+    int ixc=ui->cbCliente->findText(texttofind);
+    qDebug()<<texttofind;
+    ui->cbCliente->setCurrentIndex(ixc);
 
-   QSqlQueryModel *productsmod=static_cast<QSqlQueryModel*>(ui->cbProdotto->model());
-   int r=rows_model->index(0,6).data(0).toInt();
-   qDebug()<<QString::number(r);
-   QString sxp;
+    QSqlQueryModel *productsmod=static_cast<QSqlQueryModel*>(ui->cbProdotto->model());
+    int r=rows_model->index(0,6).data(0).toInt();
+    qDebug()<<QString::number(r);
+    QString sxp;
 
-   for(int ix=0;ix<productsmod->rowCount();++ix)
-   {
-       if(productsmod->record(ix).value(1).toInt()==r)
-       {
-           sxp=productsmod->record(ix).value(2).toString();
-       }
-   }
+    for(int ix=0;ix<productsmod->rowCount();++ix)
+    {
+        if(productsmod->record(ix).value(1).toInt()==r)
+        {
+            sxp=productsmod->record(ix).value(2).toString();
+        }
+    }
 
-   qDebug()<<"prodotto"<<sxp;
-   int x=ui->cbProdotto->findText(sxp);
-   ui->cbProdotto->setCurrentIndex(x);
-
-
-
-
-   ui->leQuant->setText(rows_model->index(0,3).data(0).toString());
-   ui->leVaso->setText(rows_model->index(0,4).data(0).toString());
-   ui->leSpecificaOlio->setText(rows_model->index(0,5).data(0).toString());
-   ui->leOlio->setText(rows_model->index(0,7).data(0).toString());
-   ui->leTappo->setText(rows_model->index(0,8).data(0).toString());
-   ui->cbSanty->setCurrentText(rows_model->index(0,11).data(0).toString());
-   ui->leAllergeni->setText(rows_model->index(0,15).data(0).toString());
-   ui->leNumOrd->setText(rows_model->index(0,12).data(0).toString());
-   ui->leLotScad->setText(rows_model->index(0,17).data(0).toString());
-   int fresco=rows_model->index(0,13).data(0).toInt();
-   int pastorizzato=rows_model->index(0,14).data(0).toInt();
-   QString lotti=rows_model->index(0,17).data(0).toString();
-   QString lotScad=rows_model->index(0,18).data(0).toString();
-   QString note=rows_model->index(0,16).data(0).toString();
+    qDebug()<<"prodotto"<<sxp;
+    int x=ui->cbProdotto->findText(sxp);
+    ui->cbProdotto->setCurrentIndex(x);
 
 
-   qDebug()<<fresco<<pastorizzato;
-   if(fresco>0)
-   {
-       ui->rbFresh->setChecked(true);
-   }
-   else if(pastorizzato>0)
-   {
-       ui->rbPastorized->setChecked(true);
-   }
-   else
-   {
-       ui->rbNone->setChecked(true);
-   }
 
-   ui->ptNote->setPlainText(note);
-   ui->ptLotti->setPlainText(lotti);
-   ui->leLotScad->setText(lotScad);
 
-   bool vok=false;
-   double tot=rows_model->index(0,10).data(0).toDouble(&vok);
-   ui->leTotal->setText(QString::number(tot,'f',3));
+    ui->leQuant->setText(rows_model->index(0,3).data(0).toString());
+    ui->leVaso->setText(rows_model->index(0,4).data(0).toString());
+    ui->leSpecificaOlio->setText(rows_model->index(0,5).data(0).toString());
+    ui->leOlio->setText(rows_model->index(0,7).data(0).toString());
+    ui->leTappo->setText(rows_model->index(0,8).data(0).toString());
+    ui->cbSanty->setCurrentText(rows_model->index(0,11).data(0).toString());
+    ui->leAllergeni->setText(rows_model->index(0,15).data(0).toString());
+    ui->leNumOrd->setText(rows_model->index(0,12).data(0).toString());
+    ui->leLotScad->setText(rows_model->index(0,17).data(0).toString());
+    int fresco=rows_model->index(0,13).data(0).toInt();
+    int pastorizzato=rows_model->index(0,14).data(0).toInt();
+    QString lotti=rows_model->index(0,17).data(0).toString();
+    QString lotScad=rows_model->index(0,18).data(0).toString();
+    QString note=rows_model->index(0,16).data(0).toString();
+
+
+    qDebug()<<fresco<<pastorizzato;
+    if(fresco>0)
+    {
+        ui->rbFresh->setChecked(true);
+    }
+    else if(pastorizzato>0)
+    {
+        ui->rbPastorized->setChecked(true);
+    }
+    else
+    {
+        ui->rbNone->setChecked(true);
+    }
+
+    ui->ptNote->setPlainText(note);
+    ui->ptLotti->setPlainText(lotti);
+    ui->leLotScad->setText(lotScad);
+
+    bool vok=false;
+    double tot=rows_model->index(0,10).data(0).toDouble(&vok);
+    ui->leTotal->setText(QString::number(tot,'f',3));
 
 
 
@@ -284,27 +285,27 @@ void HModifyRow::saveRow(){
 
 }
 
-  double  HModifyRow::calcTotale()
+double  HModifyRow::calcTotale()
+{
+    bool vok=false;
+    bool qok=false;
+
+    double vaso=ui->leVaso->text().toDouble(&vok);
+    if(!vok)
     {
-        bool vok=false;
-        bool qok=false;
-
-        double vaso=ui->leVaso->text().toDouble(&vok);
-        if(!vok)
-        {
-            QMessageBox::warning(this,QApplication::applicationName(),"Errore di formato della cifra per quantità vaso",QMessageBox::Ok);
-            return -1;
-        }
-        double quant=ui->leQuant->text().toDouble(&qok);
-        if(!qok)
-        {
-           QMessageBox::warning(this,QApplication::applicationName(),"Errore di formato della cifra per quantità vaso",QMessageBox::Ok);
-           return -1;
-        }
-
-        double totale=(quant*vaso)/1000;
-        return totale;
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore di formato della cifra per quantità vaso",QMessageBox::Ok);
+        return -1;
     }
+    double quant=ui->leQuant->text().toDouble(&qok);
+    if(!qok)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore di formato della cifra per quantità vaso",QMessageBox::Ok);
+        return -1;
+    }
+
+    double totale=(quant*vaso)/1000;
+    return totale;
+}
 
 
 void HModifyRow::on_leTotal_returnPressed()
@@ -330,10 +331,9 @@ void HModifyRow::on_pbSaveLots_clicked()
 
     if(QMessageBox::question(this,QApplication::applicationName(),"Salvare i lotti produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
-       bool b= q.exec();
+        bool b= q.exec();
 
         if(!b)QMessageBox::warning(this,QApplication::applicationName(),"Errore durante il salvataggio\n"+q.lastError().text(),QMessageBox::Ok);
         emit done();
     }
 }
-
