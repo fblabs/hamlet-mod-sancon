@@ -1,5 +1,6 @@
 #include "hwpmod.h"
 #include <QColor>
+#include <Qdebug>
 
 HWpMod::HWpMod(QObject *parent)
     : QStandardItemModel{parent}
@@ -90,6 +91,9 @@ bool HWpMod::setData(const QModelIndex &index, const QVariant &value, int role)
 
         return QStandardItemModel::data(index,role).toBool();
 
+
+
+
     }
 
 
@@ -98,6 +102,12 @@ bool HWpMod::setData(const QModelIndex &index, const QVariant &value, int role)
     return true;
 }
 
+/*bool HWpMod::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
+{
+    return QStandardItemModel::dropMimeData(data,action,row,0,parent);
+    qDebug()<<"COL"<<column;
+}
+*/
 
 
 

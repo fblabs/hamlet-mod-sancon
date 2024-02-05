@@ -385,6 +385,7 @@ void HWorkProgram::refreshSheet()
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
     ui->tvGeneral->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
+    ui->tvGeneral->setAcceptDrops(true);
 
     QApplication::restoreOverrideCursor();
 
@@ -725,9 +726,9 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         // sql="select prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) as q from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione in (select id from produzione where dal between :dal and :al)) group by righe_ricette.ID_prodotto order by q desc";
 
 
-        sql="select righe_ricette.ID_prodotto,righe_produzione.totale as rptot,ricette.q_tot as ricetteqtot,righe_produzione.totale/ricette.q_tot  as factor,i.ID,i.descrizione,righe_ricette.quantita * (righe_produzione.totale/ricette.q_tot) as res\
-            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
-                                                              where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and produzione.dal between :dal and :al";
+        sql="SELECT rr.ID_prodotto,i.descrizione, @tot:=FORMAT(SUM(rr.quantita),2) as totale\
+            from righe_ricette rr,/*ricette r,prodotti p*,*/prodotti i where rr.ID_prodotto=i.ID\
+                                                                         group by rr.ID_prodotto";
 
 
 
@@ -888,6 +889,7 @@ void HWorkProgram::process(const QSqlQueryModel *mod)
     ui->tvGeneral->setColumnHidden(0,false);
     ui->tvGeneral->setColumnHidden(1,false);
     ui->tvGeneral->setColumnHidden(2,false);
+
     /* ui->tvGeneral->setColumnHidden(3,true);
     ui->tvGeneral->setColumnHidden(4,true);*/
 
@@ -1333,6 +1335,7 @@ HWpMod *HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
         {
             QStandardItem *it=new QStandardItem(mod->index(r,c).data().toString());
             it->setTextAlignment(Qt::AlignTop);
+            it->setDropEnabled(false);
             row.append(it);
         }
 

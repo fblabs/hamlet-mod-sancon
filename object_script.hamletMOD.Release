@@ -23,10 +23,13 @@ release/hnew_recipe_main.o
 release/hpdfprint.o
 release/hpreferred_lots.o
 release/hproducts_for_calcolo_costi.o
+release/hprogdlg.o
 release/hprogramstableview.o
 release/hquerymodel_lastlots.o
 release/hquerymodel_lotti.o
 release/hrecipesforingredient.o
+release/hrecipesoverview.o
+release/hworker.o
 release/hworkprogram.o
 release/hworkprogramdetailmodel.o
 release/hworksheetmodel.o
@@ -118,8 +121,10 @@ release/moc_hnew_recipe_main.o
 release/moc_hpdfprint.o
 release/moc_hpreferred_lots.o
 release/moc_hproducts_for_calcolo_costi.o
+release/moc_hprogdlg.o
 release/moc_hquerymodel_lotti.o
 release/moc_hrecipesforingredient.o
+release/moc_hrecipesoverview.o
 release/moc_huser.o
 release/moc_hutenti.o
 release/moc_hnewop.o
@@ -162,6 +167,7 @@ release/moc_hmodimage.o
 release/moc_hcopycard.o
 release/moc_hcomposizionelotto.o
 release/moc_hgraphicprint.o
+release/moc_hworker.o
 release/moc_hworkprogram.o
 release/moc_hworkprogramdetailmodel.o
 release/moc_hworksheetmodel.o

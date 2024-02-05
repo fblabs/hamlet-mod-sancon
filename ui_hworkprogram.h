@@ -82,7 +82,7 @@ public:
         if (HWorkProgram->objectName().isEmpty())
             HWorkProgram->setObjectName(QString::fromUtf8("HWorkProgram"));
         HWorkProgram->setWindowModality(Qt::NonModal);
-        HWorkProgram->resize(1457, 638);
+        HWorkProgram->resize(1544, 638);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/3D_Icons_Icon_256.png"), QSize(), QIcon::Normal, QIcon::Off);
         HWorkProgram->setWindowIcon(icon);
@@ -189,7 +189,7 @@ public:
         tvGeneral->setEnabled(true);
         tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
         tvGeneral->setProperty("showDropIndicator", QVariant(false));
-        tvGeneral->setDragEnabled(false);
+        tvGeneral->setDragEnabled(true);
         tvGeneral->setDragDropOverwriteMode(false);
         tvGeneral->setDragDropMode(QAbstractItemView::NoDragDrop);
         tvGeneral->setDefaultDropAction(Qt::IgnoreAction);

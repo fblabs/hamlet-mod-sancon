@@ -23,10 +23,13 @@ debug/hnew_recipe_main.o
 debug/hpdfprint.o
 debug/hpreferred_lots.o
 debug/hproducts_for_calcolo_costi.o
+debug/hprogdlg.o
 debug/hprogramstableview.o
 debug/hquerymodel_lastlots.o
 debug/hquerymodel_lotti.o
 debug/hrecipesforingredient.o
+debug/hrecipesoverview.o
+debug/hworker.o
 debug/hworkprogram.o
 debug/hworkprogramdetailmodel.o
 debug/hworksheetmodel.o
@@ -118,8 +121,10 @@ debug/moc_hnew_recipe_main.o
 debug/moc_hpdfprint.o
 debug/moc_hpreferred_lots.o
 debug/moc_hproducts_for_calcolo_costi.o
+debug/moc_hprogdlg.o
 debug/moc_hquerymodel_lotti.o
 debug/moc_hrecipesforingredient.o
+debug/moc_hrecipesoverview.o
 debug/moc_huser.o
 debug/moc_hutenti.o
 debug/moc_hnewop.o
@@ -162,6 +167,7 @@ debug/moc_hmodimage.o
 debug/moc_hcopycard.o
 debug/moc_hcomposizionelotto.o
 debug/moc_hgraphicprint.o
+debug/moc_hworker.o
 debug/moc_hworkprogram.o
 debug/moc_hworkprogramdetailmodel.o
 debug/moc_hworksheetmodel.o

@@ -39,10 +39,13 @@ SOURCES += main.cpp\
     hpdfprint.cpp \
     hpreferred_lots.cpp \
     hproducts_for_calcolo_costi.cpp \
+    hprogdlg.cpp \
     hprogramstableview.cpp \
     hquerymodel_lastlots.cpp \
     hquerymodel_lotti.cpp \
     hrecipesforingredient.cpp \
+    hrecipesoverview.cpp \
+    hworker.cpp \
     hworkprogram.cpp \
     hworkprogramdetailmodel.cpp \
     hworksheetmodel.cpp \
@@ -134,10 +137,12 @@ HEADERS  += mainwindow.h \
     hpdfprint.h \
     hpreferred_lots.h \
     hproducts_for_calcolo_costi.h \
+    hprogdlg.h \
     hprogramstableview.h \
     hquerymodel_lastlots.h \
     hquerymodel_lotti.h \
     hrecipesforingredient.h \
+    hrecipesoverview.h \
     huser.h \
     hutenti.h \
     hnewop.h \
@@ -181,6 +186,7 @@ HEADERS  += mainwindow.h \
     hcopycard.h \
     hcomposizionelotto.h \
     hgraphicprint.h \
+    hworker.h \
     hworkprogram.h \
     hworkprogramdetailmodel.h \
     hworksheetmodel.h \
@@ -228,7 +234,9 @@ FORMS    += mainwindow.ui \
     hpdfprint.ui \
     hpreferred_lots.ui \
     hproducts_for_calcolo_costi.ui \
+    hprogdlg.ui \
     hrecipesforingredient.ui \
+    hrecipesoverview.ui \
     hutenti.ui \
     hsettings.ui \
     hprint.ui \

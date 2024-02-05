@@ -46,7 +46,7 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include "hlotti_new.h"
-
+#include "hrecipesoverview.h"
 #include <QDesktopServices>
 
 
@@ -495,19 +495,16 @@ void MainWindow::on_pbC4R_clicked()
     f->show();
 }
 
-
-
-
 void MainWindow::on_pbProgrammazione_clicked()
 {
     HWorkProgram *f=new HWorkProgram(user,db);
     f->showMaximized();
 }
 
+void MainWindow::on_pbPercent_clicked()
+{
+    HRecipesOverview *f=new HRecipesOverview(db);
+    f->show();
 
-
-
-
-
-
+}
 
