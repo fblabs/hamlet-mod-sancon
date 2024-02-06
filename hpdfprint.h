@@ -33,7 +33,7 @@ private slots:
     void on_pbPreview_clicked();
 
 
-    void on_rbPortrait_toggled(bool checked);
+   // void on_rbPortrait_toggled(bool checked);
 
     void print_preview(QPrinter *p_printer);
 

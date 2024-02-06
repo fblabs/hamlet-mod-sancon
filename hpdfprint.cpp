@@ -22,7 +22,9 @@ HPDFPrint::HPDFPrint(HUser *p_user, QString p_html, QWidget *parent) :
 
     ui->tb_Viewport->setFont(font);
     ui->tb_Viewport->document()->setHtml(html);
+
     layout.setOrientation(QPageLayout::Portrait);
+
 
 
 }
@@ -124,10 +126,6 @@ void HPDFPrint::on_sbFontSize_valueChanged(int arg1)
 
 void HPDFPrint::on_pbPreview_clicked()
 {
-   // printer(QPrinter::HighResolution);
-
-
-
 
     QPrintPreviewDialog *dlg=new QPrintPreviewDialog(&printer);
 
@@ -138,15 +136,6 @@ void HPDFPrint::on_pbPreview_clicked()
     dlg->exec();
 }
 
-
-
-
-
-void HPDFPrint::on_rbPortrait_toggled(bool checked)
-{
-
-
-}
 
 void HPDFPrint::print_preview(QPrinter* p_printer)
 {

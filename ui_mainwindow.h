@@ -586,6 +586,7 @@ public:
 
         pbPercent = new QPushButton(centralWidget);
         pbPercent->setObjectName(QString::fromUtf8("pbPercent"));
+        pbPercent->setEnabled(false);
         pbPercent->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon26;
         icon26.addFile(QString::fromUtf8(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -629,7 +630,7 @@ public:
         lbCurrentUser->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 3.6</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 3.6.5 </span><span style=\" font-size:7pt; font-weight:600;\">001  test</span></p><p><br/><br/><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza: LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2024</span></p><p><a href=\"https://github.com/fblabs/hamlet-mod-sancon/blob/master/release/hamletMOD.exe\"><span style=\" text-decoration: underline; color:#007af4;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 3.6</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 3.6.5 </span><span style=\" font-size:7pt; font-weight:600;\">001 </span></p><p><br/><br/><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza: LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2024</span></p><p><a href=\"https://github.com/fblabs/hamlet-mod-sancon/blob/master/release/hamletMOD.exe\"><span style=\" text-decoration: underline; color:#007af4;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
         tbSettings->setText(QCoreApplication::translate("MainWindow", "Impostazioni   ", nullptr));
         pbSchede->setText(QCoreApplication::translate("MainWindow", "Schede Clienti (F3)", nullptr));
 #if QT_CONFIG(shortcut)

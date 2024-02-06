@@ -34,7 +34,7 @@ public:
     {
         if (HRecipesOverview->objectName().isEmpty())
             HRecipesOverview->setObjectName(QString::fromUtf8("HRecipesOverview"));
-        HRecipesOverview->resize(1091, 534);
+        HRecipesOverview->resize(1091, 668);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
         HRecipesOverview->setWindowIcon(icon);

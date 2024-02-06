@@ -71,69 +71,37 @@ void HRecipesOverview::loadData()
 
 
     //sql="SELECT righe_ricette.ID_prodotto,prodotti.descrizione, SUM(righe_ricette.quantita) as TOTALE from righe_ricette,ricette,prodotti where righe_ricette.ID_prodotto=prodotti.ID group by righe_ricette.ID_prodotto order by TOTALE desc";
-    sql="SELECT righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',ricette.q_tot,righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico,CONCAT(FORMAT((righe_ricette.quantita/ricette.q_tot)*100,2),'%') as'percent'\
-        from righe_ricette,prodotti,ricette\
-                  where prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=ricette.ID order by righe_ricette.ID_ricetta";
+    sql="SELECT p.ID,p.descrizione,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,i.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',ricette.q_tot,righe_ricette.show_prod AS 'Mostra in produzione',i.allergenico,CONCAT(FORMAT((righe_ricette.quantita/ricette.q_tot)*100,2),'%') as'percent'\
+        from righe_ricette,prodotti i,prodotti p,ricette\
+                                where i.ID=righe_ricette.ID_prodotto  and p.id=ricette.ID_prodotto and righe_ricette.ID_ricetta=ricette.ID order by righe_ricette.ID_ricetta";
     q.prepare(sql);
     q.exec();
 
     mod->setQuery(q);
 
-
-    QStandardItemModel *sim=new QStandardItemModel();
-    QList<QStandardItem*> row;
     QSortFilterProxyModel *sortmod=new QSortFilterProxyModel();
-
-
-    for(int r=0;r<mod->rowCount();++r)
-    {
-
-        double i=mod->index(r,2).data().toString().toDouble();
-       // double p=i/tot;
-
-        row.clear();
-
-        QStandardItem *idp=new QStandardItem(mod->index(r,0).data().toString());
-        QStandardItem *prod=new QStandardItem(mod->index(r,1).data().toString());
-        QStandardItem *qp=new QStandardItem(QString::number(mod->index(r,2).data().toDouble(),'f',2));
-        QStandardItem *perc= new QStandardItem(QString::number(mod->index(r,7).data().toDouble(),'f',2));
-
-        row<<idp<<prod<<qp<<perc;
-        sim->appendRow(row);
-
-        sortmod->setSourceModel(sim);
-
-
-
-
-    }
-
-
-
-
+    sortmod->setSourceModel(mod);
 
     QApplication::restoreOverrideCursor();
 
     f->close();
-
-
     delete f;
 
 
-
-    sim->setHeaderData(0,Qt::Horizontal,"ID INGREDIENTE",Qt::DisplayRole);
-    sim->setHeaderData(1,Qt::Horizontal,"INGREDIENTE",Qt::DisplayRole);
-    sim->setHeaderData(2,Qt::Horizontal,"TOTALE NELLE RICETTE ",Qt::DisplayRole);
-    sim->setHeaderData(3,Qt::Horizontal,"PERCENTUALE SU TOTALE RICETTE",Qt::DisplayRole);
-
     ui->tvResult->setModel(mod);
+    ui->tvResult->setColumnHidden(0,true);
+    ui->tvResult->setColumnHidden(2,true);
+    ui->tvResult->setColumnHidden(3,true);
+    ui->tvResult->setColumnHidden(7,true);
+    ui->tvResult->setColumnHidden(8,true);
     ui->tvResult->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvResult->horizontalHeader()->setStretchLastSection(true);
 
-
-   //  ui->prog->setValue(100);
-
-
+    mod->setHeaderData(1,Qt::Horizontal,"RICETTA");
+    mod->setHeaderData(4,Qt::Horizontal,"INGREDIENTE");
+    mod->setHeaderData(5,Qt::Horizontal,"QUANTITA\'");
+    mod->setHeaderData(6,Qt::Horizontal,"QUANTITA\' TOTALE");
+    mod->setHeaderData(9,Qt::Horizontal,"PERCENTUALE");
 
 }
 
@@ -151,6 +119,8 @@ void HRecipesOverview::delay()
 void HRecipesOverview::print()
 {
 
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
     QString strStream;
 
 
@@ -159,13 +129,13 @@ void HRecipesOverview::print()
     const int rowCount = ui->tvResult->model()->rowCount();
     const int columnCount = ui->tvResult->model()->columnCount();
 
-    QString title="PERCENTUALE INGREDIENTI";
+    QString title="PERCENTUALE INGREDIENTI"+QDate().toString("dd/mm/yyyy");
 
     //   qDebug()<<filename;
 
     out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
 
-    out << "<thead><tr bgcolor='lightyellow'><th colspan='4'>"+ title +"</th></tr>";
+    out << "<thead><tr bgcolor='lightyellow'><th colspan='5'>"+ title +"</th></tr>";
     // headers
     out << "<tr bgcolor=#f0f0f0>";
     for (int column = 0; column < columnCount; column++)
@@ -179,6 +149,9 @@ void HRecipesOverview::print()
        out << "<tr>";
         for (int column = 0; column < columnCount; column++) {
             if (!ui->tvResult->isColumnHidden(column)) {
+
+                if(column!=6)
+                {
                 QString data = ui->tvResult->model()->data(ui->tvResult->model()->index(row, column)).toString()/*.simplified()*/;
 
                 QString color = QString();
@@ -187,6 +160,21 @@ void HRecipesOverview::print()
 
 
                 out << QString(color).arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                }
+                else
+                {
+                    double d=ui->tvResult->model()->data(ui->tvResult->model()->index(row, column)).toDouble();
+                    QString data = QString::number(d,'f',2);
+
+                    QString color = QString();
+
+                    color="<td bgcolor='white'>%1</td>";
+
+
+                    out << QString(color).arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                }
+
+
 
             }
         }
@@ -202,6 +190,8 @@ void HRecipesOverview::print()
     orientation=QPageLayout::Portrait;
     f->set_orientation(orientation);
     f->show();
+    QApplication::restoreOverrideCursor();
+
 
 }
 

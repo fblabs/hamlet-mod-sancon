@@ -142,6 +142,7 @@ void MainWindow::disableUI()
     ui->pbExpirations->setEnabled(false);
     ui->pbCalcoloCosti->setEnabled(false);
     ui->pbC4R->setEnabled(false);
+    ui->pbPercent->setEnabled(false);
 }
 
 void MainWindow::enableButtonsForRole()
@@ -182,6 +183,7 @@ void MainWindow::enableButtonsForRole()
     ui->pbExpirations->setEnabled(true);
     ui->toolButton->setEnabled(false);
     ui->tbLogout->setEnabled(true);
+    ui->pbPercent->setEnabled(true);
 
 }
 
