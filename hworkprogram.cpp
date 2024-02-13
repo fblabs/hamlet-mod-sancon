@@ -91,6 +91,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     if(user->get_programmi_u()>0) connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
 
     ui->tvStorico->setFocus();
+    ui->cbshowrows->setChecked(false);
 
 
 
@@ -726,13 +727,11 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         // sql="select prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) as q from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione in (select id from produzione where dal between :dal and :al)) group by righe_ricette.ID_prodotto order by q desc";
 
 
-        sql="SELECT rr.ID_prodotto,i.descrizione, @tot:=FORMAT(SUM(rr.quantita),2) as totale\
-            from righe_ricette rr,/*ricette r,prodotti p*,*/prodotti i where rr.ID_prodotto=i.ID\
-                                                                         group by rr.ID_prodotto";
+       sql="select righe_ricette.ID_prodotto,righe_produzione.totale as rptot,ricette.q_tot as ricetteqtot,righe_produzione.totale/ricette.q_tot  as factor,i.ID,i.descrizione,righe_ricette.quantita * (righe_produzione.totale/ricette.q_tot) as res\
+            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
+                                                              where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and produzione.dal between :dal and :al";
 
 
-
-                                                                                                                                                                                                                                                                          q.prepare(sql);
         QDate dal=ui->deSearch->date();
         QDate al=ui->deSearchTo->date();
 
@@ -785,8 +784,13 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         qmod->setQuery(q);
 
 
-        // ui->tvGeneral->setModel(qmod);
-        process(qmod);
+        ui->tvGeneral->setModel(qmod);
+        //process(qmod);
+
+        for(int r=0;r<qmod->columnCount();++r)
+        {
+            ui->tvGeneral->setColumnHidden(r,false);
+        }
 
 
 
@@ -913,7 +917,7 @@ void HWorkProgram::save(const bool show_dlg )
 
     if(show_dlg)
     {
-        if(QMessageBox::question(this,QApplication::applicationName(),"Confermi il salvataggio?",QMessageBox::Ok|QMessageBox::Cancel==QMessageBox::Ok)){ go=true;}
+        if(QMessageBox::question(this,QApplication::applicationName(),"Confermi il salvataggio?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok){ go=true;}
     }else{go=true;}
 
     if(!go)return;
@@ -1265,7 +1269,7 @@ void HWorkProgram::copyRow()
 
 }
 
-void HWorkProgram::cutRow(const bool show)
+void HWorkProgram::cutRow()
 {
         copyRow();
         removeRow(false);
@@ -1314,7 +1318,7 @@ void HWorkProgram::on_pbSingleSheet_clicked()
         ui->pbRemove->setEnabled(user->get_wp_u());
     }
 
-    ui->cbshowrows->setChecked(true);
+    //ui->cbshowrows->setChecked(true);
     ui->cbshowrows->setEnabled(true);
 
 
@@ -1372,7 +1376,7 @@ void HWorkProgram::on_cbAll_toggled(bool checked)
         on_pbDetails_clicked();
     }else{
 
-        ui->cbshowrows->setChecked(true);
+        ui->cbshowrows->setChecked(false);
         ui->cbshowrows->setEnabled(true);
         on_pbSingleSheet_clicked();
     }

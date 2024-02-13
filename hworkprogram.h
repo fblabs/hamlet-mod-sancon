@@ -88,7 +88,7 @@ private slots:
 
     void copyRow();
 
-    void cutRow(const bool show=true);
+    void cutRow();
 
     void on_pbDetails_clicked();
 
