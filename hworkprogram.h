@@ -100,10 +100,13 @@ private slots:
 
     void on_pbPaste_clicked();
 
+    void getDetails( );
+
 
     void on_cbAll_toggled(bool checked);
 
     void on_pbCutRow_clicked();
+
 
 private:
     Ui::HWorkProgram *ui;
@@ -114,6 +117,9 @@ private:
     HWpMod *wpmod; //modello [righe_produzione]
     bool dets=false;
     QList<QStandardItem*>rowcp;
+
+signals:
+    void showDets(QSqlQueryModel *pmod);
 
 
 

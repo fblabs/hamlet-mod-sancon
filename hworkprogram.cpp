@@ -33,7 +33,8 @@
 #include <QTextStream>
 #include "hwpmod.h"
 #include <QModelIndex>
-
+#include "hprogtable.h"
+#include <QSqlQueryModel>
 
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
@@ -533,7 +534,24 @@ void HWorkProgram::on_pbRemove_clicked()
 
 void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
 {
-    if(user->get_wp_u()>0) showModRow();
+
+    if(dets)
+    {
+        getDetails();
+    }
+    else
+    {
+        if(user->get_programmi_u())showModRow();
+    }
+
+
+
+
+
+
+
+
+
 }
 
 void HWorkProgram::on_pbModify_clicked()
@@ -747,7 +765,7 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         qmod->setQuery(q);
         process(qmod);
         // ui->tvGeneral->setModel(qmod);
-        // process(qmod);
+        process(qmod);
 
 
         for(int r=0;r<qmod->rowCount();++r)
@@ -784,8 +802,8 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         qmod->setQuery(q);
 
 
-        ui->tvGeneral->setModel(qmod);
-        //process(qmod);
+        //ui->tvGeneral->setModel(qmod);
+        process(qmod);
 
         for(int r=0;r<qmod->columnCount();++r)
         {
@@ -1364,6 +1382,47 @@ void HWorkProgram::on_pbPaste_clicked()
 {
     pasteRow();
     save();
+}
+
+void HWorkProgram::getDetails()
+{
+    return;
+    int idp=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data().toInt();
+     QSqlQueryModel *mod=new QSqlQueryModel();
+     QSqlQuery q(db);
+
+    QDate dal=ui->deSearch->date();
+    QDate al=ui->deSearchTo->date();
+
+
+    QString sql=QString();
+    if(!ui->cbAll->isChecked()){
+        sql="select p.descrizione,sum(righe_ricette.quantita)\
+        from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
+        where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and produzione.dal between '2023-11-01' and current_date() and i.ID=28 \
+        group by i.ID,p.id,righe_ricette.ID_ricetta";
+    }else
+    {
+        sql="select p.descrizione,sum(righe_ricette.quantita)\
+        from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
+        where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and i.ID=28\
+         group by i.ID, p.id, righe_ricette.ID_ricetta";
+    }
+    q.prepare(sql) ;
+
+   /* q.bindValue(":dal",dal);*/
+    q.bindValue(":al",al);
+   /*  q.bindValue(":id",idp);*/
+    q.exec(sql);
+    mod->setQuery(q);
+
+
+
+    qDebug()<<"getDets"<<q.lastError().text()<<q.size()<<q.boundValue(0).toString();
+
+
+    HProgTable *f=new HProgTable(mod);
+    f->show();
 }
 
 

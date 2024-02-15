@@ -41,6 +41,7 @@ SOURCES += main.cpp\
     hproducts_for_calcolo_costi.cpp \
     hprogdlg.cpp \
     hprogramstableview.cpp \
+    hprogtable.cpp \
     hquerymodel_lastlots.cpp \
     hquerymodel_lotti.cpp \
     hrecipesforingredient.cpp \
@@ -139,6 +140,7 @@ HEADERS  += mainwindow.h \
     hproducts_for_calcolo_costi.h \
     hprogdlg.h \
     hprogramstableview.h \
+    hprogtable.h \
     hquerymodel_lastlots.h \
     hquerymodel_lotti.h \
     hrecipesforingredient.h \
@@ -235,6 +237,7 @@ FORMS    += mainwindow.ui \
     hpreferred_lots.ui \
     hproducts_for_calcolo_costi.ui \
     hprogdlg.ui \
+    hprogtable.ui \
     hrecipesforingredient.ui \
     hrecipesoverview.ui \
     hutenti.ui \
