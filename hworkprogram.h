@@ -22,7 +22,7 @@ class HWorkProgram : public QWidget
     Q_OBJECT
 
 public:
-    explicit HWorkProgram(HUser *p_user=0,QSqlDatabase p_db=QSqlDatabase(),QWidget *parent=0);
+    explicit HWorkProgram(HUser *p_user=0, QSqlDatabase p_db=QSqlDatabase(), QWidget *parent=0);
     ~HWorkProgram();
 
 private slots:
@@ -106,6 +106,8 @@ private slots:
     void on_cbAll_toggled(bool checked);
 
     void on_pbCutRow_clicked();
+
+    void disable_fof_details(bool disable=false);
 
 
 private:

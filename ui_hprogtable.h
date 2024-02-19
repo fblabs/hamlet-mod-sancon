@@ -40,6 +40,7 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         view = new QTableView(HProgTable);
         view->setObjectName(QString::fromUtf8("view"));
+        view->horizontalHeader()->setStretchLastSection(true);
 
         verticalLayout->addWidget(view);
 

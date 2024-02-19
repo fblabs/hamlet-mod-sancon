@@ -89,7 +89,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
 
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    if(user->get_programmi_u()>0) connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+    connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
 
     ui->tvStorico->setFocus();
     ui->cbshowrows->setChecked(false);
@@ -325,7 +325,7 @@ void HWorkProgram::storicoindexchange()
 
 void HWorkProgram::refreshSheet()
 {
-
+    if(ui->cbAll->isChecked()) return;
 
     QSqlQueryModel *mod=new QSqlQueryModel();
 
@@ -535,6 +535,7 @@ void HWorkProgram::on_pbRemove_clicked()
 void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
 {
 
+    qDebug()<<dets;
     if(dets)
     {
         getDetails();
@@ -543,13 +544,6 @@ void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
     {
         if(user->get_programmi_u())showModRow();
     }
-
-
-
-
-
-
-
 
 
 }
@@ -745,12 +739,12 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
         // sql="select prodotti.ID,prodotti.descrizione,sum(righe_ricette.quantita) as q from ricette,righe_ricette,prodotti where ricette.ID=righe_ricette.ID_ricetta and prodotti.id=righe_ricette.ID_prodotto and  ricette.ID_prodotto in (SELECT distinct righe_produzione.idprodotto from fbgmdb260.righe_produzione where IDProduzione in (select id from produzione where dal between :dal and :al)) group by righe_ricette.ID_prodotto order by q desc";
 
 
-       sql="select righe_ricette.ID_prodotto,righe_produzione.totale as rptot,ricette.q_tot as ricetteqtot,righe_produzione.totale/ricette.q_tot  as factor,i.ID,i.descrizione,righe_ricette.quantita * (righe_produzione.totale/ricette.q_tot) as res\
+        sql="select righe_ricette.ID_prodotto,righe_produzione.totale as rptot,ricette.q_tot as ricetteqtot,righe_produzione.totale/ricette.q_tot  as factor,i.ID,i.descrizione,righe_ricette.quantita * (righe_produzione.totale/ricette.q_tot) as res\
             from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
                                                               where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and produzione.dal between :dal and :al";
 
 
-        QDate dal=ui->deSearch->date();
+                                                                                                                                                                                                                                                                          QDate dal=ui->deSearch->date();
         QDate al=ui->deSearchTo->date();
 
         q.prepare(sql);
@@ -1057,10 +1051,10 @@ void HWorkProgram::removeRow(bool show)
     {
 
 
-    if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel|QMessageBox::Cancel)==QMessageBox::Ok)
-    {
+        if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel|QMessageBox::Cancel)==QMessageBox::Ok)
+        {
             go=true;
-    }
+        }
 
     }else{
 
@@ -1086,14 +1080,14 @@ void HWorkProgram::removeRow(bool show)
         save();
 
         if(show)
-        QMessageBox::information(this,QApplication::applicationName(),"Riga rimossa",QMessageBox::Ok);
+            QMessageBox::information(this,QApplication::applicationName(),"Riga rimossa",QMessageBox::Ok);
 
     }
     else
     {
         db.rollback();
         if(show)
-        QMessageBox::information(this,QApplication::applicationName(),"Cancellazione annullata",QMessageBox::Ok);
+            QMessageBox::information(this,QApplication::applicationName(),"Cancellazione annullata",QMessageBox::Ok);
 
     }
 
@@ -1169,23 +1163,29 @@ void HWorkProgram::on_pbDisapprova_clicked()
 
 void HWorkProgram::showContextMenu(const QPoint &pos)
 {
-
+    if(dets)return;
 
     QPoint globalPos =mapToGlobal(pos);
     QMenu *menu=new QMenu(0);
 
-    //  QAction *detailsAction=menu->addAction("Composizione/uso lotto");
-    menu->addSeparator();
-    QAction *copyAction=menu->addAction("Copia la riga sotto il cursore");
-    QAction *cutAction=menu->addAction("Taglia riga");
-    QAction *pasteAction=menu->addAction("Incolla riga");
-    QAction *editAction=menu->addAction("Modifica riga ...");
-    QAction *deleteAction=menu->addAction("Elimina riga ...");
+    QAction *copyAction=new QAction("Copia la riga sotto il cursore");
+    QAction *cutAction=new QAction("Taglia riga");
+    QAction *pasteAction=new QAction("Incolla riga");
+    QAction *editAction=new QAction("Modifica riga...");
+    QAction *deleteAction=new QAction("Elimina riga");
+    if(user->get_programmi_u()>0)menu->addAction(copyAction);
+    if(user->get_programmi_u()>0)menu->addAction(cutAction);
+    if(user->get_programmi_u()>0)menu->addAction(pasteAction);
+    if(user->get_programmi_u()>0 || user->get_wp_u()>0)menu->addAction(editAction);
+    if(user->get_programmi_u()>0)menu->addAction(deleteAction);
+
+
     connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyRow()));
     connect(cutAction,SIGNAL(triggered(bool)),this,SLOT(cutRow()));
     connect(pasteAction,SIGNAL(triggered(bool)),this,SLOT(pasteRow()));
     connect(editAction,SIGNAL(triggered(bool)),this,SLOT(modify_row()));
     connect(deleteAction,SIGNAL(triggered(bool)),this,SLOT(on_pbRemove_clicked()));
+
 
     menu->popup(globalPos);
 }
@@ -1289,8 +1289,8 @@ void HWorkProgram::copyRow()
 
 void HWorkProgram::cutRow()
 {
-        copyRow();
-        removeRow(false);
+    copyRow();
+    removeRow(false);
 }
 
 
@@ -1302,6 +1302,7 @@ void HWorkProgram::cutRow()
 void HWorkProgram::on_pbDetails_clicked()
 {
     dets=true;
+    disable_fof_details(true);
 
     int id_produzione=wsmod->index(ui->tvStorico->currentIndex().row(),0).data(0).toInt();
     if(ui->cbAll->isChecked())
@@ -1311,7 +1312,7 @@ void HWorkProgram::on_pbDetails_clicked()
 
     ui->tvGeneral->setSortingEnabled(true);
 
-  /*  ui->pbAdd->setEnabled(false);
+    /*  ui->pbAdd->setEnabled(false);
     ui->pbModify->setEnabled(false);
     ui->pbRemove->setEnabled(false);*/
     ui->cbshowrows->setChecked(false);
@@ -1322,19 +1323,29 @@ void HWorkProgram::on_pbDetails_clicked()
 
 void HWorkProgram::on_pbSingleSheet_clicked()
 {
+    disable_fof_details(false);
+
 
     dets=false;
     ui->tvGeneral->setSortingEnabled(false);
     refreshSheet();
 
-    if(user->get_programmi_u()>0)
+    bool enable=false;
+
+    /*if(user->get_programmi_u()>0)
     {
         ui->pbAdd->setEnabled(user->get_wp_u());
         ui->pbModify->setEnabled(user->get_wp_u());
         ui->pbCopy->setEnabled(user->get_wp_u());
         ui->pbPaste->setEnabled(user->get_wp_u());
         ui->pbRemove->setEnabled(user->get_wp_u());
-    }
+    }*/
+
+    ui->pbAdd->setEnabled(user->get_programmi_u()>0);
+    ui->pbModify->setEnabled(user->get_wp_u()>0);
+    ui->pbCopy->setEnabled(user->get_programmi_u()>0);
+    ui->pbPaste->setEnabled(user->get_programmi_u()>0);
+    ui->pbRemove->setEnabled(user->get_programmi_u()>0);
 
     //ui->cbshowrows->setChecked(true);
     ui->cbshowrows->setEnabled(true);
@@ -1386,10 +1397,10 @@ void HWorkProgram::on_pbPaste_clicked()
 
 void HWorkProgram::getDetails()
 {
-    return;
+
     int idp=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data().toInt();
-     QSqlQueryModel *mod=new QSqlQueryModel();
-     QSqlQuery q(db);
+    QSqlQueryModel *mod=new QSqlQueryModel();
+    QSqlQuery q(db);
 
     QDate dal=ui->deSearch->date();
     QDate al=ui->deSearchTo->date();
@@ -1397,22 +1408,22 @@ void HWorkProgram::getDetails()
 
     QString sql=QString();
     if(!ui->cbAll->isChecked()){
-        sql="select p.descrizione,sum(righe_ricette.quantita)\
-        from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
-        where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and produzione.dal between '2023-11-01' and current_date() and i.ID=28 \
-        group by i.ID,p.id,righe_ricette.ID_ricetta";
+        sql="select p.descrizione/*,sum(righe_ricette.quantita)*/\
+            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
+                                                              where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and produzione.dal between '2023-11-01' and current_date() and i.ID=28 \
+                                                                                                                                                                                                                                                                                                         group by i.ID,p.id,righe_ricette.ID_ricetta";
     }else
     {
         sql="select p.descrizione,sum(righe_ricette.quantita)\
-        from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
-        where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and i.ID=28\
-         group by i.ID, p.id, righe_ricette.ID_ricetta";
+            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
+                                                              where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and i.ID=28\
+                                                                                                                                                                                                                                              group by i.ID, p.id, righe_ricette.ID_ricetta";
     }
     q.prepare(sql) ;
 
-   /* q.bindValue(":dal",dal);*/
+    q.bindValue(":dal",dal);
     q.bindValue(":al",al);
-   /*  q.bindValue(":id",idp);*/
+    q.bindValue(":id",idp);
     q.exec(sql);
     mod->setQuery(q);
 
@@ -1421,7 +1432,7 @@ void HWorkProgram::getDetails()
     qDebug()<<"getDets"<<q.lastError().text()<<q.size()<<q.boundValue(0).toString();
 
 
-    HProgTable *f=new HProgTable(mod);
+    HProgTable *f=new HProgTable(mod,"RICETTE CON USO INGREDIENTE");
     f->show();
 }
 
@@ -1438,12 +1449,44 @@ void HWorkProgram::on_cbAll_toggled(bool checked)
         ui->cbshowrows->setChecked(false);
         ui->cbshowrows->setEnabled(true);
         on_pbSingleSheet_clicked();
+
     }
+
+    disable_fof_details(checked);
+
 }
 
 
 void HWorkProgram::on_pbCutRow_clicked()
 {
     cutRow();
+}
+
+void HWorkProgram::disable_fof_details(bool disable)
+{
+    if(disable)
+    {
+
+
+
+            ui->pbAdd->setEnabled(false);
+            ui->pbModify->setEnabled(false);
+            ui->pbCopy->setEnabled(false);
+            ui->pbPaste->setEnabled(false);
+            ui->pbCutRow->setEnabled(false);
+            ui->pbRemove->setEnabled(false);
+    }
+    else
+    {
+        if(user->get_programmi_u()>0)
+        {
+            ui->pbAdd->setEnabled(true);
+            ui->pbModify->setEnabled(user->get_wp_u()>0);
+            ui->pbCopy->setEnabled(true);
+            ui->pbPaste->setEnabled(true);
+            ui->pbCutRow->setEnabled(true);
+            ui->pbRemove->setEnabled(true);
+        }
+    }
 }
 

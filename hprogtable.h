@@ -13,11 +13,12 @@ class HProgTable : public QWidget
     Q_OBJECT
 
 public:
-    explicit HProgTable(QSqlQueryModel *mod=new QSqlQueryModel(), QWidget *parent = nullptr);
+    explicit HProgTable(QSqlQueryModel *mod=new QSqlQueryModel(),QString p_title=QString(),QWidget *parent = nullptr);
     ~HProgTable();
 
 private slots:
     void on_pbClose_clicked();
+    void print();
 
 private:
     Ui::HProgTable *ui;
