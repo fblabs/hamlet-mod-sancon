@@ -20,6 +20,8 @@ private slots:
     void on_pbClose_clicked();
     void print();
 
+    void on_pbPrint_clicked();
+
 private:
     Ui::HProgTable *ui;
 };

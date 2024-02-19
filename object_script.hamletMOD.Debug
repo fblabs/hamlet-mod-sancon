@@ -25,6 +25,7 @@ debug/hpreferred_lots.o
 debug/hproducts_for_calcolo_costi.o
 debug/hprogdlg.o
 debug/hprogramstableview.o
+debug/hprogtable.o
 debug/hquerymodel_lastlots.o
 debug/hquerymodel_lotti.o
 debug/hrecipesforingredient.o
@@ -122,6 +123,7 @@ debug/moc_hpdfprint.o
 debug/moc_hpreferred_lots.o
 debug/moc_hproducts_for_calcolo_costi.o
 debug/moc_hprogdlg.o
+debug/moc_hprogtable.o
 debug/moc_hquerymodel_lotti.o
 debug/moc_hrecipesforingredient.o
 debug/moc_hrecipesoverview.o

@@ -14,5 +14,6 @@ LICENSEKEY
 hamletMOD.pro.user
 Makefile
 usersinfo*
+object_script*
 *.db
 *.zip

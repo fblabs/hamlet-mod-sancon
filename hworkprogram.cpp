@@ -1398,7 +1398,8 @@ void HWorkProgram::on_pbPaste_clicked()
 void HWorkProgram::getDetails()
 {
 
-    int idp=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data().toInt();
+    int idpr=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data().toInt();
+    int idproduzione=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data().toInt();
     QSqlQueryModel *mod=new QSqlQueryModel();
     QSqlQuery q(db);
 
@@ -1407,29 +1408,39 @@ void HWorkProgram::getDetails()
 
 
     QString sql=QString();
-    if(!ui->cbAll->isChecked()){
-        sql="select p.descrizione/*,sum(righe_ricette.quantita)*/\
-            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
-                                                              where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and produzione.dal between '2023-11-01' and current_date() and i.ID=28 \
-                                                                                                                                                                                                                                                                                                         group by i.ID,p.id,righe_ricette.ID_ricetta";
+    if(ui->cbAll->isChecked()){
+        sql="select p.descrizione\
+        from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
+        where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and righe_ricette.ID_prodotto=i.ID and righe_ricette.ID_ricetta=ricette.ID and i.ID ="+QString::number(idpr)+"\
+        and righe_ricette.ID_prodotto = i.ID\
+              and produzione.dal between '" +dal.toString("yyyy-MM-dd")+"' and  '" +dal.toString("yyyy-MM-dd")+"' group by i.ID,p.ID";
+
+        q.prepare(sql) ;
+      /*  q.bindValue(":dal",dal);
+        q.bindValue(":al",al);
+        q.bindValue(":pid",idpr);*/
+
     }else
     {
-        sql="select p.descrizione,sum(righe_ricette.quantita)\
-            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
-                                                              where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and i.ID=28\
-                                                                                                                                                                                                                                              group by i.ID, p.id, righe_ricette.ID_ricetta";
+       // sql="select p.descrizione from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and i.ID=:pid and righe_ricette.ID_prodotto=i.id group by i.ID, righe_ricette.ID_ricetta";
+        sql=" select p.descrizione\
+           from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
+             where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and i.ID="+QString::number(idpr)+" and righe_ricette.ID_prodotto=i.id\
+                                           and produzione.ID ="+QString::number(idproduzione)+" group by i.ID, righe_ricette.ID_ricetta";
+       q.prepare(sql) ;
+       q.bindValue(":dal",dal);
+       q.bindValue(":al",al);
+       q.bindValue(":pid",idpr);
+       q.bindValue(":idproduzione",idproduzione);
     }
-    q.prepare(sql) ;
 
-    q.bindValue(":dal",dal);
-    q.bindValue(":al",al);
-    q.bindValue(":id",idp);
     q.exec(sql);
+
     mod->setQuery(q);
 
 
 
-    qDebug()<<"getDets"<<q.lastError().text()<<q.size()<<q.boundValue(0).toString();
+    qDebug()<<"getDets"<<q.lastError().text()<<q.size()<<q.lastQuery();
 
 
     HProgTable *f=new HProgTable(mod,"RICETTE CON USO INGREDIENTE");
