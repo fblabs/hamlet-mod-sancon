@@ -25,6 +25,7 @@ release/hpreferred_lots.o
 release/hproducts_for_calcolo_costi.o
 release/hprogdlg.o
 release/hprogramstableview.o
+release/hprogtable.o
 release/hquerymodel_lastlots.o
 release/hquerymodel_lotti.o
 release/hrecipesforingredient.o
@@ -122,6 +123,7 @@ release/moc_hpdfprint.o
 release/moc_hpreferred_lots.o
 release/moc_hproducts_for_calcolo_costi.o
 release/moc_hprogdlg.o
+release/moc_hprogtable.o
 release/moc_hquerymodel_lotti.o
 release/moc_hrecipesforingredient.o
 release/moc_hrecipesoverview.o

@@ -2,7 +2,8 @@
 #define HPROGTABLE_H
 
 #include <QWidget>
-#include <QSqlQueryModel>
+#include <QStandardItemModel>
+
 
 namespace Ui {
 class HProgTable;
@@ -13,7 +14,7 @@ class HProgTable : public QWidget
     Q_OBJECT
 
 public:
-    explicit HProgTable(QSqlQueryModel *mod=new QSqlQueryModel(),QString p_title=QString(),QWidget *parent = nullptr);
+    explicit HProgTable(QStandardItemModel *mod=new QStandardItemModel(), QString ing=QString(), QString p_title=QString(), QWidget *parent = nullptr);
     ~HProgTable();
 
 private slots:
@@ -24,6 +25,7 @@ private slots:
 
 private:
     Ui::HProgTable *ui;
+    QString ingred;
 };
 
 #endif // HPROGTABLE_H

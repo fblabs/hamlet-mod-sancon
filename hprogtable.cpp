@@ -4,18 +4,22 @@
 #include <QSqlQueryModel>
 #include <QDebug>
 
-HProgTable::HProgTable(QSqlQueryModel *mod,QString p_title,QWidget *parent)
+HProgTable::HProgTable(QStandardItemModel *mod, QString ing,QString p_title, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::HProgTable)
 {
 
     ui->setupUi(this);
     setWindowTitle(p_title);
+    ingred=ing;
+
 
     // qDebug()<< mod<<mod->rowCount();
 
 
     ui->view->setModel(mod);
+    ui->view->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
 }
 
 
@@ -46,7 +50,7 @@ void HProgTable::print()
 
 
 
-    title="USO INGREDIENTE ";
+    title="USO INGREDIENTE ["+ingred+"]";
 
 
     out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
