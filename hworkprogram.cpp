@@ -251,10 +251,7 @@ void HWorkProgram::approve(const bool app)
 
     getSheets();
 
-    /* if(user->get_programmi_u()<1)
-   {
-   ui->pbPrint->setEnabled(approve);
-  }*/
+
 
 
 
@@ -274,20 +271,20 @@ void HWorkProgram::storicoindexchange()
     ui->spLinea->setValue(ui->tvStorico->model()->index(index.row(),3).data(0).toInt());
 
 
-
+     ui->pbPrint->setEnabled(app);
 
 
     if(user->get_programmi_u())
     {
         ui->pbApprova->setEnabled(!app);
         ui->pbDisapprova->setEnabled(app);
-        ui->pbPrint->setEnabled(app);
+
     }else
     {
 
-        ui->pbApprova->setEnabled(!false);
+        ui->pbApprova->setEnabled(false);
         ui->pbDisapprova->setEnabled(false);
-        ui->pbPrint->setEnabled(false);
+      //  ui->pbPrint->setEnabled(app);
     }
 
     if(app )
@@ -396,6 +393,8 @@ void HWorkProgram::refreshSheet()
     QPalette p = ui->tvGeneral->palette();
     p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
     ui->tvGeneral->setPalette(p);
+
+
 
     // connect(ui->tvGeneral,SIGNAL())
 
@@ -1330,6 +1329,7 @@ void HWorkProgram::on_pbSingleSheet_clicked()
     dets=false;
     ui->tvGeneral->setSortingEnabled(false);
     refreshSheet();
+    ui->cbAll->setChecked(false);
 
     bool enable=false;
 
@@ -1415,10 +1415,7 @@ void HWorkProgram::getDetails(double tot_ricetta)
 
     QString sql=QString();
     if(ui->cbAll->isChecked()){
-         /* sql="select p.ID, p.descrizione,FORMAT(sum(righe_ricette.quantita),2)\
-            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
-              where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and i.ID="+QString::number(idpr) +" and righe_ricette.ID_prodotto=i.id\
-                                            and produzione.dal BETWEEN '"+ dal.toString("yyyy-MM-dd")+"' and '"+al.toString("yyyy-MM-dd")+"' and produzione.ID="+ QString::number(idproduzione) +" group by i.ID,p.ID, righe_ricette.ID_prodotto";*/
+
         sql="select  p.ID, p.descrizione,@t:=righe_produzione.totale ,ricette.q_tot,@per:=(righe_ricette.quantita/ricette.q_tot)*100,FORMAT(@t*(@per/100),2)\
              from prodotti p,prodotti i,produzione,righe_produzione,ricette,righe_ricette\
              where righe_produzione.IDProduzione=produzione.ID\
@@ -1426,7 +1423,7 @@ void HWorkProgram::getDetails(double tot_ricetta)
              and ricette.ID_prodotto=p.ID\
              and righe_ricette.ID_ricetta=ricette.ID\
              and righe_ricette.ID_prodotto=i.id\
-                   and i.ID="+ QString::number(idpr)+"\
+             and i.ID="+ QString::number(idpr)+"\
              and produzione.dal BETWEEN '"+dal.toString("yyyy-MM-dd")+"' and '"+al.toString("yyyy-MM-dd")+"'";
         q.prepare(sql);
        /* q.bindValue(":d",dal);
@@ -1442,7 +1439,7 @@ void HWorkProgram::getDetails(double tot_ricetta)
            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
              where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and i.ID="+QString::number(idpr)+" and righe_ricette.ID_prodotto=i.id\
       and produzione.ID ="+QString::number(idproduzione)+" group by i.ID, righe_ricette.ID_ricetta";*/
-       sql="select  p.ID, p.descrizione,@t:=righe_produzione.totale,ricette.q_tot,@per:=(righe_ricette.quantita/ricette.q_tot)*100 perc, FORMAT(@t*(@per/100),2)\
+       sql="select  p.ID, p.descrizione,@t:=righe_produzione.totale ,ricette.q_tot,@per:=(righe_ricette.quantita/ricette.q_tot)*100,FORMAT(@t*(@per/100),2)\
            from prodotti p,prodotti i,produzione,righe_produzione,ricette,righe_ricette\
                                                           where righe_produzione.IDProduzione=produzione.ID\
                                                                 and righe_produzione.idprodotto=p.id\
@@ -1574,5 +1571,6 @@ void HWorkProgram::disable_fof_details(bool disable)
             ui->pbRemove->setEnabled(true);
         }
     }
+
 }
 
