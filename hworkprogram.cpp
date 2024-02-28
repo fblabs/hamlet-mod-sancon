@@ -623,11 +623,11 @@ void HWorkProgram::print()
     if(ui->cbAll->isChecked())
     {
 
-        title="QUANTITA\' INGREDIENTI NECESSARIE PER LAVORAZIONE TRA IL "+ui->deSearch->date().toString("dd-MM-yyyy")+" E IL "+ui->deSearchTo->date().toString("dd-MM-yyyy");
+        title=QDate::currentDate().toString("dd-MM-yyyy")+" QUANTITA\' INGREDIENTI NECESSARIE PER LAVORAZIONE TRA IL "+ui->deSearch->date().toString("dd-MM-yyyy")+" E IL "+ui->deSearchTo->date().toString("dd-MM-yyyy");
     }
     else
     {
-        ui->pbDetails->isChecked()?title ="PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy")+" - LINEA " + QString::number(linea)+" - QUANTITA\' INGREDIENTI" :title="PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy")+" - LINEA " + QString::number(linea);
+        ui->pbDetails->isChecked()?title =QDate::currentDate().toString("dd-MM-yyyy")+"PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy")+" - LINEA " + QString::number(linea)+" - QUANTITA\' INGREDIENTI" :title="PROGRAMMA DI LAVORO - PRODUZIONE DEL "+ ui->deDal->date().toString("dd.MM.yyyy")+" - LINEA " + QString::number(linea);
     }
     out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
 
@@ -1398,11 +1398,12 @@ void HWorkProgram::on_pbPaste_clicked()
 
 void HWorkProgram::getDetails(double tot_ricetta)
 {
+
     qDebug()<<"getDeteais";
     int idpr=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data(Qt::DisplayRole).toInt();
     QString ingrediente=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),1).data(Qt::DisplayRole).toString();
     int idproduzione=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data().toInt();
-   // int iding
+    // int iding
     QSqlQueryModel *mod=new QSqlQueryModel();
     QSqlQuery q(db);
 
@@ -1417,42 +1418,37 @@ void HWorkProgram::getDetails(double tot_ricetta)
     if(ui->cbAll->isChecked()){
 
         sql="select  p.ID, p.descrizione,@t:=righe_produzione.totale ,ricette.q_tot,@per:=(righe_ricette.quantita/ricette.q_tot)*100,FORMAT(@t*(@per/100),2)\
-             from prodotti p,prodotti i,produzione,righe_produzione,ricette,righe_ricette\
-             where righe_produzione.IDProduzione=produzione.ID\
-             and righe_produzione.idprodotto=p.id\
-             and ricette.ID_prodotto=p.ID\
-             and righe_ricette.ID_ricetta=ricette.ID\
-             and righe_ricette.ID_prodotto=i.id\
-             and i.ID="+ QString::number(idpr)+"\
-             and produzione.dal BETWEEN '"+dal.toString("yyyy-MM-dd")+"' and '"+al.toString("yyyy-MM-dd")+"'";
+            from prodotti p,prodotti i,produzione,righe_produzione,ricette,righe_ricette\
+                                                           where righe_produzione.IDProduzione=produzione.ID\
+                                                                 and righe_produzione.idprodotto=p.id\
+                                                                 and ricette.ID_prodotto=p.ID\
+                                                                 and righe_ricette.ID_ricetta=ricette.ID\
+                                                                 and righe_ricette.ID_prodotto=i.id\
+                                                                 and i.ID="+ QString::number(idpr)+"\
+                                                             and produzione.dal BETWEEN '"+dal.toString("yyyy-MM-dd")+"' and '"+al.toString("yyyy-MM-dd")+"'";
         q.prepare(sql);
-       /* q.bindValue(":d",dal);
-        q.bindValue(":a",al);
-        q.bindValue(":p",idpr);*/
+
 
 
     }
     else
     {
-       // sql="select p.descrizione from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and i.ID=:pid and righe_ricette.ID_prodotto=i.id group by i.ID, righe_ricette.ID_ricetta";
-      /*  sql=" select p.ID, p.descrizione\
+        // sql="select p.descrizione from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and i.ID=:pid and righe_ricette.ID_prodotto=i.id group by i.ID, righe_ricette.ID_ricetta";
+        /*  sql=" select p.ID, p.descrizione\
            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
              where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and i.ID="+QString::number(idpr)+" and righe_ricette.ID_prodotto=i.id\
       and produzione.ID ="+QString::number(idproduzione)+" group by i.ID, righe_ricette.ID_ricetta";*/
-       sql="select  p.ID, p.descrizione,@t:=righe_produzione.totale ,ricette.q_tot,@per:=(righe_ricette.quantita/ricette.q_tot)*100,FORMAT(@t*(@per/100),2)\
-           from prodotti p,prodotti i,produzione,righe_produzione,ricette,righe_ricette\
-                                                          where righe_produzione.IDProduzione=produzione.ID\
-                                                                and righe_produzione.idprodotto=p.id\
-                                                                and ricette.ID_prodotto=p.ID\
-                                                                and righe_ricette.ID_ricetta=ricette.ID\
-                                                                and righe_ricette.ID_prodotto=i.id\
-                                                                and i.ID="+ QString::number(idpr)+"\
-                                           and produzione.ID="+QString::number(idproduzione);
-       q.prepare(sql) ;
-      /* q.bindValue(":dal",dal);
-       q.bindValue(":al",al);
-       q.bindValue(":p",idpr);
-       q.bindValue(":ip",idproduzione);*/
+        sql="select  p.ID, p.descrizione,@t:=righe_produzione.totale ,ricette.q_tot,@per:=(righe_ricette.quantita/ricette.q_tot)*100,FORMAT(@t*(@per/100),2)\
+            from prodotti p,prodotti i,produzione,righe_produzione,ricette,righe_ricette\
+                                                           where righe_produzione.IDProduzione=produzione.ID\
+                                                                 and righe_produzione.idprodotto=p.id\
+                                                                 and ricette.ID_prodotto=p.ID\
+                                                                 and righe_ricette.ID_ricetta=ricette.ID\
+                                                                 and righe_ricette.ID_prodotto=i.id\
+                                                                 and i.ID="+ QString::number(idpr)+"\
+                                                                 and produzione.ID="+QString::number(idproduzione);
+                                                             q.prepare(sql) ;
+
     }
 
     q.exec(sql);
@@ -1466,39 +1462,39 @@ void HWorkProgram::getDetails(double tot_ricetta)
 
     for (int r=0;r<mod->rowCount();r++)
     {
-            //row.clear();
-            QList<QStandardItem*>row;
+        //row.clear();
+        QList<QStandardItem*>row;
 
 
-            QStandardItem *pid=new  QStandardItem();
-            QStandardItem *pdesc=new  QStandardItem();
-            QStandardItem *puse=new  QStandardItem();
+        QStandardItem *pid=new  QStandardItem();
+        QStandardItem *pdesc=new  QStandardItem();
+        QStandardItem *puse=new  QStandardItem();
 
 
-            QList<QStandardItem*> matched_rows=modst->findItems(mod->index(r,0).data().toString());
+        QList<QStandardItem*> matched_rows=modst->findItems(mod->index(r,0).data().toString());
 
-            if(matched_rows.size()==0)
-            {
+        if(matched_rows.size()==0)
+        {
 
-                pid=new  QStandardItem(QString::number(mod->index(r,0).data().toInt()));
-                pdesc=new QStandardItem(mod->index(r,1).data().toString());
-                puse=new QStandardItem(mod->index(r,5).data().toString());
+            pid=new  QStandardItem(QString::number(mod->index(r,0).data().toInt()));
+            pdesc=new QStandardItem(mod->index(r,1).data().toString());
+            puse=new QStandardItem(mod->index(r,5).data().toString());
 
-                 row<<pid<<pdesc<<puse;
-                 modst->appendRow(row);
-
-
+            row<<pid<<pdesc<<puse;
+            modst->appendRow(row);
 
 
-            }
-            else
-            {
-                double val=0.0;
-                val=modst->index(r-1,2).data().toDouble()+mod->index(r,5).data().toDouble();
-                modst->setData(modst->index(r-1,2), val);
 
 
-            }
+        }
+        else
+        {
+            double val=0.0;
+            val=modst->index(r-1,2).data().toDouble()+mod->index(r,5).data().toDouble();
+            modst->setData(modst->index(r-1,2), val);
+
+
+        }
 
 
     }
@@ -1511,12 +1507,15 @@ void HWorkProgram::getDetails(double tot_ricetta)
     modst->setHeaderData(2,Qt::Horizontal,"QUANTITA\' INGREDIENTE");
 
 
+    QString sdata=QString();
 
 
 
-
-    HProgTable *f=new HProgTable(modst,ingrediente,"RICETTE CON USO INGREDIENTE ["+ ingrediente+"]");
+    HProgTable *f=new HProgTable(modst,ingrediente,QDate::currentDate().toString("dd-MM-yyyy")+" RICETTE CON USO INGREDIENTE ["+ ingrediente+"]");
     f->show();
+
+
+
 }
 
 

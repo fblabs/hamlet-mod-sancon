@@ -2,6 +2,7 @@
 #include "ui_hprogtable.h"
 #include "hpdfprint.h"
 #include <QSqlQueryModel>
+#include <QDate>
 #include <QDebug>
 
 HProgTable::HProgTable(QStandardItemModel *mod, QString ing,QString p_title, QWidget *parent)
@@ -50,7 +51,7 @@ void HProgTable::print()
 
 
 
-    title="USO INGREDIENTE ["+ingred+"]";
+    title=QDate::currentDate().toString("dd-MM-yyyy")+" - USO INGREDIENTE ["+ingred+"]";
 
 
     out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
