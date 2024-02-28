@@ -59,7 +59,7 @@ void HCosti::get_clienti()
 {
     QSqlQueryModel* cust_mod=new QSqlQueryModel();
     QSqlQuery q(db);
-    QString sql="SELECT ID,ragione_sociale FROM anagrafica WHERE cliente>0 ORDER BY ragione_sociale ASC";
+    QString sql="SELECT ID,ragione_sociale FROM anagrafica WHERE cliente>0 and visibile>0 ORDER BY ragione_sociale ASC";
 
     q.prepare(sql);
     q.exec();
