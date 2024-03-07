@@ -20,6 +20,7 @@ HProgTable::HProgTable(QStandardItemModel *mod, QString ing,QString p_title, QWi
 
     ui->view->setModel(mod);
     ui->view->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->view->setColumnHidden(1,true);
 
 }
 

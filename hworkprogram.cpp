@@ -1399,7 +1399,7 @@ void HWorkProgram::on_pbPaste_clicked()
 void HWorkProgram::getDetails(double tot_ricetta)
 {
 
-    qDebug()<<"getDeteais";
+  //  qDebug()<<"getDeteais";
     int idpr=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data(Qt::DisplayRole).toInt();
     QString ingrediente=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),1).data(Qt::DisplayRole).toString();
     int idproduzione=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data().toInt();
@@ -1417,7 +1417,7 @@ void HWorkProgram::getDetails(double tot_ricetta)
     QString sql=QString();
     if(ui->cbAll->isChecked()){
 
-        sql="select  p.ID, p.descrizione,@t:=righe_produzione.totale ,ricette.q_tot,@per:=(righe_ricette.quantita/ricette.q_tot)*100,FORMAT(@t*(@per/100),2)\
+        sql="select  produzione.dal,p.ID, p.descrizione,@t:=righe_produzione.totale ,ricette.q_tot,@per:=(righe_ricette.quantita/ricette.q_tot)*100,FORMAT(@t*(@per/100),2)\
             from prodotti p,prodotti i,produzione,righe_produzione,ricette,righe_ricette\
                                                            where righe_produzione.IDProduzione=produzione.ID\
                                                                  and righe_produzione.idprodotto=p.id\
@@ -1438,7 +1438,7 @@ void HWorkProgram::getDetails(double tot_ricetta)
            from produzione,righe_produzione,ricette,righe_ricette,prodotti p,prodotti i\
              where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and i.ID="+QString::number(idpr)+" and righe_ricette.ID_prodotto=i.id\
       and produzione.ID ="+QString::number(idproduzione)+" group by i.ID, righe_ricette.ID_ricetta";*/
-        sql="select  p.ID, p.descrizione,@t:=righe_produzione.totale ,ricette.q_tot,@per:=(righe_ricette.quantita/ricette.q_tot)*100,FORMAT(@t*(@per/100),2)\
+        sql="select  produzione.dal,p.ID, p.descrizione,@t:=righe_produzione.totale ,ricette.q_tot,@per:=(righe_ricette.quantita/ricette.q_tot)*100,FORMAT(@t*(@per/100),2)\
             from prodotti p,prodotti i,produzione,righe_produzione,ricette,righe_ricette\
                                                            where righe_produzione.IDProduzione=produzione.ID\
                                                                  and righe_produzione.idprodotto=p.id\
@@ -1453,6 +1453,7 @@ void HWorkProgram::getDetails(double tot_ricetta)
 
     q.exec(sql);
     mod->setQuery(q);
+   // qDebug()<<sql;
 
 
     QStandardItemModel *modst=new QStandardItemModel();
@@ -1466,6 +1467,7 @@ void HWorkProgram::getDetails(double tot_ricetta)
         QList<QStandardItem*>row;
 
 
+        QStandardItem *pdata=new QStandardItem();
         QStandardItem *pid=new  QStandardItem();
         QStandardItem *pdesc=new  QStandardItem();
         QStandardItem *puse=new  QStandardItem();
@@ -1475,12 +1477,12 @@ void HWorkProgram::getDetails(double tot_ricetta)
 
         if(matched_rows.size()==0)
         {
+            pdata=new  QStandardItem(mod->index(r,0).data().toDate().toString("dd-MM-yyyy"));
+            pid=new  QStandardItem(QString::number(mod->index(r,1).data().toInt()));
+            pdesc=new QStandardItem(mod->index(r,2).data().toString());
+            puse=new QStandardItem(mod->index(r,6).data().toString());
 
-            pid=new  QStandardItem(QString::number(mod->index(r,0).data().toInt()));
-            pdesc=new QStandardItem(mod->index(r,1).data().toString());
-            puse=new QStandardItem(mod->index(r,5).data().toString());
-
-            row<<pid<<pdesc<<puse;
+            row<<pdata<<pid<<pdesc<<puse;
             modst->appendRow(row);
 
 
@@ -1501,10 +1503,10 @@ void HWorkProgram::getDetails(double tot_ricetta)
 
 
 
-
-    modst->setHeaderData(0,Qt::Horizontal,"ID");
-    modst->setHeaderData(1,Qt::Horizontal,"PRODOTTO");
-    modst->setHeaderData(2,Qt::Horizontal,"QUANTITA\' INGREDIENTE");
+    modst->setHeaderData(0,Qt::Horizontal,"DATA");
+    modst->setHeaderData(1,Qt::Horizontal,"ID");
+    modst->setHeaderData(2,Qt::Horizontal,"PRODOTTO");
+    modst->setHeaderData(3,Qt::Horizontal,"QUANTITA\' INGREDIENTE");
 
 
     QString sdata=QString();
