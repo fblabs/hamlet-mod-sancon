@@ -35,7 +35,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QListView" name="lvUtenti"/>
+          <widget class="QListView" name="lvUtenti">
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>

@@ -71,7 +71,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->pbCutRow->setEnabled(user->get_programmi_u()>0);
     ui->pbCopy->setEnabled(user->get_programmi_u()>0);
     ui->pbPaste->setEnabled(user->get_programmi_u()>0);
-    ui->pbModify->setEnabled(user->get_wp_u()>0);
+    ui->pbModify->setEnabled(user->get_programmi_u()>0 || user->get_wp_u()>0);
     ui->pbRemove->setEnabled(user->get_programmi_u()>0);
 
 
@@ -535,14 +535,14 @@ void HWorkProgram::on_pbRemove_clicked()
 void HWorkProgram::on_tvGeneral_doubleClicked(const QModelIndex &index)
 {
 
-    qDebug()<<dets;
+
     if(dets)
     {
         getDetails();
     }
     else
     {
-        if(user->get_programmi_u())showModRow();
+        showModRow();
     }
 
 
@@ -1399,11 +1399,11 @@ void HWorkProgram::on_pbPaste_clicked()
 void HWorkProgram::getDetails(double tot_ricetta)
 {
 
-  //  qDebug()<<"getDeteais";
+
     int idpr=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data(Qt::DisplayRole).toInt();
     QString ingrediente=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),1).data(Qt::DisplayRole).toString();
     int idproduzione=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data().toInt();
-    // int iding
+
     QSqlQueryModel *mod=new QSqlQueryModel();
     QSqlQuery q(db);
 
@@ -1467,10 +1467,10 @@ void HWorkProgram::getDetails(double tot_ricetta)
         QList<QStandardItem*>row;
 
 
-        QStandardItem *pdata=new QStandardItem();
-        QStandardItem *pid=new  QStandardItem();
-        QStandardItem *pdesc=new  QStandardItem();
-        QStandardItem *puse=new  QStandardItem();
+        QStandardItem *pdata;
+        QStandardItem *pid;
+        QStandardItem *pdesc;
+        QStandardItem *puse;
 
 
         QList<QStandardItem*> matched_rows=modst->findItems(mod->index(r,0).data().toString());
@@ -1509,11 +1509,11 @@ void HWorkProgram::getDetails(double tot_ricetta)
     modst->setHeaderData(3,Qt::Horizontal,"QUANTITA\' INGREDIENTE");
 
 
-    QString sdata=QString();
 
 
 
-    HProgTable *f=new HProgTable(modst,ingrediente,QDate::currentDate().toString("dd-MM-yyyy")+" RICETTE CON USO INGREDIENTE ["+ ingrediente+"]");
+
+    HProgTable *f=new HProgTable(modst,ingrediente,QDate::currentDate().toString("dd-MM-yyyy")+" RICETTE CON USO INGREDIENTE ["+ ingrediente+"] -TOTALE: ");
     f->show();
 
 

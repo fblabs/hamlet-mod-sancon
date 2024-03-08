@@ -45,17 +45,17 @@ QSqlTableModel* HGroups::getGroups()
     QSqlTableModel* mod=new QSqlTableModel(nullptr,db);
     mod->setTable("gruppi");
     mod->setSort(1,Qt::AscendingOrder);
+    mod->select();
+
+    qDebug()<<user_group;
 
     if(user_group>-1)
     {
 
-         mod->setFilter("ID="+QString::number(user_group));
-         this->setWindowTitle("PERMESSI "+user_name);
-         ui->cbGruppi->setEnabled(false);
+        mod->setFilter("ID="+QString::number(user_group));
+        this->setWindowTitle("PERMESSI "+user_name);
+        ui->cbGruppi->setEnabled(false);
     }
-
-
-    mod->select();
 
     mod->setEditStrategy(QSqlTableModel::OnManualSubmit);
 

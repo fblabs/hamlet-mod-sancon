@@ -163,17 +163,14 @@ void HGestioneUtenti::on_pushButton_2_clicked()
 
   //  getGruppo();
 
-    q.prepare("update utenti SET gruppo=:idgruppo,attivo=:attivo,nome=:nome where ID=:idutente");
+    q.prepare("update utenti SET username=:username,gruppo=:idgruppo,attivo=:attivo,nome=:nome where ID=:idutente");
+    q.bindValue(":username",ui->leUsername->text());
     q.bindValue(":idgruppo",QVariant(idgruppo));
     q.bindValue(":attivo",ui->cbAttivo->isChecked());
     q.bindValue(":nome",ui->lenome->text());
     q.bindValue(":idutente",QVariant(idutente));
     q.exec();
-   // // qDebug()<<"salva2:"<<"idutente:"<<idutente<<"idgruppo " + q.boundValue(0).toString()<<"idutente: "+q.boundValue(1).toString()<<utm->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString();
 
-    //gtm->select();
-    //utm->select();
-  //  getGruppo();
     if(utm->submit()){
 
     QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
@@ -216,7 +213,9 @@ void HGestioneUtenti::emit_permissions_updated()
 
 void HGestioneUtenti::on_pbGroups_clicked()
 {
-    HGroups *f=new HGroups(user,-1,"",db);
+    int gr=ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data().toInt();
+
+    HGroups *f=new HGroups(user,gr,"",db);
     connect(f,SIGNAL(permissions_updated()),this,SLOT(emit_permissions_updated()));
     f->show();
 
@@ -230,6 +229,8 @@ void HGestioneUtenti::on_pbUserPermissions_clicked()
     q.exec(sql);
     q.first();
     int id_gruppo=q.value(0).toInt();
+
+    qDebug()<<"H"<<id_gruppo;
 
     QString utente=utm->index(ui->lvUtenti->currentIndex().row(),1).data(0).toString().toUpper();
 

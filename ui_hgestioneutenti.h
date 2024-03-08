@@ -78,6 +78,7 @@ public:
 
         lvUtenti = new QListView(HGestioneUtenti);
         lvUtenti->setObjectName(QString::fromUtf8("lvUtenti"));
+        lvUtenti->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
         verticalLayout->addWidget(lvUtenti);
 
