@@ -1403,6 +1403,7 @@ void HWorkProgram::getDetails(double tot_ricetta)
     int idpr=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data(Qt::DisplayRole).toInt();
     QString ingrediente=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),1).data(Qt::DisplayRole).toString();
     int idproduzione=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0).data().toInt();
+    double tot=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),6).data().toDouble();
 
     QSqlQueryModel *mod=new QSqlQueryModel();
     QSqlQuery q(db);
@@ -1513,7 +1514,7 @@ void HWorkProgram::getDetails(double tot_ricetta)
 
 
 
-    HProgTable *f=new HProgTable(modst,ingrediente,QDate::currentDate().toString("dd-MM-yyyy")+" RICETTE CON USO INGREDIENTE ["+ ingrediente+"] -TOTALE: ");
+    HProgTable *f=new HProgTable(modst,ingrediente,QDate::currentDate().toString("dd-MM-yyyy")+" RICETTE CON USO INGREDIENTE ["+ ingrediente+"] -TOTALE: "+QString::number(tot,'f',2));
     f->show();
 
 

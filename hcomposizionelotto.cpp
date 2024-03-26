@@ -333,7 +333,7 @@ QSqlQueryModel* HComposizioneLotto::getLotUse()
 
 
 
-    sql="select lotdef.ID,lotdef.data as 'DATA',lotdef.lot as 'LOTTO',lotdef.EAN as 'LOT. ESTERNO',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE' from  lotdef,prodotti,operazioni,anagrafica,composizione_lot where prodotti.ID=lotdef.prodotto and lotdef.ID =composizione_lot.ID_lotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID=composizione_lot.operazione and operazioni.IDlotto =:id ORDER BY lotdef.data desc";
+    sql="select lotdef.ID,lotdef.data as 'DATA',lotdef.lot as 'LOTTO',lotdef.EAN as 'LOT. ESTERNO',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',operazioni.quantita as 'QUANTITA' from  lotdef,prodotti,operazioni,anagrafica,composizione_lot where prodotti.ID=lotdef.prodotto and lotdef.ID =composizione_lot.ID_lotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID=composizione_lot.operazione and operazioni.IDlotto =:id ORDER BY lotdef.data desc";
 
     q.prepare(sql);
     q.bindValue(":id",id);

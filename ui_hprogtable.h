@@ -41,6 +41,7 @@ public:
         view = new QTableView(HProgTable);
         view->setObjectName(QString::fromUtf8("view"));
         view->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        view->setSelectionBehavior(QAbstractItemView::SelectRows);
         view->horizontalHeader()->setStretchLastSection(true);
 
         verticalLayout->addWidget(view);
