@@ -71,7 +71,7 @@ HGestioneUtenti::HGestioneUtenti(HUser *p_user, QSqlDatabase pdb, QWidget *paren
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(getGruppo()));
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(getIdUtente()));
     ui->lvUtenti->setCurrentIndex(utm->index(0,0));
-    ui->pbUserPermissions->setVisible(false);
+
 
 
 }
@@ -174,6 +174,7 @@ void HGestioneUtenti::on_pushButton_2_clicked()
     if(utm->submit()){
 
     QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
+    emit permissions_updated();
 
     }
     else
@@ -224,7 +225,7 @@ void HGestioneUtenti::on_pbGroups_clicked()
 
 void HGestioneUtenti::on_pbUserPermissions_clicked()
 {
-    QSqlQuery q(db);
+   /* QSqlQuery q(db);
     QString sql="SELECT ID from gruppi where descrizione='" +ui->comboBox->currentText()+"'";
     q.exec(sql);
     q.first();
@@ -236,7 +237,14 @@ void HGestioneUtenti::on_pbUserPermissions_clicked()
 
     HGroups *f=new HGroups(user,id_gruppo,utente,db);
     connect(f,SIGNAL(permissions_updated()),this,SLOT(emit_permissions_updated()));
+    f->show();*/
+
+    int gr=-1;
+
+   HGroups *f=new HGroups(new HUser(),gr,"",db);
+    connect(f,SIGNAL(permissions_updated()),this,SLOT(emit_permissions_updated()));
     f->show();
+
 }
 
 

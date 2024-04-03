@@ -25,7 +25,6 @@ HGroups::HGroups(HUser *p_user, const int p_user_group, QString p_user_name, QSq
     user_group=p_user_group;
     user_name=p_user_name;
 
-
     ui->cbGruppi->setModel(getGroups());
     ui->cbGruppi->setModelColumn(1);
 
@@ -47,15 +46,22 @@ QSqlTableModel* HGroups::getGroups()
     mod->setSort(1,Qt::AscendingOrder);
     mod->select();
 
-    qDebug()<<user_group;
 
     if(user_group>-1)
     {
 
         mod->setFilter("ID="+QString::number(user_group));
-        this->setWindowTitle("PERMESSI "+user_name);
+
         ui->cbGruppi->setEnabled(false);
+
     }
+    else
+    {
+        this->setWindowTitle("PERMESSI GRUPPI");
+    }
+
+
+
 
     mod->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
@@ -113,8 +119,10 @@ void HGroups::setup_permissions_ui(QSqlTableModel *mod)
     current_record.value(33).toInt()>0?ui->cbAggiornaFogliLavoro->setChecked(true):ui->cbAggiornaFogliLavoro->setChecked(false);
 
 
+    qDebug()<<current_record.value(34).toString()<<current_record.value(33).toString()<<current_record.value(1).toString();
+    ui->leDesc->setText( current_record.value(34).toString());
 
-    ui->leDesc->setText( current_record.value(32).toString());
+  //  ui->leDesc->setText( current_record.value("note").toString());
 
 
 
