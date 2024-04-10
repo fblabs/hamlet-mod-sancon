@@ -46,6 +46,7 @@ void HModifyRow::setPermissions(HUser *p_user)
     ui->pbSave->setEnabled(p_user->get_programmi_u()>0);
     ui->ptLotti->setEnabled(p_user->get_wp_u()>0);
     ui->pbSaveLots->setEnabled(p_user->get_wp_u()>0);
+    ui->leVasiProdotti->setEnabled(p_user->get_wp_u()>0);
 
 }
 

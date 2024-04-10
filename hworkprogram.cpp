@@ -707,9 +707,33 @@ void HWorkProgram::print()
         }
         out << "</tr>\n";
     }
-    out <<  "</table>\n"
-           "</body>\n"
-           "</html>\n";
+    out <<  "</table><br>";
+
+
+    out<<"<table width=100% border=1 cellspacing=2 cellpadding=2>\n";
+    out<<"<tr>";
+    out<<"<td><b>OPERATORE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>FRULLATORE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td width=15%><b>POMPE UTILIZZATE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>VASCHE UTILIZZATE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>AVANZI:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>SEGNALAZIONI:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+
+    out<<"</table>";
+    out<< "</body>\n";
+    out<<"</html>\n";
+
 
 
 
