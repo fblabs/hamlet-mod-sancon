@@ -373,31 +373,56 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
+       <item row="1" column="6">
+        <widget class="QPushButton" name="pbNotComplete">
+         <property name="text">
+          <string>Resetta righe</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Comment-delete64.png</normaloff>:/Resources/Comment-delete64.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
         <widget class="QPushButton" name="pbComplete">
          <property name="text">
-          <string>Completa tutte le righe (C)</string>
+          <string>Completa tutte le righe</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
            <normaloff>:/Resources/Comment-add64.png</normaloff>:/Resources/Comment-add64.png</iconset>
          </property>
          <property name="shortcut">
+          <string>Ctrl+C</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pbCompleteRow">
+         <property name="text">
+          <string> Completa riga(C)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Accept64.png</normaloff>:/Resources/Accept64.png</iconset>
+         </property>
+         <property name="shortcut">
           <string>C</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="2" colspan="2">
-        <widget class="QPushButton" name="pbNotComplete">
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pbUncompleteRow">
          <property name="text">
-          <string>Nessuna riga completata(Alt+C)</string>
+          <string>Reset riga (N)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
-           <normaloff>:/Resources/Comment-delete64.png</normaloff>:/Resources/Comment-delete64.png</iconset>
+           <normaloff>:/Resources/Banned-Sign.PNG</normaloff>:/Resources/Banned-Sign.PNG</iconset>
          </property>
          <property name="shortcut">
-          <string>Alt+C</string>
+          <string>N</string>
          </property>
         </widget>
        </item>

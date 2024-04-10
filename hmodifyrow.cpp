@@ -341,10 +341,11 @@ void HModifyRow::on_pbSaveLots_clicked()
 {
     QSqlQuery q(db);
 
-    QString sql="update righe_produzione set lotti=:lotti where id=:id";
+    QString sql="update righe_produzione set lotti=:lotti, vasi_prodotti=:vasi where id=:id";
     q.prepare(sql);
     q.bindValue(":lotti",ui->ptLotti->toPlainText());
     q.bindValue(":id",idrow);
+    q.bindValue(":vasi",ui->leVasiProdotti->text().simplified());
     qDebug()<<"IDROWP"<<idrow;
 
     if(QMessageBox::question(this,QApplication::applicationName(),"Salvare i lotti produzione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)

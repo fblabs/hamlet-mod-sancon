@@ -721,7 +721,7 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
 
     // headers
     out << "<tr bgcolor=#f0f0f0>";
-    out << "<th>Prodotto</th><th>Lotto</th><th>Quantita'</th><th>Visto</th>";
+    out << "<th>Prodotto</th><th>Lotto</th><th>Quantita'</th><th>Visto - Modifiche</th>";
     out << "</tr>\n";
 
 
@@ -788,10 +788,33 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
     out <<"<tr>"<<"<td><b>NOTE PRODUZIONE</b></td></tr>";
     out <<"<tr>"<<"<td><i>"+ui->tNote->toPlainText()+"</i></td></tr>";
     out <<  "</table>\n";
-    "</body>\n"
-    "</html>\n";
+
+    out <<  "</table><br>";
 
 
+    out<<"<table width=100% border=1 cellspacing=2 cellpadding=2>\n";
+    out<<"<tr>";
+    out<<"<td width=20%><b>OPERATORE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>FRULLATORE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>POMPE UTILIZZATE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>VASCHE UTILIZZATE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>AVANZI:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>SEGNALAZIONI:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+
+    out<<"</table>";
+    out<< "</body>\n";
+    out<<"</html>\n";
 
     QTextDocument *document = new QTextDocument();
     document->setHtml(strStream);
@@ -1938,7 +1961,7 @@ QStandardItemModel* HProduction::getrecipeForPrinting(const int idricetta)
     locmod->setHeaderData(1,Qt::Horizontal,"Lotto",0);
     //locmod->setHeaderData(2,Qt::Horizontal,"Allergene",0);
     locmod->setHeaderData(2,Qt::Horizontal,"Quantità",0);
-    locmod->setHeaderData(3,Qt::Horizontal,"Visto",0);
+    locmod->setHeaderData(3,Qt::Horizontal,"Visto - Modifiche",0);
 
 
     double quantitatot=0.0;
@@ -1963,7 +1986,7 @@ QStandardItemModel* HProduction::getrecipeForPrinting(const int idricetta)
 
     }
 
-    qDebug()<<"getRecipe"<<tbmod->rowCount()<<tbmod->columnCount()<<locmod->rowCount()<<locmod->columnCount();
+
 
 
      return locmod;

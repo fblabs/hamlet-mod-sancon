@@ -46,6 +46,8 @@ private slots:
     void modify_row();
     void removeRow(bool show=true);
     void completeRows(int id=-1, bool complete=false);
+    void completeRow();
+    void uncompleteRow();
 
 
 
@@ -116,6 +118,10 @@ private slots:
     void on_pbComplete_clicked();
 
     void on_pbNotComplete_clicked();
+
+    void on_pbCompleteRow_clicked();
+
+    void on_pbUncompleteRow_clicked();
 
 private:
     Ui::HWorkProgram *ui;

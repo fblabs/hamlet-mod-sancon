@@ -627,7 +627,7 @@ void HWorkProgram::print()
     const int rowCount = mod->rowCount();
     const int columnCount = mod->columnCount();
 
-    qDebug()<<columnCount;
+
 
     if(ui->cbAll->isChecked())
     {
@@ -661,12 +661,8 @@ void HWorkProgram::print()
 
 
     for (int column = 0 ; column < column_indexes.size(); column++)
-    {
-
-
+    {      
         out << QString("<th>%1</th>").arg(mod->headerData(column_indexes.at(column),Qt::Horizontal).toString());
-
-
     }
 
     out << "</tr></th></thead>\n";
@@ -685,8 +681,8 @@ void HWorkProgram::print()
         }
         for (int column = 0; column < columnCount; column++) {
             if (!ui->tvGeneral->isColumnHidden(column)) {
+
                 QString data = mod->index(row, column).data().toString().simplified();
-                qDebug()<<column<<data<<mod->index(row,column).data(Qt::CheckStateRole);
 
                 if (column==15 || column==16 || column==24)
                 {
@@ -707,34 +703,6 @@ void HWorkProgram::print()
         }
         out << "</tr>\n";
     }
-    out <<  "</table><br>";
-
-
-    out<<"<table width=100% border=1 cellspacing=2 cellpadding=2>\n";
-    out<<"<tr>";
-    out<<"<td><b>OPERATORE:</b></td><td>&nbsp;</td>";
-    out<<"</tr>";
-    out<<"<tr>";
-    out<<"<td><b>FRULLATORE:</b></td><td>&nbsp;</td>";
-    out<<"</tr>";
-    out<<"<tr>";
-    out<<"<td width=15%><b>POMPE UTILIZZATE:</b></td><td>&nbsp;</td>";
-    out<<"</tr>";
-    out<<"<tr>";
-    out<<"<td><b>VASCHE UTILIZZATE:</b></td><td>&nbsp;</td>";
-    out<<"</tr>";
-    out<<"<tr>";
-    out<<"<td><b>AVANZI:</b></td><td>&nbsp;</td>";
-    out<<"</tr>";
-    out<<"<tr>";
-    out<<"<td><b>SEGNALAZIONI:</b></td><td>&nbsp;</td>";
-    out<<"</tr>";
-
-    out<<"</table>";
-    out<< "</body>\n";
-    out<<"</html>\n";
-
-
 
 
 
@@ -1158,6 +1126,65 @@ void HWorkProgram::completeRows(int id,bool complete)
 
 }
 
+void HWorkProgram::completeRow()
+{
+    QSqlQuery q(db);
+    int idrow=wpmod->index(ui->tvGeneral->currentIndex().row(),0).data().toInt();
+
+    QString sql=QString();
+
+    sql="update righe_produzione set completato=1 where ID=:id_row";
+
+
+    q.prepare(sql);
+    q.bindValue(":id_row",idrow);
+
+    db.transaction();
+
+    bool b= q.exec();
+    if(QMessageBox::question(this,QApplication::applicationName(),"Confermare?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        db.commit();
+
+    }
+    else
+    {
+        db.rollback();
+
+    }
+
+    if(b) refreshSheet();
+}
+
+void HWorkProgram::uncompleteRow()
+{
+    QSqlQuery q(db);
+    int idrow=wpmod->index(ui->tvGeneral->currentIndex().row(),0).data().toInt();
+
+    QString sql=QString();
+
+    sql="update righe_produzione set completato=0 where ID=:id_row";
+
+
+    q.prepare(sql);
+    q.bindValue(":id_row",idrow);
+
+    db.transaction();
+
+    bool b= q.exec();
+    if(QMessageBox::question(this,QApplication::applicationName(),"Confermare?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        db.commit();
+
+    }
+    else
+    {
+        db.rollback();
+    }
+
+    if(b) refreshSheet();
+}
+
 
 void HWorkProgram::on_checkBox_toggled(bool checked)
 {
@@ -1237,11 +1264,15 @@ void HWorkProgram::showContextMenu(const QPoint &pos)
     QAction *pasteAction=new QAction("Incolla riga");
     QAction *editAction=new QAction("Modifica riga...");
     QAction *deleteAction=new QAction("Elimina riga");
+    QAction *completeAction=new QAction("Completa riga");
+    QAction *uncompleteAction=new QAction("elimina completamento riga");
     if(user->get_programmi_u()>0)menu->addAction(copyAction);
     if(user->get_programmi_u()>0)menu->addAction(cutAction);
     if(user->get_programmi_u()>0)menu->addAction(pasteAction);
     if(user->get_programmi_u()>0 || user->get_wp_u()>0)menu->addAction(editAction);
-    if(user->get_programmi_u()>0)menu->addAction(deleteAction);
+    if(user->get_programmi_u()>0)menu->addAction(completeAction);
+    if(user->get_programmi_u()>0)menu->addAction(uncompleteAction);
+
 
 
     connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyRow()));
@@ -1249,6 +1280,8 @@ void HWorkProgram::showContextMenu(const QPoint &pos)
     connect(pasteAction,SIGNAL(triggered(bool)),this,SLOT(pasteRow()));
     connect(editAction,SIGNAL(triggered(bool)),this,SLOT(modify_row()));
     connect(deleteAction,SIGNAL(triggered(bool)),this,SLOT(on_pbRemove_clicked()));
+    connect(completeAction,SIGNAL(triggered(bool)),this,SLOT(completeRow()));
+    connect(uncompleteAction,SIGNAL(triggered(bool)),this,SLOT(uncompleteRow()));
 
 
     menu->popup(globalPos);
@@ -1654,5 +1687,29 @@ void HWorkProgram::on_pbNotComplete_clicked()
     int idp =-1;
     idp = wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt();
     completeRows(idp,false);
+}
+
+
+void HWorkProgram::on_pbCompleteRow_clicked()
+{
+    int idrow=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data(0).toInt();
+    if(idrow<1)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Selezionare una riga",QMessageBox::Ok);
+        return;
+    }
+    completeRow();
+}
+
+
+void HWorkProgram::on_pbUncompleteRow_clicked()
+{
+    int idrow=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data(0).toInt();
+    if(idrow<1)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Selezionare una riga",QMessageBox::Ok);
+        return;
+    }
+    uncompleteRow();
 }
 
