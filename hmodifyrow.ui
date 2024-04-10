@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>747</width>
-    <height>505</height>
+    <width>831</width>
+    <height>567</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
    <iconset resource="icons.qrc">
     <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
@@ -231,49 +231,71 @@
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <layout class="QFormLayout" name="formLayout_4">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_14">
-         <property name="text">
-          <string>Lotti:</string>
-         </property>
-        </widget>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QFormLayout" name="formLayout_4">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_14">
+           <property name="text">
+            <string>Lotti:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPlainTextEdit" name="ptLotti">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>80</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
-       <item row="0" column="1">
-        <widget class="QPlainTextEdit" name="ptLotti">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>80</height>
-          </size>
-         </property>
-        </widget>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbSaveLots">
+           <property name="text">
+            <string>Salva lotti</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/Resources/save-icon.png</normaloff>:/Resources/save-icon.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pbSaveLots">
+        <widget class="QLabel" name="label_15">
          <property name="text">
-          <string>Salva lotti</string>
+          <string>Vasi prodotti:</string>
          </property>
         </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="leVasiProdotti"/>
        </item>
       </layout>
      </item>
@@ -301,21 +323,8 @@
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>11</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -328,24 +337,24 @@
        </property>
       </spacer>
      </item>
-     <item>
+     <item row="0" column="1">
       <widget class="QLabel" name="label_13">
        <property name="text">
         <string>Lot/Scadenza</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="2">
       <widget class="QLineEdit" name="leLotScad"/>
      </item>
-     <item>
+     <item row="0" column="3">
       <widget class="QLabel" name="label_7">
        <property name="text">
         <string>Totale Kg:</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="4">
       <widget class="QLineEdit" name="leTotal">
        <property name="maximumSize">
         <size>
@@ -358,7 +367,27 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="5">
+      <widget class="QCheckBox" name="cbDone">
+       <property name="text">
+        <string>Completato</string>
+       </property>
+      </widget>
+     </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>11</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

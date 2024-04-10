@@ -160,6 +160,9 @@ void HModifyRow::loadRow()
     QString lotti=rows_model->index(0,17).data(0).toString();
     QString lotScad=rows_model->index(0,18).data(0).toString();
     QString note=rows_model->index(0,16).data(0).toString();
+    QString vasi_p=rows_model->index(0,19).data(0).toString();
+    int completato=rows_model->index(0,20).data(0).toInt();
+
 
 
     qDebug()<<fresco<<pastorizzato;
@@ -167,7 +170,7 @@ void HModifyRow::loadRow()
     {
         ui->rbFresh->setChecked(true);
     }
-    else if(pastorizzato>0)
+    if(pastorizzato>0)
     {
         ui->rbPastorized->setChecked(true);
     }
@@ -176,9 +179,13 @@ void HModifyRow::loadRow()
         ui->rbNone->setChecked(true);
     }
 
+    completato>0 ? ui->cbDone->setChecked(true):ui->cbDone->setChecked(false);
+
+
     ui->ptNote->setPlainText(note);
     ui->ptLotti->setPlainText(lotti);
     ui->leLotScad->setText(lotScad);
+    ui->leVasiProdotti->setText(vasi_p);
 
     bool vok=false;
     double tot=rows_model->index(0,10).data(0).toDouble(&vok);
@@ -230,8 +237,10 @@ void HModifyRow::saveRow(){
     QString san=ui->cbSanty->currentText();
     QString allerg=ui->leAllergeni->text();
     QString lotScad=ui->leLotScad->text();
+    QString vasi_p=ui->leVasiProdotti->text();
     int fresco=0;
     int pastorizzato=0;
+    int completato=0;
     if(ui->rbFresh->isChecked())
     {
         fresco=1;
@@ -240,8 +249,13 @@ void HModifyRow::saveRow(){
         pastorizzato=1;
     }
 
+    if(ui->cbDone->isChecked())
+    {
+        completato=1;
+    }
+
     QSqlQuery q(db);
-    QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,lotti=:lotti,lotto_scadenza=:lotscad,totale=:tot where IDproduzione=:idproduzione and num_riga=:num";
+    QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,lotti=:lotti,lotto_scadenza=:lotscad,totale=:tot,vasi_prodotti=:vp,completato=:comp where IDproduzione=:idproduzione and num_riga=:num";
     db.transaction();
     q.prepare(sql);
     q.bindValue(":idcliente",idcliente);
@@ -259,6 +273,9 @@ void HModifyRow::saveRow(){
     q.bindValue(":note",ui->ptNote->toPlainText());
     q.bindValue(":lotti",ui->ptLotti->toPlainText());
     q.bindValue(":lotscad",lotScad);
+    q.bindValue(":vp",vasi_p);
+    q.bindValue(":comp",completato);
+
 
     bool ok=false;
     q.bindValue(":tot",ui->leTotal->text().toDouble(&ok));

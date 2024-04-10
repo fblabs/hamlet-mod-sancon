@@ -330,14 +330,16 @@ void HWorkProgram::refreshSheet()
     // QSqlRelationalDelegate *rdel=new QSqlRelationalDelegate();
     QSqlQuery q(db);
     // QString sql="SELECT * FROM righe_produzione where IDProduzione=:id";
-    QString sql="SELECT righe_produzione.ID,IDProduzione,num_riga,quantita,vaso_gr,specificaolio,idprodotto,prodotti.descrizione,olio,tappo,righe_produzione.idcliente,anagrafica.ragione_sociale,totale,sanificazione,numero_ordine,fresco,pastorizzato,allergeni,righe_produzione.note,lotto_scadenza,ricette.q_tot, righe_produzione.totale/ricette.q_tot as factor,lotti as 'Lotti produzione'\
+    QString sql="SELECT righe_produzione.ID,IDProduzione,num_riga,quantita,vaso_gr,specificaolio,idprodotto,prodotti.descrizione,olio,tappo,righe_produzione.idcliente,anagrafica.ragione_sociale,totale,sanificazione,numero_ordine,fresco,pastorizzato,allergeni,righe_produzione.note,lotto_scadenza,ricette.q_tot, righe_produzione.totale/ricette.q_tot as factor,lotti as 'Lotti produzione', vasi_prodotti as 'Vasi prodotti', completato as 'Completato'\
         FROM righe_produzione,prodotti,anagrafica,ricette\
-                                  where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by num_riga asc;";
+        where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by num_riga asc;";
         q.prepare(sql);
     q.bindValue(":id_p",wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
     q.exec();
+
+    qDebug()<<q.lastError().text();
 
     mod->setQuery(q);
 
@@ -368,7 +370,9 @@ void HWorkProgram::refreshSheet()
     wpmod->setHeaderData(17,Qt::Horizontal,"Allergeni");
     wpmod->setHeaderData(18,Qt::Horizontal,"Note");
     wpmod->setHeaderData(19,Qt::Horizontal,"Lot/scadenza");
-    wpmod->setHeaderData(22,Qt::Horizontal,"Lotti produzione");
+    wpmod->setHeaderData(22,Qt::Horizontal,"Lotti prod.");
+    wpmod->setHeaderData(23,Qt::Horizontal,"Vasi Prodotti");
+    wpmod->setHeaderData(24,Qt::Horizontal,"Compl.");
 
 
 
@@ -380,6 +384,7 @@ void HWorkProgram::refreshSheet()
     ui->tvGeneral->setColumnHidden(10,true);
     ui->tvGeneral->setColumnHidden(20,true);
     ui->tvGeneral->setColumnHidden(21,true);
+    //ui->tvGeneral->setColumnHidden(24,true);
     ui->tvGeneral->setItemDelegate(rdel);
     ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
@@ -393,6 +398,8 @@ void HWorkProgram::refreshSheet()
     QPalette p = ui->tvGeneral->palette();
     p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
     ui->tvGeneral->setPalette(p);
+
+
 
 
 
@@ -620,6 +627,8 @@ void HWorkProgram::print()
     const int rowCount = mod->rowCount();
     const int columnCount = mod->columnCount();
 
+    qDebug()<<columnCount;
+
     if(ui->cbAll->isChecked())
     {
 
@@ -677,8 +686,9 @@ void HWorkProgram::print()
         for (int column = 0; column < columnCount; column++) {
             if (!ui->tvGeneral->isColumnHidden(column)) {
                 QString data = mod->index(row, column).data().toString().simplified();
+                qDebug()<<column<<data<<mod->index(row,column).data(Qt::CheckStateRole);
 
-                if (column==15 || column==16)
+                if (column==15 || column==16 || column==24)
                 {
 
                     out << QString("<td bgcolor='"+bgcol+"' align='center'>%1</td>").arg((mod->index(row,column).data(Qt::CheckStateRole)==Qt::Checked)? QString("[X]") : QString("&nbsp;"));
@@ -744,7 +754,7 @@ void HWorkProgram::get_sheet_details(const int p_id_produzione)
                                                               where righe_produzione.IDProduzione=produzione.ID and righe_produzione.idprodotto=p.id and ricette.ID_prodotto=p.ID and righe_ricette.ID_ricetta=ricette.ID and righe_ricette.ID_prodotto=i.id and produzione.dal between :dal and :al";
 
 
-                                                                                                                                                                                                                                                                          QDate dal=ui->deSearch->date();
+        QDate dal=ui->deSearch->date();
         QDate al=ui->deSearchTo->date();
 
         q.prepare(sql);
@@ -1093,6 +1103,36 @@ void HWorkProgram::removeRow(bool show)
 
 }
 
+void HWorkProgram::completeRows(int id,bool complete)
+{
+    QSqlQuery q(db);
+
+    QString sql=QString();
+
+    complete? sql="update righe_produzione set completato=1 where IDProduzione=:id_produzione": sql="update righe_produzione set completato=0 where IDProduzione=:id_produzione";
+
+
+    q.prepare(sql);
+    q.bindValue(":id_produzione",id);
+
+    db.transaction();
+
+   bool b= q.exec();
+    if(QMessageBox::question(this,QApplication::applicationName(),"Confermare?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+       db.commit();
+
+    }
+    else
+    {
+        db.rollback();
+    }
+
+    if(b) refreshSheet();
+
+
+
+}
 
 
 void HWorkProgram::on_checkBox_toggled(bool checked)
@@ -1574,5 +1614,21 @@ void HWorkProgram::disable_fof_details(bool disable)
         }
     }
 
+}
+
+
+void HWorkProgram::on_pbComplete_clicked()
+{
+    int idp =-1;
+    idp = wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt();
+    completeRows(idp,true);
+}
+
+
+void HWorkProgram::on_pbNotComplete_clicked()
+{
+    int idp =-1;
+    idp = wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt();
+    completeRows(idp,false);
 }
 

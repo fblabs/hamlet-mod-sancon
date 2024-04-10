@@ -9,6 +9,7 @@
 #include <QMessageBox>
 #include "huser.h"
 #include "hgroups.h"
+#include <QCryptographicHash>
 #include <QDebug>
 
 
@@ -163,7 +164,7 @@ void HGestioneUtenti::on_pushButton_2_clicked()
 
   //  getGruppo();
 
-    q.prepare("update utenti SET username=:username,gruppo=:idgruppo,attivo=:attivo,nome=:nome where ID=:idutente");
+    q.prepare("update utenti SET username=:username,gruppo=:idgruppo,attivo=:attivo,nome=:nome,pwd=:pwd where ID=:idutente");
     q.bindValue(":username",ui->leUsername->text());
     q.bindValue(":idgruppo",QVariant(idgruppo));
     q.bindValue(":attivo",ui->cbAttivo->isChecked());

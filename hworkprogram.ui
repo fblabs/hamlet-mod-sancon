@@ -284,81 +284,213 @@
       </widget>
      </item>
      <item>
-      <widget class="Line" name="line">
+      <spacer name="horizontalSpacer_2">
        <property name="orientation">
-        <enum>Qt::Vertical</enum>
+        <enum>Qt::Horizontal</enum>
        </property>
-      </widget>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>Filtra per linea:</string>
-       </property>
-      </widget>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pbAdd">
+         <property name="text">
+          <string>Aggiungi riga</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Plus.PNG</normaloff>:/Resources/Plus.PNG</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QPushButton" name="pbModify">
+         <property name="text">
+          <string>Modifica riga (Ctrl+M)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+M</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="pbCopy">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Copia riga</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/fork-1-icon.png</normaloff>:/Resources/fork-1-icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QPushButton" name="pbPaste">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Incolla riga</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/App-ark-2-icon.png</normaloff>:/Resources/App-ark-2-icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QPushButton" name="pbCutRow">
+         <property name="text">
+          <string>Taglia riga</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/cut.png</normaloff>:/Resources/cut.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QPushButton" name="pbRemove">
+         <property name="text">
+          <string>Rimuovi riga</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Minus.PNG</normaloff>:/Resources/Minus.PNG</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QPushButton" name="pbComplete">
+         <property name="text">
+          <string>Completa tutte le righe (C)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Comment-add64.png</normaloff>:/Resources/Comment-add64.png</iconset>
+         </property>
+         <property name="shortcut">
+          <string>C</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="2">
+        <widget class="QPushButton" name="pbNotComplete">
+         <property name="text">
+          <string>Nessuna riga completata(Alt+C)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Comment-delete64.png</normaloff>:/Resources/Comment-delete64.png</iconset>
+         </property>
+         <property name="shortcut">
+          <string>Alt+C</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
-      <widget class="QSpinBox" name="spSearchLinea">
-       <property name="minimum">
-        <number>0</number>
-       </property>
-       <property name="maximum">
-        <number>5</number>
-       </property>
-       <property name="value">
-        <number>0</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>Ricerca per data tra il:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDateEdit" name="deSearch">
-       <property name="calendarPopup">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>e il:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDateEdit" name="deSearchTo">
-       <property name="calendarPopup">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbSearch">
-       <property name="text">
-        <string>Cerca</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Search.PNG</normaloff>:/Resources/Search.PNG</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbReset">
-       <property name="text">
-        <string>Reset</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Counterclockwise-arrow64.png</normaloff>:/Resources/Counterclockwise-arrow64.png</iconset>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Linea:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spSearchLinea">
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>5</number>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Ricerca per data tra il:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDateEdit" name="deSearch">
+         <property name="calendarPopup">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>e il:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDateEdit" name="deSearchTo">
+         <property name="calendarPopup">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pbSearch">
+         <property name="text">
+          <string>Cerca</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Search.PNG</normaloff>:/Resources/Search.PNG</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pbReset">
+         <property name="text">
+          <string>Reset</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Counterclockwise-arrow64.png</normaloff>:/Resources/Counterclockwise-arrow64.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <spacer name="horizontalSpacer_3">
@@ -372,81 +504,6 @@
         </size>
        </property>
       </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbAdd">
-       <property name="text">
-        <string>Aggiungi riga</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Plus.PNG</normaloff>:/Resources/Plus.PNG</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbModify">
-       <property name="text">
-        <string>Modifica riga (Ctrl+M)</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Pencil.PNG</normaloff>:/Resources/Pencil.PNG</iconset>
-       </property>
-       <property name="shortcut">
-        <string>Ctrl+M</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbCopy">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="text">
-        <string>Copia riga</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/fork-1-icon.png</normaloff>:/Resources/fork-1-icon.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbPaste">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="text">
-        <string>Incolla riga</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/App-ark-2-icon.png</normaloff>:/Resources/App-ark-2-icon.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbCutRow">
-       <property name="text">
-        <string>Taglia riga</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/cut.png</normaloff>:/Resources/cut.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbRemove">
-       <property name="text">
-        <string>Rimuovi riga</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Minus.PNG</normaloff>:/Resources/Minus.PNG</iconset>
-       </property>
-      </widget>
      </item>
     </layout>
    </item>

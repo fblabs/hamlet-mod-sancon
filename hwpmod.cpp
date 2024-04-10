@@ -41,7 +41,7 @@ Qt::ItemFlags HWpMod::flags(const QModelIndex &item) const
 
 QVariant HWpMod::data(const QModelIndex &item, int role) const
 {
-    if (item.column()==15  || item.column()==16)
+    if (item.column()==15  || item.column()==16 || item.column()==24)
     {
 
 

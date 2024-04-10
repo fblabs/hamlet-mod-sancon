@@ -15,6 +15,7 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -51,9 +52,22 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QCheckBox *checkBox;
     QCheckBox *cbshowrows;
-    QFrame *line;
+    QSpacerItem *horizontalSpacer_2;
+    QGridLayout *gridLayout;
+    QPushButton *pbAdd;
+    QPushButton *pbModify;
+    QPushButton *pbCopy;
+    QPushButton *pbPaste;
+    QPushButton *pbCutRow;
+    QPushButton *pbRemove;
+    QPushButton *pbComplete;
+    QPushButton *pbNotComplete;
+    QHBoxLayout *horizontalLayout_6;
+    QHBoxLayout *horizontalLayout_5;
+    QHBoxLayout *horizontalLayout_4;
     QLabel *label_6;
     QSpinBox *spSearchLinea;
+    QFrame *line;
     QLabel *label_7;
     QDateEdit *deSearch;
     QLabel *label_8;
@@ -61,12 +75,6 @@ public:
     QPushButton *pbSearch;
     QPushButton *pbReset;
     QSpacerItem *horizontalSpacer_3;
-    QPushButton *pbAdd;
-    QPushButton *pbModify;
-    QPushButton *pbCopy;
-    QPushButton *pbPaste;
-    QPushButton *pbCutRow;
-    QPushButton *pbRemove;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbNewSheet;
     QPushButton *pbSingleSheet;
@@ -224,17 +232,92 @@ public:
 
         horizontalLayout_2->addWidget(cbshowrows);
 
-        line = new QFrame(HWorkProgram);
-        line->setObjectName(QString::fromUtf8("line"));
-        line->setFrameShape(QFrame::VLine);
-        line->setFrameShadow(QFrame::Sunken);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_2->addWidget(line);
+        horizontalLayout_2->addItem(horizontalSpacer_2);
 
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        pbAdd = new QPushButton(HWorkProgram);
+        pbAdd->setObjectName(QString::fromUtf8("pbAdd"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbAdd->setIcon(icon3);
+
+        gridLayout->addWidget(pbAdd, 0, 0, 1, 1);
+
+        pbModify = new QPushButton(HWorkProgram);
+        pbModify->setObjectName(QString::fromUtf8("pbModify"));
+        pbModify->setIcon(icon2);
+
+        gridLayout->addWidget(pbModify, 0, 1, 1, 2);
+
+        pbCopy = new QPushButton(HWorkProgram);
+        pbCopy->setObjectName(QString::fromUtf8("pbCopy"));
+        pbCopy->setEnabled(true);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/fork-1-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbCopy->setIcon(icon4);
+
+        gridLayout->addWidget(pbCopy, 0, 3, 1, 1);
+
+        pbPaste = new QPushButton(HWorkProgram);
+        pbPaste->setObjectName(QString::fromUtf8("pbPaste"));
+        pbPaste->setEnabled(true);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPaste->setIcon(icon5);
+
+        gridLayout->addWidget(pbPaste, 0, 4, 1, 1);
+
+        pbCutRow = new QPushButton(HWorkProgram);
+        pbCutRow->setObjectName(QString::fromUtf8("pbCutRow"));
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/Resources/cut.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbCutRow->setIcon(icon6);
+
+        gridLayout->addWidget(pbCutRow, 0, 5, 1, 1);
+
+        pbRemove = new QPushButton(HWorkProgram);
+        pbRemove->setObjectName(QString::fromUtf8("pbRemove"));
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbRemove->setIcon(icon7);
+
+        gridLayout->addWidget(pbRemove, 0, 6, 1, 1);
+
+        pbComplete = new QPushButton(HWorkProgram);
+        pbComplete->setObjectName(QString::fromUtf8("pbComplete"));
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/Resources/Comment-add64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbComplete->setIcon(icon8);
+
+        gridLayout->addWidget(pbComplete, 1, 0, 1, 2);
+
+        pbNotComplete = new QPushButton(HWorkProgram);
+        pbNotComplete->setObjectName(QString::fromUtf8("pbNotComplete"));
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/Resources/Comment-delete64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbNotComplete->setIcon(icon9);
+
+        gridLayout->addWidget(pbNotComplete, 1, 2, 1, 2);
+
+
+        horizontalLayout_2->addLayout(gridLayout);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         label_6 = new QLabel(HWorkProgram);
         label_6->setObjectName(QString::fromUtf8("label_6"));
 
-        horizontalLayout_2->addWidget(label_6);
+        horizontalLayout_4->addWidget(label_6);
 
         spSearchLinea = new QSpinBox(HWorkProgram);
         spSearchLinea->setObjectName(QString::fromUtf8("spSearchLinea"));
@@ -242,124 +325,89 @@ public:
         spSearchLinea->setMaximum(5);
         spSearchLinea->setValue(0);
 
-        horizontalLayout_2->addWidget(spSearchLinea);
+        horizontalLayout_4->addWidget(spSearchLinea);
+
+
+        horizontalLayout_5->addLayout(horizontalLayout_4);
+
+        line = new QFrame(HWorkProgram);
+        line->setObjectName(QString::fromUtf8("line"));
+        line->setFrameShape(QFrame::VLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout_5->addWidget(line);
 
         label_7 = new QLabel(HWorkProgram);
         label_7->setObjectName(QString::fromUtf8("label_7"));
 
-        horizontalLayout_2->addWidget(label_7);
+        horizontalLayout_5->addWidget(label_7);
 
         deSearch = new QDateEdit(HWorkProgram);
         deSearch->setObjectName(QString::fromUtf8("deSearch"));
         deSearch->setCalendarPopup(true);
 
-        horizontalLayout_2->addWidget(deSearch);
+        horizontalLayout_5->addWidget(deSearch);
 
         label_8 = new QLabel(HWorkProgram);
         label_8->setObjectName(QString::fromUtf8("label_8"));
 
-        horizontalLayout_2->addWidget(label_8);
+        horizontalLayout_5->addWidget(label_8);
 
         deSearchTo = new QDateEdit(HWorkProgram);
         deSearchTo->setObjectName(QString::fromUtf8("deSearchTo"));
         deSearchTo->setCalendarPopup(true);
 
-        horizontalLayout_2->addWidget(deSearchTo);
+        horizontalLayout_5->addWidget(deSearchTo);
 
         pbSearch = new QPushButton(HWorkProgram);
         pbSearch->setObjectName(QString::fromUtf8("pbSearch"));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/Search.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSearch->setIcon(icon3);
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/Resources/Search.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSearch->setIcon(icon10);
 
-        horizontalLayout_2->addWidget(pbSearch);
+        horizontalLayout_5->addWidget(pbSearch);
 
         pbReset = new QPushButton(HWorkProgram);
         pbReset->setObjectName(QString::fromUtf8("pbReset"));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Resources/Counterclockwise-arrow64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbReset->setIcon(icon4);
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/Resources/Counterclockwise-arrow64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbReset->setIcon(icon11);
 
-        horizontalLayout_2->addWidget(pbReset);
+        horizontalLayout_5->addWidget(pbReset);
+
+
+        horizontalLayout_6->addLayout(horizontalLayout_5);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_2->addItem(horizontalSpacer_3);
-
-        pbAdd = new QPushButton(HWorkProgram);
-        pbAdd->setObjectName(QString::fromUtf8("pbAdd"));
-        QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbAdd->setIcon(icon5);
-
-        horizontalLayout_2->addWidget(pbAdd);
-
-        pbModify = new QPushButton(HWorkProgram);
-        pbModify->setObjectName(QString::fromUtf8("pbModify"));
-        pbModify->setIcon(icon2);
-
-        horizontalLayout_2->addWidget(pbModify);
-
-        pbCopy = new QPushButton(HWorkProgram);
-        pbCopy->setObjectName(QString::fromUtf8("pbCopy"));
-        pbCopy->setEnabled(true);
-        QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/Resources/fork-1-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbCopy->setIcon(icon6);
-
-        horizontalLayout_2->addWidget(pbCopy);
-
-        pbPaste = new QPushButton(HWorkProgram);
-        pbPaste->setObjectName(QString::fromUtf8("pbPaste"));
-        pbPaste->setEnabled(true);
-        QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPaste->setIcon(icon7);
-
-        horizontalLayout_2->addWidget(pbPaste);
-
-        pbCutRow = new QPushButton(HWorkProgram);
-        pbCutRow->setObjectName(QString::fromUtf8("pbCutRow"));
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/Resources/cut.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbCutRow->setIcon(icon8);
-
-        horizontalLayout_2->addWidget(pbCutRow);
-
-        pbRemove = new QPushButton(HWorkProgram);
-        pbRemove->setObjectName(QString::fromUtf8("pbRemove"));
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbRemove->setIcon(icon9);
-
-        horizontalLayout_2->addWidget(pbRemove);
+        horizontalLayout_6->addItem(horizontalSpacer_3);
 
 
-        verticalLayout->addLayout(horizontalLayout_2);
+        verticalLayout->addLayout(horizontalLayout_6);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         pbNewSheet = new QPushButton(HWorkProgram);
         pbNewSheet->setObjectName(QString::fromUtf8("pbNewSheet"));
-        pbNewSheet->setIcon(icon5);
+        pbNewSheet->setIcon(icon3);
         pbNewSheet->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbNewSheet);
 
         pbSingleSheet = new QPushButton(HWorkProgram);
         pbSingleSheet->setObjectName(QString::fromUtf8("pbSingleSheet"));
-        QIcon icon10;
-        icon10.addFile(QString::fromUtf8(":/Resources/Text-columns64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSingleSheet->setIcon(icon10);
+        QIcon icon12;
+        icon12.addFile(QString::fromUtf8(":/Resources/Text-columns64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSingleSheet->setIcon(icon12);
         pbSingleSheet->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbSingleSheet);
 
         pbDetails = new QPushButton(HWorkProgram);
         pbDetails->setObjectName(QString::fromUtf8("pbDetails"));
-        QIcon icon11;
-        icon11.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbDetails->setIcon(icon11);
+        QIcon icon13;
+        icon13.addFile(QString::fromUtf8(":/Resources/Pie-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDetails->setIcon(icon13);
         pbDetails->setIconSize(QSize(32, 32));
         pbDetails->setCheckable(true);
 
@@ -372,18 +420,18 @@ public:
 
         pbSave = new QPushButton(HWorkProgram);
         pbSave->setObjectName(QString::fromUtf8("pbSave"));
-        QIcon icon12;
-        icon12.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSave->setIcon(icon12);
+        QIcon icon14;
+        icon14.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSave->setIcon(icon14);
         pbSave->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbSave);
 
         pbDeleteSheet = new QPushButton(HWorkProgram);
         pbDeleteSheet->setObjectName(QString::fromUtf8("pbDeleteSheet"));
-        QIcon icon13;
-        icon13.addFile(QString::fromUtf8(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbDeleteSheet->setIcon(icon13);
+        QIcon icon15;
+        icon15.addFile(QString::fromUtf8(":/Resources/Banned-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDeleteSheet->setIcon(icon15);
         pbDeleteSheet->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbDeleteSheet);
@@ -391,18 +439,18 @@ public:
         pbPrint = new QPushButton(HWorkProgram);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
         pbPrint->setEnabled(true);
-        QIcon icon14;
-        icon14.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon14);
+        QIcon icon16;
+        icon16.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon16);
         pbPrint->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbPrint);
 
         pbClose = new QPushButton(HWorkProgram);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon15;
-        icon15.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon15);
+        QIcon icon17;
+        icon17.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon17);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pbClose);
@@ -435,11 +483,6 @@ public:
 #if QT_CONFIG(shortcut)
         cbshowrows->setShortcut(QCoreApplication::translate("HWorkProgram", "R", nullptr));
 #endif // QT_CONFIG(shortcut)
-        label_6->setText(QCoreApplication::translate("HWorkProgram", "Filtra per linea:", nullptr));
-        label_7->setText(QCoreApplication::translate("HWorkProgram", "Ricerca per data tra il:", nullptr));
-        label_8->setText(QCoreApplication::translate("HWorkProgram", "e il:", nullptr));
-        pbSearch->setText(QCoreApplication::translate("HWorkProgram", "Cerca", nullptr));
-        pbReset->setText(QCoreApplication::translate("HWorkProgram", "Reset", nullptr));
         pbAdd->setText(QCoreApplication::translate("HWorkProgram", "Aggiungi riga", nullptr));
         pbModify->setText(QCoreApplication::translate("HWorkProgram", "Modifica riga (Ctrl+M)", nullptr));
 #if QT_CONFIG(shortcut)
@@ -449,6 +492,19 @@ public:
         pbPaste->setText(QCoreApplication::translate("HWorkProgram", "Incolla riga", nullptr));
         pbCutRow->setText(QCoreApplication::translate("HWorkProgram", "Taglia riga", nullptr));
         pbRemove->setText(QCoreApplication::translate("HWorkProgram", "Rimuovi riga", nullptr));
+        pbComplete->setText(QCoreApplication::translate("HWorkProgram", "Completa tutte le righe (C)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbComplete->setShortcut(QCoreApplication::translate("HWorkProgram", "C", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbNotComplete->setText(QCoreApplication::translate("HWorkProgram", "Nessuna riga completata(Alt+C)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbNotComplete->setShortcut(QCoreApplication::translate("HWorkProgram", "Alt+C", nullptr));
+#endif // QT_CONFIG(shortcut)
+        label_6->setText(QCoreApplication::translate("HWorkProgram", "Linea:", nullptr));
+        label_7->setText(QCoreApplication::translate("HWorkProgram", "Ricerca per data tra il:", nullptr));
+        label_8->setText(QCoreApplication::translate("HWorkProgram", "e il:", nullptr));
+        pbSearch->setText(QCoreApplication::translate("HWorkProgram", "Cerca", nullptr));
+        pbReset->setText(QCoreApplication::translate("HWorkProgram", "Reset", nullptr));
         pbNewSheet->setText(QCoreApplication::translate("HWorkProgram", "Nuovo (Ctrl+N)", nullptr));
 #if QT_CONFIG(shortcut)
         pbNewSheet->setShortcut(QCoreApplication::translate("HWorkProgram", "Ctrl+N", nullptr));

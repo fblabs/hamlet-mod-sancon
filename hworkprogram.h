@@ -45,6 +45,9 @@ private slots:
     void pasteRow();
     void modify_row();
     void removeRow(bool show=true);
+    void completeRows(int id=-1, bool complete=false);
+
+
 
 
 
@@ -109,6 +112,10 @@ private slots:
 
     void disable_fof_details(bool disable=false);
 
+
+    void on_pbComplete_clicked();
+
+    void on_pbNotComplete_clicked();
 
 private:
     Ui::HWorkProgram *ui;

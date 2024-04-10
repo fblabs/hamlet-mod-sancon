@@ -68,13 +68,7 @@ QVariant HWorkSheetModel::data( const QModelIndex & item, int role/*= Qt::Displa
         return QSqlTableModel::data(item,role);
     }
 
-
-
-
-
-
-
-    // return QSqlTableModel::data(item,role);
+   // return QSqlTableModel::data(item,role);
 
 
 
@@ -94,8 +88,6 @@ bool HWorkSheetModel::setData(const QModelIndex &index, const QVariant &value, i
     {
         return QSqlTableModel::setData(index,value,role);
     }
-
-
 
     return QSqlTableModel::setData(index,value,role);
 
