@@ -679,11 +679,13 @@ void HProduction::printProduction()
     }
     if (!ui->checkBox_2->isChecked())
     {
-        f->append("\n\nQuantità: " + ui->leQtyTotal->text(),false);
+        f->append("\n\nQuantitàn: " + ui->leQtyTotal->text(),false);
+        f->append("\n\nQuantità Totale: " + ui->leQtyTotal->text(),false);
     }
     else
     {
-        f->append("\n\nQuantità: " + ui->leQuaRic->text(),false);
+        f->append("\n\nQuantitày: " + ui->leQuaRic->text(),false);
+        f->append("\n\nQuantità Totale: " + ui->leQtyTotal->text(),false);
     }
     f->append("",false);
 
@@ -707,7 +709,7 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
     const int rowCount = prtmod->rowCount();
     const int columnCount = prtmod->columnCount();
     double amount=0.0;
-    qDebug()<<"rowcount"<<rowCount<<"columncount"<<columnCount;
+
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -730,7 +732,7 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
 
     for (int row = 0; row < rowCount; row++) {
 
-        amount =amount + tbmod->index(row,5).data(0).toDouble();
+        amount += tbmod->index(row,5).data(0).toDouble();
 
         if(tbmod->index(row,6).data(0).toString().trimmed()=="[X]")
         {
@@ -777,9 +779,12 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
 
     }
 
-    out <<  "</table></table>\n<br/><p align='right'><b>Quantità:</b>&nbsp;Kg.&nbsp;"+QString::number(amount,'f',3)+"&nbsp;&nbsp;&nbsp;</p><br/>";
+  //  out <<  "</table></table>\n<br/><p align='right'><b>Quantità:</b>&nbsp;Kg.&nbsp;"+QString::number(amount,'f',3)+"&nbsp;&nbsp;&nbsp;</p><br/><p align='right'><b>Quantità Totale:</b>&nbsp;Kg.&nbsp;&nbsp;&nbsp;&nbsp;</p>";
 
-               out<<"\n";
+    out << "</table></table><table border=1 width=100%><tr><td width=25%><b>Quantit&agrave; ricetta:</b></td><td>"+ui->leQuaRic->text()+"</td></tr><tr><td width=25%><b>Quantit&agrave; totale:</b></td><td>"+QString::number(amount,'f',3)+"</td></tr></table></br>";
+
+
+    out<<"\n";
     out << "<table width=100% border=1 cellspacing=0 cellpadding=3> <thead><tr bgcolor='lightyellow'><th>NOTE</th></tr></thead>";
     /*  out << "<tr bgcolor=#f0f0f0>";
     out << "</tr>";*/
