@@ -781,7 +781,7 @@ void HProduction::print(const QStandardItemModel *prtmod, bool pdf)
 
   //  out <<  "</table></table>\n<br/><p align='right'><b>Quantità:</b>&nbsp;Kg.&nbsp;"+QString::number(amount,'f',3)+"&nbsp;&nbsp;&nbsp;</p><br/><p align='right'><b>Quantità Totale:</b>&nbsp;Kg.&nbsp;&nbsp;&nbsp;&nbsp;</p>";
 
-    out << "</table></table><table border=1 width=100%><tr><td width=25%><b>Quantit&agrave; ricetta:</b></td><td>"+ui->leQuaRic->text()+"</td></tr><tr><td width=25%><b>Quantit&agrave; totale:</b></td><td>"+QString::number(amount,'f',3)+"</td></tr></table></br>";
+    out << "</table></table><table border=1 width=100%><tr><td width=25%><b>Quantit&agrave;:</b></td><td>"+QString::number(amount,'f',2)+"</td></tr><tr><td width=25%><b>Quantit&agrave; totale:</b></td><td>&nbsp;</td></tr></table></br>";
 
 
     out<<"\n";
