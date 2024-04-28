@@ -123,6 +123,8 @@ private slots:
 
     void on_pbUncompleteRow_clicked();
 
+    void on_pbBlender_clicked();
+
 private:
     Ui::HWorkProgram *ui;
     HUser* user;

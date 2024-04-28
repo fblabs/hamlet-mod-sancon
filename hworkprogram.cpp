@@ -36,6 +36,7 @@
 #include "hprogtable.h"
 #include <QSqlQueryModel>
 #include <QStandardItem>
+#include "hblender.h"
 
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
@@ -1266,14 +1267,17 @@ void HWorkProgram::showContextMenu(const QPoint &pos)
     QAction *deleteAction=new QAction("Elimina riga");
     QAction *completeAction=new QAction("Completa riga");
     QAction *uncompleteAction=new QAction("elimina completamento riga");
+    QAction *blenderAction=new QAction("Frullatori...");
     if(user->get_programmi_u()>0)menu->addAction(copyAction);
     if(user->get_programmi_u()>0)menu->addAction(cutAction);
     if(user->get_programmi_u()>0)menu->addAction(pasteAction);
     if(user->get_programmi_u()>0 || user->get_wp_u()>0)menu->addAction(editAction);
     if(user->get_programmi_u()>0)menu->addAction(completeAction);
     if(user->get_programmi_u()>0)menu->addAction(uncompleteAction);
+    if(user->get_programmi_u()>0)menu->addSeparator();
+    if(user->get_programmi_u()>0)menu->addAction(blenderAction);
 
-
+//   on_pbBlender_clicked()
 
     connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyRow()));
     connect(cutAction,SIGNAL(triggered(bool)),this,SLOT(cutRow()));
@@ -1282,6 +1286,7 @@ void HWorkProgram::showContextMenu(const QPoint &pos)
     connect(deleteAction,SIGNAL(triggered(bool)),this,SLOT(on_pbRemove_clicked()));
     connect(completeAction,SIGNAL(triggered(bool)),this,SLOT(completeRow()));
     connect(uncompleteAction,SIGNAL(triggered(bool)),this,SLOT(uncompleteRow()));
+    connect(blenderAction,SIGNAL(triggered(bool)),this,SLOT(on_pbBlender_clicked()));
 
 
     menu->popup(globalPos);
@@ -1693,6 +1698,7 @@ void HWorkProgram::on_pbNotComplete_clicked()
 void HWorkProgram::on_pbCompleteRow_clicked()
 {
     int idrow=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data(0).toInt();
+
     if(idrow<1)
     {
         QMessageBox::warning(this,QApplication::applicationName(),"Selezionare una riga",QMessageBox::Ok);
@@ -1711,5 +1717,27 @@ void HWorkProgram::on_pbUncompleteRow_clicked()
         return;
     }
     uncompleteRow();
+}
+
+
+void HWorkProgram::on_pbBlender_clicked()
+{
+    int idrow=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data().toInt();
+    QString s_prodotto=QString();
+
+    if(idrow<1)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Selezionare una riga",QMessageBox::Ok);
+        return;
+    }
+
+    s_prodotto=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),7).data().toString()+" ("+ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),11).data().toString()+")";
+    qDebug()<<idrow<<s_prodotto;
+
+    HBlender *f=new HBlender(idrow,s_prodotto,user,db);
+    f->show();
+
+
+
 }
 

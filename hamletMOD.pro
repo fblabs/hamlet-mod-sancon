@@ -16,6 +16,7 @@ CONFIG(release,debug|release)
 
 SOURCES += main.cpp\
     hbiodetails.cpp \
+    hblender.cpp \
     hcalcolo_costi_item.cpp \
     hcalcolo_costi_item_model.cpp \
     hcalcolo_costi_item_set.cpp \
@@ -115,6 +116,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     hbiodetails.h \
+    hblender.h \
     hcalcolo_costi_item.h \
     hcalcolo_costi_item_model.h \
     hcalcolo_costi_item_set.h \
@@ -215,6 +217,7 @@ HEADERS  += mainwindow.h \
 
 
 FORMS    += mainwindow.ui \
+    hblender.ui \
     hcalcolo_costi_item.ui \
     hcalcolo_costi_item_set.ui \
     hcomponenti_costo_item.ui \

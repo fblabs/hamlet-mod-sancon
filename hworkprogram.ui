@@ -373,31 +373,6 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="6">
-        <widget class="QPushButton" name="pbNotComplete">
-         <property name="text">
-          <string>Resetta righe</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icons.qrc">
-           <normaloff>:/Resources/Comment-delete64.png</normaloff>:/Resources/Comment-delete64.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="5">
-        <widget class="QPushButton" name="pbComplete">
-         <property name="text">
-          <string>Completa tutte le righe</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icons.qrc">
-           <normaloff>:/Resources/Comment-add64.png</normaloff>:/Resources/Comment-add64.png</iconset>
-         </property>
-         <property name="shortcut">
-          <string>Ctrl+C</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="pbCompleteRow">
          <property name="text">
@@ -423,6 +398,31 @@
          </property>
          <property name="shortcut">
           <string>N</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="pbComplete">
+         <property name="text">
+          <string>Completa tutte le righe</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Comment-add64.png</normaloff>:/Resources/Comment-add64.png</iconset>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+C</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="pbNotComplete">
+         <property name="text">
+          <string>Resetta righe</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/Resources/Comment-delete64.png</normaloff>:/Resources/Comment-delete64.png</iconset>
          </property>
         </widget>
        </item>
@@ -594,6 +594,26 @@
        </property>
        <property name="checkable">
         <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbBlender">
+       <property name="text">
+        <string>Frullatori (B)</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/Cart.PNG</normaloff>:/Resources/Cart.PNG</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>B</string>
        </property>
       </widget>
      </item>
