@@ -1724,6 +1724,7 @@ void HWorkProgram::on_pbBlender_clicked()
 {
     int idrow=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data().toInt();
     QString s_prodotto=QString();
+    QString linea=QString();
 
     if(idrow<1)
     {
@@ -1731,10 +1732,11 @@ void HWorkProgram::on_pbBlender_clicked()
         return;
     }
 
-    s_prodotto=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),7).data().toString()+" ("+ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),11).data().toString()+")";
-    qDebug()<<idrow<<s_prodotto;
+    s_prodotto=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),7).data().toString();
+    linea=wsmod->index(ui->tvStorico->currentIndex().row(),3).data().toString();
 
-    HBlender *f=new HBlender(idrow,s_prodotto,user,db);
+
+    HBlender *f=new HBlender(idrow,s_prodotto,linea,user,db);
     f->show();
 
 

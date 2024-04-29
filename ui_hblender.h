@@ -51,7 +51,7 @@ public:
     {
         if (HBlender->objectName().isEmpty())
             HBlender->setObjectName(QString::fromUtf8("HBlender"));
-        HBlender->resize(1052, 655);
+        HBlender->resize(1222, 666);
         verticalLayout_2 = new QVBoxLayout(HBlender);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         lbTitle = new QLabel(HBlender);

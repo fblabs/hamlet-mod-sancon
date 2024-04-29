@@ -27,10 +27,13 @@ private slots:
     void on_pbClose_clicked();
     bool saveOperation();
     void updateAmounts();
+    void deleteOperation();
 
 
 
     void on_leQuantita_returnPressed();
+
+    void on_pbDelete_clicked();
 
 private:
     Ui::HWarehouseDetails *ui;

@@ -9,9 +9,11 @@
 
 #include <QDebug>
 #include <QSqlError>
+#include "hpdfprint.h"
+#include <QTextStream>
 
 
-HBlender::HBlender(const int p_idriga,QString p_prodotto,HUser *p_user,QSqlDatabase p_db,QWidget *parent)
+HBlender::HBlender(const int p_idriga, QString p_prodotto, QString p_linea, HUser *p_user, QSqlDatabase p_db, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::HBlender)
 {
@@ -19,13 +21,15 @@ HBlender::HBlender(const int p_idriga,QString p_prodotto,HUser *p_user,QSqlDatab
     db=p_db;
     user=p_user;
     i_idriga=p_idriga;
+    s_linea=p_linea;
+
     qDebug()<<"ID_RIGA"<<i_idriga;
 
 
     i_idriga=p_idriga;
     s_prodotto=p_prodotto;
 
-    ui->lbTitle->setText("PRODUZIONE FRULLATORI: "+s_prodotto);
+    ui->lbTitle->setText(QDate::currentDate().toString("dd-MM-yyyy")+"PRODUZIONE FRULLATORI: "+s_prodotto+"[ LINEA "+s_linea+" ]");
 
     QDoubleValidator *amoval=new QDoubleValidator(0.000,999999,3);
     ui->leAmount->setValidator(amoval);
@@ -122,7 +126,8 @@ void HBlender::addRow()
     QStandardItem *exp=new QStandardItem(QString());
 
 
-    exp->setCheckable(true);
+    exp->setEditable(false);
+
     if(s_esp=="0")
     {
 
@@ -160,6 +165,7 @@ void HBlender::addRow()
     ui->tvAdded->setColumnHidden(11,false);//note
     ui->tvAdded->setColumnWidth(11,400);
     ui->tvAdded->setColumnHidden(12,false);//esportato
+    ui->pbExport->setEnabled(mod->index(0,12).data(Qt::CheckStateRole).toInt()<1);
 
 
 }
@@ -187,6 +193,8 @@ void HBlender::saveBlend()
 
     bool success=false;
     db.transaction();
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
 
 
     for(int rr=0;rr<removed.size();++rr)
@@ -240,27 +248,27 @@ void HBlender::saveBlend()
 
 
 
-            sql="INSERT INTO tb_blend (id,idriga_p,IDlotto,lotto,data,utente,IDprodotto,azione,quantita,um,note,esportato) VALUES (:id,:idrow,:lotid,:lot,:data,:utente,:idprod,2,:qua,1,:note,:esp)  on duplicate key update  data=current_date(),quantita=:qua,note=:note,esportato=:esp";
-            q.prepare(sql);
-            qDebug()<<"INSERT"<<lotid;
+        sql="INSERT INTO tb_blend (id,idriga_p,IDlotto,lotto,data,utente,IDprodotto,azione,quantita,um,note,esportato) VALUES (:id,:idrow,:lotid,:lot,:data,:utente,:idprod,2,:qua,1,:note,:esp)  on duplicate key update  data=current_date(),quantita=:qua,note=:note,esportato=:esp";
+        q.prepare(sql);
+        qDebug()<<"INSERT"<<lotid;
 
-            q.bindValue(":id",id);
-            q.bindValue(":idrow",i_idriga);
-            q.bindValue(":lotid",lotid);
-            q.bindValue(":lot",lot);
-            q.bindValue(":data",QDate::currentDate());
-            q.bindValue(":utente",user->getID());
-            q.bindValue(":idprod",idprod);
-            q.bindValue(":qua",qua);
-            q.bindValue(":note",note);
-            q.bindValue(":esp",esp);
+        q.bindValue(":id",id);
+        q.bindValue(":idrow",i_idriga);
+        q.bindValue(":lotid",lotid);
+        q.bindValue(":lot",lot);
+        q.bindValue(":data",QDate::currentDate());
+        q.bindValue(":utente",user->getID());
+        q.bindValue(":idprod",idprod);
+        q.bindValue(":qua",qua);
+        q.bindValue(":note",note);
+        q.bindValue(":esp",esp);
 
-            qDebug()<<"lotid"<<q.boundValue(":lotid");
-
-
+        qDebug()<<"lotid"<<q.boundValue(":lotid");
 
 
-            success= q.exec();
+
+
+        success= q.exec();
 
 
 
@@ -270,6 +278,8 @@ void HBlender::saveBlend()
     }
 
     qDebug()<<success;
+
+    QApplication::restoreOverrideCursor();
 
     if(!success){
 
@@ -299,25 +309,30 @@ int HBlender::findIDLotto(const QString s_lot)
     return lid;
 }
 
-void HBlender::exportToOperazioni()
+void HBlender::exportToOperazioni(bool exp)
 {
     QSqlQuery q(db);
     QString sql=QString();
-    sql="INSERT into operazioni(IDlotto,data,utente,IDprodotto,azione,quantita,um) SELECT IDlotto,data,utente,IDprodotto,azione,quantita,um FROM fbgmdb260.tb_blend WHERE idriga_p=:id";
+
+
+
+    /* sql="INSERT into operazioni(IDlotto,data,utente,IDprodotto,azione,quantita,um) SELECT IDlotto,data,utente,IDprodotto,azione,quantita,um FROM fbgmdb260.tb_blend WHERE idriga_p=:id";
     q.prepare(sql);
-    q.bindValue(":id",i_idriga);
+    q.bindValue(":id",i_idriga);*/
 
     if(QMessageBox::warning(this,QApplication::applicationName(),"Esportare in Operazioni?\nATTENZIONE una volta esportati i dati non sarà più possibile modificarli se non in operazioni.Procedere?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         db.transaction();
+        // bool ok= q.exec();
+
+        /* if(ok)
+        {*/
+        sql="UPDATE tb_blend SET esportato=1 WHERE idriga_p=:id";
+        q.prepare(sql);
+        q.bindValue(":id",i_idriga);
         bool ok= q.exec();
 
-        if(ok)
-        {
-            sql="UPDATE tb_blend SET esportato=1 WHERE idriga_p=:id";
-            q.prepare(sql);
-            q.bindValue(":id",i_idriga);
-            q.exec();
+        if(ok){
 
             db.commit();
             QMessageBox::information(this,QApplication::applicationName(),"Operazioni esportate",QMessageBox::Ok);
@@ -373,13 +388,11 @@ void HBlender::init()
 
     q.exec();
 
-    // qDebug()<<q.size();
+    if(q.size()<1) return;
 
 
     while(q.next())
     {
-        qDebug()<<"INIT WHILE"<<i_idriga;
-
 
         QList<QStandardItem*>row;
 
@@ -416,7 +429,8 @@ void HBlender::init()
         QStandardItem *note=new QStandardItem(s_note);
         QStandardItem *exp=new QStandardItem("");
 
-        exp->setCheckable(true);
+
+        exp->setCheckable(false);
         if(s_esp=="0")
         {
 
@@ -427,6 +441,8 @@ void HBlender::init()
 
             exp->setCheckState(Qt::Checked);
         }
+
+
 
 
         row<<idblend<<idrow<<idlot<<lot<<data<<utente<<idprod<<prod<<azione<<amount<<um<<note<<exp;
@@ -447,6 +463,7 @@ void HBlender::init()
     mod->setHeaderData(11,Qt::Horizontal,"NOTE");
     mod->setHeaderData(12,Qt::Horizontal,"ESPORTATO");
 
+
     ui->tvAdded->setModel(mod);
 
     ui->tvAdded->setColumnHidden(0,true);
@@ -461,12 +478,14 @@ void HBlender::init()
     ui->tvAdded->setColumnHidden(9,false);//quantita
     ui->tvAdded->setColumnHidden(10,true);//um
     ui->tvAdded->setColumnHidden(11,false);//note
-    ui->tvAdded->setColumnWidth(11,400);
     ui->tvAdded->setColumnHidden(12,false);//esportato
 
-    // ui->tvAdded->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tvAdded->horizontalHeader()->setSectionResizeMode(7,QHeaderView::ResizeToContents);
+    ui->tvAdded->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvAdded->horizontalHeader()->setStretchLastSection(true);
     // qDebug()<<mod->rowCount();
+
+    ui->pbExport->setEnabled(mod->index(0,12).data(Qt::CheckStateRole).toInt()<1);
 
     ui->pbAdd->setEnabled(false);
 
@@ -485,5 +504,129 @@ void HBlender::on_leAmount_textChanged(const QString &arg1)
 void HBlender::on_pbExport_clicked()
 {
     exportToOperazioni();
+}
+
+void HBlender::print()
+{
+    QString strStream;
+
+    QAbstractItemModel *mod=ui->tvAdded->model();
+
+    QTextStream out(&strStream);
+    QString bgcol=QString();
+    QString title=QString();
+    title=ui->lbTitle->text().simplified();
+
+
+    const int rowCount = mod->rowCount();
+    const int columnCount = mod->columnCount();
+
+
+
+
+    out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
+
+    // headers
+
+
+
+    QList<int> column_indexes;
+    for (int column = 0 ; column < columnCount; column++)
+    {
+        if (!ui->tvAdded->isColumnHidden(column))
+        {
+            column_indexes.append(column);
+        }
+
+    }
+
+
+
+
+    out << "<thead><tr bgcolor='#5cabff'><th colspan='"+QString::number(column_indexes.size())+"'>"+ title +"</th></tr><tr bgcolor='lightgrey'>";
+
+
+    for (int column = 0 ; column < column_indexes.size(); column++)
+    {
+        out << QString("<th>%1</th>").arg(mod->headerData(column_indexes.at(column),Qt::Horizontal).toString());
+    }
+
+    out << "</tr></th></thead>\n";
+
+    // data table
+    for (int row = 0; row < rowCount; row++) {
+
+        out << "<tr>";
+        if(row%2)
+        {
+            bgcol="lightgreen";
+        }
+        else
+        {
+            bgcol="white";
+        }
+        for (int column = 0; column < columnCount; column++) {
+            if (!ui->tvAdded->isColumnHidden(column)) {
+
+                QString data = mod->index(row, column).data().toString().simplified();
+
+                if (column==12)
+                {
+
+                    out << QString("<td bgcolor='"+bgcol+"' align='center'>%1</td>").arg((mod->index(row,column).data(Qt::CheckStateRole)==Qt::Checked)? QString("[X]") : QString("&nbsp;"));
+                    //out << QString("<td bgcolor='"+bgcol+"' align='center'>%1</td>").arg(mod->index(row,column).data(Qt::CheckStateRole)==Qt::Checked)? QString("[X]") : QString("&nbsp;");
+
+                }
+                else
+                {
+                    out << QString("<td bgcolor='"+bgcol+"'>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                }
+            }
+        }
+        out << "</tr>";
+
+    }
+
+    out<<"</table></table><br>";
+
+
+    out<<"<table width=100% border=1 cellspacing=2 cellpadding=2>\n";
+    out<<"<tr>";
+    out<<"<td width=20%><b>OPERATORE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>FRULLATORE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>POMPE UTILIZZATE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>VASCHE UTILIZZATE:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>AVANZI:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>SEGNALAZIONI:</b></td><td>&nbsp;</td>";
+    out<<"</tr>";
+
+    out<<"</table>";
+    out<< "</body>\n";
+    out<<"</html>\n";
+
+
+
+    HPDFPrint *f =new HPDFPrint(nullptr,strStream);
+
+    QPageLayout::Orientation orientation;
+    orientation=QPageLayout::Landscape;
+    f->set_orientation(orientation);
+    f->show();
+}
+
+
+void HBlender::on_pbPrint_clicked()
+{
+    print();
 }
 

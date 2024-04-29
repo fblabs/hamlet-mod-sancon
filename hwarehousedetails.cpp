@@ -246,6 +246,31 @@ void HWarehouseDetails::updateAmounts()
 
 }
 
+void HWarehouseDetails::deleteOperation()
+{
+    QSqlQuery q(db);
+    QString sql=QString();
+
+    sql="DELETE FROM operazioni WHERE ID=:id";
+    q.prepare(sql);
+    q.bindValue(":id",opid);
+
+    db.transaction();
+    bool b=q.exec();
+
+
+    if(b)
+    {
+        QMessageBox::information(this,QApplication::applicationName(),"Operazione cancellata",QMessageBox::Ok);
+        emit confirm();
+    }
+    else
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore",QMessageBox::Ok);
+    }
+
+}
+
 void HWarehouseDetails::on_pbClose_clicked()
 {
     if(QMessageBox::Ok == QMessageBox::question(this,QApplication::applicationName(),"Chiudere la finestra? Le eventuali modifiche nonsalvate andranno perdute...ATTENZIONE",QMessageBox::Ok|QMessageBox::Cancel))
@@ -263,5 +288,11 @@ void HWarehouseDetails::on_pbClose_clicked()
 void HWarehouseDetails::on_leQuantita_returnPressed()
 {
 
+}
+
+
+void HWarehouseDetails::on_pbDelete_clicked()
+{
+    deleteOperation();
 }
 

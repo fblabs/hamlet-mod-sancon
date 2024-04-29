@@ -21,7 +21,7 @@ class HBlender : public QWidget
     Q_OBJECT
 
 public:
-    explicit HBlender(const int p_idriga=-1, QString p_prodotto=QString(), HUser *p_user=new HUser(), QSqlDatabase p_db=QSqlDatabase(), QWidget *parent = nullptr);
+    explicit HBlender(const int p_idriga=-1, QString p_prodotto=QString(), QString p_linea=QString(), HUser *p_user=new HUser(), QSqlDatabase p_db=QSqlDatabase(), QWidget *parent = nullptr);
     ~HBlender();
 
 private:
@@ -31,6 +31,7 @@ private:
     QStandardItemModel *mod;
     int i_idriga;
     QString s_prodotto;
+    QString s_linea;
     QList<int> removed;
 
 private slots:
@@ -40,7 +41,7 @@ private slots:
     void removeRow(const int p_row=-1, const int id_b=-1);
     void saveBlend();
     int findIDLotto(const QString s_lot=QString());
-    void exportToOperazioni();
+    void exportToOperazioni(bool exp=true);
 
     void on_pbAdd_clicked();
     void on_pbRemove_clicked();
@@ -50,6 +51,8 @@ private slots:
     void init();
     void on_leAmount_textChanged(const QString &arg1);
     void on_pbExport_clicked();
+    void print();
+    void on_pbPrint_clicked();
 };
 
 #endif // HBLENDER_H
