@@ -140,7 +140,7 @@ public:
         spLinea = new QSpinBox(HWorkProgram);
         spLinea->setObjectName(QString::fromUtf8("spLinea"));
         spLinea->setMinimum(1);
-        spLinea->setMaximum(2);
+        spLinea->setMaximum(3);
 
         horizontalLayout_3->addWidget(spLinea);
 

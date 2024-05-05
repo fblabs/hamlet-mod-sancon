@@ -16,7 +16,8 @@ CONFIG(release,debug|release)
 
 SOURCES += main.cpp\
     hbiodetails.cpp \
-    hblender.cpp \
+    hblend.cpp \
+    hblenddetail.cpp \
     hcalcolo_costi_item.cpp \
     hcalcolo_costi_item_model.cpp \
     hcalcolo_costi_item_set.cpp \
@@ -30,6 +31,7 @@ SOURCES += main.cpp\
     hcosti.cpp \
     hcosti_model.cpp \
     hcreategroup.cpp \
+    hfrullatori.cpp \
     hgroups.cpp \
     hloads.cpp \
     hloadsreport.cpp \
@@ -116,7 +118,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     hbiodetails.h \
-    hblender.h \
+    hblend.h \
+    hblenddetail.h \
     hcalcolo_costi_item.h \
     hcalcolo_costi_item_model.h \
     hcalcolo_costi_item_set.h \
@@ -130,6 +133,7 @@ HEADERS  += mainwindow.h \
     hcosti.h \
     hcosti_model.h \
     hcreategroup.h \
+    hfrullatori.h \
     hgroups.h \
     hloads.h \
     hloadsreport.h \
@@ -217,7 +221,7 @@ HEADERS  += mainwindow.h \
 
 
 FORMS    += mainwindow.ui \
-    hblender.ui \
+    hblenddetail.ui \
     hcalcolo_costi_item.ui \
     hcalcolo_costi_item_set.ui \
     hcomponenti_costo_item.ui \
@@ -230,6 +234,7 @@ FORMS    += mainwindow.ui \
     hcontainer_generic_product.ui \
     hcosti.ui \
     hcreategroup.ui \
+    hfrullatori.ui \
     hgroups.ui \
     hloads.ui \
     hloadsreport.ui \

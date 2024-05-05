@@ -36,7 +36,8 @@
 #include "hprogtable.h"
 #include <QSqlQueryModel>
 #include <QStandardItem>
-#include "hblender.h"
+#include "hblend.h"
+#include "hfrullatori.h"
 
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
@@ -1433,16 +1434,9 @@ void HWorkProgram::on_pbSingleSheet_clicked()
     refreshSheet();
     ui->cbAll->setChecked(false);
 
-    bool enable=false;
 
-    /*if(user->get_programmi_u()>0)
-    {
-        ui->pbAdd->setEnabled(user->get_wp_u());
-        ui->pbModify->setEnabled(user->get_wp_u());
-        ui->pbCopy->setEnabled(user->get_wp_u());
-        ui->pbPaste->setEnabled(user->get_wp_u());
-        ui->pbRemove->setEnabled(user->get_wp_u());
-    }*/
+
+
 
     ui->pbAdd->setEnabled(user->get_programmi_u()>0);
     ui->pbModify->setEnabled(user->get_wp_u()>0);
@@ -1450,10 +1444,8 @@ void HWorkProgram::on_pbSingleSheet_clicked()
     ui->pbPaste->setEnabled(user->get_programmi_u()>0);
     ui->pbRemove->setEnabled(user->get_programmi_u()>0);
 
-    //ui->cbshowrows->setChecked(true);
+
     ui->cbshowrows->setEnabled(true);
-
-
 
 
 
@@ -1723,8 +1715,11 @@ void HWorkProgram::on_pbUncompleteRow_clicked()
 void HWorkProgram::on_pbBlender_clicked()
 {
     int idrow=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data().toInt();
-    QString s_prodotto=QString();
-    QString linea=QString();
+    int idprod=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),6).data().toInt();
+    QString prodotto=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),7).data().toString();
+
+    qDebug()<<"IDRIGA WP"<<idrow;
+
 
     if(idrow<1)
     {
@@ -1732,11 +1727,17 @@ void HWorkProgram::on_pbBlender_clicked()
         return;
     }
 
-    s_prodotto=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),7).data().toString();
-    linea=wsmod->index(ui->tvStorico->currentIndex().row(),3).data().toString();
+
+    HBlend *blend=new HBlend(idrow,prodotto,user);
+    blend->setIDRiga(idrow);
+    blend->setIDProdotto(idprod);
+    blend->setProdotto(prodotto);
+    blend->setLinea(QString::number(ui->spLinea->value()));
+    blend->setDate(QDate::currentDate());
 
 
-    HBlender *f=new HBlender(idrow,s_prodotto,linea,user,db);
+
+    HFrullatori *f=new HFrullatori(blend,user,db);
     f->show();
 
 

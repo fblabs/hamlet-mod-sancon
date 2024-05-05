@@ -508,7 +508,7 @@ void HLotti_new::deleteLot(const int p_id)
     }
     else
     {
-        bool ba=false;
+       // bool ba=false;
 
 
 
