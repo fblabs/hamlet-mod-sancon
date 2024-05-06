@@ -40,8 +40,10 @@ private slots:
 
     void on_leLotto_returnPressed();
     void on_pbRemove_clicked();
+    bool checkLot(QString lot);
 
 
+    void on_leLotto_textChanged(const QString &arg1);
 };
 
 #endif // HBLENDDETAIL_H

@@ -159,6 +159,9 @@ void HBlendDetail::getDetails()
 
     }
 
+    detmod->setHeaderData(3,Qt::Horizontal,"LOTTO");
+    detmod->setHeaderData(4,Qt::Horizontal,"MATERIALE");
+
 
 
         ui->tvData->setColumnHidden(0,true);
@@ -201,7 +204,34 @@ void HBlendDetail::on_pbRemove_clicked()
     qDebug()<<"REMOVED ID"<<r;
 }
 
+bool HBlendDetail::checkLot(QString lot)
+{
+    if(lot.length()<4) return false;
+    QStringList parts=lot.split("-");
+
+    if(parts.size()==3 && parts.at(2).length()==8)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+
+}
 
 
 
+
+
+
+void HBlendDetail::on_leLotto_textChanged(const QString &arg1)
+{
+    bool b=false;
+
+    if( arg1.length()>10) b=checkLot(arg1);
+
+    if(b)on_pbAdd_clicked();
+}
 

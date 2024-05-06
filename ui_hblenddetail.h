@@ -90,6 +90,7 @@ public:
 
         tvData = new QTableView(HBlendDetail);
         tvData->setObjectName(QString::fromUtf8("tvData"));
+        tvData->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvData->setSelectionMode(QAbstractItemView::SingleSelection);
         tvData->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvData->horizontalHeader()->setStretchLastSection(true);
