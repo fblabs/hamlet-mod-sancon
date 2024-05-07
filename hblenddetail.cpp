@@ -222,7 +222,7 @@ void HBlendDetail::checkLot(QString lot)
 
             if (parts.at(2).length()>8)
             {
-                sb=parts.at(2).mid(0,7);
+                sb=parts.at(2).mid(0,8);
 
 
             }
@@ -260,7 +260,7 @@ void HBlendDetail::on_leLotto_textChanged(const QString &arg1)
 
     if(len>=12) checkLot(arg1);else return;
 
-    on_pbAdd_clicked();
+  //  on_pbAdd_clicked();
 }
 
 
