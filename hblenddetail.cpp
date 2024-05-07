@@ -164,14 +164,14 @@ void HBlendDetail::getDetails()
 
 
 
-        ui->tvData->setColumnHidden(0,true);
-        ui->tvData->setColumnHidden(1,true);
-        ui->tvData->setColumnHidden(2,true);
-        ui->tvData->setColumnHidden(3,false);
-        ui->tvData->setColumnHidden(4,false);
-        ui->tvData->setColumnHidden(5,true);
-        ui->tvData->setColumnHidden(6,true);
-        ui->tvData->setColumnHidden(7,true);
+    ui->tvData->setColumnHidden(0,true);
+    ui->tvData->setColumnHidden(1,true);
+    ui->tvData->setColumnHidden(2,true);
+    ui->tvData->setColumnHidden(3,false);
+    ui->tvData->setColumnHidden(4,false);
+    ui->tvData->setColumnHidden(5,true);
+    ui->tvData->setColumnHidden(6,true);
+    ui->tvData->setColumnHidden(7,true);
 }
 
 
@@ -204,20 +204,44 @@ void HBlendDetail::on_pbRemove_clicked()
     qDebug()<<"REMOVED ID"<<r;
 }
 
-bool HBlendDetail::checkLot(QString lot)
+void HBlendDetail::checkLot(QString lot)
 {
-    if(lot.length()<4) return false;
-    QStringList parts=lot.split("-");
+    connect(this,SIGNAL(sg_lot_check(QString)),ui->leLotto,SLOT(setText(QString)));
 
-    if(parts.size()==3 && parts.at(2).length()==8)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    QStringList parts;
+    QString clot=QString();
+    QString sb=QString();
 
+
+
+    parts=lot.split("-");
+
+    if(lot.length()>=11) {
+        if(parts.size()==3 && parts.at(2).length()==8)
+        {
+
+            if (parts.at(2).length()>8)
+            {
+                sb=parts.at(2).mid(0,7);
+
+
+            }
+            else if (parts.at(2).length()==8)
+            {
+                sb=parts.at(2);
+            }
+
+            clot=parts.at(0)+"-"+parts.at(1)+"-"+sb;
+
+            emit sg_lot_check(clot);
+
+        }
+        else
+        {
+            return;
+        }
+
+    }
 
 }
 
@@ -230,8 +254,15 @@ void HBlendDetail::on_leLotto_textChanged(const QString &arg1)
 {
     bool b=false;
 
-    if( arg1.length()>10) b=checkLot(arg1);
 
-    if(b)on_pbAdd_clicked();
+    int len=arg1.length();
+    qDebug()<<arg1.length();
+
+    if(len>=12) checkLot(arg1);else return;
+
+    on_pbAdd_clicked();
 }
+
+
+
 
