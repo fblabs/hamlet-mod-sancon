@@ -18,7 +18,7 @@ HBlendDetail::HBlendDetail(HBlend *p_blend,QStandardItemModel *p_mod, QSqlDataba
     detmod=p_mod;
     removed_rows.clear();
     db=p_db;
-    qDebug()<<"DETALIS"<<blend->get_ID();
+
 
     ui->tvData->setModel(detmod);
     getDetails();
@@ -31,24 +31,31 @@ HBlendDetail::~HBlendDetail()
 
 void HBlendDetail::on_pbConfirm_clicked()
 {
+
     emit sg_transfer(detmod);
 
     close();
 }
 
 
+
 void HBlendDetail::on_pbAdd_clicked()
 {
+
     add_row();
+    ui->leLot->setText(QString());
 }
 
 void HBlendDetail::add_row()
 {
+
+
     QList<QStandardItem*> row;
     QList<QStandardItem*> d;
 
 
-    QString lot=ui->leLotto->text();
+    QString lot=ui->leLot->text();
+    if(lot.length()==0) return;
     QStandardItem *si_id=new QStandardItem("0");
     QStandardItem *si_idblend=new QStandardItem(QString::number(blend->get_ID()));
     d=getLotData(lot);
@@ -60,18 +67,23 @@ void HBlendDetail::add_row()
     QStandardItem *si_um=new QStandardItem("1");
 
     row<<si_id<<si_idblend<<si_idlotto<<si_lotto<<si_prodotto<<si_azione<<si_quantita<<si_um;
-    detmod->appendRow(row);
 
-    /*ui->tvData->setColumnHidden(0,true);
+    if(d.at(1)->text().length()>0)
+    {
+        detmod->appendRow(row);
+    }
+
+
+    ui->tvData->setColumnHidden(0,true);
     ui->tvData->setColumnHidden(1,true);
     ui->tvData->setColumnHidden(2,true);
     ui->tvData->setColumnHidden(3,false);
     ui->tvData->setColumnHidden(4,false);
     ui->tvData->setColumnHidden(5,true);
     ui->tvData->setColumnHidden(6,true);
-    ui->tvData->setColumnHidden(7,true);*/
+    ui->tvData->setColumnHidden(7,true);
 
-    ui->leLotto->clear();
+    ui->leLot->clear();
 
 }
 
@@ -110,8 +122,10 @@ QList<QStandardItem *> HBlendDetail::getLotData(QString p_lot)
 
     qDebug()<<"getlotdeta"<<q.value(0).toString()<<q.value(1).toString()<<q.value(2).toString();
 
-    return res;
 
+
+
+    return res;
 }
 
 void HBlendDetail::getDetails()
@@ -183,14 +197,6 @@ void HBlendDetail::on_pbClose_clicked()
 
 
 
-
-
-void HBlendDetail::on_leLotto_returnPressed()
-{
-    ui->pbAdd->click();
-}
-
-
 void HBlendDetail::on_pbRemove_clicked()
 {
     int r=0;
@@ -201,23 +207,26 @@ void HBlendDetail::on_pbRemove_clicked()
 
 
     removed_rows<<r;
-    qDebug()<<"REMOVED ID"<<r;
+
 }
 
-void HBlendDetail::checkLot(QString lot)
+void HBlendDetail::checkLot(QString plot)
 {
-    connect(this,SIGNAL(sg_lot_check(QString)),ui->leLotto,SLOT(setText(QString)));
 
     QStringList parts;
     QString clot=QString();
     QString sb=QString();
 
+    qDebug()<<"partsize"<<parts.size();
+    parts=plot.split("-");
 
 
-    parts=lot.split("-");
+    if(parts.size()<3) {
 
-    if(lot.length()>=11) {
-        if(parts.size()==3 && parts.at(2).length()==8)
+        return;
+    }
+
+        if(parts.size()==3 && parts.at(2).length()>8)
         {
 
             if (parts.at(2).length()>8)
@@ -231,38 +240,31 @@ void HBlendDetail::checkLot(QString lot)
                 sb=parts.at(2);
             }
 
-            clot=parts.at(0)+"-"+parts.at(1)+"-"+sb;
 
-            emit sg_lot_check(clot);
 
-        }
-        else
+       }
+
+        if(parts.at(2).length()==8)
         {
-            return;
-        }
+           clot=parts.at(0)+"-"+parts.at(1)+"-"+parts.at(2);
+            qDebug()<<"clot"<<clot;
 
-    }
+
+            connect(this,SIGNAL(sg_lot_checked(QString)),this,SLOT(on_pbAdd_clicked()));
+            ui->leLot->setText(clot);
+            emit sg_lot_checked(clot);
+
+      }
+
+
 
 }
 
 
 
 
-
-
-void HBlendDetail::on_leLotto_textChanged(const QString &arg1)
+void HBlendDetail::on_leLot_textChanged(const QString &arg1)
 {
-    bool b=false;
-
-
-    int len=arg1.length();
-    qDebug()<<arg1.length();
-
-    if(len>=12) checkLot(arg1);else return;
-
-  //  on_pbAdd_clicked();
+    if(arg1.length()>11) checkLot(arg1);
 }
-
-
-
 

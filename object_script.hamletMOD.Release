@@ -1,5 +1,7 @@
 release/main.o
 release/hbiodetails.o
+release/hblend.o
+release/hblenddetail.o
 release/hcalcolo_costi_item.o
 release/hcalcolo_costi_item_model.o
 release/hcalcolo_costi_item_set.o
@@ -13,6 +15,7 @@ release/hcontainer_generic_product.o
 release/hcosti.o
 release/hcosti_model.o
 release/hcreategroup.o
+release/hfrullatori.o
 release/hgroups.o
 release/hloads.o
 release/hloadsreport.o
@@ -99,6 +102,8 @@ release/hnewsheet.o
 release/qrc_icons.o
 release/moc_mainwindow.o
 release/moc_hbiodetails.o
+release/moc_hblend.o
+release/moc_hblenddetail.o
 release/moc_hcalcolo_costi_item.o
 release/moc_hcalcolo_costi_item_model.o
 release/moc_hcalcolo_costi_item_set.o
@@ -112,6 +117,7 @@ release/moc_hcontainer_generic_product.o
 release/moc_hcosti.o
 release/moc_hcosti_model.o
 release/moc_hcreategroup.o
+release/moc_hfrullatori.o
 release/moc_hgroups.o
 release/moc_hloads.o
 release/moc_hloadsreport.o

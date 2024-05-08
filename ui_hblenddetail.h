@@ -32,7 +32,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QFormLayout *formLayout;
     QLabel *label;
-    QLineEdit *leLotto;
+    QLineEdit *leLot;
     QPushButton *pbAdd;
     QPushButton *pbRemove;
     QTableView *tvData;
@@ -59,10 +59,10 @@ public:
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
-        leLotto = new QLineEdit(HBlendDetail);
-        leLotto->setObjectName(QString::fromUtf8("leLotto"));
+        leLot = new QLineEdit(HBlendDetail);
+        leLot->setObjectName(QString::fromUtf8("leLot"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, leLotto);
+        formLayout->setWidget(0, QFormLayout::FieldRole, leLot);
 
 
         horizontalLayout->addLayout(formLayout);

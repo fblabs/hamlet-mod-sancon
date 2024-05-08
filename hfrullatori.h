@@ -18,7 +18,7 @@ class HFrullatori : public QWidget
     Q_OBJECT
 
 public:
-    explicit HFrullatori(HBlend *p_blend=new HBlend(),HUser *p_user=new HUser(),QSqlDatabase p_db=QSqlDatabase(),QWidget *parent = nullptr);
+    explicit HFrullatori(QString p_title=QString(), HBlend *p_blend=new HBlend(), HUser *p_user=new HUser(), QSqlDatabase p_db=QSqlDatabase(), QWidget *parent = nullptr);
     ~HFrullatori();
 
 private:
@@ -26,6 +26,7 @@ private:
     Ui::HFrullatori *ui;
     QSqlDatabase db;
     HUser *user;
+    QString m_title;
     int id_riga_produzione;
     int id_prodotto;
     QStandardItemModel *mod_details=new QStandardItemModel();
@@ -33,6 +34,7 @@ private:
     HBlend *blend;
     QList<int>remove;
     QString prodotto=QString();
+
 
 
 private slots:
@@ -43,7 +45,7 @@ private slots:
     void get_details(QStandardItemModel* p_mod);
     void print();
     void getBlendData();
-    void save_blend();
+    void save_blend(bool b_showdlg=true);
     void on_pbSave_clicked();
     QList<QStandardItem*> getLotData(QString p_lot);
     void getRemoved(QList<int>p_rem);

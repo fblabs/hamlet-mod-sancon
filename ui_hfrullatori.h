@@ -29,6 +29,7 @@ class Ui_HFrullatori
 {
 public:
     QVBoxLayout *verticalLayout;
+    QLabel *lbTitle;
     QFormLayout *formLayout;
     QLabel *label_8;
     QDateEdit *deData;
@@ -65,6 +66,12 @@ public:
         HFrullatori->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(HFrullatori);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        lbTitle = new QLabel(HFrullatori);
+        lbTitle->setObjectName(QString::fromUtf8("lbTitle"));
+        lbTitle->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+
+        verticalLayout->addWidget(lbTitle);
+
         formLayout = new QFormLayout();
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
         label_8 = new QLabel(HFrullatori);
@@ -219,6 +226,7 @@ public:
     void retranslateUi(QWidget *HFrullatori)
     {
         HFrullatori->setWindowTitle(QCoreApplication::translate("HFrullatori", "Impostazioni frullata", nullptr));
+        lbTitle->setText(QCoreApplication::translate("HFrullatori", "TextLabel", nullptr));
         label_8->setText(QCoreApplication::translate("HFrullatori", "Data:", nullptr));
         label->setText(QCoreApplication::translate("HFrullatori", "Linea:", nullptr));
         label_2->setText(QCoreApplication::translate("HFrullatori", "Operatore:", nullptr));
@@ -229,10 +237,7 @@ public:
         label_9->setText(QString());
         label_7->setText(QCoreApplication::translate("HFrullatori", "Note:", nullptr));
         cbExport->setText(QCoreApplication::translate("HFrullatori", "Esportato", nullptr));
-        pbInit->setText(QCoreApplication::translate("HFrullatori", "Operazioni (O)", nullptr));
-#if QT_CONFIG(shortcut)
-        pbInit->setShortcut(QCoreApplication::translate("HFrullatori", "O", nullptr));
-#endif // QT_CONFIG(shortcut)
+        pbInit->setText(QCoreApplication::translate("HFrullatori", "Operazioni", nullptr));
         pbPrint->setText(QCoreApplication::translate("HFrullatori", "Stampa", nullptr));
         pbSave->setText(QCoreApplication::translate("HFrullatori", "Salva", nullptr));
         pbClose->setText(QCoreApplication::translate("HFrullatori", "Chiudi", nullptr));

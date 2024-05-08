@@ -1717,6 +1717,9 @@ void HWorkProgram::on_pbBlender_clicked()
     int idrow=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data().toInt();
     int idprod=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),6).data().toInt();
     QString prodotto=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),7).data().toString();
+    QString title=QString();
+
+    title=QDate::currentDate().toString("dd-MM-yyyy")+" FRULLATA:"+prodotto+" LINEA "+QString::number(ui->spLinea->value());
 
     qDebug()<<"IDRIGA WP"<<idrow;
 
@@ -1737,7 +1740,7 @@ void HWorkProgram::on_pbBlender_clicked()
 
 
 
-    HFrullatori *f=new HFrullatori(blend,user,db);
+    HFrullatori *f=new HFrullatori(title,blend,user,db);
     f->show();
 
 

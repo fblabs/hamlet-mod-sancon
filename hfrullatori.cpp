@@ -12,7 +12,7 @@
 #include <QSqlError>
 #include <QDebug>
 
-HFrullatori::HFrullatori(HBlend *p_blend, HUser *p_user, QSqlDatabase p_db, QWidget *parent)
+HFrullatori::HFrullatori(QString p_title,HBlend *p_blend, HUser *p_user, QSqlDatabase p_db, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::HFrullatori)
 {
@@ -20,6 +20,9 @@ HFrullatori::HFrullatori(HBlend *p_blend, HUser *p_user, QSqlDatabase p_db, QWid
     db=p_db;
     user=p_user;
     blend=p_blend;
+    m_title=p_title;
+
+    ui->lbTitle->setText(p_title);
 
     ui->cbExport->setVisible(false);
 
@@ -181,7 +184,7 @@ void HFrullatori::remove_deleted_detail_row(const int p_id)
 
 
 
-void HFrullatori::save_blend()
+void HFrullatori::save_blend(bool b_showdlg)
 {
     QSqlQuery q(db);
     QString sql=QString();
@@ -292,6 +295,7 @@ void HFrullatori::save_blend()
     db.commit();
     getBlendData();
 
+    if(b_showdlg)
     QMessageBox::information(this,QApplication::applicationName(),"Dati salvati",QMessageBox::Ok);
 
 
@@ -305,10 +309,13 @@ void HFrullatori::on_pbClose_clicked()
 
 void HFrullatori::on_pbInit_clicked()
 {
+    mod_details=new QStandardItemModel();
+
+    save_blend(false);
 
     HBlendDetail *f=new HBlendDetail(blend,mod_details,db);
-    connect(f,SIGNAL(sg_transfer(QStandardItemModel*)),this,SLOT(get_details(QStandardItemModel*)));
-    connect (f,SIGNAL(add_removed_id(int)),this,SLOT(add_removed_Row(int)));
+   // connect(f,SIGNAL(sg_transfer(QStandardItemModel*)),this,SLOT(get_details(QStandardItemModel*)));
+   // connect (f,SIGNAL(add_removed_id(int)),this,SLOT(add_removed_Row(int)));
     f->show();
 }
 
@@ -434,7 +441,7 @@ void HFrullatori::print()
 
 void HFrullatori::on_pbSave_clicked()
 {
-    save_blend();
+    save_blend(true);
 }
 
 

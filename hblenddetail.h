@@ -29,7 +29,7 @@ private:
 signals:
     void sg_transfer(QStandardItemModel * p_mod=new QStandardItemModel());
     void add_removed_id(int id=-1);
-    void sg_lot_check(const QString res=QString());
+    void sg_lot_checked(const QString res=QString());
 private slots:
     void on_pbConfirm_clicked();
     void on_pbAdd_clicked();
@@ -38,13 +38,15 @@ private slots:
     QList<QStandardItem*>getLotData(QString p_lot=QString());
     void getDetails();
     void on_pbClose_clicked();
-
-    void on_leLotto_returnPressed();
     void on_pbRemove_clicked();
-    void checkLot(QString lot=QString());
+    void checkLot(QString plot=QString());
 
 
-    void on_leLotto_textChanged(const QString &arg1);
+
+
+
+
+    void on_leLot_textChanged(const QString &arg1);
 };
 
 #endif // HBLENDDETAIL_H
