@@ -40,6 +40,7 @@ private slots:
     void on_pbClose_clicked();
     void on_pbRemove_clicked();
     void checkLot(QString plot=QString());
+    void transferData();
 
 
 

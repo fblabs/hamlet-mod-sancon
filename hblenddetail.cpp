@@ -32,8 +32,7 @@ HBlendDetail::~HBlendDetail()
 void HBlendDetail::on_pbConfirm_clicked()
 {
 
-    emit sg_transfer(detmod);
-
+    transferData();
     close();
 }
 
@@ -84,6 +83,8 @@ void HBlendDetail::add_row()
     ui->tvData->setColumnHidden(7,true);
 
     ui->leLot->clear();
+
+
 
 }
 
@@ -226,38 +227,43 @@ void HBlendDetail::checkLot(QString plot)
         return;
     }
 
-        if(parts.size()==3 && parts.at(2).length()>8)
+    if(parts.size()==3 && parts.at(2).length()>8)
+    {
+
+        if (parts.at(2).length()>8)
         {
-
-            if (parts.at(2).length()>8)
-            {
-                sb=parts.at(2).mid(0,8);
+            sb=parts.at(2).mid(0,8);
 
 
-            }
-            else if (parts.at(2).length()==8)
-            {
-                sb=parts.at(2);
-            }
-
-
-
-       }
-
-        if(parts.at(2).length()==8)
+        }
+        else if (parts.at(2).length()==8)
         {
-           clot=parts.at(0)+"-"+parts.at(1)+"-"+parts.at(2);
-            qDebug()<<"clot"<<clot;
-
-
-            connect(this,SIGNAL(sg_lot_checked(QString)),this,SLOT(on_pbAdd_clicked()));
-            ui->leLot->setText(clot);
-            emit sg_lot_checked(clot);
-
-      }
+            sb=parts.at(2);
+        }
 
 
 
+    }
+
+    if(parts.at(2).length()==8)
+    {
+        clot=parts.at(0)+"-"+parts.at(1)+"-"+parts.at(2);
+        qDebug()<<"clot"<<clot;
+
+
+        connect(this,SIGNAL(sg_lot_checked(QString)),this,SLOT(on_pbAdd_clicked()));
+        ui->leLot->setText(clot);
+        emit sg_lot_checked(clot);
+
+    }
+
+
+
+}
+
+void HBlendDetail::transferData()
+{
+    emit sg_transfer(detmod);
 }
 
 
