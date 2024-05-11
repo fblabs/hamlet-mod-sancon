@@ -68,8 +68,9 @@ void HFrullatori::getBlendData()
         blend->setPompe(q.value(7).toString());
         blend->setVasche(q.value(8).toString());
         blend->setAvanzi(q.value(9).toString());
-        blend->setExported(q.value(10).toBool());
-        blend->setNote(q.value(11).toString());
+        blend->setAmount(q.value(10).toString());
+        blend->setExported(q.value(11).toBool());
+        blend->setNote(q.value(12).toString());
     }
 
 
@@ -81,6 +82,7 @@ void HFrullatori::getBlendData()
     ui->lePompe->setText(blend->getPompe());
     ui->leVasche->setText(blend->getVasche());
     ui->leAvanzi->setText(blend->getAvanzi());
+    ui->leAmount->setText(blend->getAmount());
     ui->cbExport->setChecked(blend->getExported());
     ui->teNote->setPlainText(blend->getNote());
 
@@ -201,13 +203,12 @@ void HFrullatori::save_blend(bool b_showdlg)
     blend->setAvanzi(ui->leAvanzi->text());
     blend->setExported(ui->cbExport->isChecked());
     blend->setNote(ui->teNote->toPlainText());
-
-    qDebug()<<blend->getBlender();
-
+    blend->setAmount(ui->leAmount->text());
 
 
-    sql="INSERT INTO `fbgmdb260`.`tb_blend` (ID,data,ID_riga_prod,linea,operatore,id_prodotto,frullatore,pompe,vasche,avanzi,esportato,note)\
-        VALUES (:id,:data, :idriga,:linea,:operatore,:id_prodotto,:frullatore,:pompe,:vasche,:avanzi,:esportato,:note) ON DUPLICATE KEY UPDATE data=:data,ID_riga_prod=:idriga,linea=:linea,operatore=:operatore,frullatore=:frullatore,pompe=:pompe,vasche=:vasche,avanzi=:avanzi,esportato=:esportato,note=:note"; // values (:data,:linea,:operatore,:frullatore,:pompe,:vasche,:avanzi,:esportato,:note)";
+
+    sql="INSERT INTO `fbgmdb260`.`tb_blend` (ID,data,ID_riga_prod,linea,operatore,id_prodotto,frullatore,pompe,vasche,avanzi,amount,esportato,note)\
+        VALUES (:id,:data, :idriga,:linea,:operatore,:id_prodotto,:frullatore,:pompe,:vasche,:avanzi,:amount,:esportato,:note) ON DUPLICATE KEY UPDATE data=:data,ID_riga_prod=:idriga,linea=:linea,operatore=:operatore,frullatore=:frullatore,pompe=:pompe,vasche=:vasche,avanzi=:avanzi,amount=:amount,esportato=:esportato,note=:note"; // values (:data,:linea,:operatore,:frullatore,:pompe,:vasche,:avanzi,:esportato,:note)";
 
 
     q.prepare(sql);
@@ -222,6 +223,7 @@ void HFrullatori::save_blend(bool b_showdlg)
     q.bindValue(":pompe",blend->getPompe());
     q.bindValue(":vasche",blend->getVasche());
     q.bindValue(":avanzi",blend->getAvanzi());
+    q.bindValue(":amount",blend->getAmount());
     q.bindValue(":esportato",blend->getExported());
     q.bindValue(":note",blend->getNote());
 
@@ -333,7 +335,7 @@ void HFrullatori::print()
     QTextStream out(&strStream);
     QString bgcol=QString();
     QString title=QString();
-    title=blend->getDate().toString("dd-MM-yyyy")+" - FRULLATA: "+blend->getProdotto()+" - (LINEA"+blend->getLinea()+")";
+    title=ui->lbTitle->text().toUpper();
 
 
     const int rowCount = mod_details->rowCount();
@@ -422,6 +424,9 @@ void HFrullatori::print()
     out<<"</tr>";
     out<<"<tr>";
     out<<"<td><b>SEGNALAZIONI:</b></td><td>"+ blend->getNote()+"</td>";
+    out<<"</tr>";
+    out<<"<tr>";
+    out<<"<td><b>QUANTITA':</b></td><td>"+ blend->getAmount()+"</td>";
     out<<"</tr>";
 
     out<<"</table>";

@@ -49,6 +49,8 @@ public:
     QLabel *label_7;
     QTextEdit *teNote;
     QCheckBox *cbExport;
+    QLabel *label_10;
+    QLineEdit *leAmount;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbInit;
     QPushButton *pbPrint;
@@ -148,24 +150,34 @@ public:
         label_9 = new QLabel(HFrullatori);
         label_9->setObjectName(QString::fromUtf8("label_9"));
 
-        formLayout->setWidget(7, QFormLayout::LabelRole, label_9);
+        formLayout->setWidget(8, QFormLayout::LabelRole, label_9);
 
         label_7 = new QLabel(HFrullatori);
         label_7->setObjectName(QString::fromUtf8("label_7"));
         label_7->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
 
-        formLayout->setWidget(8, QFormLayout::LabelRole, label_7);
+        formLayout->setWidget(9, QFormLayout::LabelRole, label_7);
 
         teNote = new QTextEdit(HFrullatori);
         teNote->setObjectName(QString::fromUtf8("teNote"));
         teNote->setMaximumSize(QSize(16777215, 80));
 
-        formLayout->setWidget(8, QFormLayout::FieldRole, teNote);
+        formLayout->setWidget(9, QFormLayout::FieldRole, teNote);
 
         cbExport = new QCheckBox(HFrullatori);
         cbExport->setObjectName(QString::fromUtf8("cbExport"));
 
-        formLayout->setWidget(7, QFormLayout::FieldRole, cbExport);
+        formLayout->setWidget(8, QFormLayout::FieldRole, cbExport);
+
+        label_10 = new QLabel(HFrullatori);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+
+        formLayout->setWidget(7, QFormLayout::LabelRole, label_10);
+
+        leAmount = new QLineEdit(HFrullatori);
+        leAmount->setObjectName(QString::fromUtf8("leAmount"));
+
+        formLayout->setWidget(7, QFormLayout::FieldRole, leAmount);
 
 
         verticalLayout->addLayout(formLayout);
@@ -230,13 +242,14 @@ public:
         label_8->setText(QCoreApplication::translate("HFrullatori", "Data:", nullptr));
         label->setText(QCoreApplication::translate("HFrullatori", "Linea:", nullptr));
         label_2->setText(QCoreApplication::translate("HFrullatori", "Operatore:", nullptr));
-        label_3->setText(QCoreApplication::translate("HFrullatori", "Frullatori:", nullptr));
+        label_3->setText(QCoreApplication::translate("HFrullatori", "Frullatore:", nullptr));
         label_4->setText(QCoreApplication::translate("HFrullatori", "Pompe:", nullptr));
         label_5->setText(QCoreApplication::translate("HFrullatori", "Vasche:", nullptr));
         label_6->setText(QCoreApplication::translate("HFrullatori", "Avanzi:", nullptr));
         label_9->setText(QString());
         label_7->setText(QCoreApplication::translate("HFrullatori", "Note:", nullptr));
         cbExport->setText(QCoreApplication::translate("HFrullatori", "Esportato", nullptr));
+        label_10->setText(QCoreApplication::translate("HFrullatori", "Quantit\303\240", nullptr));
         pbInit->setText(QCoreApplication::translate("HFrullatori", "Operazioni", nullptr));
         pbPrint->setText(QCoreApplication::translate("HFrullatori", "Stampa", nullptr));
         pbSave->setText(QCoreApplication::translate("HFrullatori", "Salva", nullptr));

@@ -99,6 +99,11 @@ void HBlend::setExported(bool p_exp)
     b_exp=p_exp;
 }
 
+void HBlend::setAmount(QString p_amount)
+{
+    m_amount=p_amount;
+}
+
 int HBlend::get_ID()
 {
     return m_id;
@@ -159,6 +164,11 @@ QString HBlend::getNote()
 QString HBlend::getProdotto()
 {
     return m_prodotto;
+}
+
+QString HBlend::getAmount()
+{
+    return m_amount;
 }
 
 bool HBlend::getExported()

@@ -70,7 +70,7 @@
      <item row="3" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Frullatori:</string>
+        <string>Frullatore:</string>
        </property>
       </widget>
      </item>
@@ -107,14 +107,14 @@
      <item row="6" column="1">
       <widget class="QLineEdit" name="leAvanzi"/>
      </item>
-     <item row="7" column="0">
+     <item row="8" column="0">
       <widget class="QLabel" name="label_9">
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
+     <item row="9" column="0">
       <widget class="QLabel" name="label_7">
        <property name="text">
         <string>Note:</string>
@@ -124,7 +124,7 @@
        </property>
       </widget>
      </item>
-     <item row="8" column="1">
+     <item row="9" column="1">
       <widget class="QTextEdit" name="teNote">
        <property name="maximumSize">
         <size>
@@ -134,12 +134,22 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="1">
+     <item row="8" column="1">
       <widget class="QCheckBox" name="cbExport">
        <property name="text">
         <string>Esportato</string>
        </property>
       </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>Quantità</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QLineEdit" name="leAmount"/>
      </item>
     </layout>
    </item>

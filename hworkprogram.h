@@ -33,7 +33,7 @@ private slots:
     // void on_tvStorico_clicked(const QModelIndex &index);
     void storicoindexchange();
     void on_pbNewSheet_clicked();
-    void refreshSheet();
+    void refreshSheet(const QModelIndex p_currentIndex=QModelIndex());
     void updateSheet(int newrow, int oldrow);
     void setHeaders();
     void print();
@@ -41,10 +41,10 @@ private slots:
     void add_row(QStandardItemModel *mod, QList<QStandardItem*> row);
     void process(const QSqlQueryModel *mod=nullptr);
     void save(bool show_dlg=false);
-    void rowaddb(const int row=-1);
+   // void rowaddb();
     void pasteRow();
     void modify_row();
-    void removeRow(bool show=true);
+    void removeRow(const int p_row=-1, bool show=true);
     void completeRows(int id=-1, bool complete=false);
     void completeRow();
     void uncompleteRow();
@@ -125,6 +125,8 @@ private slots:
 
     void on_pbBlender_clicked();
 
+    void on_pbUndo_clicked();
+
 private:
     Ui::HWorkProgram *ui;
     HUser* user;
@@ -134,6 +136,7 @@ private:
     HWpMod *wpmod; //modello [righe_produzione]
     bool dets=false;
     QList<QStandardItem*>rowcp;
+    QList<int>removed_rows;
 
 signals:
     void showDets(QSqlQueryModel *pmod);

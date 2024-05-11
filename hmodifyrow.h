@@ -41,6 +41,10 @@ private slots:
 
     void on_pbSaveLots_clicked();
 
+    void on_leQuant_returnPressed();
+
+    void on_leVaso_returnPressed();
+
 signals:
     void done();
 };

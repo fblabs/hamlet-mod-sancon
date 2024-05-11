@@ -14,7 +14,7 @@ public:
 
 private:
     int m_id,m_id_riga_produzione=-1,m_id_prodotto=-1;
-    QString m_line,m_operator,m_blender,m_pumps,m_tank,m_avanzi,m_note,m_prodotto=QString();
+    QString m_line,m_operator,m_blender,m_pumps,m_tank,m_avanzi,m_note,m_prodotto,m_amount=QString();
     QDate m_date=QDate::currentDate();
     bool b_exp=false;
 public slots:
@@ -31,6 +31,7 @@ public slots:
     void setAvanzi(QString p_avanzi=QString());
     void setNote(QString p_note=QString());
     void setExported(bool p_exp);
+    void setAmount(QString p_amount=QString());
     int get_ID();
     QDate getDate();
     int getIDRiga();
@@ -43,6 +44,7 @@ public slots:
     QString getAvanzi();
     QString getNote();
     QString getProdotto();
+    QString getAmount();
     bool getExported();
 
 

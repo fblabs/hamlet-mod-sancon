@@ -21,6 +21,7 @@ Qt::ItemFlags HWpMod::flags(const QModelIndex &item) const
     else if (item.column()==15 || item.column() ==16)
     {
 
+       // flags |= ~Qt::ItemIsEditable;
         flags |= Qt::ItemIsUserCheckable;
         flags |= Qt::ItemIsEnabled;
 

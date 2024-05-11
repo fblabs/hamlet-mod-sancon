@@ -121,8 +121,6 @@ QList<QStandardItem *> HBlendDetail::getLotData(QString p_lot)
         res<<idlotto<<lotto<<prod;
     }
 
-    qDebug()<<"getlotdeta"<<q.value(0).toString()<<q.value(1).toString()<<q.value(2).toString();
-
 
 
 
@@ -253,6 +251,8 @@ void HBlendDetail::checkLot(QString plot)
 
         connect(this,SIGNAL(sg_lot_checked(QString)),this,SLOT(on_pbAdd_clicked()));
         ui->leLot->setText(clot);
+        connect(this,SIGNAL(sg_lot_checked(QString)),this,SLOT(on_pbAdd_clicked()));
+
         emit sg_lot_checked(clot);
 
     }
@@ -271,6 +271,10 @@ void HBlendDetail::transferData()
 
 void HBlendDetail::on_leLot_textChanged(const QString &arg1)
 {
-    if(arg1.length()>11) checkLot(arg1);
+    QStringList p=arg1.split("-");
+    if(p.size()<3) return;
+    if(p.at(2).length()<8)return;
+
+    checkLot(arg1);
 }
 

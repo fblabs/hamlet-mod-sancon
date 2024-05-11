@@ -17,7 +17,7 @@ class HPDFPrint : public QWidget
     Q_OBJECT
 
 public:
-    explicit HPDFPrint(HUser *p_user=nullptr,QString p_html=QString(), QWidget *parent = nullptr);
+    explicit HPDFPrint(HUser *p_user=nullptr, QString p_html=QString(), QPageLayout::Orientation p_orientation=QPageLayout::Portrait, QWidget *parent = nullptr);
     ~HPDFPrint();
     void set_orientation(QPageLayout::Orientation p_orientation);
 
@@ -38,6 +38,8 @@ private slots:
     void print_preview(QPrinter *p_printer);
 
 
+    void on_rbPortrait_toggled(bool checked);
+
 private:
     Ui::HPDFPrint *ui;
     HUser *user;
@@ -45,6 +47,7 @@ private:
     QPageLayout layout;
     QTextDocument* doc;
     QPrinter printer;
+    QPageLayout::Orientation orientation;
 
 
 

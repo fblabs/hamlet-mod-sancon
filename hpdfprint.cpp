@@ -7,9 +7,11 @@
 #include <QPrintPreviewDialog>
 #include <QDesktopServices>
 
+#include <QDebug>
 
 
-HPDFPrint::HPDFPrint(HUser *p_user, QString p_html, QWidget *parent) :
+
+HPDFPrint::HPDFPrint(HUser *p_user, QString p_html, QPageLayout::Orientation p_orientation, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HPDFPrint)
 {
@@ -23,7 +25,13 @@ HPDFPrint::HPDFPrint(HUser *p_user, QString p_html, QWidget *parent) :
     ui->tb_Viewport->setFont(font);
     ui->tb_Viewport->document()->setHtml(html);
 
-    layout.setOrientation(QPageLayout::Portrait);
+    orientation=p_orientation;
+    qDebug()<<"PRINTPDF"<<orientation;
+
+    orientation==QPageLayout::Portrait?ui->rbPortrait->setChecked(true):ui->rbPortrait->setChecked(false);
+
+
+    layout.setOrientation(orientation);
 
 
 
@@ -86,18 +94,16 @@ void HPDFPrint::on_pbPrint_clicked()
     doc=ui->tb_Viewport->document();
 
     layout.setMode(QPageLayout::FullPageMode);
-
-
     layout.setPageSize(QPageSize(QPageSize::A4));
 
 
+    QPrintDialog dialog( &printer);
 
 
-     QPrintDialog dialog( &printer);
-    // dialog.show();
      if (dialog.exec()==QDialog::Accepted)
      {
-           doc->print(&printer);
+
+         doc->print(&printer);
      }
 
 }
@@ -139,10 +145,24 @@ void HPDFPrint::on_pbPreview_clicked()
 
 void HPDFPrint::print_preview(QPrinter* p_printer)
 {
-    ui->rbPortrait->isChecked()?layout.setOrientation(QPageLayout::Portrait):layout.setOrientation(QPageLayout::Landscape);
+    QPrinter *printer=p_printer;
 
-    ui->tb_Viewport->document()->print(&printer);
+    printer->setPageOrientation(orientation);
+
+
+    ui->tb_Viewport->document()->print(printer);
 }
 
 
+
+
+void HPDFPrint::on_rbPortrait_toggled(bool checked)
+{
+    if(checked)
+    {
+     orientation=QPageLayout::Portrait;
+    }else{
+        orientation=QPageLayout::Landscape;
+    }
+}
 

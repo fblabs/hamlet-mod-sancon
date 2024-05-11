@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QCompleter>
 #include <QStringListModel>
+#include <QValidator>
 
 HModifyRow::HModifyRow(const int p_id,const int p_idrow,const int p_row, HUser *p_user, QSqlDatabase p_db, QWidget *parent) :
     QWidget(parent),
@@ -24,6 +25,19 @@ HModifyRow::HModifyRow(const int p_id,const int p_idrow,const int p_row, HUser *
     db=p_db;
 
     setPermissions(user);
+
+    QDoubleValidator *quant_val=new QDoubleValidator();
+    quant_val->setNotation(QDoubleValidator::StandardNotation);
+    ui->leQuant->setValidator(quant_val);
+
+    QDoubleValidator *vaso_val=new QDoubleValidator();
+    vaso_val->setNotation(QDoubleValidator::StandardNotation);
+    ui->leVaso->setValidator(vaso_val);
+
+    QDoubleValidator *tot_val=new QDoubleValidator();
+    tot_val->setNotation(QDoubleValidator::StandardNotation);
+    ui->leTotal->setValidator(tot_val);
+
 
     getClients();
     getProducts();
@@ -115,8 +129,6 @@ void HModifyRow::loadRow()
     rows_model->setTable("righe_produzione");
     rows_model->setFilter("IDProduzione="+QString::number(idp)+" and num_riga="+QString::number(row));
     rows_model->select();
-    qDebug()<<idp<<row<<rows_model->lastError().text();
-    qDebug()<<rows_model->rowCount();
     //setup controls
     QSqlTableModel *clientimod=static_cast<QSqlTableModel*>(ui->cbCliente->model());
     clientimod->setFilter("ID="+rows_model->index(0,9).data(0).toString());
@@ -157,6 +169,7 @@ void HModifyRow::loadRow()
     ui->leNumOrd->setText(rows_model->index(0,12).data(0).toString());
     ui->leLotScad->setText(rows_model->index(0,17).data(0).toString());
     int fresco=rows_model->index(0,13).data(0).toInt();
+    qDebug()<<"loadrow24"<<rows_model->index(0,13).data(0).toString()<<rows_model->index(0,14).data(0).toInt();;
     int pastorizzato=rows_model->index(0,14).data(0).toInt();
     QString lotti=rows_model->index(0,17).data(0).toString();
     QString lotScad=rows_model->index(0,18).data(0).toString();
@@ -166,19 +179,15 @@ void HModifyRow::loadRow()
 
 
 
-    qDebug()<<fresco<<pastorizzato;
-    if(fresco>0)
-    {
-        ui->rbFresh->setChecked(true);
-    }
-    if(pastorizzato>0)
-    {
-        ui->rbPastorized->setChecked(true);
-    }
-    else
+    qDebug()<<"fresco24"<<fresco<<pastorizzato;
+    fresco>0 ? ui->rbFresh->setChecked(true):ui->rbFresh->setChecked(false);
+    pastorizzato>0 ? ui->rbPastorized->setChecked(true):ui->rbPastorized->setChecked(false);
+    fresco+pastorizzato<1? ui->rbNone->setChecked(true): ui->rbNone->setChecked(false);
+
+   /* else
     {
         ui->rbNone->setChecked(true);
-    }
+    }*/
 
     completato>0 ? ui->cbDone->setChecked(true):ui->cbDone->setChecked(false);
 
@@ -228,7 +237,7 @@ void HModifyRow::saveRow(){
 
     int idcliente=ui->cbCliente->model()->index(ui->cbCliente->currentIndex(),0).data(0).toInt();
     int idprodotto=ui->cbProdotto->model()->index(ui->cbProdotto->currentIndex(),1).data(0).toInt();
-    qDebug()<<idprodotto;
+
     QString numord=ui->leNumOrd->text();
     QString vaso=ui->leVaso->text();
     QString qua=ui->leQuant->text();
@@ -245,15 +254,28 @@ void HModifyRow::saveRow(){
     if(ui->rbFresh->isChecked())
     {
         fresco=1;
+        pastorizzato=0;
+
     }else if(ui->rbPastorized->isChecked())
     {
+        fresco=0;
         pastorizzato=1;
+
     }
+    else if(ui->rbNone->isChecked())
+    {
+        fresco=0;
+        pastorizzato=0;
+    }
+
 
     if(ui->cbDone->isChecked())
     {
         completato=1;
+
     }
+
+    qDebug()<<"save_roW()"<<fresco<<pastorizzato;
 
     QSqlQuery q(db);
     QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,lotti=:lotti,lotto_scadenza=:lotscad,totale=:tot,vasi_prodotti=:vp,completato=:comp where IDproduzione=:idproduzione and num_riga=:num";
@@ -270,6 +292,7 @@ void HModifyRow::saveRow(){
     q.bindValue(":sanif",san);
     q.bindValue(":alrg",allerg);
     q.bindValue(":fresco",fresco);
+    qDebug()<<"saverow"<<fresco;
     q.bindValue(":pasto",pastorizzato);
     q.bindValue(":note",ui->ptNote->toPlainText());
     q.bindValue(":lotti",ui->ptLotti->toPlainText());
@@ -295,10 +318,12 @@ void HModifyRow::saveRow(){
     else
     {
         db.commit();
-        emit done();
+                emit done();
         QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
 
     }
+
+   loadRow();
 
 
 }
@@ -356,3 +381,21 @@ void HModifyRow::on_pbSaveLots_clicked()
         emit done();
     }
 }
+
+void HModifyRow::on_leQuant_returnPressed()
+{
+    double totale=calcTotale();
+
+
+    ui->leTotal->setText(QString::number(totale,'f',3));
+}
+
+
+void HModifyRow::on_leVaso_returnPressed()
+{
+    double totale=calcTotale();
+
+
+    ui->leTotal->setText(QString::number(totale,'f',3));
+}
+
