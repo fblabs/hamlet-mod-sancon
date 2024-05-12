@@ -357,7 +357,7 @@
        <item row="0" column="6">
         <widget class="QPushButton" name="pbRemove">
          <property name="text">
-          <string>Rimuovi riga</string>
+          <string>Elimina riga</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">

@@ -21,7 +21,7 @@ Qt::ItemFlags HWpMod::flags(const QModelIndex &item) const
     else if (item.column()==15 || item.column() ==16)
     {
 
-       // flags |= ~Qt::ItemIsEditable;
+       // flags = ~Qt::ItemIsEditable;
         flags |= Qt::ItemIsUserCheckable;
         flags |= Qt::ItemIsEnabled;
 
@@ -86,7 +86,7 @@ bool HWpMod::setData(const QModelIndex &index, const QVariant &value, int role)
 
 
         if (role==Qt::CheckStateRole )
-            return (QStandardItemModel::data(index).toInt() != 0) ? Qt::Checked :Qt::Unchecked;
+            return (QStandardItemModel::data(index).toInt() != 0) ? Qt::Checked : Qt::Unchecked;
         else
             return true;
 

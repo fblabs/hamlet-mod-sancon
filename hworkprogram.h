@@ -40,14 +40,15 @@ private slots:
     void get_sheet_details(const int p_id_produzione=-1);
     void add_row(QStandardItemModel *mod, QList<QStandardItem*> row);
     void process(const QSqlQueryModel *mod=nullptr);
-    void save(bool show_dlg=false);
+    void save();
    // void rowaddb();
     void pasteRow();
     void modify_row();
-    void removeRow(const int p_row=-1, bool show=true);
+    void removeRow(const int p_row=-1);
     void completeRows(int id=-1, bool complete=false);
     void completeRow();
     void uncompleteRow();
+    void copyrow(const int row=-1);
 
 
 
@@ -91,8 +92,6 @@ private slots:
 
     void showContextMenu(const QPoint& pos);
 
-    void copyRow();
-
     void cutRow();
 
     void on_pbDetails_clicked();
@@ -126,6 +125,7 @@ private slots:
     void on_pbBlender_clicked();
 
     void on_pbUndo_clicked();
+    void trigger_copy();
 
 private:
     Ui::HWorkProgram *ui;
@@ -135,8 +135,10 @@ private:
     HWorkSheetModel *wsmod; //modello del foglio([produzione]
     HWpMod *wpmod; //modello [righe_produzione]
     bool dets=false;
-    QList<QStandardItem*>rowcp;
+    //QList<QStandardItem*>rowcp;
     QList<int>removed_rows;
+    QList<QStandardItem*> copied_row;
+    bool modified=false;
 
 signals:
     void showDets(QSqlQueryModel *pmod);
