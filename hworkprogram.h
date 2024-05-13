@@ -104,7 +104,7 @@ private slots:
 
     void on_pbPaste_clicked();
 
-    void getDetails(double tot_ricetta=0.0);
+    void getDetails();
 
 
     void on_cbAll_toggled(bool checked);

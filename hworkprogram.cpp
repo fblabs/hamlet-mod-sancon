@@ -7,7 +7,6 @@
 #include <QSqlTableModel>
 #include "huser.h"
 #include <QMessageBox>
-#include <QDebug>
 #include <QSqlError>
 #include "hprint.h"
 #include "hworkprogressmodel.h"
@@ -394,16 +393,14 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     wpmod->setHeaderData(24,Qt::Horizontal,"Compl.");
 
 
-
-
-    /*  ui->tvGeneral->setColumnHidden(0,true);
+    ui->tvGeneral->setColumnHidden(0,true);
     ui->tvGeneral->setColumnHidden(1,true);
     ui->cbshowrows->isChecked()?ui->tvGeneral->setColumnHidden(2,false):ui->tvGeneral->setColumnHidden(2,true);
     ui->tvGeneral->setColumnHidden(6,true);
     ui->tvGeneral->setColumnHidden(10,true);
     ui->tvGeneral->setColumnHidden(20,true);
     ui->tvGeneral->setColumnHidden(21,true);
-    //ui->tvGeneral->setColumnHidden(24,true);*/
+    //ui->tvGeneral->setColumnHidden(24,true);
     ui->tvGeneral->setItemDelegate(rdel);
     ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->horizontalHeader()->setSectionResizeMode(18,QHeaderView::Stretch);
@@ -412,7 +409,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
     ui->tvGeneral->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
-    // ui->tvGeneral->setAcceptDrops(true);
+
 
 
 
@@ -989,7 +986,6 @@ void HWorkProgram::save()
         q.bindValue(":note",wpmod->index(r,18).data().toString());
         q.bindValue(":lotto_scadenza",wpmod->index(r,19).data().toString());
         q.bindValue(":lotti",wpmod->index(r,22).data().toString());
-        qDebug()<<"lotti"<<wpmod->index(r,22).data().toString();
         QString vasi_prodotti=QString();
         wpmod->index(r,23).data().toInt()>0?vasi_prodotti=QString::number(wpmod->index(r,21).data().toInt()) : vasi_prodotti=QString();
         q.bindValue(":vasi_prodotti",vasi_prodotti);
@@ -1000,7 +996,7 @@ void HWorkProgram::save()
 
         d = q.exec();
 
-        qDebug()<<"rows"<<d<<q.lastError().text()<<"idprodotto"<< wpmod->index(r,6).data().toInt();
+
 
     }
 
@@ -1014,7 +1010,6 @@ void HWorkProgram::save()
             q.prepare(sql);
             q.bindValue(":id",removed_rows.at(r));
             d=q.exec();
-            qDebug()<<"DELETE"<<q.lastError().text();
 
         }
 
@@ -1084,7 +1079,6 @@ void HWorkProgram::removeRow(const int p_row)
 {
 
     int row=p_row;
-    qDebug()<< p_row;
 
 
     /*  if(show)
@@ -1453,13 +1447,12 @@ void HWorkProgram::on_pbCopy_clicked()
 
 void HWorkProgram::on_pbPaste_clicked()
 {
-    qDebug()<<"onpbpasteclcked"<<copied_row.size();
     if(copied_row.size()<1)return;
     pasteRow();
 
 }
 
-void HWorkProgram::getDetails(double tot_ricetta)
+void HWorkProgram::getDetails()
 {
 
 

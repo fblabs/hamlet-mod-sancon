@@ -16347,7 +16347,8 @@ release/hpdfprint.o: hpdfprint.cpp hpdfprint.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtPrintSupport/qprintpreviewdialog.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/QDesktopServices \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qdesktopservices.h \
-		C:/Qt/5.15.2/mingw81_64/include/QtCore/qstandardpaths.h
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/qstandardpaths.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\hpdfprint.o hpdfprint.cpp
 
 release/hpreferred_lots.o: hpreferred_lots.cpp hpreferred_lots.h \
@@ -28844,7 +28845,8 @@ release/hmodifyrow.o: hmodifyrow.cpp hmodifyrow.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QCompleter \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qcompleter.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QStringListModel \
-		C:/Qt/5.15.2/mingw81_64/include/QtCore/qstringlistmodel.h
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/qstringlistmodel.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/QValidator
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\hmodifyrow.o hmodifyrow.cpp
 
 release/hlotmod.o: hlotmod.cpp hlotmod.h \

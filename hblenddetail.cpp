@@ -130,7 +130,7 @@ QList<QStandardItem *> HBlendDetail::getLotData(QString p_lot)
 void HBlendDetail::getDetails()
 {
     int idblend=blend->get_ID();
-    qDebug()<<"GETDETAILS"<<idblend;
+
 
     QSqlQuery q(db);
     QString sql=QString();
@@ -141,7 +141,6 @@ void HBlendDetail::getDetails()
     sql="SELECT ID,idblend,IDlotto,lotto,azione,quantita,um FROM tb_blend_details WHERE idblend=:idb ";
     q.prepare(sql);
     q.bindValue(":idb",blend->get_ID());
-    qDebug()<<"IDB"<<blend->get_ID()<<q.size();
     q.exec();
 
 
