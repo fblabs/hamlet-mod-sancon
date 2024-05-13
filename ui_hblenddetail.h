@@ -40,6 +40,7 @@ public:
     QSpacerItem *horizontalSpacer;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pbConfirm;
+    QPushButton *pbSave;
     QPushButton *pbClose;
 
     void setupUi(QWidget *HBlendDetail)
@@ -116,11 +117,19 @@ public:
 
         horizontalLayout_3->addWidget(pbConfirm);
 
+        pbSave = new QPushButton(HBlendDetail);
+        pbSave->setObjectName(QString::fromUtf8("pbSave"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSave->setIcon(icon3);
+
+        horizontalLayout_3->addWidget(pbSave);
+
         pbClose = new QPushButton(HBlendDetail);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon4);
 
         horizontalLayout_3->addWidget(pbClose);
 
@@ -146,6 +155,7 @@ public:
 #if QT_CONFIG(shortcut)
         pbConfirm->setShortcut(QCoreApplication::translate("HBlendDetail", "Return", nullptr));
 #endif // QT_CONFIG(shortcut)
+        pbSave->setText(QCoreApplication::translate("HBlendDetail", "Salva", nullptr));
         pbClose->setText(QCoreApplication::translate("HBlendDetail", "Chiudi", nullptr));
     } // retranslateUi
 

@@ -125,6 +125,8 @@ void HFrullatori::getBlendData()
 
     }
 
+    emit sg_setup_view();
+
 
 
 }
@@ -163,24 +165,26 @@ void HFrullatori::add_removed_Row(int p_id)
     remove<<p_id;
 }
 
-void HFrullatori::remove_deleted_detail_row(const int p_id)
+void HFrullatori::remove_deleted_detail_row()
 {
     QSqlQuery q(db);
     QString sql=QString();
 
-    for(int rm=0;rm<remove.size();++rm)
+    sql="DELETE FROM tb_blend_details WHERE ID=:idr";
+
+
+    for(int r=0;r<removed_details.size();++r)
     {
-
-        sql="DELETE FROM tb_blend_details WHERE ID=:idr";
-        int idr=p_id;
-
         q.prepare(sql);
+        int idr=removed_details.at(r);
         q.bindValue(":idr",idr);
         q.exec();
-
-
+        qDebug()<<"DILEIT"<<idr;
 
     }
+
+
+
 
 }
 
@@ -271,7 +275,7 @@ void HFrullatori::save_blend(bool b_showdlg)
 
 
 
-       /* if(!b){
+        /* if(!b){
 
 
             db.rollback();
@@ -281,24 +285,23 @@ void HFrullatori::save_blend(bool b_showdlg)
 
     }
 
-    for(int v=0;v<remove.size();v++)
-    {
-        int toremove=remove.at(v);
-        if(remove.contains(toremove)){remove_deleted_detail_row(toremove);}
-
-    }
+    qDebug()<<"FRULLATORI SAVE"<<removed_details.size();
 
 
-
-
+    remove_deleted_detail_row();
 
 
     remove.clear();
+    removed_details.clear();
     db.commit();
     getBlendData();
 
+
+
     if(b_showdlg)
-    QMessageBox::information(this,QApplication::applicationName(),"Dati salvati",QMessageBox::Ok);
+        QMessageBox::information(this,QApplication::applicationName(),"Dati salvati",QMessageBox::Ok);
+
+
 
 
 }
@@ -316,15 +319,20 @@ void HFrullatori::on_pbInit_clicked()
     save_blend(false);
 
     HBlendDetail *f=new HBlendDetail(blend,mod_details,db);
-   // connect(f,SIGNAL(sg_transfer(QStandardItemModel*)),this,SLOT(get_details(QStandardItemModel*)));
-   // connect (f,SIGNAL(add_removed_id(int)),this,SLOT(add_removed_Row(int)));
+    connect(f,SIGNAL(sg_transfer(QStandardItemModel*,QList<int>)),this,SLOT(get_details(QStandardItemModel*,QList<int>)));
+    connect (f,SIGNAL(sg_save_blend(bool)),this,SLOT(save_blend()));
+    connect(f,SIGNAL(sg_show_main()),this,SLOT(show()));
+    connect(this,SIGNAL(sg_setup_view()),f,SLOT(getDetails()));
+    hide();
     f->show();
 }
 
-void HFrullatori::get_details(QStandardItemModel *p_mod)
+void HFrullatori::get_details(QStandardItemModel *p_mod, QList<int> p_removed)
 {
 
     mod_details=p_mod;
+    removed_details=p_removed;
+
 }
 
 void HFrullatori::print()
@@ -386,7 +394,7 @@ void HFrullatori::print()
 
                 QString data = mod_details->index(row, column).data().toString().simplified();
 
-              /*  if (column==12)
+                /*  if (column==12)
                 {
 
                     out << QString("<td bgcolor='"+bgcol+"' align='center'>%1</td>").arg((mod->index(row,column).data(Qt::CheckStateRole)==Qt::Checked)? QString("[X]") : QString("&nbsp;"));
@@ -395,7 +403,7 @@ void HFrullatori::print()
                 }
                 else
                 {*/
-                    out << QString("<td bgcolor='"+bgcol+"'>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                out << QString("<td bgcolor='"+bgcol+"'>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
                 /*}*/
             }
         }

@@ -27,9 +27,11 @@ private:
     QStandardItemModel *detmod=new QStandardItemModel();
     QList<int>removed_rows;
 signals:
-    void sg_transfer(QStandardItemModel * p_mod=new QStandardItemModel());
+    void sg_transfer(QStandardItemModel * p_mod=new QStandardItemModel(),QList<int> removedrows=QList<int>());
     void add_removed_id(int id=-1);
     void sg_lot_checked(const QString res=QString());
+    void sg_save_blend(bool show=false);
+    void sg_show_main();
 private slots:
     void on_pbConfirm_clicked();
     void on_pbAdd_clicked();
@@ -41,6 +43,7 @@ private slots:
     void on_pbRemove_clicked();
     void checkLot(QString plot=QString());
     void transferData();
+    void setup();
 
 
 
@@ -48,6 +51,7 @@ private slots:
 
 
     void on_leLot_textChanged(const QString &arg1);
+    void on_pbSave_clicked();
 };
 
 #endif // HBLENDDETAIL_H

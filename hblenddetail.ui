@@ -116,6 +116,17 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pbSave">
+       <property name="text">
+        <string>Salva</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Resources/save-icon.png</normaloff>:/Resources/save-icon.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbClose">
        <property name="text">
         <string>Chiudi</string>

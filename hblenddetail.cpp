@@ -190,7 +190,10 @@ void HBlendDetail::getDetails()
 
 void HBlendDetail::on_pbClose_clicked()
 {
+
+    emit(sg_show_main());
     close();
+
 }
 
 
@@ -262,7 +265,20 @@ void HBlendDetail::checkLot(QString plot)
 
 void HBlendDetail::transferData()
 {
-    emit sg_transfer(detmod);
+    emit sg_transfer(detmod,removed_rows);
+}
+
+void HBlendDetail::setup()
+{
+    qDebug()<<"SETUP";
+    ui->tvData->setColumnHidden(0,true);
+    ui->tvData->setColumnHidden(1,true);
+    ui->tvData->setColumnHidden(2,true);
+    ui->tvData->setColumnHidden(3,false);
+    ui->tvData->setColumnHidden(4,false);
+    ui->tvData->setColumnHidden(5,true);
+    ui->tvData->setColumnHidden(6,true);
+    ui->tvData->setColumnHidden(7,true);
 }
 
 
@@ -275,5 +291,14 @@ void HBlendDetail::on_leLot_textChanged(const QString &arg1)
     if(p.at(2).length()<8)return;
 
     checkLot(arg1);
+}
+
+
+void HBlendDetail::on_pbSave_clicked()
+{
+
+    transferData();
+    emit sg_save_blend(false);
+
 }
 

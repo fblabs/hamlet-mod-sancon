@@ -33,6 +33,7 @@ private:
     QStandardItemModel *mod=new QStandardItemModel();
     HBlend *blend;
     QList<int>remove;
+    QList<int>removed_details=QList<int>();
     QString prodotto=QString();
 
 
@@ -42,7 +43,7 @@ private slots:
 
     void on_pbClose_clicked();
     void on_pbInit_clicked();
-    void get_details(QStandardItemModel* p_mod);
+    void get_details(QStandardItemModel* p_mod,QList<int>p_removed);
     void print();
     void getBlendData();
     void save_blend(bool b_showdlg=true);
@@ -50,9 +51,11 @@ private slots:
     QList<QStandardItem*> getLotData(QString p_lot);
     void getRemoved(QList<int>p_rem);
     void add_removed_Row(int p_id=-1);
-    void remove_deleted_detail_row(const int p_id=-1);
+    void remove_deleted_detail_row();
 
     void on_pbPrint_clicked();
+signals:
+    void sg_setup_view();
 };
 
 #endif // HFRULLATORI_H
