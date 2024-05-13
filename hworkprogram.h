@@ -139,9 +139,12 @@ private:
     QList<int>removed_rows;
     QList<QStandardItem*> copied_row;
     bool modified=false;
+    QModelIndex index_old=QModelIndex();
+    QModelIndex index_new=QModelIndex();
 
 signals:
     void showDets(QSqlQueryModel *pmod);
+
 
 
 

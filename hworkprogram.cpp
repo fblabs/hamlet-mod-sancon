@@ -38,6 +38,7 @@
 #include "hblend.h"
 #include "hfrullatori.h"
 
+#include <QDebug>
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
@@ -201,6 +202,7 @@ void HWorkProgram::getSheets()
     }
 
     ui->tvStorico->setCurrentIndex(ix);
+    index_old=ix;
 
 
 
@@ -263,9 +265,27 @@ void HWorkProgram::approve(const bool app)
 
 void HWorkProgram::storicoindexchange()
 {
+    index_new=ui->tvStorico->currentIndex();
 
-   /* if(modified){
-        if(QMessageBox::warning(this,QApplication::applicationName(),"Alcune modifiche non sono state salvate. Continuare?", QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel) {return;}
+    if(modified && index_old.row()!=ui->tvStorico->currentIndex().row())
+    {
+        if(QMessageBox::warning(this,QApplication::applicationName(),"Alcune modifiche non sono state salvate. Salvare?", QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok){
+
+            save();
+        }
+    }
+
+
+
+    /* if(modified){
+        if(QMessageBox::warning(this,QApplication::applicationName(),"Alcune modifiche non sono state salvate", QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel) {
+
+            ui->tvStorico->setCurrentIndex(prev);
+
+
+        }
+        connect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
+        modified=false;
 
     }*/
 
@@ -321,7 +341,7 @@ void HWorkProgram::storicoindexchange()
 
 
 
-    //  refreshSheet();
+    // refreshSheet();
 
 
 
@@ -953,7 +973,7 @@ void HWorkProgram::save()
                                                                                                                idprodotto=:idprodotto,olio=:olio,tappo=:tappo,idcliente=:idc,totale=:totale,sanificazione=:sanificazione,numero_ordine=:numero_ordine,fresco=:fresco,\
                                                                                                                                                                       pastorizzato=:pastorizzato,allergeni=:allergeni,note=:note,lotti=:lotti,lotto_scadenza=:lotto_scadenza,vasi_prodotti=:vasi_prodotti,completato=:completato";
 
-    if(QMessageBox::question(this,QApplication::applicationName(),"Confermare il salvataggio?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)  return;
+                                                                                                                                                        if(QMessageBox::question(this,QApplication::applicationName(),"Confermare il salvataggio?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)  return;
 
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1066,6 +1086,7 @@ void HWorkProgram::pasteRow()
 
     wpmod->appendRow(pasted_row);
     modified=true;
+
 
 
 }
@@ -1725,4 +1746,5 @@ void HWorkProgram::trigger_copy()
     int row=ui->tvGeneral->currentIndex().row();
     copyrow(row);
 }
+
 
