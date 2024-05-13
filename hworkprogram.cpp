@@ -273,6 +273,8 @@ void HWorkProgram::storicoindexchange()
 
             save();
         }
+
+        modified=false;
     }
 
 
@@ -1099,15 +1101,15 @@ void HWorkProgram::modify_row()
 void HWorkProgram::removeRow(const int p_row)
 {
 
+
+
     int row=p_row;
 
 
-    /*  if(show)
-    {
+    qDebug()<<"remove"<<p_row;
 
 
-        if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere la riga selezionata?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)return;
-    }*/
+
 
 
     removed_rows<<wpmod->index(row,0).data().toInt();
@@ -1238,10 +1240,6 @@ void HWorkProgram::copyrow(const int row)
 
 
 
-
-
-
-
 }
 
 
@@ -1360,7 +1358,7 @@ void HWorkProgram::cutRow()
 
     int row=ui->tvGeneral->currentIndex().row();
     copyrow(row);
-    removeRow(false);
+    removeRow(row);
     modified=true;
 }
 
