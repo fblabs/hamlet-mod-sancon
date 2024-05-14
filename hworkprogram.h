@@ -131,7 +131,7 @@ private:
     Ui::HWorkProgram *ui;
     HUser* user;
     QSqlDatabase db;
-    int id;
+    int id=-1;
     HWorkSheetModel *wsmod; //modello del foglio([produzione]
     HWpMod *wpmod; //modello [righe_produzione]
     bool dets=false;

@@ -49,6 +49,9 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     db=p_db;
     dets=false;
 
+    wsmod=new HWorkSheetModel();
+    wpmod=new HWpMod();
+
 
     getSheets();
     ui->tvStorico->setFocus();
@@ -149,11 +152,9 @@ bool HWorkProgram::createSheet(int p_line, QDate p_date)
 
 void HWorkProgram::getSheets()
 {
-    //  QSqlTableModel *mod=new QSqlTableModel(0,db);
 
-    QModelIndex ix;
-    // HWorkSheetModel *wsmod=new HWorkSheetModel(nullptr,db);
 
+    QModelIndex ix=QModelIndex();
 
     wsmod=new HWorkSheetModel(0,db);
     wsmod->setTable("produzione");
@@ -279,17 +280,7 @@ void HWorkProgram::storicoindexchange()
 
 
 
-    /* if(modified){
-        if(QMessageBox::warning(this,QApplication::applicationName(),"Alcune modifiche non sono state salvate", QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel) {
 
-            ui->tvStorico->setCurrentIndex(prev);
-
-
-        }
-        connect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
-        modified=false;
-
-    }*/
 
     QModelIndex index=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0);
     bool app=wsmod->index(index.row(),5).data(Qt::CheckStateRole).toInt()>0?true:false;
@@ -297,6 +288,7 @@ void HWorkProgram::storicoindexchange()
 
 
     id=ui->tvStorico->model()->index(index.row(),0).data(0).toInt();
+
     ui->deDal->setDate(ui->tvStorico->model()->index(index.row(),1).data(0).toDate());
     ui->deAl->setDate(ui->tvStorico->model()->index(index.row(),2).data(0).toDate());
     ui->spLinea->setValue(ui->tvStorico->model()->index(index.row(),3).data(0).toInt());
@@ -364,7 +356,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
         FROM righe_produzione,prodotti,anagrafica,ricette\
                                   where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by num_riga asc;";
 
-        q.prepare(sql);
+    q.prepare(sql);
     q.bindValue(":id_p",wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
 
 
@@ -374,15 +366,13 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
     mod->setQuery(q);
 
-    /*  for (int r=0;r<mod->rowCount();++r)
-    {
-        for(int c=0;c<mod->columnCount();++c)
-        {qDebug()<<"mod"<<mod->index(r,c).data().toString()<<"r"<<r<<"c"<<c;}
-    }*/
-
 
     wpmod=convert_to_wp(mod);
+
     delete mod;
+
+
+
 
     QItemDelegate *rdel=new QItemDelegate();
 
@@ -415,6 +405,8 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     wpmod->setHeaderData(24,Qt::Horizontal,"Compl.");
 
 
+    if(wpmod->rowCount()>0)
+    {
     ui->tvGeneral->setColumnHidden(0,true);
     ui->tvGeneral->setColumnHidden(1,true);
     ui->cbshowrows->isChecked()?ui->tvGeneral->setColumnHidden(2,false):ui->tvGeneral->setColumnHidden(2,true);
@@ -433,14 +425,16 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     ui->tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
 
 
-
-
     ui->tvGeneral->setCurrentIndex(p_currentIndex);
+
+    }
 
 
     QPalette p = ui->tvGeneral->palette();
     p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
     ui->tvGeneral->setPalette(p);
+
+
 
 
 
@@ -557,6 +551,8 @@ void HWorkProgram::updateSheet(int newrow, int oldrow)
 
 void HWorkProgram::on_pbSave_clicked()
 {
+
+
     save();
 
 
@@ -1322,7 +1318,7 @@ void HWorkProgram::showContextMenu(const QPoint &pos)
     QAction *editAction=new QAction("Modifica riga...");
     QAction *deleteAction=new QAction("Elimina riga");
     QAction *completeAction=new QAction("Completa riga");
-    QAction *uncompleteAction=new QAction("Riga non completataa");
+    QAction *uncompleteAction=new QAction("Riga non completatata");
     QAction *blenderAction=new QAction("Frullatori...");
     QAction *undoAction=new QAction("Annullla");
     if(user->get_programmi_u()>0 || user->get_wp_u()>0)menu->addAction(editAction);
@@ -1418,13 +1414,20 @@ HWpMod *HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
 
     HWpMod *wmod=new HWpMod();
 
+    if (mod->rowCount()<1) return wmod;
+
     for (int r=0;r<mod->rowCount();++r)
     {
+
+        QString t=QString();
         QList<QStandardItem*> row;
 
         for(int c=0;c<mod->columnCount();++c)
         {
-            QStandardItem *it=new QStandardItem(mod->index(r,c).data().toString());
+            t=mod->index(r,c).data().toString();
+            QStandardItem *it=new QStandardItem(t);
+
+
             it->setTextAlignment(Qt::AlignTop);
             it->setDropEnabled(false);
             if(c==15||c==16){
@@ -1433,13 +1436,10 @@ HWpMod *HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
                 it->setCheckable(true);
                 mod->index(r,c).data().toInt()>0?it->setCheckState(Qt::Checked):it->setCheckState(Qt::Unchecked);
 
-
-                // mod->index(r,c).data().toInt()>0?it->setData(mod->index(r,c).data().toInt(),Qt::CheckStateRole):it->setData(mod->index(r,c).data().toInt(),Qt::CheckStateRole);
             }
 
 
-
-
+            qDebug()<<"IT"<<it->text();
 
 
             row.append(it);

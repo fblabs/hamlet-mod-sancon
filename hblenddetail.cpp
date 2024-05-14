@@ -5,8 +5,12 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include "hblend.h"
+#include <QAction>
+#include <QMenu>
+#include <QMessageBox>
 #include <QDebug>
 #include <QSqlError>
+
 
 
 HBlendDetail::HBlendDetail(HBlend *p_blend,QStandardItemModel *p_mod, QSqlDatabase p_db, QWidget *parent)
@@ -22,6 +26,9 @@ HBlendDetail::HBlendDetail(HBlend *p_blend,QStandardItemModel *p_mod, QSqlDataba
 
     ui->tvData->setModel(detmod);
     getDetails();
+
+    ui->tvData->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->tvData,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
 }
 
 HBlendDetail::~HBlendDetail()
@@ -281,6 +288,21 @@ void HBlendDetail::setup()
     ui->tvData->setColumnHidden(7,true);
 }
 
+void HBlendDetail::showContextMenu(const QPoint &pos)
+{
+    QPoint globalPos =mapToGlobal(pos);
+    QMenu *menu=new QMenu(0);
+
+    QAction *removeAction=new QAction("Cancella riga");
+    QAction *saveAction=new QAction("Salva");
+    connect(removeAction,SIGNAL(triggered(bool)),this,SLOT(on_pbRemove_clicked()));
+    connect(saveAction,SIGNAL(triggered(bool)),this,SLOT(on_pbSave_clicked()));
+    menu->addAction(removeAction);
+    menu->addAction(saveAction);
+
+    menu->popup(globalPos);
+}
+
 
 
 
@@ -297,8 +319,11 @@ void HBlendDetail::on_leLot_textChanged(const QString &arg1)
 void HBlendDetail::on_pbSave_clicked()
 {
 
+    if(QMessageBox::question(this,QApplication::applicationName(),"Salvare?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
     transferData();
     emit sg_save_blend(false);
+    }
 
 }
 

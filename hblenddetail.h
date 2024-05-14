@@ -44,6 +44,8 @@ private slots:
     void checkLot(QString plot=QString());
     void transferData();
     void setup();
+    void showContextMenu(const QPoint& pos);
+
 
 
 
