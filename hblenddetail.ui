@@ -34,33 +34,16 @@
       </layout>
      </item>
      <item>
-      <widget class="QPushButton" name="pbAdd">
-       <property name="text">
-        <string>Aggiungi</string>
-       </property>
-       <property name="icon">
-        <iconset resource="icons.qrc">
-         <normaloff>:/Resources/Plus.PNG</normaloff>:/Resources/Plus.PNG</iconset>
-       </property>
-       <property name="autoExclusive">
-        <bool>false</bool>
-       </property>
-       <property name="autoDefault">
-        <bool>false</bool>
-       </property>
-       <property name="default">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="pbRemove">
        <property name="text">
-        <string>Rimuovi riga</string>
+        <string>Rimuovi riga (Canc)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/Minus.PNG</normaloff>:/Resources/Minus.PNG</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Del</string>
        </property>
       </widget>
      </item>

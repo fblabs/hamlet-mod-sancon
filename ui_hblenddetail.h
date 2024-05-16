@@ -33,7 +33,6 @@ public:
     QFormLayout *formLayout;
     QLabel *label;
     QLineEdit *leLot;
-    QPushButton *pbAdd;
     QPushButton *pbRemove;
     QTableView *tvData;
     QHBoxLayout *horizontalLayout_2;
@@ -68,21 +67,11 @@ public:
 
         horizontalLayout->addLayout(formLayout);
 
-        pbAdd = new QPushButton(HBlendDetail);
-        pbAdd->setObjectName(QString::fromUtf8("pbAdd"));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbAdd->setIcon(icon);
-        pbAdd->setAutoExclusive(false);
-        pbAdd->setAutoDefault(false);
-
-        horizontalLayout->addWidget(pbAdd);
-
         pbRemove = new QPushButton(HBlendDetail);
         pbRemove->setObjectName(QString::fromUtf8("pbRemove"));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbRemove->setIcon(icon1);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbRemove->setIcon(icon);
 
         horizontalLayout->addWidget(pbRemove);
 
@@ -111,25 +100,25 @@ public:
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         pbConfirm = new QPushButton(HBlendDetail);
         pbConfirm->setObjectName(QString::fromUtf8("pbConfirm"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Resources/Accept64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbConfirm->setIcon(icon2);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/Resources/Accept64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbConfirm->setIcon(icon1);
 
         horizontalLayout_3->addWidget(pbConfirm);
 
         pbSave = new QPushButton(HBlendDetail);
         pbSave->setObjectName(QString::fromUtf8("pbSave"));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSave->setIcon(icon3);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSave->setIcon(icon2);
 
         horizontalLayout_3->addWidget(pbSave);
 
         pbClose = new QPushButton(HBlendDetail);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon4);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon3);
 
         horizontalLayout_3->addWidget(pbClose);
 
@@ -139,9 +128,6 @@ public:
 
         retranslateUi(HBlendDetail);
 
-        pbAdd->setDefault(true);
-
-
         QMetaObject::connectSlotsByName(HBlendDetail);
     } // setupUi
 
@@ -149,8 +135,10 @@ public:
     {
         HBlendDetail->setWindowTitle(QCoreApplication::translate("HBlendDetail", "Dettaglio frullata", nullptr));
         label->setText(QCoreApplication::translate("HBlendDetail", "Lotto", nullptr));
-        pbAdd->setText(QCoreApplication::translate("HBlendDetail", "Aggiungi", nullptr));
-        pbRemove->setText(QCoreApplication::translate("HBlendDetail", "Rimuovi riga", nullptr));
+        pbRemove->setText(QCoreApplication::translate("HBlendDetail", "Rimuovi riga (Canc)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbRemove->setShortcut(QCoreApplication::translate("HBlendDetail", "Del", nullptr));
+#endif // QT_CONFIG(shortcut)
         pbConfirm->setText(QCoreApplication::translate("HBlendDetail", "Conferma (Invio)", nullptr));
 #if QT_CONFIG(shortcut)
         pbConfirm->setShortcut(QCoreApplication::translate("HBlendDetail", "Return", nullptr));

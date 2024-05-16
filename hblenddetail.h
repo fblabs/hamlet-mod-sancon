@@ -35,13 +35,13 @@ signals:
 private slots:
     void on_pbConfirm_clicked();
     void on_pbAdd_clicked();
-    void add_row();
+    void add_row(QString p_lot);
     int getLotId(QString p_lot=QString());
     QList<QStandardItem*>getLotData(QString p_lot=QString());
     void getDetails();
     void on_pbClose_clicked();
     void on_pbRemove_clicked();
-    void checkLot(QString plot=QString());
+    bool checkLot(QString plot=QString());
     void transferData();
     void setup();
     void showContextMenu(const QPoint& pos);

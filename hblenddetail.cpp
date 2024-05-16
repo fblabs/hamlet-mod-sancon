@@ -48,11 +48,12 @@ void HBlendDetail::on_pbConfirm_clicked()
 void HBlendDetail::on_pbAdd_clicked()
 {
 
-    add_row();
-    ui->leLot->setText(QString());
+   /* QString lot=ui->leLot->text();
+    *
+    ui->leLot->setText(QString());*/
 }
 
-void HBlendDetail::add_row()
+void HBlendDetail::add_row(QString p_lot)
 {
 
 
@@ -60,11 +61,11 @@ void HBlendDetail::add_row()
     QList<QStandardItem*> d;
 
 
-    QString lot=ui->leLot->text();
-    if(lot.length()==0) return;
+
+
     QStandardItem *si_id=new QStandardItem("0");
     QStandardItem *si_idblend=new QStandardItem(QString::number(blend->get_ID()));
-    d=getLotData(lot);
+    d=getLotData(p_lot);
     QStandardItem *si_idlotto=d.at(0)->clone();
     QStandardItem *si_lotto=d.at(1)->clone();
     QStandardItem *si_prodotto=d.at(2)->clone();
@@ -218,20 +219,21 @@ void HBlendDetail::on_pbRemove_clicked()
 
 }
 
-void HBlendDetail::checkLot(QString plot)
+bool HBlendDetail::checkLot(QString plot)
 {
+
 
     QStringList parts;
     QString clot=QString();
     QString sb=QString();
 
-    qDebug()<<"partsize"<<parts.size();
+    if(plot.length()<12) return false;
     parts=plot.split("-");
 
 
     if(parts.size()<3) {
 
-        return;
+        return false;
     }
 
     if(parts.size()==3 && parts.at(2).length()>8)
@@ -259,13 +261,15 @@ void HBlendDetail::checkLot(QString plot)
 
 
         connect(this,SIGNAL(sg_lot_checked(QString)),this,SLOT(on_pbAdd_clicked()));
-        ui->leLot->setText(clot);
-        connect(this,SIGNAL(sg_lot_checked(QString)),this,SLOT(on_pbAdd_clicked()));
+
 
         emit sg_lot_checked(clot);
 
+        return true;
+
     }
 
+    return false;
 
 
 }
@@ -316,7 +320,9 @@ void HBlendDetail::on_leLot_textChanged(const QString &arg1)
     if(p.size()<3) return;
     if(p.at(2).length()<8)return;
 
-    checkLot(arg1);
+    if(checkLot(arg1)) add_row(arg1);
+    ui->leLot->setText(QString());
+
 }
 
 
