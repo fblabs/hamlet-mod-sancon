@@ -136,7 +136,7 @@ QList<QStandardItem *> HBlendDetail::getLotData(QString p_lot)
 
 void HBlendDetail::getDetails()
 {
-    int idblend=blend->get_ID();
+
 
 
     QSqlQuery q(db);
@@ -308,7 +308,11 @@ void HBlendDetail::showContextMenu(const QPoint &pos)
 
 void HBlendDetail::on_leLot_textChanged(const QString &arg1)
 {
-    QStringList p=arg1.split("-");
+    if(arg1.length()<12)
+    return;
+
+    QStringList p=QStringList();
+    p=arg1.split("-");
     if(p.size()<3) return;
     if(p.at(2).length()<8)return;
 
