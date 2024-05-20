@@ -52,8 +52,9 @@ private slots:
     void getRemoved(QList<int>p_rem);
     void add_removed_Row(int p_id=-1);
     void remove_deleted_detail_row();
-
     void on_pbPrint_clicked();
+    void on_stateSlider_valueChanged(int value);
+
 signals:
     void sg_setup_view();
 };

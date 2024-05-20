@@ -3,9 +3,6 @@ hamletmod.ini
 *.user
 *.o
 *.pdf
-*.o
-*.o
-*.o
 debug/
 release/
 !release/hamletMOD.exe

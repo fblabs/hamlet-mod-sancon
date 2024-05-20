@@ -49,6 +49,7 @@ private slots:
     void completeRow();
     void uncompleteRow();
     void copyrow(const int row=-1);
+    void call_refresh();
 
 
 
@@ -126,6 +127,7 @@ private slots:
 
     void on_pbUndo_clicked();
     void trigger_copy();
+   // HWpMod* convert_to_wp_mod(const QSqlQueryModel *qmod=nullptr);
 
 private:
     Ui::HWorkProgram *ui;

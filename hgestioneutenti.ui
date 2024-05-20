@@ -98,7 +98,7 @@
            <item>
             <widget class="QLineEdit" name="leNewPass">
              <property name="text">
-              <string>pippo</string>
+              <string/>
              </property>
             </widget>
            </item>

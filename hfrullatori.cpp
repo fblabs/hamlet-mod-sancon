@@ -30,6 +30,10 @@ HFrullatori::HFrullatori(QString p_title,HBlend *p_blend, HUser *p_user, QSqlDat
 
 
 
+
+
+
+
     getBlendData();
 
 
@@ -46,7 +50,7 @@ void HFrullatori::getBlendData()
 {
 
     QSqlQuery q(db);
-    QString sql="SELECT * FROM tb_blend WHERE id_riga_prod=:idr";
+    QString sql="SELECT tb_blend.*,righe_produzione.stato FROM tb_blend, righe_produzione WHERE righe_produzione.ID=tb_blend.ID_riga_prod and righe_produzione.ID=:idr";
     int id=0;
 
 
@@ -56,6 +60,7 @@ void HFrullatori::getBlendData()
     if(q.next())
     {
         id=q.value(0).toInt();
+
         id<0?id=0:id=q.value(0).toInt();
 
         blend->set_ID(id);
@@ -71,6 +76,8 @@ void HFrullatori::getBlendData()
         blend->setAmount(q.value(10).toString());
         blend->setExported(q.value(11).toBool());
         blend->setNote(q.value(12).toString());
+
+
     }
 
 
@@ -85,6 +92,7 @@ void HFrullatori::getBlendData()
     ui->leAmount->setText(blend->getAmount());
     ui->cbExport->setChecked(blend->getExported());
     ui->teNote->setPlainText(blend->getNote());
+    ui->stateSlider->setValue(blend->getState());
 
 
 
@@ -125,7 +133,27 @@ void HFrullatori::getBlendData()
 
     }
 
-    emit sg_setup_view();
+    QPixmap pix;
+
+
+    switch(blend->getState())
+    {
+    case 0:
+        pix=QPixmap(":/Resources/rosso.png").scaled(20,20);
+        break;
+    case 1:
+        pix=QPixmap(":/Resources/giallo.png").scaled(20,20);
+        break;
+    case 2:
+        pix=QPixmap(":/Resources/verde.png").scaled(20,20);
+        break;
+
+    }
+
+
+    ui->lbIcon->setPixmap(pix);
+
+   // emit sg_setup_view();
 
 
 
@@ -208,6 +236,10 @@ void HFrullatori::save_blend(bool b_showdlg)
     blend->setExported(ui->cbExport->isChecked());
     blend->setNote(ui->teNote->toPlainText());
     blend->setAmount(ui->leAmount->text());
+    blend->setState(ui->stateSlider->value());
+
+
+
 
 
 
@@ -230,6 +262,7 @@ void HFrullatori::save_blend(bool b_showdlg)
     q.bindValue(":amount",blend->getAmount());
     q.bindValue(":esportato",blend->getExported());
     q.bindValue(":note",blend->getNote());
+
 
     db.transaction();
 
@@ -272,20 +305,19 @@ void HFrullatori::save_blend(bool b_showdlg)
         q.bindValue(":um",mod_details->index(r,7).data().toString());
         b=q.exec();
 
-
-
-
-        /* if(!b){
+        if(!b){
 
 
             db.rollback();
             return;
-        }*/
+        }
+
+
 
 
     }
 
-    qDebug()<<"FRULLATORI SAVE"<<removed_details.size();
+
 
 
     remove_deleted_detail_row();
@@ -293,13 +325,33 @@ void HFrullatori::save_blend(bool b_showdlg)
 
     remove.clear();
     removed_details.clear();
+
+    //salvo lo stato
+    int stato=blend->getState();
+    int idriga=blend->getIDRiga();
+    sql="update righe_produzione set stato=:stato where ID=:id";
+    q.prepare(sql);
+    q.bindValue(":stato",stato);
+    q.bindValue(":id",idriga);
+
+    b=q.exec();
+
+     if(!b){
+
+
+            db.rollback();
+            return;
+        }
+
+
     db.commit();
+        if(b_showdlg)
+            QMessageBox::information(this,QApplication::applicationName(),"Dati salvati",QMessageBox::Ok);
+
     getBlendData();
 
 
 
-    if(b_showdlg)
-        QMessageBox::information(this,QApplication::applicationName(),"Dati salvati",QMessageBox::Ok);
 
 
 
@@ -455,6 +507,7 @@ void HFrullatori::print()
 void HFrullatori::on_pbSave_clicked()
 {
     save_blend(true);
+    emit sg_setup_view();
 }
 
 
@@ -463,5 +516,29 @@ void HFrullatori::on_pbSave_clicked()
 void HFrullatori::on_pbPrint_clicked()
 {
     print();
+}
+
+
+void HFrullatori::on_stateSlider_valueChanged(int value)
+{
+    QPixmap pix;
+
+
+    switch(value)
+    {
+    case 0:
+        pix=QPixmap(":/Resources/rosso.png").scaled(20,20);
+        break;
+    case 1:
+        pix=QPixmap(":/Resources/giallo.png").scaled(20,20);
+        break;
+    case 2:
+        pix=QPixmap(":/Resources/verde.png").scaled(20,20);
+        break;
+
+    }
+
+    blend->setState(value);
+    ui->lbIcon->setPixmap(pix);
 }
 

@@ -226,7 +226,7 @@ public:
         label_3->setText(QCoreApplication::translate("HGestioneUtenti", "Gruppo:", nullptr));
         cbAttivo->setText(QCoreApplication::translate("HGestioneUtenti", "Attivo", nullptr));
         label_5->setText(QCoreApplication::translate("HGestioneUtenti", "Nuova password", nullptr));
-        leNewPass->setText(QCoreApplication::translate("HGestioneUtenti", "pippo", nullptr));
+        leNewPass->setText(QString());
         pbNuovaPassword->setText(QCoreApplication::translate("HGestioneUtenti", "Salva nuova password", nullptr));
         pushButton->setText(QCoreApplication::translate("HGestioneUtenti", "Nuovo", nullptr));
         pbUserPermissions->setText(QCoreApplication::translate("HGestioneUtenti", "Gestione permessi gruppi", nullptr));

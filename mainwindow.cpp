@@ -185,6 +185,7 @@ void MainWindow::enableButtonsForRole()
     ui->tbLogout->setEnabled(true);
     ui->pbPercent->setEnabled(true);
 
+
 }
 
 
@@ -509,4 +510,5 @@ void MainWindow::on_pbPercent_clicked()
     f->show();
 
 }
+
 

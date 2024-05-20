@@ -15,10 +15,12 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFormLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -30,27 +32,32 @@ class Ui_HFrullatori
 public:
     QVBoxLayout *verticalLayout;
     QLabel *lbTitle;
-    QFormLayout *formLayout;
+    QGridLayout *gridLayout;
     QLabel *label_8;
-    QDateEdit *deData;
-    QLabel *label;
-    QLineEdit *leLine;
-    QLabel *label_2;
-    QLineEdit *leOperator;
     QLabel *label_3;
-    QLineEdit *leBlender;
-    QLabel *label_4;
+    QDateEdit *deData;
     QLineEdit *lePompe;
     QLabel *label_5;
+    QLineEdit *leAmount;
+    QLabel *label;
+    QLineEdit *leAvanzi;
+    QLabel *label_2;
+    QLineEdit *leOperator;
+    QLineEdit *leBlender;
+    QLabel *label_4;
+    QLabel *label_10;
+    QLineEdit *leLine;
     QLineEdit *leVasche;
     QLabel *label_6;
-    QLineEdit *leAvanzi;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *lbIcon;
+    QHBoxLayout *horizontalLayout_2;
     QLabel *label_9;
+    QSlider *stateSlider;
+    QCheckBox *cbExport;
+    QFormLayout *formLayout_9;
     QLabel *label_7;
     QTextEdit *teNote;
-    QCheckBox *cbExport;
-    QLabel *label_10;
-    QLineEdit *leAmount;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbInit;
     QPushButton *pbPrint;
@@ -62,7 +69,7 @@ public:
         if (HFrullatori->objectName().isEmpty())
             HFrullatori->setObjectName(QString::fromUtf8("HFrullatori"));
         HFrullatori->setWindowModality(Qt::ApplicationModal);
-        HFrullatori->resize(468, 478);
+        HFrullatori->resize(443, 474);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HFrullatori->setWindowIcon(icon);
@@ -74,113 +81,148 @@ public:
 
         verticalLayout->addWidget(lbTitle);
 
-        formLayout = new QFormLayout();
-        formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         label_8 = new QLabel(HFrullatori);
         label_8->setObjectName(QString::fromUtf8("label_8"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label_8);
+        gridLayout->addWidget(label_8, 0, 0, 1, 1);
+
+        label_3 = new QLabel(HFrullatori);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        gridLayout->addWidget(label_3, 3, 0, 1, 1);
 
         deData = new QDateEdit(HFrullatori);
         deData->setObjectName(QString::fromUtf8("deData"));
         deData->setCalendarPopup(true);
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, deData);
-
-        label = new QLabel(HFrullatori);
-        label->setObjectName(QString::fromUtf8("label"));
-
-        formLayout->setWidget(1, QFormLayout::LabelRole, label);
-
-        leLine = new QLineEdit(HFrullatori);
-        leLine->setObjectName(QString::fromUtf8("leLine"));
-
-        formLayout->setWidget(1, QFormLayout::FieldRole, leLine);
-
-        label_2 = new QLabel(HFrullatori);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_2);
-
-        leOperator = new QLineEdit(HFrullatori);
-        leOperator->setObjectName(QString::fromUtf8("leOperator"));
-
-        formLayout->setWidget(2, QFormLayout::FieldRole, leOperator);
-
-        label_3 = new QLabel(HFrullatori);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_3);
-
-        leBlender = new QLineEdit(HFrullatori);
-        leBlender->setObjectName(QString::fromUtf8("leBlender"));
-
-        formLayout->setWidget(3, QFormLayout::FieldRole, leBlender);
-
-        label_4 = new QLabel(HFrullatori);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-
-        formLayout->setWidget(4, QFormLayout::LabelRole, label_4);
+        gridLayout->addWidget(deData, 0, 1, 1, 1);
 
         lePompe = new QLineEdit(HFrullatori);
         lePompe->setObjectName(QString::fromUtf8("lePompe"));
 
-        formLayout->setWidget(4, QFormLayout::FieldRole, lePompe);
+        gridLayout->addWidget(lePompe, 4, 1, 1, 1);
 
         label_5 = new QLabel(HFrullatori);
         label_5->setObjectName(QString::fromUtf8("label_5"));
 
-        formLayout->setWidget(5, QFormLayout::LabelRole, label_5);
+        gridLayout->addWidget(label_5, 5, 0, 1, 1);
 
-        leVasche = new QLineEdit(HFrullatori);
-        leVasche->setObjectName(QString::fromUtf8("leVasche"));
+        leAmount = new QLineEdit(HFrullatori);
+        leAmount->setObjectName(QString::fromUtf8("leAmount"));
 
-        formLayout->setWidget(5, QFormLayout::FieldRole, leVasche);
+        gridLayout->addWidget(leAmount, 7, 1, 1, 1);
 
-        label_6 = new QLabel(HFrullatori);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label = new QLabel(HFrullatori);
+        label->setObjectName(QString::fromUtf8("label"));
 
-        formLayout->setWidget(6, QFormLayout::LabelRole, label_6);
+        gridLayout->addWidget(label, 1, 0, 1, 1);
 
         leAvanzi = new QLineEdit(HFrullatori);
         leAvanzi->setObjectName(QString::fromUtf8("leAvanzi"));
 
-        formLayout->setWidget(6, QFormLayout::FieldRole, leAvanzi);
+        gridLayout->addWidget(leAvanzi, 6, 1, 1, 1);
 
+        label_2 = new QLabel(HFrullatori);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        gridLayout->addWidget(label_2, 2, 0, 1, 1);
+
+        leOperator = new QLineEdit(HFrullatori);
+        leOperator->setObjectName(QString::fromUtf8("leOperator"));
+
+        gridLayout->addWidget(leOperator, 2, 1, 1, 1);
+
+        leBlender = new QLineEdit(HFrullatori);
+        leBlender->setObjectName(QString::fromUtf8("leBlender"));
+
+        gridLayout->addWidget(leBlender, 3, 1, 1, 1);
+
+        label_4 = new QLabel(HFrullatori);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        gridLayout->addWidget(label_4, 4, 0, 1, 1);
+
+        label_10 = new QLabel(HFrullatori);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+
+        gridLayout->addWidget(label_10, 7, 0, 1, 1);
+
+        leLine = new QLineEdit(HFrullatori);
+        leLine->setObjectName(QString::fromUtf8("leLine"));
+
+        gridLayout->addWidget(leLine, 1, 1, 1, 1);
+
+        leVasche = new QLineEdit(HFrullatori);
+        leVasche->setObjectName(QString::fromUtf8("leVasche"));
+
+        gridLayout->addWidget(leVasche, 5, 1, 1, 1);
+
+        label_6 = new QLabel(HFrullatori);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+
+        gridLayout->addWidget(label_6, 6, 0, 1, 1);
+
+
+        verticalLayout->addLayout(gridLayout);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        lbIcon = new QLabel(HFrullatori);
+        lbIcon->setObjectName(QString::fromUtf8("lbIcon"));
+        lbIcon->setMinimumSize(QSize(20, 20));
+        lbIcon->setMaximumSize(QSize(20, 20));
+        lbIcon->setPixmap(QPixmap(QString::fromUtf8(":/Resources/verde.png")));
+
+        horizontalLayout_3->addWidget(lbIcon);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         label_9 = new QLabel(HFrullatori);
         label_9->setObjectName(QString::fromUtf8("label_9"));
 
-        formLayout->setWidget(8, QFormLayout::LabelRole, label_9);
+        horizontalLayout_2->addWidget(label_9);
 
+        stateSlider = new QSlider(HFrullatori);
+        stateSlider->setObjectName(QString::fromUtf8("stateSlider"));
+        stateSlider->setMaximum(2);
+        stateSlider->setPageStep(1);
+        stateSlider->setValue(0);
+        stateSlider->setSliderPosition(0);
+        stateSlider->setOrientation(Qt::Horizontal);
+        stateSlider->setTickPosition(QSlider::TicksBelow);
+        stateSlider->setTickInterval(1);
+
+        horizontalLayout_2->addWidget(stateSlider);
+
+
+        horizontalLayout_3->addLayout(horizontalLayout_2);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
+
+        cbExport = new QCheckBox(HFrullatori);
+        cbExport->setObjectName(QString::fromUtf8("cbExport"));
+
+        verticalLayout->addWidget(cbExport);
+
+        formLayout_9 = new QFormLayout();
+        formLayout_9->setObjectName(QString::fromUtf8("formLayout_9"));
         label_7 = new QLabel(HFrullatori);
         label_7->setObjectName(QString::fromUtf8("label_7"));
         label_7->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
 
-        formLayout->setWidget(9, QFormLayout::LabelRole, label_7);
+        formLayout_9->setWidget(0, QFormLayout::LabelRole, label_7);
 
         teNote = new QTextEdit(HFrullatori);
         teNote->setObjectName(QString::fromUtf8("teNote"));
         teNote->setMaximumSize(QSize(16777215, 80));
 
-        formLayout->setWidget(9, QFormLayout::FieldRole, teNote);
-
-        cbExport = new QCheckBox(HFrullatori);
-        cbExport->setObjectName(QString::fromUtf8("cbExport"));
-
-        formLayout->setWidget(8, QFormLayout::FieldRole, cbExport);
-
-        label_10 = new QLabel(HFrullatori);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-
-        formLayout->setWidget(7, QFormLayout::LabelRole, label_10);
-
-        leAmount = new QLineEdit(HFrullatori);
-        leAmount->setObjectName(QString::fromUtf8("leAmount"));
-
-        formLayout->setWidget(7, QFormLayout::FieldRole, leAmount);
+        formLayout_9->setWidget(0, QFormLayout::FieldRole, teNote);
 
 
-        verticalLayout->addLayout(formLayout);
+        verticalLayout->addLayout(formLayout_9);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -240,16 +282,17 @@ public:
         HFrullatori->setWindowTitle(QCoreApplication::translate("HFrullatori", "Impostazioni frullata", nullptr));
         lbTitle->setText(QCoreApplication::translate("HFrullatori", "TextLabel", nullptr));
         label_8->setText(QCoreApplication::translate("HFrullatori", "Data:", nullptr));
+        label_3->setText(QCoreApplication::translate("HFrullatori", "Frullatore:", nullptr));
+        label_5->setText(QCoreApplication::translate("HFrullatori", "Vasche:", nullptr));
         label->setText(QCoreApplication::translate("HFrullatori", "Linea:", nullptr));
         label_2->setText(QCoreApplication::translate("HFrullatori", "Operatore:", nullptr));
-        label_3->setText(QCoreApplication::translate("HFrullatori", "Frullatore:", nullptr));
         label_4->setText(QCoreApplication::translate("HFrullatori", "Pompe:", nullptr));
-        label_5->setText(QCoreApplication::translate("HFrullatori", "Vasche:", nullptr));
-        label_6->setText(QCoreApplication::translate("HFrullatori", "Avanzi:", nullptr));
-        label_9->setText(QString());
-        label_7->setText(QCoreApplication::translate("HFrullatori", "Note:", nullptr));
-        cbExport->setText(QCoreApplication::translate("HFrullatori", "Esportato", nullptr));
         label_10->setText(QCoreApplication::translate("HFrullatori", "Quantit\303\240", nullptr));
+        label_6->setText(QCoreApplication::translate("HFrullatori", "Avanzi:", nullptr));
+        lbIcon->setText(QString());
+        label_9->setText(QCoreApplication::translate("HFrullatori", "Stato:", nullptr));
+        cbExport->setText(QCoreApplication::translate("HFrullatori", "Esportato", nullptr));
+        label_7->setText(QCoreApplication::translate("HFrullatori", "Note:", nullptr));
         pbInit->setText(QCoreApplication::translate("HFrullatori", "Operazioni", nullptr));
         pbPrint->setText(QCoreApplication::translate("HFrullatori", "Stampa", nullptr));
         pbSave->setText(QCoreApplication::translate("HFrullatori", "Salva", nullptr));

@@ -104,6 +104,11 @@ void HBlend::setAmount(QString p_amount)
     m_amount=p_amount;
 }
 
+void HBlend::setState(int p_value)
+{
+    m_state=p_value;
+}
+
 int HBlend::get_ID()
 {
     return m_id;
@@ -170,6 +175,12 @@ QString HBlend::getAmount()
 {
     return m_amount;
 }
+
+int HBlend::getState()
+{
+    return m_state;
+}
+
 
 bool HBlend::getExported()
 {
