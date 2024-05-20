@@ -697,135 +697,138 @@ compiler_rcc_clean:
 release/qrc_icons.cpp: icons.qrc \
 		C:/Qt/5.15.2/mingw81_64/bin/rcc.exe \
 		hamlet.ico \
-		Resources/fork-1-icon.png \
-		Resources/light-bulb-icon.png \
-		Resources/Wood-4-icon.png \
-		Resources/Insert-image64.png \
-		Resources/Text-columns64.png \
-		Resources/Comment-add64.png \
-		Resources/addimage.png \
-		Resources/Trash-can64.png \
-		Resources/ZIP-icon.png \
-		Resources/Map.PNG \
-		Resources/Folder.PNG \
-		Resources/Computer.PNG \
-		Resources/Key.PNG \
-		Resources/Chart.PNG \
-		Resources/Clock64.png \
-		Resources/Comment-delete64.png \
-		Resources/Actions-configure-icon.png \
-		Resources/Right-align64.png \
-		Resources/3D_Icons_Icon_256.png \
-		Resources/Box.PNG \
-		Resources/Flag-yellow64.png \
-		Resources/Cart.PNG \
-		Resources/Arrow-Up.PNG \
-		Resources/Heart.PNG \
-		Resources/Gas-pump64.png \
-		Resources/Pause64.png \
-		Resources/Links.png \
-		Resources/App-ark-2-icon.png \
-		Resources/Bullhorn.PNG \
-		Resources/Comment64.png \
-		Resources/save-icon.png \
-		Resources/Arrow-turn-left64.png \
-		Resources/Stardock\ DesktopX.png \
-		Resources/Thumb-down64.png \
-		Resources/Cellphone.PNG \
-		Resources/Handtool64.png \
-		Resources/palet-02-icon.png \
-		Resources/Bar-chart64.png \
-		Resources/Search.PNG \
-		Resources/Photocamera.PNG \
-		Resources/Note64.png \
-		Resources/User-Male.PNG \
-		Resources/user-group-icon.png \
 		Resources/Rss.PNG \
-		Resources/Home.PNG \
-		Resources/Arrow-Down.PNG \
-		Resources/Warning-Sign.PNG \
-		Resources/Plus.PNG \
-		Resources/Flag-green64.png \
-		Resources/Text-align-center64.png \
-		Resources/Cash-register-icon.png \
-		Resources/Touch-Phone.PNG \
-		Resources/Downright64.png \
-		Resources/Flag-blue64.png \
-		Resources/Text-bold64.png \
-		Resources/Actions-window-close-icon.png \
-		Resources/User-blue64.png \
-		Resources/png3.256.png \
-		Resources/Eye64.png \
-		Resources/Flag-red64.png \
-		Resources/modlots.png \
-		Resources/Counterclockwise-arrow64.png \
-		Resources/Database.PNG \
-		Resources/Planet.PNG \
-		Resources/Abstract-green-backgrounds.jpg \
-		Resources/Users64.png \
-		Resources/Pin.PNG \
-		Resources/Text-align--justify64.png \
-		Resources/Sheet-Of-Paper.PNG \
-		Resources/Eject64.png \
-		Resources/Record64.png \
-		Resources/Accept64.png \
-		Resources/Left-align64.png \
-		Resources/Portrait64.png \
 		Resources/Arrow-Right.PNG \
-		Resources/Lock.PNG \
-		Resources/Monitoring64.png \
-		Resources/Minus.PNG \
-		Resources/My\ Network\ Places.png \
-		Resources/Visa.PNG \
-		Resources/Insert-hyperlink64.png \
-		Resources/Text-align-right64.png \
-		Resources/Music-Note.PNG \
-		Resources/Case.PNG \
-		Resources/Pie-chart64.png \
-		Resources/Art-Supplies.PNG \
-		Resources/Arrow-Left.PNG \
-		Resources/Gift.PNG \
-		Resources/Clockwise-arrow64.png \
-		Resources/Question-Mark.PNG \
-		Resources/User-yellow64.png \
-		Resources/fblabs.png \
-		Resources/Gears.PNG \
-		Resources/Upright64.png \
-		Resources/User-green64.png \
-		Resources/Download.PNG \
-		Resources/Pencil.PNG \
-		Resources/PDF.png \
-		Resources/User-Female.PNG \
-		Resources/Downleft64.png \
-		Resources/Text-align-left64.png \
-		Resources/cut.png \
+		Resources/Warning-Sign.PNG \
 		Resources/Chat.PNG \
-		Resources/hamlet_graphics.png \
-		Resources/Calendar.PNG \
-		Resources/Text-itailc64.png \
-		Resources/Upleft64.png \
-		Resources/Thumb-up64.png \
-		Resources/print-icon.png \
-		Resources/Notepad.PNG \
-		Resources/Printer-icon.png \
-		Resources/Play64.png \
-		Resources/Link64.png \
-		Resources/Font64.png \
-		Resources/User-Black.PNG \
-		Resources/Line-chart64.png \
-		Resources/Truck.PNG \
-		Resources/Cube.PNG \
-		Resources/Book.PNG \
-		Resources/Upload.PNG \
-		Resources/background.svg \
-		Resources/User-red64.png \
-		Resources/Banned-Sign.PNG \
-		Resources/Flag.PNG \
-		Resources/addimage2.png \
-		Resources/Theme64.png \
+		Resources/png3.256.png \
+		Resources/Left-align64.png \
+		Resources/save-icon.png \
+		Resources/Text-align--justify64.png \
+		Resources/Flag-yellow64.png \
 		Resources/Clock.PNG \
+		Resources/Comment-delete64.png \
+		Resources/Text-columns64.png \
+		Resources/User-green64.png \
+		Resources/Downleft64.png \
+		Resources/Cart.PNG \
+		Resources/Monitoring64.png \
+		Resources/Text-align-center64.png \
+		Resources/Eject64.png \
+		Resources/My\ Network\ Places.png \
+		Resources/Plus.PNG \
+		Resources/Text-itailc64.png \
+		Resources/Computer.PNG \
+		Resources/Pause64.png \
+		Resources/Thumb-down64.png \
+		Resources/Note64.png \
+		Resources/Key.PNG \
+		Resources/fblabs.png \
+		Resources/Planet.PNG \
+		Resources/Question-Mark.PNG \
+		Resources/Comment-add64.png \
+		Resources/Eye64.png \
+		Resources/cut.png \
+		Resources/Abstract-green-backgrounds.jpg \
+		Resources/Right-align64.png \
+		Resources/Sheet-Of-Paper.PNG \
+		Resources/Arrow-Up.PNG \
+		Resources/Lock.PNG \
+		Resources/Book.PNG \
+		Resources/Links.png \
+		Resources/Flag.PNG \
+		Resources/Wood-4-icon.png \
+		Resources/Flag-green64.png \
+		Resources/Record64.png \
+		Resources/Database.PNG \
+		Resources/Counterclockwise-arrow64.png \
+		Resources/fork-1-icon.png \
+		Resources/Actions-configure-icon.png \
+		Resources/modlots.png \
+		Resources/hamlet_graphics.png \
+		Resources/Flag-red64.png \
+		Resources/addimage.png \
+		Resources/Bullhorn.PNG \
+		Resources/User-Female.PNG \
+		Resources/light-bulb-icon.png \
+		Resources/Clockwise-arrow64.png \
+		Resources/Heart.PNG \
+		Resources/Pie-chart64.png \
+		Resources/Upload.PNG \
+		Resources/Photocamera.PNG \
+		Resources/Play64.png \
+		Resources/Map.PNG \
+		Resources/Upleft64.png \
+		Resources/Pin.PNG \
+		Resources/verde.png \
+		Resources/Flag-blue64.png \
+		Resources/Accept64.png \
+		Resources/Art-Supplies.PNG \
+		Resources/Upright64.png \
+		Resources/Clock64.png \
+		Resources/Theme64.png \
+		Resources/User-yellow64.png \
+		Resources/Actions-window-close-icon.png \
+		Resources/Text-bold64.png \
+		Resources/Case.PNG \
+		Resources/Home.PNG \
+		Resources/Download.PNG \
+		Resources/Cellphone.PNG \
+		Resources/Insert-image64.png \
+		Resources/Folder.PNG \
+		Resources/Insert-hyperlink64.png \
+		Resources/Calendar.PNG \
+		Resources/background.svg \
+		Resources/3D_Icons_Icon_256.png \
+		Resources/Visa.PNG \
+		Resources/Text-align-right64.png \
+		Resources/Printer-icon.png \
+		Resources/rosso.png \
+		Resources/Trash-can64.png \
+		Resources/Chart.PNG \
+		Resources/User-red64.png \
+		Resources/Minus.PNG \
+		Resources/Search.PNG \
+		Resources/Portrait64.png \
+		Resources/Thumb-up64.png \
+		Resources/Text-align-left64.png \
+		Resources/User-Black.PNG \
+		Resources/Banned-Sign.PNG \
+		Resources/User-Male.PNG \
+		Resources/Gears.PNG \
+		Resources/Center64.png \
+		Resources/Truck.PNG \
+		Resources/Font64.png \
+		Resources/Arrow-Left.PNG \
 		Resources/Mail.PNG \
-		Resources/Center64.png
+		Resources/Gas-pump64.png \
+		Resources/ZIP-icon.png \
+		Resources/Gift.PNG \
+		Resources/Cube.PNG \
+		Resources/Comment64.png \
+		Resources/Cash-register-icon.png \
+		Resources/Arrow-turn-left64.png \
+		Resources/App-ark-2-icon.png \
+		Resources/Stardock\ DesktopX.png \
+		Resources/Arrow-Down.PNG \
+		Resources/Handtool64.png \
+		Resources/Music-Note.PNG \
+		Resources/Link64.png \
+		Resources/Line-chart64.png \
+		Resources/Pencil.PNG \
+		Resources/Bar-chart64.png \
+		Resources/giallo.png \
+		Resources/addimage2.png \
+		Resources/PDF.png \
+		Resources/print-icon.png \
+		Resources/Users64.png \
+		Resources/user-group-icon.png \
+		Resources/User-blue64.png \
+		Resources/palet-02-icon.png \
+		Resources/Downright64.png \
+		Resources/Touch-Phone.PNG \
+		Resources/Notepad.PNG \
+		Resources/Box.PNG
 	C:\Qt\5.15.2\mingw81_64\bin\rcc.exe -name icons icons.qrc -o release\qrc_icons.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h
@@ -12905,6 +12908,14 @@ release/hblenddetail.o: hblenddetail.cpp hblenddetail.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QVBoxLayout \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlQuery \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlquery.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QAction \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qaction.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMenu \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmenu.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMessageBox \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmessagebox.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdialog.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/QSqlError \
 		C:/Qt/5.15.2/mingw81_64/include/QtSql/qsqlerror.h
@@ -14948,6 +14959,7 @@ release/hfrullatori.o: hfrullatori.cpp hfrullatori.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qboxlayout.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QGridLayout \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QHBoxLayout \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QLabel \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlabel.h \
@@ -14960,6 +14972,9 @@ release/hfrullatori.o: hfrullatori.cpp hfrullatori.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qtextoption.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QPushButton \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QSlider \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qslider.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractslider.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QTextEdit \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtextedit.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractscrollarea.h \

@@ -23,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HFrullatori_t {
-    QByteArrayData data[24];
-    char stringdata0[303];
+    QByteArrayData data[26];
+    char stringdata0[337];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -56,7 +56,9 @@ QT_MOC_LITERAL(19, 231, 5), // "p_rem"
 QT_MOC_LITERAL(20, 237, 15), // "add_removed_Row"
 QT_MOC_LITERAL(21, 253, 4), // "p_id"
 QT_MOC_LITERAL(22, 258, 25), // "remove_deleted_detail_row"
-QT_MOC_LITERAL(23, 284, 18) // "on_pbPrint_clicked"
+QT_MOC_LITERAL(23, 284, 18), // "on_pbPrint_clicked"
+QT_MOC_LITERAL(24, 303, 27), // "on_stateSlider_valueChanged"
+QT_MOC_LITERAL(25, 331, 5) // "value"
 
     },
     "HFrullatori\0sg_setup_view\0\0"
@@ -66,7 +68,8 @@ QT_MOC_LITERAL(23, 284, 18) // "on_pbPrint_clicked"
     "save_blend\0b_showdlg\0on_pbSave_clicked\0"
     "getLotData\0QList<QStandardItem*>\0p_lot\0"
     "getRemoved\0p_rem\0add_removed_Row\0p_id\0"
-    "remove_deleted_detail_row\0on_pbPrint_clicked"
+    "remove_deleted_detail_row\0on_pbPrint_clicked\0"
+    "on_stateSlider_valueChanged\0value"
 };
 #undef QT_MOC_LITERAL
 
@@ -76,7 +79,7 @@ static const uint qt_meta_data_HFrullatori[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -84,23 +87,24 @@ static const uint qt_meta_data_HFrullatori[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   89,    2, 0x06 /* Public */,
+       1,    0,   94,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   90,    2, 0x08 /* Private */,
-       4,    0,   91,    2, 0x08 /* Private */,
-       5,    2,   92,    2, 0x08 /* Private */,
-      10,    0,   97,    2, 0x08 /* Private */,
-      11,    0,   98,    2, 0x08 /* Private */,
-      12,    1,   99,    2, 0x08 /* Private */,
-      12,    0,  102,    2, 0x28 /* Private | MethodCloned */,
-      14,    0,  103,    2, 0x08 /* Private */,
-      15,    1,  104,    2, 0x08 /* Private */,
-      18,    1,  107,    2, 0x08 /* Private */,
-      20,    1,  110,    2, 0x08 /* Private */,
-      20,    0,  113,    2, 0x28 /* Private | MethodCloned */,
-      22,    0,  114,    2, 0x08 /* Private */,
-      23,    0,  115,    2, 0x08 /* Private */,
+       3,    0,   95,    2, 0x08 /* Private */,
+       4,    0,   96,    2, 0x08 /* Private */,
+       5,    2,   97,    2, 0x08 /* Private */,
+      10,    0,  102,    2, 0x08 /* Private */,
+      11,    0,  103,    2, 0x08 /* Private */,
+      12,    1,  104,    2, 0x08 /* Private */,
+      12,    0,  107,    2, 0x28 /* Private | MethodCloned */,
+      14,    0,  108,    2, 0x08 /* Private */,
+      15,    1,  109,    2, 0x08 /* Private */,
+      18,    1,  112,    2, 0x08 /* Private */,
+      20,    1,  115,    2, 0x08 /* Private */,
+      20,    0,  118,    2, 0x28 /* Private | MethodCloned */,
+      22,    0,  119,    2, 0x08 /* Private */,
+      23,    0,  120,    2, 0x08 /* Private */,
+      24,    1,  121,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -120,6 +124,7 @@ static const uint qt_meta_data_HFrullatori[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   25,
 
        0        // eod
 };
@@ -146,6 +151,7 @@ void HFrullatori::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 12: _t->add_removed_Row(); break;
         case 13: _t->remove_deleted_detail_row(); break;
         case 14: _t->on_pbPrint_clicked(); break;
+        case 15: _t->on_stateSlider_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -209,13 +215,13 @@ int HFrullatori::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 16;
     }
     return _id;
 }

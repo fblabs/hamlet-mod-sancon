@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HBlend_t {
-    QByteArrayData data[43];
-    char stringdata0[399];
+    QByteArrayData data[46];
+    char stringdata0[425];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -61,20 +61,23 @@ QT_MOC_LITERAL(25, 220, 11), // "setExported"
 QT_MOC_LITERAL(26, 232, 5), // "p_exp"
 QT_MOC_LITERAL(27, 238, 9), // "setAmount"
 QT_MOC_LITERAL(28, 248, 8), // "p_amount"
-QT_MOC_LITERAL(29, 257, 6), // "get_ID"
-QT_MOC_LITERAL(30, 264, 7), // "getDate"
-QT_MOC_LITERAL(31, 272, 9), // "getIDRiga"
-QT_MOC_LITERAL(32, 282, 8), // "getLinea"
-QT_MOC_LITERAL(33, 291, 11), // "getOperator"
-QT_MOC_LITERAL(34, 303, 13), // "getIDProdotto"
-QT_MOC_LITERAL(35, 317, 10), // "getBlender"
-QT_MOC_LITERAL(36, 328, 8), // "getPompe"
-QT_MOC_LITERAL(37, 337, 9), // "getVasche"
-QT_MOC_LITERAL(38, 347, 9), // "getAvanzi"
-QT_MOC_LITERAL(39, 357, 7), // "getNote"
-QT_MOC_LITERAL(40, 365, 11), // "getProdotto"
-QT_MOC_LITERAL(41, 377, 9), // "getAmount"
-QT_MOC_LITERAL(42, 387, 11) // "getExported"
+QT_MOC_LITERAL(29, 257, 8), // "setState"
+QT_MOC_LITERAL(30, 266, 7), // "p_value"
+QT_MOC_LITERAL(31, 274, 6), // "get_ID"
+QT_MOC_LITERAL(32, 281, 7), // "getDate"
+QT_MOC_LITERAL(33, 289, 9), // "getIDRiga"
+QT_MOC_LITERAL(34, 299, 8), // "getLinea"
+QT_MOC_LITERAL(35, 308, 11), // "getOperator"
+QT_MOC_LITERAL(36, 320, 13), // "getIDProdotto"
+QT_MOC_LITERAL(37, 334, 10), // "getBlender"
+QT_MOC_LITERAL(38, 345, 8), // "getPompe"
+QT_MOC_LITERAL(39, 354, 9), // "getVasche"
+QT_MOC_LITERAL(40, 364, 9), // "getAvanzi"
+QT_MOC_LITERAL(41, 374, 7), // "getNote"
+QT_MOC_LITERAL(42, 382, 11), // "getProdotto"
+QT_MOC_LITERAL(43, 394, 11), // "getExported"
+QT_MOC_LITERAL(44, 406, 9), // "getAmount"
+QT_MOC_LITERAL(45, 416, 8) // "getState"
 
     },
     "HBlend\0set_ID\0\0p_id\0setDate\0p_data\0"
@@ -84,10 +87,11 @@ QT_MOC_LITERAL(42, 387, 11) // "getExported"
     "p_blender\0setPompe\0p_pompe\0setVasche\0"
     "p_vasche\0setAvanzi\0p_avanzi\0setNote\0"
     "p_note\0setExported\0p_exp\0setAmount\0"
-    "p_amount\0get_ID\0getDate\0getIDRiga\0"
-    "getLinea\0getOperator\0getIDProdotto\0"
-    "getBlender\0getPompe\0getVasche\0getAvanzi\0"
-    "getNote\0getProdotto\0getAmount\0getExported"
+    "p_amount\0setState\0p_value\0get_ID\0"
+    "getDate\0getIDRiga\0getLinea\0getOperator\0"
+    "getIDProdotto\0getBlender\0getPompe\0"
+    "getVasche\0getAvanzi\0getNote\0getProdotto\0"
+    "getExported\0getAmount\0getState"
 };
 #undef QT_MOC_LITERAL
 
@@ -97,7 +101,7 @@ static const uint qt_meta_data_HBlend[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      38,   14, // methods
+      41,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -105,44 +109,47 @@ static const uint qt_meta_data_HBlend[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,  204,    2, 0x0a /* Public */,
-       4,    1,  207,    2, 0x0a /* Public */,
-       4,    0,  210,    2, 0x2a /* Public | MethodCloned */,
-       6,    1,  211,    2, 0x0a /* Public */,
-       8,    1,  214,    2, 0x0a /* Public */,
-       8,    0,  217,    2, 0x2a /* Public | MethodCloned */,
-      10,    1,  218,    2, 0x0a /* Public */,
-      12,    1,  221,    2, 0x0a /* Public */,
-      12,    0,  224,    2, 0x2a /* Public | MethodCloned */,
-      13,    1,  225,    2, 0x0a /* Public */,
-      13,    0,  228,    2, 0x2a /* Public | MethodCloned */,
-      15,    1,  229,    2, 0x0a /* Public */,
-      15,    0,  232,    2, 0x2a /* Public | MethodCloned */,
-      17,    1,  233,    2, 0x0a /* Public */,
-      17,    0,  236,    2, 0x2a /* Public | MethodCloned */,
-      19,    1,  237,    2, 0x0a /* Public */,
-      19,    0,  240,    2, 0x2a /* Public | MethodCloned */,
-      21,    1,  241,    2, 0x0a /* Public */,
-      21,    0,  244,    2, 0x2a /* Public | MethodCloned */,
-      23,    1,  245,    2, 0x0a /* Public */,
-      23,    0,  248,    2, 0x2a /* Public | MethodCloned */,
-      25,    1,  249,    2, 0x0a /* Public */,
-      27,    1,  252,    2, 0x0a /* Public */,
-      27,    0,  255,    2, 0x2a /* Public | MethodCloned */,
-      29,    0,  256,    2, 0x0a /* Public */,
-      30,    0,  257,    2, 0x0a /* Public */,
-      31,    0,  258,    2, 0x0a /* Public */,
-      32,    0,  259,    2, 0x0a /* Public */,
-      33,    0,  260,    2, 0x0a /* Public */,
-      34,    0,  261,    2, 0x0a /* Public */,
-      35,    0,  262,    2, 0x0a /* Public */,
-      36,    0,  263,    2, 0x0a /* Public */,
-      37,    0,  264,    2, 0x0a /* Public */,
-      38,    0,  265,    2, 0x0a /* Public */,
-      39,    0,  266,    2, 0x0a /* Public */,
-      40,    0,  267,    2, 0x0a /* Public */,
-      41,    0,  268,    2, 0x0a /* Public */,
-      42,    0,  269,    2, 0x0a /* Public */,
+       1,    1,  219,    2, 0x0a /* Public */,
+       4,    1,  222,    2, 0x0a /* Public */,
+       4,    0,  225,    2, 0x2a /* Public | MethodCloned */,
+       6,    1,  226,    2, 0x0a /* Public */,
+       8,    1,  229,    2, 0x0a /* Public */,
+       8,    0,  232,    2, 0x2a /* Public | MethodCloned */,
+      10,    1,  233,    2, 0x0a /* Public */,
+      12,    1,  236,    2, 0x0a /* Public */,
+      12,    0,  239,    2, 0x2a /* Public | MethodCloned */,
+      13,    1,  240,    2, 0x0a /* Public */,
+      13,    0,  243,    2, 0x2a /* Public | MethodCloned */,
+      15,    1,  244,    2, 0x0a /* Public */,
+      15,    0,  247,    2, 0x2a /* Public | MethodCloned */,
+      17,    1,  248,    2, 0x0a /* Public */,
+      17,    0,  251,    2, 0x2a /* Public | MethodCloned */,
+      19,    1,  252,    2, 0x0a /* Public */,
+      19,    0,  255,    2, 0x2a /* Public | MethodCloned */,
+      21,    1,  256,    2, 0x0a /* Public */,
+      21,    0,  259,    2, 0x2a /* Public | MethodCloned */,
+      23,    1,  260,    2, 0x0a /* Public */,
+      23,    0,  263,    2, 0x2a /* Public | MethodCloned */,
+      25,    1,  264,    2, 0x0a /* Public */,
+      27,    1,  267,    2, 0x0a /* Public */,
+      27,    0,  270,    2, 0x2a /* Public | MethodCloned */,
+      29,    1,  271,    2, 0x0a /* Public */,
+      29,    0,  274,    2, 0x2a /* Public | MethodCloned */,
+      31,    0,  275,    2, 0x0a /* Public */,
+      32,    0,  276,    2, 0x0a /* Public */,
+      33,    0,  277,    2, 0x0a /* Public */,
+      34,    0,  278,    2, 0x0a /* Public */,
+      35,    0,  279,    2, 0x0a /* Public */,
+      36,    0,  280,    2, 0x0a /* Public */,
+      37,    0,  281,    2, 0x0a /* Public */,
+      38,    0,  282,    2, 0x0a /* Public */,
+      39,    0,  283,    2, 0x0a /* Public */,
+      40,    0,  284,    2, 0x0a /* Public */,
+      41,    0,  285,    2, 0x0a /* Public */,
+      42,    0,  286,    2, 0x0a /* Public */,
+      43,    0,  287,    2, 0x0a /* Public */,
+      44,    0,  288,    2, 0x0a /* Public */,
+      45,    0,  289,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -169,6 +176,8 @@ static const uint qt_meta_data_HBlend[] = {
     QMetaType::Void, QMetaType::Bool,   26,
     QMetaType::Void, QMetaType::QString,   28,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   30,
+    QMetaType::Void,
     QMetaType::Int,
     QMetaType::QDate,
     QMetaType::Int,
@@ -181,8 +190,9 @@ static const uint qt_meta_data_HBlend[] = {
     QMetaType::QString,
     QMetaType::QString,
     QMetaType::QString,
-    QMetaType::QString,
     QMetaType::Bool,
+    QMetaType::QString,
+    QMetaType::Int,
 
        0        // eod
 };
@@ -217,34 +227,38 @@ void HBlend::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 21: _t->setExported((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 22: _t->setAmount((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 23: _t->setAmount(); break;
-        case 24: { int _r = _t->get_ID();
+        case 24: _t->setState((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 25: _t->setState(); break;
+        case 26: { int _r = _t->get_ID();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
-        case 25: { QDate _r = _t->getDate();
+        case 27: { QDate _r = _t->getDate();
             if (_a[0]) *reinterpret_cast< QDate*>(_a[0]) = std::move(_r); }  break;
-        case 26: { int _r = _t->getIDRiga();
+        case 28: { int _r = _t->getIDRiga();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
-        case 27: { QString _r = _t->getLinea();
+        case 29: { QString _r = _t->getLinea();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
-        case 28: { QString _r = _t->getOperator();
+        case 30: { QString _r = _t->getOperator();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
-        case 29: { int _r = _t->getIDProdotto();
+        case 31: { int _r = _t->getIDProdotto();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
-        case 30: { QString _r = _t->getBlender();
+        case 32: { QString _r = _t->getBlender();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
-        case 31: { QString _r = _t->getPompe();
+        case 33: { QString _r = _t->getPompe();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
-        case 32: { QString _r = _t->getVasche();
+        case 34: { QString _r = _t->getVasche();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
-        case 33: { QString _r = _t->getAvanzi();
+        case 35: { QString _r = _t->getAvanzi();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
-        case 34: { QString _r = _t->getNote();
+        case 36: { QString _r = _t->getNote();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
-        case 35: { QString _r = _t->getProdotto();
+        case 37: { QString _r = _t->getProdotto();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
-        case 36: { QString _r = _t->getAmount();
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
-        case 37: { bool _r = _t->getExported();
+        case 38: { bool _r = _t->getExported();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 39: { QString _r = _t->getAmount();
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
+        case 40: { int _r = _t->getState();
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }
@@ -279,13 +293,13 @@ int HBlend::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 38)
+        if (_id < 41)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 38;
+        _id -= 41;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 38)
+        if (_id < 41)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 38;
+        _id -= 41;
     }
     return _id;
 }

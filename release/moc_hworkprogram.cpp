@@ -23,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HWorkProgram_t {
-    QByteArrayData data[84];
-    char stringdata0[1163];
+    QByteArrayData data[85];
+    char stringdata0[1186];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -73,50 +73,51 @@ QT_MOC_LITERAL(36, 400, 8), // "complete"
 QT_MOC_LITERAL(37, 409, 11), // "completeRow"
 QT_MOC_LITERAL(38, 421, 13), // "uncompleteRow"
 QT_MOC_LITERAL(39, 435, 7), // "copyrow"
-QT_MOC_LITERAL(40, 443, 17), // "on_pbSave_clicked"
-QT_MOC_LITERAL(41, 461, 18), // "on_pbClose_clicked"
-QT_MOC_LITERAL(42, 480, 21), // "on_cbshowrows_toggled"
-QT_MOC_LITERAL(43, 502, 7), // "checked"
-QT_MOC_LITERAL(44, 510, 19), // "on_pbRemove_clicked"
-QT_MOC_LITERAL(45, 530, 26), // "on_tvGeneral_doubleClicked"
-QT_MOC_LITERAL(46, 557, 5), // "index"
-QT_MOC_LITERAL(47, 563, 19), // "on_pbModify_clicked"
-QT_MOC_LITERAL(48, 583, 10), // "showModRow"
-QT_MOC_LITERAL(49, 594, 20), // "on_deDal_dateChanged"
-QT_MOC_LITERAL(50, 615, 4), // "date"
-QT_MOC_LITERAL(51, 620, 18), // "on_pbPrint_clicked"
-QT_MOC_LITERAL(52, 639, 19), // "on_checkBox_toggled"
-QT_MOC_LITERAL(53, 659, 11), // "deleteSheet"
-QT_MOC_LITERAL(54, 671, 24), // "on_pbDeleteSheet_clicked"
-QT_MOC_LITERAL(55, 696, 19), // "on_pbSearch_clicked"
-QT_MOC_LITERAL(56, 716, 6), // "search"
-QT_MOC_LITERAL(57, 723, 18), // "on_pbReset_clicked"
-QT_MOC_LITERAL(58, 742, 7), // "approve"
-QT_MOC_LITERAL(59, 750, 3), // "app"
-QT_MOC_LITERAL(60, 754, 20), // "on_pbApprova_clicked"
-QT_MOC_LITERAL(61, 775, 23), // "on_pbDisapprova_clicked"
-QT_MOC_LITERAL(62, 799, 15), // "showContextMenu"
-QT_MOC_LITERAL(63, 815, 3), // "pos"
-QT_MOC_LITERAL(64, 819, 6), // "cutRow"
-QT_MOC_LITERAL(65, 826, 20), // "on_pbDetails_clicked"
-QT_MOC_LITERAL(66, 847, 24), // "on_pbSingleSheet_clicked"
-QT_MOC_LITERAL(67, 872, 13), // "convert_to_wp"
-QT_MOC_LITERAL(68, 886, 7), // "HWpMod*"
-QT_MOC_LITERAL(69, 894, 4), // "qmod"
-QT_MOC_LITERAL(70, 899, 17), // "on_pbCopy_clicked"
-QT_MOC_LITERAL(71, 917, 18), // "on_pbPaste_clicked"
-QT_MOC_LITERAL(72, 936, 10), // "getDetails"
-QT_MOC_LITERAL(73, 947, 16), // "on_cbAll_toggled"
-QT_MOC_LITERAL(74, 964, 19), // "on_pbCutRow_clicked"
-QT_MOC_LITERAL(75, 984, 19), // "disable_fof_details"
-QT_MOC_LITERAL(76, 1004, 7), // "disable"
-QT_MOC_LITERAL(77, 1012, 21), // "on_pbComplete_clicked"
-QT_MOC_LITERAL(78, 1034, 24), // "on_pbNotComplete_clicked"
-QT_MOC_LITERAL(79, 1059, 24), // "on_pbCompleteRow_clicked"
-QT_MOC_LITERAL(80, 1084, 26), // "on_pbUncompleteRow_clicked"
-QT_MOC_LITERAL(81, 1111, 20), // "on_pbBlender_clicked"
-QT_MOC_LITERAL(82, 1132, 17), // "on_pbUndo_clicked"
-QT_MOC_LITERAL(83, 1150, 12) // "trigger_copy"
+QT_MOC_LITERAL(40, 443, 12), // "call_refresh"
+QT_MOC_LITERAL(41, 456, 17), // "on_pbSave_clicked"
+QT_MOC_LITERAL(42, 474, 18), // "on_pbClose_clicked"
+QT_MOC_LITERAL(43, 493, 21), // "on_cbshowrows_toggled"
+QT_MOC_LITERAL(44, 515, 7), // "checked"
+QT_MOC_LITERAL(45, 523, 19), // "on_pbRemove_clicked"
+QT_MOC_LITERAL(46, 543, 26), // "on_tvGeneral_doubleClicked"
+QT_MOC_LITERAL(47, 570, 5), // "index"
+QT_MOC_LITERAL(48, 576, 19), // "on_pbModify_clicked"
+QT_MOC_LITERAL(49, 596, 10), // "showModRow"
+QT_MOC_LITERAL(50, 607, 20), // "on_deDal_dateChanged"
+QT_MOC_LITERAL(51, 628, 4), // "date"
+QT_MOC_LITERAL(52, 633, 18), // "on_pbPrint_clicked"
+QT_MOC_LITERAL(53, 652, 19), // "on_checkBox_toggled"
+QT_MOC_LITERAL(54, 672, 11), // "deleteSheet"
+QT_MOC_LITERAL(55, 684, 24), // "on_pbDeleteSheet_clicked"
+QT_MOC_LITERAL(56, 709, 19), // "on_pbSearch_clicked"
+QT_MOC_LITERAL(57, 729, 6), // "search"
+QT_MOC_LITERAL(58, 736, 18), // "on_pbReset_clicked"
+QT_MOC_LITERAL(59, 755, 7), // "approve"
+QT_MOC_LITERAL(60, 763, 3), // "app"
+QT_MOC_LITERAL(61, 767, 20), // "on_pbApprova_clicked"
+QT_MOC_LITERAL(62, 788, 23), // "on_pbDisapprova_clicked"
+QT_MOC_LITERAL(63, 812, 15), // "showContextMenu"
+QT_MOC_LITERAL(64, 828, 3), // "pos"
+QT_MOC_LITERAL(65, 832, 6), // "cutRow"
+QT_MOC_LITERAL(66, 839, 20), // "on_pbDetails_clicked"
+QT_MOC_LITERAL(67, 860, 24), // "on_pbSingleSheet_clicked"
+QT_MOC_LITERAL(68, 885, 13), // "convert_to_wp"
+QT_MOC_LITERAL(69, 899, 4), // "qmod"
+QT_MOC_LITERAL(70, 904, 17), // "on_pbCopy_clicked"
+QT_MOC_LITERAL(71, 922, 18), // "on_pbPaste_clicked"
+QT_MOC_LITERAL(72, 941, 10), // "getDetails"
+QT_MOC_LITERAL(73, 952, 16), // "on_cbAll_toggled"
+QT_MOC_LITERAL(74, 969, 19), // "on_pbCutRow_clicked"
+QT_MOC_LITERAL(75, 989, 19), // "disable_fof_details"
+QT_MOC_LITERAL(76, 1009, 7), // "disable"
+QT_MOC_LITERAL(77, 1017, 21), // "on_pbComplete_clicked"
+QT_MOC_LITERAL(78, 1039, 24), // "on_pbNotComplete_clicked"
+QT_MOC_LITERAL(79, 1064, 24), // "on_pbCompleteRow_clicked"
+QT_MOC_LITERAL(80, 1089, 26), // "on_pbUncompleteRow_clicked"
+QT_MOC_LITERAL(81, 1116, 20), // "on_pbBlender_clicked"
+QT_MOC_LITERAL(82, 1137, 17), // "on_pbUndo_clicked"
+QT_MOC_LITERAL(83, 1155, 12), // "trigger_copy"
+QT_MOC_LITERAL(84, 1168, 17) // "convert_to_wp_mod"
 
     },
     "HWorkProgram\0showDets\0\0QSqlQueryModel*\0"
@@ -131,10 +132,11 @@ QT_MOC_LITERAL(83, 1150, 12) // "trigger_copy"
     "const QSqlQueryModel*\0save\0pasteRow\0"
     "modify_row\0removeRow\0p_row\0completeRows\0"
     "id\0complete\0completeRow\0uncompleteRow\0"
-    "copyrow\0on_pbSave_clicked\0on_pbClose_clicked\0"
-    "on_cbshowrows_toggled\0checked\0"
-    "on_pbRemove_clicked\0on_tvGeneral_doubleClicked\0"
-    "index\0on_pbModify_clicked\0showModRow\0"
+    "copyrow\0call_refresh\0on_pbSave_clicked\0"
+    "on_pbClose_clicked\0on_cbshowrows_toggled\0"
+    "checked\0on_pbRemove_clicked\0"
+    "on_tvGeneral_doubleClicked\0index\0"
+    "on_pbModify_clicked\0showModRow\0"
     "on_deDal_dateChanged\0date\0on_pbPrint_clicked\0"
     "on_checkBox_toggled\0deleteSheet\0"
     "on_pbDeleteSheet_clicked\0on_pbSearch_clicked\0"
@@ -142,7 +144,7 @@ QT_MOC_LITERAL(83, 1150, 12) // "trigger_copy"
     "on_pbApprova_clicked\0on_pbDisapprova_clicked\0"
     "showContextMenu\0pos\0cutRow\0"
     "on_pbDetails_clicked\0on_pbSingleSheet_clicked\0"
-    "convert_to_wp\0HWpMod*\0qmod\0on_pbCopy_clicked\0"
+    "convert_to_wp\0qmod\0on_pbCopy_clicked\0"
     "on_pbPaste_clicked\0getDetails\0"
     "on_cbAll_toggled\0on_pbCutRow_clicked\0"
     "disable_fof_details\0disable\0"
@@ -150,7 +152,7 @@ QT_MOC_LITERAL(83, 1150, 12) // "trigger_copy"
     "on_pbCompleteRow_clicked\0"
     "on_pbUncompleteRow_clicked\0"
     "on_pbBlender_clicked\0on_pbUndo_clicked\0"
-    "trigger_copy"
+    "trigger_copy\0convert_to_wp_mod"
 };
 #undef QT_MOC_LITERAL
 
@@ -160,7 +162,7 @@ static const uint qt_meta_data_HWorkProgram[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      66,   14, // methods
+      69,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -168,74 +170,77 @@ static const uint qt_meta_data_HWorkProgram[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,  344,    2, 0x06 /* Public */,
+       1,    1,  359,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,  347,    2, 0x08 /* Private */,
-       6,    2,  348,    2, 0x08 /* Private */,
-       9,    0,  353,    2, 0x08 /* Private */,
-      10,    0,  354,    2, 0x08 /* Private */,
-      11,    0,  355,    2, 0x08 /* Private */,
-      12,    1,  356,    2, 0x08 /* Private */,
-      12,    0,  359,    2, 0x28 /* Private | MethodCloned */,
-      15,    2,  360,    2, 0x08 /* Private */,
-      18,    0,  365,    2, 0x08 /* Private */,
-      19,    0,  366,    2, 0x08 /* Private */,
-      20,    1,  367,    2, 0x08 /* Private */,
-      20,    0,  370,    2, 0x28 /* Private | MethodCloned */,
-      22,    2,  371,    2, 0x08 /* Private */,
-      27,    1,  376,    2, 0x08 /* Private */,
-      27,    0,  379,    2, 0x28 /* Private | MethodCloned */,
-      29,    0,  380,    2, 0x08 /* Private */,
-      30,    0,  381,    2, 0x08 /* Private */,
-      31,    0,  382,    2, 0x08 /* Private */,
-      32,    1,  383,    2, 0x08 /* Private */,
-      32,    0,  386,    2, 0x28 /* Private | MethodCloned */,
-      34,    2,  387,    2, 0x08 /* Private */,
-      34,    1,  392,    2, 0x28 /* Private | MethodCloned */,
-      34,    0,  395,    2, 0x28 /* Private | MethodCloned */,
-      37,    0,  396,    2, 0x08 /* Private */,
-      38,    0,  397,    2, 0x08 /* Private */,
-      39,    1,  398,    2, 0x08 /* Private */,
-      39,    0,  401,    2, 0x28 /* Private | MethodCloned */,
-      40,    0,  402,    2, 0x08 /* Private */,
-      41,    0,  403,    2, 0x08 /* Private */,
-      42,    1,  404,    2, 0x08 /* Private */,
-      44,    0,  407,    2, 0x08 /* Private */,
-      45,    1,  408,    2, 0x08 /* Private */,
-      47,    0,  411,    2, 0x08 /* Private */,
-      48,    0,  412,    2, 0x08 /* Private */,
-      49,    1,  413,    2, 0x08 /* Private */,
-      51,    0,  416,    2, 0x08 /* Private */,
-      52,    1,  417,    2, 0x08 /* Private */,
-      53,    0,  420,    2, 0x08 /* Private */,
-      54,    0,  421,    2, 0x08 /* Private */,
-      55,    0,  422,    2, 0x08 /* Private */,
-      56,    0,  423,    2, 0x08 /* Private */,
-      57,    0,  424,    2, 0x08 /* Private */,
-      58,    1,  425,    2, 0x08 /* Private */,
-      60,    0,  428,    2, 0x08 /* Private */,
-      61,    0,  429,    2, 0x08 /* Private */,
-      62,    1,  430,    2, 0x08 /* Private */,
-      64,    0,  433,    2, 0x08 /* Private */,
-      65,    0,  434,    2, 0x08 /* Private */,
-      66,    0,  435,    2, 0x08 /* Private */,
-      67,    1,  436,    2, 0x08 /* Private */,
-      67,    0,  439,    2, 0x28 /* Private | MethodCloned */,
-      70,    0,  440,    2, 0x08 /* Private */,
-      71,    0,  441,    2, 0x08 /* Private */,
-      72,    0,  442,    2, 0x08 /* Private */,
-      73,    1,  443,    2, 0x08 /* Private */,
-      74,    0,  446,    2, 0x08 /* Private */,
-      75,    1,  447,    2, 0x08 /* Private */,
-      75,    0,  450,    2, 0x28 /* Private | MethodCloned */,
-      77,    0,  451,    2, 0x08 /* Private */,
-      78,    0,  452,    2, 0x08 /* Private */,
-      79,    0,  453,    2, 0x08 /* Private */,
-      80,    0,  454,    2, 0x08 /* Private */,
-      81,    0,  455,    2, 0x08 /* Private */,
-      82,    0,  456,    2, 0x08 /* Private */,
-      83,    0,  457,    2, 0x08 /* Private */,
+       5,    0,  362,    2, 0x08 /* Private */,
+       6,    2,  363,    2, 0x08 /* Private */,
+       9,    0,  368,    2, 0x08 /* Private */,
+      10,    0,  369,    2, 0x08 /* Private */,
+      11,    0,  370,    2, 0x08 /* Private */,
+      12,    1,  371,    2, 0x08 /* Private */,
+      12,    0,  374,    2, 0x28 /* Private | MethodCloned */,
+      15,    2,  375,    2, 0x08 /* Private */,
+      18,    0,  380,    2, 0x08 /* Private */,
+      19,    0,  381,    2, 0x08 /* Private */,
+      20,    1,  382,    2, 0x08 /* Private */,
+      20,    0,  385,    2, 0x28 /* Private | MethodCloned */,
+      22,    2,  386,    2, 0x08 /* Private */,
+      27,    1,  391,    2, 0x08 /* Private */,
+      27,    0,  394,    2, 0x28 /* Private | MethodCloned */,
+      29,    0,  395,    2, 0x08 /* Private */,
+      30,    0,  396,    2, 0x08 /* Private */,
+      31,    0,  397,    2, 0x08 /* Private */,
+      32,    1,  398,    2, 0x08 /* Private */,
+      32,    0,  401,    2, 0x28 /* Private | MethodCloned */,
+      34,    2,  402,    2, 0x08 /* Private */,
+      34,    1,  407,    2, 0x28 /* Private | MethodCloned */,
+      34,    0,  410,    2, 0x28 /* Private | MethodCloned */,
+      37,    0,  411,    2, 0x08 /* Private */,
+      38,    0,  412,    2, 0x08 /* Private */,
+      39,    1,  413,    2, 0x08 /* Private */,
+      39,    0,  416,    2, 0x28 /* Private | MethodCloned */,
+      40,    0,  417,    2, 0x08 /* Private */,
+      41,    0,  418,    2, 0x08 /* Private */,
+      42,    0,  419,    2, 0x08 /* Private */,
+      43,    1,  420,    2, 0x08 /* Private */,
+      45,    0,  423,    2, 0x08 /* Private */,
+      46,    1,  424,    2, 0x08 /* Private */,
+      48,    0,  427,    2, 0x08 /* Private */,
+      49,    0,  428,    2, 0x08 /* Private */,
+      50,    1,  429,    2, 0x08 /* Private */,
+      52,    0,  432,    2, 0x08 /* Private */,
+      53,    1,  433,    2, 0x08 /* Private */,
+      54,    0,  436,    2, 0x08 /* Private */,
+      55,    0,  437,    2, 0x08 /* Private */,
+      56,    0,  438,    2, 0x08 /* Private */,
+      57,    0,  439,    2, 0x08 /* Private */,
+      58,    0,  440,    2, 0x08 /* Private */,
+      59,    1,  441,    2, 0x08 /* Private */,
+      61,    0,  444,    2, 0x08 /* Private */,
+      62,    0,  445,    2, 0x08 /* Private */,
+      63,    1,  446,    2, 0x08 /* Private */,
+      65,    0,  449,    2, 0x08 /* Private */,
+      66,    0,  450,    2, 0x08 /* Private */,
+      67,    0,  451,    2, 0x08 /* Private */,
+      68,    1,  452,    2, 0x08 /* Private */,
+      68,    0,  455,    2, 0x28 /* Private | MethodCloned */,
+      70,    0,  456,    2, 0x08 /* Private */,
+      71,    0,  457,    2, 0x08 /* Private */,
+      72,    0,  458,    2, 0x08 /* Private */,
+      73,    1,  459,    2, 0x08 /* Private */,
+      74,    0,  462,    2, 0x08 /* Private */,
+      75,    1,  463,    2, 0x08 /* Private */,
+      75,    0,  466,    2, 0x28 /* Private | MethodCloned */,
+      77,    0,  467,    2, 0x08 /* Private */,
+      78,    0,  468,    2, 0x08 /* Private */,
+      79,    0,  469,    2, 0x08 /* Private */,
+      80,    0,  470,    2, 0x08 /* Private */,
+      81,    0,  471,    2, 0x08 /* Private */,
+      82,    0,  472,    2, 0x08 /* Private */,
+      83,    0,  473,    2, 0x08 /* Private */,
+      84,    1,  474,    2, 0x08 /* Private */,
+      84,    0,  477,    2, 0x28 /* Private | MethodCloned */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -270,32 +275,33 @@ static const uint qt_meta_data_HWorkProgram[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   43,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 13,   46,
+    QMetaType::Void, QMetaType::Bool,   44,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QDate,   50,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   43,
+    QMetaType::Void, 0x80000000 | 13,   47,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QDate,   51,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   59,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QPoint,   63,
+    QMetaType::Void, QMetaType::Bool,   44,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    0x80000000 | 68, 0x80000000 | 28,   69,
-    0x80000000 | 68,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   60,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QPoint,   64,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   43,
+    0x80000000 | 23, 0x80000000 | 28,   69,
+    0x80000000 | 23,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   44,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Bool,   76,
     QMetaType::Void,
@@ -306,6 +312,8 @@ static const uint qt_meta_data_HWorkProgram[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    0x80000000 | 23, 0x80000000 | 28,   69,
+    0x80000000 | 23,
 
        0        // eod
 };
@@ -345,46 +353,51 @@ void HWorkProgram::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 25: _t->uncompleteRow(); break;
         case 26: _t->copyrow((*reinterpret_cast< const int(*)>(_a[1]))); break;
         case 27: _t->copyrow(); break;
-        case 28: _t->on_pbSave_clicked(); break;
-        case 29: _t->on_pbClose_clicked(); break;
-        case 30: _t->on_cbshowrows_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 31: _t->on_pbRemove_clicked(); break;
-        case 32: _t->on_tvGeneral_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 33: _t->on_pbModify_clicked(); break;
-        case 34: _t->showModRow(); break;
-        case 35: _t->on_deDal_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
-        case 36: _t->on_pbPrint_clicked(); break;
-        case 37: _t->on_checkBox_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 38: _t->deleteSheet(); break;
-        case 39: _t->on_pbDeleteSheet_clicked(); break;
-        case 40: _t->on_pbSearch_clicked(); break;
-        case 41: _t->search(); break;
-        case 42: _t->on_pbReset_clicked(); break;
-        case 43: _t->approve((*reinterpret_cast< const bool(*)>(_a[1]))); break;
-        case 44: _t->on_pbApprova_clicked(); break;
-        case 45: _t->on_pbDisapprova_clicked(); break;
-        case 46: _t->showContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
-        case 47: _t->cutRow(); break;
-        case 48: _t->on_pbDetails_clicked(); break;
-        case 49: _t->on_pbSingleSheet_clicked(); break;
-        case 50: { HWpMod* _r = _t->convert_to_wp((*reinterpret_cast< const QSqlQueryModel*(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< HWpMod**>(_a[0]) = std::move(_r); }  break;
-        case 51: { HWpMod* _r = _t->convert_to_wp();
-            if (_a[0]) *reinterpret_cast< HWpMod**>(_a[0]) = std::move(_r); }  break;
-        case 52: _t->on_pbCopy_clicked(); break;
-        case 53: _t->on_pbPaste_clicked(); break;
-        case 54: _t->getDetails(); break;
-        case 55: _t->on_cbAll_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 56: _t->on_pbCutRow_clicked(); break;
-        case 57: _t->disable_fof_details((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 58: _t->disable_fof_details(); break;
-        case 59: _t->on_pbComplete_clicked(); break;
-        case 60: _t->on_pbNotComplete_clicked(); break;
-        case 61: _t->on_pbCompleteRow_clicked(); break;
-        case 62: _t->on_pbUncompleteRow_clicked(); break;
-        case 63: _t->on_pbBlender_clicked(); break;
-        case 64: _t->on_pbUndo_clicked(); break;
-        case 65: _t->trigger_copy(); break;
+        case 28: _t->call_refresh(); break;
+        case 29: _t->on_pbSave_clicked(); break;
+        case 30: _t->on_pbClose_clicked(); break;
+        case 31: _t->on_cbshowrows_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 32: _t->on_pbRemove_clicked(); break;
+        case 33: _t->on_tvGeneral_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 34: _t->on_pbModify_clicked(); break;
+        case 35: _t->showModRow(); break;
+        case 36: _t->on_deDal_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
+        case 37: _t->on_pbPrint_clicked(); break;
+        case 38: _t->on_checkBox_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 39: _t->deleteSheet(); break;
+        case 40: _t->on_pbDeleteSheet_clicked(); break;
+        case 41: _t->on_pbSearch_clicked(); break;
+        case 42: _t->search(); break;
+        case 43: _t->on_pbReset_clicked(); break;
+        case 44: _t->approve((*reinterpret_cast< const bool(*)>(_a[1]))); break;
+        case 45: _t->on_pbApprova_clicked(); break;
+        case 46: _t->on_pbDisapprova_clicked(); break;
+        case 47: _t->showContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 48: _t->cutRow(); break;
+        case 49: _t->on_pbDetails_clicked(); break;
+        case 50: _t->on_pbSingleSheet_clicked(); break;
+        case 51: { QStandardItemModel* _r = _t->convert_to_wp((*reinterpret_cast< const QSqlQueryModel*(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QStandardItemModel**>(_a[0]) = std::move(_r); }  break;
+        case 52: { QStandardItemModel* _r = _t->convert_to_wp();
+            if (_a[0]) *reinterpret_cast< QStandardItemModel**>(_a[0]) = std::move(_r); }  break;
+        case 53: _t->on_pbCopy_clicked(); break;
+        case 54: _t->on_pbPaste_clicked(); break;
+        case 55: _t->getDetails(); break;
+        case 56: _t->on_cbAll_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 57: _t->on_pbCutRow_clicked(); break;
+        case 58: _t->disable_fof_details((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 59: _t->disable_fof_details(); break;
+        case 60: _t->on_pbComplete_clicked(); break;
+        case 61: _t->on_pbNotComplete_clicked(); break;
+        case 62: _t->on_pbCompleteRow_clicked(); break;
+        case 63: _t->on_pbUncompleteRow_clicked(); break;
+        case 64: _t->on_pbBlender_clicked(); break;
+        case 65: _t->on_pbUndo_clicked(); break;
+        case 66: _t->trigger_copy(); break;
+        case 67: { QStandardItemModel* _r = _t->convert_to_wp_mod((*reinterpret_cast< const QSqlQueryModel*(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QStandardItemModel**>(_a[0]) = std::move(_r); }  break;
+        case 68: { QStandardItemModel* _r = _t->convert_to_wp_mod();
+            if (_a[0]) *reinterpret_cast< QStandardItemModel**>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -446,13 +459,13 @@ int HWorkProgram::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 66)
+        if (_id < 69)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 66;
+        _id -= 69;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 66)
+        if (_id < 69)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 66;
+        _id -= 69;
     }
     return _id;
 }

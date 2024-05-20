@@ -415,14 +415,14 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
     if(wpmod->rowCount()>0)
     {
-      /*  ui->tvGeneral->setColumnHidden(0,true);
+        ui->tvGeneral->setColumnHidden(0,true);
         ui->tvGeneral->setColumnHidden(1,true);
         ui->cbshowrows->isChecked()?ui->tvGeneral->setColumnHidden(2,false):ui->tvGeneral->setColumnHidden(2,true);
         ui->tvGeneral->setColumnHidden(6,true);
         ui->tvGeneral->setColumnHidden(10,true);
-        ui->tvGeneral->setColumnHidden(20,true);
         ui->tvGeneral->setColumnHidden(21,true);
-        //ui->tvGeneral->setColumnHidden(24,true);*/
+        ui->tvGeneral->setColumnHidden(22,true);
+        //ui->tvGeneral->setColumnHidden(24,true);
         //ui->tvGeneral->setItemDelegate(rdel);
         ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
         ui->tvGeneral->horizontalHeader()->setSectionResizeMode(18,QHeaderView::Stretch);
