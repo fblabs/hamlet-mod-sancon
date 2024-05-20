@@ -370,7 +370,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
 
 
-    wpmod=convert_to_wp(mod);
+    wpmod=convert_to_wp_mod(mod);
 
 
     delete mod;
@@ -378,7 +378,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
 
 
-    QItemDelegate *rdel=new QItemDelegate();
+  /// QItemDelegate *rdel=new QItemDelegate();
 
 
 
@@ -404,23 +404,26 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     wpmod->setHeaderData(17,Qt::Horizontal,"Allergeni");
     wpmod->setHeaderData(18,Qt::Horizontal,"Note");
     wpmod->setHeaderData(19,Qt::Horizontal,"Lot/scadenza");
-    wpmod->setHeaderData(22,Qt::Horizontal,"Lotti prod.");
-    wpmod->setHeaderData(23,Qt::Horizontal,"Vasi Prodotti");
-    wpmod->setHeaderData(24,Qt::Horizontal,"Compl.");
-    wpmod->setHeaderData(25,Qt::Horizontal,"Stato");
+    wpmod->setHeaderData(20,Qt::Horizontal,"Stato");
+    wpmod->setHeaderData(21,Qt::Horizontal,"quaric");
+    wpmod->setHeaderData(22,Qt::Horizontal,"factor");
+    wpmod->setHeaderData(23,Qt::Horizontal,"Lotti prod.");
+    wpmod->setHeaderData(24,Qt::Horizontal,"Vasi Prodotti");
+    wpmod->setHeaderData(25,Qt::Horizontal,"Compl.");
+
 
 
     if(wpmod->rowCount()>0)
     {
-        ui->tvGeneral->setColumnHidden(0,true);
+      /*  ui->tvGeneral->setColumnHidden(0,true);
         ui->tvGeneral->setColumnHidden(1,true);
         ui->cbshowrows->isChecked()?ui->tvGeneral->setColumnHidden(2,false):ui->tvGeneral->setColumnHidden(2,true);
         ui->tvGeneral->setColumnHidden(6,true);
         ui->tvGeneral->setColumnHidden(10,true);
         ui->tvGeneral->setColumnHidden(20,true);
         ui->tvGeneral->setColumnHidden(21,true);
-        //ui->tvGeneral->setColumnHidden(24,true);
-        ui->tvGeneral->setItemDelegate(rdel);
+        //ui->tvGeneral->setColumnHidden(24,true);*/
+        //ui->tvGeneral->setItemDelegate(rdel);
         ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
         ui->tvGeneral->horizontalHeader()->setSectionResizeMode(18,QHeaderView::Stretch);
         ui->tvGeneral->horizontalHeader()->setSectionResizeMode(18,QHeaderView::ResizeToContents);
@@ -1401,7 +1404,7 @@ void HWorkProgram::on_pbSingleSheet_clicked()
 
 }
 
-HWpMod *HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
+QStandardItemModel* HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
 {
 
 
@@ -1429,7 +1432,7 @@ HWpMod *HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
             it->setTextAlignment(Qt::AlignTop);
             it->setDropEnabled(false);
 
-            if(c==15||c==16){
+            if(c==15||c==16||c==24){
 
                 it->setEditable(true);
                 it->setCheckable(true);
@@ -1716,8 +1719,8 @@ void HWorkProgram::on_pbBlender_clicked()
 {
     int idrow=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),0).data().toInt();
     int idprod=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),6).data().toInt();
-    int state=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),25).data(Qt::UserRole+1).toInt();
-    qDebug()<<"STATO"<<state<<ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),25).data(Qt::UserRole+1).toString();
+    int state=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),20).data(Qt::UserRole+1).toInt();
+
     QString prodotto=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),7).data().toString();
     QString cliente=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),12).data().toString();
     QString title=QString();
@@ -1768,79 +1771,122 @@ void HWorkProgram::trigger_copy()
     copyrow(row);
 }
 
-/*HWpMod *HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
+QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
 {
-    HWpMod *wmod=new HWpMod();
+    QStandardItemModel *wmod=new QStandardItemModel();
     QString t=QString();
 
-    if (mod->rowCount()<1) return wmod;
+    if (qmod->rowCount()<1) return wmod;
 
-    QStandardItemModel *it_id, *it_id_produz, *it_numriga, *it_quantita, *it_vaso_gr,*it_specolio,*it_idprodotto,*it_desc_prodotto,*it_olio,*it_tappo,*it_id_cliente,*id_totale,*id_sanificaz,*it_num_ord,*it_fresco,*it_pastorizzato,*it_allergeni,*it_note,*it_lotti,*it_lotscad,*it_vasi_prodotti,*it_completato,*it_stato;
-
-
+    QStandardItem *it_id, *it_id_produz, *it_numriga,*it_quantita, *it_vaso_gr,*it_specolio,*it_idprodotto,*it_desc_prodotto,*it_olio,*it_tappo,*it_id_cliente,*it_desc_cli,*it_totale,*it_totale_ric,*it_factor,*it_sanificaz,*it_num_ord,*it_fresco,*it_pastorizzato,*it_allergeni,*it_note,*it_lotti,*it_lotscad,*it_vasi_pr,*it_completato,*it_stato;
 
 
 
-    for (int r=0;r<mod->rowCount();++r)
+
+
+    for (int r=0;r<qmod->rowCount();++r)
     {
+
 
         QList<QStandardItem*> row;
 
-
-
-        t=mod->index(r,0).data().toString();
+        t=qmod->index(r,0).data().toString();
         it_id=new QStandardItem(t);
-        t=mod->index(r,1).data().toString();
+        t=qmod->index(r,1).data().toString();
         it_id_produz=new QStandardItem(t);
-        t=mod->index(r,2).data().toString();
+        t=qmod->index(r,2).data().toString();
         it_numriga=new QStandardItem(t);
-        t=mod->index(r,3).data().toString();
+        t=qmod->index(r,3).data().toString();
         it_quantita=new QStandardItem(t);
-        t=mod->index(r,4).data().toString();
+        t=qmod->index(r,4).data().toString();
         it_vaso_gr=new QStandardItem(t);
-        t=mod->index(r,5).data().toString();
+        t=qmod->index(r,5).data().toString();
         it_specolio=new QStandardItem(t);
-        t=mod->index(r,6).data().toString();
+        t=qmod->index(r,6).data().toString();
         it_idprodotto=new QStandardItem(t);
-        t=mod->index(r,7).data().toString();
+        t=qmod->index(r,7).data().toString();
         it_desc_prodotto=new QStandardItem(t);
-        t=mod->index(r,8).data().toString();
+        t=qmod->index(r,8).data().toString();
         it_olio=new QStandardItem(t);
-        t=mod->index(r,9).data().toString();
+        t=qmod->index(r,9).data().toString();
         it_tappo=new QStandardItem(t);
-        t=mod->index(r,10).data().toString();
+        t=qmod->index(r,10).data().toString();
         it_id_cliente=new QStandardItem(t);
-        t=mod->index(r,11).data().toString();
-        id_totale=new QStandardItem(t);
-        t=mod->index(r,12).data().toString();
-        id_sanificaz=new QStandardItem(t);
-        t=mod->index(r,13).data().toString();
+        t=qmod->index(r,11).data().toString();
+        it_desc_cli=new QStandardItem(t);
+        t=qmod->index(r,12).data().toString();
+        it_totale=new QStandardItem(t);
+        t=qmod->index(r,13).data().toString();
+        it_sanificaz=new QStandardItem(t);
+        t=qmod->index(r,14).data().toString();
+
         it_num_ord=new QStandardItem(t);
-        t=mod->index(r,14).data().toString();
-        it_fresco=new QStandardItem(t);
-        t=mod->index(r,15).data().toString();
-        it_pastorizzato=new QStandardItem(t);
-        t=mod->index(r,16).data().toString();
+        it_fresco=new QStandardItem(QString());
+        it_fresco->setEditable(true);
+        it_fresco->setCheckable(true);
+        qmod->index(r,15).data().toInt()>0?it_fresco->setCheckState(Qt::Checked):it_fresco->setCheckState(Qt::Unchecked);
+
+        it_pastorizzato=new QStandardItem(QString());
+        it_pastorizzato->setEditable(true);
+        it_pastorizzato->setCheckable(true);
+        qmod->index(r,16).data().toInt()>0?it_pastorizzato->setCheckState(Qt::Checked):it_pastorizzato->setCheckState(Qt::Unchecked);
+
+        t=qmod->index(r,17).data().toString();
         it_allergeni=new QStandardItem(t);
-        t=mod->index(r,17).data().toString();
+        t=qmod->index(r,18).data().toString();
         it_note=new QStandardItem(t);
-        t=mod->index(r,18).data().toString();
-        it_lotti=new QStandardItem(t);
-        t=mod->index(r,19).data().toString();
+        t=qmod->index(r,19).data().toString();
         it_lotscad=new QStandardItem(t);
-        t=mod->index(r,20).data().toString();
-        it_vasi_prodotti=new QStandardItem(t);
-        t=mod->index(r,21).data().toString();
-        it_completato=new QStandardItem(t);
-        t=mod->index(r,22).data().toString();
-        it_stato=new QStandardItem(t);
+        t=qmod->index(r,20).data().toString();
+        it_totale_ric=new QStandardItem(t);
+        t=qmod->index(r,21).data().toString();
+        it_factor=new QStandardItem(t);
+        t=qmod->index(r,22).data().toString();
+        it_lotti=new QStandardItem(t);
+
+        t=qmod->index(r,23).data().toString();
+        it_vasi_pr=new QStandardItem(t);
+
+        it_completato=new QStandardItem(QString());
+        it_completato->setEditable(true);
+        it_completato->setCheckable(true);
+        qmod->index(r,24).data().toInt()>0?it_completato->setCheckState(Qt::Checked):it_completato->setCheckState(Qt::Unchecked);
 
 
 
+
+
+
+            int state=0;
+            state=qmod->index(r,25).data().toInt();
+
+
+            QIcon icon;
+            switch (state)
+            {
+            case 0:
+                icon=QIcon(":/Resources/rosso.png");
+                break;
+            case 1:
+                icon=QIcon(":/Resources/giallo.png");
+                break;
+            case 2:
+                icon=QIcon(":/Resources/verde.png");
+                break;
+            }
+
+            it_stato=new QStandardItem(QString());
+            it_stato->setIcon(icon);
+            it_stato->setData(state,Qt::UserRole+1);
+
+
+            row<<it_id<<it_id_produz<<it_numriga<<it_quantita<<it_vaso_gr<<it_specolio<<it_idprodotto<<it_desc_prodotto<<it_olio<<it_tappo<<it_id_cliente<<it_desc_cli<<it_totale<<it_sanificaz<<it_num_ord<<it_fresco<<it_pastorizzato<<it_allergeni<<it_note<<it_lotscad<<it_stato<<it_totale_ric<<it_factor<<it_lotti<<it_vasi_pr<<it_completato;
+            wmod->appendRow(row);
     }
+
 
 
     return wmod;
 }
-*/
+
 

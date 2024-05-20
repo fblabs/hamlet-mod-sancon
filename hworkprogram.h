@@ -99,7 +99,7 @@ private slots:
 
     void on_pbSingleSheet_clicked();
 
-    HWpMod* convert_to_wp(const QSqlQueryModel *qmod=nullptr);
+    QStandardItemModel* convert_to_wp(const QSqlQueryModel *qmod=nullptr);
 
     void on_pbCopy_clicked();
 
@@ -127,7 +127,7 @@ private slots:
 
     void on_pbUndo_clicked();
     void trigger_copy();
-   // HWpMod* convert_to_wp_mod(const QSqlQueryModel *qmod=nullptr);
+    QStandardItemModel* convert_to_wp_mod(const QSqlQueryModel *qmod=nullptr);
 
 private:
     Ui::HWorkProgram *ui;
@@ -135,7 +135,7 @@ private:
     QSqlDatabase db;
     int id=-1;
     HWorkSheetModel *wsmod; //modello del foglio([produzione]
-    HWpMod *wpmod; //modello [righe_produzione]
+    QStandardItemModel *wpmod; //modello [righe_produzione]
     bool dets=false;
     //QList<QStandardItem*>rowcp;
     QList<int>removed_rows;
