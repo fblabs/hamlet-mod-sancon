@@ -76,25 +76,14 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->pbCutRow->setEnabled(user->get_programmi_u()>0);
     ui->pbCopy->setEnabled(user->get_programmi_u()>0);
     ui->pbPaste->setEnabled(user->get_programmi_u()>0);
-    ui->pbModify->setEnabled(user->get_programmi_u()>0 || user->get_wp_u()>0);
+    ui->pbModify->setEnabled(user->get_programmi_u()>0); /*|| user->get_wp_u()>0)*/;
     ui->pbRemove->setEnabled(user->get_programmi_u()>0);
-    ui->pbBlender->setEnabled(user->get_programmi_u()>0);
-
-
-
+    ui->pbBlender->setEnabled(/*user->get_programmi_u()*/  user->get_wp_u()>0);
     ui->tvGeneral->verticalHeader()->setSectionsMovable(true);
     ui->tvGeneral->verticalHeader()->setDragEnabled(true);
 
 
-
-
-
-
-
     ui->tvGeneral->verticalHeader()->setDragDropMode(QAbstractItemView::InternalMove);
-
-
-
 
     ui->tvGeneral->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tvGeneral,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));

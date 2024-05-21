@@ -28,6 +28,8 @@ HFrullatori::HFrullatori(QString p_title,HBlend *p_blend, HUser *p_user, QSqlDat
 
     ui->deData->setDate(QDate::currentDate());
 
+  //  ui->pbInit->setEnabled(p_user->get_wp_u()>0);
+
 
 
 

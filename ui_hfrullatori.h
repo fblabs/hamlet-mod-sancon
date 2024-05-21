@@ -68,7 +68,7 @@ public:
     {
         if (HFrullatori->objectName().isEmpty())
             HFrullatori->setObjectName(QString::fromUtf8("HFrullatori"));
-        HFrullatori->setWindowModality(Qt::ApplicationModal);
+        HFrullatori->setWindowModality(Qt::NonModal);
         HFrullatori->resize(443, 474);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
