@@ -1783,34 +1783,49 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
         t=qmod->index(r,0).data().toString();
         it_id=new QStandardItem(t);
         t=qmod->index(r,1).data().toString();
+
         it_id_produz=new QStandardItem(t);
+        it_id_produz->setEditable(false);
         t=qmod->index(r,2).data().toString();
         it_numriga=new QStandardItem(t);
+        it_numriga->setEditable(true);
         t=qmod->index(r,3).data().toString();
         it_quantita=new QStandardItem(t);
+        it_quantita->setEditable(false);
         t=qmod->index(r,4).data().toString();
         it_vaso_gr=new QStandardItem(t);
+        it_vaso_gr->setEditable(false);
         t=qmod->index(r,5).data().toString();
         it_specolio=new QStandardItem(t);
+        it_specolio->setEditable(false);
         t=qmod->index(r,6).data().toString();
         it_idprodotto=new QStandardItem(t);
+        it_idprodotto->setEditable(false);
         t=qmod->index(r,7).data().toString();
         it_desc_prodotto=new QStandardItem(t);
+        it_desc_prodotto->setEditable(false);
         t=qmod->index(r,8).data().toString();
         it_olio=new QStandardItem(t);
+        it_olio->setEditable(false);
         t=qmod->index(r,9).data().toString();
         it_tappo=new QStandardItem(t);
+        it_tappo->setEditable(false);
         t=qmod->index(r,10).data().toString();
         it_id_cliente=new QStandardItem(t);
+        it_id_cliente->setEditable(false);
         t=qmod->index(r,11).data().toString();
         it_desc_cli=new QStandardItem(t);
+        it_desc_cli->setEditable(false);
         t=qmod->index(r,12).data().toString();
         it_totale=new QStandardItem(t);
+        it_totale->setEditable(false);
         t=qmod->index(r,13).data().toString();
         it_sanificaz=new QStandardItem(t);
+        it_sanificaz->setEditable(false);
         t=qmod->index(r,14).data().toString();
 
         it_num_ord=new QStandardItem(t);
+        it_num_ord->setEditable(false);
         it_fresco=new QStandardItem(QString());
         it_fresco->setEditable(true);
         it_fresco->setCheckable(true);
@@ -1823,19 +1838,24 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
 
         t=qmod->index(r,17).data().toString();
         it_allergeni=new QStandardItem(t);
+        it_allergeni->setEditable(false);
         t=qmod->index(r,18).data().toString();
         it_note=new QStandardItem(t);
+        it_note->setEditable(false);
         t=qmod->index(r,19).data().toString();
         it_lotscad=new QStandardItem(t);
+        it_lotscad->setEditable(false);
         t=qmod->index(r,20).data().toString();
         it_totale_ric=new QStandardItem(t);
         t=qmod->index(r,21).data().toString();
         it_factor=new QStandardItem(t);
         t=qmod->index(r,22).data().toString();
         it_lotti=new QStandardItem(t);
+        it_lotti->setEditable(false);
 
         t=qmod->index(r,23).data().toString();
         it_vasi_pr=new QStandardItem(t);
+        it_vasi_pr->setEditable(false);
 
         it_completato=new QStandardItem(QString());
         it_completato->setEditable(true);
