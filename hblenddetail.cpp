@@ -281,7 +281,7 @@ void HBlendDetail::transferData()
 
 void HBlendDetail::setup()
 {
-    qDebug()<<"SETUP";
+
     ui->tvData->setColumnHidden(0,true);
     ui->tvData->setColumnHidden(1,true);
     ui->tvData->setColumnHidden(2,true);
@@ -333,6 +333,7 @@ void HBlendDetail::on_pbSave_clicked()
     {
     transferData();
     emit sg_save_blend(false);
+    getDetails();
     }
 
 }

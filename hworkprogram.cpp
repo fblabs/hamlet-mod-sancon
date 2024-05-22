@@ -1008,6 +1008,7 @@ void HWorkProgram::save()
             q.prepare(sql);
             q.bindValue(":id",removed_rows.at(r));
             d=q.exec();
+            qDebug()<<q.lastError().text();
 
         }
 
@@ -1030,7 +1031,7 @@ void HWorkProgram::save()
     {
         db.rollback();
         QApplication::restoreOverrideCursor();
-        QMessageBox::warning(this,QApplication::applicationName(),"Salvataggio annullato",QMessageBox::Ok);
+        QMessageBox::warning(this,QApplication::applicationName(),"Salvataggio annullato\n"+q.lastError().text(),QMessageBox::Ok);
 
     }
 
@@ -1711,7 +1712,7 @@ void HWorkProgram::on_pbBlender_clicked()
     int state=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),20).data(Qt::UserRole+1).toInt();
 
     QString prodotto=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),7).data().toString();
-    QString cliente=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),12).data().toString();
+    QString cliente=ui->tvGeneral->model()->index(ui->tvGeneral->currentIndex().row(),11).data().toString();
     QString title=QString();
 
     title=QDate::currentDate().toString("dd-MM-yyyy")+" -> "+prodotto+" [ "+cliente+" ] - LINEA "+QString::number(ui->spLinea->value());
