@@ -1858,7 +1858,7 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
         it_vasi_pr->setEditable(false);
 
         it_completato=new QStandardItem(QString());
-        it_completato->setEditable(true);
+        it_completato->setEditable(false);
         it_completato->setCheckable(true);
         qmod->index(r,24).data().toInt()>0?it_completato->setCheckState(Qt::Checked):it_completato->setCheckState(Qt::Unchecked);
 
@@ -1886,6 +1886,7 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
             }
 
             it_stato=new QStandardItem(QString());
+            it_stato->setEditable(false);
             it_stato->setIcon(icon);
             it_stato->setData(state,Qt::UserRole+1);
 
