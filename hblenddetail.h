@@ -34,7 +34,6 @@ signals:
     void sg_show_main();
 private slots:
     void on_pbConfirm_clicked();
-    void on_pbAdd_clicked();
     void add_row(QString p_lot);
     int getLotId(QString p_lot=QString());
     QList<QStandardItem*>getLotData(QString p_lot=QString());

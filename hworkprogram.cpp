@@ -1827,12 +1827,12 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
         it_num_ord=new QStandardItem(t);
         it_num_ord->setEditable(false);
         it_fresco=new QStandardItem(QString());
-        it_fresco->setEditable(true);
+        it_fresco->setEditable(false);
         it_fresco->setCheckable(true);
         qmod->index(r,15).data().toInt()>0?it_fresco->setCheckState(Qt::Checked):it_fresco->setCheckState(Qt::Unchecked);
 
         it_pastorizzato=new QStandardItem(QString());
-        it_pastorizzato->setEditable(true);
+        it_pastorizzato->setEditable(false);
         it_pastorizzato->setCheckable(true);
         qmod->index(r,16).data().toInt()>0?it_pastorizzato->setCheckState(Qt::Checked):it_pastorizzato->setCheckState(Qt::Unchecked);
 

@@ -8,8 +8,8 @@
 #include <QAction>
 #include <QMenu>
 #include <QMessageBox>
-#include <QDebug>
-#include <QSqlError>
+/*#include <QDebug>
+#include <QSqlError>*/
 
 
 
@@ -29,6 +29,7 @@ HBlendDetail::HBlendDetail(HBlend *p_blend,QStandardItemModel *p_mod, QSqlDataba
 
     ui->tvData->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tvData,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+    connect(this,SIGNAL(sg_lot_checked(QString)),this,SLOT(add_row(QString)));
 }
 
 HBlendDetail::~HBlendDetail()
@@ -45,14 +46,6 @@ void HBlendDetail::on_pbConfirm_clicked()
 
 
 
-void HBlendDetail::on_pbAdd_clicked()
-{
-
-   /* QString lot=ui->leLot->text();
-    *
-    ui->leLot->setText(QString());*/
-}
-
 void HBlendDetail::add_row(QString p_lot)
 {
 
@@ -60,12 +53,10 @@ void HBlendDetail::add_row(QString p_lot)
     QList<QStandardItem*> row;
     QList<QStandardItem*> d;
 
-
-
+    d=getLotData(p_lot);
 
     QStandardItem *si_id=new QStandardItem("0");
     QStandardItem *si_idblend=new QStandardItem(QString::number(blend->get_ID()));
-    d=getLotData(p_lot);
     QStandardItem *si_idlotto=d.at(0)->clone();
     QStandardItem *si_lotto=d.at(1)->clone();
     QStandardItem *si_prodotto=d.at(2)->clone();
@@ -90,9 +81,6 @@ void HBlendDetail::add_row(QString p_lot)
     ui->tvData->setColumnHidden(6,true);
     ui->tvData->setColumnHidden(7,true);
 
-    ui->leLot->clear();
-
-
 
 }
 
@@ -105,7 +93,7 @@ int HBlendDetail::getLotId(QString p_lot)
     q.exec();
     q.next();
     int lid=q.value(0).toInt();
-    qDebug()<<"fidIDLotto"<<lid<<q.lastError().text();
+
 
 
     return lid;
@@ -226,52 +214,39 @@ bool HBlendDetail::checkLot(QString plot)
     QStringList parts;
     QString clot=QString();
     QString sb=QString();
-
-    if(plot.length()<12) return false;
     parts=plot.split("-");
 
+    bool res=false;
 
-    if(parts.size()<3) {
+    if(plot.length()<13 || parts.size()<3) return res;
 
-        return false;
-    }
+    if(parts.at(2).length()<8)return res;
 
-    if(parts.size()==3 && parts.at(2).length()>8)
+    if(parts.at(2).length()>8)
     {
-
         if (parts.at(2).length()>8)
         {
             sb=parts.at(2).mid(0,8);
-
-
         }
-        else if (parts.at(2).length()==8)
-        {
-            sb=parts.at(2);
-        }
-
-
-
     }
+
 
     if(parts.at(2).length()==8)
     {
         clot=parts.at(0)+"-"+parts.at(1)+"-"+parts.at(2);
-        qDebug()<<"clot"<<clot;
 
-
-        connect(this,SIGNAL(sg_lot_checked(QString)),this,SLOT(on_pbAdd_clicked()));
-
-
-        emit sg_lot_checked(clot);
-
-        return true;
+        clot.clear();
+        res =true;
 
     }
+    else{
+    res= false;
+    }
 
-    return false;
+    if(res) add_row(clot);
 
 
+    return res;
 }
 
 void HBlendDetail::transferData()
@@ -312,16 +287,15 @@ void HBlendDetail::showContextMenu(const QPoint &pos)
 
 void HBlendDetail::on_leLot_textChanged(const QString &arg1)
 {
-    if(arg1.length()<12)
-    return;
+    if(arg1.length()<13)return;
 
-    QStringList p=QStringList();
-    p=arg1.split("-");
-    if(p.size()<3) return;
-    if(p.at(2).length()<8)return;
+    if(checkLot(arg1)){
 
-    if(checkLot(arg1)) add_row(arg1);
-    ui->leLot->setText(QString());
+        add_row(arg1);
+        ui->leLot->clear();
+    }
+
+
 
 }
 
