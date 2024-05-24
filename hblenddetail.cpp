@@ -8,8 +8,8 @@
 #include <QAction>
 #include <QMenu>
 #include <QMessageBox>
-/*#include <QDebug>
-#include <QSqlError>*/
+#include <QDebug>
+#include <QSqlError>
 
 
 
@@ -210,6 +210,7 @@ void HBlendDetail::on_pbRemove_clicked()
 bool HBlendDetail::checkLot(QString plot)
 {
 
+    qDebug()<<plot;
 
     QStringList parts;
     QString clot=QString();
@@ -218,7 +219,7 @@ bool HBlendDetail::checkLot(QString plot)
 
     bool res=false;
 
-    if(plot.length()<13 || parts.size()<3) return res;
+    if(plot.length()<12 || parts.size()<3) return res;
 
     if(parts.at(2).length()<8)return res;
 
@@ -229,6 +230,8 @@ bool HBlendDetail::checkLot(QString plot)
             sb=parts.at(2).mid(0,8);
         }
     }
+
+    qDebug()<<sb;
 
 
     if(parts.at(2).length()==8)
@@ -287,7 +290,7 @@ void HBlendDetail::showContextMenu(const QPoint &pos)
 
 void HBlendDetail::on_leLot_textChanged(const QString &arg1)
 {
-    if(arg1.length()<13)return;
+    if(arg1.length()<12)return;
 
     if(checkLot(arg1)){
 

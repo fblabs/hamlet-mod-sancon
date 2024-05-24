@@ -38,7 +38,7 @@
 #include "hblend.h"
 #include "hfrullatori.h"
 
-#include <QDebug>
+//#include <QDebug>
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
@@ -344,7 +344,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     QSqlQuery q(db);
     QString sql="SELECT righe_produzione.ID,IDProduzione,num_riga,quantita,vaso_gr,specificaolio,idprodotto,prodotti.descrizione,olio,tappo,righe_produzione.idcliente,anagrafica.ragione_sociale,totale,sanificazione,numero_ordine,fresco,pastorizzato,allergeni,righe_produzione.note,lotto_scadenza,ricette.q_tot, righe_produzione.totale/ricette.q_tot as factor,lotti as 'Lotti produzione', vasi_prodotti as 'Vasi prodotti', completato as 'Completato',stato as 'stato'\
         FROM righe_produzione,prodotti,anagrafica,ricette\
-                                  where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by num_riga asc;";
+                                  where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by righe_produzione.num_riga asc;";
 
         q.prepare(sql);
     q.bindValue(":id_p",wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
@@ -369,7 +369,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
   /// QItemDelegate *rdel=new QItemDelegate();
 
-
+    ui->tvGeneral->setModel(new QStandardItemModel());
 
     ui->tvGeneral->setModel(wpmod);
 
@@ -424,12 +424,18 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
         ui->tvGeneral->setCurrentIndex(p_currentIndex);
 
+
+
+
     }
 
 
     QPalette p = ui->tvGeneral->palette();
     p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
     ui->tvGeneral->setPalette(p);
+    ui->tvGeneral->reset();
+    ui->tvGeneral->repaint();
+    ui->tvGeneral->verticalHeader()->repaint();
 
 }
 
@@ -947,7 +953,7 @@ void HWorkProgram::save()
         VALUES\
         (:ID,:IDProduzione,:num_riga,:quantita,:vaso_gr,:specificaolio,:idprodotto ,:olio,:tappo,:idc,:totale,:sanificazione,:numero_ordine,:fresco,:pastorizzato,:allergeni,:note,:lotti,:lotto_scadenza,\
           :vasi_prodotti,:completato)\
-        ON DUPLICATE KEY UPDATE IDProduzione=:IDProduzione,num_riga=:num_riga,quantita=:quantita,vaso_gr=:vaso_gr,specificaolio=:specificaolio,\
+        ON DUPLICATE KEY UPDATE ID=:ID,IDProduzione=:IDProduzione,num_riga=:num_riga,quantita=:quantita,vaso_gr=:vaso_gr,specificaolio=:specificaolio,\
                                                                                                                idprodotto=:idprodotto,olio=:olio,tappo=:tappo,idcliente=:idc,totale=:totale,sanificazione=:sanificazione,numero_ordine=:numero_ordine,fresco=:fresco,\
                                                                                                                                                                       pastorizzato=:pastorizzato,allergeni=:allergeni,note=:note,lotti=:lotti,lotto_scadenza=:lotto_scadenza,vasi_prodotti=:vasi_prodotti,completato=:completato";
 
@@ -964,7 +970,11 @@ void HWorkProgram::save()
 
         q.bindValue(":ID", wpmod->index(r,0).data().toInt());
         q.bindValue(":IDProduzione", wpmod->index(r,1).data().toInt());
-        q.bindValue(":num_riga", r+1);
+
+       //
+        int numriga=ui->tvGeneral->verticalHeader()->visualIndex(r)+1;
+
+        q.bindValue(":num_riga", numriga);
         q.bindValue(":quantita", wpmod->index(r,3).data().toString());
         q.bindValue(":vaso_gr",wpmod->index(r,4).data().toString());
         q.bindValue(":specificaolio",wpmod->index(r,5).data().toString());
@@ -996,6 +1006,7 @@ void HWorkProgram::save()
 
 
 
+
     }
 
 
@@ -1008,7 +1019,7 @@ void HWorkProgram::save()
             q.prepare(sql);
             q.bindValue(":id",removed_rows.at(r));
             d=q.exec();
-            qDebug()<<q.lastError().text();
+
 
         }
 
@@ -1022,9 +1033,10 @@ void HWorkProgram::save()
     if(d)
     {
         db.commit();
+        refreshSheet(curix);
         removed_rows.clear();
         QApplication::restoreOverrideCursor();
-        refreshSheet(curix);
+
         QMessageBox::information(this,QApplication::applicationName(),"Dati salvati",QMessageBox::Ok);
     }
     else
@@ -1038,6 +1050,7 @@ void HWorkProgram::save()
 
     QApplication::restoreOverrideCursor();
     modified=false;
+
 
     ui->tvGeneral->setCurrentIndex(ui->tvGeneral->model()->index(curix.row(),0));
 
@@ -1083,7 +1096,7 @@ void HWorkProgram::removeRow(const int p_row)
     int row=p_row;
 
 
-    qDebug()<<"remove"<<p_row;
+
 
 
 
@@ -1432,7 +1445,7 @@ QStandardItemModel* HWorkProgram::convert_to_wp(const QSqlQueryModel *mod)
             {
                 int state=0;
                 state=mod->index(r,c).data().toInt();
-                qDebug()<<state;
+
 
                 QIcon icon;
                 switch (state)
