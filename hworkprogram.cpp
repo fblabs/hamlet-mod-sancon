@@ -1432,15 +1432,24 @@ void HWorkProgram::on_pbSingleSheet_clicked()
     refreshSheet();
     ui->cbAll->setChecked(false);
 
-
-
-
-
-    ui->pbAdd->setEnabled(user->get_programmi_u()>0);
+   /* ui->pbAdd->setEnabled(user->get_programmi_u()>0);
     ui->pbModify->setEnabled(user->get_wp_u()>0);
     ui->pbCopy->setEnabled(user->get_programmi_u()>0);
     ui->pbPaste->setEnabled(user->get_programmi_u()>0);
+    ui->pbRemove->setEnabled(user->get_programmi_u()>0);*/
+
+    ui->pbAdd->setEnabled(user->get_programmi_u()>0);
+    ui->pbModify->setEnabled(user->get_programmi_u()>0);
     ui->pbRemove->setEnabled(user->get_programmi_u()>0);
+    ui->pbCompleteRow->setEnabled(user->get_programmi_u()>0);
+    ui->pbComplete->setEnabled(user->get_programmi_u()>0);
+    ui->pbUncompleteRow->setEnabled(user->get_programmi_u()>0);
+    ui->pbNotComplete->setEnabled(user->get_programmi_u()>0);
+    ui->pbUndo->setEnabled(user->get_programmi_u()>0);
+    ui->cbshowrows->setChecked(user->get_programmi_u()>0);
+    ui->cbshowrows->setEnabled(user->get_programmi_u()>0);
+
+
 
 
     ui->cbshowrows->setEnabled(true);
