@@ -508,6 +508,7 @@ void HFrullatori::print()
 
 void HFrullatori::on_pbSave_clicked()
 {
+
     save_blend(true);
     emit sg_setup_view();
 }

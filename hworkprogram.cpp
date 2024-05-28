@@ -50,7 +50,8 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     db=p_db;
     dets=false;
 
-
+    wsmod=new HWorkSheetModel();
+    wpmod=new QStandardItemModel();
 
 
 
@@ -151,7 +152,7 @@ bool HWorkProgram::createSheet(int p_line, QDate p_date)
 
 void HWorkProgram::getSheets()
 {
-    QModelIndex ix=QModelIndex();
+    QModelIndex ix=ui->tvStorico->currentIndex();
 
     wsmod=new HWorkSheetModel(nullptr,db);
     wsmod->setTable("produzione");
@@ -440,9 +441,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     QPalette p = ui->tvGeneral->palette();
     p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
     ui->tvGeneral->setPalette(p);
-    ui->tvGeneral->reset();
-    ui->tvGeneral->repaint();
-    ui->tvGeneral->verticalHeader()->repaint();
+
 
 
 }
