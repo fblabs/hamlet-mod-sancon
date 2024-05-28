@@ -726,7 +726,7 @@ void HWorkProgram::print()
 
                 QString data = mod->index(row, column).data().toString().simplified();
 
-                if (column==15 || column==16 || column==24)
+                if (column==15 || column==16 || column==25)
                 {
 
                     out << QString("<td bgcolor='"+bgcol+"' align='center'>%1</td>").arg((mod->index(row,column).data(Qt::CheckStateRole)==Qt::Checked)? QString("[X]") : QString("&nbsp;"));
@@ -1011,7 +1011,7 @@ void HWorkProgram::save()
         q.bindValue(":lotto_scadenza",wpmod->index(r,19).data().toString());
         q.bindValue(":lotti",wpmod->index(r,23).data().toString());
         QString vasi_prodotti=QString();
-        wpmod->index(r,24).data().toInt()>0?vasi_prodotti=QString::number(wpmod->index(r,21).data().toInt()) : vasi_prodotti=QString();
+        wpmod->index(r,24).data().toInt()>0?vasi_prodotti=QString::number(wpmod->index(r,24).data().toInt()) : vasi_prodotti=QString();
         q.bindValue(":vasi_prodotti",vasi_prodotti);
         QString comp=QString();
         wpmod->index(r,25).data(Qt::CheckStateRole).toInt()>0?comp="1":comp="0";
@@ -1877,6 +1877,7 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
         t=qmod->index(r,10).data().toString();
         it_id_cliente=new QStandardItem(t);
         it_id_cliente->setEditable(false);
+
         t=qmod->index(r,11).data().toString();
         it_desc_cli=new QStandardItem(t);
         it_desc_cli->setEditable(false);
@@ -1887,7 +1888,6 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
         it_sanificaz=new QStandardItem(t);
         it_sanificaz->setEditable(false);
         t=qmod->index(r,14).data().toString();
-
         it_num_ord=new QStandardItem(t);
         it_num_ord->setEditable(false);
         it_fresco=new QStandardItem(QString());
