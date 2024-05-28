@@ -38,18 +38,20 @@
 #include "hblend.h"
 #include "hfrullatori.h"
 
-//#include <QDebug>
+#include <QDebug>
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HWorkProgram)
 {
+    QMessageBox::information(this,"DEBUG","entro in HWork",QMessageBox::Ok);
+
     ui->setupUi(this);
     user=p_user;
     db=p_db;
     dets=false;
 
-    wsmod=new HWorkSheetModel();
+
 
 
 
@@ -150,6 +152,7 @@ bool HWorkProgram::createSheet(int p_line, QDate p_date)
 
 void HWorkProgram::getSheets()
 {
+    QMessageBox::information(this,"DEBUG","entro in getsheets",QMessageBox::Ok);
 
 
     QModelIndex ix=QModelIndex();
@@ -187,22 +190,20 @@ void HWorkProgram::getSheets()
 
     connect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
 
-    ix=wsmod->index(0,0);
+    if(wsmod->rowCount()>0)
 
 
     if(wsmod->rowCount()>0)
     {
+        ix=wsmod->index(0,0);
 
         // ui->tvStorico->setCurrentIndex(i);
         ui->tvStorico->selectionModel()->setCurrentIndex(ix,QItemSelectionModel::ClearAndSelect);
          ui->tvStorico->setCurrentIndex(ix);
 
-
+            index_old=ix;
 
     }
-
-
-    index_old=ix;
 
 
 
