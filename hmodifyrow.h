@@ -33,7 +33,7 @@ private slots:
     void on_cbCliente_currentIndexChanged(int index);
     void on_pbClose_clicked();
     void on_pbSave_clicked();
-    double calcTotale();
+    void calcTotale();
     void on_leTotal_returnPressed();
     void saveRow();
     void setPermissions(HUser *p_user=0);
@@ -44,6 +44,8 @@ private slots:
     void on_leQuant_returnPressed();
 
     void on_leVaso_returnPressed();
+    bool eventFilter(QObject *target, QEvent *event);
+
 
 signals:
     void done();

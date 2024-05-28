@@ -40,7 +40,7 @@ private slots:
     void get_sheet_details(const int p_id_produzione=-1);
     void add_row(QStandardItemModel *mod, QList<QStandardItem*> row);
     void process(const QSqlQueryModel *mod=nullptr);
-    void save();
+    void save(bool showdialog=true);
    // void rowaddb();
     void pasteRow();
     void modify_row();

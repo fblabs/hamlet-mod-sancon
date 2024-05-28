@@ -12,6 +12,7 @@
 #include <QCompleter>
 #include <QStringListModel>
 #include <QValidator>
+#include <QShortcut>
 
 HModifyRow::HModifyRow(const int p_id,const int p_idrow,const int p_row, HUser *p_user, QSqlDatabase p_db, QWidget *parent) :
     QWidget(parent),
@@ -25,6 +26,12 @@ HModifyRow::HModifyRow(const int p_id,const int p_idrow,const int p_row, HUser *
     db=p_db;
 
     setPermissions(user);
+    ui->leVaso->installEventFilter(this);
+
+   /* QShortcut *ok= new QShortcut(ui->leVaso);
+    ok->setKey(Qt::Key_Tab);
+    ui->leVaso->setFocusPolicy(Qt::NoFocus);
+    connect(ok,SIGNAL(activated()),this,SLOT(calcTotale()));*/
 
     QDoubleValidator *quant_val=new QDoubleValidator();
     quant_val->setNotation(QDoubleValidator::StandardNotation);
@@ -328,7 +335,7 @@ void HModifyRow::saveRow(){
 
 }
 
-double  HModifyRow::calcTotale()
+void HModifyRow::calcTotale()
 {
     bool vok=false;
     bool qok=false;
@@ -337,28 +344,25 @@ double  HModifyRow::calcTotale()
     if(!vok)
     {
         QMessageBox::warning(this,QApplication::applicationName(),"Errore di formato della cifra per quantità vaso",QMessageBox::Ok);
-        return -1;
+        return;
+
     }
     double quant=ui->leQuant->text().toDouble(&qok);
     if(!qok)
     {
         QMessageBox::warning(this,QApplication::applicationName(),"Errore di formato della cifra per quantità vaso",QMessageBox::Ok);
-        return -1;
+        return;
     }
 
     double totale=(quant*vaso)/1000;
-    return totale;
+    ui->leTotal->setText(QString::number(totale,'f',3));
+
 }
 
 
 void HModifyRow::on_leTotal_returnPressed()
 {
-    double totale=calcTotale();
-
-
-    ui->leTotal->setText(QString::number(totale,'f',3));
-
-
+ calcTotale();
 }
 
 
@@ -384,18 +388,39 @@ void HModifyRow::on_pbSaveLots_clicked()
 
 void HModifyRow::on_leQuant_returnPressed()
 {
-    double totale=calcTotale();
-
-
-    ui->leTotal->setText(QString::number(totale,'f',3));
+    calcTotale();
 }
 
 
 void HModifyRow::on_leVaso_returnPressed()
 {
-    double totale=calcTotale();
+    calcTotale();
 
 
-    ui->leTotal->setText(QString::number(totale,'f',3));
+
 }
+
+bool HModifyRow::eventFilter(QObject *target, QEvent *event)
+{
+
+    if(target==ui->leVaso)
+    {
+        if (event->type()==QEvent::KeyPress)
+        {
+            QKeyEvent* key = static_cast<QKeyEvent *>(event);
+
+            if (key->key()==Qt::Key_Tab)
+            {
+                calcTotale();
+                ui->leOlio->setFocus();
+
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+
 

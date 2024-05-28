@@ -30,7 +30,7 @@
 #include <QTextDocument>
 #include <QPrintDialog>
 #include <QTextStream>
-#include "hwpmod.h"
+//#include "hwpmod.h"
 #include <QModelIndex>
 #include "hprogtable.h"
 #include <QSqlQueryModel>
@@ -38,7 +38,7 @@
 #include "hblend.h"
 #include "hfrullatori.h"
 
-#include <QDebug>
+//#include <QDebug>
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
@@ -154,9 +154,9 @@ void HWorkProgram::getSheets()
 
     QModelIndex ix=QModelIndex();
 
-    wsmod=new HWorkSheetModel(0,db);
+    wsmod=new HWorkSheetModel(nullptr,db);
     wsmod->setTable("produzione");
-    wsmod->setSort(1,Qt::DescendingOrder);
+    wsmod->setSort(0,Qt::DescendingOrder);
     wsmod->select();
     ui->tvStorico->setModel(wsmod);
 
@@ -268,13 +268,14 @@ void HWorkProgram::storicoindexchange()
 
     if(modified && index_old.row()!=ui->tvStorico->currentIndex().row())
     {
-        if(QMessageBox::warning(this,QApplication::applicationName(),"Alcune modifiche non sono state salvate. Salvare?", QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok){
+        /*if(QMessageBox::warning(this,QApplication::applicationName(),"Alcune modifiche non sono state salvate. Salvare?", QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok){*/
 
-            save();
-        }
+            save(false);
+       /* }*/
 
         modified=false;
     }
+
 
 
 
@@ -409,31 +410,29 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     wpmod->setHeaderData(25,Qt::Horizontal,"Compl.");
 
 
+    ui->tvGeneral->setColumnHidden(0,true);
+    ui->tvGeneral->setColumnHidden(1,true);
+    ui->cbshowrows->isChecked()?ui->tvGeneral->setColumnHidden(2,false):ui->tvGeneral->setColumnHidden(2,true);
+    ui->tvGeneral->setColumnHidden(6,true);
+    ui->tvGeneral->setColumnHidden(8,true);
+    ui->tvGeneral->setColumnHidden(10,true);
+    ui->tvGeneral->setColumnHidden(21,true);
+    ui->tvGeneral->setColumnHidden(22,true);
+    ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tvGeneral->horizontalHeader()->setSectionResizeMode(18,QHeaderView::Stretch);
+    ui->tvGeneral->horizontalHeader()->setSectionResizeMode(18,QHeaderView::ResizeToContents);
 
-    if(wpmod->rowCount()>0)
-    {
-        ui->tvGeneral->setColumnHidden(0,true);
-        ui->tvGeneral->setColumnHidden(1,true);
-        ui->cbshowrows->isChecked()?ui->tvGeneral->setColumnHidden(2,false):ui->tvGeneral->setColumnHidden(2,true);
-        ui->tvGeneral->setColumnHidden(6,true);
-        ui->tvGeneral->setColumnHidden(10,true);
-        ui->tvGeneral->setColumnHidden(21,true);
-        ui->tvGeneral->setColumnHidden(22,true);
-        ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-        ui->tvGeneral->horizontalHeader()->setSectionResizeMode(18,QHeaderView::Stretch);
-        ui->tvGeneral->horizontalHeader()->setSectionResizeMode(18,QHeaderView::ResizeToContents);
-
-        ui->tvGeneral->horizontalHeader()->stretchLastSection();
-        ui->tvGeneral->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-        ui->tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
+    ui->tvGeneral->horizontalHeader()->stretchLastSection();
+    ui->tvGeneral->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tvGeneral->setEditTriggers(QAbstractItemView::SelectedClicked);
 
 
-        ui->tvGeneral->setCurrentIndex(p_currentIndex);
+    ui->tvGeneral->setCurrentIndex(p_currentIndex);
 
 
 
 
-    }
+
 
 
     QPalette p = ui->tvGeneral->palette();
@@ -953,9 +952,11 @@ void HWorkProgram::process(const QSqlQueryModel *mod)
 
 
 
-void HWorkProgram::save()
+void HWorkProgram::save(bool showdialog)
 {
 
+
+    if(wpmod->rowCount()<1) return;
 
     QModelIndex curix=ui->tvGeneral->currentIndex();
     QSqlQuery q(db);
@@ -965,13 +966,16 @@ void HWorkProgram::save()
           :vasi_prodotti,:completato,stato=:stato)\
         ON DUPLICATE KEY UPDATE ID=:ID,IDProduzione=:IDProduzione,num_riga=:num_riga,quantita=:quantita,vaso_gr=:vaso_gr,specificaolio=:specificaolio,\
                                                                                                                                               idprodotto=:idprodotto,olio=:olio,tappo=:tappo,idcliente=:idc,totale=:totale,sanificazione=:sanificazione,numero_ordine=:numero_ordine,fresco=:fresco,\
-                                                                                                                                                                      pastorizzato=:pastorizzato,allergeni=:allergeni,note=:note,lotti=:lotti,lotto_scadenza=:lotto_scadenza,vasi_prodotti=:vasi_prodotti,completato=:completato,stato=:stato";
+        pastorizzato=:pastorizzato,allergeni=:allergeni,note=:note,lotti=:lotti,lotto_scadenza=:lotto_scadenza,vasi_prodotti=:vasi_prodotti,completato=:completato,stato=:stato";
 
-                                                                                                                                                                              if(QMessageBox::question(this,QApplication::applicationName(),"Confermare il salvataggio?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)
+    if(showdialog)
     {
+        if(QMessageBox::question(this,QApplication::applicationName(),"Confermare il salvataggio?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)
+        {
 
-        refreshSheet();
-        return;
+            refreshSheet();
+            return;
+        }
     }
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1019,12 +1023,10 @@ void HWorkProgram::save()
 
 
         d = q.exec();
-        qDebug()<<"RIGA:"<<r<<q.lastError().text();
-
-
 
 
     }
+
 
 
     if(d){
@@ -1036,7 +1038,6 @@ void HWorkProgram::save()
             q.prepare(sql);
             q.bindValue(":id",removed_rows.at(r));
             d=q.exec();
-
 
         }
 
@@ -1054,13 +1055,13 @@ void HWorkProgram::save()
         removed_rows.clear();
         QApplication::restoreOverrideCursor();
 
-        QMessageBox::information(this,QApplication::applicationName(),"Dati salvati",QMessageBox::Ok);
+        if(showdialog) QMessageBox::information(this,QApplication::applicationName(),"Dati salvati",QMessageBox::Ok);
     }
     else
     {
         db.rollback();
         QApplication::restoreOverrideCursor();
-        QMessageBox::warning(this,QApplication::applicationName(),"Salvataggio annullato\n"+q.lastError().text()+q.lastQuery(),QMessageBox::Ok);
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore nel salvataggion"+q.lastError().text()+q.lastQuery(),QMessageBox::Ok);
 
     }
 
@@ -1080,9 +1081,10 @@ void HWorkProgram::save()
 void HWorkProgram::pasteRow()
 {
     int nr=copied_row.at(2)->data().toInt();
-    int idp=wsmod->index(0,0).data().toInt();
-    qDebug()<<"IDP";
-    int state=0;
+    int idp=wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt();
+
+    //int state=0;
+
 
     nr=wpmod->rowCount()+1;
 
@@ -1091,25 +1093,62 @@ void HWorkProgram::pasteRow()
 
     QList<QStandardItem*>pasted_row;
 
+
     for (int p=0;p<copied_row.size();++p){
 
-        if(p==1)
+
+        if(p==0)
         {
-            QStandardItem *it_idp=new QStandardItem(QString::number(idp));
-            pasted_row<<it_idp;
+            QStandardItem *it_idb=new QStandardItem(QString());
+            pasted_row<<it_idb;
+        }
+        else if(p==1)
+        {
+            QStandardItem *it_idpb=new QStandardItem(QString::number(idp));
+            pasted_row<<it_idpb;
         }
         else if (p==2)
         {
-            QStandardItem *it_nr=new QStandardItem(QString::number(nr));
-            pasted_row<<it_nr;
+            QStandardItem *it_nrb=new QStandardItem(QString::number(nr));
+            pasted_row<<it_nrb;
         }
         else{
+
             pasted_row<<copied_row.at(p)->clone();
         }
     }
 
+
+
+   /* wpmod->setHeaderData(0,Qt::Horizontal,"ID");
+    wpmod->setHeaderData(1,Qt::Horizontal,"ID Poduzione");
+    wpmod->setHeaderData(2,Qt::Horizontal,"N. riga");
+    wpmod->setHeaderData(3,Qt::Horizontal,"Q.tà");
+    wpmod->setHeaderData(4,Qt::Horizontal,"Vaso gr.");
+    wpmod->setHeaderData(5,Qt::Horizontal,"Peso olio");
+    wpmod->setHeaderData(6,Qt::Horizontal,"ID prod.");
+    wpmod->setHeaderData(7,Qt::Horizontal,"Prodotto");
+    wpmod->setHeaderData(8,Qt::Horizontal,"Olio");
+    wpmod->setHeaderData(9,Qt::Horizontal,"Tappo");
+    wpmod->setHeaderData(10,Qt::Horizontal,"ID cliente");
+    wpmod->setHeaderData(11,Qt::Horizontal,"Cliente");
+    wpmod->setHeaderData(12,Qt::Horizontal,"Kg");
+    wpmod->setHeaderData(13,Qt::Horizontal,"Sanif.");
+    wpmod->setHeaderData(14,Qt::Horizontal,"Num. ordine");
+    wpmod->setHeaderData(15,Qt::Horizontal,"Fresco");
+    wpmod->setHeaderData(16,Qt::Horizontal,"Past.");
+    wpmod->setHeaderData(17,Qt::Horizontal,"Allergeni");
+    wpmod->setHeaderData(18,Qt::Horizontal,"Note");
+    wpmod->setHeaderData(19,Qt::Horizontal,"Lot/scadenza");
+    wpmod->setHeaderData(20,Qt::Horizontal,"Stato");
+    wpmod->setHeaderData(21,Qt::Horizontal,"quaric");
+    wpmod->setHeaderData(22,Qt::Horizontal,"factor");
+    wpmod->setHeaderData(23,Qt::Horizontal,"Lotti prod.");
+    wpmod->setHeaderData(24,Qt::Horizontal,"Vasi Prodotti");
+    wpmod->setHeaderData(25,Qt::Horizontal,"Compl.");*/
     wpmod->appendRow(pasted_row);
-    save();
+
+    /*if(wpmod->rowCount()<2)*/ save(false);
 }
 
 void HWorkProgram::modify_row()
@@ -1124,7 +1163,7 @@ void HWorkProgram::removeRow(const int p_row)
 
     int row=p_row;
 
-   removed_rows<<wpmod->index(row,0).data().toInt();
+    removed_rows<<wpmod->index(row,0).data().toInt();
 
     wpmod->removeRow(row,QModelIndex());
 
@@ -1228,6 +1267,7 @@ void HWorkProgram::copyrow(const int row)
         QMessageBox::warning(this,QApplication::applicationName(),"Selezionare una riga");
         return;
     }
+
     copied_row.clear();
 
     for(int c=0;c<wpmod->columnCount();++c)
@@ -1235,8 +1275,9 @@ void HWorkProgram::copyrow(const int row)
         QStandardItem *id;
         if(c==0)
         {
-            id=new QStandardItem(QString());
+            QStandardItem *si_id=new QStandardItem(QString("0"));
             copied_row<<id;
+
         }else if (c==20){
             int state=0;
             QIcon ico=QIcon(":/Resources/rosso.png");
@@ -1249,19 +1290,14 @@ void HWorkProgram::copyrow(const int row)
         }
         else
         {
+            QStandardItem *si_clone=wpmod->item(row,c)->clone();
+            copied_row<<si_clone;
 
-            copied_row<<wpmod->item(row,c)->clone();
         }
 
 
 
     }
-
-
-
-    copied_row.at(0)->setData(QString());
-    copied_row.at(20)->setData(QString(),Qt::UserRole+1);
-
 
 
 
@@ -1281,7 +1317,7 @@ void HWorkProgram::on_checkBox_toggled(bool checked)
 void HWorkProgram::on_pbDeleteSheet_clicked()
 {
     deleteSheet();
-    /*getSheets();*/
+    getSheets();
     refreshSheet();
 
 
