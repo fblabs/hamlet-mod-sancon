@@ -38,7 +38,7 @@
 #include "hblend.h"
 #include "hfrullatori.h"
 
-//#include <QDebug>
+#include <QDebug>
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
@@ -375,7 +375,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
 
 
-  /// QItemDelegate *rdel=new QItemDelegate();
+    /// QItemDelegate *rdel=new QItemDelegate();
 
     ui->tvGeneral->setModel(new QStandardItemModel());
 
@@ -419,8 +419,6 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
         ui->tvGeneral->setColumnHidden(10,true);
         ui->tvGeneral->setColumnHidden(21,true);
         ui->tvGeneral->setColumnHidden(22,true);
-        //ui->tvGeneral->setColumnHidden(24,true);
-        //ui->tvGeneral->setItemDelegate(rdel);
         ui->tvGeneral->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
         ui->tvGeneral->horizontalHeader()->setSectionResizeMode(18,QHeaderView::Stretch);
         ui->tvGeneral->horizontalHeader()->setSectionResizeMode(18,QHeaderView::ResizeToContents);
@@ -444,6 +442,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     ui->tvGeneral->reset();
     ui->tvGeneral->repaint();
     ui->tvGeneral->verticalHeader()->repaint();
+
 
 }
 
@@ -965,10 +964,10 @@ void HWorkProgram::save()
         (:ID,:IDProduzione,:num_riga,:quantita,:vaso_gr,:specificaolio,:idprodotto ,:olio,:tappo,:idc,:totale,:sanificazione,:numero_ordine,:fresco,:pastorizzato,:allergeni,:note,:lotti,:lotto_scadenza,\
           :vasi_prodotti,:completato,stato=:stato)\
         ON DUPLICATE KEY UPDATE ID=:ID,IDProduzione=:IDProduzione,num_riga=:num_riga,quantita=:quantita,vaso_gr=:vaso_gr,specificaolio=:specificaolio,\
-                                                                                                               idprodotto=:idprodotto,olio=:olio,tappo=:tappo,idcliente=:idc,totale=:totale,sanificazione=:sanificazione,numero_ordine=:numero_ordine,fresco=:fresco,\
+                                                                                                                                              idprodotto=:idprodotto,olio=:olio,tappo=:tappo,idcliente=:idc,totale=:totale,sanificazione=:sanificazione,numero_ordine=:numero_ordine,fresco=:fresco,\
                                                                                                                                                                       pastorizzato=:pastorizzato,allergeni=:allergeni,note=:note,lotti=:lotti,lotto_scadenza=:lotto_scadenza,vasi_prodotti=:vasi_prodotti,completato=:completato,stato=:stato";
 
-    if(QMessageBox::question(this,QApplication::applicationName(),"Confermare il salvataggio?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)
+                                                                                                                                                                              if(QMessageBox::question(this,QApplication::applicationName(),"Confermare il salvataggio?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)
     {
 
         refreshSheet();
@@ -986,7 +985,7 @@ void HWorkProgram::save()
         q.bindValue(":ID", wpmod->index(r,0).data().toInt());
         q.bindValue(":IDProduzione", wpmod->index(r,1).data().toInt());
 
-       //
+        //
         int numriga=ui->tvGeneral->verticalHeader()->visualIndex(r)+1;
 
         q.bindValue(":num_riga", numriga);
@@ -1020,6 +1019,7 @@ void HWorkProgram::save()
 
 
         d = q.exec();
+        qDebug()<<"RIGA:"<<r<<q.lastError().text();
 
 
 
@@ -1080,7 +1080,8 @@ void HWorkProgram::save()
 void HWorkProgram::pasteRow()
 {
     int nr=copied_row.at(2)->data().toInt();
-    int idp=wpmod->index(0,1).data().toInt();
+    int idp=wsmod->index(0,0).data().toInt();
+    qDebug()<<"IDP";
     int state=0;
 
     nr=wpmod->rowCount()+1;
@@ -1091,19 +1092,24 @@ void HWorkProgram::pasteRow()
     QList<QStandardItem*>pasted_row;
 
     for (int p=0;p<copied_row.size();++p){
-        pasted_row<<copied_row.at(p)->clone();
+
+        if(p==1)
+        {
+            QStandardItem *it_idp=new QStandardItem(QString::number(idp));
+            pasted_row<<it_idp;
+        }
+        else if (p==2)
+        {
+            QStandardItem *it_nr=new QStandardItem(QString::number(nr));
+            pasted_row<<it_nr;
+        }
+        else{
+            pasted_row<<copied_row.at(p)->clone();
+        }
     }
 
-    copied_row.at(1)->setData(idp,Qt::DisplayRole);
-    copied_row.at(2)->setData(nr,Qt::DisplayRole);
-
-
     wpmod->appendRow(pasted_row);
-    modified=true;
     save();
-
-
-
 }
 
 void HWorkProgram::modify_row()
@@ -1118,14 +1124,7 @@ void HWorkProgram::removeRow(const int p_row)
 
     int row=p_row;
 
-
-
-
-
-
-
-
-    removed_rows<<wpmod->index(row,0).data().toInt();
+   removed_rows<<wpmod->index(row,0).data().toInt();
 
     wpmod->removeRow(row,QModelIndex());
 
@@ -1432,7 +1431,7 @@ void HWorkProgram::on_pbSingleSheet_clicked()
     refreshSheet();
     ui->cbAll->setChecked(false);
 
-   /* ui->pbAdd->setEnabled(user->get_programmi_u()>0);
+    /* ui->pbAdd->setEnabled(user->get_programmi_u()>0);
     ui->pbModify->setEnabled(user->get_wp_u()>0);
     ui->pbCopy->setEnabled(user->get_programmi_u()>0);
     ui->pbPaste->setEnabled(user->get_programmi_u()>0);
@@ -1847,7 +1846,6 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
         t=qmod->index(r,0).data().toString();
         it_id=new QStandardItem(t);
         t=qmod->index(r,1).data().toString();
-
         it_id_produz=new QStandardItem(t);
         it_id_produz->setEditable(false);
         t=qmod->index(r,2).data().toString();
@@ -1931,32 +1929,32 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
 
 
 
-            int state=0;
-            state=qmod->index(r,25).data().toInt();
+        int state=0;
+        state=qmod->index(r,25).data().toInt();
 
 
-            QIcon icon;
-            switch (state)
-            {
-            case 0:
-                icon=QIcon(":/Resources/rosso.png");
-                break;
-            case 1:
-                icon=QIcon(":/Resources/giallo.png");
-                break;
-            case 2:
-                icon=QIcon(":/Resources/verde.png");
-                break;
-            }
+        QIcon icon;
+        switch (state)
+        {
+        case 0:
+            icon=QIcon(":/Resources/rosso.png");
+            break;
+        case 1:
+            icon=QIcon(":/Resources/giallo.png");
+            break;
+        case 2:
+            icon=QIcon(":/Resources/verde.png");
+            break;
+        }
 
-            it_stato=new QStandardItem(QString());
-            it_stato->setEditable(false);
-            it_stato->setIcon(icon);
-            it_stato->setData(state,Qt::UserRole+1);
+        it_stato=new QStandardItem(QString());
+        it_stato->setEditable(false);
+        it_stato->setIcon(icon);
+        it_stato->setData(state,Qt::UserRole+1);
 
 
-            row<<it_id<<it_id_produz<<it_numriga<<it_quantita<<it_vaso_gr<<it_specolio<<it_idprodotto<<it_desc_prodotto<<it_olio<<it_tappo<<it_id_cliente<<it_desc_cli<<it_totale<<it_sanificaz<<it_num_ord<<it_fresco<<it_pastorizzato<<it_allergeni<<it_note<<it_lotscad<<it_stato<<it_totale_ric<<it_factor<<it_lotti<<it_vasi_pr<<it_completato;
-            wmod->appendRow(row);
+        row<<it_id<<it_id_produz<<it_numriga<<it_quantita<<it_vaso_gr<<it_specolio<<it_idprodotto<<it_desc_prodotto<<it_olio<<it_tappo<<it_id_cliente<<it_desc_cli<<it_totale<<it_sanificaz<<it_num_ord<<it_fresco<<it_pastorizzato<<it_allergeni<<it_note<<it_lotscad<<it_stato<<it_totale_ric<<it_factor<<it_lotti<<it_vasi_pr<<it_completato;
+        wmod->appendRow(row);
     }
 
 
