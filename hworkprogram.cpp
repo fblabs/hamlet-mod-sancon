@@ -44,7 +44,6 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HWorkProgram)
 {
-    QMessageBox::information(this,"DEBUG","entro in HWork",QMessageBox::Ok);
 
     ui->setupUi(this);
     user=p_user;
@@ -152,9 +151,6 @@ bool HWorkProgram::createSheet(int p_line, QDate p_date)
 
 void HWorkProgram::getSheets()
 {
-    QMessageBox::information(this,"DEBUG","entro in getsheets",QMessageBox::Ok);
-
-
     QModelIndex ix=QModelIndex();
 
     wsmod=new HWorkSheetModel(nullptr,db);
@@ -197,8 +193,7 @@ void HWorkProgram::getSheets()
     {
         ix=wsmod->index(0,0);
 
-        // ui->tvStorico->setCurrentIndex(i);
-        ui->tvStorico->selectionModel()->setCurrentIndex(ix,QItemSelectionModel::ClearAndSelect);
+         ui->tvStorico->selectionModel()->setCurrentIndex(ix,QItemSelectionModel::ClearAndSelect);
          ui->tvStorico->setCurrentIndex(ix);
 
          index_old=ix;
@@ -206,12 +201,6 @@ void HWorkProgram::getSheets()
     }else{
         index_old=QModelIndex();
     }
-
-
-
-
- QMessageBox::information(this,"DEBUG","esco da getsheets",QMessageBox::Ok);
-
 
 
 }
@@ -272,19 +261,11 @@ void HWorkProgram::approve(const bool app)
 
 void HWorkProgram::storicoindexchange()
 {
-     QMessageBox::information(this,"DEBUG","entro in storicoindex",QMessageBox::Ok);
+
 
     index_new=ui->tvStorico->currentIndex();
 
-    if(modified && index_old.row()!=ui->tvStorico->currentIndex().row())
-    {
-        /*if(QMessageBox::warning(this,QApplication::applicationName(),"Alcune modifiche non sono state salvate. Salvare?", QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok){*/
 
-            save(false);
-       /* }*/
-
-        modified=false;
-    }
 
 
 
@@ -328,6 +309,17 @@ void HWorkProgram::storicoindexchange()
         ui->lblCheck->setPixmap(QPixmap(":/Resources/Pencil.PNG"));
     }
 
+
+   /* if(modified && index_old.row()!=ui->tvStorico->currentIndex().row())
+    {
+        if(QMessageBox::warning(this,QApplication::applicationName(),"Alcune modifiche non sono state salvate. Salvare?", QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok){
+
+        save(false);
+         }
+
+        modified=false;
+    }
+*/
 
 
 
