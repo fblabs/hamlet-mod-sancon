@@ -50,7 +50,7 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     dets=false;
 
     wsmod=new HWorkSheetModel();
-    wpmod=new HWpMod();
+
 
 
     getSheets();
