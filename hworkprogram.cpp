@@ -195,12 +195,13 @@ void HWorkProgram::getSheets()
 
         // ui->tvStorico->setCurrentIndex(i);
         ui->tvStorico->selectionModel()->setCurrentIndex(ix,QItemSelectionModel::ClearAndSelect);
+         ui->tvStorico->setCurrentIndex(ix);
 
 
 
     }
 
-    ui->tvStorico->setCurrentIndex(ix);
+
     index_old=ix;
 
 
