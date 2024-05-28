@@ -201,10 +201,16 @@ void HWorkProgram::getSheets()
         ui->tvStorico->selectionModel()->setCurrentIndex(ix,QItemSelectionModel::ClearAndSelect);
          ui->tvStorico->setCurrentIndex(ix);
 
-            index_old=ix;
+         index_old=ix;
 
+    }else{
+        index_old=QModelIndex();
     }
 
+
+
+
+ QMessageBox::information(this,"DEBUG","esco da getsheets",QMessageBox::Ok);
 
 
 
@@ -266,6 +272,8 @@ void HWorkProgram::approve(const bool app)
 
 void HWorkProgram::storicoindexchange()
 {
+     QMessageBox::information(this,"DEBUG","entro in storicoindex",QMessageBox::Ok);
+
     index_new=ui->tvStorico->currentIndex();
 
     if(modified && index_old.row()!=ui->tvStorico->currentIndex().row())
