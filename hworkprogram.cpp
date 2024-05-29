@@ -405,7 +405,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
      QMessageBox::information(this,"DEBUG","dopo  set wpmod",QMessageBox::Ok);
 
-    wpmod->setHeaderData(0,Qt::Horizontal,"ID");
+    /*wpmod->setHeaderData(0,Qt::Horizontal,"ID");
     wpmod->setHeaderData(1,Qt::Horizontal,"ID Poduzione");
     wpmod->setHeaderData(2,Qt::Horizontal,"N. riga");
     wpmod->setHeaderData(3,Qt::Horizontal,"Q.tà");
@@ -431,8 +431,8 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     wpmod->setHeaderData(23,Qt::Horizontal,"Lotti prod.");
     wpmod->setHeaderData(24,Qt::Horizontal,"Vasi Prodotti");
 
-    QMessageBox::information(this,"DEBUG","prima di set headerData 25)",QMessageBox::Ok);
-    wpmod->setHeaderData(25,Qt::Horizontal,"Compl.");
+    ::information(this,"DEBUG","prima di set headerData 25)",QMeQMessageBoxssageBox::Ok);
+    wpmod->setHeaderData(25,Qt::Horizontal,"Compl.");*/
 
 
     ui->tvGeneral->setColumnHidden(0,true);
