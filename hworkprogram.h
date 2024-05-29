@@ -134,8 +134,8 @@ private:
     HUser* user;
     QSqlDatabase db;
     int id=-1;
-    HWorkSheetModel *wsmod; //modello del foglio([produzione]
-    QStandardItemModel *wpmod; //modello [righe_produzione]
+    HWorkSheetModel *wsmod=new HWorkSheetModel(); //modello del foglio([produzione]
+    QStandardItemModel *wpmod=new QStandardItemModel(); //modello [righe_produzione]
     bool dets=false;
     //QList<QStandardItem*>rowcp;
     QList<int>removed_rows;

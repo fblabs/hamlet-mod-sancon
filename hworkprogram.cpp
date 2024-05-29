@@ -93,6 +93,9 @@ HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     ui->tvGeneral->verticalHeader()->setDragEnabled(true);
 
 
+    ui->pbUndo->setVisible(false);
+
+
     ui->tvGeneral->verticalHeader()->setDragDropMode(QAbstractItemView::InternalMove);
 
     ui->tvGeneral->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -187,21 +190,20 @@ void HWorkProgram::getSheets()
 
     connect(ui->tvStorico->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,SLOT(storicoindexchange()));
 
-    if(wsmod->rowCount()>0)
-
 
     if(wsmod->rowCount()>0)
     {
         ix=wsmod->index(0,0);
 
-         ui->tvStorico->selectionModel()->setCurrentIndex(ix,QItemSelectionModel::ClearAndSelect);
-         ui->tvStorico->setCurrentIndex(ix);
+        ui->tvStorico->selectionModel()->setCurrentIndex(ix,QItemSelectionModel::ClearAndSelect);
+        ui->tvStorico->setCurrentIndex(ix);
 
-         index_old=ix;
+        index_old=ix;
 
     }else{
         index_old=QModelIndex();
     }
+
 
 
 }
@@ -311,7 +313,7 @@ void HWorkProgram::storicoindexchange()
     }
 
 
-   /* if(modified && index_old.row()!=ui->tvStorico->currentIndex().row())
+    /* if(modified && index_old.row()!=ui->tvStorico->currentIndex().row())
     {
         if(QMessageBox::warning(this,QApplication::applicationName(),"Alcune modifiche non sono state salvate. Salvare?", QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok){
 
@@ -956,7 +958,6 @@ void HWorkProgram::process(const QSqlQueryModel *mod)
 void HWorkProgram::save(bool showdialog)
 {
 
-
     if(wpmod->rowCount()<1) return;
 
     QModelIndex curix=ui->tvGeneral->currentIndex();
@@ -967,9 +968,9 @@ void HWorkProgram::save(bool showdialog)
           :vasi_prodotti,:completato,stato=:stato)\
         ON DUPLICATE KEY UPDATE ID=:ID,IDProduzione=:IDProduzione,num_riga=:num_riga,quantita=:quantita,vaso_gr=:vaso_gr,specificaolio=:specificaolio,\
                                                                                                                                               idprodotto=:idprodotto,olio=:olio,tappo=:tappo,idcliente=:idc,totale=:totale,sanificazione=:sanificazione,numero_ordine=:numero_ordine,fresco=:fresco,\
-        pastorizzato=:pastorizzato,allergeni=:allergeni,note=:note,lotti=:lotti,lotto_scadenza=:lotto_scadenza,vasi_prodotti=:vasi_prodotti,completato=:completato,stato=:stato";
+                                                                                                                                                                      pastorizzato=:pastorizzato,allergeni=:allergeni,note=:note,lotti=:lotti,lotto_scadenza=:lotto_scadenza,vasi_prodotti=:vasi_prodotti,completato=:completato,stato=:stato";
 
-    if(showdialog)
+                                                                                                                                                                              if(showdialog)
     {
         if(QMessageBox::question(this,QApplication::applicationName(),"Confermare il salvataggio?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Cancel)
         {
@@ -978,6 +979,7 @@ void HWorkProgram::save(bool showdialog)
             return;
         }
     }
+
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
     db.transaction();
@@ -1113,43 +1115,24 @@ void HWorkProgram::pasteRow()
             QStandardItem *it_nrb=new QStandardItem(QString::number(nr));
             pasted_row<<it_nrb;
         }
+        else if (p==25)
+        {
+
+                QStandardItem *it_completato=new QStandardItem(QString());
+                it_completato->setEditable(false);
+                it_completato->setCheckable(false);
+                it_completato->setCheckState(Qt::Unchecked);
+                pasted_row<<it_completato;
+
+        }
         else{
 
             pasted_row<<copied_row.at(p)->clone();
         }
     }
 
-
-
-   /* wpmod->setHeaderData(0,Qt::Horizontal,"ID");
-    wpmod->setHeaderData(1,Qt::Horizontal,"ID Poduzione");
-    wpmod->setHeaderData(2,Qt::Horizontal,"N. riga");
-    wpmod->setHeaderData(3,Qt::Horizontal,"Q.tà");
-    wpmod->setHeaderData(4,Qt::Horizontal,"Vaso gr.");
-    wpmod->setHeaderData(5,Qt::Horizontal,"Peso olio");
-    wpmod->setHeaderData(6,Qt::Horizontal,"ID prod.");
-    wpmod->setHeaderData(7,Qt::Horizontal,"Prodotto");
-    wpmod->setHeaderData(8,Qt::Horizontal,"Olio");
-    wpmod->setHeaderData(9,Qt::Horizontal,"Tappo");
-    wpmod->setHeaderData(10,Qt::Horizontal,"ID cliente");
-    wpmod->setHeaderData(11,Qt::Horizontal,"Cliente");
-    wpmod->setHeaderData(12,Qt::Horizontal,"Kg");
-    wpmod->setHeaderData(13,Qt::Horizontal,"Sanif.");
-    wpmod->setHeaderData(14,Qt::Horizontal,"Num. ordine");
-    wpmod->setHeaderData(15,Qt::Horizontal,"Fresco");
-    wpmod->setHeaderData(16,Qt::Horizontal,"Past.");
-    wpmod->setHeaderData(17,Qt::Horizontal,"Allergeni");
-    wpmod->setHeaderData(18,Qt::Horizontal,"Note");
-    wpmod->setHeaderData(19,Qt::Horizontal,"Lot/scadenza");
-    wpmod->setHeaderData(20,Qt::Horizontal,"Stato");
-    wpmod->setHeaderData(21,Qt::Horizontal,"quaric");
-    wpmod->setHeaderData(22,Qt::Horizontal,"factor");
-    wpmod->setHeaderData(23,Qt::Horizontal,"Lotti prod.");
-    wpmod->setHeaderData(24,Qt::Horizontal,"Vasi Prodotti");
-    wpmod->setHeaderData(25,Qt::Horizontal,"Compl.");*/
     wpmod->appendRow(pasted_row);
-
-    /*if(wpmod->rowCount()<2)*/ save(false);
+    save(false);
 }
 
 void HWorkProgram::modify_row()
@@ -1166,7 +1149,12 @@ void HWorkProgram::removeRow(const int p_row)
 
     removed_rows<<wpmod->index(row,0).data().toInt();
 
-    wpmod->removeRow(row,QModelIndex());
+    if(QMessageBox::question(this,QApplication::applicationName(),"Confermare?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
+        wpmod->removeRow(row,QModelIndex());
+        save(false);
+    }
+
 
 
 }
@@ -1273,11 +1261,11 @@ void HWorkProgram::copyrow(const int row)
 
     for(int c=0;c<wpmod->columnCount();++c)
     {
-        QStandardItem *id;
+        //QStandardItem *id;
         if(c==0)
         {
             QStandardItem *si_id=new QStandardItem(QString("0"));
-            copied_row<<id;
+            copied_row<<si_id;
 
         }else if (c==20){
             int state=0;
@@ -1289,7 +1277,7 @@ void HWorkProgram::copyrow(const int row)
             it_stato->setData(state,Qt::UserRole+1);
             copied_row<<it_stato;
         }
-        else
+       else
         {
             QStandardItem *si_clone=wpmod->item(row,c)->clone();
             copied_row<<si_clone;
@@ -1483,14 +1471,6 @@ void HWorkProgram::on_pbSingleSheet_clicked()
     ui->pbNotComplete->setEnabled(user->get_programmi_u()>0);
     ui->pbUndo->setEnabled(user->get_programmi_u()>0);
     ui->cbshowrows->setChecked(user->get_programmi_u()>0);
-    ui->cbshowrows->setEnabled(user->get_programmi_u()>0);
-
-
-
-
-    ui->cbshowrows->setEnabled(true);
-
-
 
 }
 
@@ -1851,6 +1831,8 @@ void HWorkProgram::on_pbUndo_clicked()
     if(QMessageBox::question(this,QApplication::applicationName(),"Ricaricare i dati?\nEventuali operazioni non salvate saranno perdute",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
         refreshSheet(ui->tvGeneral->currentIndex());
+
+
     }
 
 }
@@ -1927,12 +1909,12 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
         it_num_ord->setEditable(false);
         it_fresco=new QStandardItem(QString());
         it_fresco->setEditable(false);
-        it_fresco->setCheckable(true);
+        it_fresco->setCheckable(false);
         qmod->index(r,15).data().toInt()>0?it_fresco->setCheckState(Qt::Checked):it_fresco->setCheckState(Qt::Unchecked);
 
         it_pastorizzato=new QStandardItem(QString());
         it_pastorizzato->setEditable(false);
-        it_pastorizzato->setCheckable(true);
+        it_pastorizzato->setCheckable(false);
         qmod->index(r,16).data().toInt()>0?it_pastorizzato->setCheckState(Qt::Checked):it_pastorizzato->setCheckState(Qt::Unchecked);
 
         t=qmod->index(r,17).data().toString();
@@ -1958,7 +1940,7 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
 
         it_completato=new QStandardItem(QString());
         it_completato->setEditable(false);
-        it_completato->setCheckable(true);
+        it_completato->setCheckable(false);
         qmod->index(r,24).data().toInt()>0?it_completato->setCheckState(Qt::Checked):it_completato->setCheckState(Qt::Unchecked);
 
 
