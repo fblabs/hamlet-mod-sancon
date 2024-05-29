@@ -264,7 +264,6 @@ void HWorkProgram::approve(const bool app)
 
 void HWorkProgram::storicoindexchange()
 {
-    QMessageBox::information(this,"£DEBUG","entro in storico index",QMessageBox::Ok);
 
     index_new=ui->tvStorico->currentIndex();
 
@@ -337,9 +336,6 @@ void HWorkProgram::storicoindexchange()
 
     }
 
-    QMessageBox::information(this,"DEBUG","esco da storico index",QMessageBox::Ok);
-
-
 
 
     // refreshSheet();
@@ -353,7 +349,6 @@ void HWorkProgram::storicoindexchange()
 
 void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 {
-    QMessageBox::information(this,"£DEBUG","entro in refresh_sheet",QMessageBox::Ok);
 
 
     if(ui->cbAll->isChecked()) return;
@@ -368,45 +363,36 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
         FROM righe_produzione,prodotti,anagrafica,ricette\
                                   where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by righe_produzione.num_riga asc;";
 
-        q.prepare(sql);
+    q.prepare(sql);
     q.bindValue(":id_p",wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
 
 
     q.exec();
 
-    //qDebug()<<q.lastError().text();
+
 
     mod->setQuery(q);
 
-    QMessageBox::information(this,"£DEBUG","primadi conversione modello",QMessageBox::Ok);
-
-
-
-
-
     wpmod=convert_to_wp_mod(mod);
-
-
-     QMessageBox::information(this,"£DEBUG","dopo conversione modello",QMessageBox::Ok);
-
-
     delete mod;
 
 
 
 
     /// QItemDelegate *rdel=new QItemDelegate();
-    QMessageBox::information(this,"DEBUG","prima di set modello",QMessageBox::Ok);
-    ui->tvGeneral->setModel(new QStandardItemModel());
 
-     QMessageBox::information(this,"DEBUG","prima di set wpmod",QMessageBox::Ok);
+   // ui->tvGeneral->setModel(new QStandardItemModel());
+
+
 
     ui->tvGeneral->setModel(wpmod);
 
      QMessageBox::information(this,"DEBUG","dopo  set wpmod",QMessageBox::Ok);
 
-    /*wpmod->setHeaderData(0,Qt::Horizontal,"ID");
-    wpmod->setHeaderData(1,Qt::Horizontal,"ID Poduzione");
+
+    if(wpmod->columnCount()<25)return;
+    wpmod->setHeaderData(0,Qt::Horizontal,"ID");
+    wpmod->setHeaderData(1,Qt::Horizontal,"ID Produzione");
     wpmod->setHeaderData(2,Qt::Horizontal,"N. riga");
     wpmod->setHeaderData(3,Qt::Horizontal,"Q.tà");
     wpmod->setHeaderData(4,Qt::Horizontal,"Vaso gr.");
@@ -430,9 +416,9 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     wpmod->setHeaderData(22,Qt::Horizontal,"factor");
     wpmod->setHeaderData(23,Qt::Horizontal,"Lotti prod.");
     wpmod->setHeaderData(24,Qt::Horizontal,"Vasi Prodotti");
+    wpmod->setHeaderData(25,Qt::Horizontal,"Compl.");
 
-    ::information(this,"DEBUG","prima di set headerData 25)",QMeQMessageBoxssageBox::Ok);
-    wpmod->setHeaderData(25,Qt::Horizontal,"Compl.");*/
+    QMessageBox::information(this,"DEBUG","dopo  set headers",QMessageBox::Ok);
 
 
     ui->tvGeneral->setColumnHidden(0,true);
@@ -464,7 +450,6 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
     ui->tvGeneral->setPalette(p);
 
-    QMessageBox::information(this,"£DEBUG","esco da storico index",QMessageBox::Ok);
 
 
 
