@@ -38,7 +38,7 @@
 #include "hblend.h"
 #include "hfrullatori.h"
 
-#include <QDebug>
+//#include <QDebug>
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
@@ -387,8 +387,6 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
     ui->tvGeneral->setModel(wpmod);
 
-     QMessageBox::information(this,"DEBUG","dopo  set wpmod",QMessageBox::Ok);
-
 
     if(wpmod->columnCount()<25)return;
     wpmod->setHeaderData(0,Qt::Horizontal,"ID");
@@ -418,7 +416,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     wpmod->setHeaderData(24,Qt::Horizontal,"Vasi Prodotti");
     wpmod->setHeaderData(25,Qt::Horizontal,"Compl.");
 
-    QMessageBox::information(this,"DEBUG","dopo  set headers",QMessageBox::Ok);
+
 
 
     ui->tvGeneral->setColumnHidden(0,true);
@@ -1853,7 +1851,7 @@ void HWorkProgram::trigger_copy()
 
 QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
 {
-     QMessageBox::information(this,"DEBUG","entro in convert modello",QMessageBox::Ok);
+
 
     QStandardItemModel *wmod=new QStandardItemModel();
     QString t=QString();
@@ -1985,10 +1983,6 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
         row<<it_id<<it_id_produz<<it_numriga<<it_quantita<<it_vaso_gr<<it_specolio<<it_idprodotto<<it_desc_prodotto<<it_olio<<it_tappo<<it_id_cliente<<it_desc_cli<<it_totale<<it_sanificaz<<it_num_ord<<it_fresco<<it_pastorizzato<<it_allergeni<<it_note<<it_lotscad<<it_stato<<it_totale_ric<<it_factor<<it_lotti<<it_vasi_pr<<it_completato;
         wmod->appendRow(row);
     }
-
-     QMessageBox::information(this,"DEBUG","esco da convert",QMessageBox::Ok);
-
-
 
     return wmod;
 }
