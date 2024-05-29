@@ -430,6 +430,8 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     wpmod->setHeaderData(22,Qt::Horizontal,"factor");
     wpmod->setHeaderData(23,Qt::Horizontal,"Lotti prod.");
     wpmod->setHeaderData(24,Qt::Horizontal,"Vasi Prodotti");
+
+    QMessageBox::information(this,"DEBUG","prima di set headerData 25)",QMessageBox::Ok);
     wpmod->setHeaderData(25,Qt::Horizontal,"Compl.");
 
 
