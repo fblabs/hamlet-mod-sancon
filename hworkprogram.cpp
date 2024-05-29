@@ -396,10 +396,11 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
 
     /// QItemDelegate *rdel=new QItemDelegate();
-
+ QMessageBox::information(this,"DEBUG","prima di set modello",QMessageBox::Ok);
     ui->tvGeneral->setModel(new QStandardItemModel());
 
     ui->tvGeneral->setModel(wpmod);
+ QMessageBox::information(this,"DEBUG","dop set modello",QMessageBox::Ok);
 
     wpmod->setHeaderData(0,Qt::Horizontal,"ID");
     wpmod->setHeaderData(1,Qt::Horizontal,"ID Poduzione");
