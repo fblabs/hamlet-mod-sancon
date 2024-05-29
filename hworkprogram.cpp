@@ -378,10 +378,16 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
     mod->setQuery(q);
 
+    QMessageBox::information(this,"£DEBUG","primadi conversione modello",QMessageBox::Ok);
+
+
 
 
 
     wpmod=convert_to_wp_mod(mod);
+
+
+     QMessageBox::information(this,"£DEBUG","dopo conversione modello",QMessageBox::Ok);
 
 
     delete mod;
