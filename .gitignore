@@ -33,4 +33,3 @@ release/moc_hfrullatori.o
 release/moc_hworkprogram.cpp
 release/moc_hworkprogram.o
 release/qrc_icons.o
-release/moc_*
