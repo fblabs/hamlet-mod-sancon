@@ -264,7 +264,7 @@ void HWorkProgram::approve(const bool app)
 
 void HWorkProgram::storicoindexchange()
 {
-
+    QMessageBox::information(this,"£DEBUG","entro in storico index",QMessageBox::Ok);
 
     index_new=ui->tvStorico->currentIndex();
 
@@ -337,6 +337,9 @@ void HWorkProgram::storicoindexchange()
 
     }
 
+    QMessageBox::information(this,"DEBUG","esco da storico index",QMessageBox::Ok);
+
+
 
 
     // refreshSheet();
@@ -350,7 +353,12 @@ void HWorkProgram::storicoindexchange()
 
 void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 {
+    QMessageBox::information(this,"£DEBUG","entro in refresh_sheet",QMessageBox::Ok);
+
+
     if(ui->cbAll->isChecked()) return;
+
+
 
     QSqlQueryModel *mod=new QSqlQueryModel();
 
@@ -443,6 +451,9 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     QPalette p = ui->tvGeneral->palette();
     p.setBrush(p.Inactive, p.Highlight, p.brush(p.Highlight));
     ui->tvGeneral->setPalette(p);
+
+    QMessageBox::information(this,"£DEBUG","esco da storico index",QMessageBox::Ok);
+
 
 
 
