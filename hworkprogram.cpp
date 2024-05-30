@@ -373,8 +373,13 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
     mod->setQuery(q);
 
+
+    QStandardItemModel *tmp=new QStandardItemModel();
+    ui->tvGeneral->setModel(tmp);
     wpmod=convert_to_wp_mod(mod);
     delete mod;
+
+    ui->tvGeneral->setModel(wpmod);
 
 
 
@@ -972,8 +977,8 @@ void HWorkProgram::save(bool showdialog)
         VALUES\
         (:ID,:IDProduzione,:num_riga,:quantita,:vaso_gr,:specificaolio,:idprodotto ,:olio,:tappo,:idc,:totale,:sanificazione,:numero_ordine,:fresco,:pastorizzato,:allergeni,:note,:lotti,:lotto_scadenza,\
           :vasi_prodotti,:completato,stato=:stato)\
-        ON DUPLICATE KEY UPDATE ID=:ID,IDProduzione=:IDProduzione,num_riga=:num_riga,quantita=:quantita,vaso_gr=:vaso_gr,specificaolio=:specificaolio,\
-                                                                                                                                              idprodotto=:idprodotto,olio=:olio,tappo=:tappo,idcliente=:idc,totale=:totale,sanificazione=:sanificazione,numero_ordine=:numero_ordine,fresco=:fresco,\
+        ON DUPLICATE KEY UPDATE IDProduzione=:IDProduzione,num_riga=:num_riga,quantita=:quantita,vaso_gr=:vaso_gr,specificaolio=:specificaolio,\
+                                                                                                               idprodotto=:idprodotto,olio=:olio,tappo=:tappo,idcliente=:idc,totale=:totale,sanificazione=:sanificazione,numero_ordine=:numero_ordine,fresco=:fresco,\
                                                                                                                                                                       pastorizzato=:pastorizzato,allergeni=:allergeni,note=:note,lotti=:lotti,lotto_scadenza=:lotto_scadenza,vasi_prodotti=:vasi_prodotti,completato=:completato,stato=:stato";
 
                                                                                                                                                                               if(showdialog)
@@ -996,10 +1001,11 @@ void HWorkProgram::save(bool showdialog)
     {
 
         q.bindValue(":ID", wpmod->index(r,0).data().toInt());
-        q.bindValue(":IDProduzione", wpmod->index(r,1).data().toInt());
+        q.bindValue(":IDProduzione", wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
 
-        //
-        int numriga=ui->tvGeneral->verticalHeader()->visualIndex(r)+1;
+        int numriga=0;
+
+        numriga=ui->tvGeneral->verticalHeader()->visualIndex(r)+1;
 
         q.bindValue(":num_riga", numriga);
         q.bindValue(":quantita", wpmod->index(r,3).data().toString());
@@ -1049,11 +1055,8 @@ void HWorkProgram::save(bool showdialog)
             d=q.exec();
 
         }
-
-
-
-
     }
+
 
 
 
@@ -1077,11 +1080,15 @@ void HWorkProgram::save(bool showdialog)
 
     QApplication::restoreOverrideCursor();
     modified=false;
+    refreshSheet();
+
 
 
     ui->tvGeneral->setCurrentIndex(ui->tvGeneral->model()->index(curix.row(),0));
 
     removed_rows.clear();
+
+
 
 
 }
