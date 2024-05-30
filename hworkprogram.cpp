@@ -38,7 +38,7 @@
 #include "hblend.h"
 #include "hfrullatori.h"
 
-//#include <QDebug>
+#include <QDebug>
 
 HWorkProgram::HWorkProgram(HUser *p_user,QSqlDatabase p_db,QWidget *parent) :
     QWidget(parent),
@@ -139,16 +139,36 @@ bool HWorkProgram::createSheet(int p_line, QDate p_date)
     q.bindValue(":dateal", dateal);
     q.bindValue(":linea",linea);
     bool b=q.exec();
+
+
+    int last=-1;
     if (b)
     {
         db.commit();
+        QString sql="SELECT LAST_INSERT_ID()";
+        q.prepare(sql);
+        q.exec();
+        q.next();
+        last=q.value(0).toInt();
+
         QMessageBox::information(this,QApplication::applicationName(),"Foglio creato",QMessageBox::Ok);
 
     }else{
         db.rollback();
         QMessageBox::warning(this,QApplication::applicationName(),"Errore query:"+q.lastError().text(),QMessageBox::Ok);
     }
+
     getSheets();
+
+    for(int r=0;r<wsmod->rowCount();++r)
+    {
+        int rid=wsmod->index(r,0).data().toInt();
+        if(last==rid)
+        {
+            ui->tvStorico->selectRow(r);
+        }
+
+    }
 
     return b;
 }
@@ -159,7 +179,7 @@ void HWorkProgram::getSheets()
 
     wsmod=new HWorkSheetModel(nullptr,db);
     wsmod->setTable("produzione");
-    wsmod->setSort(0,Qt::DescendingOrder);
+    wsmod->setSort(1,Qt::DescendingOrder);
     wsmod->select();
     ui->tvStorico->setModel(wsmod);
 
@@ -363,7 +383,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
         FROM righe_produzione,prodotti,anagrafica,ricette\
                                   where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by righe_produzione.num_riga asc;";
 
-    q.prepare(sql);
+        q.prepare(sql);
     q.bindValue(":id_p",wsmod->index(ui->tvStorico->currentIndex().row(),0).data().toInt());
 
 
@@ -386,7 +406,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
     /// QItemDelegate *rdel=new QItemDelegate();
 
-   // ui->tvGeneral->setModel(new QStandardItemModel());
+    // ui->tvGeneral->setModel(new QStandardItemModel());
 
 
 
@@ -1131,11 +1151,11 @@ void HWorkProgram::pasteRow()
         else if (p==25)
         {
 
-                QStandardItem *it_completato=new QStandardItem(QString());
-                it_completato->setEditable(false);
-                it_completato->setCheckable(false);
-                it_completato->setCheckState(Qt::Unchecked);
-                pasted_row<<it_completato;
+            QStandardItem *it_completato=new QStandardItem(QString());
+            it_completato->setEditable(false);
+            it_completato->setCheckable(false);
+            it_completato->setCheckState(Qt::Unchecked);
+            pasted_row<<it_completato;
 
         }
         else{
@@ -1290,7 +1310,7 @@ void HWorkProgram::copyrow(const int row)
             it_stato->setData(state,Qt::UserRole+1);
             copied_row<<it_stato;
         }
-       else
+        else
         {
             QStandardItem *si_clone=wpmod->item(row,c)->clone();
             copied_row<<si_clone;
