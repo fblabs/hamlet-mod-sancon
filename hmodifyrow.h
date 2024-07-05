@@ -47,6 +47,12 @@ private slots:
     bool eventFilter(QObject *target, QEvent *event);
 
 
+    void on_pbUndo_clicked();
+
+    void on_dePartenza_dateChanged(const QDate &date);
+
+    void on_cbPartenza_toggled(bool checked);
+
 signals:
     void done();
 };

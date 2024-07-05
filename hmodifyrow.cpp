@@ -28,7 +28,7 @@ HModifyRow::HModifyRow(const int p_id,const int p_idrow,const int p_row, HUser *
     setPermissions(user);
     ui->leVaso->installEventFilter(this);
 
-   /* QShortcut *ok= new QShortcut(ui->leVaso);
+    /* QShortcut *ok= new QShortcut(ui->leVaso);
     ok->setKey(Qt::Key_Tab);
     ui->leVaso->setFocusPolicy(Qt::NoFocus);
     connect(ok,SIGNAL(activated()),this,SLOT(calcTotale()));*/
@@ -44,6 +44,11 @@ HModifyRow::HModifyRow(const int p_id,const int p_idrow,const int p_row, HUser *
     QDoubleValidator *tot_val=new QDoubleValidator();
     tot_val->setNotation(QDoubleValidator::StandardNotation);
     ui->leTotal->setValidator(tot_val);
+
+    ui->dePartenza->setDate(QDate::currentDate());
+
+    ui->label_6->setVisible(false);
+    ui->leOlio->setVisible(false);
 
 
     getClients();
@@ -130,7 +135,7 @@ void HModifyRow::initSanityModel()
 
 void HModifyRow::loadRow()
 {
-    qDebug()<<"loadRow";
+
 
     QSqlTableModel *rows_model=new QSqlTableModel(0,db);
     rows_model->setTable("righe_produzione");
@@ -139,7 +144,7 @@ void HModifyRow::loadRow()
     //setup controls
     QSqlTableModel *clientimod=static_cast<QSqlTableModel*>(ui->cbCliente->model());
     clientimod->setFilter("ID="+rows_model->index(0,9).data(0).toString());
-       ui->cbCliente->setCurrentIndex(0);
+    ui->cbCliente->setCurrentIndex(0);
     QString texttofind=ui->cbCliente->currentText();
     clientimod->setFilter("cliente >0 and visibile >0");
     int ixc=ui->cbCliente->findText(texttofind);
@@ -159,11 +164,9 @@ void HModifyRow::loadRow()
         }
     }
 
-    qDebug()<<"prodotto"<<sxp;
+
     int x=ui->cbProdotto->findText(sxp);
     ui->cbProdotto->setCurrentIndex(x);
-
-
 
 
     ui->leQuant->setText(rows_model->index(0,3).data(0).toString());
@@ -176,7 +179,6 @@ void HModifyRow::loadRow()
     ui->leNumOrd->setText(rows_model->index(0,12).data(0).toString());
     ui->leLotScad->setText(rows_model->index(0,17).data(0).toString());
     int fresco=rows_model->index(0,13).data(0).toInt();
-    qDebug()<<"loadrow24"<<rows_model->index(0,13).data(0).toString()<<rows_model->index(0,14).data(0).toInt();;
     int pastorizzato=rows_model->index(0,14).data(0).toInt();
     QString lotti=rows_model->index(0,17).data(0).toString();
     QString lotScad=rows_model->index(0,18).data(0).toString();
@@ -186,15 +188,30 @@ void HModifyRow::loadRow()
 
 
 
-    qDebug()<<"fresco24"<<fresco<<pastorizzato;
+
+
+
     fresco>0 ? ui->rbFresh->setChecked(true):ui->rbFresh->setChecked(false);
     pastorizzato>0 ? ui->rbPastorized->setChecked(true):ui->rbPastorized->setChecked(false);
     fresco+pastorizzato<1? ui->rbNone->setChecked(true): ui->rbNone->setChecked(false);
 
-   /* else
+    QDate dpart=rows_model->index(0,22).data().toDate();
+    if(dpart.isValid())
     {
-        ui->rbNone->setChecked(true);
-    }*/
+        ui->dePartenza->setStyleSheet("color: 'black'");
+        ui->dePartenza->setDate(dpart);
+        ui->cbPartenza->setChecked(true);
+    }
+    else
+    {
+        ui->dePartenza->setStyleSheet("color: 'white'");
+        ui->dePartenza->setDate(ui->dePartenza->minimumDate());
+        ui->cbPartenza->setChecked(false);
+    }
+
+
+
+
 
     completato>0 ? ui->cbDone->setChecked(true):ui->cbDone->setChecked(false);
 
@@ -285,7 +302,7 @@ void HModifyRow::saveRow(){
     qDebug()<<"save_roW()"<<fresco<<pastorizzato;
 
     QSqlQuery q(db);
-    QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,lotti=:lotti,lotto_scadenza=:lotscad,totale=:tot,vasi_prodotti=:vp,completato=:comp where IDproduzione=:idproduzione and num_riga=:num";
+    QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,lotti=:lotti,lotto_scadenza=:lotscad,totale=:tot,vasi_prodotti=:vp,completato=:comp,partenza=:part where IDproduzione=:idproduzione and num_riga=:num";
     db.transaction();
     q.prepare(sql);
     q.bindValue(":idcliente",idcliente);
@@ -307,6 +324,12 @@ void HModifyRow::saveRow(){
     q.bindValue(":vp",vasi_p);
     q.bindValue(":comp",completato);
 
+    QDate dp=ui->dePartenza->date();
+    if(dp!=ui->dePartenza->minimumDate() && dp.isValid())
+    {
+        q.bindValue(":part",ui->dePartenza->date());
+    }
+
 
     bool ok=false;
     q.bindValue(":tot",ui->leTotal->text().toDouble(&ok));
@@ -325,12 +348,12 @@ void HModifyRow::saveRow(){
     else
     {
         db.commit();
-                emit done();
+        emit done();
         QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
 
     }
 
-   loadRow();
+    loadRow();
 
 
 }
@@ -362,7 +385,7 @@ void HModifyRow::calcTotale()
 
 void HModifyRow::on_leTotal_returnPressed()
 {
- calcTotale();
+    calcTotale();
 }
 
 
@@ -423,4 +446,37 @@ bool HModifyRow::eventFilter(QObject *target, QEvent *event)
 
 
 
+
+
+void HModifyRow::on_pbUndo_clicked()
+{
+    ui->dePartenza->setDate(ui->dePartenza->minimumDate());
+
+}
+
+
+void HModifyRow::on_dePartenza_dateChanged(const QDate &date)
+{
+    /* if (date==ui->dePartenza->minimumDate())
+    {
+        ui->dePartenza->setStyleSheet("color: 'white'");
+        ui->dePartenza->setDate(ui->dePartenza->minimumDate());
+    }*/
+}
+
+
+void HModifyRow::on_cbPartenza_toggled(bool checked)
+{
+    if(checked)
+    {
+        ui->dePartenza->setStyleSheet("color: 'black'");
+        ui->dePartenza->setDate(QDate::currentDate());
+
+    }
+    else
+    {
+        ui->dePartenza->setStyleSheet("color: 'white'");
+        ui->dePartenza->setDate(ui->dePartenza->minimumDate());
+    }
+}
 

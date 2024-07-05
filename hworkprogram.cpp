@@ -290,10 +290,6 @@ void HWorkProgram::storicoindexchange()
 
 
 
-
-
-
-
     QModelIndex index=ui->tvStorico->model()->index(ui->tvStorico->currentIndex().row(),0);
     bool app=wsmod->index(index.row(),5).data(Qt::CheckStateRole).toInt()>0?true:false;
 
@@ -332,17 +328,6 @@ void HWorkProgram::storicoindexchange()
     }
 
 
-    /* if(modified && index_old.row()!=ui->tvStorico->currentIndex().row())
-    {
-        if(QMessageBox::warning(this,QApplication::applicationName(),"Alcune modifiche non sono state salvate. Salvare?", QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok){
-
-        save(false);
-         }
-
-        modified=false;
-    }
-*/
-
 
 
     if(dets)
@@ -355,14 +340,6 @@ void HWorkProgram::storicoindexchange()
         on_pbSingleSheet_clicked();
 
     }
-
-
-
-    // refreshSheet();
-
-
-
-
 
 
 }
@@ -379,7 +356,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
 
     QSqlQuery q(db);
-    QString sql="SELECT righe_produzione.ID,IDProduzione,num_riga,quantita,vaso_gr,specificaolio,idprodotto,prodotti.descrizione,olio,tappo,righe_produzione.idcliente,anagrafica.ragione_sociale,totale,sanificazione,numero_ordine,fresco,pastorizzato,allergeni,righe_produzione.note,lotto_scadenza,ricette.q_tot, righe_produzione.totale/ricette.q_tot as factor,lotti as 'Lotti produzione', vasi_prodotti as 'Vasi prodotti', completato as 'Completato',stato as 'stato'\
+    QString sql="SELECT righe_produzione.ID,IDProduzione,num_riga,quantita,vaso_gr,specificaolio,idprodotto,prodotti.descrizione,olio,tappo,righe_produzione.idcliente,anagrafica.ragione_sociale,totale,sanificazione,numero_ordine,fresco,pastorizzato,allergeni,righe_produzione.note,lotto_scadenza,ricette.q_tot, righe_produzione.totale/ricette.q_tot as factor,lotti as 'Lotti produzione', vasi_prodotti as 'Vasi prodotti', completato as 'Completato',stato as 'stato',partenza as 'Partenza'\
         FROM righe_produzione,prodotti,anagrafica,ricette\
                                   where ricette.ID_prodotto=prodotti.ID and prodotti.ID=righe_produzione.idprodotto and anagrafica.id=righe_produzione.idcliente and righe_produzione.IDProduzione=:id_p  order by righe_produzione.num_riga asc;";
 
@@ -401,12 +378,6 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
 
     ui->tvGeneral->setModel(wpmod);
 
-
-
-
-    /// QItemDelegate *rdel=new QItemDelegate();
-
-    // ui->tvGeneral->setModel(new QStandardItemModel());
 
 
 
@@ -440,6 +411,7 @@ void HWorkProgram::refreshSheet(const QModelIndex p_currentIndex)
     wpmod->setHeaderData(23,Qt::Horizontal,"Lotti prod.");
     wpmod->setHeaderData(24,Qt::Horizontal,"Vasi Prodotti");
     wpmod->setHeaderData(25,Qt::Horizontal,"Compl.");
+    wpmod->setHeaderData(26,Qt::Horizontal,"Partenza");
 
 
 
@@ -697,7 +669,7 @@ void HWorkProgram::print()
 
     const int rowCount = mod->rowCount();
     int columnCount=-1;
-    dets? columnCount = mod->columnCount():columnCount=mod->columnCount()-1;
+    dets? columnCount = mod->columnCount():columnCount=mod->columnCount();
 
 
 
@@ -735,7 +707,7 @@ void HWorkProgram::print()
 
 
     for (int column = 0 ; column < column_indexes.size(); column++)
-    {      
+    {
         out << QString("<th>%1</th>").arg(mod->headerData(column_indexes.at(column),Qt::Horizontal).toString());
     }
 
@@ -974,9 +946,10 @@ void HWorkProgram::process(const QSqlQueryModel *mod)
 
     ui->tvGeneral->setModel(emod);
 
+
     ui->tvGeneral->setColumnHidden(0,false);
     ui->tvGeneral->setColumnHidden(1,false);
-    ui->tvGeneral->setColumnHidden(2,false);
+    if(ui->cbshowrows->isChecked()) ui->tvGeneral->setColumnHidden(2,false);
 
     /* ui->tvGeneral->setColumnHidden(3,true);
     ui->tvGeneral->setColumnHidden(4,true);*/
@@ -1489,11 +1462,7 @@ void HWorkProgram::on_pbSingleSheet_clicked()
     refreshSheet();
     ui->cbAll->setChecked(false);
 
-    /* ui->pbAdd->setEnabled(user->get_programmi_u()>0);
-    ui->pbModify->setEnabled(user->get_wp_u()>0);
-    ui->pbCopy->setEnabled(user->get_programmi_u()>0);
-    ui->pbPaste->setEnabled(user->get_programmi_u()>0);
-    ui->pbRemove->setEnabled(user->get_programmi_u()>0);*/
+
 
     ui->pbAdd->setEnabled(user->get_programmi_u()>0);
     ui->pbModify->setEnabled(user->get_programmi_u()>0);
@@ -1503,7 +1472,7 @@ void HWorkProgram::on_pbSingleSheet_clicked()
     ui->pbUncompleteRow->setEnabled(user->get_programmi_u()>0);
     ui->pbNotComplete->setEnabled(user->get_programmi_u()>0);
     ui->pbUndo->setEnabled(user->get_programmi_u()>0);
-    ui->cbshowrows->setChecked(user->get_programmi_u()>0);
+   // ui->cbshowrows->setChecked(user->get_programmi_u()>0);
 
 }
 
@@ -1732,7 +1701,7 @@ void HWorkProgram::on_cbAll_toggled(bool checked)
     }else{
 
         ui->cbshowrows->setChecked(false);
-        ui->cbshowrows->setEnabled(true);
+       // ui->cbshowrows->setEnabled(true);
         on_pbSingleSheet_clicked();
 
     }
@@ -1885,7 +1854,7 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
 
     if (qmod->rowCount()<1) return wmod;
 
-    QStandardItem *it_id, *it_id_produz, *it_numriga,*it_quantita, *it_vaso_gr,*it_specolio,*it_idprodotto,*it_desc_prodotto,*it_olio,*it_tappo,*it_id_cliente,*it_desc_cli,*it_totale,*it_totale_ric,*it_factor,*it_sanificaz,*it_num_ord,*it_fresco,*it_pastorizzato,*it_allergeni,*it_note,*it_lotti,*it_lotscad,*it_vasi_pr,*it_completato,*it_stato;
+    QStandardItem *it_id, *it_id_produz, *it_numriga,*it_quantita, *it_vaso_gr,*it_specolio,*it_idprodotto,*it_desc_prodotto,*it_olio,*it_tappo,*it_id_cliente,*it_desc_cli,*it_totale,*it_totale_ric,*it_factor,*it_sanificaz,*it_num_ord,*it_fresco,*it_pastorizzato,*it_allergeni,*it_note,*it_lotti,*it_lotscad,*it_vasi_pr,*it_completato,*it_stato,*it_partenza;
 
 
 
@@ -1978,6 +1947,11 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
         it_completato->setCheckable(false);
         qmod->index(r,24).data().toInt()>0?it_completato->setCheckState(Qt::Checked):it_completato->setCheckState(Qt::Unchecked);
 
+        QString s_partenza=t=qmod->index(r,26).data().toDate().toString("dd-MM-yyyy");
+        it_partenza=new QStandardItem(s_partenza);
+
+
+
 
 
 
@@ -2007,7 +1981,7 @@ QStandardItemModel* HWorkProgram::convert_to_wp_mod(const QSqlQueryModel *qmod)
         it_stato->setData(state,Qt::UserRole+1);
 
 
-        row<<it_id<<it_id_produz<<it_numriga<<it_quantita<<it_vaso_gr<<it_specolio<<it_idprodotto<<it_desc_prodotto<<it_olio<<it_tappo<<it_id_cliente<<it_desc_cli<<it_totale<<it_sanificaz<<it_num_ord<<it_fresco<<it_pastorizzato<<it_allergeni<<it_note<<it_lotscad<<it_stato<<it_totale_ric<<it_factor<<it_lotti<<it_vasi_pr<<it_completato;
+        row<<it_id<<it_id_produz<<it_numriga<<it_quantita<<it_vaso_gr<<it_specolio<<it_idprodotto<<it_desc_prodotto<<it_olio<<it_tappo<<it_id_cliente<<it_desc_cli<<it_totale<<it_sanificaz<<it_num_ord<<it_fresco<<it_pastorizzato<<it_allergeni<<it_note<<it_lotscad<<it_stato<<it_totale_ric<<it_factor<<it_lotti<<it_vasi_pr<<it_completato<<it_partenza;
         wmod->appendRow(row);
     }
 

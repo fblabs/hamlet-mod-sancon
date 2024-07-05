@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
@@ -72,6 +73,11 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_15;
     QLineEdit *leVasiProdotti;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *label_16;
+    QCheckBox *cbPartenza;
+    QDateEdit *dePartenza;
+    QSpacerItem *horizontalSpacer_3;
     QFormLayout *formLayout_3;
     QLabel *label_11;
     QPlainTextEdit *ptNote;
@@ -314,6 +320,31 @@ public:
 
         verticalLayout_3->addLayout(verticalLayout_2);
 
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        label_16 = new QLabel(HModifyRow);
+        label_16->setObjectName(QString::fromUtf8("label_16"));
+
+        horizontalLayout_5->addWidget(label_16);
+
+        cbPartenza = new QCheckBox(HModifyRow);
+        cbPartenza->setObjectName(QString::fromUtf8("cbPartenza"));
+
+        horizontalLayout_5->addWidget(cbPartenza);
+
+        dePartenza = new QDateEdit(HModifyRow);
+        dePartenza->setObjectName(QString::fromUtf8("dePartenza"));
+        dePartenza->setCalendarPopup(true);
+
+        horizontalLayout_5->addWidget(dePartenza);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_3);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_5);
+
         formLayout_3 = new QFormLayout();
         formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
         label_11 = new QLabel(HModifyRow);
@@ -432,6 +463,9 @@ public:
         label_14->setText(QCoreApplication::translate("HModifyRow", "Lotti:", nullptr));
         pbSaveLots->setText(QCoreApplication::translate("HModifyRow", "Salva lotti", nullptr));
         label_15->setText(QCoreApplication::translate("HModifyRow", "Vasi prodotti:", nullptr));
+        label_16->setText(QCoreApplication::translate("HModifyRow", "Partenza:", nullptr));
+        cbPartenza->setText(QString());
+        dePartenza->setSpecialValueText(QString());
         label_11->setText(QCoreApplication::translate("HModifyRow", "Note:", nullptr));
         label_13->setText(QCoreApplication::translate("HModifyRow", "Lot/Scadenza", nullptr));
         label_7->setText(QCoreApplication::translate("HModifyRow", "Totale Kg:", nullptr));

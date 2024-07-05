@@ -204,7 +204,7 @@ public:
         tvGeneral->setDragEnabled(true);
         tvGeneral->setDragDropOverwriteMode(false);
         tvGeneral->setDragDropMode(QAbstractItemView::NoDragDrop);
-        tvGeneral->setDefaultDropAction(Qt::IgnoreAction);
+        tvGeneral->setDefaultDropAction(Qt::MoveAction);
         tvGeneral->setAlternatingRowColors(true);
         tvGeneral->setSelectionMode(QAbstractItemView::SingleSelection);
         tvGeneral->setSelectionBehavior(QAbstractItemView::SelectRows);
