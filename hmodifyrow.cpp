@@ -13,6 +13,7 @@
 #include <QStringListModel>
 #include <QValidator>
 #include <QShortcut>
+#include <QDate>
 
 HModifyRow::HModifyRow(const int p_id,const int p_idrow,const int p_row, HUser *p_user, QSqlDatabase p_db, QWidget *parent) :
     QWidget(parent),
@@ -45,7 +46,7 @@ HModifyRow::HModifyRow(const int p_id,const int p_idrow,const int p_row, HUser *
     tot_val->setNotation(QDoubleValidator::StandardNotation);
     ui->leTotal->setValidator(tot_val);
 
-    ui->dePartenza->setDate(QDate::currentDate());
+
 
     ui->label_6->setVisible(false);
     ui->leOlio->setVisible(false);
@@ -137,7 +138,7 @@ void HModifyRow::loadRow()
 {
 
 
-    QSqlTableModel *rows_model=new QSqlTableModel(0,db);
+    rows_model=new QSqlTableModel(0,db);
     rows_model->setTable("righe_produzione");
     rows_model->setFilter("IDProduzione="+QString::number(idp)+" and num_riga="+QString::number(row));
     rows_model->select();
@@ -148,12 +149,10 @@ void HModifyRow::loadRow()
     QString texttofind=ui->cbCliente->currentText();
     clientimod->setFilter("cliente >0 and visibile >0");
     int ixc=ui->cbCliente->findText(texttofind);
-    qDebug()<<texttofind;
     ui->cbCliente->setCurrentIndex(ixc);
 
     QSqlQueryModel *productsmod=static_cast<QSqlQueryModel*>(ui->cbProdotto->model());
     int r=rows_model->index(0,6).data(0).toInt();
-    qDebug()<<QString::number(r);
     QString sxp;
 
     for(int ix=0;ix<productsmod->rowCount();++ix)
@@ -196,16 +195,18 @@ void HModifyRow::loadRow()
     fresco+pastorizzato<1? ui->rbNone->setChecked(true): ui->rbNone->setChecked(false);
 
     QDate dpart=rows_model->index(0,22).data().toDate();
+
     if(dpart.isValid())
     {
-        ui->dePartenza->setStyleSheet("color: 'black'");
         ui->dePartenza->setDate(dpart);
+        ui->dePartenza->setStyleSheet("color: 'black'");
         ui->cbPartenza->setChecked(true);
+
     }
     else
     {
+        ui->dePartenza->setDate(QDate::currentDate());
         ui->dePartenza->setStyleSheet("color: 'white'");
-        ui->dePartenza->setDate(ui->dePartenza->minimumDate());
         ui->cbPartenza->setChecked(false);
     }
 
@@ -223,7 +224,17 @@ void HModifyRow::loadRow()
 
     bool vok=false;
     double tot=rows_model->index(0,10).data(0).toDouble(&vok);
-    ui->leTotal->setText(QString::number(tot,'f',3));
+
+    QString s_tot=QString::number(tot,'f',3);
+
+    if(s_tot.contains(".000"))
+    {
+        s_tot=s_tot.left(s_tot.size()-4);
+    }
+
+    ui->leTotal->setText(s_tot);
+
+
 
 
 
@@ -299,7 +310,7 @@ void HModifyRow::saveRow(){
 
     }
 
-    qDebug()<<"save_roW()"<<fresco<<pastorizzato;
+
 
     QSqlQuery q(db);
     QString sql="update righe_produzione set idcliente=:idcliente,idprodotto=:idprod,numero_ordine=:nord,vaso_gr=:vasog,quantita=:quan,specificaolio=:spolio,olio=:olio,tappo=:tappo,sanificazione=:sanif,allergeni=:alrg,fresco=:fresco,pastorizzato=:pasto,note=:note,lotti=:lotti,lotto_scadenza=:lotscad,totale=:tot,vasi_prodotti=:vp,completato=:comp,partenza=:part where IDproduzione=:idproduzione and num_riga=:num";
@@ -316,7 +327,6 @@ void HModifyRow::saveRow(){
     q.bindValue(":sanif",san);
     q.bindValue(":alrg",allerg);
     q.bindValue(":fresco",fresco);
-    qDebug()<<"saverow"<<fresco;
     q.bindValue(":pasto",pastorizzato);
     q.bindValue(":note",ui->ptNote->toPlainText());
     q.bindValue(":lotti",ui->ptLotti->toPlainText());
@@ -324,11 +334,14 @@ void HModifyRow::saveRow(){
     q.bindValue(":vp",vasi_p);
     q.bindValue(":comp",completato);
 
+    QDate currentDate=rows_model->index(0,22).data().toDate();
     QDate dp=ui->dePartenza->date();
-    if(dp!=ui->dePartenza->minimumDate() && dp.isValid())
+    if(/*currentDate!=ui->dePartenza->minimumDate() && currentDate.isValid()&&*/ ui->cbPartenza->isChecked())
     {
+
         q.bindValue(":part",ui->dePartenza->date());
     }
+
 
 
     bool ok=false;
@@ -378,7 +391,18 @@ void HModifyRow::calcTotale()
     }
 
     double totale=(quant*vaso)/1000;
-    ui->leTotal->setText(QString::number(totale,'f',3));
+
+    QString s_tot=QString::number(totale,'f',3);
+
+    if(s_tot.contains(".000"))
+    {
+        s_tot=s_tot.left(s_tot.size()-4);
+    }
+
+
+
+
+    ui->leTotal->setText(s_tot);
 
 }
 
@@ -448,35 +472,25 @@ bool HModifyRow::eventFilter(QObject *target, QEvent *event)
 
 
 
-void HModifyRow::on_pbUndo_clicked()
-{
-    ui->dePartenza->setDate(ui->dePartenza->minimumDate());
-
-}
-
-
-void HModifyRow::on_dePartenza_dateChanged(const QDate &date)
-{
-    /* if (date==ui->dePartenza->minimumDate())
-    {
-        ui->dePartenza->setStyleSheet("color: 'white'");
-        ui->dePartenza->setDate(ui->dePartenza->minimumDate());
-    }*/
-}
-
 
 void HModifyRow::on_cbPartenza_toggled(bool checked)
 {
+    ui->dePartenza->setEnabled(checked);
+
     if(checked)
     {
-        ui->dePartenza->setStyleSheet("color: 'black'");
-        ui->dePartenza->setDate(QDate::currentDate());
 
+        ui->dePartenza->setStyleSheet("color: 'black'");
+        if(!ui->dePartenza->date().isValid())
+        {
+         ui->dePartenza->setDate(QDate::currentDate());
+        }
     }
     else
     {
+
         ui->dePartenza->setStyleSheet("color: 'white'");
-        ui->dePartenza->setDate(ui->dePartenza->minimumDate());
+       // ui->dePartenza->setDate(ui->dePartenza->minimumDate());
     }
 }
 

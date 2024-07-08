@@ -23,6 +23,7 @@ private:
     HUser *user;
     int id;
 
+
 private slots:
    void getClients();
    void getProducts();
@@ -35,9 +36,12 @@ private slots:
    void on_leVaso_returnPressed();
    void on_leTotal_returnPressed();
    double calcTotale();
+   bool eventFilter(QObject *target, QEvent *event);
 
 
-signals:
+   void on_cbPartenza_toggled(bool checked);
+
+   signals:
    void rowAdded();
 
 };

@@ -4,6 +4,8 @@
 #include <QWidget>
 #include "huser.h"
 #include <QSqlDatabase>
+#include <QDate>
+#include <QSqlTableModel>
 
 namespace Ui {
 class HModifyRow;
@@ -24,6 +26,8 @@ private:
     int idrow;
     HUser* user;
     QSqlDatabase db;
+    QDate current_row_date;
+    QSqlTableModel *rows_model=new QSqlTableModel(0,db);
 private slots:
     void getClients();
     void getProducts();
@@ -45,12 +49,6 @@ private slots:
 
     void on_leVaso_returnPressed();
     bool eventFilter(QObject *target, QEvent *event);
-
-
-    void on_pbUndo_clicked();
-
-    void on_dePartenza_dateChanged(const QDate &date);
-
     void on_cbPartenza_toggled(bool checked);
 
 signals:

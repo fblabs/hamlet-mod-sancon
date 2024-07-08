@@ -357,25 +357,28 @@
        <item row="0" column="6">
         <widget class="QPushButton" name="pbRemove">
          <property name="text">
-          <string>Elimina riga</string>
+          <string>Elimina riga (-)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
            <normaloff>:/Resources/Minus.PNG</normaloff>:/Resources/Minus.PNG</iconset>
          </property>
          <property name="shortcut">
-          <string>Del</string>
+          <string>-</string>
          </property>
         </widget>
        </item>
        <item row="0" column="0">
         <widget class="QPushButton" name="pbAdd">
          <property name="text">
-          <string>Aggiungi riga</string>
+          <string>Aggiungi riga (+)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
            <normaloff>:/Resources/Plus.PNG</normaloff>:/Resources/Plus.PNG</iconset>
+         </property>
+         <property name="shortcut">
+          <string>+</string>
          </property>
         </widget>
        </item>

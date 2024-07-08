@@ -21,6 +21,14 @@ HWpManager::HWpManager(int p_id,HUser* p_user, QSqlDatabase p_db, QWidget *paren
     user=p_user;
     id=p_id;
 
+     ui->leVaso->installEventFilter(this);
+
+
+
+    ui->dePartenza->setStyleSheet("color: 'white'");
+    ui->dePartenza->setDate(QDate::currentDate());
+    ui->dePartenza->setEnabled(false);
+
 
     getClients();
     getProducts();
@@ -106,7 +114,7 @@ void HWpManager::addSheetRow()
     if (qrw.exec(sqlrw))
     {
         qrw.next();
-        row=qrw.value(0).toInt();
+        row=qrw.value(0).toInt()+1;
 
     }
     else
@@ -164,8 +172,10 @@ void HWpManager::addSheetRow()
 
 
 
-    QString sql="insert into righe_produzione(IDProduzione,num_riga, idcliente,idprodotto,numero_ordine,vaso_gr,quantita,specificaolio,olio,tappo,sanificazione,allergeni,fresco,pastorizzato,lotti,note,totale,lotto_scadenza)"
-                " VALUES(:idproduzione,:numriga,:idcliente,:idprodotto,:numord,:vaso,:quantita,:specolio,:olio,:tappo,:sanificazione,:allergeni,:fresco,:pastorizzato,:lotti,:note,:totale,:lot_scad)";
+
+
+    QString sql="insert into righe_produzione(IDProduzione,num_riga, idcliente,idprodotto,numero_ordine,vaso_gr,quantita,specificaolio,olio,tappo,sanificazione,allergeni,fresco,pastorizzato,lotti,note,totale,lotto_scadenza,partenza)"
+                " VALUES(:idproduzione,:numriga,:idcliente,:idprodotto,:numord,:vaso,:quantita,:specolio,:olio,:tappo,:sanificazione,:allergeni,:fresco,:pastorizzato,:lotti,:note,:totale,:lot_scad,:part)";
     q.prepare(sql);
     q.bindValue(":idproduzione",id);
     q.bindValue(":numriga",row);
@@ -185,6 +195,13 @@ void HWpManager::addSheetRow()
     q.bindValue(":note",note);
     q.bindValue(":totale",totale);
     q.bindValue(":lot_scad",lotscad);
+
+    QDate dp=ui->dePartenza->date();
+    if(dp!=ui->dePartenza->minimumDate() && dp.isValid())
+    {
+        q.bindValue(":part",ui->dePartenza->date());
+    }
+
     bool b=false;
 
     if(QMessageBox::question(this,QApplication::applicationName(),"Salvare?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
@@ -236,7 +253,16 @@ void HWpManager::on_pbSave_clicked()
 void HWpManager::on_leTotal_returnPressed()
 {
   double totale =calcTotale();
-  ui->leTotal->setText(QString::number(totale,'f',3));
+
+    QString s_tot=QString::number(totale,'f',3);
+
+    if(s_tot.contains(".000"))
+    {
+        s_tot=s_tot.left(s_tot.size()-4);
+    }
+
+    ui->leTotal->setText(s_tot);
+
 }
 
 double HWpManager::calcTotale()
@@ -258,12 +284,80 @@ double HWpManager::calcTotale()
     }
 
     double totale=(quant*vaso)/1000;
+
+
+
+
     return totale;
+}
+
+bool HWpManager::eventFilter(QObject *target, QEvent *event)
+{
+
+    if(target==ui->leVaso)
+    {
+        if (event->type()==QEvent::KeyPress)
+        {
+            QKeyEvent* key = static_cast<QKeyEvent *>(event);
+
+            if (key->key()==Qt::Key_Tab)
+            {
+
+                double totale =calcTotale();
+
+                QString s_tot=QString::number(totale,'f',3);
+
+                if(s_tot.contains(".000"))
+                {
+                    s_tot=s_tot.left(s_tot.size()-4);
+                }
+
+                ui->leTotal->setText(s_tot);
+
+
+
+                ui->leOlio->setFocus();
+
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 
 void HWpManager::on_leVaso_returnPressed()
 {
     double totale =calcTotale();
-    ui->leTotal->setText(QString::number(totale,'f',3));
+
+    QString s_tot=QString::number(totale,'f',3);
+
+    if(s_tot.contains(".000"))
+    {
+        s_tot=s_tot.left(s_tot.size()-4);
+    }
+
+    ui->leTotal->setText(s_tot);
+
+
 }
+
+void HWpManager::on_cbPartenza_toggled(bool checked)
+{
+    ui->dePartenza->setEnabled(checked);
+
+    if(checked)
+    {
+
+        ui->dePartenza->setStyleSheet("color: 'black'");
+        ui->dePartenza->setDate(QDate::currentDate());
+
+    }
+    else
+    {
+
+        ui->dePartenza->setStyleSheet("color: 'white'");
+        ui->dePartenza->setDate(ui->dePartenza->minimumDate());
+    }
+}
+
