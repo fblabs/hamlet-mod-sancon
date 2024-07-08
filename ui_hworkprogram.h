@@ -529,11 +529,14 @@ public:
         pbCopy->setShortcut(QCoreApplication::translate("HWorkProgram", "Ctrl+C", nullptr));
 #endif // QT_CONFIG(shortcut)
         pbNotComplete->setText(QCoreApplication::translate("HWorkProgram", "Resetta righe", nullptr));
-        pbRemove->setText(QCoreApplication::translate("HWorkProgram", "Elimina riga", nullptr));
+        pbRemove->setText(QCoreApplication::translate("HWorkProgram", "Elimina riga (-)", nullptr));
 #if QT_CONFIG(shortcut)
-        pbRemove->setShortcut(QCoreApplication::translate("HWorkProgram", "Del", nullptr));
+        pbRemove->setShortcut(QCoreApplication::translate("HWorkProgram", "-", nullptr));
 #endif // QT_CONFIG(shortcut)
-        pbAdd->setText(QCoreApplication::translate("HWorkProgram", "Aggiungi riga", nullptr));
+        pbAdd->setText(QCoreApplication::translate("HWorkProgram", "Aggiungi riga (+)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbAdd->setShortcut(QCoreApplication::translate("HWorkProgram", "+", nullptr));
+#endif // QT_CONFIG(shortcut)
         pbCompleteRow->setText(QCoreApplication::translate("HWorkProgram", " Completa riga(C)", nullptr));
 #if QT_CONFIG(shortcut)
         pbCompleteRow->setShortcut(QCoreApplication::translate("HWorkProgram", "C", nullptr));

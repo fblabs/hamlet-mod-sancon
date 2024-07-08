@@ -12,7 +12,9 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
@@ -63,6 +65,11 @@ public:
     QFormLayout *formLayout_4;
     QLabel *label_14;
     QPlainTextEdit *ptLotti;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label_15;
+    QCheckBox *cbPartenza;
+    QDateEdit *dePartenza;
+    QSpacerItem *horizontalSpacer_2;
     QFormLayout *formLayout_3;
     QLabel *label_11;
     QPlainTextEdit *ptNote;
@@ -262,6 +269,30 @@ public:
 
         verticalLayout->addLayout(formLayout_4);
 
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        label_15 = new QLabel(HWpManager);
+        label_15->setObjectName(QString::fromUtf8("label_15"));
+
+        horizontalLayout->addWidget(label_15);
+
+        cbPartenza = new QCheckBox(HWpManager);
+        cbPartenza->setObjectName(QString::fromUtf8("cbPartenza"));
+
+        horizontalLayout->addWidget(cbPartenza);
+
+        dePartenza = new QDateEdit(HWpManager);
+        dePartenza->setObjectName(QString::fromUtf8("dePartenza"));
+
+        horizontalLayout->addWidget(dePartenza);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
         formLayout_3 = new QFormLayout();
         formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
         label_11 = new QLabel(HWpManager);
@@ -374,6 +405,8 @@ public:
         rbPastorized->setText(QCoreApplication::translate("HWpManager", "Pastorizzato", nullptr));
         rbNone->setText(QCoreApplication::translate("HWpManager", "Nessuna", nullptr));
         label_14->setText(QCoreApplication::translate("HWpManager", "Lotti:", nullptr));
+        label_15->setText(QCoreApplication::translate("HWpManager", "Partenza:", nullptr));
+        cbPartenza->setText(QString());
         label_11->setText(QCoreApplication::translate("HWpManager", "Note:", nullptr));
         label_13->setText(QCoreApplication::translate("HWpManager", "Lotto/scadenza:", nullptr));
         label_7->setText(QCoreApplication::translate("HWpManager", "Totale:", nullptr));
