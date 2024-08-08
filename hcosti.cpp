@@ -165,11 +165,11 @@ void HCosti::get_ricetta()
     tot_quantita=get_peso_totale_ricetta();
 
     recipe_org_model=new QSqlQueryModel();
-    recipe_model=QueryToCosti(recipe_org_model);
+    //recipe_model=QueryToCosti(recipe_org_model);
     recipe_model=new HCosti_model();
 
    // sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as 'QUANTITA',@p:=(righe_ricette.quantita/:tot_q)*100 as 'PERCENT', prodotti.prezzo as 'COSTO UNITARIO (€*Kg)',FORMAT(righe_ricette.quantita*prodotti.prezzo,4) as 'COSTO PER RICETTA',FORMAT ((prodotti.prezzo*:f)*(@p/100),4) as 'COSTO FORMATO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.Id";
-    sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as 'QUANTITA', prodotti.prezzo as 'COSTO UNITARIO (€*Kg)',FORMAT(righe_ricette.quantita*prodotti.prezzo,4) as 'COSTO PER RICETTA',FORMAT ((prodotti.prezzo*:f)*(@p/100),4) as 'COSTO FORMATO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.Id";
+    sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as 'QUANTITA',@p:=(righe_ricette.quantita/ricette.q_tot)*100 as '%', prodotti.prezzo as 'COSTO UNITARIO (€*Kg)',FORMAT(righe_ricette.quantita*prodotti.prezzo,4) as 'COSTO PER RICETTA',FORMAT ((prodotti.prezzo*:f)*(@p/100),4) as 'COSTO FORMATO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.Id";
 
 
     q.prepare(sql);
@@ -203,7 +203,7 @@ void HCosti::get_ricetta()
         {
 
              quantita_riga=recipe_model->index(r,1).data(0).toDouble();
-             percent_riga=recipe_org_model->index(r,2).data(0).toDouble()/100;
+             percent_riga=(tot_quantita/recipe_org_model->index(r,2).data(0).toDouble())/100;
              costo_riga=recipe_model->index(r,3).data(0).toDouble()*quantita_riga;
              tot_costo_ricetta+=costo_riga;
              tot_costo_formato+=costo_riga*percent_riga;
@@ -592,6 +592,7 @@ void HCosti::calculate_recipe()
             costo_formato_row=(c_row*formato)*percentile;
             costo_row=c_row * q_row;
             tot_quantita+=recipe_model->index(row,1).data(0).toDouble();
+
             tot_costo_formato+=costo_formato_row;
             tot_costo_ricetta+=recipe_model->index(row,4).data(0).toDouble();
             ui->lbCostoRicetta->setText(QString::number(tot_costo_ricetta,'f',4));
@@ -622,6 +623,7 @@ void HCosti::calculate_recipe()
             recipe_org_model->setData(recipe_org_model->index(row,4),QString::number(costo_row,'f',4));
             recipe_org_model->setData(recipe_org_model->index(row,5),QString::number(costo_formato_row,'f',4));
             tot_costo_ricetta+=recipe_org_model->index(row,4).data(0).toDouble();
+            qDebug()<<"tot q"<<tot_quantita;
 
             ui->lbTotQuantita->setText(QString::number(tot_quantita,'f',4));
             ui->lbCostoRicetta->setText(QString::number(tot_costo_ricetta,'f',4));

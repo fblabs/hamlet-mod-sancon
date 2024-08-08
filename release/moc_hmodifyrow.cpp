@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HModifyRow_t {
-    QByteArrayData data[20];
-    char stringdata0[284];
+    QByteArrayData data[26];
+    char stringdata0[347];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -51,7 +51,13 @@ QT_MOC_LITERAL(15, 199, 6), // "HUser*"
 QT_MOC_LITERAL(16, 206, 6), // "p_user"
 QT_MOC_LITERAL(17, 213, 21), // "on_pbSaveLots_clicked"
 QT_MOC_LITERAL(18, 235, 24), // "on_leQuant_returnPressed"
-QT_MOC_LITERAL(19, 260, 23) // "on_leVaso_returnPressed"
+QT_MOC_LITERAL(19, 260, 23), // "on_leVaso_returnPressed"
+QT_MOC_LITERAL(20, 284, 11), // "eventFilter"
+QT_MOC_LITERAL(21, 296, 6), // "target"
+QT_MOC_LITERAL(22, 303, 7), // "QEvent*"
+QT_MOC_LITERAL(23, 311, 5), // "event"
+QT_MOC_LITERAL(24, 317, 21), // "on_cbPartenza_toggled"
+QT_MOC_LITERAL(25, 339, 7) // "checked"
 
     },
     "HModifyRow\0done\0\0getClients\0getProducts\0"
@@ -61,7 +67,9 @@ QT_MOC_LITERAL(19, 260, 23) // "on_leVaso_returnPressed"
     "calcTotale\0on_leTotal_returnPressed\0"
     "saveRow\0setPermissions\0HUser*\0p_user\0"
     "on_pbSaveLots_clicked\0on_leQuant_returnPressed\0"
-    "on_leVaso_returnPressed"
+    "on_leVaso_returnPressed\0eventFilter\0"
+    "target\0QEvent*\0event\0on_cbPartenza_toggled\0"
+    "checked"
 };
 #undef QT_MOC_LITERAL
 
@@ -71,7 +79,7 @@ static const uint qt_meta_data_HModifyRow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      18,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -79,24 +87,26 @@ static const uint qt_meta_data_HModifyRow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   94,    2, 0x06 /* Public */,
+       1,    0,  104,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   95,    2, 0x08 /* Private */,
-       4,    0,   96,    2, 0x08 /* Private */,
-       5,    0,   97,    2, 0x08 /* Private */,
-       6,    0,   98,    2, 0x08 /* Private */,
-       7,    1,   99,    2, 0x08 /* Private */,
-       9,    0,  102,    2, 0x08 /* Private */,
-      10,    0,  103,    2, 0x08 /* Private */,
-      11,    0,  104,    2, 0x08 /* Private */,
-      12,    0,  105,    2, 0x08 /* Private */,
-      13,    0,  106,    2, 0x08 /* Private */,
-      14,    1,  107,    2, 0x08 /* Private */,
-      14,    0,  110,    2, 0x28 /* Private | MethodCloned */,
-      17,    0,  111,    2, 0x08 /* Private */,
-      18,    0,  112,    2, 0x08 /* Private */,
-      19,    0,  113,    2, 0x08 /* Private */,
+       3,    0,  105,    2, 0x08 /* Private */,
+       4,    0,  106,    2, 0x08 /* Private */,
+       5,    0,  107,    2, 0x08 /* Private */,
+       6,    0,  108,    2, 0x08 /* Private */,
+       7,    1,  109,    2, 0x08 /* Private */,
+       9,    0,  112,    2, 0x08 /* Private */,
+      10,    0,  113,    2, 0x08 /* Private */,
+      11,    0,  114,    2, 0x08 /* Private */,
+      12,    0,  115,    2, 0x08 /* Private */,
+      13,    0,  116,    2, 0x08 /* Private */,
+      14,    1,  117,    2, 0x08 /* Private */,
+      14,    0,  120,    2, 0x28 /* Private | MethodCloned */,
+      17,    0,  121,    2, 0x08 /* Private */,
+      18,    0,  122,    2, 0x08 /* Private */,
+      19,    0,  123,    2, 0x08 /* Private */,
+      20,    2,  124,    2, 0x08 /* Private */,
+      24,    1,  129,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -109,7 +119,7 @@ static const uint qt_meta_data_HModifyRow[] = {
     QMetaType::Void, QMetaType::Int,    8,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Double,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 15,   16,
@@ -117,6 +127,8 @@ static const uint qt_meta_data_HModifyRow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Bool, QMetaType::QObjectStar, 0x80000000 | 22,   21,   23,
+    QMetaType::Void, QMetaType::Bool,   25,
 
        0        // eod
 };
@@ -135,8 +147,7 @@ void HModifyRow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->on_cbCliente_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->on_pbClose_clicked(); break;
         case 7: _t->on_pbSave_clicked(); break;
-        case 8: { double _r = _t->calcTotale();
-            if (_a[0]) *reinterpret_cast< double*>(_a[0]) = std::move(_r); }  break;
+        case 8: _t->calcTotale(); break;
         case 9: _t->on_leTotal_returnPressed(); break;
         case 10: _t->saveRow(); break;
         case 11: _t->setPermissions((*reinterpret_cast< HUser*(*)>(_a[1]))); break;
@@ -144,6 +155,9 @@ void HModifyRow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 13: _t->on_pbSaveLots_clicked(); break;
         case 14: _t->on_leQuant_returnPressed(); break;
         case 15: _t->on_leVaso_returnPressed(); break;
+        case 16: { bool _r = _t->eventFilter((*reinterpret_cast< QObject*(*)>(_a[1])),(*reinterpret_cast< QEvent*(*)>(_a[2])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 17: _t->on_cbPartenza_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -198,13 +212,13 @@ int HModifyRow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 18)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 18;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 18)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 18;
     }
     return _id;
 }
