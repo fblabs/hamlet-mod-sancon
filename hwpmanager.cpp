@@ -174,8 +174,8 @@ void HWpManager::addSheetRow()
 
 
 
-    QString sql="insert into righe_produzione(IDProduzione,num_riga, idcliente,idprodotto,numero_ordine,vaso_gr,quantita,specificaolio,olio,tappo,sanificazione,allergeni,fresco,pastorizzato,lotti,note,totale,lotto_scadenza,partenza)"
-                " VALUES(:idproduzione,:numriga,:idcliente,:idprodotto,:numord,:vaso,:quantita,:specolio,:olio,:tappo,:sanificazione,:allergeni,:fresco,:pastorizzato,:lotti,:note,:totale,:lot_scad,:part)";
+    QString sql="insert into righe_produzione(IDProduzione,num_riga, idcliente,idprodotto,numero_ordine,vaso_gr,quantita,specificaolio,olio,tappo,sanificazione,allergeni,fresco,pastorizzato,lotti,note,totale,lotto_scadenza,stato,partenza)"
+                " VALUES(:idproduzione,:numriga,:idcliente,:idprodotto,:numord,:vaso,:quantita,:specolio,:olio,:tappo,:sanificazione,:allergeni,:fresco,:pastorizzato,:lotti,:note,:totale,:lot_scad,:stato,:part)";
     q.prepare(sql);
     q.bindValue(":idproduzione",id);
     q.bindValue(":numriga",row);
@@ -195,6 +195,7 @@ void HWpManager::addSheetRow()
     q.bindValue(":note",note);
     q.bindValue(":totale",totale);
     q.bindValue(":lot_scad",lotscad);
+    q.bindValue(":stato",0);
 
     QDate dp=ui->dePartenza->date();
     if(dp!=ui->dePartenza->minimumDate() && dp.isValid())

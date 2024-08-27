@@ -28,7 +28,7 @@ HFrullatori::HFrullatori(QString p_title,HBlend *p_blend, HUser *p_user, QSqlDat
 
     ui->deData->setDate(QDate::currentDate());
 
-  //  ui->pbInit->setEnabled(p_user->get_wp_u()>0);
+    //  ui->pbInit->setEnabled(p_user->get_wp_u()>0);
 
 
 
@@ -78,6 +78,7 @@ void HFrullatori::getBlendData()
         blend->setAmount(q.value(10).toString());
         blend->setExported(q.value(11).toBool());
         blend->setNote(q.value(12).toString());
+        blend->setState(q.value(14).toInt());
 
 
     }
@@ -155,7 +156,7 @@ void HFrullatori::getBlendData()
 
     ui->lbIcon->setPixmap(pix);
 
-   // emit sg_setup_view();
+    // emit sg_setup_view();
 
 
 
@@ -238,7 +239,8 @@ void HFrullatori::save_blend(bool b_showdlg)
     blend->setExported(ui->cbExport->isChecked());
     blend->setNote(ui->teNote->toPlainText());
     blend->setAmount(ui->leAmount->text());
-    blend->setState(ui->stateSlider->value());
+    int state=ui->stateSlider->value();
+    blend->setState(state);
 
 
 
@@ -329,7 +331,8 @@ void HFrullatori::save_blend(bool b_showdlg)
     removed_details.clear();
 
     //salvo lo stato
-    int stato=blend->getState();
+    int stato=ui->stateSlider->value();
+    qDebug()<<"stato"<<stato;
     int idriga=blend->getIDRiga();
     sql="update righe_produzione set stato=:stato where ID=:id";
     q.prepare(sql);
@@ -337,20 +340,23 @@ void HFrullatori::save_blend(bool b_showdlg)
     q.bindValue(":id",idriga);
 
     b=q.exec();
+    qDebug()<<q.lastQuery()<<q.lastError().text()<<b;
 
-     if(!b){
-
-
-            db.rollback();
-            return;
-        }
-
-
-    db.commit();
+    if(b){
+        db.commit();
+        getBlendData();
         if(b_showdlg)
             QMessageBox::information(this,QApplication::applicationName(),"Dati salvati",QMessageBox::Ok);
+    }
+    else
+    {
+        db.rollback();
+        return;
+    }
 
-    getBlendData();
+
+
+
 
 
 

@@ -334,13 +334,13 @@ void HModifyRow::saveRow(){
     q.bindValue(":vp",vasi_p);
     q.bindValue(":comp",completato);
 
-    QDate currentDate=rows_model->index(0,22).data().toDate();
-    QDate dp=ui->dePartenza->date();
-    if(/*currentDate!=ui->dePartenza->minimumDate() && currentDate.isValid()&&*/ ui->cbPartenza->isChecked())
+    if(ui->cbPartenza->isChecked())
     {
 
         q.bindValue(":part",ui->dePartenza->date());
     }
+
+    qDebug()<<ui->dePartenza->date();
 
 
 
