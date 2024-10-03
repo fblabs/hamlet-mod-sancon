@@ -28,10 +28,11 @@ private:
     QSqlDatabase db;
     HUser *user;
     bool modify;
-    HCosti_model *recipe_model;
-    QSqlQueryModel *reecipe_org_model;
+    HCosti_model *recipe_org_model;
+    HCosti_model *recipe_mod_model;
+    QSqlQueryModel *recipe_q_model;
     HComponenti_model *componenti_costo_model;
-    QSqlQueryModel *recipe_org_model;
+
     double tot_recipe;
 
 
