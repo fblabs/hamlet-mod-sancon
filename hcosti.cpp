@@ -814,6 +814,7 @@ void HCosti::on_leMargine_returnPressed()
 void HCosti::on_cbModify_toggled(bool checked)
 {
 
+    checked? ui->tvRicetta->setEditTriggers(QAbstractItemView::DoubleClicked):ui->tvRicetta->setEditTriggers(QAbstractItemView::NoEditTriggers);
     emit modify_toggled(checked);
 }
 
