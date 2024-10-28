@@ -240,6 +240,7 @@ FORMS    += mainwindow.ui \
     hloadsreport.ui \
     hlotcomposition.ui \
     hlotti_new.ui \
+    hmodricette_copy.ui \
     hnew_recipe_main.ui \
     hpdfprint.ui \
     hpreferred_lots.ui \

@@ -33,11 +33,16 @@ private slots:
     void printRecipe();
     void saveNote();
     void showContextMenu(const QPoint& pos);
+    void showContextMenuImg(const QPoint& pos);
     void showaddRow();
     void addRiga(QList<QStandardItem*>);
     void calculateTotal();
     void updateTotals();
     void showAssociatedCustomers();
+    void loadImages(const int p_id=-1);
+    void chooseImage();
+    void removeImage_ns();
+    void save_images_d(const int p_id_ricetta=-1);
 
 
     void on_pbAddRow_clicked();
@@ -68,6 +73,12 @@ private slots:
 
 
     void on_pbReset_clicked();
+
+    void on_pb_save_images_clicked();
+
+    void on_pbImages_clicked();
+
+    void on_pb_addImage_clicked();
 
 private:
     Ui::HModRicette *ui;

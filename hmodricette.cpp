@@ -20,6 +20,20 @@
 #include "hrecipesforingredient.h"
 #include "hnew_recipe_main.h"
 #include "hpdfprint.h"
+#include <QStyledItemDelegate>
+
+#include <QFileDialog>
+#include <QBuffer>
+
+class AlignPicCenterDelegate : public QStyledItemDelegate{
+public:
+    using QStyledItemDelegate::QStyledItemDelegate;
+protected:
+    void initStyleOption(QStyleOptionViewItem *option, const QModelIndex &index) const override {
+        QStyledItemDelegate::initStyleOption(option,index);
+        option->decorationAlignment = Qt::AlignCenter;
+    }
+};
 
 HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
@@ -36,6 +50,9 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     ui->pbDeleteRow->setEnabled(user->get_ricette_u()>0);
     ui->pushButton_3->setEnabled(user->get_ricette_u()>0);
     ui->pbduplica->setEnabled(user->get_ricette_u()>0);
+    ui->pb_save_images->setVisible(false);
+    ui->pb_addImage->setVisible(false);
+    ui->tvImages->setVisible(false);
 
     getRicette();
 
@@ -47,15 +64,14 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
 
 
 
-    ui->cbRicette->setCurrentIndex(-1);
-
-
-
-
     //  ui->cbRicette->findData()
-    connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
 
-    loadRicetta();
+    connect(ui->tableView,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenu(QPoint)));
+    connect(ui->tvImages,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(showContextMenuImg(QPoint)));
+
+
+
+
 
     ui->tableView->resizeColumnsToContents();
 
@@ -71,7 +87,15 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
     connect(shortcut,SIGNAL(activated()),this,SLOT(showAssociatedCustomers()));
     connect(this,SIGNAL(go_calc()),this,SLOT(calculateTotal()));
     connect(ui->cbRicette,SIGNAL(currentIndexChanged(int)),this,SLOT(loadRicetta()));
-    ui->tableView->setFocus();
+
+    ui->cbRicette->setCurrentIndex(-1);
+    //ui->cbRicette->setCurrentIndex(0);
+
+
+
+    ui->cbRicette->setFocus();
+
+
 
 }
 
@@ -79,7 +103,7 @@ HModRicette::HModRicette(HUser *pusr,QSqlDatabase pdb,QWidget *parent) :
 
 void HModRicette::showContextMenu(const QPoint &pos)
 {
-    QPoint globalPos =mapToGlobal(pos);
+    QPoint globalPos =ui->tableView->mapToGlobal(pos);
     QMenu *menu=new QMenu(0);
     QAction *addIngredient=menu->addAction("Aggiungi Ingrediente");
     QAction *removeIngredient=menu->addAction("Rimuovi Ingrediente");
@@ -93,6 +117,24 @@ void HModRicette::showContextMenu(const QPoint &pos)
 
 
     menu->popup(globalPos);
+}
+
+void HModRicette::showContextMenuImg(const QPoint &pos)
+{
+    QPoint globalPos =ui->tvImages->mapToGlobal(pos);
+    QMenu *menu=new QMenu(0);
+    QAction *addImage=menu->addAction("Aggiungi Immagine...");
+    QAction *removeImage=menu->addAction("Rimuovi Immagine...");
+
+
+
+    connect(addImage,SIGNAL(triggered(bool)),this,SLOT(chooseImage()));
+    connect(removeImage,SIGNAL(triggered(bool)),this,SLOT(removeImage_ns()));
+
+
+
+    menu->popup(globalPos);
+
 }
 
 HModRicette::~HModRicette()
@@ -114,6 +156,139 @@ void HModRicette::showAssociatedCustomers()
     int id =ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
     HClientiAssociati *f=new HClientiAssociati(0,id,db);
     f->show();
+}
+
+void HModRicette::loadImages(const int p_id)
+{
+    QSqlQueryModel* mod=new QSqlQueryModel();
+    QStandardItemModel *imod=new QStandardItemModel();
+    QSqlQuery q(db);
+    QString sql="SELECT ID,ID_ricetta,immagine FROM recipe_images WHERE ID_ricetta=:id";
+
+    //StyledItemAlignPicCenterDelegate *dlg=new AlignPicCenterDelegate();
+
+    // ui->tvImages->setItemDelegate(dlg);
+
+    q.prepare(sql);
+    q.bindValue(":id",p_id);
+    q.exec();
+    mod->setQuery(q);
+
+    for(int n=0;n<mod->rowCount();++n)
+    {
+        QString imgUrl=QString();
+
+        imgUrl=mod->index(n,2).data().toString();
+
+
+        QImage img(imgUrl);
+        QPixmap px=QPixmap::fromImage(img);
+        px=px.scaled(ui->tvImages->rect().width()/2,ui->tvImages->rect().height()/3,Qt::KeepAspectRatio);
+
+
+
+        QStandardItem* it_img=new QStandardItem();
+        it_img->setData(QVariant(px),Qt::DecorationRole);
+        it_img->setTextAlignment(Qt::AlignCenter);
+        QStandardItem *it_path=new QStandardItem();
+        it_path->setText(imgUrl);
+
+
+        QList<QStandardItem*> row;
+        row<<it_img<<it_path;
+        imod->appendRow(row);
+
+    }
+
+
+
+    ui->tvImages->setModel(imod);
+    ui->tvImages->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tvImages->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tvImages->setColumnHidden(1,true);
+    ui->tvImages->horizontalHeader()->setStretchLastSection(true);
+    imod->rowCount()<1? ui->tvImages->setVisible(false):ui->tvImages->setVisible(true);
+
+
+
+
+
+
+
+}
+
+void HModRicette::chooseImage()
+{
+    QString imagepath = QFileDialog::getOpenFileName(this,"Apri Immagine", QDir::currentPath(),"Immagini (*.png *.jpg);;Tutti i file (*.*)",0,QFileDialog::DontUseNativeDialog);
+    QImage image;
+    image.load(imagepath);
+
+
+    QByteArray bytes;
+    QBuffer buffer(&bytes);
+    buffer.open(QIODevice::WriteOnly);
+    image.save(&buffer,"PNG");
+
+
+
+
+    QImage img(imagepath);
+    QPixmap px=QPixmap::fromImage(img);
+    px=px.scaled(ui->tvImages->rect().width()-5,ui->tvImages->rect().height()/3,Qt::KeepAspectRatio);
+
+
+    QStandardItem* it_img=new QStandardItem();
+    it_img->setData(QVariant(px),Qt::DecorationRole);
+    it_img->setTextAlignment(Qt::AlignCenter);
+    QStandardItem *it_path=new QStandardItem();
+    it_path->setText(imagepath);
+    QList<QStandardItem*> row;
+    row<<it_img<<it_path;;
+
+    QStandardItemModel* imod=static_cast<QStandardItemModel*>(ui->tvImages->model());
+    imod->appendRow(row);
+    ui->tvImages->setColumnHidden(1,true);
+
+}
+
+void HModRicette::removeImage_ns()
+{
+    QStandardItemModel* imod=static_cast<QStandardItemModel*>(ui->tvImages->model());
+    int row=-1;
+    row=ui->tvImages->currentIndex().row();
+    qDebug()<<row;
+
+    imod->removeRow(row);
+}
+
+void HModRicette::save_images_d(const int p_id_ricetta)
+{
+    db.transaction();
+    QStandardItemModel* m=static_cast<QStandardItemModel*>(ui->tvImages->model());
+    int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
+
+
+    QSqlQuery q(db);
+    QString sql="DELETE FROM recipe_images WHERE ID_ricetta=:id";
+    q.prepare(sql);
+    q.bindValue(":id",idricetta);
+    q.exec();
+
+
+    for (int i=0;i<m->rowCount();++i)
+    {
+        QString img=m->index(i,1).data().toString();
+        sql="INSERT INTO recipe_images(ID_ricetta,immagine) VALUES (:id,:img)";
+        q.prepare(sql);
+        q.bindValue(":id",idricetta);
+        q.bindValue(":img",img);
+        q.exec();
+        qDebug()<<i<<img<<idricetta<<q.lastError().text();
+    }
+
+    qDebug()<<"SALVATTO!";
+    db.commit();
+    loadImages();
 }
 
 void HModRicette::on_pushButton_2_clicked()
@@ -159,7 +334,7 @@ void HModRicette::getRicette()
     comp->setCompletionMode(QCompleter::PopupCompletion);
     comp->setCaseSensitivity(Qt::CaseInsensitive);
     ui->cbRicette->setCompleter(comp);
-    ui->cbRicette->setCurrentIndex(-1);
+    ui->cbRicette->setCurrentIndex(0);
 
 }
 
@@ -170,7 +345,7 @@ void HModRicette::creatNewRecipe(const int p_tipo)
     int tipo=p_tipo;
     //nuova ricetta
     QString text=QInputDialog::getText(this,"Nuova Ricetta","Inserire il nome\nVerrà creato un nuovo prodotto",QLineEdit::Normal,"",&ok);
-        text=text.toUpper();
+    text=text.toUpper();
 
 
 
@@ -299,7 +474,7 @@ bool HModRicette::duplicateRecipe()
     //text=text.toUpper();
 
     QString text=QInputDialog::getText(this,"Nuova Ricetta","Inserire il nome\nVerrà creata una nuova ricetta copiata da quella corrente",QLineEdit::Normal,"",&ok);
-        text=text.toUpper();
+    text=text.toUpper();
 
     if(ok)
     {
@@ -390,14 +565,25 @@ void HModRicette::loadRicetta()
     int idricetta=ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0).toInt();
 
 
-    if(idricetta<1) return;
+
+    if(idricetta<1)
+    {
+        ui->pb_save_images->setVisible(false);
+        ui->pb_addImage->setVisible(false);
+        ui->pbImages->setVisible(false);
+        return;
+    }else{
+        ui->pb_save_images->setVisible(true);
+        ui->pb_addImage->setVisible(true);
+         ui->pbImages->setVisible(true);
+    }
 
     QSqlQuery q(db);
     // QString sql = "SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM righe_ricette,prodotti WHERE prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_prodotto=:idprodotto ORDER BY righe_ricette.quantita DESC";
     // QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico  FROM ricette,righe_ricette,prodotti WHERE ricette.ID=righe_ricette.ID_ricetta and righe_ricette.id_prodotto=prodotti.ID and ricette.ID_prodotto=:idprodotto ORDER BY righe_ricette.quantita DESC";
-   // sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as 'QUANTITA',@p:=(righe_ricette.quantita/:tot_q)*100 as '%', prodotti.prezzo as 'COSTO UNITARIO (€*Kg)',FORMAT(righe_ricette.quantita*prodotti.prezzo,4) as 'COSTO PER RICETTA',FORMAT ((prodotti.prezzo*:f)*(@p/100),4) as 'COSTO FORMATO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.Id";
+    // sql="SELECT prodotti.descrizione as 'MATERIALE',righe_ricette.quantita as 'QUANTITA',@p:=(righe_ricette.quantita/:tot_q)*100 as '%', prodotti.prezzo as 'COSTO UNITARIO (€*Kg)',FORMAT(righe_ricette.quantita*prodotti.prezzo,4) as 'COSTO PER RICETTA',FORMAT ((prodotti.prezzo*:f)*(@p/100),4) as 'COSTO FORMATO' FROM righe_ricette,prodotti,ricette WHERE righe_ricette.ID_ricetta=ricette.ID and prodotti.ID=righe_ricette.ID_prodotto and ricette.ID=(SELECT ID from ricette where ricette.ID_prodotto=:idp) group by prodotti.ID,ricette.ID,righe_ricette.Id";
 
-  //  QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',@p:=(righe_ricette.quantita/:tot_q)*100 as '%',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico from righe_ricette,prodotti  where prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
+    //  QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',@p:=(righe_ricette.quantita/:tot_q)*100 as '%',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico from righe_ricette,prodotti  where prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
     QString sql="SELECT righe_ricette.ID,righe_ricette.ID_Ricetta,righe_ricette.ID_prodotto,prodotti.descrizione AS 'Ingrediente',righe_ricette.quantita AS 'Quantità',righe_ricette.show_prod AS 'Mostra in produzione',prodotti.allergenico from righe_ricette,prodotti  where prodotti.ID=righe_ricette.ID_prodotto and righe_ricette.ID_ricetta=:idricetta order by righe_ricette.quantita desc";
 
     q.prepare(sql);
@@ -488,13 +674,15 @@ void HModRicette::loadRicetta()
     ui->tableView->setColumnHidden(1,true);
     ui->tableView->setColumnHidden(2,true);
     ui->tableView->setColumnHidden(5,true);
-    // ui->tableView->setColumnHidden(6,true);
 
-    //  ui->tvRecipe->horizontalHeader()->resizeSections(QHeaderView::Stretch);
+    loadImages(idricetta);
+    ui->tvImages->setColumnHidden(1,true);
 
-    //ui->tableView->horizontalHeader()->resizeSections(QHeaderView::Stretch);
-    // ui->tableView->resizeColumnsToContents();
     calculateTotal();
+
+
+
+
 
 
 }
@@ -597,7 +785,7 @@ void HModRicette::save()
 
     db.transaction();
 
-     saveNote();
+    saveNote();
 
     //cancello la ricetta
 
@@ -631,7 +819,7 @@ void HModRicette::save()
         q.bindValue(":quantita",QVariant(quant));
         q.bindValue(":show",QVariant(show));
         bool c=q.exec();
-        qDebug()<<i;
+
 
 
 
@@ -639,7 +827,7 @@ void HModRicette::save()
         {
             db.rollback();
             QMessageBox::warning(this,QApplication::applicationName(),"Si è verificato un errore ",QMessageBox::Ok);
-                return;
+            return;
         }
         else
         {
@@ -648,6 +836,8 @@ void HModRicette::save()
 
 
     }
+
+    save_images_d(idricetta);
 
     QApplication::restoreOverrideCursor();
 
@@ -901,5 +1091,23 @@ void HModRicette::on_rb_con_toggled(bool checked)
 void HModRicette::on_pbReset_clicked()
 {
     loadRicetta();
+}
+
+
+void HModRicette::on_pb_save_images_clicked()
+{
+    removeImage_ns();
+}
+
+
+void HModRicette::on_pbImages_clicked()
+{
+     ui->tvImages->setVisible(true);
+}
+
+
+void HModRicette::on_pb_addImage_clicked()
+{
+    chooseImage();
 }
 
