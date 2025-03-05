@@ -98,6 +98,8 @@ public:
         tableView->setAlternatingRowColors(true);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tableView->horizontalHeader()->setCascadingSectionResizes(true);
+        tableView->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
         tableView->verticalHeader()->setVisible(false);
 
         verticalLayout->addWidget(tableView);

@@ -23,10 +23,6 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     user=puser;
     db=pdb;
 
-    if (!db.isOpen())
-    {
-        db.open();
-    }
 
     tbm = new HReadOnlyModelNew(0,db);
     tbm->setTable("operazioni");
@@ -35,15 +31,18 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     tbm->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
     tbm->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
     tbm->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
+
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableView->setModel(tbm);
-    ui->tableView->setItemDelegate(new QSqlRelationalDelegate(tbm));
+
+   // ui->tableView->setItemDelegate(new QSqlRelationalDelegate(tbm));
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
+    ui->tableView->setModel(tbm);
+
+
     tbm->setSort(0,Qt::DescendingOrder);
     tbm->setFilter("operazioni.data >=DATE(CURDATE())");
-
-
+    tbm->select();
 
     tbm->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
     tbm->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));// 1 lotdef.lot
@@ -56,18 +55,13 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     tbm->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
 
 
-     qDebug()<<"selecting"<<tbm->query().lastError().text()<<tbm->lastError().text();
 
-    /*tbm->setSort(0,Qt::DescendingOrder);
-    tbm->setFilter("operazioni.data >=DATE(CURDATE())");*/
 
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setColumnHidden(3,true);
 
     ui->cbShowPackages->setVisible(false);
 
-    //lista lotti
-    //lista anagrafica
 
     ui->deScadenza->setDate(QDate::currentDate().addYears(2));
 
@@ -101,17 +95,17 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     lots=new QSqlTableModel(0,db);
 
     lots->setTable("lotdef");
-    lots->select();
+   // lots->select();
 
 
-    basefilter="attivo=2 and year(data)>year(data)-3";
-    lots->setFilter(basefilter);
+    basefilter="attivo>0 and year(data)>year(data)-3";
+    //lots->setFilter(basefilter);
 
     ui->cbtipo->setModel(listaTipologie);
     ui->cbtipo->setModelColumn(1);
 
     ui->cbAnagrafica->setModel(listaFornitori);
-     ui->cbAnagrafica->setModelColumn(1);
+    ui->cbAnagrafica->setModelColumn(1);
 
 
      ui->lvProdotti->setModel(listaProdotti);
@@ -144,14 +138,13 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
 
     ui->cbAnagrafica->setCompleter(comforn);
 
-    tbm->select();
-
 
     connect(ui->lvProdotti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this, SLOT(setProdottoText()));
 
 
-
     setUiforCarico();
+
+
 
     QApplication::setOverrideCursor(Qt::ArrowCursor);
 
@@ -278,6 +271,7 @@ void HnuovaOperazione::setUiForScarico()
     ui->leQuantita->clear();
     ui->leLotto->clear();
 //    setListaLots();
+     //lots->select();
     setLotsFilter();
 
 
@@ -328,8 +322,6 @@ void HnuovaOperazione::setLotsFilter()
 
 
    lots->select();
-
-
    lots->setSort(3,Qt::DescendingOrder);
    QCompleter *com = new QCompleter(lots);
    com->setCompletionColumn(1);
@@ -376,6 +368,8 @@ bool HnuovaOperazione::saveNewLot(QString nl)
     int anagrafica;
     int attivo=2;
     QString note=ui->tNote->toPlainText();
+
+    qDebug()<<"NL"<<nl;
 
 
     idprod=ui->lvProdotti->model()->index(ui->lvProdotti->currentIndex().row(),0).data(0).toInt();
@@ -672,6 +666,7 @@ void HnuovaOperazione::on_pushButton_clicked()
 
 
         emit trigger();
+        tbm->select();
         QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
 
 
@@ -723,6 +718,7 @@ void HnuovaOperazione::on_leProdotti_textChanged(const QString &arg1)
     filter="descrizione LIKE '%";
     filter.append(ui->leProdotti->text());
     filter.append("%'");
+    listaProdotti->setFilter(filter);
 }
 
 void HnuovaOperazione::on_leLotto_textChanged(const QString &arg1)
@@ -809,21 +805,21 @@ void HnuovaOperazione::on_cbShowPackages_toggled(bool checked)
 void HnuovaOperazione::on_cbtipo_currentIndexChanged(int index)
 {
     Q_UNUSED(index);
-    QString tipo;
-    tipo=ui->cbtipo->currentText();
+    int tipo;
+    tipo=ui->cbtipo->model()->index(ui->cbtipo->currentIndex(),0).data(0).toInt();
    // // qDebug()<<"tipo:"+tipo;
-    QSqlQuery q(db);
-    QString sql="SELECT ID from tipi_prodotto where descrizione=:tipo";
+   /* QSqlQuery q(db);
+    QString sql="SELECT ID from tipi_prodotto where ID=:tipo";
     q.prepare(sql);
-    q.bindValue(0,QVariant(tipo));
+    q.bindValue(":tipo",tipo);
     q.exec();
     q.first();
-    tipo=q.value(0).toString();
+    tipo=q.value(0).toString();*/
 
 
-   QString filter = "tipo=" + tipo;
+    QString filter = "tipo=" +QString::number(tipo);
 
 
     listaProdotti->setFilter(filter);
-   // // qDebug()<<"cbtipo->ixc"<<listaProdotti->filter()<<listaProdotti->query().lastQuery();
+    qDebug()<<"cbtipo->ixc"<<listaProdotti->filter()<<listaProdotti->query().lastError().text();
 }

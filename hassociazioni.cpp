@@ -11,6 +11,8 @@
 // #include <QDebug>
 #include <QItemDelegate>
 #include "hprint.h"
+#include <QMessageBox>
+#include <QCompleter>
 
 HAssociazioni::HAssociazioni(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
@@ -29,7 +31,8 @@ HAssociazioni::HAssociazioni(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
 
     ui->cbClienti->setModel(tmClienti);
     ui->cbClienti->setModelColumn(1);
-
+    ui->cbClienti->completer()->setCompletionColumn(1);
+    ui->cbClienti->completer()->setCompletionMode(QCompleter::PopupCompletion);
     tvqm=new QSqlQueryModel();
 
   //  delegate=new HCheckBoxDelegate();
@@ -44,6 +47,12 @@ HAssociazioni::HAssociazioni(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
 
    // ui->tableView->setColumnHidden(1,true);
 
+    ui->pushButton_2->setEnabled(user->get_ricette_u()>0);
+    ui->pushButton_3->setEnabled(user->get_ricette_u()>0);
+    ui->pushButton_4->setEnabled(user->get_ricette_u()>0);
+    ui->pushButton_5->setEnabled(user->get_ricette_u()>0);
+    ui->pushButton_6->setEnabled(user->get_ricette_u()>0);
+
 
     connect(ui->cbClienti,SIGNAL(currentIndexChanged(QString)),this,SLOT(getRecipesForTable()));
 }
@@ -55,7 +64,7 @@ HAssociazioni::~HAssociazioni()
 
 void HAssociazioni::getRecipes()
 {
-    QString qs="SELECT ricette.ID,prodotti.descrizione from prodotti,ricette where prodotti.ID=ricette.ID_prodotto and prodotti.tipo=2 order by prodotti.descrizione ASC";
+    QString qs="SELECT ricette.ID,prodotti.descrizione from prodotti,ricette where prodotti.ID=ricette.ID_prodotto and prodotti.tipo IN (2,6) order by prodotti.descrizione ASC";
     QSqlQuery q(db);
     qm=new QSqlQueryModel();
 
@@ -66,7 +75,9 @@ void HAssociazioni::getRecipes()
 
     ui->cbRicette->setModel(qm);
     ui->cbRicette->setModelColumn(1);
-
+    ui->cbRicette->completer()->setModel(qm);
+    ui->cbRicette->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    ui->cbRicette->completer()->setCompletionColumn(1);
 
 
 }
@@ -202,12 +213,18 @@ void HAssociazioni::setVisibility(bool visible)
 
 void HAssociazioni::on_pushButton_2_clicked()
 {
+    if(QMessageBox::question(this,QApplication::applicationName(),"Aggiungere associazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
     saveAssociation();
+    }
 }
 
 void HAssociazioni::on_pushButton_3_clicked()
 {
+    if(QMessageBox::question(this,QApplication::applicationName(),"Rimuovere associazione?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
+    {
     deleteAssociation();
+    }
 }
 
 void HAssociazioni::on_pushButton_clicked()
@@ -217,17 +234,15 @@ void HAssociazioni::on_pushButton_clicked()
 
 void HAssociazioni::on_pushButton_4_clicked()
 {
+    if(user->get_schede_v())
+    {
+
     QString sCliente=ui->cbClienti->currentText();
     QString sRicetta=ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),2).data(0).toString();
 
-
-
     HNSChede *f = new HNSChede(sCliente,sRicetta,db,user);
-
-
-
-  //  f->loadCard();
     f->show();
+    }
 }
 
 void HAssociazioni::on_pushButton_5_clicked()

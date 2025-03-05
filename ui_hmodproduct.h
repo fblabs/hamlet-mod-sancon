@@ -39,8 +39,9 @@ public:
     QComboBox *cbType;
     QDateEdit *deLastUpdate;
     QLineEdit *leDescription;
-    QHBoxLayout *horizontalLayout;
+    QGridLayout *gridLayout_2;
     QCheckBox *cbAllergene;
+    QCheckBox *cbAllergeneUSA;
     QCheckBox *cbActive;
     QCheckBox *cbBio;
     QSpacerItem *verticalSpacer;
@@ -101,7 +102,7 @@ public:
         deLastUpdate->setButtonSymbols(QAbstractSpinBox::NoButtons);
         deLastUpdate->setAccelerated(true);
         deLastUpdate->setKeyboardTracking(false);
-        deLastUpdate->setDateTime(QDateTime(QDate(2022, 1, 1), QTime(0, 0, 0)));
+        deLastUpdate->setDateTime(QDateTime(QDate(2021, 12, 31), QTime(23, 0, 0)));
         deLastUpdate->setCalendarPopup(true);
 
         gridLayout->addWidget(deLastUpdate, 5, 1, 1, 1);
@@ -114,25 +115,30 @@ public:
 
         verticalLayout->addLayout(gridLayout);
 
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         cbAllergene = new QCheckBox(HModProduct);
         cbAllergene->setObjectName(QString::fromUtf8("cbAllergene"));
 
-        horizontalLayout->addWidget(cbAllergene);
+        gridLayout_2->addWidget(cbAllergene, 0, 0, 1, 1);
+
+        cbAllergeneUSA = new QCheckBox(HModProduct);
+        cbAllergeneUSA->setObjectName(QString::fromUtf8("cbAllergeneUSA"));
+
+        gridLayout_2->addWidget(cbAllergeneUSA, 0, 1, 1, 1);
 
         cbActive = new QCheckBox(HModProduct);
         cbActive->setObjectName(QString::fromUtf8("cbActive"));
 
-        horizontalLayout->addWidget(cbActive);
+        gridLayout_2->addWidget(cbActive, 0, 2, 1, 1);
 
         cbBio = new QCheckBox(HModProduct);
         cbBio->setObjectName(QString::fromUtf8("cbBio"));
 
-        horizontalLayout->addWidget(cbBio);
+        gridLayout_2->addWidget(cbBio, 0, 3, 1, 1);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout->addLayout(gridLayout_2);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -176,6 +182,7 @@ public:
         label_3->setText(QCoreApplication::translate("HModProduct", "Prezzo:", nullptr));
         deLastUpdate->setSpecialValueText(QCoreApplication::translate("HModProduct", "---", nullptr));
         cbAllergene->setText(QCoreApplication::translate("HModProduct", "Allergene", nullptr));
+        cbAllergeneUSA->setText(QCoreApplication::translate("HModProduct", "Allergene USA", nullptr));
         cbActive->setText(QCoreApplication::translate("HModProduct", "Attivo", nullptr));
         cbBio->setText(QCoreApplication::translate("HModProduct", "Bio", nullptr));
         pbSave->setText(QCoreApplication::translate("HModProduct", "Salva", nullptr));

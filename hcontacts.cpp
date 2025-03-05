@@ -20,6 +20,12 @@ HContacts::HContacts(QWidget *parent, HUser *pusr, QSqlDatabase pdb) :
     user=pusr;
     db = pdb;
 
+    user->get_contatti_u()>0?ui->pushButton->setEnabled(true):ui->pushButton->setEnabled(false);
+    user->get_contatti_u()>0?ui->pushButton_2->setEnabled(true):ui->pushButton_2->setEnabled(false);
+    user->get_contatti_u()>0?ui->pushButton_3->setEnabled(true):ui->pushButton_3->setEnabled(false);
+    user->get_contatti_u()>0?ui->pushButton_5->setEnabled(true):ui->pushButton_5->setEnabled(false);
+
+
     mod=new QSqlTableModel(0,db);
     mod->setTable("contatti");
     mod->setSort(1,Qt::AscendingOrder);

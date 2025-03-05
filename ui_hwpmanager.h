@@ -12,7 +12,9 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
@@ -60,16 +62,24 @@ public:
     QRadioButton *rbFresh;
     QRadioButton *rbPastorized;
     QRadioButton *rbNone;
+    QFormLayout *formLayout_4;
+    QLabel *label_14;
+    QPlainTextEdit *ptLotti;
     QHBoxLayout *horizontalLayout;
-    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_15;
+    QCheckBox *cbPartenza;
+    QDateEdit *dePartenza;
+    QSpacerItem *horizontalSpacer_2;
+    QFormLayout *formLayout_3;
     QLabel *label_11;
     QPlainTextEdit *ptNote;
     QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer;
     QLabel *label_13;
     QLineEdit *leLotScad;
     QLabel *label_7;
     QLineEdit *leTotal;
-    QSpacerItem *horizontalSpacer;
+    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pbSave;
     QPushButton *pbClose;
@@ -79,7 +89,7 @@ public:
         if (HWpManager->objectName().isEmpty())
             HWpManager->setObjectName(QString::fromUtf8("HWpManager"));
         HWpManager->setWindowModality(Qt::ApplicationModal);
-        HWpManager->resize(747, 415);
+        HWpManager->resize(747, 467);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HWpManager->setWindowIcon(icon);
@@ -101,6 +111,7 @@ public:
 
         cbProdotto = new QComboBox(HWpManager);
         cbProdotto->setObjectName(QString::fromUtf8("cbProdotto"));
+        cbProdotto->setEditable(true);
 
         gridLayout->addWidget(cbProdotto, 0, 3, 1, 1);
 
@@ -188,6 +199,8 @@ public:
 
         cbSanty = new QComboBox(HWpManager);
         cbSanty->setObjectName(QString::fromUtf8("cbSanty"));
+        cbSanty->setMinimumSize(QSize(120, 0));
+        cbSanty->setEditable(true);
 
         gridLayout_3->addWidget(cbSanty, 0, 7, 1, 1);
 
@@ -242,28 +255,68 @@ public:
 
         verticalLayout->addLayout(gridLayout_2);
 
+        formLayout_4 = new QFormLayout();
+        formLayout_4->setObjectName(QString::fromUtf8("formLayout_4"));
+        label_14 = new QLabel(HWpManager);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+
+        formLayout_4->setWidget(0, QFormLayout::LabelRole, label_14);
+
+        ptLotti = new QPlainTextEdit(HWpManager);
+        ptLotti->setObjectName(QString::fromUtf8("ptLotti"));
+        ptLotti->setMaximumSize(QSize(16777215, 80));
+
+        formLayout_4->setWidget(0, QFormLayout::FieldRole, ptLotti);
+
+
+        verticalLayout->addLayout(formLayout_4);
+
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        label_15 = new QLabel(HWpManager);
+        label_15->setObjectName(QString::fromUtf8("label_15"));
+
+        horizontalLayout->addWidget(label_15);
+
+        cbPartenza = new QCheckBox(HWpManager);
+        cbPartenza->setObjectName(QString::fromUtf8("cbPartenza"));
+
+        horizontalLayout->addWidget(cbPartenza);
+
+        dePartenza = new QDateEdit(HWpManager);
+        dePartenza->setObjectName(QString::fromUtf8("dePartenza"));
+
+        horizontalLayout->addWidget(dePartenza);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
 
         verticalLayout->addLayout(horizontalLayout);
 
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        formLayout_3 = new QFormLayout();
+        formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
         label_11 = new QLabel(HWpManager);
         label_11->setObjectName(QString::fromUtf8("label_11"));
 
-        horizontalLayout_2->addWidget(label_11);
+        formLayout_3->setWidget(0, QFormLayout::LabelRole, label_11);
 
         ptNote = new QPlainTextEdit(HWpManager);
         ptNote->setObjectName(QString::fromUtf8("ptNote"));
+        ptNote->setMaximumSize(QSize(16777215, 80));
 
-        horizontalLayout_2->addWidget(ptNote);
+        formLayout_3->setWidget(0, QFormLayout::FieldRole, ptNote);
 
 
-        verticalLayout->addLayout(horizontalLayout_2);
+        verticalLayout->addLayout(formLayout_3);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer);
+
         label_13 = new QLabel(HWpManager);
         label_13->setObjectName(QString::fromUtf8("label_13"));
 
@@ -285,12 +338,12 @@ public:
 
         horizontalLayout_3->addWidget(leTotal);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_3->addItem(horizontalSpacer);
-
 
         verticalLayout->addLayout(horizontalLayout_3);
+
+        verticalSpacer = new QSpacerItem(20, 11, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
@@ -353,6 +406,9 @@ public:
         rbFresh->setText(QCoreApplication::translate("HWpManager", "Fresco", nullptr));
         rbPastorized->setText(QCoreApplication::translate("HWpManager", "Pastorizzato", nullptr));
         rbNone->setText(QCoreApplication::translate("HWpManager", "Nessuna", nullptr));
+        label_14->setText(QCoreApplication::translate("HWpManager", "Lotti:", nullptr));
+        label_15->setText(QCoreApplication::translate("HWpManager", "Partenza:", nullptr));
+        cbPartenza->setText(QString());
         label_11->setText(QCoreApplication::translate("HWpManager", "Note:", nullptr));
         label_13->setText(QCoreApplication::translate("HWpManager", "Lotto/scadenza:", nullptr));
         label_7->setText(QCoreApplication::translate("HWpManager", "Totale:", nullptr));

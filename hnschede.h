@@ -75,6 +75,8 @@ private slots:
     void on_pbReset_clicked();
 
 
+
+
 private:
     Ui::HNSChede *ui;
     QSqlDatabase db;

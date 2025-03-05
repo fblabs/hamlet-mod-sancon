@@ -8,8 +8,10 @@
 #include <QDataWidgetMapper>
 #include <QMessageBox>
 #include "huser.h"
-// #include <QDebug>
-#include <QSqlError>
+#include "hgroups.h"
+#include <QCryptographicHash>
+#include <QDebug>
+
 
 HGestioneUtenti::HGestioneUtenti(HUser *p_user, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
@@ -19,6 +21,20 @@ HGestioneUtenti::HGestioneUtenti(HUser *p_user, QSqlDatabase pdb, QWidget *paren
 
     db=pdb;
     user=p_user;
+
+    /*user->get_utenti_u()>0?ui->pushButton->setEnabled(true):ui->pushButton->setEnabled(false);
+    user->get_utenti_u()>0?ui->pushButton_2->setEnabled(true):ui->pushButton_2->setEnabled(false);
+    user->get_utenti_u()>0?ui->pbGroups->setEnabled(true):ui->pbGroups->setEnabled(false);
+    user->get_utenti_u()>0?ui->pbNuovaPassword->setEnabled(true):ui->pbNuovaPassword->setEnabled(false);*/
+
+
+    ui->pushButton->setEnabled(user->get_utenti_u()>0);
+    ui->pushButton_2->setEnabled(user->get_utenti_u()>0);
+    ui->pbGroups->setEnabled(user->get_utenti_u()>0);
+   // ui->pbNuovaPassword->setEnabled(user->get_utenti_u()>0);
+    ui->pbUserPermissions->setEnabled(user->get_utenti_u()>0);
+
+
 
     utm=new QSqlRelationalTableModel(0,db);
     gtm=new QSqlTableModel(0,db);
@@ -42,11 +58,6 @@ HGestioneUtenti::HGestioneUtenti(HUser *p_user, QSqlDatabase pdb, QWidget *paren
     utm->setEditStrategy(QSqlRelationalTableModel::OnManualSubmit);
    // gtm->select();
     utm->select();
-
-
-
-
-
     ui->lvUtenti->setModel(utm);
     ui->lvUtenti->setModelColumn(4);
 
@@ -55,25 +66,15 @@ HGestioneUtenti::HGestioneUtenti(HUser *p_user, QSqlDatabase pdb, QWidget *paren
     mapper->addMapping(ui->leUsername,1);
     mapper->addMapping(ui->lenome,4);
     mapper->addMapping(ui->cbAttivo,5);
-   // mapper->addMapping(ui->comboBox,3, "currentIndex");
-
-  // // // qDebug()<<QString::number(mapper->mappedSection(ui->comboBox));
     mapper->setItemDelegate(new QSqlRelationalDelegate(this));
-
     mapper->toFirst();
-
-
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), mapper, SLOT(setCurrentModelIndex(QModelIndex)));
-
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(getGruppo()));
     connect(ui->lvUtenti->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(getIdUtente()));
-
     ui->lvUtenti->setCurrentIndex(utm->index(0,0));
 
 
 
-
-  //  connect(ui->lvUtenti->selectionModel(),SIGNAL(currentChanged(QModelIndex,QModelIndex)),this,slot(loadDetails()));
 }
 
 HGestioneUtenti::~HGestioneUtenti()
@@ -127,9 +128,7 @@ int HGestioneUtenti::getGruppo()
    int i=ui->comboBox->findText(ui->lvUtenti->model()->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString());
    ui->comboBox->setCurrentIndex(i);
 
-   //  idgruppo=i;
-  //  int ui->comboBox->findText()
-   // // qDebug()<<"getGruppo():"<<i<<utm->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString();
+
    return i;
 }
 
@@ -165,20 +164,18 @@ void HGestioneUtenti::on_pushButton_2_clicked()
 
   //  getGruppo();
 
-    q.prepare("update utenti SET gruppo=:idgruppo,attivo=:attivo,nome=:nome where ID=:idutente");
+    q.prepare("update utenti SET username=:username,gruppo=:idgruppo,attivo=:attivo,nome=:nome,pwd=:pwd where ID=:idutente");
+    q.bindValue(":username",ui->leUsername->text());
     q.bindValue(":idgruppo",QVariant(idgruppo));
     q.bindValue(":attivo",ui->cbAttivo->isChecked());
     q.bindValue(":nome",ui->lenome->text());
     q.bindValue(":idutente",QVariant(idutente));
     q.exec();
-   // // qDebug()<<"salva2:"<<"idutente:"<<idutente<<"idgruppo " + q.boundValue(0).toString()<<"idutente: "+q.boundValue(1).toString()<<utm->index(ui->lvUtenti->currentIndex().row(),3).data(0).toString();
 
-    //gtm->select();
-    //utm->select();
-  //  getGruppo();
     if(utm->submit()){
 
     QMessageBox::information(this,QApplication::applicationName(),"Modifiche salvate",QMessageBox::Ok);
+    emit permissions_updated();
 
     }
     else
@@ -207,14 +204,57 @@ void HGestioneUtenti::on_pbNuovaPassword_clicked()
      }
 }
 
-void HGestioneUtenti::on_comboBox_currentIndexChanged(int index)
+
+
+void HGestioneUtenti::emit_permissions_updated()
 {
-   // // qDebug()<<ui->comboBox->currentText()<<ui->comboBox->itemData(ui->comboBox->currentIndex())<<ui->comboBox->model()->index(ui->comboBox->currentIndex(),3).data().toString();
+    qDebug()<<"emit_permissions_updated";
+    emit permissions_updated();
 }
 
 
 void HGestioneUtenti::on_pbGroups_clicked()
 {
-    return;
+    int gr=ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data().toInt();
+
+    HGroups *f=new HGroups(user,gr,"",db);
+    connect(f,SIGNAL(permissions_updated()),this,SLOT(emit_permissions_updated()));
+    f->show();
+
+}
+
+
+void HGestioneUtenti::on_pbUserPermissions_clicked()
+{
+   /* QSqlQuery q(db);
+    QString sql="SELECT ID from gruppi where descrizione='" +ui->comboBox->currentText()+"'";
+    q.exec(sql);
+    q.first();
+    int id_gruppo=q.value(0).toInt();
+
+    qDebug()<<"H"<<id_gruppo;
+
+    QString utente=utm->index(ui->lvUtenti->currentIndex().row(),1).data(0).toString().toUpper();
+
+    HGroups *f=new HGroups(user,id_gruppo,utente,db);
+    connect(f,SIGNAL(permissions_updated()),this,SLOT(emit_permissions_updated()));
+    f->show();*/
+
+    int gr=-1;
+
+   HGroups *f=new HGroups(new HUser(),gr,"",db);
+    connect(f,SIGNAL(permissions_updated()),this,SLOT(emit_permissions_updated()));
+    f->show();
+
+}
+
+
+
+
+void HGestioneUtenti::on_leNewPass_textChanged(const QString &arg1)
+{
+
+    bool e=arg1.length()>0 && (user->get_utenti_u()>0);
+    ui->pbNuovaPassword->setEnabled(e);
 }
 

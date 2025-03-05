@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HAnalisi_t {
-    QByteArrayData data[35];
-    char stringdata0[502];
+    QByteArrayData data[34];
+    char stringdata0[492];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -59,14 +59,13 @@ QT_MOC_LITERAL(23, 343, 21), // "on_deFrom_dateChanged"
 QT_MOC_LITERAL(24, 365, 4), // "date"
 QT_MOC_LITERAL(25, 370, 19), // "on_deTo_dateChanged"
 QT_MOC_LITERAL(26, 390, 8), // "printLot"
-QT_MOC_LITERAL(27, 399, 9), // "printThis"
-QT_MOC_LITERAL(28, 409, 18), // "on_pbPrint_clicked"
-QT_MOC_LITERAL(29, 428, 6), // "doMenu"
-QT_MOC_LITERAL(30, 435, 3), // "pos"
-QT_MOC_LITERAL(31, 439, 23), // "on_tvLots_doubleClicked"
-QT_MOC_LITERAL(32, 463, 11), // "QModelIndex"
-QT_MOC_LITERAL(33, 475, 5), // "index"
-QT_MOC_LITERAL(34, 481, 20) // "on_pbBioData_clicked"
+QT_MOC_LITERAL(27, 399, 18), // "on_pbPrint_clicked"
+QT_MOC_LITERAL(28, 418, 6), // "doMenu"
+QT_MOC_LITERAL(29, 425, 3), // "pos"
+QT_MOC_LITERAL(30, 429, 23), // "on_tvLots_doubleClicked"
+QT_MOC_LITERAL(31, 453, 11), // "QModelIndex"
+QT_MOC_LITERAL(32, 465, 5), // "index"
+QT_MOC_LITERAL(33, 471, 20) // "on_pbBioData_clicked"
 
     },
     "HAnalisi\0getProductsForClient\0\0"
@@ -79,8 +78,8 @@ QT_MOC_LITERAL(34, 481, 20) // "on_pbBioData_clicked"
     "on_pushButton_5_clicked\0getYearlyProduction\0"
     "on_checkBox_toggled\0on_deFrom_dateChanged\0"
     "date\0on_deTo_dateChanged\0printLot\0"
-    "printThis\0on_pbPrint_clicked\0doMenu\0"
-    "pos\0on_tvLots_doubleClicked\0QModelIndex\0"
+    "on_pbPrint_clicked\0doMenu\0pos\0"
+    "on_tvLots_doubleClicked\0QModelIndex\0"
     "index\0on_pbBioData_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -91,7 +90,7 @@ static const uint qt_meta_data_HAnalisi[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      26,   14, // methods
+      25,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -99,32 +98,31 @@ static const uint qt_meta_data_HAnalisi[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  144,    2, 0x08 /* Private */,
-       3,    0,  145,    2, 0x08 /* Private */,
-       3,    1,  146,    2, 0x08 /* Private */,
-       5,    1,  149,    2, 0x08 /* Private */,
-       7,    0,  152,    2, 0x08 /* Private */,
-       8,    1,  153,    2, 0x08 /* Private */,
-      10,    0,  156,    2, 0x08 /* Private */,
-      11,    0,  157,    2, 0x08 /* Private */,
-      12,    0,  158,    2, 0x08 /* Private */,
-      13,    1,  159,    2, 0x08 /* Private */,
-      15,    1,  162,    2, 0x08 /* Private */,
-      16,    1,  165,    2, 0x08 /* Private */,
-      17,    0,  168,    2, 0x08 /* Private */,
-      18,    0,  169,    2, 0x08 /* Private */,
-      19,    0,  170,    2, 0x08 /* Private */,
-      20,    0,  171,    2, 0x08 /* Private */,
-      21,    0,  172,    2, 0x08 /* Private */,
-      22,    1,  173,    2, 0x08 /* Private */,
-      23,    1,  176,    2, 0x08 /* Private */,
-      25,    1,  179,    2, 0x08 /* Private */,
-      26,    0,  182,    2, 0x08 /* Private */,
-      27,    0,  183,    2, 0x08 /* Private */,
-      28,    0,  184,    2, 0x08 /* Private */,
-      29,    1,  185,    2, 0x08 /* Private */,
-      31,    1,  188,    2, 0x08 /* Private */,
-      34,    0,  191,    2, 0x08 /* Private */,
+       1,    0,  139,    2, 0x08 /* Private */,
+       3,    0,  140,    2, 0x08 /* Private */,
+       3,    1,  141,    2, 0x08 /* Private */,
+       5,    1,  144,    2, 0x08 /* Private */,
+       7,    0,  147,    2, 0x08 /* Private */,
+       8,    1,  148,    2, 0x08 /* Private */,
+      10,    0,  151,    2, 0x08 /* Private */,
+      11,    0,  152,    2, 0x08 /* Private */,
+      12,    0,  153,    2, 0x08 /* Private */,
+      13,    1,  154,    2, 0x08 /* Private */,
+      15,    1,  157,    2, 0x08 /* Private */,
+      16,    1,  160,    2, 0x08 /* Private */,
+      17,    0,  163,    2, 0x08 /* Private */,
+      18,    0,  164,    2, 0x08 /* Private */,
+      19,    0,  165,    2, 0x08 /* Private */,
+      20,    0,  166,    2, 0x08 /* Private */,
+      21,    0,  167,    2, 0x08 /* Private */,
+      22,    1,  168,    2, 0x08 /* Private */,
+      23,    1,  171,    2, 0x08 /* Private */,
+      25,    1,  174,    2, 0x08 /* Private */,
+      26,    0,  177,    2, 0x08 /* Private */,
+      27,    0,  178,    2, 0x08 /* Private */,
+      28,    1,  179,    2, 0x08 /* Private */,
+      30,    1,  182,    2, 0x08 /* Private */,
+      33,    0,  185,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -149,9 +147,8 @@ static const uint qt_meta_data_HAnalisi[] = {
     QMetaType::Void, QMetaType::QDate,   24,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QPoint,   30,
-    QMetaType::Void, 0x80000000 | 32,   33,
+    QMetaType::Void, QMetaType::QPoint,   29,
+    QMetaType::Void, 0x80000000 | 31,   32,
     QMetaType::Void,
 
        0        // eod
@@ -185,11 +182,10 @@ void HAnalisi::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 18: _t->on_deFrom_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
         case 19: _t->on_deTo_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
         case 20: _t->printLot(); break;
-        case 21: _t->printThis(); break;
-        case 22: _t->on_pbPrint_clicked(); break;
-        case 23: _t->doMenu((*reinterpret_cast< QPoint(*)>(_a[1]))); break;
-        case 24: _t->on_tvLots_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 25: _t->on_pbBioData_clicked(); break;
+        case 21: _t->on_pbPrint_clicked(); break;
+        case 22: _t->doMenu((*reinterpret_cast< QPoint(*)>(_a[1]))); break;
+        case 23: _t->on_tvLots_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 24: _t->on_pbBioData_clicked(); break;
         default: ;
         }
     }
@@ -224,13 +220,13 @@ int HAnalisi::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 26)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 26;
+        _id -= 25;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 26)
+        if (_id < 25)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 26;
+        _id -= 25;
     }
     return _id;
 }

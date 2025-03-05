@@ -44,7 +44,7 @@ public:
     {
         if (HNewSheet->objectName().isEmpty())
             HNewSheet->setObjectName(QString::fromUtf8("HNewSheet"));
-        HNewSheet->setWindowModality(Qt::ApplicationModal);
+        HNewSheet->setWindowModality(Qt::WindowModal);
         HNewSheet->resize(383, 235);
         verticalLayout = new QVBoxLayout(HNewSheet);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
@@ -54,7 +54,6 @@ public:
         font.setFamily(QString::fromUtf8("Verdana"));
         font.setPointSize(16);
         font.setBold(true);
-        font.setWeight(75);
         label->setFont(font);
         label->setAlignment(Qt::AlignCenter);
 

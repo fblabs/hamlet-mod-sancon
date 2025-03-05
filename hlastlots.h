@@ -23,10 +23,10 @@ private slots:
     void on_pushButton_2_clicked();
     void lastLots();
     void lastLotsByLot(const QString plot=QString());
-
     void on_pushButton_clicked();
-
     void on_leSearch_returnPressed();
+
+
 private:
     Ui::HLastLots *ui;
     QSqlDatabase db;

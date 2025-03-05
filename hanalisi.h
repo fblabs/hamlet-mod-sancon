@@ -56,7 +56,6 @@ private slots:
     void on_deFrom_dateChanged(const QDate &date);
     void on_deTo_dateChanged(const QDate &date);
     void printLot();
-    void printThis();
     void on_pbPrint_clicked();
     void doMenu(QPoint pos);
     void on_tvLots_doubleClicked(const QModelIndex &index);

@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QSqlDatabase>
 #include "huser.h"
+#include <QSqlQueryModel>
 
 
 namespace Ui {
@@ -31,6 +32,7 @@ public:
 private:
     Ui::HLogin2 *ui;
     QSqlDatabase db;
+    QSqlQueryModel *permissions_mod;
     HUser *usr;
 
 
@@ -39,6 +41,7 @@ private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
     void on_checkBox_toggled(bool checked);
+    void get_permissions(HUser *p_user=nullptr, const int p_role=-1 );
 };
 
 #endif // HLOGIN2_H

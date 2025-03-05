@@ -3,7 +3,7 @@
  <class>HCalcost</class>
  <widget class="QWidget" name="HCalcost">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -20,7 +20,7 @@
    <iconset resource="icons.qrc">
     <normaloff>:/Resources/Cash-register-icon.png</normaloff>:/Resources/Cash-register-icon.png</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5">
+  <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
@@ -64,24 +64,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Note:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QTextEdit" name="teNote">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>80</height>
-          </size>
-         </property>
-        </widget>
-       </item>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <widget class="QLabel" name="label_15">
          <property name="font">
@@ -178,7 +161,7 @@
            <item row="3" column="0">
             <widget class="QLabel" name="label_11">
              <property name="text">
-              <string>Da produrre: (Kg)</string>
+              <string>Formato (Kg):</string>
              </property>
             </widget>
            </item>
@@ -225,8 +208,8 @@
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0" colspan="6">
           <widget class="QLabel" name="label_3">
            <property name="font">
             <font>
@@ -238,93 +221,118 @@
            </property>
           </widget>
          </item>
-         <item>
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_7">
-             <property name="text">
-              <string>Costo vasi (€)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QComboBox" name="cbTappi">
-             <property name="editable">
-              <bool>true</bool>
-             </property>
-             <property name="insertPolicy">
-              <enum>QComboBox::NoInsert</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QLineEdit" name="leQtTappi">
-             <property name="text">
-              <string>1</string>
-             </property>
-             <property name="placeholderText">
-              <string>numero tappi</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_8">
-             <property name="text">
-              <string>Costo tappi (€)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_6">
-             <property name="text">
-              <string>Costo Cartoni (€)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="cbVasi">
-             <property name="editable">
-              <bool>true</bool>
-             </property>
-             <property name="insertPolicy">
-              <enum>QComboBox::NoInsert</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QLineEdit" name="leQtVasi">
-             <property name="text">
-              <string>1</string>
-             </property>
-             <property name="placeholderText">
-              <string>numero vasi</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QLineEdit" name="leCostoCartoni">
-             <property name="placeholderText">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QLabel" name="label_9">
-             <property name="text">
-              <string>Costo Etichette (€)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QLineEdit" name="leCostoVasi"/>
-           </item>
-           <item row="1" column="3">
-            <widget class="QLineEdit" name="leCostoTappi"/>
-           </item>
-           <item row="2" column="3">
-            <widget class="QLineEdit" name="leCostoEtichette"/>
-           </item>
-          </layout>
+         <item row="1" column="0" colspan="2">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Costo vasi (€)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2" colspan="3">
+          <widget class="QComboBox" name="cbVasi">
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+           <property name="insertPolicy">
+            <enum>QComboBox::NoInsert</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="5" colspan="2">
+          <widget class="QLineEdit" name="leQtVasi">
+           <property name="text">
+            <string>1</string>
+           </property>
+           <property name="placeholderText">
+            <string>numero vasi</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="7" colspan="2">
+          <widget class="QLineEdit" name="leCostoVasi"/>
+         </item>
+         <item row="2" column="0" colspan="2">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Costo tappi (€)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2" colspan="3">
+          <widget class="QComboBox" name="cbTappi">
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+           <property name="insertPolicy">
+            <enum>QComboBox::NoInsert</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="5" colspan="2">
+          <widget class="QLineEdit" name="leQtTappi">
+           <property name="text">
+            <string>1</string>
+           </property>
+           <property name="placeholderText">
+            <string>numero tappi</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="7" colspan="2">
+          <widget class="QLineEdit" name="leCostoTappi"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Cartoni:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1" colspan="3">
+          <widget class="QComboBox" name="cbCartoni">
+           <property name="insertPolicy">
+            <enum>QComboBox::NoInsert</enum>
+           </property>
+           <property name="modelColumn">
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="4" colspan="2">
+          <widget class="QLabel" name="label_17">
+           <property name="text">
+            <string>Costo cartone</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="6" colspan="2">
+          <widget class="QLineEdit" name="lineEdit_2"/>
+         </item>
+         <item row="3" column="8">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>N. vasi cartone</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="9">
+          <widget class="QLineEdit" name="lineEdit"/>
+         </item>
+         <item row="4" column="0" colspan="3">
+          <widget class="QLabel" name="label_9">
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Costo Etichette (€)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3" colspan="3">
+          <widget class="QLineEdit" name="leCostoEtichette"/>
          </item>
         </layout>
        </item>

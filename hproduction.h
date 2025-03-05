@@ -32,30 +32,28 @@ private:
     Ui::HProduction *ui;
     QSqlDatabase db;
     HUser *user;
-
+    QString preferred_db;
+    QSqlDatabase prefdb;
     QSqlQueryModel *qmClienti;
     QSqlQueryModel *qmRicette;
     QStandardItemModel *model;
+    QStandardItemModel *printmodel;
     QSqlTableModel *tmTipiLotti;
     QSqlTableModel *tmUm;
-    //   QList<int> *writeRed;
-    //   QStandardItemModel *tableModel;
     QSqlQueryModel* qmod;
-
-
-
     bool modifyLot;
     int lottomodifica;
+    int recipe_row_count;
 
 private slots:
-    void addLot(QModelIndex index);
+    void addLot(QModelIndex index, const bool p_allergene=false, const bool show_window=true);
     void getNewRow(QList<QStandardItem *> list);
     void getClients();
     void getSubclients();
     void getRecipesForClient();
     void getRecipe();
-    void productSelected();
-    void getLotModel();
+   // void productSelected();
+    //void getLotModel();
     void addLotProd();
     void addLotFuoriRicettaN(QList<QStandardItem *> row);
     void addLotFuoriRicetta();
@@ -71,6 +69,7 @@ private slots:
     bool updateComposition();
     void printRecipe();
     void printProduction();
+    void print(const QStandardItemModel *prtmod=nullptr, bool pdf=true);
     int lastInsertId();
     void getLotToModify(QString lot);
     QString getNewLot(int prod);
@@ -87,12 +86,17 @@ private slots:
     void on_pushButton_2_clicked();
     void on_pushButton_7_toggled(bool checked);
     void on_pbAddLottoFuoriRicetta_clicked();
-    void on_pushButton_8_clicked();
     void on_pushButton_10_clicked();
     void on_checkBox_toggled(bool checked);
     void on_pbAnnulla_clicked();
     void on_pushButton_11_clicked();
     void ui_enable(int arg);
+    void addPreferredLots();
+    const QString findPreferredLot(const int id_prod=-1);
+    void on_pbPreferredLots_clicked();
+    void on_cbTipoLotto_currentIndexChanged(int index);
+    QStandardItemModel *getrecipeForPrinting(const int idricetta=-1);
+
 
 };
 

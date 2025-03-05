@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HLotMovements_t {
-    QByteArrayData data[6];
-    char stringdata0[73];
+    QByteArrayData data[8];
+    char stringdata0[106];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,11 +37,14 @@ QT_MOC_LITERAL(1, 14, 15), // "getLotMovements"
 QT_MOC_LITERAL(2, 30, 0), // ""
 QT_MOC_LITERAL(3, 31, 2), // "id"
 QT_MOC_LITERAL(4, 34, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(5, 56, 16) // "getGiacenzaLotto"
+QT_MOC_LITERAL(5, 56, 16), // "getGiacenzaLotto"
+QT_MOC_LITERAL(6, 73, 17), // "getDestinationLot"
+QT_MOC_LITERAL(7, 91, 14) // "p_id_operation"
 
     },
     "HLotMovements\0getLotMovements\0\0id\0"
-    "on_pushButton_clicked\0getGiacenzaLotto"
+    "on_pushButton_clicked\0getGiacenzaLotto\0"
+    "getDestinationLot\0p_id_operation"
 };
 #undef QT_MOC_LITERAL
 
@@ -51,7 +54,7 @@ static const uint qt_meta_data_HLotMovements[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -59,14 +62,18 @@ static const uint qt_meta_data_HLotMovements[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   29,    2, 0x08 /* Private */,
-       4,    0,   32,    2, 0x08 /* Private */,
-       5,    1,   33,    2, 0x08 /* Private */,
+       1,    1,   39,    2, 0x08 /* Private */,
+       4,    0,   42,    2, 0x08 /* Private */,
+       5,    1,   43,    2, 0x08 /* Private */,
+       6,    1,   46,    2, 0x08 /* Private */,
+       6,    0,   49,    2, 0x28 /* Private | MethodCloned */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::QString, QMetaType::Int,    7,
+    QMetaType::QString,
 
        0        // eod
 };
@@ -80,6 +87,10 @@ void HLotMovements::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->getLotMovements((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 1: _t->on_pushButton_clicked(); break;
         case 2: _t->getGiacenzaLotto((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 3: { QString _r = _t->getDestinationLot((*reinterpret_cast< const int(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
+        case 4: { QString _r = _t->getDestinationLot();
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }
@@ -114,13 +125,13 @@ int HLotMovements::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 3;
+        _id -= 5;
     }
     return _id;
 }

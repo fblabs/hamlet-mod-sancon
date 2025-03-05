@@ -39,7 +39,7 @@ void HSchedeClienti::init(QString conn,HUser *usr)
 
   QTextDocument *doc  =new QTextDocument();
 
- bool upd=usr->getCanUpdate();
+ bool upd=usr->get_schede_u()<0;
 
     if (!upd)
     {
@@ -361,7 +361,7 @@ void HSchedeClienti::on_pushButton_4_clicked()
 
     HModificaScheda *f=new HModificaScheda();
     f->init(sConn,cliente,prodotto,ui->listView->model()->index(ui->listView->currentIndex().row(),1).data(0).toString() + " - " + ui->comboBox->currentText(),width,height,fontsize);
-    f->setWindowModality(Qt::ApplicationModal);
+    f->setWindowModality(Qt::WindowModal);
     f->showMaximized();
     connect(f,SIGNAL(schedaAggiornata()),this,SLOT(loadScheda()));
 }

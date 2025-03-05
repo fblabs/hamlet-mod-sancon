@@ -31,9 +31,12 @@ public:
     QFormLayout *formLayout;
     QLabel *label;
     QLineEdit *leDescrizione;
+    QFormLayout *formLayout_2;
     QLabel *label_2;
     QComboBox *comboBox;
+    QFormLayout *formLayout_3;
     QCheckBox *cbAllergenico;
+    QCheckBox *cbAllergeneUSA;
     QCheckBox *cbBio;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbSave;
@@ -44,7 +47,7 @@ public:
         if (HNewProduct->objectName().isEmpty())
             HNewProduct->setObjectName(QString::fromUtf8("HNewProduct"));
         HNewProduct->setWindowModality(Qt::ApplicationModal);
-        HNewProduct->resize(547, 170);
+        HNewProduct->resize(547, 176);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HNewProduct->setWindowIcon(icon);
@@ -62,28 +65,43 @@ public:
 
         formLayout->setWidget(0, QFormLayout::FieldRole, leDescrizione);
 
+
+        verticalLayout->addLayout(formLayout);
+
+        formLayout_2 = new QFormLayout();
+        formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
         label_2 = new QLabel(HNewProduct);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
+        formLayout_2->setWidget(0, QFormLayout::LabelRole, label_2);
 
         comboBox = new QComboBox(HNewProduct);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, comboBox);
+        formLayout_2->setWidget(0, QFormLayout::FieldRole, comboBox);
 
+
+        verticalLayout->addLayout(formLayout_2);
+
+        formLayout_3 = new QFormLayout();
+        formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
         cbAllergenico = new QCheckBox(HNewProduct);
         cbAllergenico->setObjectName(QString::fromUtf8("cbAllergenico"));
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, cbAllergenico);
+        formLayout_3->setWidget(0, QFormLayout::LabelRole, cbAllergenico);
+
+        cbAllergeneUSA = new QCheckBox(HNewProduct);
+        cbAllergeneUSA->setObjectName(QString::fromUtf8("cbAllergeneUSA"));
+
+        formLayout_3->setWidget(0, QFormLayout::FieldRole, cbAllergeneUSA);
+
+
+        verticalLayout->addLayout(formLayout_3);
 
         cbBio = new QCheckBox(HNewProduct);
         cbBio->setObjectName(QString::fromUtf8("cbBio"));
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, cbBio);
-
-
-        verticalLayout->addLayout(formLayout);
+        verticalLayout->addWidget(cbBio);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -123,6 +141,7 @@ public:
         label->setText(QCoreApplication::translate("HNewProduct", "Descrizione", nullptr));
         label_2->setText(QCoreApplication::translate("HNewProduct", "Tipo", nullptr));
         cbAllergenico->setText(QCoreApplication::translate("HNewProduct", "Allergene", nullptr));
+        cbAllergeneUSA->setText(QCoreApplication::translate("HNewProduct", "Allergene USA", nullptr));
         cbBio->setText(QCoreApplication::translate("HNewProduct", "Bio", nullptr));
         pbSave->setText(QCoreApplication::translate("HNewProduct", "Salva", nullptr));
         pbCancel->setText(QCoreApplication::translate("HNewProduct", "Annulla", nullptr));

@@ -15,65 +15,60 @@ Qt::ItemFlags HWorkSheetModel::flags(const QModelIndex & item ) const
 
 
 
-      /*if (item.column()==5)
-       {
+    if (item.column()==5)
+    {
 
-           flags |= Qt::ItemIsUserCheckable;
-           flags |= Qt::ItemIsEnabled;
+        flags |= Qt::ItemIsUserCheckable;
+        flags |= Qt::ItemIsEnabled;
 
-           return flags;
-       }
-       else
-       {*/
-          flags=QSqlTableModel::flags(item) & ~Qt::ItemIsEditable;
-          return flags;
+        return flags;
+    }
+    else
+    {
+        flags=QSqlTableModel::flags(item) & ~Qt::ItemIsEditable;
+        return flags;
+    }
 
 
 
-     return QSqlTableModel::flags(item) ;
+    return QSqlTableModel::flags(item) ;
 }
 
 
 
-QVariant HWorkSheetModel::data( const QModelIndex & item, int role /*= Qt::DisplayRole*/ ) const
+QVariant HWorkSheetModel::data( const QModelIndex & item, int role/*= Qt::DisplayRole*/ ) const
 {
 
 
-  // QVariant value=QSqlRelationalTableModel::data(item);
+    // QVariant value=QSqlRelationalTableModel::data(item);
 
+    if (item.column()==5 && role==Qt::CheckStateRole)
+    {
 
+        int checked = QSqlTableModel::data(item).toInt();
 
+        if (checked)
+        {
+            return Qt::Checked;
+        }
+        else{
+            return Qt::Unchecked;
 
-   if (item.column()==5 && role==Qt::CheckStateRole)
-   {
+        }
+    }
+    else if (item.column()==5 && role == Qt::DisplayRole)
+    {
+        const QString original =QString();// QSqlTableModel::data(item, Qt::DisplayRole).toString();
 
-         int checked = QSqlTableModel::data(item).toInt();
+        return original;
 
-         if (checked)
-         {
-             return Qt::Checked;
-         }
-         else{
-             return Qt::Unchecked;
+    }
 
-         }
-   }
-   else if (item.column()!=5 && role == Qt::DisplayRole)
-   {
-       const QString original = QSqlTableModel::data(item, Qt::DisplayRole).toString();
-
-       return original;
-
-   }
-   else{
+    else{
         return QSqlTableModel::data(item,role);
-   }
+    }
 
-
-
-
-
-  // return QSqlTableModel::data(item,role);
+   // return QSqlTableModel::data(item,role);
 
 
 
@@ -82,25 +77,23 @@ QVariant HWorkSheetModel::data( const QModelIndex & item, int role /*= Qt::Displ
 bool HWorkSheetModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
 
-        if (index.column()==5)
-        {
+    if (index.column()==5)
+    {
 
-            if (role==Qt::CheckStateRole )
+        if (role==Qt::CheckStateRole )
             return (QSqlTableModel::data(index).toInt() > 0) ? Qt::Checked :Qt::Unchecked;
 
-        }
-        else
-        {
-            return QSqlTableModel::setData(index,value,role);
-        }
+    }
+    else
+    {
+        return QSqlTableModel::setData(index,value,role);
+    }
+
+    return QSqlTableModel::setData(index,value,role);
 
 
 
-       return QSqlTableModel::setData(index,value,role);
-
-
-
- }
+}
 
 
 

@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1156</width>
+    <width>1171</width>
     <height>831</height>
    </rect>
   </property>
@@ -378,7 +378,7 @@
    <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>Hamlet MOD 3.3.1</string>
+   <string>Hamlet MOD 3.8</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
@@ -531,7 +531,7 @@
          <enum>QFrame::NoFrame</enum>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Hamlet Mod 3.3 &lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; font-style:italic;&quot;&gt;(64bit)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Versione: 3.3.1.5.&lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;002&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza:LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.15.2 - MinGW 64&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;© FBLABS 2015-2023&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/fblabs/hamlet-mod-sancon/tree/master&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Sorgenti (github)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;Hamlet MOD 3.8&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Versione: 3.8.4 &lt;/span&gt;&lt;span style=&quot; font-size:6pt; font-weight:600;&quot;&gt;002&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Licenza: LGPL v. 3&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Built with Qt 5.15.2 - MinGW 64&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;© FBLABS 2015-2025&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/fblabs/hamlet-mod-sancon/blob/master/release/hamletMOD.exe&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Sorgenti (github)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -566,8 +566,46 @@
         <property name="spacing">
          <number>2</number>
         </property>
-        <item row="5" column="2">
-         <widget class="QToolButton" name="tbMagaz">
+        <item row="3" column="0">
+         <widget class="QToolButton" name="tbSettings">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Impostazioni   </string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Computer.PNG</normaloff>:/Resources/Computer.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="6">
+         <widget class="QPushButton" name="pbSchede">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -577,18 +615,21 @@
             <height>0</height>
            </size>
           </property>
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Operazioni legate al Magazzino,movimentazione di carico e scarico, correzione errori,ecc.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
           </property>
           <property name="styleSheet">
            <string notr="true">color:rgb(0, 0, 0)</string>
           </property>
           <property name="text">
-           <string>Operazioni (F2)</string>
+           <string>Schede Clienti (F3)</string>
           </property>
           <property name="icon">
            <iconset resource="icons.qrc">
-            <normaloff>:/Resources/fork-1-icon.png</normaloff>:/Resources/fork-1-icon.png</iconset>
+            <normaloff>:/Resources/Folder.PNG</normaloff>:/Resources/Folder.PNG</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -597,10 +638,7 @@
            </size>
           </property>
           <property name="shortcut">
-           <string>F2</string>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
+           <string>F3</string>
           </property>
          </widget>
         </item>
@@ -613,6 +651,12 @@
            <size>
             <width>140</width>
             <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -633,54 +677,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="6">
-         <widget class="QPushButton" name="pbOldCards">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="palette">
-           <palette>
-            <active>
-             <colorrole role="Button">
-              <brush brushstyle="SolidPattern">
-               <color alpha="255">
-                <red>200</red>
-                <green>188</green>
-                <blue>193</blue>
-               </color>
-              </brush>
-             </colorrole>
-            </active>
-            <inactive>
-             <colorrole role="Button">
-              <brush brushstyle="SolidPattern">
-               <color alpha="255">
-                <red>200</red>
-                <green>188</green>
-                <blue>193</blue>
-               </color>
-              </brush>
-             </colorrole>
-            </inactive>
-            <disabled>
-             <colorrole role="Button">
-              <brush brushstyle="SolidPattern">
-               <color alpha="255">
-                <red>200</red>
-                <green>188</green>
-                <blue>193</blue>
-               </color>
-              </brush>
-             </colorrole>
-            </disabled>
-           </palette>
-          </property>
-          <property name="text">
-           <string>Schede (legacy)</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="6">
+        <item row="4" column="6">
          <widget class="QToolButton" name="tbRicette">
           <property name="enabled">
            <bool>false</bool>
@@ -693,7 +690,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>16777215</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -727,20 +724,20 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="6">
-         <widget class="QPushButton" name="pbSchede">
+        <item row="3" column="8">
+         <widget class="QPushButton" name="pbCalcoloCosti">
           <property name="enabled">
            <bool>false</bool>
           </property>
           <property name="minimumSize">
            <size>
-            <width>140</width>
+            <width>130</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>16777215</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -748,11 +745,11 @@
            <string notr="true">color:rgb(0, 0, 0)</string>
           </property>
           <property name="text">
-           <string>Schede Clienti (F3)</string>
+           <string>Calcolo costi (F10)</string>
           </property>
           <property name="icon">
            <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Folder.PNG</normaloff>:/Resources/Folder.PNG</iconset>
+            <normaloff>:/Resources/Cash-register-icon.png</normaloff>:/Resources/Cash-register-icon.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -761,12 +758,12 @@
            </size>
           </property>
           <property name="shortcut">
-           <string>F3</string>
+           <string>F10</string>
           </property>
          </widget>
         </item>
-        <item row="7" column="6">
-         <widget class="QToolButton" name="tbAssociazioni">
+        <item row="3" column="7">
+         <widget class="QPushButton" name="pbProgrammazione">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -778,45 +775,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>134</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Associa Ricette</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Map.PNG</normaloff>:/Resources/Map.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QToolButton" name="tbSettings">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
             <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>125</width>
             <height>16777215</height>
            </size>
           </property>
@@ -824,11 +783,11 @@
            <string notr="true">color:rgb(0, 0, 0)</string>
           </property>
           <property name="text">
-           <string>Impostazioni   </string>
+           <string>Programmi (F11)</string>
           </property>
           <property name="icon">
            <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Computer.PNG</normaloff>:/Resources/Computer.PNG</iconset>
+            <normaloff>:/Resources/3D_Icons_Icon_256.png</normaloff>:/Resources/3D_Icons_Icon_256.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -836,16 +795,22 @@
             <height>32</height>
            </size>
           </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          <property name="shortcut">
+           <string>F11</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
-         <widget class="QPushButton" name="tbAnag">
+        <item row="4" column="8">
+         <widget class="QToolButton" name="tbAnalisi">
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>140</width>
@@ -854,7 +819,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -862,11 +827,11 @@
            <string notr="true">color:rgb(0, 0, 0)</string>
           </property>
           <property name="text">
-           <string>Anagrafica      </string>
+           <string>Analisi (F8)</string>
           </property>
           <property name="icon">
            <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Users64.png</normaloff>:/Resources/Users64.png</iconset>
+            <normaloff>:/Resources/Chart.PNG</normaloff>:/Resources/Chart.PNG</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -874,9 +839,18 @@
             <height>32</height>
            </size>
           </property>
+          <property name="shortcut">
+           <string>F8</string>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+          <property name="autoRaise">
+           <bool>false</bool>
+          </property>
          </widget>
         </item>
-        <item row="11" column="1">
+        <item row="5" column="1">
          <widget class="QPushButton" name="pbContacts">
           <property name="enabled">
            <bool>false</bool>
@@ -885,6 +859,12 @@
            <size>
             <width>140</width>
             <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -908,7 +888,218 @@
           </property>
          </widget>
         </item>
-        <item row="11" column="9">
+        <item row="5" column="7">
+         <widget class="QPushButton" name="pbPackages">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Packages (F9)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Box.PNG</normaloff>:/Resources/Box.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="shortcut">
+           <string>F9</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="4">
+         <widget class="QPushButton" name="pbExpirations">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Scadenze</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Calendar.PNG</normaloff>:/Resources/Calendar.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QToolButton" name="tbLotti">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Lotti (F5)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Cube.PNG</normaloff>:/Resources/Cube.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="shortcut">
+           <string>F5</string>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+          <property name="autoRaise">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QToolButton" name="tbMagaz">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Operazioni legate al Magazzino,movimentazione di carico e scarico, correzione errori,ecc.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Operazioni (F2)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/fork-1-icon.png</normaloff>:/Resources/fork-1-icon.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="shortcut">
+           <string>F2</string>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="9">
+         <widget class="QToolButton" name="tbLogout">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Logout (AltGr+U</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/User-red64.png</normaloff>:/Resources/User-red64.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="shortcut">
+           <string>Ctrl+Alt+U</string>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="9">
          <widget class="QToolButton" name="tbClose">
           <property name="enabled">
            <bool>true</bool>
@@ -946,383 +1137,7 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="8">
-         <widget class="QToolButton" name="tbAnalisi">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Analisi (F8)</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Chart.PNG</normaloff>:/Resources/Chart.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="shortcut">
-           <string>F8</string>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-          <property name="autoRaise">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="7">
-         <widget class="QToolButton" name="tnProduzione">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Produzione (F4)</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Gears.PNG</normaloff>:/Resources/Gears.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="shortcut">
-           <string>F4</string>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPushButton" name="tbUtenti">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Utenti</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Warning-Sign.PNG</normaloff>:/Resources/Warning-Sign.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="0">
-         <widget class="QPushButton" name="pushButton">
-          <property name="minimumSize">
-           <size>
-            <width>80</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Aggiorna</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Planet.PNG</normaloff>:/Resources/Planet.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QPushButton" name="toolButton">
-          <property name="minimumSize">
-           <size>
-            <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Login</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/User-green64.png</normaloff>:/Resources/User-green64.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="autoDefault">
-           <bool>true</bool>
-          </property>
-          <property name="default">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="7">
-         <widget class="QPushButton" name="pbProgrammazione">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Programmazione</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/3D_Icons_Icon_256.png</normaloff>:/Resources/3D_Icons_Icon_256.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="6">
-         <widget class="QPushButton" name="pbC4R">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Clienti per ricetta</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Link64.png</normaloff>:/Resources/Link64.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="8">
-         <widget class="QPushButton" name="pbCalcoloCosti">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>130</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Calcolo costi (F10)</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Cash-register-icon.png</normaloff>:/Resources/Cash-register-icon.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="shortcut">
-           <string>F10</string>
-          </property>
-         </widget>
-        </item>
-        <item row="11" column="7">
-         <widget class="QPushButton" name="pbVerifyLabels">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Verifica etichette</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Map.PNG</normaloff>:/Resources/Map.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="1">
-         <widget class="QPushButton" name="pbCkeckNotifications">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Verifica notifiche</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Search.PNG</normaloff>:/Resources/Search.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="9">
-         <widget class="QToolButton" name="tbLogout">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Logout</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/User-red64.png</normaloff>:/Resources/User-red64.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="2">
+        <item row="7" column="2">
          <widget class="QPushButton" name="pbUnload">
           <property name="enabled">
            <bool>false</bool>
@@ -1331,6 +1146,12 @@
            <size>
             <width>140</width>
             <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -1352,38 +1173,6 @@
          </widget>
         </item>
         <item row="4" column="4">
-         <widget class="QPushButton" name="pbExpirations">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="autoFillBackground">
-           <bool>true</bool>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Scadenze</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Calendar.PNG</normaloff>:/Resources/Calendar.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="4">
          <widget class="QToolButton" name="pBNewOperation">
           <property name="enabled">
            <bool>false</bool>
@@ -1392,6 +1181,12 @@
            <size>
             <width>140</width>
             <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -1422,7 +1217,194 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="4">
+        <item row="5" column="2">
+         <widget class="QToolButton" name="tbProdotti">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Prodotti (F12)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Wood-4-icon.png</normaloff>:/Resources/Wood-4-icon.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="shortcut">
+           <string>F12</string>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QPushButton" name="toolButton">
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Login</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/User-green64.png</normaloff>:/Resources/User-green64.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="autoDefault">
+           <bool>true</bool>
+          </property>
+          <property name="default">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="6">
+         <widget class="QToolButton" name="tbAssociazioni">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Associa Ricette</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Map.PNG</normaloff>:/Resources/Map.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1">
+         <widget class="QPushButton" name="pbCkeckNotifications">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Verifica notifiche</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Search.PNG</normaloff>:/Resources/Search.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="6">
+         <widget class="QPushButton" name="pbC4R">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Clienti per ricetta</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Link64.png</normaloff>:/Resources/Link64.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="4">
          <widget class="QToolButton" name="tbModificaLotti">
           <property name="enabled">
            <bool>false</bool>
@@ -1435,7 +1417,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -1460,52 +1442,8 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="7">
-         <widget class="QPushButton" name="pbPackages">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>140</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>125</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0, 0, 0)</string>
-          </property>
-          <property name="text">
-           <string>Packages (F9)</string>
-          </property>
-          <property name="icon">
-           <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Box.PNG</normaloff>:/Resources/Box.PNG</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="shortcut">
-           <string>F9</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <widget class="QToolButton" name="tbLotti">
+        <item row="4" column="7">
+         <widget class="QToolButton" name="tnProduzione">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -1517,7 +1455,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>140</width>
             <height>16777215</height>
            </size>
           </property>
@@ -1525,11 +1463,11 @@
            <string notr="true">color:rgb(0, 0, 0)</string>
           </property>
           <property name="text">
-           <string>Lotti (F5)</string>
+           <string>Produzione (F4)</string>
           </property>
           <property name="icon">
            <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Cube.PNG</normaloff>:/Resources/Cube.PNG</iconset>
+            <normaloff>:/Resources/Gears.PNG</normaloff>:/Resources/Gears.PNG</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -1538,18 +1476,15 @@
            </size>
           </property>
           <property name="shortcut">
-           <string>F5</string>
+           <string>F4</string>
           </property>
           <property name="toolButtonStyle">
            <enum>Qt::ToolButtonTextBesideIcon</enum>
           </property>
-          <property name="autoRaise">
-           <bool>false</bool>
-          </property>
          </widget>
         </item>
-        <item row="7" column="2">
-         <widget class="QToolButton" name="tbProdotti">
+        <item row="3" column="1">
+         <widget class="QPushButton" name="tbAnag">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -1559,15 +1494,21 @@
             <height>0</height>
            </size>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">color:rgb(0, 0, 0)</string>
           </property>
           <property name="text">
-           <string>Prodotti</string>
+           <string>Anagrafica  (A)    </string>
           </property>
           <property name="icon">
            <iconset resource="icons.qrc">
-            <normaloff>:/Resources/Wood-4-icon.png</normaloff>:/Resources/Wood-4-icon.png</iconset>
+            <normaloff>:/Resources/Users64.png</normaloff>:/Resources/Users64.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -1575,8 +1516,72 @@
             <height>32</height>
            </size>
           </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          <property name="shortcut">
+           <string>A</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QPushButton" name="tbUtenti">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>Utenti (U)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Warning-Sign.PNG</normaloff>:/Resources/Warning-Sign.PNG</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="shortcut">
+           <string>U</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="6">
+         <widget class="QPushButton" name="pbPercent">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(0, 0, 0)</string>
+          </property>
+          <property name="text">
+           <string>% ingredienti (I)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/Resources/Bar-chart64.png</normaloff>:/Resources/Bar-chart64.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="shortcut">
+           <string>I</string>
           </property>
          </widget>
         </item>

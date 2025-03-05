@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>332</width>
-    <height>166</height>
+    <height>186</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -79,6 +79,9 @@
         <widget class="QPushButton" name="pushButton">
          <property name="text">
           <string>Inserisci ingrediente</string>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
          </property>
          <property name="default">
           <bool>true</bool>

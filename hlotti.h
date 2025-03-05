@@ -34,7 +34,7 @@ public:
 
 
 private slots:
-    void getLotsOverview();
+   // void getLotsOverview();
     void on_pushButton_clicked();
 
     void on_pushButton_3_clicked();
@@ -62,34 +62,17 @@ private slots:
     void modifySelected(int pidlotto=-1 );
     void deleteSelectedLot();
     void dataBio();
-
     void printPreview(QPrinter *printer);
     void printPreviewSlot(QString filename=QString());
-
-   // void on_leLottoRaw_textChanged(const QString &arg1);
-
     void on_chTipoProdotti_toggled(bool checked);
-
     void on_cbTipoProd_currentIndexChanged(int index);
-
     void on_chbT_toggled(bool checked);
-
     void on_cbTipiLot_currentIndexChanged(int index);
-
     void on_chbP_toggled(bool checked);
-
     void on_cbProdotti_currentIndexChanged(int index);
-
     void on_twLots_doubleClicked(const QModelIndex &index);
-
- //   void on_datadal_dateChanged(const QDate &date);
-
-   // void on_dataal_dateChanged(const QDate &date);
-
-   void on_pbScadenze_clicked();
-
+    void on_pbScadenze_clicked();
    void on_datadal_dateChanged(const QDate &date);
-
    void on_dataal_dateChanged(const QDate &date);
 
    void getDataLots();

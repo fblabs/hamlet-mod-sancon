@@ -80,7 +80,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="cbRicette"/>
+      <widget class="QComboBox" name="cbRicette">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <property name="insertPolicy">
+        <enum>QComboBox::NoInsert</enum>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_2">
