@@ -18,7 +18,9 @@ enum FIELDS{
     ATTIVO=4,
     BIO=5,
     PRICE=6,
-    LAST_UPDATE=7
+    LAST_UPDATE=7,
+    ALLERGENE_USA=8
+
 };
 
 namespace Ui {

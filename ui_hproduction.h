@@ -95,7 +95,7 @@ public:
             HProduction->setObjectName(QString::fromUtf8("HProduction"));
         HProduction->setWindowModality(Qt::NonModal);
         HProduction->setEnabled(true);
-        HProduction->resize(1025, 605);
+        HProduction->resize(1133, 605);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Gears.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HProduction->setWindowIcon(icon);
@@ -275,7 +275,7 @@ public:
         tableView->setEnabled(true);
         tableView->setFont(font1);
         tableView->setAutoScroll(false);
-        tableView->setEditTriggers(QAbstractItemView::EditKeyPressed);
+        tableView->setEditTriggers(QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
         tableView->verticalHeader()->setVisible(false);
@@ -491,13 +491,22 @@ public:
         pushButton->setText(QCoreApplication::translate("HProduction", "Aggiungi", nullptr));
         pbAddLottoFuoriRicetta->setText(QCoreApplication::translate("HProduction", "Aggiungi", nullptr));
         pbAnnulla->setText(QCoreApplication::translate("HProduction", "Annulla", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("HProduction", "inizia", nullptr));
+        pushButton_5->setText(QCoreApplication::translate("HProduction", "inizia (S)", nullptr));
+#if QT_CONFIG(shortcut)
+        pushButton_5->setShortcut(QCoreApplication::translate("HProduction", "S", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushButton_6->setText(QCoreApplication::translate("HProduction", "Annulla", nullptr));
+#if QT_CONFIG(shortcut)
+        pushButton_6->setShortcut(QCoreApplication::translate("HProduction", "A", nullptr));
+#endif // QT_CONFIG(shortcut)
         lbRicetta->setText(QString());
         label_10->setText(QCoreApplication::translate("HProduction", "Note produzione:", nullptr));
         pushButton_7->setText(QCoreApplication::translate("HProduction", "Aggiungi lotto fuori ricetta", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HProduction", "Rimuovi riga", nullptr));
-        pbPreferredLots->setText(QCoreApplication::translate("HProduction", "Mostra Lotti predefinti", nullptr));
+        pbPreferredLots->setText(QCoreApplication::translate("HProduction", "Mostra Lotti predefinti (P)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbPreferredLots->setShortcut(QCoreApplication::translate("HProduction", "P", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushButton_3->setText(QCoreApplication::translate("HProduction", "Salva", nullptr));
         pushButton_11->setText(QCoreApplication::translate("HProduction", "Reset Ricetta", nullptr));
         label_3->setText(QCoreApplication::translate("HProduction", "Quantit\303\240 totale", nullptr));
@@ -506,7 +515,10 @@ public:
         label_7->setText(QCoreApplication::translate("HProduction", "Unit\303\240 di misura:", nullptr));
         label_11->setText(QCoreApplication::translate("HProduction", "Quantit\303\240 ricetta:", nullptr));
         checkBox_2->setText(QCoreApplication::translate("HProduction", "Stampa ricetta originale", nullptr));
-        pushButton_10->setText(QCoreApplication::translate("HProduction", "Stampa", nullptr));
+        pushButton_10->setText(QCoreApplication::translate("HProduction", "Stampa (Ctrl+P)", nullptr));
+#if QT_CONFIG(shortcut)
+        pushButton_10->setShortcut(QCoreApplication::translate("HProduction", "Ctrl+P", nullptr));
+#endif // QT_CONFIG(shortcut)
         pushButton_4->setText(QCoreApplication::translate("HProduction", "Chiudi", nullptr));
     } // retranslateUi
 

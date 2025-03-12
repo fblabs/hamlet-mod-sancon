@@ -3,13 +3,13 @@
  <class>HAddLotInProduction</class>
  <widget class="QWidget" name="HAddLotInProduction">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::ApplicationModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>393</width>
+    <width>409</width>
     <height>361</height>
    </rect>
   </property>
@@ -34,27 +34,6 @@
     <layout class="QHBoxLayout" name="horizontalLayout_3"/>
    </item>
    <item>
-    <widget class="QListView" name="lvLastLots">
-     <property name="font">
-      <font>
-       <pointsize>11</pointsize>
-      </font>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Box</enum>
-     </property>
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-     <property name="alternatingRowColors">
-      <bool>true</bool>
-     </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
-     </property>
-    </widget>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label">
@@ -69,7 +48,7 @@
         <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly</set>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::UpDownArrows</enum>
        </property>
        <property name="specialValueText">
         <string/>
@@ -135,6 +114,25 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QTableView" name="tvLots">
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
    </item>
    <item>
     <spacer name="verticalSpacer">

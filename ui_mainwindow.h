@@ -42,30 +42,31 @@ public:
     QVBoxLayout *verticalLayout_4;
     QGridLayout *gridLayout;
     QToolButton *tbSettings;
-    QToolButton *tbProdotti;
-    QToolButton *tbMagaz;
-    QPushButton *pbC4R;
+    QPushButton *pbSchede;
+    QPushButton *pbNotifiche;
+    QToolButton *tbRicette;
+    QPushButton *pbCalcoloCosti;
     QPushButton *pbProgrammazione;
-    QToolButton *pBNewOperation;
-    QPushButton *tbAnag;
-    QToolButton *tbLotti;
     QToolButton *tbAnalisi;
+    QPushButton *pbContacts;
+    QPushButton *pbPackages;
+    QPushButton *pbExpirations;
+    QToolButton *tbLotti;
+    QToolButton *tbMagaz;
     QToolButton *tbLogout;
     QToolButton *tbClose;
-    QToolButton *tnProduzione;
-    QPushButton *toolButton;
-    QPushButton *pbExpirations;
-    QPushButton *pbCalcoloCosti;
-    QPushButton *pbPackages;
-    QToolButton *tbRicette;
-    QToolButton *tbModificaLotti;
-    QPushButton *pbSchede;
-    QPushButton *tbUtenti;
-    QToolButton *tbAssociazioni;
     QPushButton *pbUnload;
-    QPushButton *pbContacts;
-    QPushButton *pbNotifiche;
+    QToolButton *pBNewOperation;
+    QToolButton *tbProdotti;
+    QPushButton *toolButton;
+    QToolButton *tbAssociazioni;
     QPushButton *pbCkeckNotifications;
+    QPushButton *pbC4R;
+    QToolButton *tbModificaLotti;
+    QToolButton *tnProduzione;
+    QPushButton *tbAnag;
+    QPushButton *tbUtenti;
+    QPushButton *pbPercent;
     QLabel *label_6;
 
     void setupUi(QMainWindow *MainWindow)
@@ -73,7 +74,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->setWindowModality(Qt::NonModal);
-        MainWindow->resize(1156, 831);
+        MainWindow->resize(1171, 831);
         QPalette palette;
         QBrush brush(QColor(255, 255, 255, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -237,7 +238,7 @@ public:
         tbSettings->setObjectName(QString::fromUtf8("tbSettings"));
         tbSettings->setEnabled(true);
         tbSettings->setMinimumSize(QSize(140, 0));
-        tbSettings->setMaximumSize(QSize(125, 16777215));
+        tbSettings->setMaximumSize(QSize(140, 16777215));
         tbSettings->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/Resources/Computer.PNG"), QSize(), QIcon::Normal, QIcon::Off);
@@ -247,97 +248,72 @@ public:
 
         gridLayout->addWidget(tbSettings, 3, 0, 1, 1);
 
-        tbProdotti = new QToolButton(centralWidget);
-        tbProdotti->setObjectName(QString::fromUtf8("tbProdotti"));
-        tbProdotti->setEnabled(false);
-        tbProdotti->setMinimumSize(QSize(140, 0));
-        tbProdotti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        pbSchede = new QPushButton(centralWidget);
+        pbSchede->setObjectName(QString::fromUtf8("pbSchede"));
+        pbSchede->setEnabled(false);
+        pbSchede->setMinimumSize(QSize(140, 0));
+        pbSchede->setMaximumSize(QSize(140, 16777215));
+        pbSchede->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Resources/Wood-4-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tbProdotti->setIcon(icon2);
-        tbProdotti->setIconSize(QSize(32, 32));
-        tbProdotti->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        icon2.addFile(QString::fromUtf8(":/Resources/Folder.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSchede->setIcon(icon2);
+        pbSchede->setIconSize(QSize(32, 32));
 
-        gridLayout->addWidget(tbProdotti, 5, 2, 1, 1);
+        gridLayout->addWidget(pbSchede, 3, 6, 1, 1);
 
-        tbMagaz = new QToolButton(centralWidget);
-        tbMagaz->setObjectName(QString::fromUtf8("tbMagaz"));
-        tbMagaz->setEnabled(false);
-        tbMagaz->setMinimumSize(QSize(140, 0));
-        tbMagaz->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        pbNotifiche = new QPushButton(centralWidget);
+        pbNotifiche->setObjectName(QString::fromUtf8("pbNotifiche"));
+        pbNotifiche->setEnabled(false);
+        pbNotifiche->setMinimumSize(QSize(140, 0));
+        pbNotifiche->setMaximumSize(QSize(140, 16777215));
+        pbNotifiche->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/fork-1-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tbMagaz->setIcon(icon3);
-        tbMagaz->setIconSize(QSize(32, 32));
-        tbMagaz->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        icon3.addFile(QString::fromUtf8(":/Resources/Chat.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbNotifiche->setIcon(icon3);
+        pbNotifiche->setIconSize(QSize(32, 32));
 
-        gridLayout->addWidget(tbMagaz, 4, 2, 1, 1);
+        gridLayout->addWidget(pbNotifiche, 7, 1, 1, 1);
 
-        pbC4R = new QPushButton(centralWidget);
-        pbC4R->setObjectName(QString::fromUtf8("pbC4R"));
-        pbC4R->setEnabled(false);
-        pbC4R->setMinimumSize(QSize(140, 0));
-        pbC4R->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        tbRicette = new QToolButton(centralWidget);
+        tbRicette->setObjectName(QString::fromUtf8("tbRicette"));
+        tbRicette->setEnabled(false);
+        tbRicette->setMinimumSize(QSize(140, 0));
+        tbRicette->setMaximumSize(QSize(140, 16777215));
+        tbRicette->setBaseSize(QSize(0, 0));
+        tbRicette->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Resources/Link64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbC4R->setIcon(icon4);
-        pbC4R->setIconSize(QSize(32, 32));
+        icon4.addFile(QString::fromUtf8(":/Resources/Notepad.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        tbRicette->setIcon(icon4);
+        tbRicette->setIconSize(QSize(32, 32));
+        tbRicette->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
-        gridLayout->addWidget(pbC4R, 7, 6, 1, 1);
+        gridLayout->addWidget(tbRicette, 4, 6, 1, 1);
+
+        pbCalcoloCosti = new QPushButton(centralWidget);
+        pbCalcoloCosti->setObjectName(QString::fromUtf8("pbCalcoloCosti"));
+        pbCalcoloCosti->setEnabled(false);
+        pbCalcoloCosti->setMinimumSize(QSize(130, 0));
+        pbCalcoloCosti->setMaximumSize(QSize(140, 16777215));
+        pbCalcoloCosti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Resources/Cash-register-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbCalcoloCosti->setIcon(icon5);
+        pbCalcoloCosti->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(pbCalcoloCosti, 3, 8, 1, 1);
 
         pbProgrammazione = new QPushButton(centralWidget);
         pbProgrammazione->setObjectName(QString::fromUtf8("pbProgrammazione"));
         pbProgrammazione->setEnabled(false);
         pbProgrammazione->setMinimumSize(QSize(140, 0));
+        pbProgrammazione->setMaximumSize(QSize(140, 16777215));
         pbProgrammazione->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/Resources/3D_Icons_Icon_256.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbProgrammazione->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/Resources/3D_Icons_Icon_256.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbProgrammazione->setIcon(icon6);
         pbProgrammazione->setIconSize(QSize(32, 32));
 
         gridLayout->addWidget(pbProgrammazione, 3, 7, 1, 1);
-
-        pBNewOperation = new QToolButton(centralWidget);
-        pBNewOperation->setObjectName(QString::fromUtf8("pBNewOperation"));
-        pBNewOperation->setEnabled(false);
-        pBNewOperation->setMinimumSize(QSize(140, 0));
-        pBNewOperation->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/Resources/Actions-configure-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pBNewOperation->setIcon(icon6);
-        pBNewOperation->setIconSize(QSize(32, 32));
-        pBNewOperation->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-        pBNewOperation->setArrowType(Qt::NoArrow);
-
-        gridLayout->addWidget(pBNewOperation, 4, 4, 1, 1);
-
-        tbAnag = new QPushButton(centralWidget);
-        tbAnag->setObjectName(QString::fromUtf8("tbAnag"));
-        tbAnag->setEnabled(false);
-        tbAnag->setMinimumSize(QSize(140, 0));
-        tbAnag->setMaximumSize(QSize(120, 16777215));
-        tbAnag->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/Resources/Users64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tbAnag->setIcon(icon7);
-        tbAnag->setIconSize(QSize(32, 32));
-
-        gridLayout->addWidget(tbAnag, 3, 1, 1, 1);
-
-        tbLotti = new QToolButton(centralWidget);
-        tbLotti->setObjectName(QString::fromUtf8("tbLotti"));
-        tbLotti->setEnabled(false);
-        tbLotti->setMinimumSize(QSize(140, 0));
-        tbLotti->setMaximumSize(QSize(120, 16777215));
-        tbLotti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        tbLotti->setIcon(icon8);
-        tbLotti->setIconSize(QSize(32, 32));
-        tbLotti->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-        tbLotti->setAutoRaise(false);
-
-        gridLayout->addWidget(tbLotti, 3, 2, 1, 1);
 
         tbAnalisi = new QToolButton(centralWidget);
         tbAnalisi->setObjectName(QString::fromUtf8("tbAnalisi"));
@@ -348,26 +324,98 @@ public:
         sizePolicy.setHeightForWidth(tbAnalisi->sizePolicy().hasHeightForWidth());
         tbAnalisi->setSizePolicy(sizePolicy);
         tbAnalisi->setMinimumSize(QSize(140, 0));
-        tbAnalisi->setMaximumSize(QSize(120, 16777215));
+        tbAnalisi->setMaximumSize(QSize(140, 16777215));
         tbAnalisi->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/Resources/Chart.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        tbAnalisi->setIcon(icon9);
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/Resources/Chart.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        tbAnalisi->setIcon(icon7);
         tbAnalisi->setIconSize(QSize(32, 32));
         tbAnalisi->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
         tbAnalisi->setAutoRaise(false);
 
         gridLayout->addWidget(tbAnalisi, 4, 8, 1, 1);
 
+        pbContacts = new QPushButton(centralWidget);
+        pbContacts->setObjectName(QString::fromUtf8("pbContacts"));
+        pbContacts->setEnabled(false);
+        pbContacts->setMinimumSize(QSize(140, 0));
+        pbContacts->setMaximumSize(QSize(140, 16777215));
+        pbContacts->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/Resources/user-group-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbContacts->setIcon(icon8);
+        pbContacts->setIconSize(QSize(32, 32));
+        pbContacts->setFlat(false);
+
+        gridLayout->addWidget(pbContacts, 5, 1, 1, 1);
+
+        pbPackages = new QPushButton(centralWidget);
+        pbPackages->setObjectName(QString::fromUtf8("pbPackages"));
+        pbPackages->setEnabled(false);
+        sizePolicy.setHeightForWidth(pbPackages->sizePolicy().hasHeightForWidth());
+        pbPackages->setSizePolicy(sizePolicy);
+        pbPackages->setMinimumSize(QSize(140, 0));
+        pbPackages->setMaximumSize(QSize(140, 16777215));
+        pbPackages->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPackages->setIcon(icon9);
+        pbPackages->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(pbPackages, 5, 7, 1, 1);
+
+        pbExpirations = new QPushButton(centralWidget);
+        pbExpirations->setObjectName(QString::fromUtf8("pbExpirations"));
+        pbExpirations->setEnabled(false);
+        pbExpirations->setMinimumSize(QSize(140, 0));
+        pbExpirations->setMaximumSize(QSize(140, 16777215));
+        pbExpirations->setAutoFillBackground(true);
+        pbExpirations->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/Resources/Calendar.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbExpirations->setIcon(icon10);
+        pbExpirations->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(pbExpirations, 3, 4, 1, 1);
+
+        tbLotti = new QToolButton(centralWidget);
+        tbLotti->setObjectName(QString::fromUtf8("tbLotti"));
+        tbLotti->setEnabled(false);
+        tbLotti->setMinimumSize(QSize(140, 0));
+        tbLotti->setMaximumSize(QSize(140, 16777215));
+        tbLotti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/Resources/Cube.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        tbLotti->setIcon(icon11);
+        tbLotti->setIconSize(QSize(32, 32));
+        tbLotti->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        tbLotti->setAutoRaise(false);
+
+        gridLayout->addWidget(tbLotti, 3, 2, 1, 1);
+
+        tbMagaz = new QToolButton(centralWidget);
+        tbMagaz->setObjectName(QString::fromUtf8("tbMagaz"));
+        tbMagaz->setEnabled(false);
+        tbMagaz->setMinimumSize(QSize(140, 0));
+        tbMagaz->setMaximumSize(QSize(140, 16777215));
+        tbMagaz->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon12;
+        icon12.addFile(QString::fromUtf8(":/Resources/fork-1-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tbMagaz->setIcon(icon12);
+        tbMagaz->setIconSize(QSize(32, 32));
+        tbMagaz->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        gridLayout->addWidget(tbMagaz, 4, 2, 1, 1);
+
         tbLogout = new QToolButton(centralWidget);
         tbLogout->setObjectName(QString::fromUtf8("tbLogout"));
         tbLogout->setEnabled(false);
         tbLogout->setMinimumSize(QSize(140, 0));
-        tbLogout->setMaximumSize(QSize(120, 16777215));
+        tbLogout->setMaximumSize(QSize(140, 16777215));
         tbLogout->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon10;
-        icon10.addFile(QString::fromUtf8(":/Resources/User-red64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tbLogout->setIcon(icon10);
+        QIcon icon13;
+        icon13.addFile(QString::fromUtf8(":/Resources/User-red64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tbLogout->setIcon(icon13);
         tbLogout->setIconSize(QSize(32, 32));
         tbLogout->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -379,198 +427,173 @@ public:
         tbClose->setMinimumSize(QSize(140, 0));
         tbClose->setMaximumSize(QSize(120, 16777215));
         tbClose->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon11;
-        icon11.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tbClose->setIcon(icon11);
+        QIcon icon14;
+        icon14.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tbClose->setIcon(icon14);
         tbClose->setIconSize(QSize(32, 32));
         tbClose->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         gridLayout->addWidget(tbClose, 9, 9, 1, 1);
 
-        tnProduzione = new QToolButton(centralWidget);
-        tnProduzione->setObjectName(QString::fromUtf8("tnProduzione"));
-        tnProduzione->setEnabled(false);
-        tnProduzione->setMinimumSize(QSize(140, 0));
-        tnProduzione->setMaximumSize(QSize(120, 16777215));
-        tnProduzione->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon12;
-        icon12.addFile(QString::fromUtf8(":/Resources/Gears.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        tnProduzione->setIcon(icon12);
-        tnProduzione->setIconSize(QSize(32, 32));
-        tnProduzione->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        pbUnload = new QPushButton(centralWidget);
+        pbUnload->setObjectName(QString::fromUtf8("pbUnload"));
+        pbUnload->setEnabled(false);
+        pbUnload->setMinimumSize(QSize(140, 0));
+        pbUnload->setMaximumSize(QSize(140, 16777215));
+        pbUnload->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon15;
+        icon15.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbUnload->setIcon(icon15);
+        pbUnload->setIconSize(QSize(32, 32));
 
-        gridLayout->addWidget(tnProduzione, 4, 7, 1, 1);
+        gridLayout->addWidget(pbUnload, 7, 2, 1, 1);
+
+        pBNewOperation = new QToolButton(centralWidget);
+        pBNewOperation->setObjectName(QString::fromUtf8("pBNewOperation"));
+        pBNewOperation->setEnabled(false);
+        pBNewOperation->setMinimumSize(QSize(140, 0));
+        pBNewOperation->setMaximumSize(QSize(140, 16777215));
+        pBNewOperation->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon16;
+        icon16.addFile(QString::fromUtf8(":/Resources/Actions-configure-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pBNewOperation->setIcon(icon16);
+        pBNewOperation->setIconSize(QSize(32, 32));
+        pBNewOperation->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        pBNewOperation->setArrowType(Qt::NoArrow);
+
+        gridLayout->addWidget(pBNewOperation, 4, 4, 1, 1);
+
+        tbProdotti = new QToolButton(centralWidget);
+        tbProdotti->setObjectName(QString::fromUtf8("tbProdotti"));
+        tbProdotti->setEnabled(false);
+        tbProdotti->setMinimumSize(QSize(140, 0));
+        tbProdotti->setMaximumSize(QSize(140, 16777215));
+        tbProdotti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon17;
+        icon17.addFile(QString::fromUtf8(":/Resources/Wood-4-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tbProdotti->setIcon(icon17);
+        tbProdotti->setIconSize(QSize(32, 32));
+        tbProdotti->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        gridLayout->addWidget(tbProdotti, 5, 2, 1, 1);
 
         toolButton = new QPushButton(centralWidget);
         toolButton->setObjectName(QString::fromUtf8("toolButton"));
         toolButton->setMinimumSize(QSize(140, 0));
-        toolButton->setMaximumSize(QSize(16777215, 16777215));
+        toolButton->setMaximumSize(QSize(140, 16777215));
         toolButton->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon13;
-        icon13.addFile(QString::fromUtf8(":/Resources/User-green64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton->setIcon(icon13);
+        QIcon icon18;
+        icon18.addFile(QString::fromUtf8(":/Resources/User-green64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton->setIcon(icon18);
         toolButton->setIconSize(QSize(32, 32));
         toolButton->setAutoDefault(true);
 
         gridLayout->addWidget(toolButton, 4, 0, 1, 1);
 
-        pbExpirations = new QPushButton(centralWidget);
-        pbExpirations->setObjectName(QString::fromUtf8("pbExpirations"));
-        pbExpirations->setEnabled(false);
-        pbExpirations->setMinimumSize(QSize(140, 0));
-        pbExpirations->setAutoFillBackground(true);
-        pbExpirations->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon14;
-        icon14.addFile(QString::fromUtf8(":/Resources/Calendar.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbExpirations->setIcon(icon14);
-        pbExpirations->setIconSize(QSize(32, 32));
-
-        gridLayout->addWidget(pbExpirations, 3, 4, 1, 1);
-
-        pbCalcoloCosti = new QPushButton(centralWidget);
-        pbCalcoloCosti->setObjectName(QString::fromUtf8("pbCalcoloCosti"));
-        pbCalcoloCosti->setEnabled(false);
-        pbCalcoloCosti->setMinimumSize(QSize(130, 0));
-        pbCalcoloCosti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon15;
-        icon15.addFile(QString::fromUtf8(":/Resources/Cash-register-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbCalcoloCosti->setIcon(icon15);
-        pbCalcoloCosti->setIconSize(QSize(32, 32));
-
-        gridLayout->addWidget(pbCalcoloCosti, 3, 8, 1, 1);
-
-        pbPackages = new QPushButton(centralWidget);
-        pbPackages->setObjectName(QString::fromUtf8("pbPackages"));
-        pbPackages->setEnabled(false);
-        sizePolicy.setHeightForWidth(pbPackages->sizePolicy().hasHeightForWidth());
-        pbPackages->setSizePolicy(sizePolicy);
-        pbPackages->setMinimumSize(QSize(140, 0));
-        pbPackages->setMaximumSize(QSize(125, 16777215));
-        pbPackages->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon16;
-        icon16.addFile(QString::fromUtf8(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPackages->setIcon(icon16);
-        pbPackages->setIconSize(QSize(32, 32));
-
-        gridLayout->addWidget(pbPackages, 5, 7, 1, 1);
-
-        tbRicette = new QToolButton(centralWidget);
-        tbRicette->setObjectName(QString::fromUtf8("tbRicette"));
-        tbRicette->setEnabled(false);
-        tbRicette->setMinimumSize(QSize(140, 0));
-        tbRicette->setMaximumSize(QSize(16777215, 16777215));
-        tbRicette->setBaseSize(QSize(0, 0));
-        tbRicette->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon17;
-        icon17.addFile(QString::fromUtf8(":/Resources/Notepad.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        tbRicette->setIcon(icon17);
-        tbRicette->setIconSize(QSize(32, 32));
-        tbRicette->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-        gridLayout->addWidget(tbRicette, 4, 6, 1, 1);
-
-        tbModificaLotti = new QToolButton(centralWidget);
-        tbModificaLotti->setObjectName(QString::fromUtf8("tbModificaLotti"));
-        tbModificaLotti->setEnabled(false);
-        tbModificaLotti->setMinimumSize(QSize(140, 0));
-        tbModificaLotti->setMaximumSize(QSize(120, 16777215));
-        tbModificaLotti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon18;
-        icon18.addFile(QString::fromUtf8(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        tbModificaLotti->setIcon(icon18);
-        tbModificaLotti->setIconSize(QSize(32, 32));
-        tbModificaLotti->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-        gridLayout->addWidget(tbModificaLotti, 5, 4, 1, 1);
-
-        pbSchede = new QPushButton(centralWidget);
-        pbSchede->setObjectName(QString::fromUtf8("pbSchede"));
-        pbSchede->setEnabled(false);
-        pbSchede->setMinimumSize(QSize(140, 0));
-        pbSchede->setMaximumSize(QSize(16777215, 16777215));
-        pbSchede->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon19;
-        icon19.addFile(QString::fromUtf8(":/Resources/Folder.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSchede->setIcon(icon19);
-        pbSchede->setIconSize(QSize(32, 32));
-
-        gridLayout->addWidget(pbSchede, 3, 6, 1, 1);
-
-        tbUtenti = new QPushButton(centralWidget);
-        tbUtenti->setObjectName(QString::fromUtf8("tbUtenti"));
-        tbUtenti->setEnabled(false);
-        tbUtenti->setMinimumSize(QSize(140, 0));
-        tbUtenti->setMaximumSize(QSize(120, 16777215));
-        tbUtenti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon20;
-        icon20.addFile(QString::fromUtf8(":/Resources/Warning-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        tbUtenti->setIcon(icon20);
-        tbUtenti->setIconSize(QSize(32, 32));
-
-        gridLayout->addWidget(tbUtenti, 4, 1, 1, 1);
-
         tbAssociazioni = new QToolButton(centralWidget);
         tbAssociazioni->setObjectName(QString::fromUtf8("tbAssociazioni"));
         tbAssociazioni->setEnabled(false);
         tbAssociazioni->setMinimumSize(QSize(140, 0));
-        tbAssociazioni->setMaximumSize(QSize(134, 16777215));
+        tbAssociazioni->setMaximumSize(QSize(140, 16777215));
         tbAssociazioni->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon21;
-        icon21.addFile(QString::fromUtf8(":/Resources/Map.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        tbAssociazioni->setIcon(icon21);
+        QIcon icon19;
+        icon19.addFile(QString::fromUtf8(":/Resources/Map.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        tbAssociazioni->setIcon(icon19);
         tbAssociazioni->setIconSize(QSize(32, 32));
         tbAssociazioni->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         gridLayout->addWidget(tbAssociazioni, 5, 6, 1, 1);
 
-        pbUnload = new QPushButton(centralWidget);
-        pbUnload->setObjectName(QString::fromUtf8("pbUnload"));
-        pbUnload->setEnabled(false);
-        pbUnload->setMinimumSize(QSize(140, 0));
-        pbUnload->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon22;
-        icon22.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbUnload->setIcon(icon22);
-        pbUnload->setIconSize(QSize(32, 32));
-
-        gridLayout->addWidget(pbUnload, 7, 2, 1, 1);
-
-        pbContacts = new QPushButton(centralWidget);
-        pbContacts->setObjectName(QString::fromUtf8("pbContacts"));
-        pbContacts->setEnabled(false);
-        pbContacts->setMinimumSize(QSize(140, 0));
-        pbContacts->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon23;
-        icon23.addFile(QString::fromUtf8(":/Resources/user-group-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbContacts->setIcon(icon23);
-        pbContacts->setIconSize(QSize(32, 32));
-        pbContacts->setFlat(false);
-
-        gridLayout->addWidget(pbContacts, 5, 1, 1, 1);
-
-        pbNotifiche = new QPushButton(centralWidget);
-        pbNotifiche->setObjectName(QString::fromUtf8("pbNotifiche"));
-        pbNotifiche->setEnabled(false);
-        pbNotifiche->setMinimumSize(QSize(140, 0));
-        pbNotifiche->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon24;
-        icon24.addFile(QString::fromUtf8(":/Resources/Chat.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbNotifiche->setIcon(icon24);
-        pbNotifiche->setIconSize(QSize(32, 32));
-
-        gridLayout->addWidget(pbNotifiche, 7, 1, 1, 1);
-
         pbCkeckNotifications = new QPushButton(centralWidget);
         pbCkeckNotifications->setObjectName(QString::fromUtf8("pbCkeckNotifications"));
         pbCkeckNotifications->setEnabled(false);
         pbCkeckNotifications->setMinimumSize(QSize(140, 0));
+        pbCkeckNotifications->setMaximumSize(QSize(140, 16777215));
         pbCkeckNotifications->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
-        QIcon icon25;
-        icon25.addFile(QString::fromUtf8(":/Resources/Search.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pbCkeckNotifications->setIcon(icon25);
+        QIcon icon20;
+        icon20.addFile(QString::fromUtf8(":/Resources/Search.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbCkeckNotifications->setIcon(icon20);
         pbCkeckNotifications->setIconSize(QSize(32, 32));
 
         gridLayout->addWidget(pbCkeckNotifications, 9, 1, 1, 1);
+
+        pbC4R = new QPushButton(centralWidget);
+        pbC4R->setObjectName(QString::fromUtf8("pbC4R"));
+        pbC4R->setEnabled(false);
+        pbC4R->setMinimumSize(QSize(140, 0));
+        pbC4R->setMaximumSize(QSize(140, 16777215));
+        pbC4R->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon21;
+        icon21.addFile(QString::fromUtf8(":/Resources/Link64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbC4R->setIcon(icon21);
+        pbC4R->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(pbC4R, 7, 6, 1, 1);
+
+        tbModificaLotti = new QToolButton(centralWidget);
+        tbModificaLotti->setObjectName(QString::fromUtf8("tbModificaLotti"));
+        tbModificaLotti->setEnabled(false);
+        tbModificaLotti->setMinimumSize(QSize(140, 0));
+        tbModificaLotti->setMaximumSize(QSize(140, 16777215));
+        tbModificaLotti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon22;
+        icon22.addFile(QString::fromUtf8(":/Resources/Pencil.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        tbModificaLotti->setIcon(icon22);
+        tbModificaLotti->setIconSize(QSize(32, 32));
+        tbModificaLotti->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        gridLayout->addWidget(tbModificaLotti, 5, 4, 1, 1);
+
+        tnProduzione = new QToolButton(centralWidget);
+        tnProduzione->setObjectName(QString::fromUtf8("tnProduzione"));
+        tnProduzione->setEnabled(false);
+        tnProduzione->setMinimumSize(QSize(140, 0));
+        tnProduzione->setMaximumSize(QSize(140, 16777215));
+        tnProduzione->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon23;
+        icon23.addFile(QString::fromUtf8(":/Resources/Gears.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        tnProduzione->setIcon(icon23);
+        tnProduzione->setIconSize(QSize(32, 32));
+        tnProduzione->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        gridLayout->addWidget(tnProduzione, 4, 7, 1, 1);
+
+        tbAnag = new QPushButton(centralWidget);
+        tbAnag->setObjectName(QString::fromUtf8("tbAnag"));
+        tbAnag->setEnabled(false);
+        tbAnag->setMinimumSize(QSize(140, 0));
+        tbAnag->setMaximumSize(QSize(140, 16777215));
+        tbAnag->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon24;
+        icon24.addFile(QString::fromUtf8(":/Resources/Users64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tbAnag->setIcon(icon24);
+        tbAnag->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(tbAnag, 3, 1, 1, 1);
+
+        tbUtenti = new QPushButton(centralWidget);
+        tbUtenti->setObjectName(QString::fromUtf8("tbUtenti"));
+        tbUtenti->setEnabled(false);
+        tbUtenti->setMinimumSize(QSize(140, 0));
+        tbUtenti->setMaximumSize(QSize(140, 16777215));
+        tbUtenti->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon25;
+        icon25.addFile(QString::fromUtf8(":/Resources/Warning-Sign.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        tbUtenti->setIcon(icon25);
+        tbUtenti->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(tbUtenti, 4, 1, 1, 1);
+
+        pbPercent = new QPushButton(centralWidget);
+        pbPercent->setObjectName(QString::fromUtf8("pbPercent"));
+        pbPercent->setEnabled(false);
+        pbPercent->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
+        QIcon icon26;
+        icon26.addFile(QString::fromUtf8(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPercent->setIcon(icon26);
+        pbPercent->setIconSize(QSize(32, 32));
+
+        gridLayout->addWidget(pbPercent, 9, 6, 1, 1);
 
 
         verticalLayout_4->addLayout(gridLayout);
@@ -602,14 +625,44 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Hamlet MOD 3.4", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Hamlet MOD 3.8", nullptr));
         lbUser_label->setText(QCoreApplication::translate("MainWindow", "Utente corrente:", nullptr));
         lbCurrentUser->setText(QString());
         label_4->setText(QString());
         label->setText(QString());
-        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">Hamlet Mod 3.4</span></p><p><span style=\" font-size:16pt; font-weight:600;\">Versione: 3.4.3.9.</span><span style=\" font-size:10pt; font-weight:600;\">002</span></p><p><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza: LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2023</span></p><p><a href=\"https://github.com/fblabs/hamlet-mod-sancon/blob/master/release/hamletMOD.exe\"><span style=\" text-decoration: underline; color:#007af4;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:36pt; font-weight:600;\">Hamlet MOD 3.8</span></p><p><span style=\" font-size:8pt; font-weight:600;\">Versione: 3.8.6 </span><span style=\" font-size:6pt; font-weight:600;\">001</span></p><p><br/><br/><br/></p><p><br/></p><p><span style=\" font-size:10pt; font-weight:600;\">Licenza: LGPL v. 3</span></p><p><span style=\" font-size:10pt; font-weight:600;\">Built with Qt 5.15.2 - MinGW 64</span></p><p><br/></p><p><span style=\" font-size:10pt;\">\302\251 FBLABS 2015-2025</span></p><p><a href=\"https://github.com/fblabs/hamlet-mod-sancon/blob/master/release/hamletMOD.exe\"><span style=\" text-decoration: underline; color:#007af4;\">Sorgenti (github)</span></a></p></body></html>", nullptr));
         tbSettings->setText(QCoreApplication::translate("MainWindow", "Impostazioni   ", nullptr));
-        tbProdotti->setText(QCoreApplication::translate("MainWindow", "Prodotti", nullptr));
+        pbSchede->setText(QCoreApplication::translate("MainWindow", "Schede Clienti (F3)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbSchede->setShortcut(QCoreApplication::translate("MainWindow", "F3", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbNotifiche->setText(QCoreApplication::translate("MainWindow", "Notifiche", nullptr));
+        tbRicette->setText(QCoreApplication::translate("MainWindow", "Ricette (F7)", nullptr));
+#if QT_CONFIG(shortcut)
+        tbRicette->setShortcut(QCoreApplication::translate("MainWindow", "F7", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbCalcoloCosti->setText(QCoreApplication::translate("MainWindow", "Calcolo costi (F10)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbCalcoloCosti->setShortcut(QCoreApplication::translate("MainWindow", "F10", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbProgrammazione->setText(QCoreApplication::translate("MainWindow", "Programmi (F11)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbProgrammazione->setShortcut(QCoreApplication::translate("MainWindow", "F11", nullptr));
+#endif // QT_CONFIG(shortcut)
+        tbAnalisi->setText(QCoreApplication::translate("MainWindow", "Analisi (F8)", nullptr));
+#if QT_CONFIG(shortcut)
+        tbAnalisi->setShortcut(QCoreApplication::translate("MainWindow", "F8", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbContacts->setText(QCoreApplication::translate("MainWindow", "Contatti", nullptr));
+        pbPackages->setText(QCoreApplication::translate("MainWindow", "Packages (F9)", nullptr));
+#if QT_CONFIG(shortcut)
+        pbPackages->setShortcut(QCoreApplication::translate("MainWindow", "F9", nullptr));
+#endif // QT_CONFIG(shortcut)
+        pbExpirations->setText(QCoreApplication::translate("MainWindow", "Scadenze", nullptr));
+        tbLotti->setText(QCoreApplication::translate("MainWindow", "Lotti (F5)", nullptr));
+#if QT_CONFIG(shortcut)
+        tbLotti->setShortcut(QCoreApplication::translate("MainWindow", "F5", nullptr));
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         tbMagaz->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Operazioni legate al Magazzino,movimentazione di carico e scarico, correzione errori,ecc.</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -617,53 +670,42 @@ public:
 #if QT_CONFIG(shortcut)
         tbMagaz->setShortcut(QCoreApplication::translate("MainWindow", "F2", nullptr));
 #endif // QT_CONFIG(shortcut)
-        pbC4R->setText(QCoreApplication::translate("MainWindow", "Clienti per ricetta", nullptr));
-        pbProgrammazione->setText(QCoreApplication::translate("MainWindow", "Programmazione", nullptr));
+        tbLogout->setText(QCoreApplication::translate("MainWindow", "Logout (AltGr+U", nullptr));
+#if QT_CONFIG(shortcut)
+        tbLogout->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Alt+U", nullptr));
+#endif // QT_CONFIG(shortcut)
+        tbClose->setText(QCoreApplication::translate("MainWindow", "Chiudi", nullptr));
+        pbUnload->setText(QCoreApplication::translate("MainWindow", "Scarico Packages", nullptr));
         pBNewOperation->setText(QCoreApplication::translate("MainWindow", "Nuova Operazione \n"
 "(F6)", nullptr));
 #if QT_CONFIG(shortcut)
         pBNewOperation->setShortcut(QCoreApplication::translate("MainWindow", "F6", nullptr));
 #endif // QT_CONFIG(shortcut)
-        tbAnag->setText(QCoreApplication::translate("MainWindow", "Anagrafica      ", nullptr));
-        tbLotti->setText(QCoreApplication::translate("MainWindow", "Lotti (F5)", nullptr));
+        tbProdotti->setText(QCoreApplication::translate("MainWindow", "Prodotti (F12)", nullptr));
 #if QT_CONFIG(shortcut)
-        tbLotti->setShortcut(QCoreApplication::translate("MainWindow", "F5", nullptr));
+        tbProdotti->setShortcut(QCoreApplication::translate("MainWindow", "F12", nullptr));
 #endif // QT_CONFIG(shortcut)
-        tbAnalisi->setText(QCoreApplication::translate("MainWindow", "Analisi (F8)", nullptr));
-#if QT_CONFIG(shortcut)
-        tbAnalisi->setShortcut(QCoreApplication::translate("MainWindow", "F8", nullptr));
-#endif // QT_CONFIG(shortcut)
-        tbLogout->setText(QCoreApplication::translate("MainWindow", "Logout", nullptr));
-        tbClose->setText(QCoreApplication::translate("MainWindow", "Chiudi", nullptr));
+        toolButton->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
+        tbAssociazioni->setText(QCoreApplication::translate("MainWindow", "Associa Ricette", nullptr));
+        pbCkeckNotifications->setText(QCoreApplication::translate("MainWindow", "Verifica notifiche", nullptr));
+        pbC4R->setText(QCoreApplication::translate("MainWindow", "Clienti per ricetta", nullptr));
+        tbModificaLotti->setText(QCoreApplication::translate("MainWindow", "Modifica lotti", nullptr));
         tnProduzione->setText(QCoreApplication::translate("MainWindow", "Produzione (F4)", nullptr));
 #if QT_CONFIG(shortcut)
         tnProduzione->setShortcut(QCoreApplication::translate("MainWindow", "F4", nullptr));
 #endif // QT_CONFIG(shortcut)
-        toolButton->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
-        pbExpirations->setText(QCoreApplication::translate("MainWindow", "Scadenze", nullptr));
-        pbCalcoloCosti->setText(QCoreApplication::translate("MainWindow", "Calcolo costi (F10)", nullptr));
+        tbAnag->setText(QCoreApplication::translate("MainWindow", "Anagrafica  (A)    ", nullptr));
 #if QT_CONFIG(shortcut)
-        pbCalcoloCosti->setShortcut(QCoreApplication::translate("MainWindow", "F10", nullptr));
+        tbAnag->setShortcut(QCoreApplication::translate("MainWindow", "A", nullptr));
 #endif // QT_CONFIG(shortcut)
-        pbPackages->setText(QCoreApplication::translate("MainWindow", "Packages (F9)", nullptr));
+        tbUtenti->setText(QCoreApplication::translate("MainWindow", "Utenti (U)", nullptr));
 #if QT_CONFIG(shortcut)
-        pbPackages->setShortcut(QCoreApplication::translate("MainWindow", "F9", nullptr));
+        tbUtenti->setShortcut(QCoreApplication::translate("MainWindow", "U", nullptr));
 #endif // QT_CONFIG(shortcut)
-        tbRicette->setText(QCoreApplication::translate("MainWindow", "Ricette (F7)", nullptr));
+        pbPercent->setText(QCoreApplication::translate("MainWindow", "% ingredienti (I)", nullptr));
 #if QT_CONFIG(shortcut)
-        tbRicette->setShortcut(QCoreApplication::translate("MainWindow", "F7", nullptr));
+        pbPercent->setShortcut(QCoreApplication::translate("MainWindow", "I", nullptr));
 #endif // QT_CONFIG(shortcut)
-        tbModificaLotti->setText(QCoreApplication::translate("MainWindow", "Modifica lotti", nullptr));
-        pbSchede->setText(QCoreApplication::translate("MainWindow", "Schede Clienti (F3)", nullptr));
-#if QT_CONFIG(shortcut)
-        pbSchede->setShortcut(QCoreApplication::translate("MainWindow", "F3", nullptr));
-#endif // QT_CONFIG(shortcut)
-        tbUtenti->setText(QCoreApplication::translate("MainWindow", "Utenti", nullptr));
-        tbAssociazioni->setText(QCoreApplication::translate("MainWindow", "Associa Ricette", nullptr));
-        pbUnload->setText(QCoreApplication::translate("MainWindow", "Scarico Packages", nullptr));
-        pbContacts->setText(QCoreApplication::translate("MainWindow", "Contatti", nullptr));
-        pbNotifiche->setText(QCoreApplication::translate("MainWindow", "Notifiche", nullptr));
-        pbCkeckNotifications->setText(QCoreApplication::translate("MainWindow", "Verifica notifiche", nullptr));
         label_6->setText(QString());
     } // retranslateUi
 

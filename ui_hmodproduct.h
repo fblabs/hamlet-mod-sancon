@@ -20,7 +20,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -39,11 +38,11 @@ public:
     QComboBox *cbType;
     QDateEdit *deLastUpdate;
     QLineEdit *leDescription;
-    QHBoxLayout *horizontalLayout;
-    QCheckBox *cbAllergene;
-    QCheckBox *cbActive;
+    QGridLayout *gridLayout_2;
     QCheckBox *cbBio;
-    QSpacerItem *verticalSpacer;
+    QCheckBox *cbAllergene;
+    QCheckBox *cbAllergene_usa;
+    QCheckBox *cbActive;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pbSave;
     QPushButton *pbClose;
@@ -101,7 +100,7 @@ public:
         deLastUpdate->setButtonSymbols(QAbstractSpinBox::NoButtons);
         deLastUpdate->setAccelerated(true);
         deLastUpdate->setKeyboardTracking(false);
-        deLastUpdate->setDateTime(QDateTime(QDate(2022, 1, 1), QTime(0, 0, 0)));
+        deLastUpdate->setDateTime(QDateTime(QDate(2021, 12, 31), QTime(23, 0, 0)));
         deLastUpdate->setCalendarPopup(true);
 
         gridLayout->addWidget(deLastUpdate, 5, 1, 1, 1);
@@ -114,29 +113,30 @@ public:
 
         verticalLayout->addLayout(gridLayout);
 
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        cbBio = new QCheckBox(HModProduct);
+        cbBio->setObjectName(QString::fromUtf8("cbBio"));
+
+        gridLayout_2->addWidget(cbBio, 1, 0, 1, 1);
+
         cbAllergene = new QCheckBox(HModProduct);
         cbAllergene->setObjectName(QString::fromUtf8("cbAllergene"));
 
-        horizontalLayout->addWidget(cbAllergene);
+        gridLayout_2->addWidget(cbAllergene, 0, 0, 1, 1);
+
+        cbAllergene_usa = new QCheckBox(HModProduct);
+        cbAllergene_usa->setObjectName(QString::fromUtf8("cbAllergene_usa"));
+
+        gridLayout_2->addWidget(cbAllergene_usa, 0, 1, 1, 1);
 
         cbActive = new QCheckBox(HModProduct);
         cbActive->setObjectName(QString::fromUtf8("cbActive"));
 
-        horizontalLayout->addWidget(cbActive);
-
-        cbBio = new QCheckBox(HModProduct);
-        cbBio->setObjectName(QString::fromUtf8("cbBio"));
-
-        horizontalLayout->addWidget(cbBio);
+        gridLayout_2->addWidget(cbActive, 1, 1, 1, 1);
 
 
-        verticalLayout->addLayout(horizontalLayout);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer);
+        verticalLayout->addLayout(gridLayout_2);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
@@ -175,9 +175,10 @@ public:
         label_2->setText(QCoreApplication::translate("HModProduct", "Tipo:", nullptr));
         label_3->setText(QCoreApplication::translate("HModProduct", "Prezzo:", nullptr));
         deLastUpdate->setSpecialValueText(QCoreApplication::translate("HModProduct", "---", nullptr));
-        cbAllergene->setText(QCoreApplication::translate("HModProduct", "Allergene", nullptr));
-        cbActive->setText(QCoreApplication::translate("HModProduct", "Attivo", nullptr));
         cbBio->setText(QCoreApplication::translate("HModProduct", "Bio", nullptr));
+        cbAllergene->setText(QCoreApplication::translate("HModProduct", "Allergene", nullptr));
+        cbAllergene_usa->setText(QCoreApplication::translate("HModProduct", "Allergene USA", nullptr));
+        cbActive->setText(QCoreApplication::translate("HModProduct", "Attivo", nullptr));
         pbSave->setText(QCoreApplication::translate("HModProduct", "Salva", nullptr));
         pbClose->setText(QCoreApplication::translate("HModProduct", "Chiudi", nullptr));
     } // retranslateUi

@@ -274,6 +274,9 @@ void HWorkProgram::refreshSheet()
     //ui->tvGeneral->resizeColumnsToContents();
     ui->tvGeneral->horizontalHeader()->stretchLastSection();
     setHeaders();
+    QStandardItemModel* mod=static_cast<QStandardItemModel*>(ui->tvStorico->model());
+
+
 
 }
 

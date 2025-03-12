@@ -52,6 +52,15 @@ Qt::ItemFlags HProductsModel::flags(const QModelIndex & item ) const
 
            return flags;
        }
+       else if (item.column()==8)
+       {
+           //return flags | Qt::ItemIsEnabled|Qt::ItemIsEditable | Qt::ItemIsUserCheckable;
+           flags |= Qt::ItemIsUserCheckable;
+           flags |= Qt::ItemIsEditable;
+           flags |= Qt::ItemIsEnabled;
+
+           return flags;
+       }
        else
        {
           return QSqlRelationalTableModel::flags(item)  ;
@@ -65,7 +74,7 @@ Qt::ItemFlags HProductsModel::flags(const QModelIndex & item ) const
 QVariant HProductsModel::data( const QModelIndex & item, int role /*= Qt::DisplayRole*/ ) const
 {
 
-    if (item.column()==3 || item.column()==4 ||item.column()==5)
+     if (item.column()==3 || item.column()==4 ||item.column()==5 || item.column()==8)
     {
 
 

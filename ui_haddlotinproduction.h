@@ -15,10 +15,11 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -31,12 +32,12 @@ public:
     QLabel *lbDesc;
     QComboBox *cbLastLots;
     QHBoxLayout *horizontalLayout_3;
-    QListView *lvLastLots;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QDoubleSpinBox *dsbQt;
     QPushButton *pbDefaultLot;
     QPushButton *pbCancel;
+    QTableView *tvLots;
     QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pbAdd;
@@ -46,8 +47,8 @@ public:
     {
         if (HAddLotInProduction->objectName().isEmpty())
             HAddLotInProduction->setObjectName(QString::fromUtf8("HAddLotInProduction"));
-        HAddLotInProduction->setWindowModality(Qt::WindowModal);
-        HAddLotInProduction->resize(393, 361);
+        HAddLotInProduction->setWindowModality(Qt::ApplicationModal);
+        HAddLotInProduction->resize(409, 361);
         verticalLayout = new QVBoxLayout(HAddLotInProduction);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         lbDesc = new QLabel(HAddLotInProduction);
@@ -66,18 +67,6 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_3);
 
-        lvLastLots = new QListView(HAddLotInProduction);
-        lvLastLots->setObjectName(QString::fromUtf8("lvLastLots"));
-        QFont font;
-        font.setPointSize(11);
-        lvLastLots->setFont(font);
-        lvLastLots->setFrameShape(QFrame::Box);
-        lvLastLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        lvLastLots->setAlternatingRowColors(true);
-        lvLastLots->setSelectionBehavior(QAbstractItemView::SelectRows);
-
-        verticalLayout->addWidget(lvLastLots);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         label = new QLabel(HAddLotInProduction);
@@ -88,7 +77,7 @@ public:
         dsbQt = new QDoubleSpinBox(HAddLotInProduction);
         dsbQt->setObjectName(QString::fromUtf8("dsbQt"));
         dsbQt->setInputMethodHints(Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly);
-        dsbQt->setButtonSymbols(QAbstractSpinBox::NoButtons);
+        dsbQt->setButtonSymbols(QAbstractSpinBox::UpDownArrows);
         dsbQt->setProperty("showGroupSeparator", QVariant(true));
         dsbQt->setDecimals(3);
         dsbQt->setMaximum(10000000.000000000000000);
@@ -118,6 +107,16 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout);
+
+        tvLots = new QTableView(HAddLotInProduction);
+        tvLots->setObjectName(QString::fromUtf8("tvLots"));
+        tvLots->setSelectionMode(QAbstractItemView::SingleSelection);
+        tvLots->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvLots->horizontalHeader()->setCascadingSectionResizes(true);
+        tvLots->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
+        tvLots->verticalHeader()->setVisible(false);
+
+        verticalLayout->addWidget(tvLots);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 

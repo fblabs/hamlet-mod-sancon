@@ -10,10 +10,13 @@ class HDataToPass : public QObject
 public:
     explicit HDataToPass(QObject *parent = 0);
     QString description;
+    QString lot;
     int productId;
+    int lotid=0;
     bool allergene;
     int row;
     double quantity;
+    double giacenza;
     QStandardItemModel *mod;
 
 signals:

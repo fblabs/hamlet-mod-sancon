@@ -50,14 +50,14 @@ private:
     int lottomodifica;
 
 private slots:
-    void addLot(QModelIndex index, bool show_window=true);
+    //void addLot(QModelIndex index, bool show_window=true);
     void getNewRow(QList<QStandardItem *> list);
     void getClients();
     void getSubclients();
     void getRecipesForClient();
     void getRecipe();
-    void productSelected();
-    void getLotModel();
+   // void productSelected();
+   // void getLotModel();
     void addLotProd();
     void addLotFuoriRicettaN(QList<QStandardItem *> row);
     void addLotFuoriRicetta();
@@ -96,6 +96,11 @@ private slots:
     void ui_enable(int arg);
     void addPreferredLots();
     const QString findPreferredLot(const int id_prod=-1);
+
+    void print(const QStandardItemModel *prtmod, bool pdf);
+    QStandardItemModel* getrecipeForPrinting(const int idricetta);
+    void addLot(QModelIndex index, const bool p_allergene=false, const bool show_window=true);
+    void on_cbTipoLotto_currentIndexChanged(int index);
 
 
 

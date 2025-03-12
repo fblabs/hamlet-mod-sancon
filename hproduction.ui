@@ -12,7 +12,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1025</width>
+    <width>1133</width>
     <height>605</height>
    </rect>
   </property>
@@ -220,7 +220,7 @@
             </size>
            </property>
            <property name="text">
-            <string>inizia</string>
+            <string>inizia (S)</string>
            </property>
            <property name="icon">
             <iconset resource="icons.qrc">
@@ -231,6 +231,9 @@
              <width>32</width>
              <height>32</height>
             </size>
+           </property>
+           <property name="shortcut">
+            <string>S</string>
            </property>
           </widget>
          </item>
@@ -254,6 +257,9 @@
              <width>32</width>
              <height>32</height>
             </size>
+           </property>
+           <property name="shortcut">
+            <string>A</string>
            </property>
           </widget>
          </item>
@@ -302,7 +308,7 @@
           <bool>false</bool>
          </property>
          <property name="editTriggers">
-          <set>QAbstractItemView::EditKeyPressed</set>
+          <set>QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
          </property>
          <property name="selectionMode">
           <enum>QAbstractItemView::SingleSelection</enum>
@@ -389,7 +395,7 @@
          <item>
           <widget class="QPushButton" name="pbPreferredLots">
            <property name="text">
-            <string>Mostra Lotti predefinti</string>
+            <string>Mostra Lotti predefinti (P)</string>
            </property>
            <property name="icon">
             <iconset resource="icons.qrc">
@@ -400,6 +406,9 @@
              <width>32</width>
              <height>32</height>
             </size>
+           </property>
+           <property name="shortcut">
+            <string>P</string>
            </property>
           </widget>
          </item>
@@ -551,7 +560,7 @@
         <bool>true</bool>
        </property>
        <property name="text">
-        <string>Stampa</string>
+        <string>Stampa (Ctrl+P)</string>
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
@@ -562,6 +571,9 @@
          <width>32</width>
          <height>32</height>
         </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+P</string>
        </property>
       </widget>
      </item>

@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>332</width>
-    <height>297</height>
+    <height>374</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -92,32 +92,27 @@
     </layout>
    </item>
    <item>
-    <widget class="QListView" name="lvLastLots">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
+    <widget class="QTableView" name="tvLots">
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>
      <property name="alternatingRowColors">
       <bool>true</bool>
      </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
      <property name="selectionBehavior">
       <enum>QAbstractItemView::SelectRows</enum>
      </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
       <widget class="QLabel" name="label_3">
        <property name="minimumSize">
         <size>
@@ -136,10 +131,10 @@
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="1">
       <widget class="QLineEdit" name="leQua"/>
      </item>
-     <item>
+     <item row="0" column="2">
       <widget class="QComboBox" name="cbUI"/>
      </item>
     </layout>
@@ -154,6 +149,12 @@
        <property name="icon">
         <iconset resource="icons.qrc">
          <normaloff>:/Resources/Accept64.png</normaloff>:/Resources/Accept64.png</iconset>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

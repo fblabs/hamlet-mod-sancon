@@ -17,35 +17,34 @@ class HAddLotInProduction : public QWidget
 {
     Q_OBJECT
 
-    QStandardItemModel *model;
-    HDataToPass *data;
-
-    QSqlDatabase db;
-    QSqlDatabase prefsdb;
-    QStandardItemModel *qmLots;
-
-
 public:
     explicit HAddLotInProduction(HDataToPass *datapass, QSqlDatabase pdb=QSqlDatabase(), QWidget *parent=nullptr);
     ~HAddLotInProduction();
-    void click();
+
 
 private:
     Ui::HAddLotInProduction *ui;
+    QStandardItemModel *model;
+    HDataToPass *data;
+    QSqlDatabase db;
+    QSqlDatabase prefsdb;
+    QStandardItemModel *qmLots;
 private slots:
     void lastLots();
     void addLot();
     void on_pdClose_clicked();
     void on_pbAdd_clicked();
-    void on_lvLastLots_doubleClicked(const QModelIndex &index);
     QString findDefaultLot(const QString p_prod=QString());
-
- //  void searchByLot();
- //   void on_leSearch_returnPressed();
-
- //   void on_leSearch_textChanged(const QString &arg1);
     void on_pbDefaultLot_clicked();
     void on_pbCancel_clicked();
+    void on_tvLots_doubleClicked(const QModelIndex &index);
+    void clean();
+    double get_giacenza(const int p_id=-1);
+
+public slots:
+     void click();
+signals:
+    void lot_added();
 };
 
 #endif // HADDLOTINPRODUCTION_H

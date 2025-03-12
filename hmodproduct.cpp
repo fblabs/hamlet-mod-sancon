@@ -62,11 +62,12 @@ bool HModProduct::getProductData()
     map->addMapping(ui->cbBio,BIO);
     map->addMapping(ui->lePrice,PRICE);
     map->addMapping(ui->deLastUpdate,LAST_UPDATE);
+    map->addMapping(ui->cbAllergene_usa,ALLERGENE_USA);
+
 
 
     map->toFirst();
     map->setSubmitPolicy(QDataWidgetMapper::AutoSubmit);
-   // connect(ui->cbType,SIGNAL(currentIndexChanged(int)),productsmodel,SLOT(submit()));
 
 
     return true;
@@ -88,6 +89,7 @@ void HModProduct::on_pbSave_clicked()
     {
 
         bool b= map->submit();
+        qDebug()<<b;
         qDebug()<<productsmodel->lastError().text();
         if(b){
             productsmodel->select();

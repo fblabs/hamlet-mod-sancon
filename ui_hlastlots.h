@@ -13,11 +13,13 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -36,8 +38,8 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QLabel *label;
     QComboBox *cbLastLots;
-    QListView *lvLastLots;
-    QHBoxLayout *horizontalLayout_4;
+    QTableView *tvLots;
+    QGridLayout *gridLayout;
     QLabel *label_3;
     QLineEdit *leQua;
     QComboBox *cbUI;
@@ -50,7 +52,7 @@ public:
         if (HLastLots->objectName().isEmpty())
             HLastLots->setObjectName(QString::fromUtf8("HLastLots"));
         HLastLots->setWindowModality(Qt::WindowModal);
-        HLastLots->resize(332, 297);
+        HLastLots->resize(332, 374);
         verticalLayout = new QVBoxLayout(HLastLots);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_5 = new QHBoxLayout();
@@ -104,39 +106,37 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_3);
 
-        lvLastLots = new QListView(HLastLots);
-        lvLastLots->setObjectName(QString::fromUtf8("lvLastLots"));
-        lvLastLots->setMaximumSize(QSize(16777215, 120));
-        QFont font;
-        font.setPointSize(12);
-        lvLastLots->setFont(font);
-        lvLastLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        lvLastLots->setAlternatingRowColors(true);
-        lvLastLots->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvLots = new QTableView(HLastLots);
+        tvLots->setObjectName(QString::fromUtf8("tvLots"));
+        tvLots->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tvLots->setAlternatingRowColors(true);
+        tvLots->setSelectionMode(QAbstractItemView::SingleSelection);
+        tvLots->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvLots->verticalHeader()->setVisible(false);
 
-        verticalLayout->addWidget(lvLastLots);
+        verticalLayout->addWidget(tvLots);
 
-        horizontalLayout_4 = new QHBoxLayout();
-        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         label_3 = new QLabel(HLastLots);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setMinimumSize(QSize(80, 0));
         label_3->setMaximumSize(QSize(80, 16777215));
 
-        horizontalLayout_4->addWidget(label_3);
+        gridLayout->addWidget(label_3, 0, 0, 1, 1);
 
         leQua = new QLineEdit(HLastLots);
         leQua->setObjectName(QString::fromUtf8("leQua"));
 
-        horizontalLayout_4->addWidget(leQua);
+        gridLayout->addWidget(leQua, 0, 1, 1, 1);
 
         cbUI = new QComboBox(HLastLots);
         cbUI->setObjectName(QString::fromUtf8("cbUI"));
 
-        horizontalLayout_4->addWidget(cbUI);
+        gridLayout->addWidget(cbUI, 0, 2, 1, 1);
 
 
-        verticalLayout->addLayout(horizontalLayout_4);
+        verticalLayout->addLayout(gridLayout);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
@@ -145,6 +145,7 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Accept64.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon);
+        pushButton->setAutoDefault(true);
 
         horizontalLayout_2->addWidget(pushButton);
 
@@ -161,6 +162,9 @@ public:
 
 
         retranslateUi(HLastLots);
+
+        pushButton->setDefault(true);
+
 
         QMetaObject::connectSlotsByName(HLastLots);
     } // setupUi

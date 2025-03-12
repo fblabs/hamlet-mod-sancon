@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>547</width>
-    <height>170</height>
+    <height>176</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,35 +22,50 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Descrizione</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item>
       <widget class="QLineEdit" name="leDescrizione"/>
      </item>
-     <item row="1" column="0">
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Tipo</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
+     <item>
       <widget class="QComboBox" name="comboBox"/>
      </item>
-     <item row="2" column="1">
+    </layout>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
       <widget class="QCheckBox" name="cbAllergenico">
        <property name="text">
         <string>Allergene</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="0" column="1">
+      <widget class="QCheckBox" name="cbAllergene_usa">
+       <property name="text">
+        <string>Allergene USA</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
       <widget class="QCheckBox" name="cbBio">
        <property name="text">
         <string>Bio</string>

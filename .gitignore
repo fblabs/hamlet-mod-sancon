@@ -363,3 +363,7 @@ hamletMOD.pro.user
 hcalcolo_costi_jolly.cpp
 hcalcolo_costi_jolly.cpp
 hcalcolo_costi_jolly.h
+*.cpp
+*.cpp
+release/moc*
+usersinfo*

@@ -47,7 +47,7 @@ void HNewProduct::addNewProduct()
 {
     QSqlQuery q(db);
     QString query;
-    QVariant descrizione,tipo,allergenico,attivo,bio;
+    QVariant descrizione,tipo,allergenico,attivo,bio,allergene_usa;
 
     descrizione=ui->leDescrizione->text().toUpper();
     tipo=ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toString();
@@ -68,17 +68,27 @@ void HNewProduct::addNewProduct()
         bio="0";
     }
 
+    if (ui->cbAllergene_usa->isChecked())
+    {
+        allergene_usa=1;
+    }
+    else
+    {
+        allergene_usa=0;
+    }
+
 
     attivo="1";
 
 
-    query="INSERT INTO prodotti (descrizione,tipo,allergenico,attivo,bio) VALUES(:desc,:tipo,:allerg,:attivo,:bio)";
+    query="INSERT INTO prodotti (descrizione,tipo,allergenico,attivo,bio,allergene_usa) VALUES(:desc,:tipo,:allerg,:attivo,:bio,allergene_usa)";
     q.prepare(query);
     q.bindValue(":desc",QVariant(descrizione));
     q.bindValue(":tipo",QVariant(tipo));
     q.bindValue(":allerg",QVariant(allergenico));
     q.bindValue(":attivo",QVariant(attivo));
     q.bindValue(":bio",QVariant(bio));
+    q.bindValue(":allergene_usa",QVariant(allergene_usa));
 
     db.transaction();
 
@@ -125,7 +135,8 @@ bool HNewProduct::addNewContainer(const int p_id)
 
 void HNewProduct::on_pbSave_clicked()
 {
-    addNewProduct();
+
+        addNewProduct();
 }
 
 
