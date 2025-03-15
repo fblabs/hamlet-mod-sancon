@@ -46,7 +46,7 @@ public:
         if (HRecipeAddRow->objectName().isEmpty())
             HRecipeAddRow->setObjectName(QString::fromUtf8("HRecipeAddRow"));
         HRecipeAddRow->setWindowModality(Qt::WindowModal);
-        HRecipeAddRow->resize(332, 166);
+        HRecipeAddRow->resize(332, 186);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HRecipeAddRow->setWindowIcon(icon);
@@ -105,6 +105,7 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         pushButton = new QPushButton(HRecipeAddRow);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setAutoDefault(false);
 
         horizontalLayout->addWidget(pushButton);
 

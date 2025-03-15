@@ -145,7 +145,6 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Accept64.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon);
-        pushButton->setAutoDefault(true);
 
         horizontalLayout_2->addWidget(pushButton);
 
@@ -162,9 +161,6 @@ public:
 
 
         retranslateUi(HLastLots);
-
-        pushButton->setDefault(true);
-
 
         QMetaObject::connectSlotsByName(HLastLots);
     } // setupUi

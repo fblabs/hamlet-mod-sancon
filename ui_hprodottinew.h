@@ -43,6 +43,7 @@ public:
     QPushButton *pushButton;
     QPushButton *pbMod;
     QPushButton *pbLoads;
+    QPushButton *pbPreferredLots;
     QCheckBox *cbPdf;
     QPushButton *pbPrint;
     QPushButton *pushButton_2;
@@ -52,7 +53,7 @@ public:
         if (HProdottiNew->objectName().isEmpty())
             HProdottiNew->setObjectName(QString::fromUtf8("HProdottiNew"));
         HProdottiNew->setWindowModality(Qt::WindowModal);
-        HProdottiNew->resize(1291, 643);
+        HProdottiNew->resize(1291, 693);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Box.PNG"), QSize(), QIcon::Normal, QIcon::Off);
         HProdottiNew->setWindowIcon(icon);
@@ -159,6 +160,15 @@ public:
 
         horizontalLayout_2->addWidget(pbLoads);
 
+        pbPreferredLots = new QPushButton(HProdottiNew);
+        pbPreferredLots->setObjectName(QString::fromUtf8("pbPreferredLots"));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Resources/Text-columns64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPreferredLots->setIcon(icon4);
+        pbPreferredLots->setIconSize(QSize(32, 32));
+
+        horizontalLayout_2->addWidget(pbPreferredLots);
+
         cbPdf = new QCheckBox(HProdottiNew);
         cbPdf->setObjectName(QString::fromUtf8("cbPdf"));
         cbPdf->setMaximumSize(QSize(100, 16777215));
@@ -168,18 +178,18 @@ public:
 
         pbPrint = new QPushButton(HProdottiNew);
         pbPrint->setObjectName(QString::fromUtf8("pbPrint"));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbPrint->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Resources/Printer-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbPrint->setIcon(icon5);
         pbPrint->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pbPrint);
 
         pushButton_2 = new QPushButton(HProdottiNew);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon6);
         pushButton_2->setIconSize(QSize(32, 32));
 
         horizontalLayout_2->addWidget(pushButton_2);
@@ -203,6 +213,7 @@ public:
         pushButton->setText(QCoreApplication::translate("HProdottiNew", "Nuovo", nullptr));
         pbMod->setText(QCoreApplication::translate("HProdottiNew", "Modifica prodotto selezionato", nullptr));
         pbLoads->setText(QCoreApplication::translate("HProdottiNew", "Carichi/scarichi", nullptr));
+        pbPreferredLots->setText(QCoreApplication::translate("HProdottiNew", "Lotti predefiniti", nullptr));
         cbPdf->setText(QCoreApplication::translate("HProdottiNew", "Stampa su pdf", nullptr));
         pbPrint->setText(QCoreApplication::translate("HProdottiNew", "Stampa", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HProdottiNew", "Chiudi", nullptr));

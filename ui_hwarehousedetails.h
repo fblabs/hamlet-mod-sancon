@@ -77,6 +77,7 @@ public:
     QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_5;
     QPushButton *pbSave;
+    QPushButton *pbDelete;
     QPushButton *pbClose;
 
     void setupUi(QWidget *HWarehouseDetails)
@@ -315,11 +316,20 @@ public:
 
         horizontalLayout_5->addWidget(pbSave);
 
+        pbDelete = new QPushButton(HWarehouseDetails);
+        pbDelete->setObjectName(QString::fromUtf8("pbDelete"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/Minus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pbDelete->setIcon(icon2);
+        pbDelete->setIconSize(QSize(32, 32));
+
+        horizontalLayout_5->addWidget(pbDelete);
+
         pbClose = new QPushButton(HWarehouseDetails);
         pbClose->setObjectName(QString::fromUtf8("pbClose"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbClose->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Actions-window-close-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbClose->setIcon(icon3);
         pbClose->setIconSize(QSize(32, 32));
 
         horizontalLayout_5->addWidget(pbClose);
@@ -350,6 +360,7 @@ public:
         label_5->setText(QCoreApplication::translate("HWarehouseDetails", "Azione:", nullptr));
         label_7->setText(QCoreApplication::translate("HWarehouseDetails", "Note:", nullptr));
         pbSave->setText(QCoreApplication::translate("HWarehouseDetails", "Salva", nullptr));
+        pbDelete->setText(QCoreApplication::translate("HWarehouseDetails", "Elimina operazione", nullptr));
         pbClose->setText(QCoreApplication::translate("HWarehouseDetails", "Chiudi", nullptr));
     } // retranslateUi
 

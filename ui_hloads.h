@@ -12,10 +12,12 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
@@ -28,16 +30,20 @@ class Ui_HLoads
 {
 public:
     QVBoxLayout *verticalLayout;
-    QLineEdit *leProduct;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QDateEdit *deFrom;
     QLabel *label_2;
     QDateEdit *deTo;
+    QSpacerItem *horizontalSpacer_3;
     QPushButton *pbSearch;
+    QComboBox *cbTipi;
+    QListView *lvProducts;
     QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer;
     QRadioButton *rbLoads;
     QRadioButton *rbUnloads;
+    QSpacerItem *horizontalSpacer_2;
     QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_3;
@@ -50,16 +56,9 @@ public:
         if (HLoads->objectName().isEmpty())
             HLoads->setObjectName(QString::fromUtf8("HLoads"));
         HLoads->setWindowModality(Qt::ApplicationModal);
-        HLoads->resize(339, 282);
+        HLoads->resize(708, 408);
         verticalLayout = new QVBoxLayout(HLoads);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        leProduct = new QLineEdit(HLoads);
-        leProduct->setObjectName(QString::fromUtf8("leProduct"));
-        leProduct->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
-        leProduct->setReadOnly(true);
-
-        verticalLayout->addWidget(leProduct);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         label = new QLabel(HLoads);
@@ -84,6 +83,10 @@ public:
 
         horizontalLayout->addWidget(deTo);
 
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_3);
+
         pbSearch = new QPushButton(HLoads);
         pbSearch->setObjectName(QString::fromUtf8("pbSearch"));
         QIcon icon;
@@ -95,8 +98,24 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
+        cbTipi = new QComboBox(HLoads);
+        cbTipi->setObjectName(QString::fromUtf8("cbTipi"));
+
+        verticalLayout->addWidget(cbTipi);
+
+        lvProducts = new QListView(HLoads);
+        lvProducts->setObjectName(QString::fromUtf8("lvProducts"));
+        lvProducts->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        lvProducts->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+        verticalLayout->addWidget(lvProducts);
+
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer);
+
         rbLoads = new QRadioButton(HLoads);
         rbLoads->setObjectName(QString::fromUtf8("rbLoads"));
         rbLoads->setChecked(true);
@@ -107,6 +126,10 @@ public:
         rbUnloads->setObjectName(QString::fromUtf8("rbUnloads"));
 
         horizontalLayout_3->addWidget(rbUnloads);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_2);
 
         verticalSpacer = new QSpacerItem(20, 64, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -152,12 +175,12 @@ public:
 
     void retranslateUi(QWidget *HLoads)
     {
-        HLoads->setWindowTitle(QCoreApplication::translate("HLoads", "Carichi", nullptr));
+        HLoads->setWindowTitle(QCoreApplication::translate("HLoads", "Carichi \\ scarichi prodotti", nullptr));
         label->setText(QCoreApplication::translate("HLoads", "Tra il:", nullptr));
         label_2->setText(QCoreApplication::translate("HLoads", "e il:", nullptr));
         pbSearch->setText(QCoreApplication::translate("HLoads", "Cerca", nullptr));
-        rbLoads->setText(QCoreApplication::translate("HLoads", "Carichi", nullptr));
-        rbUnloads->setText(QCoreApplication::translate("HLoads", "Scarichi", nullptr));
+        rbLoads->setText(QCoreApplication::translate("HLoads", "Totale carichi", nullptr));
+        rbUnloads->setText(QCoreApplication::translate("HLoads", "Totale scarichi", nullptr));
         label_3->setText(QCoreApplication::translate("HLoads", "Totale::", nullptr));
         pbClose->setText(QCoreApplication::translate("HLoads", "Chiudi", nullptr));
     } // retranslateUi
