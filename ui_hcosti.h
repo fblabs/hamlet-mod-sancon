@@ -161,7 +161,7 @@ public:
 
         tvRicetta = new QTableView(HCosti);
         tvRicetta->setObjectName(QString::fromUtf8("tvRicetta"));
-        tvRicetta->setEditTriggers(QAbstractItemView::DoubleClicked);
+        tvRicetta->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tvRicetta->setAlternatingRowColors(true);
         tvRicetta->setSelectionMode(QAbstractItemView::SingleSelection);
         tvRicetta->setSelectionBehavior(QAbstractItemView::SelectItems);

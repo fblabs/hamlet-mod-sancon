@@ -155,7 +155,6 @@ void HLastLots::lastLotsByLot(QString plot)
     ui->tvLots->horizontalHeader()->setSectionResizeMode(4,QHeaderView::Stretch);
 
     int ix=-1;
-    qDebug()<<qmLots->index(ui->tvLots->currentIndex().row(),3).data(0).toString();
     ix=ui->cbProducts->findText(qmLots->index(0,3).data(0).toString());
     ui->cbProducts->setCurrentIndex(ix);
 
@@ -230,21 +229,21 @@ void HLastLots::on_pushButton_clicked()
     }
     if(dgiacenza<=0)
     {
-        sidProdotto->setBackground(Qt::red);
+        sidProdotto->setBackground(QColor(255,150,150));
         sidProdotto->setForeground(Qt::white);
-        sdescprodotto->setBackground(Qt::red);
+        sdescprodotto->setBackground(QColor(255,150,150));
         sdescprodotto->setForeground(Qt::white);
-        squaRicetta->setBackground(Qt::red);
+        squaRicetta->setBackground(QColor(255,150,150));
         squaRicetta->setForeground(Qt::white);
-        sLotto->setBackground(Qt::red);
+        sLotto->setBackground(QColor(255,150,150));
         sLotto->setForeground(Qt::white);
-        quaEff->setBackground(Qt::red);
+        quaEff->setBackground(QColor(255,150,150));
         quaEff->setForeground(Qt::white);
-        allergene->setBackground(Qt::red);
+        allergene->setBackground(QColor(255,150,150));
         allergene->setForeground(Qt::white);
-        giacenza->setBackground(Qt::red);
+        giacenza->setBackground(QColor(255,150,150));
         giacenza->setForeground(Qt::white);
-        allergene_usa->setBackground(Qt::red   );
+        allergene_usa->setBackground(QColor(255,150,150));
         allergene_usa->setForeground(Qt::black);
     }
 

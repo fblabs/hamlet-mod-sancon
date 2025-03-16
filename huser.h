@@ -24,7 +24,7 @@ private:
      QSqlDatabase db;
 
      int utenti_v,utenti_u,anagrafica_v,anagrafica_u,notifiche_v,notifiche_u,contatti_v,contatti_u,lotti_v,lotti_u,operazioni_v,operazioni_u,prodotti_v,prodotti_u,schede_v,schede_u;
-     int ricette_v,ricette_u,programmi_v,programmi_u,produzione_v,produzione_u,packages_v,packages_u,costi_v,costi_u,analisi_v,analisi_u;
+     int ricette_v,ricette_u,programmi_v,programmi_u,produzione_v,produzione_u,packages_v,packages_u,costi_v,costi_u,analisi_v,analisi_u,wp_v,wp_u;
 
 
 
@@ -79,6 +79,8 @@ public slots:
     int get_costi_u();
     int get_analisi_v();
     int get_analisi_u();
+    int get_wp_v();
+    int get_wp_u();
 
 
 

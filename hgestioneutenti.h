@@ -33,12 +33,12 @@ private slots:
     int getGruppo();
     void getIdUtente();
     void emit_permissions_updated();
-
-
-
     void on_pbGroups_clicked();
-
     void on_pbUserPermissions_clicked();
+
+
+
+    void on_leNewPass_textChanged(const QString &arg1);
 
 private:
     Ui::HGestioneUtenti *ui;

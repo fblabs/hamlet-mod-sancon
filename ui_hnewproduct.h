@@ -14,7 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -28,15 +28,15 @@ class Ui_HNewProduct
 {
 public:
     QVBoxLayout *verticalLayout;
-    QHBoxLayout *horizontalLayout_2;
+    QFormLayout *formLayout;
     QLabel *label;
     QLineEdit *leDescrizione;
-    QHBoxLayout *horizontalLayout_3;
+    QFormLayout *formLayout_2;
     QLabel *label_2;
     QComboBox *comboBox;
-    QGridLayout *gridLayout;
+    QFormLayout *formLayout_3;
     QCheckBox *cbAllergenico;
-    QCheckBox *cbAllergene_usa;
+    QCheckBox *cbAllergeneUSA;
     QCheckBox *cbBio;
     QHBoxLayout *horizontalLayout;
     QPushButton *pbSave;
@@ -53,55 +53,55 @@ public:
         HNewProduct->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(HNewProduct);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        formLayout = new QFormLayout();
+        formLayout->setObjectName(QString::fromUtf8("formLayout"));
         label = new QLabel(HNewProduct);
         label->setObjectName(QString::fromUtf8("label"));
 
-        horizontalLayout_2->addWidget(label);
+        formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
         leDescrizione = new QLineEdit(HNewProduct);
         leDescrizione->setObjectName(QString::fromUtf8("leDescrizione"));
 
-        horizontalLayout_2->addWidget(leDescrizione);
+        formLayout->setWidget(0, QFormLayout::FieldRole, leDescrizione);
 
 
-        verticalLayout->addLayout(horizontalLayout_2);
+        verticalLayout->addLayout(formLayout);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        formLayout_2 = new QFormLayout();
+        formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
         label_2 = new QLabel(HNewProduct);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        horizontalLayout_3->addWidget(label_2);
+        formLayout_2->setWidget(0, QFormLayout::LabelRole, label_2);
 
         comboBox = new QComboBox(HNewProduct);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
 
-        horizontalLayout_3->addWidget(comboBox);
+        formLayout_2->setWidget(0, QFormLayout::FieldRole, comboBox);
 
 
-        verticalLayout->addLayout(horizontalLayout_3);
+        verticalLayout->addLayout(formLayout_2);
 
-        gridLayout = new QGridLayout();
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        formLayout_3 = new QFormLayout();
+        formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
         cbAllergenico = new QCheckBox(HNewProduct);
         cbAllergenico->setObjectName(QString::fromUtf8("cbAllergenico"));
 
-        gridLayout->addWidget(cbAllergenico, 0, 0, 1, 1);
+        formLayout_3->setWidget(0, QFormLayout::LabelRole, cbAllergenico);
 
-        cbAllergene_usa = new QCheckBox(HNewProduct);
-        cbAllergene_usa->setObjectName(QString::fromUtf8("cbAllergene_usa"));
+        cbAllergeneUSA = new QCheckBox(HNewProduct);
+        cbAllergeneUSA->setObjectName(QString::fromUtf8("cbAllergeneUSA"));
 
-        gridLayout->addWidget(cbAllergene_usa, 0, 1, 1, 1);
+        formLayout_3->setWidget(0, QFormLayout::FieldRole, cbAllergeneUSA);
+
+
+        verticalLayout->addLayout(formLayout_3);
 
         cbBio = new QCheckBox(HNewProduct);
         cbBio->setObjectName(QString::fromUtf8("cbBio"));
 
-        gridLayout->addWidget(cbBio, 1, 0, 1, 1);
-
-
-        verticalLayout->addLayout(gridLayout);
+        verticalLayout->addWidget(cbBio);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -141,7 +141,7 @@ public:
         label->setText(QCoreApplication::translate("HNewProduct", "Descrizione", nullptr));
         label_2->setText(QCoreApplication::translate("HNewProduct", "Tipo", nullptr));
         cbAllergenico->setText(QCoreApplication::translate("HNewProduct", "Allergene", nullptr));
-        cbAllergene_usa->setText(QCoreApplication::translate("HNewProduct", "Allergene USA", nullptr));
+        cbAllergeneUSA->setText(QCoreApplication::translate("HNewProduct", "Allergene USA", nullptr));
         cbBio->setText(QCoreApplication::translate("HNewProduct", "Bio", nullptr));
         pbSave->setText(QCoreApplication::translate("HNewProduct", "Salva", nullptr));
         pbCancel->setText(QCoreApplication::translate("HNewProduct", "Annulla", nullptr));

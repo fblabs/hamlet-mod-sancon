@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     a.setApplicationName("hamlet MOD");
-    a.setApplicationVersion("3.4");
+    a.setApplicationVersion("3.7");
     a.setOrganizationName("FBLABS");
 
     w.show();

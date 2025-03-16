@@ -97,22 +97,18 @@ void HLogin2::login()
 
         //NEW PERMISSIONS MODEL
         get_permissions(usr,role);
-         emit userLogged(usr,db);
-
-
-
-
-        // // qDebug()<<"HLogin2"<<usr->getUsername()<<QString::number(usr->getRole())<<usr->getCanUpdate()<<usr->getCanUpdateAnag();
+        emit userLogged(usr,db);
         close();
     }
     else
     {
         QMessageBox::information(this,QApplication::applicationName(),"Errore di autenticazione utente\nErrore Risposta database- query size= "+QString::number(qrLogin.size())+qrLogin.lastError().text()+"*",QMessageBox::Ok);
-
-        ui->leUser->setText("");
+        //ui->leUser->setText("");
         ui->lePwd->setText("");
         ui->leUser->setFocus();
     }
+
+
 
 
 }

@@ -32,6 +32,7 @@ HPrint::HPrint(QWidget *parent, bool altColors) :
     ui->setupUi(this);
 
     printer=new QPrinter();
+
     ui->spCharSize->setValue(10);
     doc=ui->textEdit->document();
     QTextCursor cursor=ui->textEdit->textCursor();
@@ -348,7 +349,7 @@ QTextTable* HPrint::writeTableContent(QTextTable *table=0, int row=0, int column
     QTextBlockFormat bf=c.blockFormat();
     Qt::Alignment horz=bf.alignment() & Qt::AlignHorizontal_Mask;
     Qt::Alignment vert=bf.alignment() & Qt::AlignVertical_Mask;
-    Qt::Alignment hv= horz | vert;
+   // Qt::Alignment hv= horz | vert;
     bf.setAlignment(vert);
     bf.setPageBreakPolicy(QTextBlockFormat::PageBreak_Auto);
 
@@ -371,7 +372,7 @@ QTextTable* HPrint::writeTableContentRed(QTextTable *table, int row, int column,
   QTextBlockFormat bf=c.blockFormat();
   Qt::Alignment horz=bf.alignment() & Qt::AlignHorizontal_Mask;
   Qt::Alignment vert=bf.alignment() & Qt::AlignVertical_Mask;
-  Qt::Alignment hv= horz | vert;
+
   bf.setAlignment(vert);
   bf.setPageBreakPolicy(QTextBlockFormat::PageBreak_Auto);
   c.setCharFormat(format);
@@ -444,13 +445,6 @@ int HPrint::getHeightImg1()
 
 }
 
-/*
-int HPrint::getFontsize()
-{
-
-    return ui->spCharSize->value();
-
-}*/
 
 
 void HPrint::setsbHValue(int val)

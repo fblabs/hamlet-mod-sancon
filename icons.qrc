@@ -128,5 +128,10 @@
         <file>Resources/hamlet_graphics.png</file>
         <file>hamlet.ico</file>
         <file>Resources/fblabs.png</file>
+        <file>Resources/PDF.png</file>
+        <file>Resources/cut.png</file>
+        <file>Resources/verde.png</file>
+        <file>Resources/giallo.png</file>
+        <file>Resources/rosso.png</file>
     </qresource>
 </RCC>

@@ -12,6 +12,7 @@
 #include <QItemDelegate>
 #include "hprint.h"
 #include <QMessageBox>
+#include <QCompleter>
 
 HAssociazioni::HAssociazioni(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
     QWidget(parent),
@@ -30,7 +31,8 @@ HAssociazioni::HAssociazioni(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
 
     ui->cbClienti->setModel(tmClienti);
     ui->cbClienti->setModelColumn(1);
-
+    ui->cbClienti->completer()->setCompletionColumn(1);
+    ui->cbClienti->completer()->setCompletionMode(QCompleter::PopupCompletion);
     tvqm=new QSqlQueryModel();
 
   //  delegate=new HCheckBoxDelegate();
@@ -62,7 +64,7 @@ HAssociazioni::~HAssociazioni()
 
 void HAssociazioni::getRecipes()
 {
-    QString qs="SELECT ricette.ID,prodotti.descrizione from prodotti,ricette where prodotti.ID=ricette.ID_prodotto and prodotti.tipo=2 order by prodotti.descrizione ASC";
+    QString qs="SELECT ricette.ID,prodotti.descrizione from prodotti,ricette where prodotti.ID=ricette.ID_prodotto and prodotti.tipo IN (2,6) order by prodotti.descrizione ASC";
     QSqlQuery q(db);
     qm=new QSqlQueryModel();
 
@@ -73,7 +75,9 @@ void HAssociazioni::getRecipes()
 
     ui->cbRicette->setModel(qm);
     ui->cbRicette->setModelColumn(1);
-
+    ui->cbRicette->completer()->setModel(qm);
+    ui->cbRicette->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    ui->cbRicette->completer()->setCompletionColumn(1);
 
 
 }

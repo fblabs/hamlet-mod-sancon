@@ -53,11 +53,11 @@ private slots:
     void on_pbRemove_clicked();
     void on_pbScarico_clicked();
     void on_pbModify_clicked();
-
     void on_pbModifyAmount_clicked();
 
+
 signals:
-   void unloaded();
+    void sig_lot_updated();
 
 };
 

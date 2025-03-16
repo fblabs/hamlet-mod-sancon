@@ -51,7 +51,7 @@ public:
     {
         if (HBlender->objectName().isEmpty())
             HBlender->setObjectName(QString::fromUtf8("HBlender"));
-        HBlender->resize(1052, 655);
+        HBlender->resize(1222, 666);
         verticalLayout_2 = new QVBoxLayout(HBlender);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         lbTitle = new QLabel(HBlender);
@@ -90,6 +90,7 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         pbAdd->setIcon(icon);
+        pbAdd->setIconSize(QSize(16, 16));
 
         gridLayout->addWidget(pbAdd, 0, 4, 1, 1);
 
@@ -179,9 +180,12 @@ public:
         lbTitle->setText(QString());
         label->setText(QCoreApplication::translate("HBlender", "Aggiungi:", nullptr));
         label_2->setText(QCoreApplication::translate("HBlender", "Quantit\303\240:", nullptr));
-        pbAdd->setText(QCoreApplication::translate("HBlender", "Aggiungi (Alt+Invio)", nullptr));
+#if QT_CONFIG(tooltip)
+        pbAdd->setToolTip(QCoreApplication::translate("HBlender", "INVIO Tastierino numerico", nullptr));
+#endif // QT_CONFIG(tooltip)
+        pbAdd->setText(QCoreApplication::translate("HBlender", "OK (Enter)", nullptr));
 #if QT_CONFIG(shortcut)
-        pbAdd->setShortcut(QCoreApplication::translate("HBlender", "Alt+Return", nullptr));
+        pbAdd->setShortcut(QCoreApplication::translate("HBlender", "Enter", nullptr));
 #endif // QT_CONFIG(shortcut)
         pbRemove->setText(QCoreApplication::translate("HBlender", "Rimuovi riga", nullptr));
         pbSave->setText(QCoreApplication::translate("HBlender", "Salva", nullptr));

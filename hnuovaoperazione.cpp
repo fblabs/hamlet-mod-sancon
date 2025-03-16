@@ -95,17 +95,17 @@ HnuovaOperazione::HnuovaOperazione(HUser *puser,QSqlDatabase pdb,QWidget *parent
     lots=new QSqlTableModel(0,db);
 
     lots->setTable("lotdef");
-    lots->select();
+   // lots->select();
 
 
-    basefilter="attivo=2 and year(data)>year(data)-3";
-    lots->setFilter(basefilter);
+    basefilter="attivo>0 and year(data)>year(data)-3";
+    //lots->setFilter(basefilter);
 
     ui->cbtipo->setModel(listaTipologie);
     ui->cbtipo->setModelColumn(1);
 
     ui->cbAnagrafica->setModel(listaFornitori);
-     ui->cbAnagrafica->setModelColumn(1);
+    ui->cbAnagrafica->setModelColumn(1);
 
 
      ui->lvProdotti->setModel(listaProdotti);
@@ -271,6 +271,7 @@ void HnuovaOperazione::setUiForScarico()
     ui->leQuantita->clear();
     ui->leLotto->clear();
 //    setListaLots();
+     //lots->select();
     setLotsFilter();
 
 
@@ -321,8 +322,6 @@ void HnuovaOperazione::setLotsFilter()
 
 
    lots->select();
-
-
    lots->setSort(3,Qt::DescendingOrder);
    QCompleter *com = new QCompleter(lots);
    com->setCompletionColumn(1);
@@ -369,6 +368,8 @@ bool HnuovaOperazione::saveNewLot(QString nl)
     int anagrafica;
     int attivo=2;
     QString note=ui->tNote->toPlainText();
+
+    qDebug()<<"NL"<<nl;
 
 
     idprod=ui->lvProdotti->model()->index(ui->lvProdotti->currentIndex().row(),0).data(0).toInt();
@@ -665,6 +666,7 @@ void HnuovaOperazione::on_pushButton_clicked()
 
 
         emit trigger();
+        tbm->select();
         QMessageBox::information(this,QApplication::applicationName(),"Operazione salvata",QMessageBox::Ok);
 
 
@@ -716,6 +718,7 @@ void HnuovaOperazione::on_leProdotti_textChanged(const QString &arg1)
     filter="descrizione LIKE '%";
     filter.append(ui->leProdotti->text());
     filter.append("%'");
+    listaProdotti->setFilter(filter);
 }
 
 void HnuovaOperazione::on_leLotto_textChanged(const QString &arg1)
@@ -802,21 +805,21 @@ void HnuovaOperazione::on_cbShowPackages_toggled(bool checked)
 void HnuovaOperazione::on_cbtipo_currentIndexChanged(int index)
 {
     Q_UNUSED(index);
-    QString tipo;
-    tipo=ui->cbtipo->currentText();
+    int tipo;
+    tipo=ui->cbtipo->model()->index(ui->cbtipo->currentIndex(),0).data(0).toInt();
    // // qDebug()<<"tipo:"+tipo;
-    QSqlQuery q(db);
-    QString sql="SELECT ID from tipi_prodotto where descrizione=:tipo";
+   /* QSqlQuery q(db);
+    QString sql="SELECT ID from tipi_prodotto where ID=:tipo";
     q.prepare(sql);
-    q.bindValue(0,QVariant(tipo));
+    q.bindValue(":tipo",tipo);
     q.exec();
     q.first();
-    tipo=q.value(0).toString();
+    tipo=q.value(0).toString();*/
 
 
-   QString filter = "tipo=" + tipo;
+    QString filter = "tipo=" +QString::number(tipo);
 
 
     listaProdotti->setFilter(filter);
-   // // qDebug()<<"cbtipo->ixc"<<listaProdotti->filter()<<listaProdotti->query().lastQuery();
+    qDebug()<<"cbtipo->ixc"<<listaProdotti->filter()<<listaProdotti->query().lastError().text();
 }

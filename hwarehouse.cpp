@@ -59,14 +59,13 @@ HWarehouse::HWarehouse(HUser *puser, QSqlDatabase pdb, QWidget *parent) :
      tmOperazioni->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
      tmOperazioni->select();
 
-     qDebug()<<"INIT "<<tmOperazioni->query().lastQuery()<<tmOperazioni->query().lastError().text();
+
      ui->deDateTo->setDate(QDate::currentDate());
      ui->deDateFrom->setDate(QDate::currentDate().addMonths(-1));
 
      ui->tableView->setModel(tmOperazioni);
      ui->tableView->setItemDelegate(delegate);
 
-   //  tmOperazioni->setSort(2,Qt::DescendingOrder);
      ui->tableView->setCurrentIndex(tmOperazioni->index(0,0));
 
      ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -101,10 +100,6 @@ void HWarehouse::on_Confirmed()
     setOperazioniFilter(nfilter);
     tmOperazioni->select();
 
-
-    qDebug()<<"on_confirmed "<<tmOperazioni->query().lastError().text();
-
-
 }
 
 
@@ -137,17 +132,7 @@ void HWarehouse::setOperazioniFilter(int tipo)
    tmOperazioni->setFilter(filter);
    tmOperazioni->setSort(2,Qt::DescendingOrder);
 
-
-   qDebug()<<tmOperazioni->query().lastError().text();
-
-
-
-
 }
-
-
-
-
 
 
 
@@ -185,7 +170,6 @@ void HWarehouse::on_pushButton_5_clicked()
 void HWarehouse::on_tableView_doubleClicked(const QModelIndex &index)
 {
     int id=tmOperazioni->index(index.row(),0).data(0).toInt();
-    qDebug()<<id;
 
     HWarehouseDetails *f=new HWarehouseDetails(user,db,id);
     connect(f,SIGNAL(confirm()),this,SLOT(on_Confirmed()));

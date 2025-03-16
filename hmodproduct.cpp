@@ -45,7 +45,7 @@ bool HModProduct::getProductData()
     productsmodel->setTable("prodotti");
     productsmodel->setRelation(2,QSqlRelation("tipi_prodotto","ID","descrizione"));
     productsmodel->setFilter("prodotti.ID="+QString::number(ID));
-    productsmodel->setEditStrategy(QSqlRelationalTableModel::OnFieldChange);
+    productsmodel->setEditStrategy(QSqlRelationalTableModel::OnManualSubmit);
     productsmodel->select();
 
 
@@ -62,16 +62,13 @@ bool HModProduct::getProductData()
     map->addMapping(ui->cbBio,BIO);
     map->addMapping(ui->lePrice,PRICE);
     map->addMapping(ui->deLastUpdate,LAST_UPDATE);
-    map->addMapping(ui->cbAllergene_usa,ALLERGENE_USA);
-
+    map->addMapping(ui->cbAllergeneUSA,ALLERGENE_USA);
 
 
     map->toFirst();
-    map->setSubmitPolicy(QDataWidgetMapper::AutoSubmit);
-
+    map->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
 
     return true;
-
 }
 
 
@@ -89,8 +86,10 @@ void HModProduct::on_pbSave_clicked()
     {
 
         bool b= map->submit();
-        qDebug()<<b;
+
+        b=productsmodel->submitAll();
         qDebug()<<productsmodel->lastError().text();
+
         if(b){
             productsmodel->select();
             emit done();

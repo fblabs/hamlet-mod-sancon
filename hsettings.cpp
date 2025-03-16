@@ -63,3 +63,16 @@ void HSettings::on_pbSelect_clicked()
    ui->lePreferredDb->setText(filename);
 }
 
+
+void HSettings::on_checkBox_toggled(bool checked)
+{
+    if(checked)
+    {
+        ui->lePassword->setEchoMode(QLineEdit::Normal);
+    }
+    else
+    {
+        ui->lePassword->setEchoMode(QLineEdit::Password);
+    }
+}
+

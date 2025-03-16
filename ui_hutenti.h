@@ -85,7 +85,7 @@ public:
         if (HUtenti->objectName().isEmpty())
             HUtenti->setObjectName(QString::fromUtf8("HUtenti"));
         HUtenti->setWindowModality(Qt::NonModal);
-        HUtenti->resize(862, 614);
+        HUtenti->resize(862, 670);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/Users64.png"), QSize(), QIcon::Normal, QIcon::Off);
         HUtenti->setWindowIcon(icon);
@@ -248,6 +248,7 @@ public:
 
         tcon = new QTextEdit(HUtenti);
         tcon->setObjectName(QString::fromUtf8("tcon"));
+        tcon->setAcceptRichText(false);
 
         formLayout->setWidget(8, QFormLayout::FieldRole, tcon);
 

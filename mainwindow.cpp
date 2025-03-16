@@ -46,7 +46,7 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include "hlotti_new.h"
-
+#include "hrecipesoverview.h"
 #include <QDesktopServices>
 
 
@@ -70,10 +70,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->tbModificaLotti->setVisible(false);
     ui->pbUnload->setVisible(false);
     ui->toolButton->click();
-
-
-
-
 
 
 
@@ -146,28 +142,24 @@ void MainWindow::disableUI()
     ui->pbExpirations->setEnabled(false);
     ui->pbCalcoloCosti->setEnabled(false);
     ui->pbC4R->setEnabled(false);
+    ui->pbPercent->setEnabled(false);
 }
 
 void MainWindow::enableButtonsForRole()
 {
 
 
-    if (user->getID()==-1)
+    if (user->getID()<1)
     {
         //disabilito tutto>logout
         disableUI();
 
     }
 
-
-    qDebug()<<"EnablebottonsforRole";
-
     user->get_permissions();
 
-
-
     ui->tbUtenti->setEnabled(user->get_utenti_v()>0);
-    ui->pBNewOperation->setEnabled(user->get_operazioni_u()>0);
+    ui->pBNewOperation->setEnabled(user->get_operazioni_v()>0);
     ui->pbCalcoloCosti->setEnabled(user->get_costi_v()>0);
     ui->tbAnag->setEnabled(user->get_anagrafica_v()>0);
     ui->pbNotifiche->setEnabled(user->get_notifiche_v()>0);
@@ -175,25 +167,23 @@ void MainWindow::enableButtonsForRole()
     ui->pbContacts->setEnabled(user->get_contatti_v()>0);
     ui->tbLotti->setEnabled(user->get_lotti_v()>0);
     ui->tbMagaz->setEnabled(user->get_operazioni_v()>0);
-    ui->pBNewOperation->setEnabled(user->get_operazioni_u()>0);
+    ui->pBNewOperation->setEnabled(user->get_operazioni_v()>0);
     ui->tbProdotti->setEnabled( user->get_prodotti_v()>0);
     ui->pbSchede->setEnabled( user->get_schede_v()>0);
     ui->tbRicette->setEnabled( user->get_ricette_v()>0);
     ui->tbAssociazioni->setEnabled( user->get_ricette_v()>0);
     ui->pbC4R->setEnabled( user->get_ricette_v()>0);
     ui->pbProgrammazione->setEnabled(user->get_programmi_v()>0);
+  //  ui->pbProgrammazione->setEnabled(false);
     ui->tnProduzione->setEnabled(user->get_produzione_v()>0);
     ui->pbPackages->setEnabled(user->get_packages_v()>0);
     ui->tbAnalisi->setEnabled(user->get_analisi_v()>0);
     ui->pbCalcoloCosti->setEnabled(user->get_lotti_v()>0);
     ui->tbAnalisi->setEnabled(user->get_analisi_v()>0);
-
-
-
     ui->pbExpirations->setEnabled(true);
     ui->toolButton->setEnabled(false);
     ui->tbLogout->setEnabled(true);
-
+    ui->pbPercent->setEnabled(true);
 
 
 }
@@ -217,7 +207,7 @@ void MainWindow::on_tbLotti_clicked()
 void MainWindow::on_tbRicette_clicked()
 {
     HModRicette*f = new HModRicette(user,db);
-    f->show();
+    f->showMaximized();
 }
 
 void MainWindow::on_tbAnag_clicked()
@@ -225,7 +215,7 @@ void MainWindow::on_tbAnag_clicked()
     HUtenti* f = new HUtenti(user,db);
 
 
-    //connect(this,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
+    connect(f,SIGNAL(onConnectionName()),f,SLOT(onConnectionNameSet()));
     //emit onConnectionName();
 
     // f->setWindowModality(Qt::ApplicationModal);
@@ -242,6 +232,7 @@ void MainWindow::on_tbSettings_clicked()
 {
     //QString licensefile=QDir::currentPath()+"/LICENSEKEY";
     QFile license(QDir::currentPath()+"/LICENSEKEY");
+    qDebug()<<QDir::currentPath();
 
     if (!license.exists())
     {
@@ -285,7 +276,7 @@ void MainWindow::on_tbSettings_clicked()
 
 void MainWindow::on_tbProdotti_clicked()
 {
-    HProdottiNew* f = new HProdottiNew(user,db);
+    HProdottiNew *f = new HProdottiNew(user,db);
     f->show();
 
 }
@@ -298,7 +289,9 @@ void MainWindow::on_tbClose_clicked()
     {
 
         db.close();
+        db=QSqlDatabase();
         QSqlDatabase::removeDatabase(sConn);
+        delete user;
         this->close();
 
         QApplication::quit();
@@ -472,7 +465,7 @@ void MainWindow::on_pbExpirations_clicked()
 
 void MainWindow::on_pbCalcoloCosti_clicked()
 {
-  // HCalcost *f= new HCalcost(db,user);
+    // HCalcost *f= new HCalcost(db,user);
     HCosti  *f=new HCosti(db);
     f->showMaximized();
 }
@@ -506,17 +499,17 @@ void MainWindow::on_pbC4R_clicked()
     f->show();
 }
 
-
-
-
 void MainWindow::on_pbProgrammazione_clicked()
 {
     HWorkProgram *f=new HWorkProgram(user,db);
     f->showMaximized();
 }
 
+void MainWindow::on_pbPercent_clicked()
+{
+    HRecipesOverview *f=new HRecipesOverview(db);
+    f->show();
 
-
-
+}
 
 

@@ -47,6 +47,7 @@ public:
     {
         if (HCalcolo_costi_item_set->objectName().isEmpty())
             HCalcolo_costi_item_set->setObjectName(QString::fromUtf8("HCalcolo_costi_item_set"));
+        HCalcolo_costi_item_set->setWindowModality(Qt::ApplicationModal);
         HCalcolo_costi_item_set->resize(500, 200);
         verticalLayout = new QVBoxLayout(HCalcolo_costi_item_set);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));

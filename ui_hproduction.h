@@ -275,9 +275,14 @@ public:
         tableView->setEnabled(true);
         tableView->setFont(font1);
         tableView->setAutoScroll(false);
-        tableView->setEditTriggers(QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked);
+        tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tableView->horizontalHeader()->setCascadingSectionResizes(false);
+        tableView->horizontalHeader()->setDefaultSectionSize(100);
+        tableView->horizontalHeader()->setHighlightSections(false);
+        tableView->horizontalHeader()->setProperty("showSortIndicator", QVariant(false));
+        tableView->horizontalHeader()->setStretchLastSection(true);
         tableView->verticalHeader()->setVisible(false);
 
         verticalLayout_5->addWidget(tableView);

@@ -24,7 +24,7 @@ Qt::ItemFlags flags=QSqlRelationalTableModel::flags(item);
       return flags;
 
    }
-   else if (item.column()==13 || item.column() ==14)
+   else if (item.column()==15 || item.column() ==16)
    {
 
        flags |= Qt::ItemIsUserCheckable;
@@ -50,12 +50,7 @@ QVariant HWorkProgressModel::data( const QModelIndex & item, int role /*= Qt::Di
 {
 
 
-  // QVariant value=QSqlRelationalTableModel::data(item);
-
-
-
-
-   if (item.column()==13  || item.column()==14)
+   if (item.column()==15  || item.column()==16)
    {
 
 
@@ -71,7 +66,7 @@ QVariant HWorkProgressModel::data( const QModelIndex & item, int role /*= Qt::Di
 
 
    }
-   else if (role==Qt::TextColorRole && item.column()==15)
+   else if (role==Qt::TextColorRole && item.column()==17)
    {
       return QVariant(QColor(Qt::red));
    }
@@ -95,7 +90,7 @@ QVariant HWorkProgressModel::data( const QModelIndex & item, int role /*= Qt::Di
 
 bool HWorkProgressModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if (index.column()==13 || index.column()==14)
+    if (index.column()==15 || index.column()==16)
     {
 
 

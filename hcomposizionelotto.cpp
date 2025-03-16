@@ -260,7 +260,7 @@ void HComposizioneLotto::unloadAll()
             {
                 db.commit();
                 QMessageBox::information(this,QApplication::applicationName(),"Giacenza azzerata",QMessageBox::Ok);
-                emit unloaded();
+                emit sig_lot_updated();
             }
             else
             {
@@ -333,7 +333,7 @@ QSqlQueryModel* HComposizioneLotto::getLotUse()
 
 
 
-    sql="select lotdef.ID,lotdef.data as 'DATA',lotdef.lot as 'LOTTO',lotdef.EAN as 'LOT. ESTERNO',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE' from  lotdef,prodotti,operazioni,anagrafica,composizione_lot where prodotti.ID=lotdef.prodotto and lotdef.ID =composizione_lot.ID_lotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID=composizione_lot.operazione and operazioni.IDlotto =:id ORDER BY lotdef.data desc";
+    sql="select lotdef.ID,lotdef.data as 'DATA',lotdef.lot as 'LOTTO',lotdef.EAN as 'LOT. ESTERNO',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',operazioni.quantita as 'QUANTITA' from  lotdef,prodotti,operazioni,anagrafica,composizione_lot where prodotti.ID=lotdef.prodotto and lotdef.ID =composizione_lot.ID_lotto and anagrafica.ID=lotdef.anagrafica and operazioni.ID=composizione_lot.operazione and operazioni.IDlotto =:id ORDER BY lotdef.data desc";
 
     q.prepare(sql);
     q.bindValue(":id",id);
@@ -415,7 +415,21 @@ double HComposizioneLotto::recalculateAmount()
     double dafare = ui->leNewAmount->text().toDouble();
     double sommarighe=ui->leCurrentAmount->text().toDouble();
 
-    double factor= dafare / sommarighe;
+
+   double factor=0.0;
+   factor= dafare / sommarighe;
+
+    if(dafare==0)
+    {
+        factor=1;
+    }
+    if(sommarighe==0){
+
+        factor=1;
+
+    }
+
+
 
     QString sql=QString();
     QSqlQuery q(db);
@@ -449,8 +463,10 @@ double HComposizioneLotto::recalculateAmount()
     {
 
         QModelIndex i = mod->index(j,7);
-        double current=i.data().toDouble();
-        double updaterow =i.data().toDouble() * factor;
+        double current=i.data(0).toDouble();
+        if(current<=0){ current=ui->leNewAmount->text().toDouble();}
+        double updaterow =current * factor;
+        qDebug()<<"recalculateamount"<<current<<factor;
         result+=updaterow;
         int row=mod->index(j,1).data(0).toInt();
 
@@ -740,6 +756,7 @@ void HComposizioneLotto::on_pbModify_clicked()
 
     HWarehouseDetails *f=new HWarehouseDetails(user,db,idop);
     connect(f,SIGNAL(confirm()),this,SLOT(refresh_data()));
+    connect(f,SIGNAL(updated()),this,SIGNAL(sig_lot_updated()));
     f->show();
 
 }
@@ -752,18 +769,25 @@ void HComposizioneLotto::on_pbModifyAmount_clicked()
     if(QMessageBox::question(this,QApplication::applicationName(),"Modificare la quantità iniziale del lotto?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
     {
 
+
         db.transaction();
         amount=recalculateAmount();
         if (amount >-1)
         {
             db.commit();
+            QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
             getLotComposition();
+            QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+            emit sig_lot_updated();
         }else{
             db.rollback();
         }
 
         ui->leCurrentAmount->setText(QString::number(amount,'f',3));
         ui->tableView->setModel(getLotComposition());
+
     }
 }
+
+
 

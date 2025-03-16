@@ -23,6 +23,8 @@ private slots:
     void getLotMovements(int id);
     void on_pushButton_clicked();
     void getGiacenzaLotto(int id);
+    QString getDestinationLot(const int p_id_operation=-1);
+
 };
 
 #endif // HLOTMOVEMENTS_H

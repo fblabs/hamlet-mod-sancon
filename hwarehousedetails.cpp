@@ -119,7 +119,10 @@ void HWarehouseDetails::getLotdefData()
 
 void HWarehouseDetails::on_pbSave_clicked()
 {
-   if(saveOperation())
+
+  if (QMessageBox::question(this,QApplication::applicationName(),"Salvare?",QMessageBox::Ok | QMessageBox::Cancel)==QMessageBox::Ok)
+
+  if(saveOperation())
     {
      getLotdefData();
      updateAmounts();
@@ -137,160 +140,134 @@ void HWarehouseDetails::on_pbSave_clicked()
 
 bool HWarehouseDetails::saveOperation()
 {
-    QSqlQuery t(db);
-    QString sqlt="SELECT ID from azioni WHERE descrizione=:des";
-    t.prepare(sqlt);
-    t.bindValue(":des",ui->cbAzione->currentText());
-    t.exec();
-    t.first();
+  QSqlQuery q(db);
+  QString sqlt="SELECT ID from azioni WHERE descrizione=:des";
+  q.prepare(sqlt);
+  q.bindValue(":des",ui->cbAzione->currentText());
+  q.exec();
+  q.first();
 
 
 
-    int act=t.value(0).toInt();
+  const int act=q.value(0).toInt();
 
 
 
-    sqlt="SELECT ID from unita_di_misura WHERE descrizione=:des";
-    t.prepare(sqlt);
-    t.bindValue(":des",ui->cbUM->currentText());
-    t.exec();
-    t.next();
+  sqlt="SELECT ID from unita_di_misura WHERE descrizione=:des";
+  q.prepare(sqlt);
+  q.bindValue(":des",ui->cbUM->currentText());
+  q.exec();
+  q.next();
 
 
-    int umi=t.value(0).toInt();
+  int umi=q.value(0).toInt();
+  QString sql="UPDATE operazioni SET operazioni.azione=:azione,operazioni.quantita=:quant,operazioni.um=:um,operazioni.note=:note WHERE operazioni.ID=:id";
+  q.prepare(sql);
+  q.bindValue(":azione",act);
+  q.bindValue(":quant",ui->leQuantita->text().toDouble());
+  q.bindValue(":um", umi);
+  q.bindValue(":note",ui->ptNote->toPlainText());
+  q.bindValue(":id",opid);
 
-    QSqlQuery q(db);
-    qDebug()<<db.userName();
-    QString sql="UPDATE operazioni SET operazioni.azione=:azione,operazioni.quantita=:quant,operazioni.um=:um,operazioni.note=:note WHERE operazioni.ID=:id";
-    q.prepare(sql);
-
-    q.bindValue(":azione",act);
-    q.bindValue(":quant",ui->leQuantita->text().toDouble());
-    q.bindValue(":um", umi);
-    q.bindValue(":note",ui->ptNote->toPlainText());
-    q.bindValue(":id",opid);
-
-    bool b=q.exec();
+  bool b=q.exec();
 
 
-    if(!b){
-        qDebug()<<"update operazioni"<<q.lastError().text();
-        return b;
-    }
+  if(!b){
+  // qDebug()<<"update operazioni"<<q.lastError().text();
+   return b;
+  }
 
 
-    sql="UPDATE lotdef SET lot_fornitore=:lof WHERE lotdef.ID=(SELECT operazioni.idLotto FROM operazioni where operazioni.ID=:id)";
-    q.prepare(sql);
-    q.bindValue(":lof",ui->leLotFornitore->text());
-    q.bindValue(":id",opid);
+  sql="UPDATE lotdef SET lot_fornitore=:lof WHERE lotdef.ID=(SELECT operazioni.idLotto FROM operazioni where operazioni.ID=:id)";
+  q.prepare(sql);
+  q.bindValue(":lof",ui->leLotFornitore->text());
+  q.bindValue(":id",opid);
 
-    b=q.exec();
+  b=q.exec();
 
-   qDebug()<<"update lotdef"<<q.lastError().text();
+  // qDebug()<<"update lotdef"<<q.lastError().text();
 
-    return b;
+  return b;
 
 }
 
 void HWarehouseDetails::updateAmounts()
 {
-    qDebug()<<idlotto;
-    QSqlQueryModel *qmod=new QSqlQueryModel();
+  qDebug()<<idlotto;
+  QSqlQueryModel *qmod=new QSqlQueryModel();
+  QSqlQuery q(db);
+  QString sql="SELECT operazioni.ID, operazioni.quantita from operazioni where operazioni.ID IN(select operazione from composizione_lot where ID_lotto=:idlotto)";
+  q.prepare(sql);
+  q.bindValue(":idlotto",QVariant(idlotto));
+  // if(q.exec()){qmod->setQuery(q);}else{qDebug()<<q.lastError().text();return;}
+
+  double factor=0;
+  double todo=ui->leQuantita->text().toDouble();
+  double rowsum=0;
+
+
+  for (int k=0;k<qmod->rowCount();k++)
+  {
+
+   rowsum+=qmod->index(k,1).data(0).toDouble();
+  }
+
+
+  factor =  todo/rowsum;
+
+  sql="UPDATE operazioni set quantita=:row where ID=:id";
+  int rowid=0;
+
+  db.transaction();
+
+  for (int k=0;k<qmod->rowCount();k++)
+  {
+   rowid=qmod->index(k,0).data(0).toInt();
+   rowsum=qmod->index(k,1).data(0).toDouble()*factor;
+   QSqlQuery qu(db);
+   qu.prepare(sql);
+   qu.bindValue(":row",rowsum);
+   qu.bindValue(":id",rowid);
+
+   if(!qu.exec()){
+       QMessageBox::question(this,QApplication::applicationName(),"Errore "+qu.lastError().text(),QMessageBox::Ok);
+       db.rollback();
+       return;
+
+   }
+
+
+
+  }
+
+
+  db.commit();
+  mod->select();
+
+}
+
+void HWarehouseDetails::deleteOperation()
+{
     QSqlQuery q(db);
-    QString sql="SELECT operazioni.ID, operazioni.quantita from operazioni where operazioni.ID IN(select operazione from composizione_lot where ID_lotto=:idlotto)";
+    QString sql=QString();
+
+    sql="DELETE FROM operazioni WHERE ID=:id";
     q.prepare(sql);
-    q.bindValue(":idlotto",QVariant(idlotto));
-   if(q.exec()){qmod->setQuery(q);}else{qDebug()<<q.lastError().text();return;}
+    q.bindValue(":id",opid);
 
-     double factor=0;
-     double todo=ui->leQuantita->text().toDouble();
-     double rowsum=0;
+    db.transaction();
+    bool b=q.exec();
 
 
-    for (int k=0;k<qmod->rowCount();k++)
+    if(b)
     {
-
-        rowsum+=qmod->index(k,1).data(0).toDouble();
+        QMessageBox::information(this,QApplication::applicationName(),"Operazione cancellata",QMessageBox::Ok);
+        emit confirm();
     }
-
-
-      factor =  todo/rowsum;
-
-     sql="UPDATE operazioni set quantita=:row where ID=:id";
-     int rowid=0;
-
-     db.transaction();
-
-      for (int k=0;k<qmod->rowCount();k++)
-      {
-         rowid=qmod->index(k,0).data(0).toInt();
-         rowsum=qmod->index(k,1).data(0).toDouble()*factor;
-         QSqlQuery qu(db);
-         qu.prepare(sql);
-         qu.bindValue(":row",rowsum);
-         qu.bindValue(":id",rowid);
-
-         if(!qu.exec()){
-             QMessageBox::question(this,QApplication::applicationName(),"Errore "+qu.lastError().text(),QMessageBox::Ok);
-             db.rollback();
-             return;
-
-         }
-
-
-
-      }
-
-      if(QMessageBox::Ok == QMessageBox::question(this,QApplication::applicationName(),"Salvare?",QMessageBox::Ok|QMessageBox::Cancel))
-      {
-        db.commit();
-
-      }
-
-
-    mod->select();
-
-
-    /****************************************************************
-    bool ok;
-
-    double dafare = ui->leQtyTotal->text().toDouble(&ok);
-    if(!ok)
+    else
     {
-        // // qDebug()<<"updatetotals"<<QString::number(dafare,'f',6);
+        QMessageBox::warning(this,QApplication::applicationName(),"Errore",QMessageBox::Ok);
     }
-    // ui->leQuaRic->setText(QString::number(dafare,'f',3));
-    double sommarighe=0;
-    double factor=0;
-    double result=0;
-    QStandardItemModel* model=static_cast<QStandardItemModel*>(ui->tableView->model());
-
-    for (int x=0;x<model->rowCount();x++)
-    {
-        sommarighe += model->index(x,2).data(0).toDouble();
-
-    }
-
-
-    factor = dafare / sommarighe;
-
-    // // // qDebug()<<"updatetotals"<<QString::number(sommarighe,'f',6);
-
-    for (int j=0;j<model->rowCount();j++)
-    {
-        QModelIndex i = model->index(j,2);
-        QModelIndex m = model->index(j,5);
-        result =i.data().toDouble()* factor;
-        QString resulttoadd=QString::number(result,'f',3);
-        //  model->setData(i,QVariant(resulttoadd));
-        model->setData(m,QVariant(resulttoadd));
-
-    }
-
-*********************************************************************/
-
-
-
 
 }
 
@@ -311,5 +288,11 @@ void HWarehouseDetails::on_pbClose_clicked()
 void HWarehouseDetails::on_leQuantita_returnPressed()
 {
 
+}
+
+
+void HWarehouseDetails::on_pbDelete_clicked()
+{
+    deleteOperation();
 }
 

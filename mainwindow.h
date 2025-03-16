@@ -61,6 +61,10 @@ private slots:
     void on_pbC4R_clicked();
     void on_pbProgrammazione_clicked();
 
+
+
+    void on_pbPercent_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *ke);
 

@@ -43,13 +43,13 @@ public:
     QLabel *label_3;
     QComboBox *comboBox;
     QCheckBox *cbAttivo;
-    QPushButton *pbUserPermissions;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_5;
     QLineEdit *leNewPass;
     QPushButton *pbNuovaPassword;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
+    QPushButton *pbUserPermissions;
     QPushButton *pbGroups;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
@@ -78,6 +78,7 @@ public:
 
         lvUtenti = new QListView(HGestioneUtenti);
         lvUtenti->setObjectName(QString::fromUtf8("lvUtenti"));
+        lvUtenti->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
         verticalLayout->addWidget(lvUtenti);
 
@@ -126,15 +127,6 @@ public:
 
         verticalLayout_3->addLayout(formLayout);
 
-        pbUserPermissions = new QPushButton(HGestioneUtenti);
-        pbUserPermissions->setObjectName(QString::fromUtf8("pbUserPermissions"));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbUserPermissions->setIcon(icon1);
-        pbUserPermissions->setIconSize(QSize(32, 32));
-
-        verticalLayout_3->addWidget(pbUserPermissions);
-
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         label_5 = new QLabel(HGestioneUtenti);
@@ -149,9 +141,10 @@ public:
 
         pbNuovaPassword = new QPushButton(HGestioneUtenti);
         pbNuovaPassword->setObjectName(QString::fromUtf8("pbNuovaPassword"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbNuovaPassword->setIcon(icon2);
+        pbNuovaPassword->setEnabled(false);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/save-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbNuovaPassword->setIcon(icon1);
 
         verticalLayout_2->addWidget(pbNuovaPassword);
 
@@ -168,12 +161,22 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         pushButton = new QPushButton(HGestioneUtenti);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon3);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Resources/Plus.PNG"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon2);
         pushButton->setIconSize(QSize(32, 32));
 
         horizontalLayout->addWidget(pushButton);
+
+        pbUserPermissions = new QPushButton(HGestioneUtenti);
+        pbUserPermissions->setObjectName(QString::fromUtf8("pbUserPermissions"));
+        pbUserPermissions->setEnabled(true);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Resources/Bar-chart64.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbUserPermissions->setIcon(icon3);
+        pbUserPermissions->setIconSize(QSize(32, 32));
+
+        horizontalLayout->addWidget(pbUserPermissions);
 
         pbGroups = new QPushButton(HGestioneUtenti);
         pbGroups->setObjectName(QString::fromUtf8("pbGroups"));
@@ -222,11 +225,12 @@ public:
         label_4->setText(QCoreApplication::translate("HGestioneUtenti", "Nome:", nullptr));
         label_3->setText(QCoreApplication::translate("HGestioneUtenti", "Gruppo:", nullptr));
         cbAttivo->setText(QCoreApplication::translate("HGestioneUtenti", "Attivo", nullptr));
-        pbUserPermissions->setText(QCoreApplication::translate("HGestioneUtenti", "Gestione permessi", nullptr));
         label_5->setText(QCoreApplication::translate("HGestioneUtenti", "Nuova password", nullptr));
+        leNewPass->setText(QString());
         pbNuovaPassword->setText(QCoreApplication::translate("HGestioneUtenti", "Salva nuova password", nullptr));
         pushButton->setText(QCoreApplication::translate("HGestioneUtenti", "Nuovo", nullptr));
-        pbGroups->setText(QCoreApplication::translate("HGestioneUtenti", "Gestione Gruppi", nullptr));
+        pbUserPermissions->setText(QCoreApplication::translate("HGestioneUtenti", "Gestione permessi gruppi", nullptr));
+        pbGroups->setText(QCoreApplication::translate("HGestioneUtenti", "Gestione permessi utente", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HGestioneUtenti", "Salva", nullptr));
         pushButton_3->setText(QCoreApplication::translate("HGestioneUtenti", "Chiudi", nullptr));
     } // retranslateUi

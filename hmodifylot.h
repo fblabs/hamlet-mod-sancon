@@ -50,10 +50,8 @@ private slots:
     QDate t;
     HUser *user;
     QString descrizione;
-
-
 signals:
-    void updatedLot();
+    void sig_updated_lot();
 };
 
 #endif // HMODIFYLOT_H

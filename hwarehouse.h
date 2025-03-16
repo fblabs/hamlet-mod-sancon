@@ -68,6 +68,9 @@ private slots:
    void on_radioButtonProd_toggled(bool checked);
    void on_radioButton_2_toggled(bool checked);
 
+   signals:
+   void sig_reload();
+
 };
 
 #endif // HWAREHOUSE_H

@@ -53,7 +53,7 @@ void HNewProduct::addNewProduct()
     tipo=ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toString();
     if (ui->cbAllergenico->isChecked())
     {
-       allergenico="1";
+        allergenico="1";
     }
     else
     {
@@ -61,27 +61,28 @@ void HNewProduct::addNewProduct()
     }
     if (ui->cbBio->isChecked())
     {
-       bio="1";
+        bio="1";
     }
     else
     {
         bio="0";
     }
-
-    if (ui->cbAllergene_usa->isChecked())
+    if (ui->cbAllergeneUSA->isChecked())
     {
-        allergene_usa=1;
+        allergene_usa="1";
     }
     else
     {
-        allergene_usa=0;
+        allergene_usa="0";
     }
+
+
 
 
     attivo="1";
 
 
-    query="INSERT INTO prodotti (descrizione,tipo,allergenico,attivo,bio,allergene_usa) VALUES(:desc,:tipo,:allerg,:attivo,:bio,allergene_usa)";
+    query="INSERT INTO prodotti (descrizione,tipo,allergenico,attivo,bio,allergene_usa) VALUES(:desc,:tipo,:allerg,:attivo,:bio,:allergene_usa)";
     q.prepare(query);
     q.bindValue(":desc",QVariant(descrizione));
     q.bindValue(":tipo",QVariant(tipo));
@@ -98,7 +99,7 @@ void HNewProduct::addNewProduct()
         QMessageBox::warning(this, QApplication::applicationName(),"Prodotto salvato",QMessageBox::Ok);
         if(tipo>2 && tipo <6)
         {
-          addNewContainer(q.lastInsertId().toInt());
+            addNewContainer(q.lastInsertId().toInt());
 
         }
 
@@ -120,12 +121,12 @@ void HNewProduct::addNewProduct()
 bool HNewProduct::addNewContainer(const int p_id)
 {
 
-        QSqlQuery q(db);
-        QString sql="INSERT INTO tags_containers(ID_Prodotto)VALUES(:id_prodotto)";
-        q.prepare(sql);
-        q.bindValue(":id_prodotto",p_id);
+    QSqlQuery q(db);
+    QString sql="INSERT INTO tags_containers(ID_Prodotto)VALUES(:id_prodotto)";
+    q.prepare(sql);
+    q.bindValue(":id_prodotto",p_id);
 
-        return q.exec();
+    return q.exec();
 
 
 
@@ -135,8 +136,7 @@ bool HNewProduct::addNewContainer(const int p_id)
 
 void HNewProduct::on_pbSave_clicked()
 {
-
-        addNewProduct();
+    addNewProduct();
 }
 
 

@@ -22,11 +22,17 @@ private:
     QSqlDatabase db;
     int id_prodotto;
 private slots:
+
    void getLoads();
    void getUnloads();
    void on_pbClose_clicked();
    void on_rbLoads_toggled(bool checked);
    void on_pbSearch_clicked();
+   void getTypes();
+   void loadProducts(const QString tosearch=QString());
+   void get_data();
+   void on_deFrom_userDateChanged(const QDate &date);
+   void on_deTo_userDateChanged(const QDate &date);
 };
 
 #endif // HLOADS_H

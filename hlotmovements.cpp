@@ -6,7 +6,8 @@
 #include <QSqlRelationalDelegate>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
-
+#include <QStandardItemModel>
+#include <QStandardItem>
 #include <QDebug>
 #include <QSqlError>
 
@@ -17,6 +18,7 @@ HLotMovements::HLotMovements(int id, QSqlDatabase pdb, QWidget *parent) :
 {
     ui->setupUi(this);
     db=pdb;
+    qDebug()<<"ID"<<id;
     getLotMovements(id);
     getGiacenzaLotto(id);
 }
@@ -28,47 +30,62 @@ HLotMovements::~HLotMovements()
 
 void HLotMovements::getLotMovements(int id)
 {
-  /*  QSqlRelationalTableModel *mod = new QSqlRelationalTableModel(0,db);
-    mod->setTable("operazioni");
-
-    mod->setRelation(3,QSqlRelation("utenti","ID","nome"));
-    mod->setRelation(4,QSqlRelation("prodotti","ID","descrizione"));
-    mod->setRelation(5,QSqlRelation("azioni","ID","descrizione"));
-    mod->setRelation(7,QSqlRelation("unita_di_misura","ID","descrizione"));
-
-    mod->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
-    mod->setHeaderData(1,Qt::Horizontal,QObject::tr("Lotto"));
-    mod->setHeaderData(2,Qt::Horizontal,QObject::tr("Data"));
-    mod->setHeaderData(3,Qt::Horizontal,QObject::tr("Operatore"));
-    mod->setHeaderData(4,Qt::Horizontal,QObject::tr("Prodotto"));
-    mod->setHeaderData(5,Qt::Horizontal,QObject::tr("Azione"));
-    mod->setHeaderData(7,Qt::Horizontal,QObject::tr("Quantità"));
-    mod->setHeaderData(6,Qt::Horizontal,QObject::tr("U.M."));
-    mod->setHeaderData(8,Qt::Horizontal,QObject::tr("Note"));
-
-
-    mod->setFilter("operazioni.IDlotto="+QString::number(id));
-    mod->setSort(2,Qt::DescendingOrder);
-    mod->select();
-    ui->tvMovimentiLotto->setModel(mod);
-    ui->tvMovimentiLotto->setItemDelegate(new QSqlRelationalDelegate(mod));
-    ui->tvMovimentiLotto->setColumnHidden(0,true);
-    ui->tvMovimentiLotto->setColumnHidden(1,true);
-    ui->tvMovimentiLotto->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);*/
 
     QSqlQueryModel *mod=new QSqlQueryModel();
-    QSqlQuery q(db);
-    /*QString sql="SELECT operazioni.data as 'DATA',anagrafica.ragione_sociale as 'ANAGRAFICA',prodotti.descrizione as 'PRODOTTO',azioni.descrizione as 'AZIONE',FORMAT(operazioni.quantita,4) as 'QUANTITA\', unita_di_misura.descrizione, operazioni.note as 'NOTE'\
-        from operazioni,lotdef,anagrafica,utenti,prodotti, azioni,unita_di_misura\
-                  where lotdef.ID=operazioni.IDLotto and anagrafica.ID=lotdef.anagrafica and prodotti.ID=operazioni.IDprodotto and azioni.ID=operazioni.azione and unita_di_misura.ID=operazioni.um and operazioni.IDLotto="+QString::number(id);*/
+    QStandardItemModel *si_mod=new QStandardItemModel();
 
-    QString sql="SELECT operazioni.data as 'DATA',azioni.descrizione as 'AZIONE',lotdef.lot as 'LOTTO',prodotti.descrizione as 'PRODOTTO',operazioni.quantita as 'QUANTITA\\''FROM fbgmdb260.operazioni,fbgmdb260.lotdef,fbgmdb260.azioni,fbgmdb260.prodotti where azioni.ID=operazioni.azione and prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and IDLotto="+QString::number(id);
+    QSqlQuery q(db);
+    QString sql="SELECT operazioni.ID,operazioni.data as 'DATA',azioni.descrizione as 'AZIONE',lotdef.lot as 'LOTTO',prodotti.descrizione as 'PRODOTTO',operazioni.quantita as \"QUANTITA'\",lotdef.giacenza as 'GIACENZA' FROM fbgmdb260.operazioni,fbgmdb260.lotdef,fbgmdb260.azioni,fbgmdb260.prodotti where azioni.ID=operazioni.azione and prodotti.ID=operazioni.IDprodotto and lotdef.ID=operazioni.IDlotto and IDLotto="+QString::number(id);
+   // QString sql ="select operazioni.ID,lotdef.lot,prodotti.descrizione from operazioni,lotdef,composizione_lot,prodotti where prodotti.ID=lotdef.prodotto and lotdef.ID=operazioni.IDlotto and operazioni.ID=composizione_lot.operazione and composizione_lot.ID_lotto="+QString::number(id);
+    q.prepare(sql);
     q.exec(sql);
     mod->setQuery(q);
-    qDebug()<<q.lastError().text();
-    ui->tvMovimentiLotto->setModel(mod);
-    ui->tvMovimentiLotto->setItemDelegate(new QSqlRelationalDelegate(mod));
+
+
+    QList<QStandardItem*> items;
+
+    for (int i=0;i<mod->rowCount();++i)
+    {
+
+        int id_operazione=mod->index(i,0).data(0).toInt();
+        QStandardItem *op_data = new QStandardItem(mod->index(i,1).data(0).toString());
+        QStandardItem *op_azione = new QStandardItem(mod->index(i,2).data(0).toString());
+        QStandardItem *op_lotto = new QStandardItem(mod->index(i,3).data(0).toString());
+        QStandardItem *op_prodotto = new QStandardItem(mod->index(i,4).data(0).toString());
+        QStandardItem *op_quant = new QStandardItem(QString::number(mod->index(i,5).data(0).toDouble(),'f',4));
+        QStandardItem *op_giacenza = new QStandardItem(QString::number(mod->index(i,6).data(0).toDouble(),'f',2));
+        qDebug()<<"id_operazione"<<id_operazione;
+        QString dlot=getDestinationLot(id_operazione);
+        QStandardItem *op_dest_lot = new QStandardItem(dlot);
+
+        items.append(op_data);
+        items.append(op_azione);
+        items.append(op_lotto);
+        items.append(op_prodotto);
+        items.append(op_quant);
+        items.append(op_giacenza);
+        items.append(op_dest_lot);
+
+        si_mod->appendRow(items);
+        items.clear();
+
+    }
+
+    ui->tvMovimentiLotto->setModel(si_mod);
+    ui->tvMovimentiLotto->setItemDelegate(new QItemDelegate(si_mod));
+    si_mod->setHeaderData(0,Qt::Horizontal,"DATA");
+    si_mod->setHeaderData(1,Qt::Horizontal,"AZIONE");
+    si_mod->setHeaderData(2,Qt::Horizontal,"LOTTO");
+    si_mod->setHeaderData(3,Qt::Horizontal,"PRODOTTO");
+    si_mod->setHeaderData(4,Qt::Horizontal,"QUANTITA\'");
+    si_mod->setHeaderData(5,Qt::Horizontal,"GIACENZA");
+    si_mod->setHeaderData(6,Qt::Horizontal,"LOTTO DI DESTINAZIONE");
+
+
     ui->tvMovimentiLotto->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+
+
 
 }
 
@@ -81,6 +98,24 @@ void HLotMovements::getGiacenzaLotto(int id)
     q.exec();
     q.next();
     ui->leGiacenza->setText(QString::number(q.value(0).toDouble(),'f',3));
+}
+
+QString HLotMovements::getDestinationLot( const int p_id_operation)
+{
+    QSqlQuery q(db);
+    QString sql="select lotdef.data,lotdef.lot from lotdef,operazioni,composizione_lot where operazioni.ID=composizione_lot.operazione and lotdef.ID=composizione_lot.ID_lotto and operazioni.ID=:idop order by lotdef.data desc";
+
+    q.prepare(sql);
+    q.bindValue(":idop",p_id_operation);
+    bool b=q.exec();
+    q.next();
+    if(b)
+    {
+        return q.value(1).toString();
+    }else{
+        return q.lastError().text();
+        qDebug()<<q.lastError().text();
+    }
 }
 
 void HLotMovements::on_pushButton_clicked()

@@ -44,9 +44,10 @@ void HNewOp::setupForm()
     tbm = new  QSqlTableModel(this,db);
     tbm->setTable("prodotti");
     tbm->setFilter("tipo!=1");
+    tbm->select();
     ui->lvprodotti->setModel(tbm);
     ui->lvprodotti->setModelColumn(1);
-    tbm->select();
+    //tbm->select();
 
     tfr = new  QSqlTableModel(this,db);
     tfr->setTable("anagrafica");
@@ -265,7 +266,7 @@ void HNewOp::on_pushButton_2_clicked()
 {
     if (QMessageBox::warning(this,QApplication::applicationName(),"Si desidera chiudere la finestra?",QMessageBox::Ok | QMessageBox::Cancel)==QMessageBox::Ok)
        {
-        emit(trigger());
+       // emit(trigger());
         this->close();
 
        }

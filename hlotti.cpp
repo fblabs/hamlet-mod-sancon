@@ -133,18 +133,6 @@ HLotti::~HLotti()
 
 }
 
-void HLotti::getLotsOverview()
-{
-
-    mod=new QSqlQueryModel();
-    QSqlQuery q(db);
-    QString sql="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE' from lotdef,prodotti,anagrafica where prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica ORDER By lotdef.data DESC";
-    q.exec();
-    mod->setQuery(q);
-
-    ui->twLots->setModel(mod);
-
-}
 
 void HLotti::getDataLots()
 {
@@ -461,64 +449,22 @@ void HLotti::print(bool pdf=false)
              f->show();
 
         }
-
-
-
-
-
-
-
-
-  /*  int rows=ui->twLots->model()->rowCount();
-    int cols=ui->twLots->model()->columnCount();
-
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-
-    f->append("PRODUZIONE DAL "+ ui->datadal->text().toUpper() + " AL " + ui->dataal->text().toUpper()+"\n",true);
-    f->toggleImageUI(false);
-
-    QTextTable *tb=f->addTable(rows,cols,QTextTableFormat());
-    QString txt;
-
-   int r,c;
-
-   f->showMaximized();
-
-
-
-    for (r=0;r<rows;r++)
-    {
-
-
-        for (c=0; c<cols; c++)
-        {
-            txt=ui->twLots->model()->index(r,c).data(0).toString();
-            f->writeTableContent(tb,r,c,QTextCharFormat(),txt);
-            QApplication::processEvents();
-
-        }
-      QApplication::processEvents();
-
-    }
-
-    QApplication::setOverrideCursor(Qt::ArrowCursor);
-
-    }*/
-
-
 }
 
 void HLotti::updateTableView()
 {
-    if(tbm) tbm->select();
-    //qDebug()<<"update";
+       //qDebug()<<"updatetableview";
+        qDebug()<<"signal";
+        tbm->select();
+        ui->twLots->setModel(tbm);
+
 }
 
 void HLotti::modifySelected(int pidlotto)
 {
 
    HModifyLot *f=new HModifyLot(pidlotto,user,db);
-   connect(f,SIGNAL(updatedLot()),this,SLOT(updateTableView()));
+   connect (f,SIGNAL(sig_updated_lot()),this,SLOT(updateTableView()));
    f->show();
 
 }
@@ -530,15 +476,6 @@ void HLotti::on_pushButton_7_clicked()
     modifySelected(idlotto);
 
 }
-
-/*void HLotti::on_leLottoRaw_textChanged(const QString &arg1)
-{
-    if(arg1.length()==0){
-      tbm->setFilter(filter);
-    }
-
-}*/
-
 
 
 void HLotti::on_chTipoProdotti_toggled(bool checked)

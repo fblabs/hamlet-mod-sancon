@@ -20,7 +20,7 @@ HRecipeAddRow::HRecipeAddRow(int pidricetta, QSqlDatabase pdb, QWidget *parent) 
 
     QSqlTableModel *mod= new QSqlTableModel(0,db);
     mod->setTable("prodotti");
-    mod->setFilter("tipo=1");
+    mod->setFilter("tipo in (1,6)");
     mod->setSort(1,Qt::AscendingOrder);
     mod->select();
 
@@ -50,23 +50,16 @@ void HRecipeAddRow::on_pushButton_clicked()
 }
 void HRecipeAddRow::addRecipeRow()
 {
-  //  bool ok;
     QList<QStandardItem*> list;
     double quant=0.0;
-    /*
-    q.bindValue(":idricetta",ui->cbRicette->model()->index(ui->cbRicette->currentIndex(),0).data(0));
-    q.bindValue(":idprodotto",ui->cbProdotti->model()->index(ui->cbProdotti->currentIndex(),0).data(0));
-    q.bindValue(":qua",QVariant(qua));
-    q.bindValue(":show",QVariant(ui->checkBox->isChecked()));
-    */
+
     QStandardItem* id= new QStandardItem(QString::number(-1));
     QStandardItem* ricetta= new QStandardItem(QString::number(idricettatarget));
     QStandardItem* prodotto=new QStandardItem  (QString::number(ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toInt()));
     QStandardItem* descrizione=new QStandardItem(ui->comboBox->currentText());
-    bool ok;
+    bool ok=false;
     QString sQuan=QString::number(ui->lineEdit->text().toDouble(&ok),'f',4);
     QStandardItem* quantita=new QStandardItem(sQuan);
-    qDebug()<<sQuan;
     if(!ok)
     {
         QMessageBox::warning(0,QApplication::applicationName(),"errore nella quantità",QMessageBox::Ok);
@@ -75,7 +68,7 @@ void HRecipeAddRow::addRecipeRow()
     QString show;
     ui->checkBox->isChecked()? show="1" : show="0";
     QStandardItem* showprod=new QStandardItem(show);
-    //QStandardItem* descrizione3=new QStandardItem("pippo3");
+
 
 
     list.append(id);
@@ -89,32 +82,6 @@ void HRecipeAddRow::addRecipeRow()
     emit rowadded(list);
 
     close();
-
-
-
-  /*  QSqlQuery q(db);
-    QString sql="INSERT INTO righe_ricette(`ID_ricetta`,`ID_prodotto`,`quantita`,`show_prod`)VALUES(:idricetta,:idprodotto,:qua,:show)";
-    //double qua=ui->lineEdit->text().toDouble(&quack);
-
-
-    q.prepare(sql);
-    q.bindValue(":idricetta",QVariant(idricettatarget));
-    q.bindValue(":idprodotto",QVariant(ui->comboBox->model()->index(ui->comboBox->currentIndex(),0).data(0).toInt()));
-    q.bindValue(":qua",QVariant(sQuan));
-    q.bindValue(":show",QVariant(ui->checkBox->isChecked()));
-    if(q.exec())
-    {
-    emit rowadded(list);
-     }
-    else
-    {
-
-            QMessageBox::warning(this,QApplication::applicationName(),q.lastError().text(),QMessageBox::Ok);
-            return;
-
-    }*/
-
-
 
 
 

@@ -1,6 +1,6 @@
 #include "hlotti_new.h"
 #include "ui_hlotti_new.h"
-#include <QSqlQueryModel>
+#include "hquerymodel_lotti.h"
 #include <QSqlTableModel>
 #include <QSqlQuery>
 #include <QDebug>
@@ -22,6 +22,9 @@
 #include "hbiodetails.h"
 #include <QDebug>
 
+#include <QSortFilterProxyModel>
+
+
 
 HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     QWidget(parent),
@@ -39,9 +42,14 @@ HLotti_new::HLotti_new(QSqlDatabase pdb, HUser *p_user, QWidget *parent) :
     getLotTypes();
     ui->cbProduct->setModel(getProducts());
     ui->cbProduct->setModelColumn(1);
+    ui->cbProduct->completer()->setCompletionColumn(1);
+    ui->cbProduct->completer()->setCompletionMode(QCompleter::PopupCompletion);
+
+    QLocale loc;
+    ui->tvLotti->setLocale(loc);
 
     ui->tvLotti->setColumnHidden(0,true);
-    ui->tvLotti->setModel(loadLotsData());
+    loadLotsData();
 
     QModelIndex index=ui->tvLotti->model()->index(0,0);
     if(index.isValid())  ui->tvLotti->selectionModel()->setCurrentIndex(index,QItemSelectionModel::Select);
@@ -60,9 +68,9 @@ HLotti_new::~HLotti_new()
     delete ui;
 }
 
-QSqlQueryModel* HLotti_new::loadLotsData()
+void HLotti_new::loadLotsData()
 {
-    QSqlQueryModel * local_mod=new QSqlQueryModel();
+    HQueryModel_lotti * local_mod=new HQueryModel_lotti();
     QString sql=QString();
 
     int tipo=-1;
@@ -81,7 +89,7 @@ QSqlQueryModel* HLotti_new::loadLotsData()
 
 
     sql=buildLotsQuery(tipo,prodotto);
-    qDebug()<<sql;
+
 
 
     QSqlQuery q(db);
@@ -103,11 +111,15 @@ QSqlQueryModel* HLotti_new::loadLotsData()
 
 
     q.exec();
+    qDebug()<<q.lastError().text();
 
-    qDebug()<<q.lastError();
+
 
     local_mod->setQuery(q);
-    return local_mod;
+    QSortFilterProxyModel *proxy=new QSortFilterProxyModel();
+    proxy->setSourceModel(local_mod);
+    ui->tvLotti->setModel(proxy);
+
 }
 
 
@@ -118,15 +130,15 @@ QSqlQueryModel* HLotti_new::loadLotsData()
 
 void HLotti_new::on_deFrom_userDateChanged(const QDate &date)
 {
-    ui->tvLotti->setColumnHidden(0,true);
-    ui->tvLotti->setModel(loadLotsData());
+   // ui->tvLotti->setColumnHidden(0,true);
+    loadLotsData();
 }
 
 
 void HLotti_new::on_deTo_userDateChanged(const QDate &date)
 {
-    ui->tvLotti->setColumnHidden(0,true);
-    ui->tvLotti->setModel(loadLotsData());
+   // ui->tvLotti->setColumnHidden(0,true);
+   loadLotsData();
 
 }
 
@@ -142,7 +154,7 @@ void HLotti_new::on_tvLotti_doubleClicked(const QModelIndex &index)
     int idlotto=ui->tvLotti->model()->index(ui->tvLotti->currentIndex().row(),0).data(0).toInt();
 
     HModifyLot *f=new HModifyLot(idlotto,user,db);
-    //   connect(f,SIGNAL(updatedLot()),this,SLOT(updateTableView()));
+    connect(f,SIGNAL(sig_updated_lot()),this,SLOT(refresh_data()));
     f->show();
 }
 
@@ -150,7 +162,13 @@ void HLotti_new::on_tvLotti_doubleClicked(const QModelIndex &index)
 void HLotti_new::on_pbLotInfo_clicked()
 {
     int idlotto=ui->tvLotti->model()->index(ui->tvLotti->currentIndex().row(),0).data(0).toInt();
+    if(idlotto<1)
+    {
+        QMessageBox::warning(this,QApplication::applicationName(),"Selezionare una riga",QMessageBox::Ok);
+        return;
+    }
     HModifyLot *f=new HModifyLot(idlotto,user,db);
+    connect(f,SIGNAL(sig_updated_lot()),this,SLOT(refresh_data()));
     f->show();
 }
 
@@ -167,16 +185,16 @@ void HLotti_new::getLotTypes()
 
 void HLotti_new::on_ckbUseType_toggled(bool checked)
 {
-    ui->tvLotti->setModel(loadLotsData());
+    loadLotsData();
 }
 
 
 void HLotti_new::on_cbType_currentIndexChanged(int index)
 {
-    ui->tvLotti->setModel(loadLotsData());
+    loadLotsData();
 }
 
-void HLotti_new::print()
+void HLotti_new::print(bool pdf)
 {
     QString strStream;
 
@@ -192,7 +210,7 @@ void HLotti_new::print()
 
     out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table border=1 cellspacing=0 cellpadding=2>\n";
 
-    out << "<thead><tr bgcolor='lightyellow'><th colspan='5'>"+ title +"</th></tr>";
+    out << "<thead><tr bgcolor='lightyellow'><th colspan='9'>"+ title +"</th></tr>";
     // headers
     out << "<tr bgcolor=#f0f0f0>";
     for (int column = 0; column < columnCount; column++)
@@ -202,11 +220,31 @@ void HLotti_new::print()
 
     // data table
     for (int row = 0; row < rowCount; row++) {
+
+        bool colorred=false;
+        if(ui->tvLotti->model()->data(ui->tvLotti->model()->index(row, 8)).toInt()<=0)
+        {
+            colorred=true;
+        }
+
+
         out << "<tr>";
         for (int column = 0; column < columnCount; column++) {
             if (!ui->tvLotti->isColumnHidden(column)) {
-                QString data = ui->tvLotti->model()->data(ui->tvLotti->model()->index(row, column)).toString().simplified();
-                out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                QString data = ui->tvLotti->model()->data(ui->tvLotti->model()->index(row, column)).toString()/*.simplified()*/;
+
+                QString color = QString();
+                if(colorred)
+                {
+                    color="<td bgcolor='orange'>%1</td>";
+                }
+                else
+                {
+                   color="<td bgcolor='white'>%1</td>";
+                }
+
+                 out << QString(color).arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+
             }
         }
         out << "</tr>\n";
@@ -217,8 +255,6 @@ void HLotti_new::print()
 
     QTextDocument *document = new QTextDocument();
     document->setHtml(strStream);
-
-    bool pdf=true; //magic!
 
     if (pdf)
     {
@@ -283,7 +319,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
     {
         if(tipo>-1 && prodotto<0)
         {
-            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'GIACENZA',lotdef.scadenza AS 'SCADENZA',lotdef.note AS 'NOTE'\
+            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note AS 'NOTE'\
                     FROM lotdef,prodotti,anagrafica, tipi_lot\
                     WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and prodotti.bio >0 and lotdef.tipo=:tipo and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
             return lots_query;
@@ -291,7 +327,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
 
         if(tipo<0 && prodotto>-1)
         {
-            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'GIACENZA',lotdef.scadenza AS 'SCADENZA',lotdef.note as 'NOTE'\
+            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note as 'NOTE'\
                     FROM lotdef,prodotti,anagrafica, tipi_lot WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and prodotti.bio>0 and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
             return lots_query;
         }
@@ -305,17 +341,17 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
         }
         if(tipo>-1 && prodotto > -1)
         {
-            qDebug()<<"TIPO E PRODOTTO";
-            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'Giacenza',lotdef.scadenza AS 'SCADENZA',lotdef.note as 'NOTE'\
+
+            lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note as 'NOTE'\
                     from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and prodotti.bio>0 and lotdef.tipo=:tipo and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
-             return lots_query;
+            return lots_query;
         }
 
 
         lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore AS 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note as 'NOTE'\
                 from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto\
                 AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and prodotti.bio>0 and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
-        return lots_query;
+            return lots_query;
 
 
     }
@@ -332,7 +368,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
 
     if(tipo>-1 && prodotto<0)
     {
-        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'GIACENZA',lotdef.scadenza AS 'SCADENZA',lotdef.note AS 'NOTE'\
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note AS 'NOTE'\
                 FROM lotdef,prodotti,anagrafica, tipi_lot\
                 WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.tipo=:tipo and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
         return lots_query;
@@ -342,7 +378,7 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
 
     if(tipo<0 && prodotto>-1)
     {
-        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'GIACENZA',lotdef.scadenza AS 'SCADENZA',lotdef.note as 'NOTE'\
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note as 'NOTE'\
                 FROM lotdef,prodotti,anagrafica, tipi_lot WHERE prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
         return lots_query;
     }
@@ -352,21 +388,22 @@ QString HLotti_new::buildLotsQuery(int tipo,int prodotto)
     if(tipo>-1 && prodotto > -1)
     {
 
-        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.giacenza as 'Giacenza',lotdef.scadenza AS 'SCADENZA',lotdef.note as 'NOTE'\
+        lots_query="SELECT lotdef.ID as 'ID',lotdef.lot AS 'LOTTO INTERNO',lotdef.data AS 'DATA',prodotti.descrizione as 'PRODOTTO',anagrafica.ragione_sociale AS 'CLIENTE',tipi_lot.descrizione AS 'TIPO',lotdef.lot_fornitore as 'LOTTO FORNITORE',lotdef.scadenza AS 'SCADENZA',lotdef.giacenza as 'GIACENZA',lotdef.note as 'NOTE'\
                 from lotdef,prodotti,anagrafica, tipi_lot where prodotti.ID=lotdef.prodotto AND anagrafica.ID=lotdef.anagrafica and tipi_lot.ID=lotdef.tipo and lotdef.tipo=:tipo and lotdef.prodotto=:prodotto and lotdef.data BETWEEN :dfrom AND :dto ORDER BY lotdef.data DESC";
          return lots_query;
     }
 
+    qDebug()<<lots_query;
 
 
     return lots_query;
 }
 
 
-QSqlQueryModel* HLotti_new::getProducts()
+HQueryModel_lotti* HLotti_new::getProducts()
 {
     QSqlQuery q(db);
-    QSqlQueryModel *mod=new QSqlQueryModel();
+    HQueryModel_lotti *mod=new HQueryModel_lotti();
     QString sql="select ID,descrizione FROM prodotti ORDER BY descrizione asc;";
 
     q.prepare(sql);
@@ -382,32 +419,17 @@ QSqlQueryModel* HLotti_new::getProducts()
 
 void HLotti_new::on_cbProduct_currentIndexChanged(int index)
 {
-    ui->tvLotti->setModel(loadLotsData());
+   loadLotsData();
 }
 
 
 void HLotti_new::on_ckbUseProduct_toggled(bool checked)
 {
-    ui->tvLotti->setModel(loadLotsData());
+   loadLotsData();
 }
 
 
-void HLotti_new::on_tvLotti_customContextMenuRequested(const QPoint &pos)
-{
-    QPoint globalPos =mapToGlobal(pos);
-    QMenu *menu=new QMenu(0);
 
-    // QAction *detailsAction=menu->addAction("Composizione/uso lotto");
-    // menu->addSeparator();
-    //  QAction *copyAction=menu->addAction("Copia il testo sotto il cursore");
-    /*  QAction *editAction=menu->addAction("Modifica/Copia dati ...");
-    QAction *bioAction=menu->addAction("Dati Biologici ...");*/
-
-
-    // connect(detailsAction,SIGNAL(triggered(bool)),this,SLOT(getDetails()));
-    // connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyField()));
-
-}
 
 void HLotti_new::showContextMenu(const QPoint &pos)
 {
@@ -419,12 +441,14 @@ void HLotti_new::showContextMenu(const QPoint &pos)
     QAction *copyAction=menu->addAction("Copia il testo sotto il cursore");
     //  QAction *editAction=menu->addAction("Modifica/Copia dati ...");
     QAction *bioAction=menu->addAction("Dati Biologici ...");
+    QAction *deleteLot=menu->addAction("Elimina il lotto");
 
 
     // connect(detailsAction,SIGNAL(triggered(bool)),this,SLOT(getDetails()));
     connect(copyAction,SIGNAL(triggered(bool)),this,SLOT(copyField()));
     //  connect(editAction,SIGNAL(triggered(bool)),this,SLOT(editLot()));
     connect(bioAction,SIGNAL(triggered(bool)),this,SLOT(datiBio()));
+    connect(deleteLot,SIGNAL(triggered(bool)),this,SLOT(on_pbDelete_clicked()));
 
 
 
@@ -455,7 +479,7 @@ void HLotti_new::on_pbDelete_clicked()
         int id=ui->tvLotti->model()->index(ui->tvLotti->currentIndex().row(),0).data(0).toInt();
         deleteLot(id);
         QModelIndex ix=ui->tvLotti->currentIndex();
-        ui->tvLotti->setModel(loadLotsData());
+        loadLotsData();
         ui->tvLotti->setCurrentIndex(ix);
     }
 }
@@ -470,9 +494,9 @@ void HLotti_new::deleteLot(const int p_id)
     QString sql="SELECT COUNT(id) FROM operazioni WHERE IDlotto=:idlot";
     q.prepare(sql);
     q.bindValue(":idlot",QVariant(idlotto));
-    bool b=q.exec();
     q.next();
     bool ok=false;
+
     int cnt=q.value(0).toInt(&ok);
     if(cnt>1)
     {
@@ -484,46 +508,16 @@ void HLotti_new::deleteLot(const int p_id)
     }
     else
     {
-        bool ba=false;
-        db.transaction();
-
-        QSqlQueryModel* cmod=new QSqlQueryModel();
-        sql= "select operazione from composizione_lot where id_lotto=:idlot";
-        q.prepare(sql);
-        q.bindValue(":idlot",QVariant(idlotto));
-        q.exec();
-        cmod->setQuery(q);
+       // bool ba=false;
 
 
 
-        sql="delete from composizione_lot where id_lotto=:idlot";
+        HQueryModel_lotti* cmod=new HQueryModel_lotti();
 
-        q.prepare(sql);
-        q.bindValue(":idlot",QVariant(idlotto));
-
-        ba=q.exec();
-
-        qDebug()<<"delete from composizione"<<q.lastError().text();
-
-        for(int r=0; r<cmod->rowCount();r++)
+        if (QMessageBox::question(this,QApplication::applicationName(),"Attenzione erranno eliminate tuitte le referenze a quasto lotto\nin composizione e operazioni\nOperazione irreversibile, procedere?",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
         {
-            sql="delete FROM operazioni WHERE id =:idrow";
-            q.prepare(sql);
-            q.bindValue(":idrow",QVariant(cmod->record(r).value(r)));
-            ba=q.exec();
-        }
+            QApplication::setOverrideCursor(Qt::WaitCursor);
 
-        //qDebug()<<q.lastQuery()<<q.lastError().text()<<q.boundValue(0).toString();
-
-        if(!ba)
-        {
-            //qDebug()<<q.lastError().text();
-            db.rollback();
-            QMessageBox::warning(this,QApplication::applicationName(),"Attenzione,impossibile cancellare il lotto in quanto già utilizzato",QMessageBox::Ok);
-            return;
-        }
-        if (QMessageBox::question(this,QApplication::applicationName(),"Confermare cancellazione?\nAttenzione operazione irreversibile",QMessageBox::Ok|QMessageBox::Cancel)==QMessageBox::Ok)
-        {
             sql="delete from operazioni where IDlotto=:id";
             q.prepare(sql);
             q.bindValue(":id",idlotto);
@@ -533,6 +527,7 @@ void HLotti_new::deleteLot(const int p_id)
             q.prepare(sql);
             q.bindValue(":id",idlotto);
 
+            db.transaction();
             bool k=q.exec();
             if(k){
                 db.commit();
@@ -553,6 +548,7 @@ void HLotti_new::deleteLot(const int p_id)
 
     }
 
+    QApplication::restoreOverrideCursor();
 
 
 
@@ -562,7 +558,7 @@ void HLotti_new::deleteLot(const int p_id)
 void HLotti_new::on_chb_bio_toggled(bool checked)
 {
 
-     ui->tvLotti->setModel(loadLotsData());
+     loadLotsData();
 }
 
 
@@ -571,7 +567,19 @@ void HLotti_new::on_chb_bio_toggled(bool checked)
 
 void HLotti_new::on_le_search_returnPressed()
 {
-     ui->tvLotti->setModel(loadLotsData());
+    loadLotsData();
      //ui->le_search->setText(QString());
+}
+
+void HLotti_new::refresh_data()
+{
+     qDebug()<<"REFRESC";
+     loadLotsData();
+}
+
+
+void HLotti_new::on_pbToPdf_clicked()
+{
+     print(true);
 }
 

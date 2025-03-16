@@ -135,19 +135,20 @@ void HAddLotInProduction::addLot()
     // qDebug()<<"addLot";// here I want to add a lot's component
 
     int nrow=data->row;
-    bool ballergene=data->allergene;
+
     //qDebug()<<"addlot"<<ballergene;
     int lotid=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),0).data(0).toInt();
-    qDebug()<<"LOTID"<<lotid;
+
     QString lot=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),1).data(0).toString();
     double giacenza=get_giacenza(lotid);
-    qDebug()<<"GIACENZA"<<giacenza;
+    ;
     if(!model) {
         //qDebug()<<"NULL";
         return;
     }
-    QString al=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),6).data(0).toString();
-    QString gc=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),6).data(0).toString();
+    bool al=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),6).data(0).toBool();
+    bool alusa=ui->tvLots->model()->index(ui->tvLots->currentIndex().row(),7).data(0).toBool();
+
     QString val=QString::number(ui->dsbQt->value(),'f',3);
 
 
@@ -157,8 +158,10 @@ void HAddLotInProduction::addLot()
     model->setData(model->index(nrow,3),lotid);
     model->setData(model->index(nrow,4),lot);
     model->setData(model->index(nrow,5),val);
-    model->setData(model->index(nrow,6),al);
-    model->setData(model->index(nrow,7),al);
+    //model->setData(model->index(nrow,6),al);
+    if(al) model->item(nrow,6)->setCheckState(Qt::Checked);// :model->item(nrow,7)->setCheckState(Qt::Unchecked);
+    if (alusa) model->item(nrow,7)->setCheckState(Qt::Checked); //:model->item(nrow,7)->setCheckState(Qt::Unchecked);
+
     model->setData(model->index(nrow,8),giacenza);
 
 

@@ -16,6 +16,8 @@ CONFIG(release,debug|release)
 
 SOURCES += main.cpp\
     hbiodetails.cpp \
+    hblend.cpp \
+    hblenddetail.cpp \
     hcalcolo_costi_item.cpp \
     hcalcolo_costi_item_model.cpp \
     hcalcolo_costi_item_set.cpp \
@@ -29,14 +31,29 @@ SOURCES += main.cpp\
     hcosti.cpp \
     hcosti_model.cpp \
     hcreategroup.cpp \
+    hfrullatori.cpp \
     hgroups.cpp \
     hloads.cpp \
+    hloadsreport.cpp \
     hlotcomposition.cpp \
     hlotti_new.cpp \
+    hmodprodotti.cpp \
+    hnew_recipe_main.cpp \
     hpdfprint.cpp \
+    hpreferred_lots.cpp \
     hproducts_for_calcolo_costi.cpp \
+    hprogdlg.cpp \
+    hprogramstableview.cpp \
+    hprogtable.cpp \
+    hquerymodel_lastlots.cpp \
+    hquerymodel_lotti.cpp \
     hrecipesforingredient.cpp \
+    hrecipesoverview.cpp \
+    hworker.cpp \
+    hworkprogram.cpp \
+    hworkprogramdetailmodel.cpp \
     hworksheetmodel.cpp \
+    hwpmod.cpp \
     mainwindow.cpp \
     huser.cpp \
     hutenti.cpp \
@@ -97,11 +114,12 @@ SOURCES += main.cpp\
     hworkprogressmodel.cpp \
     hmodifyrow.cpp \
     hlotmod.cpp \
-    hnewsheet.cpp \
-    hworkprogram.cpp
+    hnewsheet.cpp
 
 HEADERS  += mainwindow.h \
     hbiodetails.h \
+    hblend.h \
+    hblenddetail.h \
     hcalcolo_costi_item.h \
     hcalcolo_costi_item_model.h \
     hcalcolo_costi_item_set.h \
@@ -115,13 +133,24 @@ HEADERS  += mainwindow.h \
     hcosti.h \
     hcosti_model.h \
     hcreategroup.h \
+    hfrullatori.h \
     hgroups.h \
     hloads.h \
+    hloadsreport.h \
     hlotcomposition.h \
     hlotti_new.h \
+    hmodprodotti.h \
+    hnew_recipe_main.h \
     hpdfprint.h \
+    hpreferred_lots.h \
     hproducts_for_calcolo_costi.h \
+    hprogdlg.h \
+    hprogramstableview.h \
+    hprogtable.h \
+    hquerymodel_lastlots.h \
+    hquerymodel_lotti.h \
     hrecipesforingredient.h \
+    hrecipesoverview.h \
     huser.h \
     hutenti.h \
     hnewop.h \
@@ -165,7 +194,11 @@ HEADERS  += mainwindow.h \
     hcopycard.h \
     hcomposizionelotto.h \
     hgraphicprint.h \
+    hworker.h \
+    hworkprogram.h \
+    hworkprogramdetailmodel.h \
     hworksheetmodel.h \
+    hwpmod.h \
     nouse.h \
     haddlotinproduction.h \
     hdatatopass.h \
@@ -182,13 +215,13 @@ HEADERS  += mainwindow.h \
     hworkprogressmodel.h \
     hmodifyrow.h \
     hlotmod.h \
-    hnewsheet.h \
-    hworkprogram.h \
-    ui_hcaloclo_costi_jolly.h
+    hnewsheet.h
+
 
 
 
 FORMS    += mainwindow.ui \
+    hblenddetail.ui \
     hcalcolo_costi_item.ui \
     hcalcolo_costi_item_set.ui \
     hcomponenti_costo_item.ui \
@@ -201,17 +234,25 @@ FORMS    += mainwindow.ui \
     hcontainer_generic_product.ui \
     hcosti.ui \
     hcreategroup.ui \
+    hfrullatori.ui \
     hgroups.ui \
     hloads.ui \
+    hloadsreport.ui \
     hlotcomposition.ui \
     hlotti_new.ui \
+    hnew_recipe_main.ui \
     hpdfprint.ui \
+    hpreferred_lots.ui \
     hproducts_for_calcolo_costi.ui \
+    hprogdlg.ui \
+    hprogtable.ui \
     hrecipesforingredient.ui \
+    hrecipesoverview.ui \
     hutenti.ui \
     hsettings.ui \
     hprint.ui \
     hnewproduct.ui \
+    hworkprogram.ui \
     lognew.ui \
     hclientfiles.ui \
     hlogin2.ui \
@@ -261,8 +302,7 @@ FORMS    += mainwindow.ui \
     hwpmanager.ui \
     hmodifyrow.ui \
     hlotmod.ui \
-    hnewsheet.ui \
-    hworkprogram.ui
+    hnewsheet.ui
 
 
 

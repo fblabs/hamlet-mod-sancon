@@ -91,6 +91,8 @@ public:
 
         cbRicette = new QComboBox(HAssociazioni);
         cbRicette->setObjectName(QString::fromUtf8("cbRicette"));
+        cbRicette->setEditable(true);
+        cbRicette->setInsertPolicy(QComboBox::NoInsert);
 
         horizontalLayout_4->addWidget(cbRicette);
 

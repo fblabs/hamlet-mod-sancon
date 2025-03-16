@@ -11,7 +11,8 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -25,11 +26,12 @@ class Ui_HSettings
 {
 public:
     QVBoxLayout *verticalLayout;
-    QFormLayout *formLayout;
+    QGridLayout *gridLayout;
     QLabel *label_2;
     QLineEdit *leUser;
     QLabel *label_5;
     QLineEdit *lePassword;
+    QCheckBox *checkBox;
     QLabel *label;
     QLineEdit *leAddress;
     QLabel *label_4;
@@ -50,98 +52,103 @@ public:
         if (HSettings->objectName().isEmpty())
             HSettings->setObjectName(QString::fromUtf8("HSettings"));
         HSettings->setWindowModality(Qt::ApplicationModal);
-        HSettings->resize(400, 302);
+        HSettings->resize(485, 282);
         verticalLayout = new QVBoxLayout(HSettings);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        formLayout = new QFormLayout();
-        formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         label_2 = new QLabel(HSettings);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         QFont font;
         font.setBold(true);
         label_2->setFont(font);
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label_2);
+        gridLayout->addWidget(label_2, 0, 0, 1, 1);
 
         leUser = new QLineEdit(HSettings);
         leUser->setObjectName(QString::fromUtf8("leUser"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, leUser);
+        gridLayout->addWidget(leUser, 0, 1, 1, 1);
 
         label_5 = new QLabel(HSettings);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setFont(font);
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_5);
+        gridLayout->addWidget(label_5, 1, 0, 1, 1);
 
         lePassword = new QLineEdit(HSettings);
         lePassword->setObjectName(QString::fromUtf8("lePassword"));
         lePassword->setEchoMode(QLineEdit::Password);
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, lePassword);
+        gridLayout->addWidget(lePassword, 1, 1, 1, 1);
+
+        checkBox = new QCheckBox(HSettings);
+        checkBox->setObjectName(QString::fromUtf8("checkBox"));
+
+        gridLayout->addWidget(checkBox, 1, 2, 1, 1);
 
         label = new QLabel(HSettings);
         label->setObjectName(QString::fromUtf8("label"));
         label->setFont(font);
 
-        formLayout->setWidget(2, QFormLayout::LabelRole, label);
+        gridLayout->addWidget(label, 2, 0, 1, 1);
 
         leAddress = new QLineEdit(HSettings);
         leAddress->setObjectName(QString::fromUtf8("leAddress"));
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, leAddress);
+        gridLayout->addWidget(leAddress, 2, 1, 1, 1);
 
         label_4 = new QLabel(HSettings);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setFont(font);
 
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_4);
+        gridLayout->addWidget(label_4, 3, 0, 1, 1);
 
         lePort = new QLineEdit(HSettings);
         lePort->setObjectName(QString::fromUtf8("lePort"));
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, lePort);
+        gridLayout->addWidget(lePort, 3, 1, 1, 1);
 
         label_3 = new QLabel(HSettings);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setFont(font);
 
-        formLayout->setWidget(4, QFormLayout::LabelRole, label_3);
+        gridLayout->addWidget(label_3, 4, 0, 1, 1);
 
         leDatabase = new QLineEdit(HSettings);
         leDatabase->setObjectName(QString::fromUtf8("leDatabase"));
 
-        formLayout->setWidget(4, QFormLayout::FieldRole, leDatabase);
+        gridLayout->addWidget(leDatabase, 4, 1, 1, 1);
 
         label_6 = new QLabel(HSettings);
         label_6->setObjectName(QString::fromUtf8("label_6"));
         label_6->setFont(font);
 
-        formLayout->setWidget(5, QFormLayout::LabelRole, label_6);
+        gridLayout->addWidget(label_6, 5, 0, 1, 1);
 
         leConnessione = new QLineEdit(HSettings);
         leConnessione->setObjectName(QString::fromUtf8("leConnessione"));
 
-        formLayout->setWidget(5, QFormLayout::FieldRole, leConnessione);
+        gridLayout->addWidget(leConnessione, 5, 1, 1, 1);
 
         label_7 = new QLabel(HSettings);
         label_7->setObjectName(QString::fromUtf8("label_7"));
         label_7->setFont(font);
 
-        formLayout->setWidget(6, QFormLayout::LabelRole, label_7);
+        gridLayout->addWidget(label_7, 6, 0, 1, 1);
 
         lePreferredDb = new QLineEdit(HSettings);
         lePreferredDb->setObjectName(QString::fromUtf8("lePreferredDb"));
 
-        formLayout->setWidget(6, QFormLayout::FieldRole, lePreferredDb);
+        gridLayout->addWidget(lePreferredDb, 6, 1, 1, 1);
 
         pbSelect = new QPushButton(HSettings);
         pbSelect->setObjectName(QString::fromUtf8("pbSelect"));
 
-        formLayout->setWidget(7, QFormLayout::LabelRole, pbSelect);
+        gridLayout->addWidget(pbSelect, 6, 2, 1, 1);
 
 
-        verticalLayout->addLayout(formLayout);
+        verticalLayout->addLayout(gridLayout);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -167,8 +174,9 @@ public:
     void retranslateUi(QWidget *HSettings)
     {
         HSettings->setWindowTitle(QCoreApplication::translate("HSettings", "Impostazioni", nullptr));
-        label_2->setText(QCoreApplication::translate("HSettings", "User", nullptr));
+        label_2->setText(QCoreApplication::translate("HSettings", "User:", nullptr));
         label_5->setText(QCoreApplication::translate("HSettings", "Password:", nullptr));
+        checkBox->setText(QCoreApplication::translate("HSettings", "Mostra", nullptr));
         label->setText(QCoreApplication::translate("HSettings", "Indirizzo:", nullptr));
         label_4->setText(QCoreApplication::translate("HSettings", "Porta:", nullptr));
         label_3->setText(QCoreApplication::translate("HSettings", "Database:", nullptr));
