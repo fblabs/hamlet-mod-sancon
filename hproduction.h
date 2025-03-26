@@ -96,6 +96,9 @@ private slots:
     void on_pbPreferredLots_clicked();
     void on_cbTipoLotto_currentIndexChanged(int index);
     QStandardItemModel *getrecipeForPrinting(const int idricetta=-1);
+    void set_editable();
+
+
 
 
 };

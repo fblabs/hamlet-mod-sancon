@@ -276,6 +276,7 @@ public:
         tableView->setFont(font1);
         tableView->setAutoScroll(false);
         tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tableView->setAlternatingRowColors(true);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
         tableView->horizontalHeader()->setCascadingSectionResizes(false);

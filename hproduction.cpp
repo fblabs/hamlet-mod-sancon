@@ -26,7 +26,7 @@
 #include <QFileDialog>
 #include <QDesktopServices>
 #include <QPrintDialog>
-
+#include <QShortcut>
 enum ACTION{
     RESET=0,
     WAIT=1
@@ -48,6 +48,10 @@ HProduction::HProduction(HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     ui->pushButton_6->setVisible(false);
     ui->pushButton_11->setEnabled(user->get_produzione_u()>0);
     // ui->pbPreferredLots->setEnabled(false);
+
+    new QShortcut(QKeySequence(Qt::Key_F2), this, SLOT(set_editable()));
+
+
 
 
      QSettings settings("hamletmod.ini",QSettings::IniFormat);
@@ -530,7 +534,7 @@ void HProduction::getRecipe()
         prodotto->setEditable(false);
         lotto->setEditable(false);
 
-        quantita->setEditable(true);
+        quantita->setEditable(false);
 
         quadd->setEditable(true);
 
@@ -1155,6 +1159,9 @@ void HProduction::on_pushButton_5_clicked()
 
     QString nlot=getNewLot(ui->lvRicette->model()->index(ui->lvRicette->currentIndex().row(),1).data(0).toInt());
     ui->leNuovoLot->setText(nlot);
+
+
+
 
 
 
@@ -2051,6 +2058,16 @@ QStandardItemModel* HProduction::getrecipeForPrinting(const int idricetta)
 
 
 }
+
+void HProduction::set_editable()
+{
+     ui->tableView->editTriggers()==QTableView::NoEditTriggers?ui->tableView->setEditTriggers(QTableView::SelectedClicked):ui->tableView->setEditTriggers(QTableView::NoEditTriggers);
+}
+
+
+
+
+
 
 
 
