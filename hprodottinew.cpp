@@ -20,6 +20,7 @@
 #include "hpreferred_lots.h"
 #include <QSqlQuery>
 #include "hpdfprint.h"
+#include <QSortFilterProxyModel>
 
 HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     QWidget(parent),
@@ -27,8 +28,11 @@ HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     db=pdb;
     user=puser;
+
+    filtermodel=new QSortFilterProxyModel();
 
     ui->pushButton->setEnabled(user->get_prodotti_u()>0);
     ui->pbMod->setEnabled(user->get_prodotti_u()>0);
@@ -43,7 +47,7 @@ HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     }
     tmProdotti=new HModProdotti();
     getTypes();
-    load();
+
 
     /*  tmProdotti->setTable("prodotti");
     tmProdotti->setSort(1,Qt::AscendingOrder);
@@ -82,6 +86,11 @@ HProdottiNew::HProdottiNew(  HUser *puser,QSqlDatabase pdb,QWidget *parent) :
     tmProdotti->setHeaderData(6,Qt::Horizontal,"Prezzo");
     tmProdotti->setHeaderData(7,Qt::Horizontal,"Ultimo aggiornamento prezzo");
     tmProdotti->setHeaderData(8,Qt::Horizontal,"Allergene USA");
+
+
+
+    filtermodel->setSourceModel(tmProdotti);
+    load();
 
 
 }
@@ -247,11 +256,11 @@ void HProdottiNew::print(bool pdf)
 void HProdottiNew::load(const QString tosearch)
 {
     QString sql=QString();
-    sql="SELECT * from prodotti,tipi_prodotto where tipi_prodotto.ID=prodotti.tipo and tipo=:idtipo";
+    sql="SELECT prodotti.ID,prodotti.descrizione,tipi_prodotto.descrizione,allergenico,attivo,bio,prezzo,data_aggiornamento,allergene_usa from prodotti,tipi_prodotto where tipi_prodotto.ID=prodotti.tipo and tipo=:idtipo";
 
     if(tosearch.length()>0)
     {
-        sql="SELECT * from prodotti,tipi_prodotto where tipi_prodotto.ID=prodotti.tipo and prodotti.descrizione LIKE '%"+ tosearch +"%' AND tipo=:idtipo";
+        sql="SELECT prodotti.ID,prodotti.descrizione,tipi_prodotto.descrizione,allergenico,attivo,bio,prezzo,data_aggiornamento,allergene_usa  from prodotti,tipi_prodotto where tipi_prodotto.ID=prodotti.tipo and prodotti.descrizione LIKE '%"+ tosearch +"%' AND tipo=:idtipo";
 
     }
     /*  else{
@@ -275,12 +284,16 @@ void HProdottiNew::load(const QString tosearch)
     q.bindValue(":idtipo",idtipo);
     q.exec();
     tmProdotti->setQuery(q);
-    ui->tvProdotti->setModel(tmProdotti);
+    ui->tvProdotti->setModel(filtermodel);
+
     qDebug()<<idtipo<<q.lastError().text();
     //ui->tvProdotti->setColumnHidden(0,true);
-    ui->tvProdotti->setColumnHidden(2,true);
-    // ui->tvProdotti->setColumnHidden(8,true);
+   // ui->tvProdotti->setColumnHidden(2,true);
+  //  ui->tvProdotti->setColumnHidden(9,true);
     //ui->tvProdotti->setColumnHidden(9,true);
+
+    ui->tvProdotti->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
 }
 
 

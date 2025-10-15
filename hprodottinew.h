@@ -9,6 +9,7 @@
 #include <QSqlRelationalTableModel>
 #include "huser.h"
 #include "hmodprodotti.h"
+#include <QSortFilterProxyModel>
 
 namespace Ui {
 class HProdottiNew;
@@ -27,6 +28,7 @@ private:
     HModProdotti *tmProdotti;
     QSqlQueryModel *tmTipi;
     HUser *user;
+    QSortFilterProxyModel *filtermodel;
 private slots:
     void getTypes();
 

@@ -277,7 +277,7 @@ void MainWindow::on_tbSettings_clicked()
 void MainWindow::on_tbProdotti_clicked()
 {
     HProdottiNew *f = new HProdottiNew(user,db);
-    f->show();
+    f->showMaximized();
 
 }
 

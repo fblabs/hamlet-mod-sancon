@@ -108,6 +108,7 @@ public:
         tvProdotti->setSelectionMode(QAbstractItemView::SingleSelection);
         tvProdotti->setSelectionBehavior(QAbstractItemView::SelectRows);
         tvProdotti->setSortingEnabled(true);
+        tvProdotti->horizontalHeader()->setCascadingSectionResizes(true);
         tvProdotti->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
         tvProdotti->horizontalHeader()->setStretchLastSection(true);
         tvProdotti->verticalHeader()->setVisible(false);
