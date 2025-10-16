@@ -1,5 +1,6 @@
 debug
 !release/hamletMOD.exe
+release/*
 release/moc*
 release/*.o
 preferences.db

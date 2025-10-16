@@ -171,7 +171,7 @@ void HProdottiNew::print(bool pdf)
 
     QList<int> skip;
 
-    skip<<2<<9<<10;
+   // skip<<2<<9<<10;
 
     coltit <<"ID"<<"DESCRIZIONE"<<"TIPO"<< "ALLERGENE"<<"ATTIVO"<<"BIO"<<"PREZZO"<<"DATA ULTIMO AGGIORNAMENTO PREZZO"<<"ALLERGENE USA";
 
@@ -221,7 +221,7 @@ void HProdottiNew::print(bool pdf)
 
 
 
-                if (column==3 || column==5 || column==8)
+                if (column==3 ||column==4 || column==5 || column==8)
                 {
 
                     out << QString("<td bgcolor='"+bgcol+"' align='center'>%1</td>").arg((ui->tvProdotti->model()->index(row,column).data(Qt::CheckStateRole)==Qt::Checked)? QString("[X]") : QString("&nbsp;"));
