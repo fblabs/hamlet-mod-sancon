@@ -19,6 +19,7 @@ HLoadsReport::HLoadsReport(QSqlDatabase p_db,QWidget *parent)
     ui->deTo->setDate(QDate::currentDate());
 
     QLocale loc;
+    loc.setDefault(QLocale::Italian);
 
     ui->tvReport->setLocale(loc);
 
@@ -65,13 +66,25 @@ void HLoadsReport::loadData()
 
 
 
-    if (idtipo>2 && idtipo < 6)
+   /* if (idtipo>2 && idtipo < 6)
     {
         sql="SELECT operazioni.IDProdotto AS 'ID PRODOTTO',prodotti.descrizione as PRODOTTO,FORMAT(SUM(operazioni.quantita),0) as :head from operazioni,prodotti where azione=:azione and prodotti.tipo =:tipo and IDprodotto=prodotti.ID and operazioni.data between :from and :to and prodotti.descrizione LIKE :fnd group by operazioni.IDprodotto order by prodotti.descrizione";
     }
     else
     {
         sql="SELECT operazioni.IDProdotto as 'ID PRODOTTO',prodotti.descrizione as PRODOTTO,FORMAT(SUM(operazioni.quantita),2) as :head from operazioni,prodotti where azione=:azione and prodotti.tipo =:tipo and IDprodotto=prodotti.ID and operazioni.data between :from and :to and prodotti.descrizione LIKE :fnd group by operazioni.IDprodotto order by prodotti.descrizione";
+
+    }*/
+
+    if(idtipo>2 && idtipo<6)
+    {
+
+        sql="select p.ID as 'ID',p.descrizione as 'DESCRIZIONE',FORMAT(SUM(o.quantita),0) as 'QUANTITA''',u.descrizione as 'U.M.' from operazioni o,prodotti p,unita_di_misura u where o.IDprodotto=p.ID and o.um=u.ID and p.tipo=:tipo and o.azione=:azione and o.data between :from and :to and p.descrizione LIKE :fnd  group by p.ID,o.um order by p.descrizione";
+   // sql="select p.ID,p.descrizione,FORMAT(SUM(o.quantita),0) as :head,u.descrizione from operazioni o,prodotti p, unita_di_misura u where o.IDprodotto=p.ID and o.um=u.ID and p.tipo=:tipo and o.azione=:azione and o.data between :from and :to and p.descrizione LIKE :fnd  group by p.ID";
+    } else{
+
+         sql="select p.ID as 'ID',p.descrizione as 'DESCRIZIONE',FORMAT(SUM(o.quantita),2) as 'QUANTITA''',u.descrizione as 'U.M.' from operazioni o,prodotti p,unita_di_misura u where o.IDprodotto=p.ID and o.um=u.ID and p.tipo=:tipo and o.azione=:azione and o.data between :from and :to and p.descrizione LIKE :fnd  group by p.ID,o.um order by p.descrizione";
+
 
     }
 
@@ -85,7 +98,7 @@ void HLoadsReport::loadData()
     q.bindValue(":fnd",fnd);
     q.exec();
 
-    qDebug()<<q.lastError().text();
+
 
     mod->setQuery(q);
 
@@ -145,7 +158,7 @@ void HLoadsReport::print()
 
     out <<  "<html>\n<head>\n<meta Content=\"Text/html; charset=Windows-1251\">\n"<< "</head>\n<body bgcolor=#ffffff link=#5000A0>\n<table width=100% border=1 cellspacing=0 cellpadding=2>\n";
 
-    out << "<thead><tr bgcolor='lightyellow'><th colspan='3'>"+ title +"</th></tr>";
+    out << "<thead><tr bgcolor='lightyellow'><th colspan='4'>"+ title +"</th></tr>";
     // headers
     out << "<tr bgcolor=#f0f0f0>";
     for (int column = 0; column < columnCount; column++)
@@ -211,6 +224,8 @@ void HLoadsReport::on_rbL_toggled(bool checked)
 void HLoadsReport::on_leCerca_returnPressed()
 {
     loadData();
+    ui->leCerca->setText(QString());
+
 }
 
 

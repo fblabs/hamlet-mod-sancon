@@ -55,7 +55,7 @@ public:
         if (HLoadsReport->objectName().isEmpty())
             HLoadsReport->setObjectName(QString::fromUtf8("HLoadsReport"));
         HLoadsReport->setWindowModality(Qt::ApplicationModal);
-        HLoadsReport->resize(799, 619);
+        HLoadsReport->resize(799, 709);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Resources/App-ark-2-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         HLoadsReport->setWindowIcon(icon);
