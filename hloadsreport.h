@@ -30,6 +30,14 @@ private slots:
 
     void on_pbPrint_clicked();
 
+
+
+    void on_rbKg_toggled(bool checked);
+
+    void on_rbPz_toggled(bool checked);
+
+    void on_rbAll_toggled(bool checked);
+
 private:
     Ui::HLoadsReport *ui;
     QSqlDatabase db;

@@ -56,13 +56,22 @@ void HLoadsReport::loadData()
 
     QSqlQuery q(db);
     QString sql=QString();
-
     QString fnd=QString();
     QString head=QString();
+    QString s_um="*";
 
     ui->rbL->isChecked()?head="CARICO":head="SCARICO";
 
     ui->leCerca->text().length()<1?fnd="%":fnd="%"+ui->leCerca->text()+"%";
+
+    if( ui->rbKg->isChecked())
+        s_um="1";
+    else if (ui->rbPz->isChecked())
+        s_um="2";
+    else if(ui->rbAll->isChecked())
+        s_um="%";
+
+
 
 
 
@@ -79,11 +88,11 @@ void HLoadsReport::loadData()
     if(idtipo>2 && idtipo<6)
     {
 
-        sql="select p.ID as 'ID',p.descrizione as 'DESCRIZIONE',FORMAT(SUM(o.quantita),0) as 'QUANTITA''',u.descrizione as 'U.M.' from operazioni o,prodotti p,unita_di_misura u where o.IDprodotto=p.ID and o.um=u.ID and p.tipo=:tipo and o.azione=:azione and o.data between :from and :to and p.descrizione LIKE :fnd  group by p.ID,o.um order by p.descrizione";
+        sql="select p.ID as 'ID',p.descrizione as 'DESCRIZIONE',FORMAT(SUM(o.quantita),0) as 'QUANTITA''',u.descrizione as 'U.M.' from operazioni o,prodotti p,unita_di_misura u where o.IDprodotto=p.ID and o.um=u.ID and p.tipo=:tipo and o.azione=:azione and o.data between :from and :to and p.descrizione LIKE :fnd and u.ID LIKE :p_um  group by p.ID,o.um order by p.descrizione";
    // sql="select p.ID,p.descrizione,FORMAT(SUM(o.quantita),0) as :head,u.descrizione from operazioni o,prodotti p, unita_di_misura u where o.IDprodotto=p.ID and o.um=u.ID and p.tipo=:tipo and o.azione=:azione and o.data between :from and :to and p.descrizione LIKE :fnd  group by p.ID";
     } else{
 
-         sql="select p.ID as 'ID',p.descrizione as 'DESCRIZIONE',FORMAT(SUM(o.quantita),2) as 'QUANTITA''',u.descrizione as 'U.M.' from operazioni o,prodotti p,unita_di_misura u where o.IDprodotto=p.ID and o.um=u.ID and p.tipo=:tipo and o.azione=:azione and o.data between :from and :to and p.descrizione LIKE :fnd  group by p.ID,o.um order by p.descrizione";
+         sql="select p.ID as 'ID',p.descrizione as 'DESCRIZIONE',FORMAT(SUM(o.quantita),2) as 'QUANTITA''',u.descrizione as 'U.M.' from operazioni o,prodotti p,unita_di_misura u where o.IDprodotto=p.ID and o.um=u.ID and p.tipo=:tipo and o.azione=:azione and o.data between :from and :to and p.descrizione LIKE :fnd and u.ID LIKE :p_um group by p.ID,o.um order by p.descrizione";
 
 
     }
@@ -96,6 +105,7 @@ void HLoadsReport::loadData()
     q.bindValue(":from",ui->deFrom->date());
     q.bindValue(":to",ui->deTo->date());
     q.bindValue(":fnd",fnd);
+    q.bindValue(":p_um",s_um);
     q.exec();
 
 
@@ -232,5 +242,26 @@ void HLoadsReport::on_leCerca_returnPressed()
 void HLoadsReport::on_pbPrint_clicked()
 {
     print();
+}
+
+
+
+
+
+void HLoadsReport::on_rbKg_toggled(bool checked)
+{
+    loadData();
+}
+
+
+void HLoadsReport::on_rbPz_toggled(bool checked)
+{
+    loadData();
+}
+
+
+void HLoadsReport::on_rbAll_toggled(bool checked)
+{
+    loadData();
 }
 
